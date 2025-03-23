@@ -30,79 +30,29 @@ const Home = () => {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 bg-white">
+      <section className="min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 bg-white relative">
         <div className="container mx-auto">
-          <ScrollReveal direction="up" delay={100}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto leading-tight">
-              Newtifi builds useful, human-centered AI products, strategies, and systems.
-            </h1>
-          </ScrollReveal>
-          
-          <ScrollReveal direction="up" delay={300}>
-            <p className="text-lg md:text-xl text-center max-w-3xl mx-auto mt-6 text-gray-600">
-              We help individuals and teams move faster, stay clearer, and do better work by combining human intelligence with machine intelligence.
-            </p>
-          </ScrollReveal>
-          
-          <ScrollReveal direction="up" delay={500} className="mt-10 flex justify-center">
-            <Button to="/membership" size="lg">
-              Become a Member
-            </Button>
-          </ScrollReveal>
-        </div>
-      </section>
-      
-      {/* Our Approach Section */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="container mx-auto">
-          <ScrollReveal className="mb-16 max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
-              Our Approach
-            </h2>
-            <p className="text-lg text-gray-700">
-              At Newtifi, we believe in the power of integrative intelligence—combining the best of human expertise with the latest in AI capabilities. Our work spans across research, implementation, and education.
-            </p>
-          </ScrollReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-            <ScrollReveal delay={100}>
-              <div className="bg-white rounded-xl shadow-sm p-8 h-full">
-                <Brain className="h-10 w-10 text-newtifi-teal mb-4" />
-                <h3 className="text-xl font-bold mb-4">Research Focus</h3>
-                <p className="text-gray-700">
-                  We conduct research in AI systems that enhance human capabilities rather than replace them. Our focus areas include natural language processing, computer vision, and knowledge systems that work alongside human experts.
-                </p>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <ScrollReveal direction="up" delay={100}>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+                Newtifi builds useful, human-centered AI products, strategies, and systems.
+              </h1>
+              <p className="text-lg md:text-xl mt-6 text-gray-600">
+                We help individuals and teams move faster, stay clearer, and do better work by combining human intelligence with machine intelligence.
+              </p>
+              <div className="mt-10">
+                <Button to="/membership" size="lg">
+                  Become a Member
+                </Button>
               </div>
             </ScrollReveal>
             
-            <ScrollReveal delay={200}>
-              <div className="bg-white rounded-xl shadow-sm p-8 h-full">
-                <BarChart className="h-10 w-10 text-newtifi-teal mb-4" />
-                <h3 className="text-xl font-bold mb-4">Implementation Strategy</h3>
-                <p className="text-gray-700">
-                  We translate cutting-edge research into practical tools and strategies that organizations can implement today. Our methods focus on responsible AI adoption with measurable results and clear ROI.
-                </p>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300}>
-              <div className="bg-white rounded-xl shadow-sm p-8 h-full">
-                <Users className="h-10 w-10 text-newtifi-teal mb-4" />
-                <h3 className="text-xl font-bold mb-4">Talent Development</h3>
-                <p className="text-gray-700">
-                  We invest in developing the next generation of talent through our PhD scholarship program, mentorship initiatives, and collaborative research opportunities with leading academic institutions.
-                </p>
-              </div>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={400}>
-              <div className="bg-white rounded-xl shadow-sm p-8 h-full">
-                <Globe className="h-10 w-10 text-newtifi-teal mb-4" />
-                <h3 className="text-xl font-bold mb-4">Global Impact</h3>
-                <p className="text-gray-700">
-                  We apply our research and implementation strategies to address complex global challenges, leveraging AI as a force multiplier for human initiative in areas of critical need.
-                </p>
-              </div>
+            <ScrollReveal direction="up" delay={200} className="flex justify-center">
+              <img 
+                src="/lovable-uploads/490cdab7-a1b0-46e2-b7cd-7e3457a2b5a9.png" 
+                alt="Newtifi Innovation" 
+                className="max-w-full rounded-lg shadow-lg"
+              />
             </ScrollReveal>
           </div>
         </div>
@@ -201,64 +151,8 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Scholarship CTA Block */}
-      <section className="py-20 px-6 bg-white">
-        <ScrollReveal className="container mx-auto rounded-xl bg-newtifi-teal text-white p-10 md:p-16">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Back the science that shapes tomorrow.
-            </h2>
-            <p className="mb-8 text-lg">
-              Your contribution powers groundbreaking research that transforms industries and improves lives. Join us in building a better future through science and technology.
-            </p>
-            <Button 
-              to="/membership" 
-              variant="outline" 
-              size="lg" 
-              className="border-white text-white hover:bg-white hover:text-newtifi-teal"
-            >
-              Fund a PhD Scholar
-            </Button>
-          </div>
-        </ScrollReveal>
-      </section>
-      
-      {/* Why We Exist */}
-      <section className="py-20 px-6 bg-newtifi-navy bg-opacity-5">
-        <div className="container mx-auto">
-          <div className="max-w-4xl mx-auto">
-            <ScrollReveal delay={100}>
-              <h2 className="text-3xl md:text-4xl font-bold mb-10 text-center">
-                Why We Exist
-              </h2>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300} className="mb-8">
-              <blockquote className="text-2xl md:text-3xl font-medium italic text-newtifi-navy border-l-4 border-newtifi-teal pl-6 mb-6">
-                "We're not building to exit. We're building to endure. The goal isn't dominance. It's contribution."
-              </blockquote>
-              <p className="text-lg text-gray-600">
-                Inspired by Simon Sinek's Infinite Game philosophy, we believe in playing the long game. Our mission transcends quarterly results or short-term gains. We're focused on creating meaningful impact that spans generations.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={500} className="mb-8">
-              <h3 className="text-xl font-bold mb-4 text-newtifi-navy">
-                Principles That Guide Us
-              </h3>
-              <p className="text-lg text-gray-600 mb-4">
-                Like Ray Dalio's principles, we value radical transparency, thoughtful disagreement, and continuous improvement. We believe that clear thinking and open communication lead to better outcomes for everyone.
-              </p>
-              <p className="text-lg text-gray-600">
-                Our commitment is to create systems, technologies, and opportunities that align human potential with meaningful progress, never sacrificing long-term value for short-term rewards.
-              </p>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-      
       {/* Our Research Process */}
-      <section className="py-20 px-6 bg-white">
+      <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
@@ -303,8 +197,101 @@ const Home = () => {
         </div>
       </section>
       
+      {/* Scholarship CTA Block */}
+      <section className="py-20 px-6 bg-white">
+        <ScrollReveal className="container mx-auto rounded-xl bg-newtifi-teal text-white p-10 md:p-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Back the science that shapes tomorrow.
+            </h2>
+            <p className="mb-8 text-lg">
+              Your contribution powers groundbreaking research that transforms industries and improves lives. Join us in building a better future through science and technology.
+            </p>
+            <Button 
+              to="/membership" 
+              variant="outline" 
+              size="lg" 
+              className="border-white text-white hover:bg-white hover:text-newtifi-teal"
+            >
+              Fund a PhD Scholar
+            </Button>
+          </div>
+        </ScrollReveal>
+      </section>
+      
+      {/* Legal Commentary Section */}
+      <section className="py-20 px-6 bg-white">
+        <div className="container mx-auto">
+          <ScrollReveal className="mb-16 max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+              Legal Commentary
+            </h2>
+            <p className="text-lg text-gray-700">
+              Newtifi brings together top legal professionals to provide insightful commentary on legal codes and regulations such as the RAIF code, helping businesses navigate complex regulatory environments.
+            </p>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
+            <ScrollReveal delay={100} className="bg-gray-50 p-8 rounded-lg">
+              <h3 className="text-xl font-bold mb-4 text-newtifi-navy">Expert Legal Analysis</h3>
+              <p className="text-gray-700 mb-6">
+                Our network of legal professionals provides in-depth analysis of emerging regulations and their implications for businesses operating in regulated industries.
+              </p>
+              <ul className="list-disc pl-5 text-gray-700 space-y-3">
+                <li>Regulatory compliance frameworks</li>
+                <li>Legal risk assessment for AI implementation</li>
+                <li>Cross-border regulatory considerations</li>
+                <li>Industry-specific legal guidelines</li>
+              </ul>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={200} className="flex justify-center">
+              <div className="bg-newtifi-navy p-10 rounded-lg text-white">
+                <h3 className="text-xl font-bold mb-4">RAIF Code Insights</h3>
+                <p className="mb-6">
+                  Our specialized commentary on the Reserved Alternative Investment Fund (RAIF) code helps investment firms understand the nuances of this regulatory framework.
+                </p>
+                <Button 
+                  to="/legal-insights" 
+                  className="bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-white"
+                >
+                  Learn More
+                </Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+      
+      {/* Why We Exist - Simplified */}
+      <section className="py-20 px-6 bg-newtifi-navy bg-opacity-5">
+        <div className="container mx-auto">
+          <div className="max-w-4xl mx-auto">
+            <ScrollReveal delay={100} className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy">
+                Why We Exist
+              </h2>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={300}>
+              <blockquote className="text-2xl md:text-3xl font-medium italic text-newtifi-navy border-l-4 border-newtifi-teal pl-6 mb-8">
+                "We're not building to exit. We're building to endure. The goal isn't dominance. It's contribution."
+              </blockquote>
+              
+              <p className="text-lg text-gray-700 mb-8">
+                Inspired by Simon Sinek's Infinite Game philosophy, we believe in playing the long game. Our mission transcends quarterly results or short-term gains. We're focused on creating meaningful impact that spans generations.
+              </p>
+              
+              <p className="text-lg text-gray-700">
+                Like Ray Dalio's principles, we value radical transparency, thoughtful disagreement, and continuous improvement. Our commitment is to create systems, technologies, and opportunities that align human potential with meaningful progress, never sacrificing long-term value for short-term rewards.
+              </p>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+      
       {/* Membership CTA - Moved Lower */}
-      <section className="py-20 px-6 bg-newtifi-navy">
+      <section className="py-20 px-6 bg-newtifi-navy mt-20">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
