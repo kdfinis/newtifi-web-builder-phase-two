@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Google, Linkedin } from 'lucide-react';
+import { Mail, Linkedin } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 import { toast } from 'sonner';
@@ -41,7 +41,11 @@ const Login = () => {
               onClick={() => handleSocialLogin('Google')}
               className="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 rounded-md py-3 px-4 text-gray-700 hover:bg-gray-50 transition-colors"
             >
-              <Google className="h-5 w-5" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M8 12h8"></path>
+                <path d="M12 8v8"></path>
+              </svg>
               <span>Continue with Google</span>
             </button>
             
