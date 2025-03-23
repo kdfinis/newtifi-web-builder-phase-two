@@ -11,7 +11,7 @@ const Navbar = () => {
       className="fixed top-0 left-0 w-full z-50 bg-newtifi-navy shadow-md py-3"
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        {/* Logo with Text */}
+        {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
           <img 
             src="/lovable-uploads/350fa426-ed3c-46f2-9542-778840d65e01.png" 
@@ -55,7 +55,7 @@ const Navbar = () => {
           </Link>
         </nav>
         
-        {/* Mobile Menu Button (Always hidden as requested - no hamburger menu) */}
+        {/* Mobile Menu Button */}
         <div className="md:hidden">
           <button className="p-2 text-white">
             <span className="sr-only">Open menu</span>

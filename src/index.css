@@ -83,6 +83,7 @@
 
   body {
     @apply bg-white text-newtifi-navy font-sans scroll-smooth;
+    font-weight: 300;
   }
 
   html {
@@ -93,7 +94,7 @@
 /* Custom styles for Newtifi */
 @layer components {
   .nav-link {
-    @apply relative text-sm font-medium tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
+    @apply relative text-sm font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
   }
   
   .nav-link::after {
@@ -109,7 +110,7 @@
   }
   
   .section-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold mb-6 tracking-tight;
+    @apply text-2xl md:text-3xl font-light mb-6 tracking-tight;
   }
   
   .card-hover {
