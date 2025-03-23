@@ -18,7 +18,6 @@ const Navbar = () => {
             alt="Newtifi Logo" 
             className="h-10" 
           />
-          <span className="text-white text-xl font-light tracking-wider">NEWTIFI</span>
         </Link>
         
         {/* Navigation Links - Centered */}

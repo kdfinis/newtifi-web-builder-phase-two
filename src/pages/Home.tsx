@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Heart, Zap, Leaf, DollarSign, Brain, Users, BarChart, Globe } from 'lucide-react';
+import { Heart, Zap, Leaf, DollarSign } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 import TechCard from '@/components/TechCard';
@@ -29,15 +29,15 @@ const Home = () => {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
+      {/* Hero Section - Redesigned to be more like Squircle */}
       <section className="min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 bg-white relative">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal direction="up" delay={100}>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-newtifi-navy">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-light leading-tight text-newtifi-navy">
                 Newtifi builds useful, human-centered products, strategies, and systems.
               </h1>
-              <p className="text-base md:text-lg mt-6 text-gray-600 font-light">
+              <p className="text-base mt-6 text-gray-600 font-light">
                 We help individuals and teams move faster, stay clearer, and do better work by combining insights with technology.
               </p>
               <div className="mt-10">
@@ -62,7 +62,7 @@ const Home = () => {
       <section id="what-we-do" className="py-20 px-6 bg-newtifi-navy">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 max-w-xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-light text-white mb-4">
+            <h2 className="text-xl md:text-2xl font-light text-white mb-4">
               What We Do
             </h2>
             <p className="text-white text-opacity-80 font-light">
@@ -103,7 +103,7 @@ const Home = () => {
       <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-light text-newtifi-navy mb-6">
+            <h2 className="text-xl md:text-2xl font-light text-newtifi-navy mb-6">
               Our Research Process
             </h2>
             <p className="text-base text-gray-700 font-light">
@@ -149,7 +149,7 @@ const Home = () => {
       <section className="py-20 px-6 bg-white">
         <ScrollReveal className="container mx-auto rounded-xl bg-newtifi-teal text-white p-10 md:p-16">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-light mb-6">
+            <h2 className="text-xl md:text-2xl font-light mb-6">
               Back the science that shapes tomorrow.
             </h2>
             <p className="mb-8 text-base font-light">
@@ -171,7 +171,7 @@ const Home = () => {
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 max-w-3xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-light text-newtifi-navy mb-6">
+            <h2 className="text-xl md:text-2xl font-light text-newtifi-navy mb-6">
               Legal Commentary
             </h2>
             <p className="text-base text-gray-700 font-light">
@@ -216,17 +216,17 @@ const Home = () => {
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal delay={100} className="text-center mb-12">
-              <h2 className="text-2xl md:text-3xl font-light text-newtifi-navy">
+              <h2 className="text-xl md:text-2xl font-light text-newtifi-navy">
                 Why We Exist
               </h2>
             </ScrollReveal>
             
             <ScrollReveal delay={300}>
-              <blockquote className="text-xl md:text-2xl font-light italic text-newtifi-navy border-l-4 border-newtifi-teal pl-6 mb-8">
+              <blockquote className="text-lg md:text-xl font-light italic text-newtifi-navy border-l-4 border-newtifi-teal pl-6 mb-8">
                 "We're not building to exit. We're building to endure. The goal isn't dominance. It's contribution."
               </blockquote>
               
-              <p className="text-base text-gray-700 mb-8 font-light">
+              <p className="text-base text-gray-700 font-light">
                 Inspired by Simon Sinek's Infinite Game philosophy, we believe in playing the long game. Our mission transcends quarterly results or short-term gains. We're focused on creating meaningful impact that spans generations.
               </p>
             </ScrollReveal>
@@ -238,7 +238,7 @@ const Home = () => {
       <section className="py-20 px-6 bg-newtifi-navy mt-20">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-light mb-6 text-white">
+            <h2 className="text-xl md:text-2xl font-light mb-6 text-white">
               Join the Newtifi Community
             </h2>
             <p className="text-base text-white text-opacity-90 mb-10 font-light">
