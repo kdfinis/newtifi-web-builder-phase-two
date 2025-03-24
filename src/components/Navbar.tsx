@@ -16,7 +16,7 @@ const Navbar = () => {
           <img 
             src="/lovable-uploads/350fa426-ed3c-46f2-9542-778840d65e01.png" 
             alt="Newtifi Logo" 
-            className="h-10" 
+            className="h-9" 
           />
         </Link>
         
