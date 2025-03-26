@@ -16,39 +16,30 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
   
-  // Initialize scroll animations with IntersectionObserver
+  // Initialize scroll animations
   useEffect(() => {
-    // Function to handle element visibility using IntersectionObserver
-    const handleScrollAnimations = () => {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // Apply the is-visible class when element is in viewport
-              entry.target.classList.add('is-visible');
-            }
-          });
-        },
-        { 
-          threshold: 0.1,
-          rootMargin: '0px 0px -10% 0px' // Trigger slightly before the element is fully visible
-        }
-      );
-      
-      // Target all elements with the appear-on-scroll class
+    // Function to handle element visibility
+    const handleScroll = () => {
       const elements = document.querySelectorAll('.appear-on-scroll');
-      elements.forEach((el) => observer.observe(el));
-      
-      // Cleanup function to remove the observer
-      return () => {
-        elements.forEach((el) => observer.unobserve(el));
-      };
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight * 0.8;
+        
+        if (isVisible) {
+          el.classList.add('is-visible');
+        }
+      });
     };
     
-    // Initialize the scroll animations
-    const cleanup = handleScrollAnimations();
+    // Initial check
+    handleScroll();
     
-    return cleanup;
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
   
   return (
