@@ -8,19 +8,19 @@ const teamMembers = [
   {
     name: 'Karlo Definis',
     title: 'Strategic Lead and Founder',
-    bio: '10+ years in systems, fintech strategy, and operational design.',
+    bio: '10+ years in AI systems, fintech strategy, and operational design.',
     imageSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
   },
   {
     name: 'Sophia Chen',
     title: 'Research Director',
-    bio: 'Ph.D. in Computer Science with expertise in research methodologies.',
+    bio: 'Ph.D. in Computer Science with expertise in machine learning and AI ethics.',
     imageSrc: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80'
   },
   {
     name: 'Marcus Johnson',
     title: 'Technology Officer',
-    bio: 'Systems architect specializing in scalable implementations and cloud infrastructure.',
+    bio: 'Systems architect specializing in scalable AI implementations and cloud infrastructure.',
     imageSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80'
   },
   {
@@ -65,7 +65,7 @@ const WhoWeAre = () => {
           <ScrollReveal className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-8">Our Mission</h2>
             <p className="text-xl md:text-2xl leading-relaxed mb-6">
-              "Newtifi builds useful, human-centered products, strategies, and systems. We help individuals and teams move faster, stay clearer, and do better work."
+              "Newtifi builds useful, human-centered AI products, strategies, and systems. We help individuals and teams move faster, stay clearer, and do better work by combining human intelligence with machine intelligence."
             </p>
             <p className="text-lg opacity-80">
               This mission drives everything we do, from the research we fund to the technologies we develop and the partnerships we form.
