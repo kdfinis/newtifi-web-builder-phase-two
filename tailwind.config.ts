@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -119,7 +120,6 @@ export default {
 			transitionDuration: {
 				'2000': '2000ms',
 				'3000': '3000ms',
-				'400': '400ms',
 			},
 		}
 	},
