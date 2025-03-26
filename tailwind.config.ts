@@ -118,7 +118,6 @@ export default {
 				'slow-pulse': 'slow-pulse 3s infinite ease-in-out',
 			},
 			transitionDuration: {
-				'400': '400ms',
 				'2000': '2000ms',
 				'3000': '3000ms',
 			},
