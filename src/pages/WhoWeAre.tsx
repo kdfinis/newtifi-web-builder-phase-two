@@ -4,35 +4,35 @@ import ScrollReveal from '@/components/ScrollReveal';
 import TeamMember from '@/components/TeamMember';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
-// Team data with updated information
+// Team data
 const teamMembers = [
   {
     name: 'Karlo Definis',
     title: 'Chief Operations Officer',
-    bio: 'Coordinates scientific programs, conferences, studies, and publishing/media efforts in the Fields and Sectors.',
+    bio: 'Oversees scientific programs and publication efforts in coordination with NewTIFI\'s board.',
     imageSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    fullBio: 'Karlo coordinates scientific programs, conferences, studies, and publishing/media efforts in the Fields and Sectors. He works closely with the board to ensure all activities align with NewTIFI\'s mission and objectives.'
+    fullBio: 'Karlo has over 10 years of experience in fintech strategy and operational design. He leads NewTIFI\'s day-to-day operations and coordinates with our scientific committees to ensure research programs align with our mission and objectives.'
   },
   {
-    name: 'Ezechiel Havrenne',
-    title: 'Chair',
-    bio: 'Presides over board and general meetings; represents the organization in legal matters; proposes executive committee.',
+    name: 'Sophia Chen',
+    title: 'Research Director',
+    bio: 'Leads NewTIFI\'s research initiatives and coordinates with academic partners worldwide.',
+    imageSrc: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80',
+    fullBio: 'With a Ph.D. in Computer Science, Sophia oversees the institute\'s research portfolio across all four focus sectors. She has published extensively on topics related to financial innovation and technology policy.'
+  },
+  {
+    name: 'Marcus Johnson',
+    title: 'Technology Officer',
+    bio: 'Manages NewTIFI\'s technical infrastructure and knowledge systems development.',
     imageSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    fullBio: 'As Chair, Ezechiel presides over board and general meetings, represents NewTIFI in legal matters, and proposes members for the executive committee. His leadership ensures the organization stays true to its founding principles and mission.'
+    fullBio: 'Marcus brings 15+ years of experience in systems architecture and database design. He leads the development of NewTIFI\'s searchable legal knowledge systems and ensures our technical infrastructure supports our mission effectively.'
   },
   {
-    name: 'Stéphane Lellis',
-    title: 'Vice-Chair',
-    bio: 'Supports and substitutes the Chair; takes over as Chair if needed.',
-    imageSrc: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80',
-    fullBio: 'Stéphane supports and substitutes the Chair when needed, ensuring continuity in leadership and governance. He brings valuable expertise in organizational development and strategic planning to the team.'
-  },
-  {
-    name: 'Vlado Sutlovic',
-    title: 'Treasurer',
-    bio: 'Oversees day-to-day finances and reports to the board annually.',
-    imageSrc: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
-    fullBio: 'Vlado oversees day-to-day finances and reports to the board annually, ensuring financial transparency and responsibility. His focus on sound financial management helps NewTIFI maintain its independence and sustainability.'
+    name: 'Aria Rodriguez',
+    title: 'Partnerships Lead',
+    bio: 'Builds and maintains relationships with institutional members and external stakeholders.',
+    imageSrc: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80',
+    fullBio: 'Aria specializes in forming strategic alliances between academic institutions, regulatory bodies, and industry partners. She oversees NewTIFI\'s membership program and leads outreach efforts to expand our network of collaborators.'
   }
 ];
 
@@ -102,30 +102,30 @@ const WhoWeAre = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <ScrollReveal delay={100} className="bg-white p-6 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Multi-industry collaboration</h3>
+                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Human-Centered Innovation</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  We believe technology should augment human capabilities, not replace them. Every innovation we pursue aims to enhance human potential and well-being.
+                </p>
+              </ScrollReveal>
+              
+              <ScrollReveal delay={200} className="bg-white p-6 rounded-sm shadow-sm">
+                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Rigorous Research</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  We uphold the highest standards of scientific inquiry, ensuring our work is grounded in evidence, peer review, and ethical considerations.
+                </p>
+              </ScrollReveal>
+              
+              <ScrollReveal delay={300} className="bg-white p-6 rounded-sm shadow-sm">
+                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Collaborative Progress</h3>
                 <p className="text-xs text-gray-600 font-light">
                   We foster partnerships across disciplines and sectors, recognizing that the most significant breakthroughs come from diverse perspectives working together.
                 </p>
               </ScrollReveal>
               
-              <ScrollReveal delay={200} className="bg-white p-6 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Long-term impact</h3>
+              <ScrollReveal delay={400} className="bg-white p-6 rounded-sm shadow-sm">
+                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Long-Term Thinking</h3>
                 <p className="text-xs text-gray-600 font-light">
                   We prioritize sustainable impact over short-term gains, making decisions that benefit future generations as much as our own.
-                </p>
-              </ScrollReveal>
-              
-              <ScrollReveal delay={300} className="bg-white p-6 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Supporting researchers</h3>
-                <p className="text-xs text-gray-600 font-light">
-                  Supporting researchers in their pursuit of funding and access to the fund industry — while remaining a neutral, non-funding facilitating institution.
-                </p>
-              </ScrollReveal>
-              
-              <ScrollReveal delay={400} className="bg-white p-6 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-3 text-newtifi-navy">Human-Centered Innovation</h3>
-                <p className="text-xs text-gray-600 font-light">
-                  We believe technology should augment human capabilities. Every innovation we pursue aims to enhance human potential and well-being.
                 </p>
               </ScrollReveal>
             </div>

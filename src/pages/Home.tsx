@@ -1,6 +1,6 @@
 
 import React, { useEffect } from 'react';
-import { Heart, Zap, Leaf, DollarSign, Users } from 'lucide-react';
+import { Heart, Zap, Leaf, DollarSign } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 import TechCard from '@/components/TechCard';
@@ -31,15 +31,10 @@ const Home = () => {
     <main className="min-h-screen">
       {/* Hero Section - Fullscreen as specified */}
       <section className="min-h-screen flex items-center justify-center pt-24 pb-16 px-6">
-        <div className="container mx-auto max-w-3xl text-center relative">
-          {/* Human-centered icon in top-right */}
-          <div className="absolute top-0 right-0 md:right-10 text-newtifi-teal">
-            <Users className="h-10 w-10 opacity-80" />
-          </div>
-          
+        <div className="container mx-auto max-w-3xl text-center">
           <ScrollReveal direction="up" delay={100}>
             <h1 className="text-sm md:text-base font-light text-newtifi-navy mb-8 leading-relaxed">
-              NewTIFI supports the long-term progress of science, policy, and entrepreneurship — working across disciplines to bring sustainable solutions to life.
+              Newtifi builds useful, human-centered products, strategies, and systems. We help individuals and teams move faster, stay clearer, and do better work by combining human intelligence with technology.
             </h1>
             <p className="text-xs text-gray-600 font-light mb-10 max-w-2xl mx-auto">
               NewTIFI is an international non-profit association established under Luxembourg law (Art. 26-2 of the ASBL Law), promoting responsible research, legal insight, and sustainable innovation.
@@ -109,70 +104,6 @@ const Home = () => {
                   <li>Cross-sector connectivity</li>
                 </ul>
               </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </section>
-      
-      {/* Our Research Process Section */}
-      <section className="py-12 px-6 bg-white">
-        <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="section-title text-newtifi-navy">
-              Our Research Process
-            </h2>
-            <p className="text-xs text-gray-700 font-light">
-              We work alongside researchers to make meaningful progress in our key focus areas.
-            </p>
-          </ScrollReveal>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 max-w-4xl mx-auto">
-            <ScrollReveal delay={100} className="bg-gray-50 p-5 rounded-sm text-center">
-              <div className="text-newtifi-teal mb-3 flex justify-center">
-                <div className="w-8 h-8 bg-newtifi-teal bg-opacity-10 rounded-sm flex items-center justify-center">
-                  <span className="text-xs font-medium">01</span>
-                </div>
-              </div>
-              <h3 className="text-xs uppercase font-light tracking-wide mb-2 text-newtifi-navy">Identify Researchers</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Identify researchers working in relevant Fields and Sectors
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={200} className="bg-gray-50 p-5 rounded-sm text-center">
-              <div className="text-newtifi-teal mb-3 flex justify-center">
-                <div className="w-8 h-8 bg-newtifi-teal bg-opacity-10 rounded-sm flex items-center justify-center">
-                  <span className="text-xs font-medium">02</span>
-                </div>
-              </div>
-              <h3 className="text-xs uppercase font-light tracking-wide mb-2 text-newtifi-navy">Support Funding</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Assist them in obtaining donations (not direct funding)
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300} className="bg-gray-50 p-5 rounded-sm text-center">
-              <div className="text-newtifi-teal mb-3 flex justify-center">
-                <div className="w-8 h-8 bg-newtifi-teal bg-opacity-10 rounded-sm flex items-center justify-center">
-                  <span className="text-xs font-medium">03</span>
-                </div>
-              </div>
-              <h3 className="text-xs uppercase font-light tracking-wide mb-2 text-newtifi-navy">Enable Progress</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Support their progress to project maturity
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={400} className="bg-gray-50 p-5 rounded-sm text-center">
-              <div className="text-newtifi-teal mb-3 flex justify-center">
-                <div className="w-8 h-8 bg-newtifi-teal bg-opacity-10 rounded-sm flex items-center justify-center">
-                  <span className="text-xs font-medium">04</span>
-                </div>
-              </div>
-              <h3 className="text-xs uppercase font-light tracking-wide mb-2 text-newtifi-navy">Create Impact</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Help advise toward implementation and lasting impact
-              </p>
             </ScrollReveal>
           </div>
         </div>
