@@ -23,7 +23,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
   return (
     <ScrollReveal delay={delay} className={cn("flex flex-col items-center", className)}>
       <div 
-        className="relative h-48 w-48 rounded-full overflow-hidden mb-4 group"
+        className="relative h-36 w-36 rounded-full overflow-hidden mb-4 group"
       >
         <div className="absolute inset-0 bg-newtifi-teal opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
         <img 
@@ -32,9 +32,9 @@ const TeamMember: React.FC<TeamMemberProps> = ({
           className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
         />
       </div>
-      <h3 className="text-xl font-bold text-center">{name}</h3>
-      <p className="text-newtifi-teal font-medium text-center mb-2">{title}</p>
-      <p className="text-center text-gray-600 max-w-xs">{bio}</p>
+      <h3 className="text-xs font-light uppercase tracking-wide text-center text-newtifi-navy">{name}</h3>
+      <p className="text-xs text-newtifi-teal font-light text-center mb-2">{title}</p>
+      <p className="text-center text-xs text-gray-600 font-light max-w-xs">{bio}</p>
     </ScrollReveal>
   );
 };

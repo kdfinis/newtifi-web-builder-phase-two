@@ -182,7 +182,7 @@ const Connect = () => {
               <ScrollReveal delay={200}>
                 <div className="bg-white rounded-sm shadow-sm overflow-hidden h-80">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2585.3457152399354!2d6.1216016!3d49.6211636!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479548cd9a07de65%3A0x8e97b81278606b74!2s14%20Rue%20Jean-Pierre%20Bicheler%2C%20L-3897%20Foetz%2C%20Luxembourg!5e0!3m2!1sen!2sus!4v1677890257135!5m2!1sen!2sus"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2585.730564015783!2d6.1852649!3d49.612289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479548cd1aed85a7%3A0x516bc5a8c07e6ce3!2sCents%2C%20Luxembourg%20City%2C%20Luxembourg!5e0!3m2!1sen!2sus!4v1677890257135!5m2!1sen!2sus"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
@@ -198,40 +198,54 @@ const Connect = () => {
         </div>
       </section>
       
-      {/* FAQ Section */}
-      <section className="px-6 py-16 bg-white">
+      {/* Scholar Funding & Legal Commentary CTA Section */}
+      <section className="px-6 py-12 bg-white">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="section-title text-newtifi-navy">
+          <ScrollReveal className="max-w-3xl mx-auto mb-10">
+            <div className="bg-gray-50 p-6 rounded-sm shadow-sm mb-8">
+              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">Scholar Funding Program</h3>
+              <p className="text-xs text-gray-600 font-light">
+                Our scholar funding program focuses on funding research that yields societal benefit in the Fields and Sectors outlined by NewTIFI: HealthTech, FoodTech, EnergyTech, and FinTech. Through these initiatives, we aim to create lasting impact and promote sustainable innovation.
+              </p>
+            </div>
+            
+            <div className="bg-gray-50 p-6 rounded-sm shadow-sm">
+              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">Legal Commentary Invitation</h3>
+              <p className="text-xs text-gray-600 font-light">
+                If you are a legal professional interested in contributing to commentary on the RAIF Code or related legal instruments, please contact us to get involved.
+              </p>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+      
+      {/* FAQ Section - Reduced size with bullet points */}
+      <section className="px-6 py-10 bg-gray-50">
+        <div className="container mx-auto">
+          <ScrollReveal className="max-w-2xl mx-auto">
+            <h2 className="section-title text-newtifi-navy text-center mb-6">
               Frequently Asked Questions
             </h2>
-            <p className="text-xs text-gray-600 font-light">
-              Find answers to common questions about NewTIFI's research, membership, and opportunities.
-            </p>
+            
+            <div className="bg-white p-5 rounded-sm shadow-sm">
+              <ul className="list-disc pl-5 text-xs text-gray-600 space-y-4 font-light">
+                <li>
+                  <span className="font-medium text-newtifi-navy">How can I join NewTIFI as a member?</span>
+                  <p className="mt-1">You can apply for membership through our Membership page. Once we receive your application, our team will review it and contact you with next steps.</p>
+                </li>
+                
+                <li>
+                  <span className="font-medium text-newtifi-navy">What kinds of research does NewTIFI focus on?</span>
+                  <p className="mt-1">We primarily focus on applied research in HealthTech, FoodTech, EnergyTech, and FinTech sectors, with an emphasis on creating practical, human-centered solutions.</p>
+                </li>
+                
+                <li>
+                  <span className="font-medium text-newtifi-navy">How does the scholar funding program work?</span>
+                  <p className="mt-1">Our scholar funding program allows individuals and organizations to directly support promising researchers. You can choose specific research areas to fund, and you'll receive regular updates on the progress and outcomes of the supported work.</p>
+                </li>
+              </ul>
+            </div>
           </ScrollReveal>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            <ScrollReveal delay={100} className="bg-gray-50 p-6 rounded-sm shadow-sm">
-              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">How can I join NewTIFI as a member?</h3>
-              <p className="text-xs text-gray-600 font-light">
-                You can apply for membership through our Membership page. Once we receive your application, our team will review it and contact you with next steps.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={200} className="bg-gray-50 p-6 rounded-sm shadow-sm">
-              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">What kinds of research does NewTIFI focus on?</h3>
-              <p className="text-xs text-gray-600 font-light">
-                We primarily focus on applied research in HealthTech, FoodTech, EnergyTech, and FinTech sectors, with an emphasis on creating practical, human-centered solutions.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300} className="bg-gray-50 p-6 rounded-sm shadow-sm">
-              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">How does the scholar funding program work?</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Our scholar funding program allows individuals and organizations to directly support promising researchers. You can choose specific research areas to fund, and you'll receive regular updates on the progress and outcomes of the supported work.
-              </p>
-            </ScrollReveal>
-          </div>
         </div>
       </section>
     </main>
