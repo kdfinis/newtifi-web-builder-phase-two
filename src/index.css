@@ -125,7 +125,7 @@
   }
   
   .appear-on-scroll.is-visible {
-    @apply opacity-100 translate-y-0 transition-all duration-[400ms] ease-in-out;
+    @apply opacity-100 translate-y-0 transition-all duration-400 ease-in-out;
   }
 
   /* Typography Utilities */
