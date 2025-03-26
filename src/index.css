@@ -93,7 +93,7 @@
 @layer components {
   /* Nav Links */
   .nav-link {
-    @apply relative text-xs md:text-sm font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
+    @apply relative text-xs font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
   }
   
   .nav-link::after {
@@ -106,12 +106,12 @@
 
   /* Buttons */
   .btn-primary {
-    @apply bg-newtifi-teal text-white px-5 py-2.5 rounded-md font-light transition-all duration-300 hover:bg-opacity-80 hover:shadow-md;
+    @apply bg-newtifi-teal text-white px-5 py-2 rounded-md font-light transition-all duration-300 hover:bg-opacity-80 hover:shadow-md;
   }
   
   /* Section Titles */
   .section-title {
-    @apply text-sm font-light mb-4 tracking-tight uppercase;
+    @apply text-xs font-light mb-4 tracking-tight uppercase;
   }
   
   /* Card Hover Effects */
@@ -121,28 +121,28 @@
   
   /* Animation Classes */
   .appear-on-scroll {
-    @apply opacity-0;
+    @apply opacity-0 translate-y-[20px];
   }
   
   .appear-on-scroll.is-visible {
-    @apply opacity-100 transition-opacity duration-400;
+    @apply opacity-100 translate-y-0 transition-all duration-400 ease-in-out;
   }
 
   /* Typography Utilities */
   .heading-1 {
-    @apply text-base md:text-lg lg:text-xl font-light tracking-wide;
+    @apply text-sm md:text-base font-light tracking-wide uppercase;
   }
   
   .heading-2 {
-    @apply text-sm md:text-base uppercase font-light tracking-wide;
+    @apply text-xs uppercase font-light tracking-wide;
   }
   
   .body-text {
-    @apply text-xs md:text-sm font-light;
+    @apply text-xs font-light leading-relaxed;
   }
 
   .small-text {
-    @apply text-xs font-light;
+    @apply text-[10px] font-light;
   }
 
   .uppercase-text {
