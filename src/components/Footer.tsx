@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-newtifi-navy text-white py-12 w-full">
+    <footer className="bg-newtifi-navy text-white py-10 w-full">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Company Info */}
@@ -32,7 +32,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Navigation</h3>
+            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">NAVIGATION</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
@@ -59,7 +59,7 @@ const Footer = () => {
           
           {/* Focus Areas */}
           <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Focus Areas</h3>
+            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">FOCUS AREAS</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/#health-tech" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
@@ -86,7 +86,7 @@ const Footer = () => {
           
           {/* Legal */}
           <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Legal</h3>
+            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">LEGAL</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">

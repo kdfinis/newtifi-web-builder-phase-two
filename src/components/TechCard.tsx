@@ -24,11 +24,11 @@ const TechCard: React.FC<TechCardProps> = ({
         <div className="mb-4 flex items-center justify-center h-10 w-10 bg-newtifi-teal bg-opacity-20 rounded-lg text-newtifi-teal">
           {icon}
         </div>
-        <h3 className="text-sm font-medium mb-2 text-newtifi-navy uppercase tracking-wider group-hover:text-newtifi-teal transition-colors">
+        <h3 className="text-xs font-medium mb-2 text-newtifi-navy uppercase tracking-wider group-hover:text-newtifi-teal transition-colors">
           {title}
         </h3>
         {description && (
-          <p className="text-gray-700 text-xs font-light">
+          <p className="text-xs text-gray-700 font-light">
             {description}
           </p>
         )}

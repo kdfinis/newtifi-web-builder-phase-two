@@ -91,8 +91,9 @@
 
 /* Custom styles for Newtifi */
 @layer components {
+  /* Nav Links */
   .nav-link {
-    @apply relative text-sm font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
+    @apply relative text-xs md:text-sm font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
   }
   
   .nav-link::after {
@@ -103,23 +104,48 @@
     @apply w-full;
   }
 
+  /* Buttons */
   .btn-primary {
     @apply bg-newtifi-teal text-white px-5 py-2.5 rounded-md font-light transition-all duration-300 hover:bg-opacity-80 hover:shadow-md;
   }
   
+  /* Section Titles */
   .section-title {
-    @apply text-base font-light mb-4 tracking-tight uppercase;
+    @apply text-sm font-light mb-4 tracking-tight uppercase;
   }
   
+  /* Card Hover Effects */
   .card-hover {
     @apply transition-all duration-500 hover:translate-y-[-5px] hover:shadow-lg;
   }
   
+  /* Animation Classes */
   .appear-on-scroll {
     @apply opacity-0;
   }
   
   .appear-on-scroll.is-visible {
-    @apply opacity-100 transition-opacity duration-1000;
+    @apply opacity-100 transition-opacity duration-400;
+  }
+
+  /* Typography Utilities */
+  .heading-1 {
+    @apply text-base md:text-lg lg:text-xl font-light tracking-wide;
+  }
+  
+  .heading-2 {
+    @apply text-sm md:text-base uppercase font-light tracking-wide;
+  }
+  
+  .body-text {
+    @apply text-xs md:text-sm font-light;
+  }
+
+  .small-text {
+    @apply text-xs font-light;
+  }
+
+  .uppercase-text {
+    @apply uppercase tracking-wider;
   }
 }
