@@ -1,8 +1,9 @@
+
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
-import Button from '@/components/ui/button';
+import { Button } from '@/components/ui/button';
 import TechCard from '@/components/TechCard';
-import { RocketIcon, LightbulbIcon, ShieldCheckIcon } from '@heroicons/react/solid';
+import { Rocket, Lightbulb, ShieldCheck } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -19,8 +20,8 @@ const Home = () => {
               <p className="text-base md:text-lg text-gray-700 mb-6 font-light">
                 We build human-centered products, strategies, and systems that help individuals and teams move faster, stay clearer, and do better work.
               </p>
-              <Button to="/membership" size="md">
-                Become a Member
+              <Button asChild size="default">
+                <a href="/membership">Become a Member</a>
               </Button>
             </ScrollReveal>
             
@@ -52,19 +53,19 @@ const Home = () => {
             <TechCard 
               title="Strategic Planning"
               description="Crafting clear, actionable plans that align with your goals."
-              icon={<RocketIcon className="h-6 w-6" />}
+              icon={<Rocket className="h-6 w-6" />}
               delay={100}
             />
             <TechCard 
               title="System Design"
               description="Designing robust systems for efficiency and effectiveness."
-              icon={<LightbulbIcon className="h-6 w-6" />}
+              icon={<Lightbulb className="h-6 w-6" />}
               delay={200}
             />
             <TechCard 
               title="Security Solutions"
               description="Implementing top-tier security measures to protect your valuable assets."
-              icon={<ShieldCheckIcon className="h-6 w-6" />}
+              icon={<ShieldCheck className="h-6 w-6" />}
               delay={300}
             />
           </div>
@@ -83,8 +84,8 @@ const Home = () => {
               <p className="text-base md:text-lg text-gray-700 mb-6 font-light">
                 Founded in 2024, NewTIFI is dedicated to building a future where technology enhances human potential. We focus on creating solutions that are not only innovative but also practical and user-friendly.
               </p>
-              <Button to="/who-we-are" size="md">
-                Learn More
+              <Button asChild size="default">
+                <a href="/who-we-are">Learn More</a>
               </Button>
             </ScrollReveal>
             
@@ -110,8 +111,8 @@ const Home = () => {
             <p className="text-base md:text-lg font-light mb-8">
               Contact us today to discover how NewTIFI can help you achieve your goals with cutting-edge strategies and systems.
             </p>
-            <Button to="/connect" variant="secondary" size="lg">
-              Get in Touch
+            <Button asChild variant="secondary" size="lg">
+              <a href="/connect">Get in Touch</a>
             </Button>
           </ScrollReveal>
         </div>
