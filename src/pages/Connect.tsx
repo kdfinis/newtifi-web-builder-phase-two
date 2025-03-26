@@ -1,196 +1,144 @@
 
-import React, { useState } from 'react';
-import { MapPin, Mail } from 'lucide-react';
+import React from 'react';
+import { Send, Phone, MapPin, Clock, Calendar } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
-import { toast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 const Connect = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    organization: '',
-    message: '',
-    autoReply: false
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, checked } = e.target;
-    setFormData(prev => ({ ...prev, [name]: checked }));
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    
-    // Show success message
-    toast({
-      title: "Message sent",
-      description: "Thank you for your message. We will get back to you soon.",
-    });
-    
-    // Clear form
-    setFormData({
-      name: '',
-      email: '',
-      organization: '',
-      message: '',
-      autoReply: false
-    });
+    toast.success('Your message has been sent! We will be in touch soon.');
   };
-
+  
   return (
     <main className="min-h-screen pt-28 pb-20">
-      {/* Connect Hero */}
-      <section className="px-6 py-12">
+      {/* Contact Section */}
+      <section className="px-6 py-12 bg-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-3xl mx-auto text-center mb-12">
-            <h1 className="text-sm font-light uppercase tracking-wide mb-6 text-newtifi-navy">Contact Us</h1>
-            <p className="text-xs text-gray-600 font-light">
-              Interested in learning more about NewTIFI's research, membership opportunities, or potential collaborations? We'd love to hear from you.
+            <h1 className="text-sm font-light uppercase tracking-wide mb-4 text-newtifi-navy">Connect With Us</h1>
+            <p className="text-sm text-gray-700 font-light">
+              Have questions or want to learn more about NewTIFI? We'd love to hear from you. Reach out through the form below or contact us directly.
             </p>
           </ScrollReveal>
-        </div>
-      </section>
-      
-      {/* Contact Form & Information */}
-      <section className="px-6 py-12 bg-gray-50">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <ScrollReveal className="bg-white rounded-sm shadow-sm p-8">
-              <h2 className="text-xs font-light uppercase tracking-wide mb-6 text-newtifi-navy">Send Us a Message</h2>
-              <form onSubmit={handleSubmit}>
-                <div className="mb-6">
-                  <label htmlFor="name" className="block text-xs font-light text-gray-700 mb-1">
-                    Full Name *
+            <ScrollReveal delay={100} className="bg-white p-8 rounded-sm shadow-sm">
+              <h2 className="text-xs uppercase font-light tracking-wide mb-6 text-newtifi-navy">Send Us a Message</h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="name" className="block text-xs text-gray-700 mb-1 font-light">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-sm text-xs focus:outline-none focus:ring-1 focus:ring-newtifi-teal"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-xs text-gray-700 mb-1 font-light">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-sm text-xs focus:outline-none focus:ring-1 focus:ring-newtifi-teal"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label htmlFor="subject" className="block text-xs text-gray-700 mb-1 font-light">
+                    Subject
                   </label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-newtifi-teal text-xs"
-                    placeholder="Your name"
-                    required
+                    id="subject"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-sm text-xs focus:outline-none focus:ring-1 focus:ring-newtifi-teal"
                   />
                 </div>
                 
-                <div className="mb-6">
-                  <label htmlFor="email" className="block text-xs font-light text-gray-700 mb-1">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-newtifi-teal text-xs"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="organization" className="block text-xs font-light text-gray-700 mb-1">
-                    Organization (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    id="organization"
-                    name="organization"
-                    value={formData.organization}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-newtifi-teal text-xs"
-                    placeholder="Your company or institution"
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-xs font-light text-gray-700 mb-1">
-                    Message *
+                <div>
+                  <label htmlFor="message" className="block text-xs text-gray-700 mb-1 font-light">
+                    Message
                   </label>
                   <textarea
                     id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-sm focus:outline-none focus:ring-1 focus:ring-newtifi-teal text-xs"
-                    placeholder="How can we help you?"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-sm text-xs focus:outline-none focus:ring-1 focus:ring-newtifi-teal"
                     required
                   ></textarea>
                 </div>
                 
-                <div className="mb-6">
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      id="autoReply"
-                      name="autoReply"
-                      checked={formData.autoReply}
-                      onChange={handleCheckChange}
-                      className="h-4 w-4 text-newtifi-teal border-gray-300 rounded focus:ring-newtifi-teal"
-                    />
-                    <label htmlFor="autoReply" className="ml-2 block text-xs font-light text-gray-700">
-                      Send me a copy of this message
-                    </label>
-                  </div>
-                </div>
-                
-                <Button type="submit" fullWidth className="text-xs uppercase tracking-wide">
+                <Button type="submit" className="w-full">
+                  <Send className="h-3.5 w-3.5 mr-2" />
                   Send Message
                 </Button>
               </form>
             </ScrollReveal>
             
             {/* Contact Information */}
-            <div>
-              <ScrollReveal className="bg-newtifi-navy text-white rounded-sm shadow-sm p-8 mb-8">
-                <h2 className="text-xs font-light uppercase tracking-wide mb-6">Contact Information</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <MapPin className="h-4 w-4 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="text-xs font-light">Address</h3>
-                      <p className="text-[10px] text-gray-300 mt-1 font-light">
-                        14 rue Jean-Pierre Biermann<br />
-                        L-1268 Luxembourg
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Mail className="h-4 w-4 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="text-xs font-light">Email</h3>
-                      <p className="text-[10px] text-gray-300 mt-1 font-light">
-                        info@newtifi.com
-                      </p>
-                    </div>
+            <div className="space-y-8">
+              <ScrollReveal delay={200} className="bg-white p-6 rounded-sm shadow-sm">
+                <div className="flex items-start">
+                  <MapPin className="h-5 w-5 text-newtifi-teal mr-4 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-xs font-light mb-2 text-newtifi-navy">Visit Us</h3>
+                    <p className="text-xs text-gray-600 font-light">
+                      NewTIFI A.s.b.l.<br />
+                      14 rue Jean-Pierre Biermann<br />
+                      L-1268 Luxembourg<br />
+                      Cents neighborhood, Luxembourg
+                    </p>
                   </div>
                 </div>
               </ScrollReveal>
               
-              <ScrollReveal delay={200}>
-                <div className="bg-white rounded-sm shadow-sm overflow-hidden h-80">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2585.730564015783!2d6.1852649!3d49.612289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479548cd1aed85a7%3A0x516bc5a8c07e6ce3!2sCents%2C%20Luxembourg%20City%2C%20Luxembourg!5e0!3m2!1sen!2sus!4v1677890257135!5m2!1sen!2sus"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="NewTIFI Office Location"
-                  ></iframe>
+              <ScrollReveal delay={300} className="bg-white p-6 rounded-sm shadow-sm">
+                <div className="flex items-start">
+                  <Phone className="h-5 w-5 text-newtifi-teal mr-4 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-xs font-light mb-2 text-newtifi-navy">Contact Us</h3>
+                    <p className="text-xs text-gray-600 font-light">
+                      Email: <a href="mailto:info@newtifi.com" className="text-newtifi-teal hover:underline">info@newtifi.com</a><br />
+                      Phone: +352 2333 3333
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+              
+              <ScrollReveal delay={400} className="bg-white p-6 rounded-sm shadow-sm">
+                <div className="flex items-start">
+                  <Clock className="h-5 w-5 text-newtifi-teal mr-4 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-xs font-light mb-2 text-newtifi-navy">Office Hours</h3>
+                    <p className="text-xs text-gray-600 font-light">
+                      Monday - Friday: 9:00 AM - 5:00 PM<br />
+                      Saturday & Sunday: Closed
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
+              
+              <ScrollReveal delay={500} className="bg-white p-6 rounded-sm shadow-sm">
+                <div className="flex items-start">
+                  <Calendar className="h-5 w-5 text-newtifi-teal mr-4 flex-shrink-0" />
+                  <div>
+                    <h3 className="text-xs font-light mb-2 text-newtifi-navy">Schedule a Meeting</h3>
+                    <p className="text-xs text-gray-600 font-light mb-3">
+                      Interested in learning more about our work? Schedule a virtual or in-person meeting with our team.
+                    </p>
+                    <Button variant="outline" size="sm">
+                      Request Meeting
+                    </Button>
+                  </div>
                 </div>
               </ScrollReveal>
             </div>
@@ -198,55 +146,67 @@ const Connect = () => {
         </div>
       </section>
       
-      {/* Scholar Funding & Legal Commentary CTA Section */}
-      <section className="px-6 py-12 bg-white">
+      {/* FAQs Section - Reduced Visual Size */}
+      <section className="px-6 py-12 bg-gray-50">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto mb-10">
-            <div className="bg-gray-50 p-6 rounded-sm shadow-sm mb-8">
-              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">Scholar Funding Program</h3>
-              <p className="text-xs text-gray-600 font-light">
-                Our scholar funding program focuses on funding research that yields societal benefit in the Fields and Sectors outlined by NewTIFI: HealthTech, FoodTech, EnergyTech, and FinTech. Through these initiatives, we aim to create lasting impact and promote sustainable innovation.
-              </p>
-            </div>
-            
-            <div className="bg-gray-50 p-6 rounded-sm shadow-sm">
-              <h3 className="text-xs font-light uppercase tracking-wide mb-2 text-newtifi-navy">Legal Commentary Invitation</h3>
-              <p className="text-xs text-gray-600 font-light">
-                If you are a legal professional interested in contributing to commentary on the RAIF Code or related legal instruments, please contact us to get involved.
-              </p>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-      
-      {/* FAQ Section - Reduced size with bullet points */}
-      <section className="px-6 py-10 bg-gray-50">
-        <div className="container mx-auto">
-          <ScrollReveal className="max-w-2xl mx-auto">
+          <ScrollReveal className="max-w-3xl mx-auto">
             <h2 className="section-title text-newtifi-navy text-center mb-6">
               Frequently Asked Questions
             </h2>
             
-            <div className="bg-white p-5 rounded-sm shadow-sm">
-              <ul className="list-disc pl-5 text-xs text-gray-600 space-y-4 font-light">
-                <li>
-                  <span className="font-medium text-newtifi-navy">How can I join NewTIFI as a member?</span>
-                  <p className="mt-1">You can apply for membership through our Membership page. Once we receive your application, our team will review it and contact you with next steps.</p>
+            <div className="max-w-2xl mx-auto">
+              <ul className="space-y-4 text-left list-disc pl-5">
+                <li className="text-xs text-gray-700 font-light">
+                  <strong className="font-medium">What is NewTIFI?</strong><br />
+                  NewTIFI is a non-profit organization that supports the long-term progress of science, policy, and entrepreneurship — working across disciplines to bring sustainable solutions to life.
                 </li>
-                
-                <li>
-                  <span className="font-medium text-newtifi-navy">What kinds of research does NewTIFI focus on?</span>
-                  <p className="mt-1">We primarily focus on applied research in HealthTech, FoodTech, EnergyTech, and FinTech sectors, with an emphasis on creating practical, human-centered solutions.</p>
+                <li className="text-xs text-gray-700 font-light">
+                  <strong className="font-medium">How can I get involved with NewTIFI?</strong><br />
+                  You can explore our membership options, attend our events, or reach out to us directly about collaboration opportunities.
                 </li>
-                
-                <li>
-                  <span className="font-medium text-newtifi-navy">How does the scholar funding program work?</span>
-                  <p className="mt-1">Our scholar funding program allows individuals and organizations to directly support promising researchers. You can choose specific research areas to fund, and you'll receive regular updates on the progress and outcomes of the supported work.</p>
+                <li className="text-xs text-gray-700 font-light">
+                  <strong className="font-medium">Does NewTIFI provide funding?</strong><br />
+                  NewTIFI assists researchers in obtaining donations for funding research that yields societal benefit in the Fields and Sectors outlined by NewTIFI (HealthTech, FoodTech, EnergyTech, FinTech), while remaining a neutral, non-funding facilitating institution.
+                </li>
+                <li className="text-xs text-gray-700 font-light">
+                  <strong className="font-medium">What areas does NewTIFI focus on?</strong><br />
+                  Our focus areas include HealthTech, FoodTech, EnergyTech, and FinTech, with an emphasis on solutions that have long-term positive societal impact.
                 </li>
               </ul>
             </div>
           </ScrollReveal>
         </div>
+      </section>
+
+      {/* Legal Commentary Invitation */}
+      <section className="px-6 py-12 bg-white">
+        <div className="container mx-auto">
+          <ScrollReveal className="max-w-3xl mx-auto text-center">
+            <h2 className="section-title text-newtifi-navy mb-4">
+              Legal Commentary Invitation
+            </h2>
+            <p className="text-xs text-gray-700 font-light mb-6">
+              If you are a legal professional interested in contributing to commentary on the RAIF Code or related legal instruments, please contact us to get involved.
+            </p>
+            <Button variant="outline" size="sm">
+              Contact for Legal Collaboration
+            </Button>
+          </ScrollReveal>
+        </div>
+      </section>
+      
+      {/* Map Section (Google Maps embed) */}
+      <section className="h-96 w-full">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2584.9557446005065!2d6.179742015691369!3d49.60824397936746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479548cd9f2d8a15%3A0xf4057f4f62d80c04!2sCents%2C%20Luxembourg!5e0!3m2!1sen!2sus!4v1653067898801!5m2!1sen!2sus" 
+          width="100%" 
+          height="100%" 
+          style={{ border: 0 }} 
+          allowFullScreen={true} 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+          title="NewTIFI Luxembourg Office Location"
+        ></iframe>
       </section>
     </main>
   );
