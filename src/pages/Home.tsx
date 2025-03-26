@@ -29,20 +29,32 @@ const Home = () => {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section */}
+      {/* Split Hero Section */}
       <section className="min-h-screen flex items-center justify-center pt-20 pb-16 px-6 bg-white">
-        <div className="container mx-auto max-w-4xl text-center">
-          <ScrollReveal direction="up" delay={100}>
-            <h1 className="text-lg md:text-xl lg:text-2xl font-light text-newtifi-navy mb-6 leading-relaxed">
-              Newtifi builds useful, human-centered products, strategies, and systems. We help individuals and teams move faster, stay clearer, and do better work by combining human intelligence with technology.
-            </h1>
-            <p className="text-xs md:text-sm text-gray-600 font-light mb-8 max-w-3xl mx-auto">
-              NewTIFI is an international non-profit association established under Luxembourg law (Art. 26-2 of the ASBL Law), promoting responsible research, legal insight, and sustainable innovation.
-            </p>
-            <Button to="/membership" size="md">
-              Become a Member
-            </Button>
-          </ScrollReveal>
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left Column - Text */}
+            <ScrollReveal direction="left" delay={100} className="text-left">
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-medium text-newtifi-navy mb-3">
+                NewTIFI
+              </h1>
+              <p className="text-base md:text-lg text-gray-700 mb-6 font-light">
+                We build useful, human-centered products, strategies, and systems that combine human intelligence with technology to help individuals and teams move faster, stay clearer, and do better work.
+              </p>
+              <Button to="/membership" size="md">
+                Become a Member
+              </Button>
+            </ScrollReveal>
+            
+            {/* Right Column - Image */}
+            <ScrollReveal direction="right" delay={200} className="flex justify-center md:justify-end">
+              <img 
+                src="/lovable-uploads/490cdab7-a1b0-46e2-b7cd-7e3457a2b5a9.png" 
+                alt="NewTIFI Vision" 
+                className="rounded-lg shadow-md max-w-full h-auto"
+              />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
       
