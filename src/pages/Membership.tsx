@@ -1,187 +1,229 @@
 
 import React from 'react';
-import { Check } from 'lucide-react';
+import { Check, Users, Award, BookOpen, GraduationCap } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 
 const Membership = () => {
   return (
     <main className="min-h-screen pt-28 pb-20">
-      {/* Membership Hero */}
-      <section className="px-6 py-12">
+      {/* Hero Section */}
+      <section className="px-6 py-12 bg-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-sm font-light uppercase tracking-wide mb-6">Join the NewTIFI Community</h1>
-            <p className="text-xs text-gray-600 font-light">
-              Become part of a global network of innovators, researchers, and industry leaders who are shaping the future of technology.
+            <h1 className="text-sm font-light uppercase tracking-wide mb-4 text-newtifi-navy">Membership</h1>
+            <p className="text-sm text-gray-700 font-light">
+              Join the NewTIFI community and be part of shaping a better future through collaboration, research, and innovation.
             </p>
           </ScrollReveal>
         </div>
       </section>
       
-      {/* Membership Benefits */}
-      <section className="px-6 py-12 bg-newtifi-navy bg-opacity-5">
+      {/* Benefits Section */}
+      <section className="px-6 py-12 bg-gray-50">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-4xl mx-auto mb-12">
-            <h2 className="text-xs uppercase font-light tracking-wide mb-8 text-center">Membership Benefits</h2>
+          <ScrollReveal className="max-w-3xl mx-auto mb-12">
+            <h2 className="section-title text-newtifi-navy text-center mb-8">
+              Membership Benefits
+            </h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ScrollReveal delay={100} className="flex flex-col bg-white p-8 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-6 text-newtifi-navy">Access Research Insights</h3>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-newtifi-teal mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-gray-700 font-light">Exclusive access to high-level knowledge and strategic industry networks across the Fields and Sectors covered by NewTIFI.</span>
-                  </li>
-                </ul>
-                <div className="mt-auto">
-                  <Button to="/membership/join" fullWidth className="text-xs uppercase tracking-wide">
-                    Join as a Member
-                  </Button>
+            <div className="space-y-6">
+              <div className="flex items-start">
+                <div className="mr-4 bg-newtifi-teal bg-opacity-10 p-2 rounded-full">
+                  <Check className="h-5 w-5 text-newtifi-teal" />
                 </div>
-              </ScrollReveal>
-              
-              <ScrollReveal delay={200} className="flex flex-col bg-white p-8 rounded-sm shadow-sm">
-                <h3 className="text-xs font-light uppercase tracking-wide mb-6 text-newtifi-navy">Be in touch with NewTIFI</h3>
-                <ul className="space-y-4 mb-8">
-                  <li className="flex items-start">
-                    <Check className="h-4 w-4 text-newtifi-teal mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-xs text-gray-700 font-light">Full access to the RAIF legal commentary and all upcoming legal commentaries authored by leading Luxembourg professionals.</span>
-                  </li>
-                </ul>
-                <div className="mt-auto">
-                  <Button to="/membership/join" fullWidth variant="outline" className="text-xs uppercase tracking-wide">
-                    Learn More
-                  </Button>
+                <div>
+                  <p className="text-xs text-gray-700 font-light">
+                    Exclusive access to high-level knowledge and strategic industry networks across the Fields and Sectors covered by NewTIFI.
+                  </p>
                 </div>
-              </ScrollReveal>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-      
-      {/* Fund a Scholar */}
-      <section className="px-6 py-16 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
-          <ScrollReveal className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div>
-                <h2 className="text-xs uppercase font-light tracking-wide mb-6">Fund a Scholar</h2>
-                <p className="text-xs opacity-90 mb-6 font-light">
-                  Support the next generation of innovators by funding scholarship opportunities. Your contribution directly enables groundbreaking research that can transform industries and improve lives.
-                </p>
-                <p className="text-xs opacity-90 mb-8 font-light">
-                  Scholarship sponsors receive regular updates on research progress, acknowledgment in publications, and opportunities to connect directly with the scholars they support.
-                </p>
-                <Button 
-                  to="/membership/fund"
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white hover:text-newtifi-navy text-xs uppercase tracking-wide"
-                >
-                  Fund a Scholar
-                </Button>
               </div>
               
-              <div className="rounded-sm overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80" 
-                  alt="Diverse group of researchers collaborating" 
-                  className="w-full h-auto"
-                />
+              <div className="flex items-start">
+                <div className="mr-4 bg-newtifi-teal bg-opacity-10 p-2 rounded-full">
+                  <Check className="h-5 w-5 text-newtifi-teal" />
+                </div>
+                <div>
+                  <p className="text-xs text-gray-700 font-light">
+                    Full access to the RAIF legal commentary and all upcoming legal commentaries authored by leading Luxembourg professionals.
+                  </p>
+                </div>
               </div>
             </div>
           </ScrollReveal>
         </div>
       </section>
       
-      {/* Testimonials */}
-      <section className="px-6 py-16">
+      {/* Membership Tiers */}
+      <section className="px-6 py-16 bg-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-xs uppercase font-light tracking-wide mb-6">
-              What Members Say
+            <h2 className="section-title text-newtifi-navy">
+              Membership Tiers
             </h2>
             <p className="text-xs text-gray-600 font-light">
-              Hear from our community of researchers, innovators, and industry leaders.
+              Choose the membership level that's right for you or your organization.
             </p>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ScrollReveal delay={100} className="bg-white p-6 rounded-sm shadow-sm">
-              <p className="text-xs text-gray-600 italic mb-6 font-light">
-                "Being part of NewTIFI has connected me with researchers and innovators I wouldn't have met otherwise. The insights and collaborations have been invaluable to our development efforts."
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                  <img 
-                    src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
-                    alt="Member" 
-                    className="w-full h-full object-cover"
-                  />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            {/* Individual Membership */}
+            <ScrollReveal delay={100} className="bg-white p-6 rounded border border-gray-200 shadow-sm hover:shadow transition-shadow duration-300">
+              <div className="text-center mb-6">
+                <div className="flex justify-center mb-4">
+                  <Users className="h-10 w-10 text-newtifi-teal" />
                 </div>
-                <div>
-                  <h4 className="text-xs font-light text-newtifi-navy">David Chen</h4>
-                  <p className="text-[10px] text-gray-500 font-light">CTO, FutureTech Solutions</p>
-                </div>
+                <h3 className="text-sm font-light mb-2 text-newtifi-navy">Individual</h3>
+                <div className="text-sm font-medium text-newtifi-navy mb-2">€250<span className="text-xs font-light text-gray-500">/year</span></div>
+                <p className="text-xs text-gray-500 font-light">For professionals and researchers</p>
               </div>
+              
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">Access to exclusive content</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">Invitations to quarterly webinars</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">Annual conference discount</span>
+                </li>
+              </ul>
+              
+              <Button variant="outline" fullWidth className="text-xs">
+                Apply Now
+              </Button>
             </ScrollReveal>
             
-            <ScrollReveal delay={200} className="bg-white p-6 rounded-sm shadow-sm">
-              <p className="text-xs text-gray-600 italic mb-6 font-light">
-                "The research insights we've gained through our NewTIFI membership have directly influenced our strategic roadmap. Their approach to combining technology and law is revolutionary."
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                  <img 
-                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
-                    alt="Member" 
-                    className="w-full h-full object-cover"
-                  />
+            {/* Academic Membership */}
+            <ScrollReveal delay={200} className="bg-white p-6 rounded border border-gray-200 shadow-sm hover:shadow transition-shadow duration-300">
+              <div className="text-center mb-6">
+                <div className="flex justify-center mb-4">
+                  <GraduationCap className="h-10 w-10 text-newtifi-teal" />
                 </div>
-                <div>
-                  <h4 className="text-xs font-light text-newtifi-navy">Sarah Johnson</h4>
-                  <p className="text-[10px] text-gray-500 font-light">Innovation Director, Global Health</p>
-                </div>
+                <h3 className="text-sm font-light mb-2 text-newtifi-navy">Academic</h3>
+                <div className="text-sm font-medium text-newtifi-navy mb-2">€150<span className="text-xs font-light text-gray-500">/year</span></div>
+                <p className="text-xs text-gray-500 font-light">For students and faculty</p>
               </div>
+              
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">All individual benefits</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">Research collaboration opportunities</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-600 font-light">Access to academic network</span>
+                </li>
+              </ul>
+              
+              <Button variant="outline" fullWidth className="text-xs">
+                Apply Now
+              </Button>
             </ScrollReveal>
             
-            <ScrollReveal delay={300} className="bg-white p-6 rounded-sm shadow-sm">
-              <p className="text-xs text-gray-600 italic mb-6 font-light">
-                "Funding a scholarship through NewTIFI has been one of our most rewarding investments. Seeing the research progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
-              </p>
-              <div className="flex items-center">
-                <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
-                  <img 
-                    src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" 
-                    alt="Member" 
-                    className="w-full h-full object-cover"
-                  />
+            {/* Organizational Membership */}
+            <ScrollReveal delay={300} className="bg-newtifi-navy p-6 rounded shadow-md">
+              <div className="text-center mb-6">
+                <div className="flex justify-center mb-4">
+                  <Award className="h-10 w-10 text-newtifi-teal" />
                 </div>
-                <div>
-                  <h4 className="text-xs font-light text-newtifi-navy">Michael Torres</h4>
-                  <p className="text-[10px] text-gray-500 font-light">Investment Partner, Horizon Ventures</p>
-                </div>
+                <h3 className="text-sm font-light mb-2 text-white">Organization</h3>
+                <div className="text-sm font-medium text-white mb-2">€2,000<span className="text-xs font-light text-gray-300">/year</span></div>
+                <p className="text-xs text-gray-300 font-light">For companies and institutions</p>
               </div>
+              
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-300 font-light">All benefits from other tiers</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-300 font-light">Up to 5 individual memberships</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-300 font-light">Priority access to events and research</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-4 w-4 text-newtifi-teal mr-2 mt-0.5" />
+                  <span className="text-xs text-gray-300 font-light">Featured in our partner network</span>
+                </li>
+              </ul>
+              
+              <Button className="w-full text-xs">
+                Apply Now
+              </Button>
             </ScrollReveal>
           </div>
         </div>
       </section>
       
-      {/* Final CTA */}
-      <section className="px-6 py-16">
+      {/* Join CTA */}
+      <section className="px-6 py-16 bg-gray-50">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-2xl mx-auto text-center">
-            <h2 className="text-xs uppercase font-light tracking-wide mb-6">Ready to Join?</h2>
-            <p className="text-xs text-gray-600 mb-10 font-light">
-              Become part of the NewTIFI community today and help shape the future of research and innovation.
+          <ScrollReveal className="max-w-3xl mx-auto text-center">
+            <h2 className="text-sm font-light uppercase tracking-wide mb-4 text-newtifi-navy">Be in touch with NewTIFI</h2>
+            <p className="text-xs text-gray-600 font-light mb-8 max-w-xl mx-auto">
+              Ready to join our community? Apply for membership today or contact us to learn more about how NewTIFI can support your work.
             </p>
+            
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button to="/membership/join" size="md" className="text-xs uppercase tracking-wide">
-                Join as a Member
+              <Button>
+                Apply for Membership
               </Button>
-              <Button to="/membership/fund" variant="outline" size="md" className="text-xs uppercase tracking-wide">
-                Fund a Scholar
+              <Button variant="outline">
+                Contact Us
               </Button>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+      
+      {/* FAQ */}
+      <section className="px-6 py-16 bg-white">
+        <div className="container mx-auto">
+          <ScrollReveal className="max-w-3xl mx-auto">
+            <h2 className="section-title text-newtifi-navy text-center mb-8">
+              Frequently Asked Questions
+            </h2>
+            
+            <div className="space-y-6">
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-medium mb-2 text-newtifi-navy">How do I apply for membership?</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  You can apply for membership by completing our online application form. After submission, our team will review your application and contact you within 5 business days.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-medium mb-2 text-newtifi-navy">When is the membership fee due?</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  Membership fees are due at the time of acceptance. We offer annual billing cycles, with the option to renew automatically.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-medium mb-2 text-newtifi-navy">Can I upgrade my membership tier?</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  Yes, you can upgrade your membership tier at any time. The difference in fee will be prorated based on the time remaining in your current billing cycle.
+                </p>
+              </div>
+              
+              <div className="border-b border-gray-200 pb-4">
+                <h3 className="text-xs font-medium mb-2 text-newtifi-navy">Are there any discounts available?</h3>
+                <p className="text-xs text-gray-600 font-light">
+                  We offer discounted rates for academic institutions, non-profit organizations, and startups. Please contact us for more information about eligibility.
+                </p>
+              </div>
             </div>
           </ScrollReveal>
         </div>
