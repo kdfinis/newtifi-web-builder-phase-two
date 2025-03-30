@@ -1,78 +1,95 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const location = useLocation();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(false);
+  const [isBumping, setIsBumping] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+      
+      if (scrollPosition === 0) {
+        setIsAtTop(true);
+        setTimeout(() => setIsAtTop(false), 600);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header 
-      className="fixed top-0 left-0 w-full z-50 bg-newtifi-navy shadow-md py-3"
+      className={cn(
+        "fixed top-0 left-0 w-full z-50 bg-newtifi-navy transition-all duration-500 ease-out",
+        isScrolled ? "h-[78px] shadow-md" : "h-[90px]",
+        isAtTop && "animate-[bump_0.6s_ease-in-out]"
+      )}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto px-8 h-full flex items-center">
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img 
             src="/lovable-uploads/350fa426-ed3c-46f2-9542-778840d65e01.png" 
             alt="Newtifi Logo" 
-            className="h-9" 
+            className="h-10 w-auto"
+            style={{ minHeight: '40px' }}
           />
         </Link>
-        
-        {/* Navigation Links - Right aligned */}
-        <nav className="hidden md:flex items-center space-x-8">
+
+        {/* Navigation Links - Centered */}
+        <nav className="flex-1 flex items-center justify-center space-x-12 text-3xl font-medium tracking-wide">
           <Link 
             to="/" 
-            className={cn("nav-link text-white text-sm tracking-wide font-light", location.pathname === "/" && "text-newtifi-teal")}
+            className={cn(
+              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              location.pathname === "/" && "text-newtifi-teal"
+            )}
           >
             Home
           </Link>
           <Link 
             to="/who-we-are" 
-            className={cn("nav-link text-white text-sm tracking-wide font-light", location.pathname === "/who-we-are" && "text-newtifi-teal")}
+            className={cn(
+              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              location.pathname === "/who-we-are" && "text-newtifi-teal"
+            )}
           >
             Who We Are
           </Link>
           <Link 
             to="/connect" 
-            className={cn("nav-link text-white text-sm tracking-wide font-light", location.pathname === "/connect" && "text-newtifi-teal")}
+            className={cn(
+              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              location.pathname === "/connect" && "text-newtifi-teal"
+            )}
           >
             Contact
           </Link>
           <Link 
             to="/membership" 
-            className={cn("nav-link text-white text-sm tracking-wide font-light", location.pathname === "/membership" && "text-newtifi-teal")}
+            className={cn(
+              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              location.pathname === "/membership" && "text-newtifi-teal"
+            )}
           >
             Membership
           </Link>
           <Link 
             to="/login" 
-            className={cn("nav-link text-white text-sm tracking-wide font-light ml-4", location.pathname === "/login" && "text-newtifi-teal")}
+            className={cn(
+              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105 ml-8",
+              location.pathname === "/login" && "text-newtifi-teal"
+            )}
           >
             Login
           </Link>
         </nav>
-        
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button className="p-2 text-white">
-            <span className="sr-only">Open menu</span>
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16M4 18h16" 
-              />
-            </svg>
-          </button>
-        </div>
       </div>
     </header>
   );

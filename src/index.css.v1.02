@@ -91,12 +91,8 @@
 /* Custom styles for Newtifi */
 @layer components {
   /* Nav Links */
-  .main-nav-link {
-    @apply relative text-sm font-light tracking-wide transition-colors duration-300;
-  }
-  
   .nav-link {
-    @apply relative text-sm font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
+    @apply relative text-xs font-light tracking-wide transition-colors duration-300 hover:text-newtifi-teal;
   }
   
   .nav-link::after {

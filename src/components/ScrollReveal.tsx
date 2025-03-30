@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
@@ -9,6 +8,7 @@ type ScrollRevealProps = {
   direction?: 'up' | 'down' | 'left' | 'right' | 'none';
   distance?: number;
   once?: boolean;
+  duration?: number;
 };
 
 const ScrollReveal: React.FC<ScrollRevealProps> = ({
@@ -18,6 +18,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
   direction = 'up',
   distance = 20,
   once = true,
+  duration = 800,
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
   const hasAnimated = useRef(false);
@@ -46,7 +47,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     // Initial styles
     element.style.opacity = '0';
     element.style.transform = getTransform();
-    element.style.transition = `opacity 0.6s ease, transform 0.6s ease`;
+    element.style.transition = `opacity ${duration}ms cubic-bezier(0.4, 0, 0.2, 1), transform ${duration}ms cubic-bezier(0.4, 0, 0.2, 1)`;
     element.style.transitionDelay = `${delay}ms`;
     
     const observer = new IntersectionObserver(
@@ -77,7 +78,7 @@ const ScrollReveal: React.FC<ScrollRevealProps> = ({
     return () => {
       if (element) observer.unobserve(element);
     };
-  }, [delay, direction, distance, once]);
+  }, [delay, direction, distance, once, duration]);
 
   return (
     <div ref={elementRef} className={cn(className)}>

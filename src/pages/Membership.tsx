@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Check } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -6,14 +5,14 @@ import Button from '@/components/Button';
 
 const Membership = () => {
   return (
-    <main className="min-h-screen pt-28 pb-20">
+    <main className="min-h-screen pb-20">
       {/* Membership Hero */}
-      <section className="px-6 py-12">
+      <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Join the Newtifi Community</h1>
-            <p className="text-lg text-gray-600">
-              Become part of a global network of innovators, researchers, and industry leaders who are shaping the future of technology.
+          <ScrollReveal className="max-w-2xl">
+            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Join Our Community</h1>
+            <p className="text-lg text-white/80 leading-relaxed">
+              Become part of a global network of innovators and industry leaders who are shaping the future of technology.
             </p>
           </ScrollReveal>
         </div>
@@ -27,23 +26,19 @@ const Membership = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <ScrollReveal delay={100} className="flex flex-col bg-white p-8 rounded-lg shadow-md">
-                <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">Access Research Insights</h3>
-                <ul className="space-y-4 mb-8">
+                <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">Access Technology Insights</h3>
+                <ul className="space-y-4">
                   <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Exclusive access to our latest research findings and analysis</span>
+                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Exclusive access to our latest technology findings and analysis</span>
                   </li>
                   <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Regular research briefings on emerging technologies</span>
+                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Regular briefings on emerging technologies</span>
                   </li>
                   <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
+                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">Detailed industry reports and market analyses</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Early access to published papers and findings</span>
                   </li>
                 </ul>
                 <div className="mt-auto">
@@ -57,19 +52,11 @@ const Membership = () => {
                 <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">Join the Innovation Community</h3>
                 <ul className="space-y-4 mb-8">
                   <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Network with thought leaders and industry innovators</span>
+                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Collaborate on technology initiatives and pilot projects</span>
                   </li>
                   <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Participate in exclusive member events and conferences</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">Collaborate on research initiatives and pilot projects</span>
-                  </li>
-                  <li className="flex items-start">
-                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0" />
+                    <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">Access to a global directory of fellow members</span>
                   </li>
                 </ul>
@@ -91,11 +78,11 @@ const Membership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">Fund a Scholar</h2>
-                <p className="text-lg opacity-90 mb-8">
-                  Support the next generation of innovators by funding scholarship opportunities. Your contribution directly enables groundbreaking research that can transform industries and improve lives.
+                <p className="text-lg text-gray-600">
+                  Your contribution directly enables groundbreaking technology solutions that can transform industries and improve lives.
                 </p>
-                <p className="text-lg opacity-90 mb-8">
-                  Scholarship sponsors receive regular updates on research progress, acknowledgment in publications, and opportunities to connect directly with the scholars they support.
+                <p className="text-lg text-gray-600">
+                  Scholarship sponsors receive regular updates on project progress, acknowledgment in publications, and opportunities to connect directly with the innovators they support.
                 </p>
                 <Button 
                   to="/membership/fund"
@@ -131,7 +118,7 @@ const Membership = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <ScrollReveal delay={100} className="bg-white p-6 rounded-lg shadow-md">
               <p className="text-gray-600 italic mb-6">
-                "Being part of Newtifi has connected me with researchers and innovators I wouldn't have met otherwise. The insights and collaborations have been invaluable to our AI development efforts."
+                "Being part of NewTIFI has connected me with innovators and industry leaders I wouldn't have met otherwise. The insights and collaborations have been invaluable to our technology development efforts."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -150,7 +137,7 @@ const Membership = () => {
             
             <ScrollReveal delay={200} className="bg-white p-6 rounded-lg shadow-md">
               <p className="text-gray-600 italic mb-6">
-                "The research insights we've gained through our Newtifi membership have directly influenced our strategic roadmap. Their approach to combining human and machine intelligence is revolutionary."
+                "The technology insights we've gained through our NewTIFI membership have directly influenced our strategic roadmap. Their approach to combining human expertise with innovative technology is revolutionary."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -169,7 +156,7 @@ const Membership = () => {
             
             <ScrollReveal delay={300} className="bg-white p-6 rounded-lg shadow-md">
               <p className="text-gray-600 italic mb-6">
-                "Funding a scholarship through Newtifi has been one of our most rewarding investments. Seeing the research progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
+                "Funding a scholarship through NewTIFI has been one of our most rewarding investments. Seeing the project progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
               </p>
               <div className="flex items-center">
                 <div className="w-12 h-12 rounded-full overflow-hidden mr-4">

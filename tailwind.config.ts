@@ -107,6 +107,12 @@ export default {
 					'0%, 100%': { opacity: '1' },
 					'50%': { opacity: '0.8' },
 				},
+				'bump': {
+					'0%': { transform: 'translateY(0)' },
+					'30%': { transform: 'translateY(-8px)' },
+					'70%': { transform: 'translateY(-4px)' },
+					'100%': { transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -115,6 +121,7 @@ export default {
 				'fade-in': 'fade-in 0.4s ease-out',
 				'slide-in-right': 'slide-in-right 0.4s ease-out',
 				'slow-pulse': 'slow-pulse 3s infinite ease-in-out',
+				'bump': 'bump 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
 			},
 			transitionDuration: {
 				'2000': '2000ms',

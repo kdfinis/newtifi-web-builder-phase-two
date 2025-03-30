@@ -36,7 +36,8 @@ const WhoWeAre = () => {
       {/* Header Section */}
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
-          <ScrollReveal className="max-w-2xl">
+          <ScrWelcome to NewTIFI.
+We build innovative, human-centered products, strategies, and systems that combine human intelligence with technology to help individuals and teams move faster, stay clearer, and do better work.ollReveal className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Who We Are</h1>
             <p className="text-lg text-white/80 leading-relaxed">
               Meet the team driving innovation at Newtifi. We're a diverse group of thinkers, builders, and innovators committed to shaping a better future through technology.
