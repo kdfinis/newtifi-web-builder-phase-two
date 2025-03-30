@@ -62,7 +62,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Newtifi brand colors
 				newtifi: {
 					navy: '#0A0A23',
 					teal: '#00C2CB',
@@ -104,21 +103,45 @@ export default {
 					'100%': { transform: 'translateX(0)' },
 				},
 				'slow-pulse': {
-					'0%, 100%': { opacity: '1' },
-					'50%': { opacity: '0.8' },
+					'0%, 100%': { opacity: '1', transform: 'scale(1)' },
+					'50%': { opacity: '0.8', transform: 'scale(1.05)' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+				},
+				'gradient-shift': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' },
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.9)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' },
+				},
+				'scale-up-hover': {
+					'0%': { transform: 'scale(1)' },
+					'100%': { transform: 'scale(1.05)' },
 				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'fade-in-up': 'fade-in-up 0.6s ease-out',
-				'fade-in': 'fade-in 0.4s ease-out',
-				'slide-in-right': 'slide-in-right 0.4s ease-out',
-				'slow-pulse': 'slow-pulse 3s infinite ease-in-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'slide-in-right': 'slide-in-right 0.5s ease-out',
+				'slow-pulse': 'slow-pulse 6s infinite ease-in-out',
+				'float': 'float 6s ease-in-out infinite',
+				'gradient-shift': 'gradient-shift 15s ease infinite',
+				'scale-in': 'scale-in 0.6s ease-out',
+				'scale-up-hover': 'scale-up-hover 0.3s forwards',
 			},
 			transitionDuration: {
 				'2000': '2000ms',
 				'3000': '3000ms',
+			},
+			backdropBlur: {
+				xs: '2px',
 			},
 		}
 	},
