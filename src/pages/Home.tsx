@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { Heart, Zap, Leaf, DollarSign, Rocket, BookOpen, Library, Award, Users } from 'lucide-react';
+import { Heart, Zap, Leaf, DollarSign, Rocket, BookOpen, Library, Award, Users, Quote } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import TechCard from '@/components/TechCard';
@@ -30,8 +29,8 @@ const Home = () => {
 
   return (
     <main className="min-h-screen">
-      {/* Hero Section - Creative Redesign */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Hero Section - With Why We Exist Front and Center */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-10 lg:py-0">
         {/* Background elements for visual interest */}
         <div className="absolute inset-0 z-0">
           <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-newtifi-teal bg-opacity-10 filter blur-3xl animate-slow-pulse"></div>
@@ -39,10 +38,67 @@ const Home = () => {
           <div className="absolute top-1/2 left-1/3 w-72 h-72 rounded-full bg-purple-500 bg-opacity-5 filter blur-3xl animate-slow-pulse" style={{animationDelay: '2s'}}></div>
         </div>
         
-        <div className="container mx-auto max-w-7xl px-6 py-20 md:py-28 z-10 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Left side content */}
-            <div className="animate-fade-in-up">
+        <div className="container mx-auto max-w-7xl px-6 z-10 relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Why We Exist - Featured prominently */}
+            <div className="lg:col-span-7 animate-fade-in-up order-2 lg:order-1">
+              <div className="relative">
+                <div className="absolute -top-5 -left-5 w-24 h-24 rounded-full bg-newtifi-teal/20 animate-slow-pulse"></div>
+                <div className="absolute -bottom-8 -right-8 w-32 h-32 rounded-full bg-blue-400/10 animate-slow-pulse" style={{animationDelay: '2s'}}></div>
+                
+                <div className="bg-white/80 backdrop-blur-md p-8 md:p-12 rounded-2xl shadow-xl border border-gray-100 relative z-10">
+                  <div className="flex justify-between items-start mb-8">
+                    <h2 className="text-3xl md:text-4xl font-medium text-newtifi-navy">
+                      Why We <span className="text-newtifi-teal">Exist</span>
+                    </h2>
+                    <Quote className="h-10 w-10 text-newtifi-teal/50" />
+                  </div>
+                  
+                  <blockquote className="text-xl md:text-3xl font-light italic text-newtifi-navy border-l-4 border-newtifi-teal pl-5 mb-8">
+                    "We're not building to exit. We're building to endure. The goal isn't dominance. It's contribution."
+                  </blockquote>
+                  
+                  <div className="relative">
+                    <div className="absolute w-full h-full bg-gradient-to-r from-newtifi-teal/5 to-blue-500/5 rounded-lg -z-10"></div>
+                    <p className="text-base md:text-lg text-gray-700 font-light leading-relaxed">
+                      Inspired by Simon Sinek's Infinite Game philosophy, we believe in playing the long game. Our mission transcends quarterly results or short-term gains. We're focused on creating meaningful impact that spans generations.
+                    </p>
+                  </div>
+                  
+                  <div className="mt-10 flex justify-center">
+                    <div className="relative group">
+                      <div className="absolute -inset-0.5 bg-gradient-to-r from-newtifi-teal to-blue-500 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
+                      <Button className="relative bg-white text-newtifi-navy border border-newtifi-teal/20 hover:bg-newtifi-teal hover:text-white">
+                        Learn More About Our Vision
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Visual elements - artistic flourishes */}
+                <div className="hidden lg:block absolute -left-16 top-1/2 transform -translate-y-1/2 w-14 h-80">
+                  <div className="absolute top-0 w-0.5 h-full bg-gradient-to-b from-newtifi-teal to-transparent"></div>
+                  <div className="absolute top-0 w-2 h-2 rounded-full bg-newtifi-teal"></div>
+                  <div className="absolute top-1/3 -left-1 w-3 h-3 rounded-full bg-blue-400"></div>
+                  <div className="absolute top-2/3 w-2 h-2 rounded-full bg-newtifi-teal/50"></div>
+                </div>
+                
+                <div className="hidden lg:block absolute -right-10 -bottom-10">
+                  <div className="w-20 h-20 border border-dashed border-newtifi-teal/30 rounded-full animate-spin-slow"></div>
+                </div>
+                
+                {/* Abstract art elements */}
+                <div className="absolute -z-10 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10">
+                  <div className="absolute top-0 left-0 w-32 h-32 border-t-2 border-l-2 border-newtifi-teal"></div>
+                  <div className="absolute bottom-0 right-0 w-32 h-32 border-b-2 border-r-2 border-blue-500"></div>
+                  <div className="absolute top-1/4 right-1/4 w-8 h-8 bg-newtifi-teal/20 rounded-full"></div>
+                  <div className="absolute bottom-1/4 left-1/4 w-16 h-16 bg-blue-500/10 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Right side content */}
+            <div className="lg:col-span-5 animate-fade-in-up order-1 lg:order-2">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-medium text-newtifi-navy mb-6">
                 Welcome to <span className="text-newtifi-teal">NewTIFI</span>.
               </h1>
@@ -51,7 +107,7 @@ const Home = () => {
                 We build innovative, human-centered products, strategies, and systems that combine human intelligence with technology to help individuals and teams move faster, stay clearer, and do better work.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-4 mb-10">
                 <Button size="lg" className="bg-newtifi-teal hover:bg-newtifi-teal/90 text-white">
                   Become a Member
                 </Button>
@@ -59,39 +115,37 @@ const Home = () => {
                   Learn More
                 </Button>
               </div>
-            </div>
-            
-            {/* Right side - Benefits cards with visual design */}
-            <div className="relative">
-              <div className="absolute -top-10 -left-10 w-24 h-24 rounded-full bg-newtifi-teal bg-opacity-20 z-0"></div>
-              <div className="absolute -bottom-5 -right-5 w-36 h-36 rounded-full bg-blue-200 bg-opacity-30 z-0"></div>
               
-              <Card className="overflow-hidden backdrop-blur-sm bg-white/70 border border-gray-100 shadow-xl rounded-2xl z-10 relative">
-                <CardContent className="p-6">
-                  <h2 className="text-xl md:text-2xl font-medium text-newtifi-navy mb-4">
-                    Join NewTIFI's Global Network
-                  </h2>
-                  
-                  <p className="text-gray-700 mb-6">
-                    Connect with industry leaders, access exclusive technology insights, and shape the future of innovation. As a member, you'll gain:
-                  </p>
-                  
-                  <ul className="space-y-3 mb-6">
-                    {benefitItems.map((item, index) => (
-                      <li key={index} className="flex items-start gap-3 animate-fade-in" style={{ animationDelay: `${index * 100}ms` }}>
-                        <div className="mt-1 text-newtifi-teal">
-                          {item.icon}
-                        </div>
-                        <span className="text-gray-700 font-light">{item.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <Button className="w-full bg-newtifi-navy hover:bg-newtifi-navy/90 text-white mt-2">
-                    Become a Member
-                  </Button>
-                </CardContent>
-              </Card>
+              {/* Benefits dots visualization */}
+              <div className="grid grid-cols-2 gap-4">
+                {benefitItems.slice(0, 4).map((item, index) => (
+                  <div key={index} className="flex items-start gap-3 animate-fade-in group" style={{ animationDelay: `${index * 100}ms` }}>
+                    <div className="mt-0.5 p-1.5 rounded-full bg-newtifi-teal/10 text-newtifi-teal group-hover:bg-newtifi-teal group-hover:text-white transition-all duration-300">
+                      {item.icon}
+                    </div>
+                    <span className="text-gray-700 font-light text-sm">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Vision illustration - abstract representation */}
+          <div className="hidden lg:flex justify-center mt-10 mb-20">
+            <div className="relative w-3/4 h-32">
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-0.5 bg-gradient-to-r from-newtifi-teal via-blue-400 to-transparent"></div>
+              
+              {/* Journey dots */}
+              <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-4 h-4 rounded-full bg-newtifi-teal z-10"></div>
+              <div className="absolute left-1/4 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-blue-400 z-10"></div>
+              <div className="absolute left-2/4 top-1/2 transform -translate-y-1/2 w-5 h-5 rounded-full bg-newtifi-navy z-10"></div>
+              <div className="absolute left-3/4 top-1/2 transform -translate-y-1/2 w-3 h-3 rounded-full bg-newtifi-teal/50 z-10"></div>
+              
+              {/* Labels */}
+              <div className="absolute left-0 top-0 transform -translate-x-1/2 text-xs text-newtifi-teal font-light">Innovation</div>
+              <div className="absolute left-1/4 bottom-0 transform -translate-x-1/2 text-xs text-blue-500 font-light">Collaboration</div>
+              <div className="absolute left-2/4 top-0 transform -translate-x-1/2 text-xs text-newtifi-navy font-light">Impact</div>
+              <div className="absolute left-3/4 bottom-0 transform -translate-x-1/2 text-xs text-newtifi-teal/70 font-light">Legacy</div>
             </div>
           </div>
         </div>
@@ -137,7 +191,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Research Focus Fields - More Visual */}
+      {/* Research Focus Fields */}
       <section className="py-20 px-6 bg-gray-50">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 max-w-3xl mx-auto text-center">
@@ -182,7 +236,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Legal Commentary Section - Visual Enhancement */}
+      {/* Legal Commentary Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-newtifi-navy/95 to-newtifi-navy">
         <div className="container mx-auto">
           <ScrollReveal className="mb-16 max-w-3xl mx-auto text-center">
@@ -237,7 +291,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Scholarship & Education - Visual Upgrade */}
+      {/* Scholarship & Education */}
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <div className="max-w-5xl mx-auto">
@@ -281,7 +335,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Membership CTA - Visual Enhancement */}
+      {/* Membership CTA */}
       <section className="py-20 px-6 bg-gradient-to-r from-newtifi-teal/90 to-blue-500/90 text-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-3xl mx-auto text-center">
@@ -319,7 +373,7 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Why We Exist - Visual Upgrade */}
+      {/* Why We Exist */}
       <section className="py-20 px-6 bg-white">
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
@@ -351,23 +405,23 @@ const Home = () => {
 const benefitItems = [
   { 
     icon: <Award className="h-5 w-5" />,
-    text: "Exclusive access to technology insights and analysis" 
+    text: "Exclusive access to technology insights" 
   },
   { 
     icon: <Users className="h-5 w-5" />,
-    text: "Direct collaboration with industry innovators" 
+    text: "Collaboration with innovators" 
   },
   { 
     icon: <BookOpen className="h-5 w-5" />,
-    text: "Priority access to our legal and regulatory guidance" 
+    text: "Legal and regulatory guidance" 
   },
   { 
     icon: <Rocket className="h-5 w-5" />,
-    text: "Invitations to member-only events and conferences" 
+    text: "Member-only events access" 
   },
   { 
     icon: <Zap className="h-5 w-5" />,
-    text: "Opportunities to fund and mentor promising innovators" 
+    text: "Fund and mentor innovators" 
   }
 ];
 

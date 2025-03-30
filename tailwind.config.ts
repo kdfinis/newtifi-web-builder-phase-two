@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -123,6 +124,10 @@ export default {
 					'0%': { transform: 'scale(1)' },
 					'100%': { transform: 'scale(1.05)' },
 				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -135,6 +140,7 @@ export default {
 				'gradient-shift': 'gradient-shift 15s ease infinite',
 				'scale-in': 'scale-in 0.6s ease-out',
 				'scale-up-hover': 'scale-up-hover 0.3s forwards',
+				'spin-slow': 'spin-slow 20s linear infinite',
 			},
 			transitionDuration: {
 				'2000': '2000ms',
