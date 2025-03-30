@@ -1,6 +1,5 @@
-
 import React, { useEffect } from 'react';
-import { Heart, Zap, Leaf, DollarSign, RocketLaunch, BookOpen, Library, Award, Users } from 'lucide-react';
+import { Heart, Zap, Leaf, DollarSign, Rocket, BookOpen, Library, Award, Users } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import TechCard from '@/components/TechCard';
@@ -362,7 +361,7 @@ const benefitItems = [
     text: "Priority access to our legal and regulatory guidance" 
   },
   { 
-    icon: <RocketLaunch className="h-5 w-5" />,
+    icon: <Rocket className="h-5 w-5" />,
     text: "Invitations to member-only events and conferences" 
   },
   { 
