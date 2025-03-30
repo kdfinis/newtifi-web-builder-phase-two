@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { Heart, Zap, Leaf, DollarSign, Rocket, BookOpen, Library, Award, Users } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -419,7 +420,7 @@ const legalInsights = [
   {
     title: "Practical Guidance",
     description: "Actionable recommendations for legal practitioners and industry professionals.",
-    icon: <RocketLaunch className="h-6 w-6" />
+    icon: <Rocket className="h-6 w-6" />
   },
   {
     title: "Regular Updates",
@@ -438,7 +439,7 @@ const educationPrograms = [
 const programIcons = [
   <BookOpen className="h-6 w-6 text-newtifi-teal" />,
   <Users className="h-6 w-6 text-newtifi-teal" />,
-  <RocketLaunch className="h-6 w-6 text-newtifi-teal" />,
+  <Rocket className="h-6 w-6 text-newtifi-teal" />,
   <Library className="h-6 w-6 text-newtifi-teal" />
 ];
 
