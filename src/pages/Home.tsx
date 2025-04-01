@@ -74,7 +74,7 @@ const Home = () => {
                   <p className="text-base text-white/90 font-light">
                     Become a member—let's build the future together!
                   </p>
-            </ScrollReveal>
+                </ScrollReveal>
               </div>
 
               {/* Right side - Benefits card */}
@@ -146,7 +146,7 @@ const Home = () => {
       <section className="py-16 px-6 bg-newtifi-navy">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
-            <h2 className="section-title text-white">What We Do</h2>
+            <h2 className="text-base font-light mb-4 text-white uppercase tracking-wide">What We Do</h2>
             <p className="text-sm text-white/80 font-light">
               We support innovation across four key areas, providing the tools and expertise needed to turn ideas into impact.
             </p>
@@ -161,7 +161,7 @@ const Home = () => {
                   </svg>
                 </div>
                 <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Research Support</h3>
-                <p className="text-white/80 text-sm font-light">
+                <p className="text-sm text-white/80 font-light">
                   We provide funding, resources, and expertise to help researchers develop and validate breakthrough technologies.
                 </p>
               </div>
@@ -175,7 +175,7 @@ const Home = () => {
                   </svg>
                 </div>
                 <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Network Building</h3>
-                <p className="text-white/80 text-sm font-light">
+                <p className="text-sm text-white/80 font-light">
                   We connect innovators with industry leaders, investors, and other stakeholders to accelerate development and adoption.
                 </p>
               </div>
@@ -189,7 +189,7 @@ const Home = () => {
                   </svg>
                 </div>
                 <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Validation & Testing</h3>
-                <p className="text-white/80 text-sm font-light">
+                <p className="text-sm text-white/80 font-light">
                   We help validate technologies through rigorous testing and real-world pilots to ensure effectiveness and scalability.
                 </p>
               </div>
@@ -203,7 +203,7 @@ const Home = () => {
                   </svg>
                 </div>
                 <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Impact Scaling</h3>
-                <p className="text-white/80 text-sm font-light">
+                <p className="text-sm text-white/80 font-light">
                   We provide strategic guidance and resources to help proven technologies achieve widespread adoption and impact.
                 </p>
               </div>
@@ -213,12 +213,12 @@ const Home = () => {
       </section>
       
       {/* Research Focus Fields */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 px-6 bg-[#E8E3DC]">
         <div className="container mx-auto max-w-7xl">
-          <ScrollReveal direction="up" delay={100} className="mb-12">
-            <h2 className="section-title text-newtifi-navy">Research Focus Fields</h2>
+          <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
+            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Research Focus Fields</h2>
             <p className="text-sm text-gray-700 font-light">
-              Our work spans four key sectors where innovation can drive meaningful change.
+              Our research focuses on four key technology domains that are transforming society.
             </p>
           </ScrollReveal>
           
@@ -227,14 +227,14 @@ const Home = () => {
               <div className="bg-white p-8 rounded-lg shadow-lg h-full">
                 <div className="text-newtifi-teal mb-6">
                   <Heart className="h-10 w-10" />
-          </div>
+                </div>
                 <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy mb-4">HealthTech</h3>
                 <p className="text-gray-700 text-sm font-light">
                   Advancing health through MedTech, BioTech, and human-centered systems. We support diagnostics, drug innovation, and scalable personal care solutions.
                 </p>
-        </div>
-          </ScrollReveal>
-          
+              </div>
+            </ScrollReveal>
+            
             <ScrollReveal direction="up" delay={200}>
               <div className="bg-white p-8 rounded-lg shadow-lg h-full">
                 <div className="text-newtifi-teal mb-6">
@@ -274,62 +274,67 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Membership CTA */}
-      <section className="py-12 bg-newtifi-navy">
+      {/* Join the Institute */}
+      <section className="py-16 bg-[#E8E3DC]">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-8">
-            <h2 className="text-base font-light mb-4 text-white uppercase tracking-wide">
+            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">
               Join the Institute
-              </h2>
-            <p className="text-sm text-white text-opacity-90 mb-6 font-light">
+            </h2>
+            <p className="text-sm text-gray-700 mb-6 font-light">
               NewTIFI is open to public and private institutions, academics and professionals, technologists and legal experts, and change-makers committed to durable innovation.
             </p>
-            <p className="text-sm text-white text-opacity-90 mb-8 font-light">
+            <p className="text-sm text-gray-700 mb-8 font-light">
               Membership is available in two forms:
             </p>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ScrollReveal direction="up" delay={200}>
-                <div className="bg-white bg-opacity-10 p-8 rounded-lg">
-                <h3 className="text-sm text-newtifi-teal font-medium mb-2">Institutional Members</h3>
-                <p className="text-xs text-white text-opacity-90 font-light">
-                  Regulated, supervised entities
-                </p>
-              </div>
-              </ScrollReveal>
-              <ScrollReveal direction="up" delay={300}>
-                <div className="bg-white bg-opacity-10 p-8 rounded-lg">
-                <h3 className="text-sm text-newtifi-teal font-medium mb-2">Individual Members</h3>
-                <p className="text-xs text-white text-opacity-90 font-light">
-                  Scientific or educational interest
-                </p>
-              </div>
-              </ScrollReveal>
-            </div>
-            
-            <ScrollReveal direction="up" delay={400} className="mt-8">
-            <Button 
-              to="/membership" 
-              className="bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-white"
-            >
-              Learn More About Membership
-            </Button>
           </ScrollReveal>
+          
+          <div className="relative -mx-6 md:-mx-12">
+            <ScrollReveal 
+              direction="down" 
+              delay={200}
+              distance={40}
+              duration={1000}
+              className="bg-newtifi-navy rounded-2xl p-8 md:p-12 transform transition-all duration-1000 hover:scale-[1.02]"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-white/10 p-8 rounded-lg">
+                  <h3 className="text-sm text-newtifi-teal font-medium mb-2">Institutional Members</h3>
+                  <p className="text-xs text-white text-opacity-90 font-light">
+                    Regulated, supervised entities
+                  </p>
+                </div>
+                <div className="bg-white/10 p-8 rounded-lg">
+                  <h3 className="text-sm text-newtifi-teal font-medium mb-2">Individual Members</h3>
+                  <p className="text-xs text-white text-opacity-90 font-light">
+                    Scientific or educational interest
+                  </p>
+                </div>
+              </div>
+              
+              <div className="mt-8">
+                <Button 
+                  to="/membership" 
+                  className="bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-white"
+                >
+                  Learn More About Membership
+                </Button>
+              </div>
             </ScrollReveal>
+          </div>
         </div>
       </section>
-
+      
       {/* Scholarship & Education */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-16 px-6 bg-[#E8E3DC]">
         <div className="container mx-auto max-w-7xl">
-          <ScrollReveal direction="up" delay={100} className="mb-12">
-            <h2 className="section-title text-newtifi-navy">SCHOLARSHIP</h2>
+          <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
+            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Scholarship & Education</h2>
             <p className="text-sm text-gray-700 font-light">
-                We support PhD students, researchers, and practitioners working on applied innovation in NewTIFI's Fields and Sectors.
-                Scholarships are reviewed by NewTIFI's scientific committee and promote real-world solutions across health, energy, food, and finance.
-              </p>
-            </ScrollReveal>
-            
+              Supporting the next generation of innovators through education and mentorship.
+            </p>
+          </ScrollReveal>
+          
           <ScrollReveal direction="up" delay={200} className="bg-white p-8 rounded-lg shadow-sm">
               <h3 className="text-base font-light mb-4 text-newtifi-navy">Our education programs include:</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -356,126 +361,126 @@ const Home = () => {
         </div>
       </section>
       
-      {/* Legal Commentary Section */}
-      <section className="py-16 bg-newtifi-navy text-white">
+      {/* Trusted Legal Insight */}
+      <section className="py-16 px-6 bg-[#E8E3DC]">
         <div className="container mx-auto max-w-7xl">
-          <ScrollReveal direction="up" delay={100} className="mb-8">
-            <h2 className="section-title text-white">
-              Trusted Legal Insight – For Practitioners, By Practitioners
-            </h2>
-            <p className="text-white text-opacity-90 text-sm md:text-base font-light mb-6">
-              At NewTIFI, legal commentary is a pillar of our mission. We collaborate with top-tier Luxembourg legal professionals to produce world-class commentary — including full analysis of key legal instruments like the RAIF Code.
+          <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
+            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Trusted Legal Insight</h2>
+            <p className="text-sm text-gray-700 font-light">
+              Expert guidance on regulatory frameworks and compliance.
             </p>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {/* Left side - 2x2 grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
-              <ScrollReveal direction="up" delay={100}>
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
-                  <div className="text-newtifi-teal mb-6">
-                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+          <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              {/* Left side - 2x2 grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                <ScrollReveal direction="up" delay={100}>
+                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
+                    <div className="text-newtifi-teal mb-6">
+                      <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Comprehensive Analysis</h3>
+                    <p className="text-white/80 text-sm font-light">
+                      Detailed examination of legal frameworks and their implications for practitioners.
+                    </p>
                   </div>
-                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Comprehensive Analysis</h3>
-                  <p className="text-white/80 text-sm font-light">
-                    Detailed examination of legal frameworks and their implications for practitioners.
-                  </p>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal direction="up" delay={200}>
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
-                  <div className="text-newtifi-teal mb-6">
-                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                </ScrollReveal>
+                
+                <ScrollReveal direction="up" delay={200}>
+                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
+                    <div className="text-newtifi-teal mb-6">
+                      <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Expert Insights</h3>
+                    <p className="text-white/80 text-sm font-light">
+                      Written by experienced legal professionals with deep knowledge of Luxembourg law.
+                    </p>
                   </div>
-                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Expert Insights</h3>
-                  <p className="text-white/80 text-sm font-light">
-                    Written by experienced legal professionals with deep knowledge of Luxembourg law.
-                  </p>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal direction="up" delay={300}>
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
-                  <div className="text-newtifi-teal mb-6">
-                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+                </ScrollReveal>
+                
+                <ScrollReveal direction="up" delay={300}>
+                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
+                    <div className="text-newtifi-teal mb-6">
+                      <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Practical Guidance</h3>
+                    <p className="text-white/80 text-sm font-light">
+                      Actionable recommendations for legal practitioners and industry professionals.
+                    </p>
                   </div>
-                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Practical Guidance</h3>
-                  <p className="text-white/80 text-sm font-light">
-                    Actionable recommendations for legal practitioners and industry professionals.
-                </p>
+                </ScrollReveal>
+                
+                <ScrollReveal direction="up" delay={400}>
+                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
+                    <div className="text-newtifi-teal mb-6">
+                      <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Regular Updates</h3>
+                    <p className="text-white/80 text-sm font-light">
+                      Stay current with the latest legal developments and regulatory changes.
+                    </p>
+                  </div>
+                </ScrollReveal>
               </div>
-              </ScrollReveal>
               
-              <ScrollReveal direction="up" delay={400}>
-                <div className="bg-white/10 backdrop-blur-sm p-8 rounded-lg border border-white/20 h-full">
-                  <div className="text-newtifi-teal mb-6">
-                    <svg className="w-10 h-10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+              {/* Right side - White card */}
+              <ScrollReveal direction="up" delay={500}>
+                <div className="bg-white p-8 rounded-lg text-newtifi-navy h-full">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-sm font-medium uppercase tracking-wider mb-3">RAIF Code Insights</h3>
+                    <div className="text-newtifi-teal">
+                      <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </div>
-                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-teal mb-4">Regular Updates</h3>
-                  <p className="text-white/80 text-sm font-light">
-                    Stay current with the latest legal developments and regulatory changes.
-                </p>
-              </div>
+                  
+                  <p className="text-gray-700 text-sm font-light mb-8">
+                    Our specialized commentary on the Reserved Alternative Investment Fund (RAIF) code helps investment firms understand the nuances of this regulatory framework.
+                  </p>
+                  
+                  <div className="border-l-4 border-newtifi-teal pl-4 mb-8">
+                    <p className="text-gray-600 text-sm font-light italic">
+                      "The most comprehensive analysis of the RAIF regime available to practitioners today."
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-4">
+                    <Button 
+                      variant="primary"
+                      className="bg-newtifi-navy text-white hover:bg-newtifi-teal text-sm"
+                    >
+                      Access Commentary Library
+                    </Button>
+                    <Button 
+                      variant="outline"
+                      className="border-newtifi-navy text-newtifi-navy hover:bg-newtifi-navy hover:text-white text-sm"
+                    >
+                      RAIF Code Preview
+                    </Button>
+                  </div>
+                </div>
               </ScrollReveal>
             </div>
-            
-            {/* Right side - White card */}
-            <ScrollReveal direction="up" delay={500}>
-              <div className="bg-white p-8 rounded-lg text-newtifi-navy h-full">
-                <div className="flex justify-between items-start mb-6">
-                  <h3 className="text-sm font-medium uppercase tracking-wider mb-3">RAIF Code Insights</h3>
-                  <div className="text-newtifi-teal">
-                    <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-                
-                <p className="text-gray-700 text-sm font-light mb-8">
-                  Our specialized commentary on the Reserved Alternative Investment Fund (RAIF) code helps investment firms understand the nuances of this regulatory framework.
-                </p>
-                
-                <div className="border-l-4 border-newtifi-teal pl-4 mb-8">
-                  <p className="text-gray-600 text-sm font-light italic">
-                  "The most comprehensive analysis of the RAIF regime available to practitioners today."
-                </p>
-                </div>
-                
-                <div className="flex flex-wrap gap-4">
-                  <Button 
-                    variant="primary"
-                    className="bg-newtifi-navy text-white hover:bg-newtifi-teal text-sm"
-                  >
-                    Access Commentary Library
-                  </Button>
-            <Button 
-                    variant="outline"
-                    className="border-newtifi-navy text-newtifi-navy hover:bg-newtifi-navy hover:text-white text-sm"
-            >
-                    RAIF Code Preview
-            </Button>
-                </div>
-              </div>
-          </ScrollReveal>
           </div>
         </div>
       </section>
       
       {/* Mission Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-[#E8E3DC]">
         <div className="container mx-auto max-w-7xl">
           <div className="bg-newtifi-teal rounded-2xl p-8 md:p-12">
             <ScrollReveal direction="up" delay={100} className="mb-12">
-              <h2 className="section-title text-white">Our Mission</h2>
+              <h2 className="text-base font-light mb-4 text-white uppercase tracking-wide">Our Mission</h2>
               <p className="text-sm text-white/90 font-light">
                 NewTIFI is a global think tank & innovation hub where technology meets finance to shape a better world. We bring together bold thinkers—academics, startups, and investors—to transform breakthrough ideas into real-world impact.
               </p>
@@ -498,7 +503,7 @@ const Home = () => {
                     Innovation, integrity, and impact guide everything we do. We believe in the power of collaboration, the importance of rigorous research, and the need for practical, scalable solutions that benefit society as a whole.
                   </p>
                 </div>
-            </ScrollReveal>
+              </ScrollReveal>
             </div>
           </div>
         </div>
