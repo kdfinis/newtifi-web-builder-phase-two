@@ -30,10 +30,10 @@ const Membership = () => {
             </p>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <ScrollReveal delay={100} className="flex flex-col bg-white p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">
-                <span className="text-newtifi-teal">NewTIFI</span> Institute Member
+                <span className="text-newtifi-teal">NewTIFI</span> Institutional Member
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -47,6 +47,10 @@ const Membership = () => {
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                   <span className="text-gray-700">Direct collaboration opportunities</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Exclusive access to premium News & Articles content</span>
                 </li>
               </ul>
             </ScrollReveal>
@@ -67,6 +71,10 @@ const Membership = () => {
                 <li className="flex items-start">
                   <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                   <span className="text-gray-700">Event notifications</span>
+                </li>
+                <li className="flex items-start">
+                  <Check className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                  <span className="text-gray-700">Access to public News & Articles content</span>
                 </li>
               </ul>
             </ScrollReveal>
@@ -230,13 +238,13 @@ const Membership = () => {
             </p>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {/* Full Membership */}
             <div className="bg-[#F4F1EC] rounded-2xl shadow-md overflow-hidden flex flex-col">
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold">
-                    <span className="text-newtifi-teal">NewTIFI</span> Institute Member
+                    <span className="text-newtifi-teal">NewTIFI</span> Institutional Member
                   </h3>
                   <Lock className="h-6 w-6 text-newtifi-teal" />
                 </div>
@@ -253,12 +261,16 @@ const Membership = () => {
                     <Check className="h-5 w-5 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">Direct collaboration opportunities</span>
                   </li>
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Exclusive access to premium News & Articles content</span>
+                  </li>
                 </ul>
                 <button
                   onClick={() => setActiveForm(activeForm === 'full' ? null : 'full')}
                   className="w-full bg-newtifi-navy text-white py-3 rounded-xl font-medium flex items-center justify-center group hover:bg-newtifi-navy/90 transition-all duration-300"
                 >
-                  <span>Apply for Institute Member</span>
+                  <span>Apply for Institutional Member</span>
                   <ChevronDown className={`ml-2 h-5 w-5 transform transition-transform duration-300 ${activeForm === 'full' ? 'rotate-180' : ''}`} />
                 </button>
               </div>
@@ -331,6 +343,10 @@ const Membership = () => {
                   <li className="flex items-start">
                     <Check className="h-5 w-5 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
                     <span className="text-gray-700">Event notifications</span>
+                  </li>
+                  <li className="flex items-start">
+                    <Check className="h-5 w-5 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
+                    <span className="text-gray-700">Access to public News & Articles content</span>
                   </li>
                 </ul>
                 <button

@@ -4,6 +4,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 import TechCard from '@/components/TechCard';
 import { cn } from '@/lib/utils';
+import { useNavigate } from 'react-router-dom';
 
 const scholarshipContent = [
   {
@@ -84,6 +85,8 @@ const legalInsightContent = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
+
   // Intersection Observer setup for animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -127,38 +130,98 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Hero Section */}
+      {/* Hero Section with Overview and Latest News */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <ScrollReveal direction="right" delay={100}>
-          <div className="container mx-auto px-6 py-20 text-center">
-            <h1 className="text-4xl md:text-6xl font-light mb-8 text-newtifi-navy">
-              Shaping the Future of Technology
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto">
-              NewTIFI is a global research institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                to="/about" 
-                className="bg-newtifi-navy text-white hover:bg-newtifi-teal transition-all duration-300 transform hover:scale-105"
-              >
-                Learn More
-              </Button>
-              <Button 
-                to="/contact" 
-                className="bg-transparent border-2 border-newtifi-navy text-newtifi-navy hover:bg-newtifi-navy hover:text-white transition-all duration-300 transform hover:scale-105"
-              >
-                Get in Touch
-              </Button>
-            </div>
+        <div className="container mx-auto px-6 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Left side - NewTIFI Overview */}
+            <ScrollReveal direction="right" delay={100}>
+              <div className="space-y-8">
+                <h1 className="text-4xl md:text-5xl font-light text-newtifi-navy">
+                  NewTIFI
+                </h1>
+                <p className="text-xl text-gray-700">
+                  A global research institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
+                    <p className="text-gray-700">Bridging technology and finance for meaningful impact</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
+                    <p className="text-gray-700">Global network of innovators and researchers</p>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
+                    <p className="text-gray-700">Driving sustainable technological advancement</p>
+                  </div>
+                </div>
+                <Button 
+                  to="/about" 
+                  className="bg-newtifi-navy text-white hover:bg-newtifi-teal transition-all duration-300 transform hover:scale-105"
+                >
+                  Learn More About Us
+                </Button>
+              </div>
+            </ScrollReveal>
+
+            {/* Right side - Latest News */}
+            <ScrollReveal direction="left" delay={200}>
+              <div className="bg-[#F5F7FA] rounded-2xl p-8">
+                <div className="flex justify-between items-center mb-8">
+                  <h2 className="text-2xl font-semibold text-newtifi-navy">Latest News & Articles</h2>
+                  <Button 
+                    to="/news" 
+                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
+                  >
+                    View All
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Button>
+                </div>
+                <div className="space-y-6">
+                  {[
+                    {
+                      title: "NewTIFI Launches Global Innovation Hub",
+                      date: "March 15, 2024",
+                      category: "Announcements"
+                    },
+                    {
+                      title: "Breakthrough in Sustainable Energy Research",
+                      date: "March 10, 2024",
+                      category: "Research"
+                    },
+                    {
+                      title: "Partnership with Leading Tech Universities",
+                      date: "March 5, 2024",
+                      category: "Partnerships"
+                    }
+                  ].map((article, index) => (
+                    <div 
+                      key={index}
+                      className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                      onClick={() => navigate('/news')}
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <h3 className="text-lg font-medium text-newtifi-navy">{article.title}</h3>
+                        <span className="text-sm text-newtifi-teal">{article.category}</span>
+                      </div>
+                      <p className="text-sm text-gray-500">{article.date}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+        </div>
       </section>
       
-      <div className="h-16"></div>
+      <div className="h-8"></div>
       
       {/* NewTIFI Pillars & What We Do */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
@@ -261,7 +324,7 @@ const Home = () => {
       </section>
       
       {/* Scholarship & Education */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
@@ -317,7 +380,7 @@ const Home = () => {
       </section>
       
       {/* Trusted Legal Insight */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-[#F5F7FA] rounded-2xl p-8 md:p-12">
@@ -373,7 +436,7 @@ const Home = () => {
       </section>
       
       {/* Join the Institute */}
-      <section className="py-20 bg-white">
+      <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 relative overflow-hidden max-w-4xl mx-auto">
