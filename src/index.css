@@ -42,6 +42,10 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+
+    --newtifi-navy: #1B2B4B;
+    --newtifi-teal: #00B4B4;
+    --newtifi-grey: #B5BEC1;
   }
 
   .dark {
@@ -79,7 +83,7 @@
   }
 
   body {
-    @apply bg-white text-newtifi-navy font-sans scroll-smooth;
+    @apply bg-white text-gray-900 font-sans scroll-smooth;
     font-weight: 300;
   }
 
@@ -114,7 +118,7 @@
   
   /* Section Titles */
   .section-title {
-    @apply text-xs font-light mb-4 tracking-tight uppercase;
+    @apply text-2xl md:text-3xl font-bold mb-6 text-newtifi-navy;
   }
   
   /* Card Hover Effects */
@@ -150,6 +154,14 @@
 
   .uppercase-text {
     @apply uppercase tracking-wider;
+  }
+
+  .nav-link {
+    @apply text-gray-600 hover:text-newtifi-navy transition-colors duration-200;
+  }
+  
+  .nav-link.active {
+    @apply text-newtifi-navy font-medium;
   }
 }
 

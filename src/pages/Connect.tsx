@@ -1,224 +1,217 @@
 import React from 'react';
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 
 const Connect = () => {
   return (
-    <main className="min-h-screen">
-      {/* Connect Hero */}
-      <section className="px-6 py-32 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
+    <main className="min-h-screen bg-[#F5E6E8]">
+      {/* Hero Section with Overlapping Card */}
+      <section className="relative px-6 pt-32 pb-40 bg-newtifi-navy text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90"></div>
+        <div className="container mx-auto relative">
           <ScrollReveal className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Contact Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Get in Touch</h1>
             <p className="text-lg text-white/80 leading-relaxed">
-              Meet the team driving innovation at NewTIFI. We're a diverse group of thinkers, builders, and innovators committed to shaping a better future through technology.
+              Have questions about NewTIFI's initiatives? We're here to help you navigate the future of innovation.
             </p>
           </ScrollReveal>
         </div>
       </section>
-      
-      {/* Contact Form & Information */}
-      <section className="px-6 py-12">
+
+      {/* Main Contact Form Card */}
+      <section className="px-6 -mt-32 relative z-10">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <ScrollReveal className="bg-white rounded-lg shadow-lg p-8">
-              <h2 className="text-2xl font-bold mb-6">Send Us a Message</h2>
-              <form>
-                <div className="mb-6">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-newtifi-teal bg-newtifi-navy/10"
-                    placeholder="Your name"
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-newtifi-teal bg-newtifi-navy/10"
-                    placeholder="your.email@example.com"
-                  />
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-newtifi-teal bg-newtifi-navy/10"
-                    placeholder="How can we help you?"
-                  ></textarea>
-                </div>
+          <div className="max-w-4xl mx-auto">
+            <ScrollReveal>
+              <div className="bg-[#F5F7FA] rounded-3xl shadow-2xl p-8 md:p-12">
+                {/* Quick Contact Options */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-4">
+                      <Mail className="h-6 w-6 text-newtifi-navy" />
+                      <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Email</h3>
+                    <p className="text-newtifi-navy/70 text-sm">info@newtifi.com</p>
+                  </div>
 
-                <div className="mb-6">
-                  <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-1">
-                    Select the role that applies to you
-                  </label>
-                  <select
-                    id="role"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-newtifi-teal bg-newtifi-navy/10"
-                  >
-                    <option value="">Select a role</option>
-                    <option value="professional">Professional investor</option>
-                    <option value="manager">Investment Manager</option>
-                    <option value="press">Press</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
+                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-4">
+                      <Phone className="h-6 w-6 text-newtifi-navy" />
+                      <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Phone</h3>
+                    <p className="text-newtifi-navy/70 text-sm">+352 123 456 789</p>
+                  </div>
 
-                <div className="mb-6">
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
-                    Select your country
-                  </label>
-                  <select
-                    id="country"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-newtifi-teal bg-newtifi-navy/10"
-                  >
-                    <option value="">Select a country</option>
-                    <option value="luxembourg">Luxembourg</option>
-                    <option value="france">France</option>
-                    <option value="germany">Germany</option>
-                    <option value="belgium">Belgium</option>
-                    <option value="netherlands">Netherlands</option>
-                    <option value="uk">United Kingdom</option>
-                    <option value="us">United States</option>
-                  </select>
-                </div>
-
-                <div className="mb-6">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="privacy"
-                      className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
-                    />
-                    <label htmlFor="privacy" className="ml-2 block text-sm text-gray-700">
-                      I confirm that I have read and agree to the NewTIFI Privacy Policy
-                    </label>
+                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                    <div className="flex items-center justify-between mb-4">
+                      <MapPin className="h-6 w-6 text-newtifi-navy" />
+                      <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Location</h3>
+                    <p className="text-newtifi-navy/70 text-sm">Luxembourg</p>
                   </div>
                 </div>
 
-                <div className="mb-6">
-                  <div className="flex items-start">
-                    <input
-                      type="checkbox"
-                      id="communications"
-                      className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
-                    />
-                    <label htmlFor="communications" className="ml-2 block text-sm text-gray-700">
-                      I would like to receive occasional communications and insights reports from NewTIFI
-                    </label>
+                {/* Contact Form */}
+                <div className="space-y-8">
+                  <div className="text-center">
+                    <h2 className="text-2xl md:text-3xl font-bold text-newtifi-navy mb-4">Send Us a Message</h2>
+                    <p className="text-newtifi-navy/70">We'll get back to you as soon as possible.</p>
                   </div>
+
+                  <form className="space-y-6">
+                    <div className="grid grid-cols-1 gap-6">
+                      <input
+                        type="text"
+                        placeholder="Full Name"
+                        className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                      />
+                      <input
+                        type="email"
+                        placeholder="Email Address"
+                        className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                      />
+                      <textarea
+                        rows={5}
+                        placeholder="Your message"
+                        className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy resize-none"
+                      ></textarea>
+
+                      <div>
+                        <label className="block text-sm font-medium text-newtifi-navy mb-2">
+                          Select the role that applies to you
+                        </label>
+                        <select
+                          className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal text-newtifi-navy"
+                        >
+                          <option value="">Select a role</option>
+                          <option value="professional">Professional investor</option>
+                          <option value="manager">Investment Manager</option>
+                          <option value="press">Press</option>
+                          <option value="other">Other</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-newtifi-navy mb-2">
+                          Select your country
+                        </label>
+                        <select
+                          className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal text-newtifi-navy"
+                        >
+                          <option value="">Select a country</option>
+                          <option value="luxembourg">Luxembourg</option>
+                          <option value="france">France</option>
+                          <option value="germany">Germany</option>
+                          <option value="belgium">Belgium</option>
+                          <option value="netherlands">Netherlands</option>
+                          <option value="uk">United Kingdom</option>
+                          <option value="us">United States</option>
+                        </select>
+                      </div>
+
+                      <div className="space-y-4">
+                        <div className="flex items-start">
+                          <input
+                            type="checkbox"
+                            id="privacy"
+                            className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
+                          />
+                          <label htmlFor="privacy" className="ml-2 block text-sm text-newtifi-navy/70">
+                            I confirm that I have read and agree to the NewTIFI Privacy Policy
+                          </label>
+                        </div>
+
+                        <div className="flex items-start">
+                          <input
+                            type="checkbox"
+                            id="communications"
+                            className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
+                          />
+                          <label htmlFor="communications" className="ml-2 block text-sm text-newtifi-navy/70">
+                            I would like to receive occasional communications and insights reports from NewTIFI
+                          </label>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="w-full bg-newtifi-navy text-white py-4 rounded-2xl font-medium flex items-center justify-center group hover:bg-newtifi-navy/90 transition-all duration-300"
+                      >
+                        <span>Send Message</span>
+                        <ArrowRight className="ml-2 h-5 w-5 transform transition-transform group-hover:translate-x-1" />
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                
-                <Button type="submit" fullWidth className="bg-newtifi-navy hover:bg-newtifi-navy/90">
-                  Submit
-                </Button>
-              </form>
+              </div>
             </ScrollReveal>
-            
-            {/* Contact Information */}
-            <div>
-              <ScrollReveal className="bg-newtifi-navy text-white rounded-lg shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-6">Contact Information</h2>
-                <div className="space-y-6">
-                  <div className="flex items-start">
-                    <MapPin className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-medium">Address</h3>
-                      <p className="text-gray-300">Luxembourg</p>
-                    </div>
-                  </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mailing Address Section */}
+      <section className="px-6 py-20">
+        <div className="container mx-auto">
+          <ScrollReveal className="max-w-4xl mx-auto">
+            <div className="bg-[#F5F7FA] rounded-3xl overflow-hidden shadow-lg">
+              <div className="grid md:grid-cols-2">
+                <div className="p-12 flex flex-col justify-center bg-newtifi-navy text-white relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-newtifi-teal/10 rounded-bl-full"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-newtifi-teal/10 rounded-tr-full"></div>
                   
-                  <div className="flex items-start">
-                    <Phone className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-medium">Phone</h3>
-                      <p className="text-gray-300">+352 123 456 789</p>
-                    </div>
-                  </div>
+                  <h2 className="text-2xl font-bold mb-8 relative">
+                    <span className="text-newtifi-teal">Mailing</span> Address
+                  </h2>
                   
-                  <div className="flex items-start">
-                    <Mail className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-medium">Email</h3>
-                      <p className="text-gray-300">info@newtifi.com</p>
+                  <div className="space-y-6 relative">
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-newtifi-teal/20 p-3 rounded-xl">
+                        <MapPin className="h-5 w-5 text-newtifi-teal" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-white/90 font-medium">NewTIFI A.s.b.l.</p>
+                        <p className="text-white/70">14, rue Jean-Pierre Biermann</p>
+                        <p className="text-white/70">L-1268 Luxembourg</p>
+                        <p className="text-white/70">Grand Duchy of Luxembourg</p>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <Clock className="h-6 w-6 text-newtifi-teal mr-3 flex-shrink-0 mt-1" />
-                    <div>
-                      <h3 className="font-medium">Office Hours</h3>
-                      <p className="text-gray-300">Monday-Friday: 9am - 5pm CET</p>
+
+                    <div className="flex items-start space-x-4">
+                      <div className="bg-newtifi-teal/20 p-3 rounded-xl">
+                        <Mail className="h-5 w-5 text-newtifi-teal" />
+                      </div>
+                      <div className="space-y-1">
+                        <p className="text-white/90 font-medium">Email</p>
+                        <a 
+                          href="mailto:info@newtifi.com" 
+                          className="text-newtifi-teal hover:text-white transition-colors"
+                        >
+                          info@newtifi.com
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </ScrollReveal>
-              
-              <ScrollReveal delay={200}>
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden h-80">
+
+                <div className="h-full">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2595.8684700480477!2d6.127777315490051!3d49.611979979999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47954a1c0c0c0c0c%3A0x0!2s14%20Rue%20Jean-Pierre%20Biermann%2C%201268%20Luxembourg!5e0!3m2!1sen!2slu!4v1677890257135!5m2!1sen!2slu&zoom=10"
                     width="100%"
                     height="100%"
-                    style={{ border: 0 }}
+                    style={{ border: 0, minHeight: '400px' }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="NewTIFI Office Location"
+                    title="NewTIFI Location Map"
                   ></iframe>
                 </div>
-              </ScrollReveal>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* FAQ Section */}
-      <section className="px-6 py-16 bg-newtifi-navy bg-opacity-5">
-        <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-            <p className="text-lg text-gray-600">
-              Find answers to common questions about NewTIFI's technology solutions, membership, and opportunities.
-            </p>
           </ScrollReveal>
-          
-          <div className="max-w-3xl mx-auto space-y-6">
-            <ScrollReveal delay={100} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2 text-newtifi-navy">How can I join NewTIFI as a member?</h3>
-              <p className="text-gray-600">
-                You can apply for membership through our Membership page. Once we receive your application, our team will review it and contact you with next steps.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={200} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2 text-newtifi-navy">What kinds of technology does NewTIFI focus on?</h3>
-              <p className="text-gray-600">
-                We primarily focus on innovative technology solutions in HealthTech, FoodTech, EnergyTech, and FinTech sectors, with an emphasis on creating practical, human-centered solutions.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={300} className="bg-white p-6 rounded-lg shadow-md">
-              <h3 className="text-xl font-bold mb-2 text-newtifi-navy">How does the scholar funding program work?</h3>
-              <p className="text-gray-600">
-                Our scholar funding program allows individuals and organizations to directly support promising innovators. You can choose specific technology areas to fund, and you'll receive regular updates on the progress and outcomes of the supported work.
-              </p>
-            </ScrollReveal>
-          </div>
         </div>
       </section>
     </main>

@@ -1,36 +1,39 @@
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TeamMember from '@/components/TeamMember';
+import { ChevronDown } from 'lucide-react';
 
 // Team data
 const teamMembers = [
   {
-    name: 'Ezechiel Havrenne',
+    name: 'Ezechiel Havrenne, LLM',
     title: 'Chair & President',
     bio: 'Leading NewTIFI\'s vision as Chair and President, driving technological innovation and sustainable development. Responsible for strategic direction, board leadership, and representing the organization in legal matters. With extensive experience in technology and sustainable development, Ezechiel oversees the organization\'s strategic initiatives and ensures alignment with our mission of human-centered innovation.',
-    imageSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3'
+    imageSrc: '/assets/images/team/ezechiel-havrenne.jpg'
   },
   {
-    name: 'Karlo Definis',
-    title: 'Chief Operating Officer\n& General Secretary',
+    name: 'Karlo Definis, FICP',
+    title: 'COO & General Secretary',
     bio: 'Overseeing operational excellence and strategic initiatives across NewTIFI\'s programs and partnerships. Coordinating technology programs and maintaining organizational records. Karlo brings expertise in operational management and program coordination, ensuring efficient execution of NewTIFI\'s initiatives while maintaining high standards of organizational governance.',
-    imageSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3'
+    imageSrc: '/assets/images/team/karlo-definis.jpg'
   },
   {
-    name: 'Vlado Sutlovic',
+    name: 'Vlado Sutlovic, FICP',
     title: 'Treasurer',
     bio: 'Managing financial operations and AML expertise, ensuring sustainable growth and regulatory compliance. Vlado oversees all financial aspects of NewTIFI, including budget management, financial reporting, and compliance with regulatory requirements. His expertise in financial operations and AML ensures the organization\'s financial integrity and sustainable growth.',
-    imageSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3'
+    imageSrc: '/assets/images/team/vlado-sutlovic.jpg'
   },
   {
-    name: 'Delphine Filsack',
+    name: 'Dr. Delphine Filsack',
     title: 'Scientific Advisor',
     bio: 'Leading technology initiatives and innovation strategy across NewTIFI\'s focus areas, with expertise in technological innovation and sustainable development. Delphine provides strategic guidance on technology direction, ensuring alignment with NewTIFI\'s mission and values. Her expertise in technological innovation and sustainable development helps shape our innovation priorities and partnerships.',
-    imageSrc: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3'
+    imageSrc: '/assets/images/team/delphine-filsack.jpg'
   }
 ];
 
 const WhoWeAre = () => {
+  const [expandedValue, setExpandedValue] = React.useState<string | null>(null);
+
   return (
     <main className="min-h-screen pb-20">
       {/* Header Section */}
@@ -75,42 +78,112 @@ const WhoWeAre = () => {
         </div>
       </section>
       
-      {/* Values Section */}
-      <section className="px-6 py-20">
-        <div className="container mx-auto">
-          <ScrollReveal className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">Our Values</h2>
+      {/* Our Values Section */}
+      <section className="py-16 bg-newtifi-grey">
+        <div className="container mx-auto max-w-7xl">
+          <div className="bg-white rounded-3xl shadow-lg p-8 md:p-12">
+            <ScrollReveal direction="up" delay={100} className="mb-12 text-center">
+              <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Our Values</h2>
+              <p className="text-sm text-gray-700 font-light">
+                The principles that guide our work and shape our impact.
+              </p>
+            </ScrollReveal>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <ScrollReveal delay={100} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <h3 className="text-xl font-bold mb-4 text-newtifi-navy">Human-Centered Innovation</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We believe technology should augment human capabilities, not replace them. Every innovation we pursue aims to enhance human potential and well-being.
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <ScrollReveal direction="up" delay={100}>
+                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Innovation</h3>
+                    <button 
+                      onClick={() => setExpandedValue(expandedValue === 'innovation' ? null : 'innovation')}
+                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
+                    >
+                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'innovation' ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  <p className="text-gray-700 text-sm font-light">
+                    We push boundaries and challenge conventional thinking to develop breakthrough solutions.
+                  </p>
+                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'innovation' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <p className="mb-4">
+                      Innovation is at the heart of everything we do. We believe in pushing the boundaries of what's possible, challenging conventional thinking, and developing breakthrough solutions that address real-world challenges.
+                    </p>
+                    <p className="mb-4">
+                      Our approach to innovation is multifaceted:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Fostering creative thinking and experimentation</li>
+                      <li>Embracing emerging technologies and methodologies</li>
+                      <li>Encouraging cross-disciplinary collaboration</li>
+                      <li>Supporting risk-taking and learning from failure</li>
+                    </ul>
+                  </div>
+                </div>
               </ScrollReveal>
               
-              <ScrollReveal delay={200} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <h3 className="text-xl font-bold mb-4 text-newtifi-navy">Rigorous Innovation</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We uphold the highest standards of scientific inquiry, ensuring our work is grounded in evidence, peer review, and ethical considerations.
-                </p>
+              <ScrollReveal direction="up" delay={200}>
+                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Integrity</h3>
+                    <button 
+                      onClick={() => setExpandedValue(expandedValue === 'integrity' ? null : 'integrity')}
+                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
+                    >
+                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'integrity' ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  <p className="text-gray-700 text-sm font-light">
+                    We maintain the highest standards of ethical conduct and transparency in all our work.
+                  </p>
+                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'integrity' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <p className="mb-4">
+                      Integrity is the foundation of our work. We maintain the highest standards of ethical conduct and transparency in everything we do, ensuring that our research and recommendations are always credible and trustworthy.
+                    </p>
+                    <p className="mb-4">
+                      Our commitment to integrity includes:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Rigorous research methodologies</li>
+                      <li>Transparent reporting and communication</li>
+                      <li>Ethical considerations in all projects</li>
+                      <li>Accountability to our stakeholders</li>
+                    </ul>
+                  </div>
+                </div>
               </ScrollReveal>
               
-              <ScrollReveal delay={300} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <h3 className="text-xl font-bold mb-4 text-newtifi-navy">Collaborative Progress</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We foster partnerships across disciplines and sectors, recognizing that the most significant breakthroughs come from diverse perspectives working together.
-                </p>
-              </ScrollReveal>
-              
-              <ScrollReveal delay={400} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
-                <h3 className="text-xl font-bold mb-4 text-newtifi-navy">Long-Term Thinking</h3>
-                <p className="text-gray-600 leading-relaxed">
-                  We prioritize sustainable impact over short-term gains, making decisions that benefit future generations as much as our own.
-                </p>
+              <ScrollReveal direction="up" delay={300}>
+                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
+                  <div className="flex justify-between items-start mb-6">
+                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Impact</h3>
+                    <button 
+                      onClick={() => setExpandedValue(expandedValue === 'impact' ? null : 'impact')}
+                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
+                    >
+                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'impact' ? 'rotate-180' : ''}`} />
+                    </button>
+                  </div>
+                  <p className="text-gray-700 text-sm font-light">
+                    We focus on creating meaningful, lasting change that benefits society as a whole.
+                  </p>
+                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'impact' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
+                    <p className="mb-4">
+                      Impact is our ultimate goal. We focus on creating meaningful, lasting change that benefits society as a whole, ensuring that our work leads to tangible improvements in people's lives.
+                    </p>
+                    <p className="mb-4">
+                      Our impact strategy includes:
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2">
+                      <li>Measurable outcomes and success metrics</li>
+                      <li>Sustainable and scalable solutions</li>
+                      <li>Long-term partnerships and engagement</li>
+                      <li>Focus on systemic change</li>
+                    </ul>
+                  </div>
+                </div>
               </ScrollReveal>
             </div>
-          </ScrollReveal>
+          </div>
         </div>
       </section>
     </main>

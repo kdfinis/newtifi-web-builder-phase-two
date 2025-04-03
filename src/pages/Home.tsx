@@ -213,7 +213,7 @@ const Home = () => {
       </section>
       
       {/* Research Focus Fields */}
-      <section className="py-16 px-6 bg-[#E8E3DC]">
+      <section className="py-16 px-6 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
             <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Research Focus Fields</h2>
@@ -275,7 +275,7 @@ const Home = () => {
       </section>
       
       {/* Join the Institute */}
-      <section className="py-16 bg-[#E8E3DC]">
+      <section className="py-16 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-8">
             <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">
@@ -326,7 +326,7 @@ const Home = () => {
       </section>
       
       {/* Scholarship & Education */}
-      <section className="py-16 px-6 bg-[#E8E3DC]">
+      <section className="py-16 px-6 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
             <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Scholarship & Education</h2>
@@ -362,7 +362,7 @@ const Home = () => {
       </section>
       
       {/* Trusted Legal Insight */}
-      <section className="py-16 px-6 bg-[#E8E3DC]">
+      <section className="py-16 px-6 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-12 text-center max-w-4xl mx-auto">
             <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Trusted Legal Insight</h2>
@@ -476,7 +476,7 @@ const Home = () => {
       </section>
       
       {/* Mission Section */}
-      <section className="py-16 bg-[#E8E3DC]">
+      <section className="py-16 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <div className="bg-newtifi-teal rounded-2xl p-8 md:p-12">
             <ScrollReveal direction="up" delay={100} className="mb-12">
