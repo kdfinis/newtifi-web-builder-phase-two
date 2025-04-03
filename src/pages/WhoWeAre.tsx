@@ -1,7 +1,6 @@
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TeamMember from '@/components/TeamMember';
-import { ChevronDown } from 'lucide-react';
 
 // Team data
 const teamMembers = [
@@ -31,9 +30,40 @@ const teamMembers = [
   }
 ];
 
-const WhoWeAre = () => {
-  const [expandedValue, setExpandedValue] = React.useState<string | null>(null);
+const values = [
+  {
+    title: 'Innovation',
+    description: 'We push boundaries and challenge conventional thinking to develop breakthrough solutions.',
+    details: [
+      'Fostering creative thinking and experimentation',
+      'Embracing emerging technologies and methodologies',
+      'Encouraging cross-disciplinary collaboration',
+      'Supporting risk-taking and learning from failure'
+    ]
+  },
+  {
+    title: 'Integrity',
+    description: 'We maintain the highest standards of ethical conduct and transparency in all our work.',
+    details: [
+      'Rigorous research methodologies',
+      'Transparent reporting and communication',
+      'Ethical considerations in all projects',
+      'Accountability to our stakeholders'
+    ]
+  },
+  {
+    title: 'Impact',
+    description: 'We focus on creating meaningful, lasting change that benefits society as a whole.',
+    details: [
+      'Measurable outcomes and success metrics',
+      'Sustainable and scalable solutions',
+      'Long-term partnerships and engagement',
+      'Focus on systemic change'
+    ]
+  }
+];
 
+const WhoWeAre = () => {
   return (
     <main className="min-h-screen pb-20">
       {/* Header Section */}
@@ -81,108 +111,30 @@ const WhoWeAre = () => {
       {/* Our Values Section */}
       <section className="py-16 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
-          <div className="bg-white rounded-3xl shadow-lg p-8 md:p-12">
-            <ScrollReveal direction="up" delay={100} className="mb-12 text-center">
-              <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Our Values</h2>
-              <p className="text-sm text-gray-700 font-light">
-                The principles that guide our work and shape our impact.
-              </p>
-            </ScrollReveal>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <ScrollReveal direction="up" delay={100}>
-                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
-                  <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Innovation</h3>
-                    <button 
-                      onClick={() => setExpandedValue(expandedValue === 'innovation' ? null : 'innovation')}
-                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
-                    >
-                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'innovation' ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-                  <p className="text-gray-700 text-sm font-light">
-                    We push boundaries and challenge conventional thinking to develop breakthrough solutions.
-                  </p>
-                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'innovation' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <p className="mb-4">
-                      Innovation is at the heart of everything we do. We believe in pushing the boundaries of what's possible, challenging conventional thinking, and developing breakthrough solutions that address real-world challenges.
-                    </p>
-                    <p className="mb-4">
-                      Our approach to innovation is multifaceted:
-                    </p>
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li>Fostering creative thinking and experimentation</li>
-                      <li>Embracing emerging technologies and methodologies</li>
-                      <li>Encouraging cross-disciplinary collaboration</li>
-                      <li>Supporting risk-taking and learning from failure</li>
-                    </ul>
-                  </div>
-                </div>
+          <ScrollReveal direction="up" delay={100} className="mb-12 text-center">
+            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Our Values</h2>
+            <p className="text-sm text-gray-700 font-light">
+              The principles that guide our work and shape our impact.
+            </p>
+          </ScrollReveal>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {values.map((value, index) => (
+              <ScrollReveal key={value.title} direction="right" delay={index * 200}>
+                <article className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy mb-4">{value.title}</h3>
+                  <p className="text-gray-700 text-sm font-light mb-6">{value.description}</p>
+                  <ul className="space-y-3">
+                    {value.details.map((detail, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                        <span className="text-newtifi-teal mt-1">•</span>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               </ScrollReveal>
-              
-              <ScrollReveal direction="up" delay={200}>
-                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
-                  <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Integrity</h3>
-                    <button 
-                      onClick={() => setExpandedValue(expandedValue === 'integrity' ? null : 'integrity')}
-                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
-                    >
-                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'integrity' ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-                  <p className="text-gray-700 text-sm font-light">
-                    We maintain the highest standards of ethical conduct and transparency in all our work.
-                  </p>
-                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'integrity' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <p className="mb-4">
-                      Integrity is the foundation of our work. We maintain the highest standards of ethical conduct and transparency in everything we do, ensuring that our research and recommendations are always credible and trustworthy.
-                    </p>
-                    <p className="mb-4">
-                      Our commitment to integrity includes:
-                    </p>
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li>Rigorous research methodologies</li>
-                      <li>Transparent reporting and communication</li>
-                      <li>Ethical considerations in all projects</li>
-                      <li>Accountability to our stakeholders</li>
-                    </ul>
-                  </div>
-                </div>
-              </ScrollReveal>
-              
-              <ScrollReveal direction="up" delay={300}>
-                <div className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-full">
-                  <div className="flex justify-between items-start mb-6">
-                    <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy">Impact</h3>
-                    <button 
-                      onClick={() => setExpandedValue(expandedValue === 'impact' ? null : 'impact')}
-                      className="text-newtifi-teal hover:text-newtifi-navy transition-colors"
-                    >
-                      <ChevronDown className={`w-6 h-6 transform transition-transform duration-300 ${expandedValue === 'impact' ? 'rotate-180' : ''}`} />
-                    </button>
-                  </div>
-                  <p className="text-gray-700 text-sm font-light">
-                    We focus on creating meaningful, lasting change that benefits society as a whole.
-                  </p>
-                  <div className={`mt-4 text-gray-700 text-sm font-light transition-all duration-300 overflow-hidden ${expandedValue === 'impact' ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                    <p className="mb-4">
-                      Impact is our ultimate goal. We focus on creating meaningful, lasting change that benefits society as a whole, ensuring that our work leads to tangible improvements in people's lives.
-                    </p>
-                    <p className="mb-4">
-                      Our impact strategy includes:
-                    </p>
-                    <ul className="list-disc pl-5 space-y-2">
-                      <li>Measurable outcomes and success metrics</li>
-                      <li>Sustainable and scalable solutions</li>
-                      <li>Long-term partnerships and engagement</li>
-                      <li>Focus on systemic change</li>
-                    </ul>
-                  </div>
-                </div>
-              </ScrollReveal>
-            </div>
+            ))}
           </div>
         </div>
       </section>
