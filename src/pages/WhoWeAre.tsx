@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TeamMember from '@/components/TeamMember';
+import { cn } from '@/lib/utils';
 
 // Team data
 const teamMembers = [
@@ -32,7 +33,7 @@ const teamMembers = [
 
 const values = [
   {
-    title: 'Innovation',
+    title: 'Unseen Opportunities',
     description: 'We push boundaries and challenge conventional thinking to develop breakthrough solutions.',
     details: [
       'Fostering creative thinking and experimentation',
@@ -42,7 +43,7 @@ const values = [
     ]
   },
   {
-    title: 'Integrity',
+    title: 'Value Creation',
     description: 'We maintain the highest standards of ethical conduct and transparency in all our work.',
     details: [
       'Rigorous research methodologies',
@@ -52,7 +53,7 @@ const values = [
     ]
   },
   {
-    title: 'Impact',
+    title: 'Exceptional Partnerships',
     description: 'We focus on creating meaningful, lasting change that benefits society as a whole.',
     details: [
       'Measurable outcomes and success metrics',
@@ -64,6 +65,8 @@ const values = [
 ];
 
 const WhoWeAre = () => {
+  const [activeValue, setActiveValue] = useState(values[0].title);
+
   return (
     <main className="min-h-screen pb-20">
       {/* Header Section */}
@@ -79,9 +82,16 @@ const WhoWeAre = () => {
       </section>
 
       {/* Team Section */}
-      <section className="px-6 py-20">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-20 gap-y-24 max-w-7xl mx-auto px-8">
+      <section className="px-6 pb-20 bg-newtifi-grey">
+        <div className="container mx-auto max-w-7xl">
+          <ScrollReveal className="text-center mb-16 pt-24">
+            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">Our Team</h2>
+            <p className="text-xl text-gray-700 font-light max-w-2xl mx-auto">
+              Meet the dedicated professionals driving NewTIFI's mission forward
+            </p>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
               <TeamMember
                 key={member.name}
@@ -107,34 +117,62 @@ const WhoWeAre = () => {
           </ScrollReveal>
         </div>
       </section>
-      
+
       {/* Our Values Section */}
-      <section className="py-16 bg-newtifi-grey">
+      <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
-          <ScrollReveal direction="up" delay={100} className="mb-12 text-center">
+          <ScrollReveal direction="up" delay={100} className="mb-12 text-center pt-20">
             <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
             <p className="text-xl text-gray-700 font-light">
               The principles that guide our work and shape our impact.
             </p>
           </ScrollReveal>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {values.map((value, index) => (
-              <ScrollReveal key={value.title} direction="right" delay={index * 200}>
-                <article className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <h3 className="text-base font-medium uppercase tracking-wider text-newtifi-navy mb-4">{value.title}</h3>
-                  <p className="text-base text-gray-700 font-light mb-6">{value.description}</p>
-                  <ul className="space-y-3">
-                    {value.details.map((detail, i) => (
-                      <li key={i} className="flex items-start gap-2 text-base text-gray-600">
-                        <span className="text-newtifi-teal mt-1">•</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </article>
+          <div className="max-w-5xl mx-auto">
+            <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
+              {/* Menu Buttons */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                {values.map((value) => (
+                  <button
+                    key={value.title}
+                    onClick={() => setActiveValue(value.title)}
+                    className={cn(
+                      "px-8 py-4 rounded-lg text-lg font-light transition-all duration-300",
+                      "border border-white/20 backdrop-blur-sm",
+                      activeValue === value.title
+                        ? "bg-[#6F8FBF] text-white"
+                        : "bg-transparent hover:bg-white/10 text-white"
+                    )}
+                  >
+                    {value.title}
+                  </button>
+                ))}
+              </div>
+
+              {/* Content */}
+              <ScrollReveal>
+                <div className="mt-12">
+                  <h3 className="text-2xl font-light italic mb-6 text-white">
+                    Collaborations and partnerships are critical to our success.
+                  </h3>
+                  <p className="text-lg text-white/80 leading-relaxed">
+                    We build collaborative relationships with investors and partners, including best-in-class brands,
+                    businesses and individuals. Our portfolio has prospered on the strong relationships we've built with
+                    management teams and collaborators from day one.
+                  </p>
+                  <div className="mt-8">
+                    <ul className="space-y-3">
+                      {values.find(v => v.title === activeValue)?.details.map((detail, i) => (
+                        <li key={i} className="flex items-start gap-2 text-base text-white/80">
+                          <span className="text-newtifi-teal mt-1">•</span>
+                          {detail}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </ScrollReveal>
-            ))}
+            </div>
           </div>
         </div>
       </section>

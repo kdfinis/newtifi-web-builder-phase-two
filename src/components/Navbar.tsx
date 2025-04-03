@@ -47,7 +47,7 @@ const Navbar = () => {
           <Link 
             to="/" 
             className={cn(
-              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              "nav-link text-white",
               location.pathname === "/" && "text-newtifi-teal"
             )}
           >
@@ -56,17 +56,17 @@ const Navbar = () => {
           <Link 
             to="/who-we-are" 
             className={cn(
-              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              "nav-link text-white",
               location.pathname === "/who-we-are" && "text-newtifi-teal"
             )}
           >
             Who We Are
           </Link>
           <Link 
-            to="/connect" 
+            to="/contact" 
             className={cn(
-              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
-              location.pathname === "/connect" && "text-newtifi-teal"
+              "nav-link text-white",
+              location.pathname === "/contact" && "text-newtifi-teal"
             )}
           >
             Contact
@@ -74,7 +74,7 @@ const Navbar = () => {
           <Link 
             to="/membership" 
             className={cn(
-              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105",
+              "nav-link text-white",
               location.pathname === "/membership" && "text-newtifi-teal"
             )}
           >
@@ -83,7 +83,7 @@ const Navbar = () => {
           <Link 
             to="/login" 
             className={cn(
-              "main-nav-link text-white hover:text-newtifi-teal transition-all duration-450 ease-out hover:scale-105 ml-8",
+              "nav-link text-white ml-8",
               location.pathname === "/login" && "text-newtifi-teal"
             )}
           >

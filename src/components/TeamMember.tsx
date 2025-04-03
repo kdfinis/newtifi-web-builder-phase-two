@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 import ScrollReveal from './ScrollReveal';
 import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 type TeamMemberProps = {
   name: string;
@@ -20,19 +21,23 @@ const TeamMember: React.FC<TeamMemberProps> = ({
   delay = 0,
   className,
 }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const urlName = name.toLowerCase().replace(/,/g, '').replace(/\s+/g, '-');
 
   return (
-    <ScrollReveal delay={delay} className={cn("flex flex-col items-center", className)}>
-      <div 
+    <ScrollReveal 
+      delay={delay} 
+      direction="up"
+      className={cn("flex flex-col items-center opacity-0 translate-y-8", className)}
+    >
+      <Link 
+        to={`/person/${urlName}`}
         className="relative w-full max-w-[280px] bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
-        onClick={() => setIsExpanded(!isExpanded)}
       >
         <div className="relative h-[240px] w-full overflow-hidden rounded-xl">
           <div className="absolute inset-0 bg-[#0F2D5F] opacity-0 group-hover:opacity-30 transition-opacity duration-500 ease-in-out rounded-xl"></div>
           <img 
             src={imageSrc} 
-            alt={name} 
+            alt={name}
             className="h-[360px] w-full object-cover transition-all duration-700 group-hover:scale-102 grayscale hover:grayscale-[50%]" 
             style={{ 
               objectPosition: name === 'Dr. Delphine Filsack' ? 'center 30%' : 'center 40%',
@@ -40,15 +45,11 @@ const TeamMember: React.FC<TeamMemberProps> = ({
             }}
           />
         </div>
-        
+         
         <div className="p-6 transition-all duration-300 bg-white group-hover:bg-white h-[180px] flex flex-col justify-between shadow-sm group-hover:shadow-xl">
           <div>
-            <h3 className="text-lg font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
-            <p className="text-newtifi-navy font-medium text-sm line-clamp-2">{title}</p>
-          </div>
-          
-          <div className={`transition-all duration-500 absolute left-0 right-0 bg-white p-6 shadow-lg ${isExpanded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 pointer-events-none'}`}>
-            <p className="text-newtifi-navy text-sm leading-relaxed">{bio}</p>
+            <h3 className="text-xl font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
+            <p className="text-newtifi-navy font-medium text-base line-clamp-2">{title}</p>
           </div>
           
           <div className="flex justify-start">
@@ -59,16 +60,11 @@ const TeamMember: React.FC<TeamMemberProps> = ({
                 "group-hover:translate-x-2 group-hover:bg-newtifi-teal/20"
               )}
             >
-              <ArrowRight 
-                className={cn(
-                  "h-6 w-6 transition-transform duration-300",
-                  isExpanded ? "rotate-90" : "group-hover:translate-x-1"
-                )} 
-              />
+              <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
           </div>
         </div>
-      </div>
+      </Link>
     </ScrollReveal>
   );
 };
