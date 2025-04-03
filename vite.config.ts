@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/newtifi-web-builder-phase-two/',
+  base: mode === 'production' ? '/newtifi-web-builder-phase-two/' : '/',
   server: {
     host: "::",
     port: 8080,
