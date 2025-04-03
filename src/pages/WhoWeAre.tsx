@@ -100,7 +100,7 @@ const WhoWeAre = () => {
       <section className="px-6 py-20 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Our Mission</h2>
+            <h2 className="text-3xl md:text-4xl uppercase mb-8">Our Mission</h2>
             <p className="text-xl text-white/80 leading-relaxed">
               NewTIFI exists to empower scientific breakthroughs that create lasting impact for a sustainable and equitable future. We champion researchers and visionaries, providing support to help translate transformative ideas into real-world solutions—advancing healthcare, food security, sustainable resources, and financial systems for the long-term benefit of society.
             </p>
@@ -112,8 +112,8 @@ const WhoWeAre = () => {
       <section className="py-16 bg-newtifi-grey">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal direction="up" delay={100} className="mb-12 text-center">
-            <h2 className="text-base font-light mb-4 text-newtifi-navy uppercase tracking-wide">Our Values</h2>
-            <p className="text-sm text-gray-700 font-light">
+            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
+            <p className="text-xl text-gray-700 font-light">
               The principles that guide our work and shape our impact.
             </p>
           </ScrollReveal>
@@ -122,11 +122,11 @@ const WhoWeAre = () => {
             {values.map((value, index) => (
               <ScrollReveal key={value.title} direction="right" delay={index * 200}>
                 <article className="bg-white p-8 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <h3 className="text-sm font-medium uppercase tracking-wider text-newtifi-navy mb-4">{value.title}</h3>
-                  <p className="text-gray-700 text-sm font-light mb-6">{value.description}</p>
+                  <h3 className="text-base font-medium uppercase tracking-wider text-newtifi-navy mb-4">{value.title}</h3>
+                  <p className="text-base text-gray-700 font-light mb-6">{value.description}</p>
                   <ul className="space-y-3">
                     {value.details.map((detail, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                      <li key={i} className="flex items-start gap-2 text-base text-gray-600">
                         <span className="text-newtifi-teal mt-1">•</span>
                         {detail}
                       </li>
