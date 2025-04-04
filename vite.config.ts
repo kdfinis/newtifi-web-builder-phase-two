@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/newtifi-web-builder/',
+  base: '/newtifi-web-builder-phase-two/',
   server: {
     host: '0.0.0.0',
     port: 3000,

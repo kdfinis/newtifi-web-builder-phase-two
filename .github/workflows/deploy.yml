@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_URL: /newtifi-web-builder/
+          VITE_BASE_URL: /newtifi-web-builder-phase-two/
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
