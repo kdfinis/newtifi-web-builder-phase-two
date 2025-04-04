@@ -18,12 +18,12 @@ export default defineConfig({
     }
   },
   server: {
-    host: '0.0.0.0',
-    port: 3000,
+    host: true,
+    port: 8080,
     strictPort: true,
+    open: true,
     hmr: {
-      host: '0.0.0.0',
-      port: 3000
+      clientPort: 8080
     }
   },
   plugins: [react()],
@@ -32,4 +32,5 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  publicDir: 'public',
 });

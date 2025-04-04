@@ -35,10 +35,10 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center">
           <img 
-            src="/lovable-uploads/350fa426-ed3c-46f2-9542-778840d65e01.png" 
-            alt="Newtifi Logo" 
-            className="h-10 w-auto"
-            style={{ minHeight: '40px' }}
+            src="/assets/images/logo.png" 
+            alt="NewTIFI Logo" 
+            className="h-12 w-auto brightness-0 invert"
+            style={{ minHeight: '48px' }}
           />
         </Link>
 

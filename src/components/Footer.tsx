@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,11 +10,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo & Company Info */}
           <div className="md:col-span-1">
-            <Link to="/">
+            <Link to="/" className="flex items-center">
               <img 
-                src="/lovable-uploads/350fa426-ed3c-46f2-9542-778840d65e01.png" 
-                alt="Newtifi Logo" 
-                className="h-8 mb-4" 
+                src="/assets/images/logo.png" 
+                alt="NewTIFI Logo" 
+                className="h-10 w-auto brightness-0 invert"
               />
             </Link>
             <p className="text-xs text-gray-300 mt-4 font-light">
