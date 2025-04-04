@@ -20,14 +20,10 @@ export default defineConfig({
   server: {
     host: true,
     port: 8080,
-    strictPort: true,
+    strictPort: false,
     open: true
   },
-  plugins: [
-    react({
-      jsxRuntime: 'automatic'
-    })
-  ],
+  plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
