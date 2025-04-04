@@ -21,10 +21,7 @@ export default defineConfig({
     host: true,
     port: 8080,
     strictPort: true,
-    open: true,
-    hmr: {
-      clientPort: 8080
-    }
+    open: true
   },
   plugins: [react()],
   resolve: {
