@@ -33,10 +33,10 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      - name: Copy public assets
+      - name: Prepare public directory
         run: |
-          mkdir -p dist/assets/images
-          cp -r public/assets/images/* dist/assets/images/
+          mkdir -p dist/assets/images dist/images
+          cp -r public/assets/images/* dist/assets/images/ || true
           cp -r public/images/* dist/images/ || true
       
       - name: Build

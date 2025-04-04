@@ -23,7 +23,11 @@ export default defineConfig({
     strictPort: true,
     open: true
   },
-  plugins: [react()],
+  plugins: [
+    react({
+      jsxRuntime: 'automatic'
+    })
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
