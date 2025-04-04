@@ -19,7 +19,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename="/newtifi-web-builder-phase-two">
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
