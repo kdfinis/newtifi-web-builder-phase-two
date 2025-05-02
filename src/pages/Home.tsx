@@ -240,22 +240,23 @@ const Home = () => {
                   {
                     title: "HealthTech",
                     description: "Enhancing personal care and diagnostics through innovative technology solutions.",
-                    icon: "🏥"
+                    icon: "\uD83C\uDFE5",
+                    image: "/images/health-tech.jpg"
                   },
                   {
                     title: "FoodTech",
                     description: "Transforming food systems for greater efficiency and sustainability.",
-                    icon: "🌱"
+                    icon: "\uD83C\uDF31"
                   },
                   {
                     title: "EnergyTech",
                     description: "Advancing resource management and conservation technologies.",
-                    icon: "⚡"
+                    icon: "\u26A1"
                   },
                   {
                     title: "FinTech",
                     description: "Revolutionizing financial services through cutting-edge technology.",
-                    icon: "💳"
+                    icon: "\uD83D\uDCB3"
                   }
                 ].map((pillar, index) => (
                   <ScrollReveal 
@@ -267,6 +268,13 @@ const Home = () => {
                     <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
                       <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
                         {/* Space for photo */}
+                        {pillar.image && (
+                          <img
+                            src={pillar.image}
+                            alt={pillar.title + " photo"}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
                       </div>
                       <div className="text-4xl mb-4">{pillar.icon}</div>
                       <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>

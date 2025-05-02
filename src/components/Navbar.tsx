@@ -42,7 +42,7 @@ const Navbar = () => {
           <img 
             src="/assets/images/logo.png" 
             alt="NewTIFI Logo" 
-            className="h-10 md:h-12 w-auto brightness-0 invert"
+            className="h-10 md:h-12 w-auto"
             style={{ minHeight: '40px' }}
           />
         </Link>
