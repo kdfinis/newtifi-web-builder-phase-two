@@ -58,7 +58,7 @@ const Navbar = () => {
 
         {/* Navigation Links - Desktop */}
         <nav className={cn(
-          "md:flex-1 md:flex md:items-center md:justify-center md:space-x-12 text-xl md:text-3xl font-medium tracking-wide",
+          "md:flex-1 md:flex md:items-center md:justify-center md:space-x-12 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
           "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
           "transition-all duration-300 ease-in-out",
           isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"
@@ -103,17 +103,19 @@ const Navbar = () => {
           >
             Membership
           </Link>
-          <Link 
-            to="/login" 
-            className={cn(
-              "nav-link text-white md:ml-8 hover:text-newtifi-teal transition-colors",
-              location.pathname === "/login" && "text-newtifi-teal"
-            )}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Login
-          </Link>
         </nav>
+
+        {/* Login Button */}
+        <Link 
+          to="/login" 
+          className={cn(
+            "hidden md:block px-6 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300",
+            "text-[1.2rem] font-medium tracking-wide"
+          )}
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Login
+        </Link>
       </div>
     </header>
   );
