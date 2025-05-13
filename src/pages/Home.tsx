@@ -11,12 +11,12 @@ const scholarshipContent = [
     title: 'Doctoral Scholarships',
     description: 'Supporting the next generation of innovators and researchers.',
     details: [
-      'Full funding for innovative PhD research projects aligned with NewTIFI\'s focus areas',
-      'Access to NewTIFI\'s global network of experts and mentors',
+      'Full funding for innovative PhD research projects aligned with New Technologies and Investment Funds Institute\'s focus areas',
+      'Access to New Technologies and Investment Funds Institute\'s global network of experts and mentors',
       'Opportunities to present research at international conferences',
       'Support for publishing and commercialization of research findings',
       'Annual stipend and research budget allocation',
-      'Integration into NewTIFI\'s research community'
+      'Integration into New Technologies and Investment Funds Institute\'s research community'
     ]
   },
   {
@@ -26,7 +26,7 @@ const scholarshipContent = [
       'One-on-one mentoring with industry leaders and experts',
       'Regular workshops and skill development sessions',
       'Career development and networking opportunities',
-      'Access to NewTIFI\'s resource library and tools',
+      'Access to New Technologies and Investment Funds Institute\'s resource library and tools',
       'Participation in innovation challenges and hackathons',
       'Opportunities for collaborative research projects'
     ]
@@ -134,11 +134,11 @@ const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
         <div className="container mx-auto px-6 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Left side - NewTIFI Overview */}
+            {/* Left side - New Technologies and Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-8">
                 <h1 className="text-4xl md:text-5xl font-light text-newtifi-navy">
-                  NewTIFI
+                  New Technologies and Investment Funds Institute
                 </h1>
                 <p className="text-xl text-gray-700">
                   A global research institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
@@ -184,7 +184,7 @@ const Home = () => {
                 <div className="space-y-6">
                   {[
                     {
-                      title: "NewTIFI Launches Global Innovation Hub",
+                      title: "New Technologies and Investment Funds Institute Launches Global Innovation Hub",
                       date: "May 9, 2024",
                       category: "Announcements"
                     },
@@ -220,19 +220,19 @@ const Home = () => {
       
       <div className="h-8"></div>
       
-      {/* NewTIFI Pillars & What We Do */}
+      {/* New Technologies and Investment Funds Institute Pillars & What We Do */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
-              {/* NewTIFI Pillars Section */}
+              {/* New Technologies and Investment Funds Institute Pillars Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-12 text-white">
-                  NewTIFI Pillars
+                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                  New Technologies and Investment Funds Institute Pillars
                 </h2>
-                <p className="text-xl text-white/80 text-center mb-16 max-w-3xl mx-auto">
-                  Our core focus areas drive innovation and sustainable development across key technological domains.
-                </p>
+                <h3 className="text-xl text-white/80 text-center mb-12">
+                  Technology Pillars
+                </h3>
               </ScrollReveal>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
@@ -286,27 +286,35 @@ const Home = () => {
 
               {/* What We Do Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-12 text-white">
-                  What We Do
+                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                  New Technologies and Investment Funds Institute Pillars
                 </h2>
+                <h3 className="text-xl text-white/80 text-center mb-12">
+                  Financial Pillars
+                </h3>
               </ScrollReveal>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
                   {
-                    title: "Research & Development",
-                    description: "Conducting cutting-edge research to drive technological innovation and sustainable solutions.",
-                    icon: "🔬"
+                    title: "Investment Funds",
+                    description: "Strategic investment vehicles designed to maximize returns while managing risk through diversified portfolios.",
+                    icon: "💰"
                   },
                   {
-                    title: "Education & Training",
-                    description: "Providing comprehensive education programs to nurture the next generation of tech leaders.",
-                    icon: "🎓"
+                    title: "Securitisation Vehicles",
+                    description: "Innovative structures that transform illiquid assets into tradable securities, enhancing market liquidity.",
+                    icon: "📊"
                   },
                   {
-                    title: "Industry Collaboration",
-                    description: "Partnering with industry leaders to implement innovative solutions and drive progress.",
-                    icon: "🤝"
+                    title: "Pension Funds",
+                    description: "Long-term investment solutions focused on securing retirement benefits through prudent asset management.",
+                    icon: "🏦"
+                  },
+                  {
+                    title: "Insurance Products",
+                    description: "Comprehensive risk management solutions providing protection and financial security for various contingencies.",
+                    icon: "🛡️"
                   }
                 ].map((item, index) => (
                   <ScrollReveal 
@@ -319,9 +327,6 @@ const Home = () => {
                       <div className="text-4xl mb-4">{item.icon}</div>
                       <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
                       <p className="text-gray-700 flex-grow">{item.description}</p>
-                      <div className="aspect-square w-full mt-6 bg-gray-100 rounded-xl overflow-hidden">
-                        {/* Space for photo */}
-                      </div>
                     </div>
                   </ScrollReveal>
                 ))}
@@ -492,7 +497,7 @@ const Home = () => {
                   <div className="relative w-32 lg:w-40 aspect-[3/4] rounded-xl overflow-hidden group transform transition-all duration-300 hover:scale-105">
                     <img
                       src="https://newtifi.com/wp-content/uploads/2024/08/009ea3ac2018c459ce84161d1b88796f.png"
-                      alt="NewTIFI Global Network"
+                      alt="New Technologies and Investment Funds Institute Global Network"
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-newtifi-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

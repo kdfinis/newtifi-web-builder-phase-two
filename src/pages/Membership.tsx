@@ -33,7 +33,7 @@ const Membership = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             <ScrollReveal delay={100} className="flex flex-col bg-white p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">
-                <span className="text-newtifi-teal">NewTIFI</span> Institutional Member
+                <span className="text-newtifi-teal">New Technologies and Investment Funds Institute</span> Institutional Member
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -57,7 +57,7 @@ const Membership = () => {
             
             <ScrollReveal delay={200} className="flex flex-col bg-white p-8 rounded-lg shadow-md">
               <h3 className="text-2xl font-bold mb-6 text-newtifi-navy">
-                <span className="text-newtifi-teal">NewTIFI</span> Limited Access
+                <span className="text-newtifi-teal">New Technologies and Investment Funds Institute</span> Limited Access
               </h3>
               <ul className="space-y-4">
                 <li className="flex items-start">
@@ -96,7 +96,7 @@ const Membership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <ScrollReveal delay={100} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "Being part of NewTIFI has connected me with innovators and industry leaders I wouldn't have met otherwise. The insights and collaborations have been invaluable to our technology development efforts."
+                    "Being part of New Technologies and Investment Funds Institute has connected me with innovators and industry leaders I wouldn't have met otherwise. The insights and collaborations have been invaluable to our technology development efforts."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -115,7 +115,7 @@ const Membership = () => {
               
               <ScrollReveal delay={200} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "The technology insights we've gained through our NewTIFI membership have directly influenced our strategic roadmap. Their approach to combining human expertise with innovative technology is revolutionary."
+                    "The technology insights we've gained through our New Technologies and Investment Funds Institute membership have directly influenced our strategic roadmap. Their approach to combining human expertise with innovative technology is revolutionary."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -134,7 +134,7 @@ const Membership = () => {
               
               <ScrollReveal delay={300} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "Funding a scholarship through NewTIFI has been one of our most rewarding investments. Seeing the project progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
+                    "Funding a scholarship through New Technologies and Investment Funds Institute has been one of our most rewarding investments. Seeing the project progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -169,7 +169,7 @@ const Membership = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <ScrollReveal delay={100} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "Being part of NewTIFI has connected me with innovators and industry leaders I wouldn't have met otherwise. The insights and collaborations have been invaluable to our technology development efforts."
+                    "Being part of New Technologies and Investment Funds Institute has connected me with innovators and industry leaders I wouldn't have met otherwise. The insights and collaborations have been invaluable to our technology development efforts."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -188,7 +188,7 @@ const Membership = () => {
               
               <ScrollReveal delay={200} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "The technology insights we've gained through our NewTIFI membership have directly influenced our strategic roadmap. Their approach to combining human expertise with innovative technology is revolutionary."
+                    "The technology insights we've gained through our New Technologies and Investment Funds Institute membership have directly influenced our strategic roadmap. Their approach to combining human expertise with innovative technology is revolutionary."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -207,7 +207,7 @@ const Membership = () => {
               
               <ScrollReveal delay={300} className="bg-white p-6 rounded-lg shadow-md">
                 <p className="text-gray-600 italic mb-6">
-                    "Funding a scholarship through NewTIFI has been one of our most rewarding investments. Seeing the project progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
+                    "Funding a scholarship through New Technologies and Investment Funds Institute has been one of our most rewarding investments. Seeing the project progress and knowing we're contributing to meaningful innovation is incredibly fulfilling."
                 </p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 rounded-full overflow-hidden mr-4">
@@ -244,7 +244,7 @@ const Membership = () => {
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold">
-                    <span className="text-newtifi-teal">NewTIFI</span> Institutional Member
+                    <span className="text-newtifi-teal">New Technologies and Investment Funds Institute</span> Institutional Member
                   </h3>
                   <Lock className="h-6 w-6 text-newtifi-teal" />
                 </div>
@@ -327,7 +327,7 @@ const Membership = () => {
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-bold">
-                    <span className="text-newtifi-teal">NewTIFI</span> Limited Access
+                    <span className="text-newtifi-teal">New Technologies and Investment Funds Institute</span> Limited Access
                   </h3>
                   <Mail className="h-6 w-6 text-newtifi-teal" />
                 </div>

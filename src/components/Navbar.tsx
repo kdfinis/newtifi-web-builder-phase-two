@@ -36,15 +36,18 @@ const Navbar = () => {
         isAtTop && "animate-[bump_0.6s_ease-in-out]"
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 h-full flex items-center justify-between">
+      <div className="container mx-auto px-4 md:px-8 h-full flex items-center justify-between relative">
         {/* Logo */}
-        <Link to="/" className="flex items-center">
+        <Link to="/" className="flex items-center gap-1.5">
           <img 
             src="/assets/images/logo.png" 
             alt="NewTIFI Logo" 
-            className="h-10 md:h-12 w-auto"
-            style={{ minHeight: '40px' }}
+            className="h-7 md:h-9 w-auto"
+            style={{ minHeight: '28px' }}
           />
+          <span className="text-white text-[10px] md:text-xs font-light hidden md:block whitespace-nowrap">
+            New Technologies & Investment Fund Institute
+          </span>
         </Link>
 
         {/* Mobile Menu Button */}
@@ -58,7 +61,7 @@ const Navbar = () => {
 
         {/* Navigation Links - Desktop */}
         <nav className={cn(
-          "md:flex-1 md:flex md:items-center md:justify-center md:space-x-12 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
+          "absolute left-1/2 transform -translate-x-1/2 md:flex md:items-center md:space-x-6 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
           "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
           "transition-all duration-300 ease-in-out",
           isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"

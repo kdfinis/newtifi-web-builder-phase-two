@@ -13,7 +13,7 @@ const Connect = () => {
           <ScrollReveal className="max-w-2xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Get in Touch</h1>
             <p className="text-lg text-white/80 leading-relaxed">
-              Have questions about NewTIFI's initiatives? We're here to help you navigate the future of innovation.
+              Have questions about New Technologies and Investment Funds Institute's initiatives? We're here to help you navigate the future of innovation.
             </p>
           </ScrollReveal>
         </div>
@@ -121,7 +121,7 @@ const Connect = () => {
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
                           <label htmlFor="privacy" className="ml-2 block text-sm text-newtifi-navy/70">
-                            I confirm that I have read and agree to the NewTIFI Privacy Policy
+                            I confirm that I have read and agree to the New Technologies and Investment Funds Institute Privacy Policy
                           </label>
                         </div>
 
@@ -132,7 +132,7 @@ const Connect = () => {
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
                           <label htmlFor="communications" className="ml-2 block text-sm text-newtifi-navy/70">
-                            I would like to receive occasional communications and insights reports from NewTIFI
+                            I would like to receive occasional communications and insights reports from New Technologies and Investment Funds Institute
                           </label>
                         </div>
                       </div>
@@ -173,7 +173,7 @@ const Connect = () => {
                         <MapPin className="h-5 w-5 text-newtifi-teal" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-white/90 font-medium">NewTIFI A.s.b.l.</p>
+                        <p className="text-white/90 font-medium">New Technologies and Investment Funds Institute A.s.b.l.</p>
                         <p className="text-white/70">14, rue Jean-Pierre Biermann</p>
                         <p className="text-white/70">L-1268 Luxembourg</p>
                         <p className="text-white/70">Grand Duchy of Luxembourg</p>
@@ -206,7 +206,7 @@ const Connect = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="NewTIFI Location Map"
+                    title="New Technologies and Investment Funds Institute Location Map"
                   ></iframe>
                 </div>
               </div>
