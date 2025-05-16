@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host --port 3000 --strictPort --force",
+    "dev": "vite --host localhost --port 3000 --strictPort --force",
     "dev:stable": "serve -s dist -l 3000",
     "dev:parallel": "concurrently \"npm run dev\" \"npm run dev:stable\"",
     "dev:watch": "nodemon --watch src --ext js,jsx,ts,tsx,css,scss,json --ignore dist/ --exec 'npm run dev'",
