@@ -240,23 +240,26 @@ const Home = () => {
                   {
                     title: "HealthTech",
                     description: "Enhancing personal care and diagnostics through innovative technology solutions.",
-                    icon: "\uD83C\uDFE5",
+                    icon: "🏥",
                     image: "/images/health-tech.jpg"
                   },
                   {
                     title: "FoodTech",
                     description: "Transforming food systems for greater efficiency and sustainability.",
-                    icon: "\uD83C\uDF31"
+                    icon: "🌱",
+                    image: "/images/food-tech.jpg"
                   },
                   {
                     title: "EnergyTech",
                     description: "Advancing resource management and conservation technologies.",
-                    icon: "\u26A1"
+                    icon: "⚡",
+                    image: "/images/energy-tech.jpg"
                   },
                   {
                     title: "FinTech",
                     description: "Revolutionizing financial services through cutting-edge technology.",
-                    icon: "\uD83D\uDCB3"
+                    icon: "💳",
+                    image: "/images/fin-tech.jpg"
                   }
                 ].map((pillar, index) => (
                   <ScrollReveal 

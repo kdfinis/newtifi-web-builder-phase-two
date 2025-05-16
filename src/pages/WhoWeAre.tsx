@@ -68,7 +68,7 @@ const WhoWeAre = () => {
   const [activeValue, setActiveValue] = useState(values[0].title);
 
   return (
-    <main className="min-h-screen pb-20">
+    <main className="min-h-screen pb-20 bg-white">
       {/* Header Section */}
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
@@ -82,7 +82,7 @@ const WhoWeAre = () => {
       </section>
 
       {/* Team Section */}
-      <section className="px-6 pb-20 bg-newtifi-grey">
+      <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal className="text-center mb-16 pt-24">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">Our Team</h2>
@@ -107,13 +107,17 @@ const WhoWeAre = () => {
       </section>
       
       {/* Mission Section */}
-      <section className="px-6 py-20 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
+      <section className="px-6 py-20 bg-gradient-to-br from-newtifi-navy via-[#1a2b4d] to-[#162544] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.png')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-newtifi-teal/5 to-transparent"></div>
+        <div className="container mx-auto relative">
           <ScrollReveal className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl uppercase mb-8">Our Mission</h2>
-            <p className="text-xl text-white/80 leading-relaxed">
-              NewTIFI exists to empower scientific breakthroughs that create lasting impact for a sustainable and equitable future. We champion researchers and visionaries, providing support to help translate transformative ideas into real-world solutions—advancing healthcare, food security, sustainable resources, and financial systems for the long-term benefit of society.
-            </p>
+            <h2 className="text-3xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-lg shadow-newtifi-teal/5">
+              <p className="text-xl text-white/90 leading-relaxed">
+                NewTIFI exists to empower scientific breakthroughs that create lasting impact for a sustainable and equitable future. We champion researchers and visionaries, providing support to help translate transformative ideas into real-world solutions—advancing healthcare, food security, sustainable resources, and financial systems for the long-term benefit of society.
+              </p>
+            </div>
           </ScrollReveal>
         </div>
       </section>

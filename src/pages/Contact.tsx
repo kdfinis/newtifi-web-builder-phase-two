@@ -94,10 +94,39 @@ const Contact = () => {
                     </div>
 
                     <input
+                      type="text"
+                      placeholder="Company Name"
+                      className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                    />
+
+                    <input
                       type="email"
                       placeholder="Email Address"
                       className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
                     />
+
+                    <input
+                      type="tel"
+                      placeholder="Phone Number"
+                      className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                    />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Country"
+                          className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Role"
+                          className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy"
+                        />
+                      </div>
+                    </div>
 
                     <input
                       type="text"
@@ -110,6 +139,17 @@ const Contact = () => {
                       placeholder="Your message"
                       className="w-full px-6 py-4 bg-white/80 rounded-2xl border-0 focus:ring-2 focus:ring-newtifi-teal placeholder:text-newtifi-navy/40 text-newtifi-navy resize-none"
                     ></textarea>
+
+                    <div className="flex items-start">
+                      <input
+                        type="checkbox"
+                        id="terms-contact"
+                        className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
+                      />
+                      <label htmlFor="terms-contact" className="ml-2 block text-sm text-newtifi-navy/70">
+                        I agree to receive communications
+                      </label>
+                    </div>
 
                     <button
                       type="submit"
