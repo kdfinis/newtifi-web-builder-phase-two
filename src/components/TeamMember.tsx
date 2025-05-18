@@ -31,7 +31,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
     >
       <Link 
         to={`/person/${urlName}`}
-        className="relative w-full max-w-[280px] bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+        className="relative w-full max-w-[280px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
       >
         <div className="relative h-[240px] w-full overflow-hidden rounded-xl">
           <div className="absolute inset-0 bg-[#0F2D5F] opacity-0 group-hover:opacity-30 transition-opacity duration-500 ease-in-out rounded-xl"></div>

@@ -108,7 +108,7 @@ const WhoWeAre = () => {
       
       {/* Mission Section */}
       <section className="px-6 py-20 bg-gradient-to-br from-newtifi-navy via-[#1a2b4d] to-[#162544] text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.png')] opacity-5"></div>
+        <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-teal/5 to-transparent"></div>
         <div className="container mx-auto relative">
           <ScrollReveal className="max-w-4xl mx-auto text-center">
