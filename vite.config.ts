@@ -4,7 +4,7 @@ import path from "path";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/',
+  base: '/newtifi-web-builder-phase-two/',
   server: {
     port: 3000,
     strictPort: true,
@@ -32,6 +32,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom', 'react-router-dom'],
         },
+        format: 'es',
       },
     },
   },
