@@ -75,13 +75,11 @@ His expertise in financial operations and anti-money laundering (AML) plays a cr
     linkedin: 'https://linkedin.com/in/vlado-sutlovic'
   },
   {
-    name: 'Dr. Delphine Filsack',
+    name: 'Delphine Filsack',
     urlName: 'dr-delphine-filsack',
     title: 'Scientific Advisor',
     shortBio: 'Leading technology initiatives and innovation strategy across NewTIFI\'s focus areas.',
-    fullBio: `Dr. Filsack joined NewTIFI in 2022 and provides strategic guidance on technology direction and innovation initiatives. She leads the organization's scientific advisory board and shapes research priorities across all focus areas.
-
-Her expertise in technological innovation and sustainable development helps guide NewTIFI's research agenda and ensures alignment with global sustainability goals while maintaining scientific rigor.`,
+    fullBio: `Delphine joined NewTIFI as a Scientific Advisor, bringing a unique bridge between emerging energy technologies and the financial sector. With a career rooted in the power supply sector, Delphine leverages deep technical understanding of battery storage and clean power solutions to inform strategic investment research and foster real-world impact. An out-of-the-box thinker, Delphine excels in crafting sustainable business development strategies that endure, aligning cutting-edge technology with mid- to long-term return objectives. Passionate about accelerating the transition to a cleaner, more resilient energy landscape, Delphine collaborates across disciplines to translate scientific breakthroughs and innovations into investable opportunities.`,
     expertise: [
       'Technology Innovation',
       'Scientific Research',
@@ -144,7 +142,7 @@ const Person = () => {
                   alt={member.name}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                   style={{ 
-                    objectPosition: member.name === 'Dr. Delphine Filsack' ? 'center 30%' : 'center 40%' 
+                    objectPosition: member.name === 'Delphine Filsack' ? 'center 30%' : 'center 40%' 
                   }}
                 />
               </div>

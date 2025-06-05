@@ -24,9 +24,9 @@ const teamMembers = [
     imageSrc: '/assets/images/team/vlado-sutlovic.jpg'
   },
   {
-    name: 'Dr. Delphine Filsack',
+    name: 'Delphine Filsack',
     title: 'Scientific Advisor',
-    bio: 'Leading technology initiatives and innovation strategy across NewTIFI\'s focus areas, with expertise in technological innovation and sustainable development. Delphine provides strategic guidance on technology direction, ensuring alignment with NewTIFI\'s mission and values. Her expertise in technological innovation and sustainable development helps shape our innovation priorities and partnerships.',
+    bio: 'Delphine joined NewTIFI as a Scientific Advisor, bringing a unique bridge between emerging energy technologies and the financial sector. With a career rooted in the power supply sector, Delphine leverages deep technical understanding of battery storage and clean power solutions to inform strategic investment research and foster real-world impact. An out-of-the-box thinker, Delphine excels in crafting sustainable business development strategies that endure, aligning cutting-edge technology with mid- to long-term return objectives. Passionate about accelerating the transition to a cleaner, more resilient energy landscape, Delphine collaborates across disciplines to translate scientific breakthroughs and innovations into investable opportunities.',
     imageSrc: '/assets/images/team/delphine-filsack.jpg'
   }
 ];

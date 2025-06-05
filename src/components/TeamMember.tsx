@@ -40,7 +40,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
             alt={name}
             className="h-[360px] w-full object-cover transition-all duration-700 group-hover:scale-102 grayscale hover:grayscale-[50%]" 
             style={{ 
-              objectPosition: name === 'Dr. Delphine Filsack' ? 'center 30%' : 'center 40%',
+              objectPosition: name === 'Delphine Filsack' ? 'center 30%' : 'center 40%',
               transform: 'scale(1)'
             }}
           />
