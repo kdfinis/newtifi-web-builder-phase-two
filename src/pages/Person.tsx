@@ -76,21 +76,22 @@ His expertise in financial operations and anti-money laundering (AML) plays a cr
   },
   {
     name: 'Delphine Filsack',
-    urlName: 'dr-delphine-filsack',
+    urlName: 'delphine-filsack',
     title: 'Scientific Advisor',
-    shortBio: 'Leading technology initiatives and innovation strategy across NewTIFI\'s focus areas.',
-    fullBio: `Delphine joined NewTIFI as a Scientific Advisor, bringing a unique bridge between emerging energy technologies and the financial sector. With a career rooted in the power supply sector, Delphine leverages deep technical understanding of battery storage and clean power solutions to inform strategic investment research and foster real-world impact. An out-of-the-box thinker, Delphine excels in crafting sustainable business development strategies that endure, aligning cutting-edge technology with mid- to long-term return objectives. Passionate about accelerating the transition to a cleaner, more resilient energy landscape, Delphine collaborates across disciplines to translate scientific breakthroughs and innovations into investable opportunities.`,
+    shortBio: 'Bridging emerging energy technologies and the financial sector with a focus on sustainable innovation.',
+    fullBio: `Delphine joined NewTIFI as a Scientific Advisor, bringing a unique bridge between emerging energy technologies and the financial sector. With a career rooted in the power supply sector, Delphine leverages deep technical understanding of battery storage and clean power solutions to inform strategic investment research and foster real-world impact.
+
+An out-of-the-box thinker, Delphine excels in crafting sustainable business development strategies that endure, aligning cutting-edge technology with mid- to long-term return objectives. Passionate about accelerating the transition to a cleaner, more resilient energy landscape, Delphine collaborates across disciplines to translate scientific breakthroughs and innovations into investable opportunities.`,
     expertise: [
-      'Technology Innovation',
-      'Scientific Research',
-      'Sustainable Development',
-      'Strategic Advisory'
+      'Battery Storage Systems – Technology assessment, integration strategies, lifecycle optimisation',
+      'Clean Power Supply – Renewables project feasibility, grid-scale deployment, sustainability metrics',
+      'Strategic Innovation – Cross-sector partnerships, go-to-market roadmaps, investment thesis development',
+      'Sustainable Business Development – Long-term value creation, impact measurement, stakeholder engagement'
     ],
     achievements: [
-      'Led groundbreaking research initiatives',
-      'Published influential papers in technology innovation',
-      'Developed key scientific partnerships',
-      'Advised on major technological breakthroughs'
+      'Clean Energy – Driving adoption of zero-emission power technologies',
+      'Water – Exploring WaterTech for water management and purification solutions',
+      'Agriculture – Advancing precision AgriTech for sustainable food systems'
     ],
     imageSrc: '/assets/images/team/delphine-filsack.jpg',
     linkedin: 'https://linkedin.com/in/delphine-filsack'

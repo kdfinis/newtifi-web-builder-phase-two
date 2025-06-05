@@ -21,7 +21,7 @@ const teamMembers = [
     name: 'Vlado Sutlovic, FICP',
     title: 'Treasurer',
     bio: 'Managing financial operations and AML expertise, ensuring sustainable growth and regulatory compliance. Vlado oversees all financial aspects of NewTIFI, including budget management, financial reporting, and compliance with regulatory requirements. His expertise in financial operations and AML ensures the organization\'s financial integrity and sustainable growth.',
-    imageSrc: '/assets/images/team/vlado-sutlovic.jpg'
+    imageSrc: '/assets/images/team/vlado-sutlovic.jpeg'
   },
   {
     name: 'Delphine Filsack',
@@ -85,10 +85,7 @@ const WhoWeAre = () => {
       <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal className="text-center mb-16 pt-24">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">Our Team</h2>
-            <p className="text-xl text-gray-700 font-light max-w-2xl mx-auto">
-              Meet the dedicated professionals driving NewTIFI's mission forward
-            </p>
+            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Senior Leadership</h2>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
