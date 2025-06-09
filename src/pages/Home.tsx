@@ -124,7 +124,7 @@ const Home = () => {
               </h2>
             </div>
             <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
-              Welcome to the hub of Tech innovation where professionals from the worlds of science and finance meet.
+              Welcome to the hub where Scientific, Tech and Finance Professionals meet
             </p>
           </ScrollReveal>
         </div>
