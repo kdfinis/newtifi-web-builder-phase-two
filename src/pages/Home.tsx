@@ -120,7 +120,7 @@ const Home = () => {
             <h1 className="text-2xl md:text-3xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
             <div className="mb-10">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-wider leading-tight">
-                FOCUS FUND RESEARCH<br />INNOVATE IMPLEMENT
+                FOCUS RESEARCH<br />INNOVATE IMPLEMENT
               </h2>
             </div>
             <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
