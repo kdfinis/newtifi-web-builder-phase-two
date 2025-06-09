@@ -150,7 +150,7 @@ const Home = () => {
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
-                    <p className="text-gray-700">Global network of researchers and innovators</p>
+                    <p className="text-gray-700">Connecting researchers, innovators, academics and industry leaders</p>
                   </div>
                   <div className="flex items-start gap-3">
                     <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
