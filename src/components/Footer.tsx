@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <footer className="bg-newtifi-navy text-white py-12 w-full">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Logo & Company Info */}
           <div className="md:col-span-1">
             <Link to="/" className="flex items-center">
@@ -51,33 +51,6 @@ const Footer = () => {
               <li>
                 <Link to="/membership" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
                   Membership
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          {/* Focus Areas */}
-          <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Focus Areas</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link to="/#health-tech" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
-                  HealthTech
-                </Link>
-              </li>
-              <li>
-                <Link to="/#food-tech" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
-                  FoodTech
-                </Link>
-              </li>
-              <li>
-                <Link to="/#energy-tech" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
-                  EnergyTech
-                </Link>
-              </li>
-              <li>
-                <Link to="/#fin-tech" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
-                  FinTech
                 </Link>
               </li>
             </ul>

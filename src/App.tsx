@@ -11,6 +11,9 @@ import Connect from "./pages/Connect";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Person from "./pages/Person";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +31,9 @@ const App = () => (
             <Route path="/contact" element={<Connect />} />
             <Route path="/login" element={<Login />} />
             <Route path="/person/:name" element={<Person />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/cookies" element={<Cookies />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
