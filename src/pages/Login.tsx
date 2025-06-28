@@ -43,7 +43,12 @@ export default function Login() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#f8fafc]" style={{ minHeight: '100vh' }}>
       <div className="w-full max-w-lg flex flex-col gap-8 mt-16">
-        <h1 className="text-2xl font-semibold text-newtifi-navy text-center mb-2 tracking-tight">Welcome to NewTIFI</h1>
+        <div className="flex flex-col items-center mb-6 mt-2">
+          <h1 className="text-3xl font-extrabold text-newtifi-navy text-center tracking-tight">
+            <span>Welcome to</span>
+            <span className="block bg-gradient-to-r from-newtifi-navy to-newtifi-teal bg-clip-text text-transparent">NewTIFI</span>
+          </h1>
+        </div>
         {/* Social Login Card */}
         <div className="bg-white rounded-xl shadow-lg border border-newtifi-navy/20 p-8 flex flex-col gap-4">
           <div className="flex flex-col gap-4">
