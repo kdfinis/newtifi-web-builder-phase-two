@@ -82,6 +82,12 @@ export default {
 			fontFamily: {
 				sans: ['Verdana', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
 			},
+			fontSize: {
+				'primary': ['2.5rem', { lineHeight: '1.2', fontWeight: '700' }],
+				'secondary': ['1.5rem', { lineHeight: '1.3', fontWeight: '400', letterSpacing: '0.05em' }],
+				'body': ['1rem', { lineHeight: '1.5', fontWeight: '300' }],
+				'small': ['0.875rem', { lineHeight: '1.4', fontWeight: '300' }],
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },

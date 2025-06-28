@@ -4,6 +4,10 @@ import compression from 'compression';
 import helmet from 'helmet';
 import { fileURLToPath } from 'url';
 import { createServer as createViteServer } from 'vite';
+import session from 'express-session';
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Strategy as LinkedInStrategy } from 'passport-linkedin-oauth2';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -61,6 +65,70 @@ if (process.env.NODE_ENV === 'development') {
         res.sendFile(path.join(__dirname, 'dist', 'index.html'));
     });
 }
+
+// Session middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'changeme',
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+// Helper to get callback URL based on environment
+function getCallbackUrl(provider) {
+  if (process.env.NODE_ENV === 'development') {
+    return `http://localhost:3000/auth/${provider}/callback`;
+  }
+  return `/auth/${provider}/callback`;
+}
+
+// Google OAuth Strategy
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID || 'GOOGLE_CLIENT_ID',
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'GOOGLE_CLIENT_SECRET',
+  callbackURL: getCallbackUrl('google'),
+}, (accessToken, refreshToken, profile, done) => {
+  return done(null, profile);
+}));
+
+// LinkedIn OAuth Strategy
+passport.use(new LinkedInStrategy({
+  clientID: process.env.LINKEDIN_CLIENT_ID || 'LINKEDIN_CLIENT_ID',
+  clientSecret: process.env.LINKEDIN_CLIENT_SECRET || 'LINKEDIN_CLIENT_SECRET',
+  callbackURL: getCallbackUrl('linkedin'),
+  scope: ['r_emailaddress', 'r_liteprofile'],
+}, (accessToken, refreshToken, profile, done) => {
+  return done(null, profile);
+}));
+
+// Google OAuth endpoints
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/');
+});
+
+// LinkedIn OAuth endpoints
+app.get('/auth/linkedin', passport.authenticate('linkedin'));
+app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), (req, res) => {
+  res.redirect('/');
+});
+
+// Auth status endpoint
+app.get('/auth/status', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.json({ loggedIn: true, user: req.user });
+  } else {
+    res.json({ loggedIn: false });
+  }
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {

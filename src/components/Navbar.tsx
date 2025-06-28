@@ -61,7 +61,7 @@ const Navbar = () => {
 
         {/* Navigation Links - Desktop */}
         <nav className={cn(
-          "absolute left-1/2 transform -translate-x-1/2 md:flex md:items-center md:space-x-6 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
+          "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
           "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
           "transition-all duration-300 ease-in-out",
           isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"
@@ -69,7 +69,7 @@ const Navbar = () => {
           <Link 
             to="/" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
               location.pathname === "/" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -79,7 +79,7 @@ const Navbar = () => {
           <Link 
             to="/who-we-are" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
               location.pathname === "/who-we-are" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -87,24 +87,34 @@ const Navbar = () => {
             Who We Are
           </Link>
           <Link 
-            to="/contact" 
+            to="/publishing/journals/investment-management" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors",
-              location.pathname === "/contact" && "text-newtifi-teal"
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              location.pathname.startsWith("/publishing") && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
           >
-            Contact
+            Publishing
           </Link>
           <Link 
             to="/membership" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
               location.pathname === "/membership" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
           >
             Membership
+          </Link>
+          <Link 
+            to="/contact" 
+            className={cn(
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              location.pathname === "/contact" && "text-newtifi-teal"
+            )}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Contact
           </Link>
         </nav>
 
@@ -112,12 +122,12 @@ const Navbar = () => {
         <Link 
           to="/login" 
           className={cn(
-            "hidden md:block px-6 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300",
-            "text-[1.2rem] font-medium tracking-wide"
+            "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300",
+            "text-base font-medium tracking-wide"
           )}
           onClick={() => setIsMenuOpen(false)}
         >
-          Login
+          Login / Sign Up
         </Link>
       </div>
     </header>

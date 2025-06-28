@@ -84,6 +84,31 @@ const legalInsightContent = [
   }
 ];
 
+const articleFiles = [
+  {
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf"
+  },
+  {
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf"
+  },
+  {
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf"
+  }
+];
+
+function parseArticleMeta(filename) {
+  const match = filename.match(/^\d{4}\.\d{2}\.\d{2}_(.+?) - (.+?)_Final\.pdf$/);
+  if (!match) return { date: '', title: filename, authors: '' };
+  let date = filename.substring(0, 10).replace(/\./g, '-');
+  let title = match[2] || filename;
+  let authors = '';
+  if (title.includes("Closed-Ended Luxembourg ELTIFs")) authors = "Ezechiel Havrenne";
+  return { date, title, authors };
+}
+
 const Home = () => {
   const navigate = useNavigate();
 
@@ -131,9 +156,9 @@ const Home = () => {
       </section>
 
       {/* Hero Section with Overview and Latest News */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white">
-        <div className="container mx-auto px-6 py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
+        <div className="container mx-auto px-6 py-20 pb-4 mb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Left side - New Technologies and Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-8">
@@ -166,59 +191,76 @@ const Home = () => {
               </div>
             </ScrollReveal>
 
-            {/* Right side - Latest News */}
-            <ScrollReveal direction="left" delay={200}>
-              <div className="bg-[#F5F7FA] rounded-2xl p-8">
-                <div className="flex justify-between items-center mb-8">
-                  <h2 className="text-2xl font-semibold text-newtifi-navy">Latest News & Articles</h2>
-                  <Button 
-                    to="/news" 
-                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
-                  >
-                    View All
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Button>
-                </div>
-                <div className="space-y-6">
-                  {[
-                    {
-                      title: "New Technologies and Investment Funds Institute Launches Global Innovation Hub",
-                      date: "May 9, 2024",
-                      category: "Announcements"
-                    },
-                    {
-                      title: "Breakthrough in Sustainable Energy Research",
-                      date: "May 5, 2024",
-                      category: "Research"
-                    },
-                    {
-                      title: "Partnership with Leading Tech Universities",
-                      date: "May 1, 2024",
-                      category: "Partnerships"
-                    }
-                  ].map((article, index) => (
-                    <div 
-                      key={index}
-                      className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
-                      onClick={() => navigate('/news')}
-                    >
-                      <div className="flex justify-between items-start mb-3">
-                        <h3 className="text-lg font-medium text-newtifi-navy">{article.title}</h3>
-                        <span className="text-sm text-newtifi-teal">{article.category}</span>
+            {/* Right side - Journal and News Column */}
+            <div className="flex flex-col gap-6 mb-0 pb-0">
+              {/* Investment Management Journal - Separate Box */}
+              <ScrollReveal direction="left" delay={180}>
+                <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                  <div onClick={() => navigate('/publishing/journals/investment-management')} className="cursor-pointer">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className="p-2 bg-newtifi-teal/20 rounded-lg">
+                        <svg className="w-5 h-5 text-newtifi-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
                       </div>
-                      <p className="text-sm text-gray-500">{article.date}</p>
+                      <h3 className="text-2xl md:text-3xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
+                        Investment Management Journal
+                      </h3>
                     </div>
-                  ))}
+                    <p className="text-base md:text-lg text-gray-600 font-light mb-3">
+                      Peer-reviewed research and insights in investment management and financial technology
+                    </p>
+                    <div className="flex items-center justify-end">
+                      <svg className="w-4 h-4 text-newtifi-teal group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </ScrollReveal>
+              </ScrollReveal>
+
+              {/* Latest News & Articles - Directly Under Journal Box */}
+              <ScrollReveal direction="left" delay={200}>
+                <div className="bg-[#F5F7FA] rounded-2xl p-8 shadow-2xl">
+                  <div className="flex justify-between items-center mb-8">
+                    <h2 className="text-2xl font-semibold text-newtifi-navy">Latest News & Articles</h2>
+                    <Button 
+                      to="/publishing/journals/investment-management" 
+                      className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
+                    >
+                      View All
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Button>
+                  </div>
+                  <div className="space-y-6">
+                    {articleFiles.slice(0,2).map((file, index) => {
+                      const meta = parseArticleMeta(file.filename);
+                      return (
+                        <div 
+                          key={index}
+                          className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
+                          onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(file.filename)}`)}
+                        >
+                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-1 md:gap-0">
+                            <h3 className="text-lg font-medium text-newtifi-navy mb-0 md:mb-0">{meta.title}</h3>
+                            <div className="flex items-center gap-3 flex-shrink-0">
+                              <span className="text-sm text-newtifi-teal whitespace-nowrap">Journal Article</span>
+                              <span className="text-sm text-gray-500 whitespace-nowrap">{meta.date}</span>
+                              {meta.authors && <span className="text-sm text-gray-500 whitespace-nowrap">By {meta.authors}</span>}
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </div>
       </section>
-      
-      <div className="h-8"></div>
       
       {/* New Technologies and Investment Funds Institute Pillars & What We Do */}
       <section className="py-12 bg-white">

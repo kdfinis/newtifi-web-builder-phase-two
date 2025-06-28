@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   base: '/',
   server: {
-    port: 3000,
+    port: 8080,
     strictPort: true,
     host: true,
     watch: {
@@ -16,6 +16,9 @@ export default defineConfig({
     hmr: {
       overlay: true,
       timeout: 5000,
+    },
+    proxy: {
+      '/auth': 'http://localhost:3000',
     },
   },
   plugins: [react()],
