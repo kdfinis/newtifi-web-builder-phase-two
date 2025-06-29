@@ -1,224 +1,238 @@
 import React, { useState } from 'react';
 
-interface ContentBlock {
+interface ContentPage {
   id: string;
-  type: 'header' | 'text' | 'image' | 'cta';
+  title: string;
+  path: string;
   content: string;
-  alignment?: 'left' | 'center' | 'right';
-  imageUrl?: string;
-  imageAlt?: string;
+  lastModified: string;
+  status: 'published' | 'draft';
 }
 
-interface PageContent {
-  id: string;
-  name: string;
-  blocks: ContentBlock[];
-  background: 'white' | 'hex-pattern' | 'teal-gradient' | 'none';
-}
+const ContentEditor: React.FC = () => {
+  const [selectedPage, setSelectedPage] = useState<string>('home');
+  const [content, setContent] = useState('');
+  const [saving, setSaving] = useState(false);
+  const [previewMode, setPreviewMode] = useState(false);
 
-interface ContentEditorProps {
-  pages?: PageContent[];
-}
-
-const ContentEditor: React.FC<ContentEditorProps> = ({ pages = [] }) => {
-  const [selectedPage, setSelectedPage] = useState<string | null>(null);
-  const [editingBlock, setEditingBlock] = useState<ContentBlock | null>(null);
-  const [selectedBackground, setSelectedBackground] = useState<'white' | 'hex-pattern' | 'teal-gradient' | 'none'>('white');
-
-  const layoutPresets = [
+  const pages: ContentPage[] = [
     {
-      name: 'Full-width Intro',
-      blocks: [
-        { id: '1', type: 'header' as const, content: 'Welcome to NewTIFI' },
-        { id: '2', type: 'text' as const, content: 'Leading research and legal commentary in investment management.' }
-      ]
+      id: 'home',
+      title: 'Homepage',
+      path: '/',
+      content: 'Homepage content...',
+      lastModified: '2025-01-27',
+      status: 'published'
     },
     {
-      name: 'Two-column Text + Image',
-      blocks: [
-        { id: '1', type: 'header' as const, content: 'About Us' },
-        { id: '2', type: 'text' as const, content: 'Our mission and values...' },
-        { id: '3', type: 'image' as const, content: '', imageUrl: '', imageAlt: 'About image' }
-      ]
+      id: 'about',
+      title: 'About Us',
+      path: '/who-we-are',
+      content: 'About page content...',
+      lastModified: '2025-01-27',
+      status: 'published'
     },
     {
-      name: 'Call-to-action Cards',
-      blocks: [
-        { id: '1', type: 'header' as const, content: 'Join NewTIFI' },
-        { id: '2', type: 'cta' as const, content: 'Become a member today' }
-      ]
+      id: 'contact',
+      title: 'Contact',
+      path: '/contact',
+      content: 'Contact page content...',
+      lastModified: '2025-01-27',
+      status: 'published'
+    },
+    {
+      id: 'membership',
+      title: 'Membership',
+      path: '/membership',
+      content: 'Membership page content...',
+      lastModified: '2025-01-27',
+      status: 'published'
     }
   ];
 
-  const backgroundOptions = [
-    { value: 'white', label: 'White', preview: 'bg-white' },
-    { value: 'hex-pattern', label: 'Hex Pattern', preview: 'bg-gray-100' },
-    { value: 'teal-gradient', label: 'Teal Gradient', preview: 'bg-gradient-to-r from-teal-400 to-teal-600' },
-    { value: 'none', label: 'None', preview: 'bg-transparent' }
-  ];
+  const handleSave = async () => {
+    setSaving(true);
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      alert('Content saved successfully!');
+    } catch (error) {
+      alert('Failed to save content');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const currentPage = pages.find(p => p.id === selectedPage);
 
-  const addBlock = (type: ContentBlock['type']) => {
-    const newBlock: ContentBlock = {
-      id: Date.now().toString(),
-      type,
-      content: '',
-      alignment: 'left'
-    };
-    // In real implementation, this would update the page content
-  };
-
-  const updateBlock = (blockId: string, updates: Partial<ContentBlock>) => {
-    // In real implementation, this would update the specific block
-  };
-
-  const previewPage = () => {
-    if (selectedPage) {
-      window.open(`/preview/${selectedPage}`, '_blank');
-    }
-  };
-
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Static Content Editor</h2>
-        <button 
-          className="bg-[#0A0A23] text-white px-4 py-2 rounded shadow"
-          onClick={previewPage}
-        >
-          Preview
-        </button>
+        <h2 className="text-2xl font-bold text-[#0A0A23]">Content Editor</h2>
+        <div className="flex gap-3">
+          <button
+            onClick={() => setPreviewMode(!previewMode)}
+            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+              previewMode 
+                ? 'bg-[#0A0A23] text-white' 
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+            }`}
+          >
+            {previewMode ? 'Edit Mode' : 'Preview Mode'}
+          </button>
+          <button
+            onClick={handleSave}
+            disabled={saving}
+            className="px-4 py-2 bg-[#0A0A23] text-white rounded-md hover:bg-[#1a1a40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0A0A23] disabled:opacity-50"
+          >
+            {saving ? 'Saving...' : 'Save Changes'}
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Page Selection */}
-        <div className="lg:col-span-1">
-          <div className="bg-white border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Pages</h3>
-            <div className="space-y-2">
-              {pages.length === 0 ? (
-                <p className="text-gray-400 text-sm">No pages found.</p>
-              ) : (
-                pages.map((page) => (
-                  <button
-                    key={page.id}
-                    onClick={() => setSelectedPage(page.id)}
-                    className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-                      selectedPage === page.id 
-                        ? 'bg-[#0A0A23] text-white' 
-                        : 'hover:bg-gray-100'
-                    }`}
-                  >
-                    {page.name}
-                  </button>
-                ))
-              )}
-            </div>
-          </div>
-
-          {/* Layout Presets */}
-          <div className="bg-white border rounded-lg p-4 mt-4">
-            <h3 className="font-semibold mb-4">Layout Presets</h3>
-            <div className="space-y-2">
-              {layoutPresets.map((preset) => (
-                <button
-                  key={preset.name}
-                  className="w-full text-left px-3 py-2 rounded text-sm hover:bg-gray-100 border"
-                >
-                  {preset.name}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Background Pattern */}
-          <div className="bg-white border rounded-lg p-4 mt-4">
-            <h3 className="font-semibold mb-4">Background Pattern</h3>
-            <div className="space-y-2">
-              {backgroundOptions.map((option) => (
-                <button
-                  key={option.value}
-                  onClick={() => setSelectedBackground(option.value as any)}
-                  className={`w-full flex items-center space-x-3 px-3 py-2 rounded text-sm transition-colors ${
-                    selectedBackground === option.value 
-                      ? 'bg-[#0A0A23] text-white' 
-                      : 'hover:bg-gray-100'
-                  }`}
-                >
-                  <div className={`w-6 h-6 rounded ${option.preview}`}></div>
-                  <span>{option.label}</span>
-                </button>
-              ))}
-            </div>
+      <div className="flex gap-6">
+        {/* Sidebar - Page Selection */}
+        <div className="w-64 bg-white rounded-lg shadow p-4 h-fit">
+          <h3 className="font-semibold text-[#0A0A23] mb-4">Pages</h3>
+          <div className="space-y-2">
+            {pages.map((page) => (
+              <button
+                key={page.id}
+                onClick={() => setSelectedPage(page.id)}
+                className={`w-full text-left p-3 rounded-lg transition-colors ${
+                  selectedPage === page.id
+                    ? 'bg-[#0A0A23] text-white'
+                    : 'hover:bg-gray-100 text-gray-700'
+                }`}
+              >
+                <div className="font-medium">{page.title}</div>
+                <div className={`text-xs mt-1 ${
+                  selectedPage === page.id ? 'text-gray-200' : 'text-gray-500'
+                }`}>
+                  {page.path} • {page.status}
+                </div>
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Content Editor */}
-        <div className="lg:col-span-2">
-          <div className="bg-white border rounded-lg p-4">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-semibold">
-                {currentPage ? currentPage.name : 'Select a page to edit'}
-              </h3>
-              <div className="flex space-x-2">
-                <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">+ Header</button>
-                <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">+ Text</button>
-                <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">+ Image</button>
-                <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">+ CTA</button>
+        {/* Main Content Area */}
+        <div className="flex-1 bg-white rounded-lg shadow">
+          {currentPage && (
+            <div className="p-6">
+              {/* Page Header */}
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold text-[#0A0A23] mb-2">
+                  {currentPage.title}
+                </h3>
+                <div className="flex items-center gap-4 text-sm text-gray-500">
+                  <span>Path: {currentPage.path}</span>
+                  <span>Last modified: {currentPage.lastModified}</span>
+                  <span className={`px-2 py-1 rounded-full text-xs ${
+                    currentPage.status === 'published' 
+                      ? 'bg-green-100 text-green-700' 
+                      : 'bg-yellow-100 text-yellow-700'
+                  }`}>
+                    {currentPage.status}
+                  </span>
+                </div>
               </div>
-            </div>
 
-            {!currentPage ? (
-              <div className="text-center text-gray-400 py-12">
-                <div className="text-4xl mb-2">📄</div>
-                <p>Select a page from the sidebar to start editing.</p>
-              </div>
-            ) : (
-              <div className="space-y-4">
-                {currentPage.blocks.length === 0 ? (
-                  <div className="text-center text-gray-400 py-8">
-                    <p>No content blocks. Add some blocks to get started.</p>
+              {/* Content Editor */}
+              {!previewMode ? (
+                <div className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+                      Page Content
+                    </label>
+                    <textarea
+                      value={content || currentPage.content}
+                      onChange={(e) => setContent(e.target.value)}
+                      rows={20}
+                      className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23] font-mono text-sm"
+                      placeholder="Enter your content here..."
+                    />
                   </div>
-                ) : (
-                  currentPage.blocks.map((block) => (
-                    <div key={block.id} className="border rounded p-3 hover:bg-gray-50">
-                      <div className="flex justify-between items-center mb-2">
-                        <span className="text-xs text-gray-500 uppercase">{block.type}</span>
-                        <div className="flex space-x-1">
-                          <button className="text-gray-400 hover:text-gray-600 text-xs">✏️</button>
-                          <button className="text-gray-400 hover:text-red-600 text-xs">🗑️</button>
-                        </div>
-                      </div>
-                      <div className="text-sm">
-                        {block.type === 'header' && (
-                          <h4 className="font-semibold">{block.content || 'Header text...'}</h4>
-                        )}
-                        {block.type === 'text' && (
-                          <p>{block.content || 'Text content...'}</p>
-                        )}
-                        {block.type === 'image' && (
-                          <div className="text-center">
-                            {block.imageUrl ? (
-                              <img src={block.imageUrl} alt={block.imageAlt} className="max-w-full h-32 object-cover rounded" />
-                            ) : (
-                              <div className="w-full h-32 bg-gray-200 rounded flex items-center justify-center text-gray-400">
-                                📷 Image
-                              </div>
-                            )}
-                          </div>
-                        )}
-                        {block.type === 'cta' && (
-                          <button className="bg-[#0A0A23] text-white px-4 py-2 rounded">
-                            {block.content || 'Call to Action'}
-                          </button>
-                        )}
-                      </div>
+
+                  {/* Toolbar */}
+                  <div className="flex gap-2 p-3 bg-gray-50 rounded-lg">
+                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                      Bold
+                    </button>
+                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                      Italic
+                    </button>
+                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                      Link
+                    </button>
+                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                      Image
+                    </button>
+                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                      List
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                /* Preview Mode */
+                <div className="prose max-w-none">
+                  <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
+                    <h4 className="text-lg font-semibold text-[#0A0A23] mb-4">Preview</h4>
+                    <div className="bg-white p-4 rounded border">
+                      {content || currentPage.content}
                     </div>
-                  ))
-                )}
-              </div>
-            )}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* SEO Section */}
+      <div className="bg-white rounded-lg shadow p-6">
+        <h3 className="text-lg font-semibold text-[#0A0A23] mb-4">SEO Settings</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+              Meta Title
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23]"
+              placeholder="Enter meta title..."
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+              Meta Description
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23]"
+              placeholder="Enter meta description..."
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+              Keywords
+            </label>
+            <input
+              type="text"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23]"
+              placeholder="Enter keywords separated by commas..."
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+              Canonical URL
+            </label>
+            <input
+              type="url"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23]"
+              placeholder="Enter canonical URL..."
+            />
           </div>
         </div>
       </div>

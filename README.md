@@ -1,15 +1,35 @@
 # NewTIFI Web Builder
 
-A comprehensive web platform for the New Technologies and Investment Funds Institute, featuring academic publishing, article management, and dynamic content delivery.
+A comprehensive web platform for New Technologies and Investment Funds Institute, featuring academic publishing, ISSN compliance, and a full admin management suite.
 
 ## 🚀 Quick Start
 
-### Option 1: Use the startup script (Recommended)
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
 ```bash
+# Clone the repository
+git clone <repository-url>
+cd newtifi-web-builder
+
+# Install dependencies
+npm install
+```
+
+### Running the Application
+
+#### Option 1: Use the startup script (Recommended)
+```bash
+# Make the script executable (first time only)
+chmod +x start-servers.sh
+
+# Start both servers
 ./start-servers.sh
 ```
 
-### Option 2: Manual startup
+#### Option 2: Manual startup
 ```bash
 # Terminal 1: Start backend server
 node simple-admin-server.js
@@ -18,118 +38,209 @@ node simple-admin-server.js
 npm run dev
 ```
 
-## 📱 Access Points
-
-- **Main Website**: http://localhost:8080
-- **Admin Panel**: http://localhost:8080/admin
+### Access URLs
+- **Frontend**: http://localhost:8080
 - **Backend API**: http://localhost:3001
-- **Publishing Platform**: http://localhost:8080/publishing/journals/investment-management
+- **Admin Panel**: http://localhost:8080/admin
 
-## 🔧 Features
+## 🏗️ Architecture
 
-### Homepage Hero Section
-- **Featured Articles**: Displays the 2 most recent featured articles
-- **Dynamic Content**: Articles are fetched from the backend API
-- **Real-time Updates**: Changes in admin panel reflect immediately
+### Frontend (React + Vite)
+- **Port**: 8080
+- **Framework**: React with TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Radix UI + custom components
+- **Routing**: React Router
 
-### Publishing Platform
-- **Latest Publications**: Shows the 10 most recent articles
-- **Article Management**: Full CRUD operations via admin panel
-- **PDF Integration**: Direct PDF viewing and downloading
-- **ISSN Compliance**: Academic publishing standards
+### Backend (Node.js + Express)
+- **Port**: 3001
+- **Framework**: Express.js
+- **Database**: In-memory (JSON files)
+- **Features**: Article management, admin authentication, analytics
+
+## 📚 Features
+
+### Public Site
+- **Homepage**: Featured articles, institute overview
+- **Publishing**: Investment Management Journal with ISSN compliance
+- **Articles**: PDF viewing and download
+- **About**: Team and mission information
+- **Contact**: Contact forms and information
 
 ### Admin Panel
-- **Article Management**: Add, edit, delete articles
-- **Featured Articles**: Mark articles as featured for homepage display
-- **Analytics**: View tracking and download statistics
-- **User Authentication**: Secure admin access
+Complete admin suite with 10 modules:
 
-## 📊 Article Database
+1. **Dashboard Overview**
+   - Analytics dashboard
+   - Activity monitoring
+   - Quick stats
 
-The system includes 12 sample articles covering:
-- Investment Management
-- Regulatory Compliance
-- Digital Assets
-- Sustainable Finance
-- Fintech Innovation
-- Risk Management
+2. **Article Collating Tool** ⭐ **NEW**
+   - **Real PDF Article Management**: Only shows articles with actual PDF files
+   - **Dynamic Scanning**: Automatically scans website directories for PDF articles
+   - **File Validation**: Ensures articles have real PDF files before display
+   - **Metadata Extraction**: Gets file size, dates, and other metadata
+   - **Upload System**: Upload new PDF articles to the system
+   - **Featured Management**: Toggle featured status for homepage display
+   - **Delete Articles**: Remove articles from the system
 
-### Featured Articles (Latest 2)
-1. **Machine Learning Applications in Investment Management: Regulatory Considerations**
-2. **Climate Risk Assessment in Investment Portfolios: A Luxembourg Perspective**
+3. **RAIF Code Legal Commentary Manager**
+   - Legal commentary management
+   - Regulatory updates
+   - Compliance tracking
 
-## 🛠 Technical Stack
+4. **News/Events/Updates**
+   - News article management
+   - Event scheduling
+   - Update publishing
 
-- **Frontend**: React + TypeScript + Vite
-- **Backend**: Node.js (HTTP server)
-- **Styling**: Tailwind CSS
-- **Data Storage**: JSON files
-- **PDF Handling**: Direct file serving
+5. **Scholar Funding Program Manager**
+   - Scholarship applications
+   - Funding allocation
+   - Program management
 
-## 📁 Key Files
+6. **People & Contributors Management**
+   - Team member profiles
+   - Contributor management
+   - Role assignments
 
-- `simple-admin-server.js` - Backend API server
-- `src/pages/Home.tsx` - Homepage with featured articles
-- `src/pages/Admin.tsx` - Admin panel interface
-- `src/pages/publishing/journals/investment-management.tsx` - Publishing platform
-- `data/admin_articles.json` - Article database
+7. **Citation & Metadata Generator**
+   - DOI generation
+   - Citation formatting
+   - Metadata management
 
-## 🔄 Data Flow
+8. **Media & Asset Library**
+   - File uploads
+   - Asset organization
+   - Media management
 
-1. **Admin Panel** → Updates `data/admin_articles.json`
-2. **Backend API** → Serves articles from JSON file
-3. **Frontend** → Fetches articles via `/api/articles`
-4. **Homepage** → Displays featured articles in hero section
-5. **Publishing Page** → Shows latest 10 articles
+9. **Static Content Editor**
+   - Page content editing
+   - SEO management
+   - Content versioning
 
-## 🎯 Key Features
+10. **Analytics Dashboard**
+    - View tracking
+    - Download analytics
+    - Performance metrics
 
-### Dynamic Article Display
-- Homepage shows 2 most recent featured articles
-- Publishing page shows latest 10 articles
-- All content updates automatically when articles are added/edited
+## 🔐 Admin Access
 
-### Admin Management
-- Login: `karlodefinis@newtifi.com` / `mistamoney`
-- Full article CRUD operations
-- Featured article management
-- View/download tracking
+### Default Credentials
+- **Email**: karlodefinis@newtifi.com
+- **Password**: mistamoney
 
-### Responsive Design
-- Mobile-friendly interface
-- Modern NewTIFI branding
-- Smooth animations and transitions
+### Admin Features
+- Secure authentication
+- Real-time data updates
+- File upload capabilities
+- Analytics tracking
+- Content management
 
-## 🚨 Troubleshooting
+## 📊 Data Management
 
-### Port Conflicts
-If you get port conflicts:
-```bash
-# Kill processes on ports 8080 and 3001
-lsof -ti:8080 | xargs kill -9
-lsof -ti:3001 | xargs kill -9
+### Articles
+- **Real PDF Validation**: Only articles with actual PDF files are displayed
+- **Dynamic Scanning**: Automatic detection of PDF articles in website directories
+- **File Metadata**: File size, modification dates, and other metadata tracking
+- **Featured Articles**: Select articles for homepage hero display
+- **API Integration**: All articles loaded dynamically from backend API
+- **View Tracking**: Real-time view and download analytics
+
+### Current Real Articles
+The system currently contains these real PDF articles:
+- **Closed-Ended Luxembourg ELTIFs**: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions
+- **Investor Oversight or Undue Influence**: Reassessing BaFin's Stance on AIFM Portfolio Control  
+- **Luxembourg SICARs, SIFs, and RAIFs**: A 20-year Perspective on the Well-Informed Investor Notion
+
+### Journals
+- ISSN compliance
+- Peer review tracking
+- Editorial board management
+- Archiving policies
+
+## 🛠️ Development
+
+### Project Structure
+```
+newtifi-web-builder/
+├── src/
+│   ├── components/
+│   │   ├── admin/          # Admin panel components
+│   │   └── ui/            # Reusable UI components
+│   ├── pages/             # Page components
+│   ├── hooks/             # Custom React hooks
+│   └── lib/               # Utility functions
+├── public/                # Static assets
+├── data/                  # JSON data files
+├── simple-admin-server.js # Backend server
+└── start-servers.sh       # Startup script
 ```
 
-### Backend Issues
-- Ensure `simple-admin-server.js` is running
-- Check that `data/admin_articles.json` exists and is valid JSON
-- Verify port 3001 is available
+### Key Files
+- `src/pages/Admin.tsx` - Main admin panel
+- `src/components/admin/` - Admin module components
+- `simple-admin-server.js` - Backend API server
+- `vite.config.ts` - Frontend configuration
 
-### Frontend Issues
-- Ensure all dependencies are installed: `npm install`
-- Check that port 8080 is available
-- Verify Vite configuration in `vite.config.ts`
+### API Endpoints
+- `GET /api/articles` - Get all articles
+- `GET /api/admin/articles` - Admin article management
+- `GET /api/admin/scan-articles` - **NEW**: Scan for real PDF articles
+- `GET /api/admin/article-metadata/:id` - **NEW**: Get article file metadata
+- `PATCH /api/admin/articles/:id` - **NEW**: Update article (e.g., featured status)
+- `DELETE /api/admin/articles/:id` - **NEW**: Delete article
+- `POST /api/admin/upload-article` - **NEW**: Upload new PDF articles
+- `POST /api/admin/login` - Admin authentication
+- `POST /api/track/page` - Page view tracking
 
-## 📈 Future Enhancements
+## 🚀 Deployment
 
-- User registration and authentication
-- Advanced analytics dashboard
-- Email notifications
-- Multi-journal support
-- Advanced search and filtering
-- Citation tracking
-- DOI integration
+### Production Build
+```bash
+# Build frontend
+npm run build
 
----
+# Start production server
+npm run preview
+```
 
-**NewTIFI Web Builder** - Shaping the Future of Technology and Investment Management
+### Environment Variables
+- No environment variables required for development
+- Configure production settings as needed
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+1. **Port conflicts**
+   ```bash
+   # Kill processes on ports 8080 and 3001
+   lsof -ti:8080 | xargs kill -9
+   lsof -ti:3001 | xargs kill -9
+   ```
+
+2. **API connection errors**
+   - Ensure backend server is running on port 3001
+   - Check proxy configuration in vite.config.ts
+
+3. **Blank page**
+   - Clear browser cache
+   - Check browser console for errors
+   - Verify both servers are running
+
+### Debug Mode
+```bash
+# Run with debug logging
+DEBUG=* node simple-admin-server.js
+```
+
+## 📝 License
+
+This project is proprietary to New Technologies and Investment Funds Institute.
+
+## 🤝 Support
+
+For technical support or questions:
+- Email: info@newtifi.com
+- Check the admin panel for system status

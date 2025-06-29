@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive } from "lucide-react";
 
@@ -12,6 +12,27 @@ const journalMetadata = {
   peerReviewStatus: "Double-blind peer review",
   archivingPolicy: "Digital preservation through CLOCKSS and Portico"
 };
+
+interface Article {
+  id: string;
+  title: string;
+  author: string;
+  date: string;
+  doi: string;
+  keywords: string[];
+  abstract: string;
+  filename: string;
+  url: string;
+  pdfUrl: string;
+  status: 'draft' | 'published';
+  views: number;
+  downloads: number;
+  featured: boolean;
+  category: 'journal' | 'news';
+  acceptanceDate?: string;
+  reviewDate?: string;
+  peerReviewStatus?: string;
+}
 
 // This should match the logic in the main journal page
 function parseArticleMeta(filename) {
@@ -27,42 +48,6 @@ function parseArticleMeta(filename) {
   return { date, title, authors };
 }
 
-const articleFiles = [
-  {
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    description: "A detailed analysis of compulsory redemptions and compartment termination/amalgamation provisions in Luxembourg ELTIFs, with practical implications for fund managers and investors.",
-    doi: "10.1234/newtifi.2025.001",
-    peerReviewStatus: "Peer Reviewed",
-    reviewDate: "2025-05-15",
-    acceptanceDate: "2025-06-01",
-    keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Fund Management"],
-    abstract: "This article examines the legal and operational frameworks governing compulsory redemptions and compartment terminations within Luxembourg ELTIFs, providing practical insights for fund managers and investors."
-  },
-  {
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    description: "A critical reassessment of BaFin's position on AIFM portfolio control, exploring the balance between investor oversight and undue influence.",
-    doi: "10.1234/newtifi.2025.002",
-    peerReviewStatus: "Peer Reviewed",
-    reviewDate: "2025-05-20",
-    acceptanceDate: "2025-06-05",
-    keywords: ["AIFM", "BaFin", "Portfolio Control", "Investor Oversight"],
-    abstract: "A critical reassessment of BaFin's position on AIFM portfolio control, exploring the balance between investor oversight and undue influence in European financial governance."
-  },
-  {
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    description: "A 20-year retrospective on the 'well-informed investor' concept in Luxembourg SICARs, SIFs, and RAIFs, with regulatory and market insights.",
-    doi: "10.1234/newtifi.2025.003",
-    peerReviewStatus: "Peer Reviewed",
-    reviewDate: "2025-05-25",
-    acceptanceDate: "2025-06-10",
-    keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
-    abstract: "A 20-year retrospective on the 'well-informed investor' concept in Luxembourg SICARs, SIFs, and RAIFs, with regulatory and market insights."
-  }
-];
-
 export default function ArticlePage() {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -71,10 +56,69 @@ export default function ArticlePage() {
   const [form, setForm] = React.useState({ name: '', email: '' });
   const [formSubmitted, setFormSubmitted] = React.useState(false);
   const [showDescription, setShowDescription] = React.useState(false);
-  const article = articleFiles.find(a => encodeURIComponent(a.filename) === slug || a.filename === decodeURIComponent(slug));
-  if (!article) {
-    return <div className="max-w-2xl mx-auto mt-24 text-center text-red-600">Article not found.</div>;
+  const [articles, setArticles] = useState<Article[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch articles from API
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/articles');
+        if (response.ok) {
+          const data = await response.json();
+          setArticles(data);
+        } else {
+          console.error('Failed to fetch articles');
+          setError('Failed to load articles');
+        }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+        setError('Failed to load articles');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
+
+  // Find the article by filename
+  const article = articles.find(a => 
+    encodeURIComponent(a.filename) === slug || 
+    a.filename === decodeURIComponent(slug) ||
+    encodeURIComponent(a.pdfUrl) === slug ||
+    a.pdfUrl === decodeURIComponent(slug)
+  );
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-newtifi-teal mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading article...</p>
+        </div>
+      </div>
+    );
   }
+
+  if (error || !article) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <div className="text-center">
+          <p className="text-red-600 text-lg mb-4">Article not found</p>
+          <button
+            onClick={() => navigate('/publishing/journals/investment-management')}
+            className="bg-newtifi-navy text-white px-4 py-2 rounded hover:bg-newtifi-teal transition"
+          >
+            Back to Articles
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   const meta = parseArticleMeta(article.filename);
 
   // Academic-style preview and description for each article

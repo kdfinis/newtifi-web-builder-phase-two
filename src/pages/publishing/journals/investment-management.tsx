@@ -52,41 +52,103 @@ function parseArticleMeta(filename) {
 
 export default function InvestmentManagementJournal() {
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [selectedTab, setSelectedTab] = useState<'journal' | 'articles' | 'editorial' | 'archiving'>('journal');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [expandedOverview, setExpandedOverview] = useState(null);
   const [expandedCriterion, setExpandedCriterion] = useState(null);
   const navigate = useNavigate();
 
-  // Use static article data instead of API calls
+  // Fetch articles from API
   useEffect(() => {
-    const staticArticles = [
-      {
-        filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-        doi: "10.1234/newtifi.2025.001",
-        author: "Ezechiel Havrenne",
-        abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
-        keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
-      },
-      {
-        filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-        doi: "10.1234/newtifi.2025.002",
-        author: "Ezechiel Havrenne",
-        abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
-        keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
-      },
-      {
-        filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-        doi: "10.1234/newtifi.2025.003",
-        author: "Ezechiel Havrenne",
-        abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
-        keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/articles');
+        if (response.ok) {
+          const data = await response.json();
+          // Transform API data to match expected format
+          const transformedArticles = data.map(article => ({
+            filename: article.filename || article.pdfUrl?.split('/').pop() || '',
+            url: article.pdfUrl || article.url || '',
+            doi: article.doi || '',
+            author: article.author || '',
+            abstract: article.abstract || '',
+            keywords: article.keywords || [],
+            date: article.date || '',
+            title: article.title || '',
+            status: article.status || 'published'
+          }));
+          setArticles(transformedArticles);
+        } else {
+          console.warn('Failed to fetch articles, using fallback data');
+          // Use fallback data if API fails
+          const fallbackArticles = [
+            {
+              filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+              doi: "10.1234/newtifi.2025.001",
+              author: "Ezechiel Havrenne",
+              abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
+              keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
+            },
+            {
+              filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+              doi: "10.1234/newtifi.2025.002",
+              author: "Ezechiel Havrenne",
+              abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
+              keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
+            },
+            {
+              filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+              doi: "10.1234/newtifi.2025.003",
+              author: "Ezechiel Havrenne",
+              abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
+              keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
+            }
+          ];
+          setArticles(fallbackArticles);
+        }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+        setError('Failed to load articles');
+        // Use fallback data on error
+        const fallbackArticles = [
+          {
+            filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+            doi: "10.1234/newtifi.2025.001",
+            author: "Ezechiel Havrenne",
+            abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
+            keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
+          },
+          {
+            filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+            doi: "10.1234/newtifi.2025.002",
+            author: "Ezechiel Havrenne",
+            abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
+            keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
+          },
+          {
+            filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+            doi: "10.1234/newtifi.2025.003",
+            author: "Ezechiel Havrenne",
+            abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
+            keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
+          }
+        ];
+        setArticles(fallbackArticles);
+      } finally {
+        setLoading(false);
       }
-    ];
-    setArticles(staticArticles);
+    };
+
+    fetchArticles();
   }, []);
 
   // Sort articles by date descending (most recent first)

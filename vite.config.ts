@@ -17,6 +17,22 @@ export default defineConfig({
       overlay: true,
       timeout: 5000,
     },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+      '/articles': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ['..']
+    }
   },
   plugins: [react()],
   resolve: {
@@ -39,4 +55,5 @@ export default defineConfig({
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
   },
+  assetsInclude: ['**/*.pdf', '**/*.jpg', '**/*.png', '**/*.jpeg'],
 });

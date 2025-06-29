@@ -155,7 +155,34 @@ const fallbackArticles = [
 
 const Home = () => {
   const navigate = useNavigate();
-  const [articles] = useState<Article[]>(fallbackArticles);
+  const [articles, setArticles] = useState<Article[]>(fallbackArticles);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch articles from API
+  useEffect(() => {
+    const fetchArticles = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('/api/articles');
+        if (response.ok) {
+          const data = await response.json();
+          setArticles(data);
+        } else {
+          console.warn('Failed to fetch articles, using fallback data');
+          setArticles(fallbackArticles);
+        }
+      } catch (error) {
+        console.error('Error fetching articles:', error);
+        setError('Failed to load articles');
+        setArticles(fallbackArticles);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   // Get latest published articles
   const latestArticles = articles
@@ -277,21 +304,21 @@ const Home = () => {
               </ScrollReveal>
 
               {/* Featured Articles - Hero Section */}
-              <ScrollReveal direction="left" delay={200}>
+            <ScrollReveal direction="left" delay={200}>
                 <div className="bg-gradient-to-br from-newtifi-navy/5 to-newtifi-teal/5 rounded-2xl p-8 shadow-2xl border border-newtifi-navy/10">
-                  <div className="flex justify-between items-center mb-8">
+                <div className="flex justify-between items-center mb-8">
                     <h2 className="text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
-                    <Button 
+                  <Button 
                       to="/publishing/journals/investment-management" 
-                      className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
-                    >
-                      View All
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Button>
-                  </div>
-                  <div className="space-y-6">
+                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
+                  >
+                    View All
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Button>
+                </div>
+                <div className="space-y-6">
                     {featuredArticles.length > 0 ? (
                       featuredArticles.map((article, index) => (
                         <div 
@@ -332,10 +359,10 @@ const Home = () => {
                         <p className="text-sm text-gray-500 mt-1">Check back soon for new publications</p>
                       </div>
                     )}
-                  </div>
+                    </div>
                 </div>
               </ScrollReveal>
-            </div>
+              </div>
           </div>
         </div>
       </section>
@@ -505,23 +532,23 @@ const Home = () => {
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-lg text-gray-700 mb-6">{item.description}</p>
-                      <ul className="space-y-3">
+                    <ul className="space-y-3">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3">
                             <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
                             <span className="text-gray-700">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
+                </div>
                 ))}
               </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>
       </section>
-
+      
       {/* Legal Insights */}
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-6">
@@ -568,23 +595,23 @@ const Home = () => {
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-lg text-gray-700 mb-6">{item.description}</p>
-                      <ul className="space-y-3">
+                    <ul className="space-y-3">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3">
                             <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
                             <span className="text-gray-700">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
+                </div>
                 ))}
               </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>
       </section>
-
+      
       {/* Connect Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
@@ -594,10 +621,10 @@ const Home = () => {
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
                 <p className="text-xl opacity-90 mb-8">
                   Join our community of innovators, researchers, and industry leaders.
-                </p>
-              </ScrollReveal>
-              
-              <ScrollReveal direction="right" delay={300}>
+                    </p>
+                  </ScrollReveal>
+
+                  <ScrollReveal direction="right" delay={300}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     to="/contact" 
@@ -605,14 +632,14 @@ const Home = () => {
                   >
                     Get in Touch
                   </Button>
-                  <Button 
-                    to="/membership" 
+                    <Button 
+                      to="/membership" 
                     className="border-2 border-white text-white hover:bg-white hover:text-newtifi-navy transition-all duration-300 transform hover:scale-105"
-                  >
+                    >
                     Join Our Network
-                  </Button>
-                </div>
-              </ScrollReveal>
+                    </Button>
+                  </div>
+                </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>

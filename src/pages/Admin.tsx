@@ -15,7 +15,7 @@ import { FileText, Upload, Users, BarChart3, Settings, Plus, Edit, Trash2, Eye, 
 
 // Import all admin components
 import AdminDashboard from '../components/admin/AdminDashboard';
-import JournalManager from '../components/admin/JournalManager';
+import ArticleCollatingTool from '../components/admin/JournalManager';
 import LegalCommentaryManager from '../components/admin/LegalCommentaryManager';
 import NewsManager from '../components/admin/NewsManager';
 import ScholarshipManager from '../components/admin/ScholarshipManager';
@@ -73,7 +73,7 @@ const Admin = () => {
   // Navigation modules
   const modules = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3, component: AdminDashboard },
-    { id: 'journal', label: 'Journal Manager', icon: BookOpen, component: JournalManager },
+    { id: 'journal', label: 'Article Collating Tool', icon: BookOpen, component: ArticleCollatingTool },
     { id: 'legal', label: 'Legal Commentary', icon: FileText, component: LegalCommentaryManager },
     { id: 'news', label: 'News & Events', icon: Newspaper, component: NewsManager },
     { id: 'scholarship', label: 'Scholarship Program', icon: GraduationCap, component: ScholarshipManager },
@@ -182,7 +182,7 @@ const Admin = () => {
       case 'dashboard':
         return <Component analytics={analytics} activityLog={[]} />;
       case 'journal':
-        return <Component articles={articles} journals={journals} onRefresh={loadData} />;
+        return <Component articles={articles} onRefresh={loadData} />;
       case 'legal':
         return <Component />;
       case 'news':
