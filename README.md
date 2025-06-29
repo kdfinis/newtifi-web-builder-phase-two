@@ -1,69 +1,135 @@
-# Welcome to your Lovable project
+# NewTIFI Web Builder
 
-## Project info
+A comprehensive web platform for the New Technologies and Investment Funds Institute, featuring academic publishing, article management, and dynamic content delivery.
 
-**URL**: https://lovable.dev/projects/2fba9197-c54f-4936-b755-51b0d9dff366
+## 🚀 Quick Start
 
-## How can I edit this code?
+### Option 1: Use the startup script (Recommended)
+```bash
+./start-servers.sh
+```
 
-There are several ways of editing your application.
+### Option 2: Manual startup
+```bash
+# Terminal 1: Start backend server
+node simple-admin-server.js
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/2fba9197-c54f-4936-b755-51b0d9dff366) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Terminal 2: Start frontend server
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+## 📱 Access Points
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- **Main Website**: http://localhost:8080
+- **Admin Panel**: http://localhost:8080/admin
+- **Backend API**: http://localhost:3001
+- **Publishing Platform**: http://localhost:8080/publishing/journals/investment-management
 
-**Use GitHub Codespaces**
+## 🔧 Features
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Homepage Hero Section
+- **Featured Articles**: Displays the 2 most recent featured articles
+- **Dynamic Content**: Articles are fetched from the backend API
+- **Real-time Updates**: Changes in admin panel reflect immediately
 
-## What technologies are used for this project?
+### Publishing Platform
+- **Latest Publications**: Shows the 10 most recent articles
+- **Article Management**: Full CRUD operations via admin panel
+- **PDF Integration**: Direct PDF viewing and downloading
+- **ISSN Compliance**: Academic publishing standards
 
-This project is built with .
+### Admin Panel
+- **Article Management**: Add, edit, delete articles
+- **Featured Articles**: Mark articles as featured for homepage display
+- **Analytics**: View tracking and download statistics
+- **User Authentication**: Secure admin access
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 📊 Article Database
 
-## How can I deploy this project?
+The system includes 12 sample articles covering:
+- Investment Management
+- Regulatory Compliance
+- Digital Assets
+- Sustainable Finance
+- Fintech Innovation
+- Risk Management
 
-Simply open [Lovable](https://lovable.dev/projects/2fba9197-c54f-4936-b755-51b0d9dff366) and click on Share -> Publish.
+### Featured Articles (Latest 2)
+1. **Machine Learning Applications in Investment Management: Regulatory Considerations**
+2. **Climate Risk Assessment in Investment Portfolios: A Luxembourg Perspective**
 
-## I want to use a custom domain - is that possible?
+## 🛠 Technical Stack
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Node.js (HTTP server)
+- **Styling**: Tailwind CSS
+- **Data Storage**: JSON files
+- **PDF Handling**: Direct file serving
+
+## 📁 Key Files
+
+- `simple-admin-server.js` - Backend API server
+- `src/pages/Home.tsx` - Homepage with featured articles
+- `src/pages/Admin.tsx` - Admin panel interface
+- `src/pages/publishing/journals/investment-management.tsx` - Publishing platform
+- `data/admin_articles.json` - Article database
+
+## 🔄 Data Flow
+
+1. **Admin Panel** → Updates `data/admin_articles.json`
+2. **Backend API** → Serves articles from JSON file
+3. **Frontend** → Fetches articles via `/api/articles`
+4. **Homepage** → Displays featured articles in hero section
+5. **Publishing Page** → Shows latest 10 articles
+
+## 🎯 Key Features
+
+### Dynamic Article Display
+- Homepage shows 2 most recent featured articles
+- Publishing page shows latest 10 articles
+- All content updates automatically when articles are added/edited
+
+### Admin Management
+- Login: `karlodefinis@newtifi.com` / `mistamoney`
+- Full article CRUD operations
+- Featured article management
+- View/download tracking
+
+### Responsive Design
+- Mobile-friendly interface
+- Modern NewTIFI branding
+- Smooth animations and transitions
+
+## 🚨 Troubleshooting
+
+### Port Conflicts
+If you get port conflicts:
+```bash
+# Kill processes on ports 8080 and 3001
+lsof -ti:8080 | xargs kill -9
+lsof -ti:3001 | xargs kill -9
+```
+
+### Backend Issues
+- Ensure `simple-admin-server.js` is running
+- Check that `data/admin_articles.json` exists and is valid JSON
+- Verify port 3001 is available
+
+### Frontend Issues
+- Ensure all dependencies are installed: `npm install`
+- Check that port 8080 is available
+- Verify Vite configuration in `vite.config.ts`
+
+## 📈 Future Enhancements
+
+- User registration and authentication
+- Advanced analytics dashboard
+- Email notifications
+- Multi-journal support
+- Advanced search and filtering
+- Citation tracking
+- DOI integration
+
+---
+
+**NewTIFI Web Builder** - Shaping the Future of Technology and Investment Management

@@ -6,6 +6,23 @@ import TechCard from '@/components/TechCard';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 
+interface Article {
+  id: string;
+  title: string;
+  author: string;
+  date: string;
+  doi: string;
+  keywords: string[];
+  abstract: string;
+  filename: string;
+  url: string;
+  status: 'draft' | 'published';
+  views: number;
+  downloads: number;
+  featured: boolean;
+  category: 'journal' | 'news';
+}
+
 const scholarshipContent = [
   {
     title: 'Doctoral Scholarships',
@@ -84,34 +101,73 @@ const legalInsightContent = [
   }
 ];
 
-const articleFiles = [
+// Fallback articles if API is not available
+const fallbackArticles = [
   {
+    id: '1',
+    title: "Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.001",
+    keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
+    abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf"
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
   },
   {
+    id: '2',
+    title: "Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.002",
+    keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
+    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf"
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
   },
   {
+    id: '3',
+    title: "Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.003",
+    keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
+    abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf"
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: false,
+    category: "journal" as const
   }
 ];
 
-function parseArticleMeta(filename) {
-  const match = filename.match(/^\d{4}\.\d{2}\.\d{2}_(.+?) - (.+?)_Final\.pdf$/);
-  if (!match) return { date: '', title: filename, authors: '' };
-  let date = filename.substring(0, 10).replace(/\./g, '-');
-  let title = match[2] || filename;
-  let authors = '';
-  if (title.includes("Closed-Ended Luxembourg ELTIFs")) authors = "Ezechiel Havrenne";
-  if (title.includes("Investor Oversight or Undue Influence")) authors = "Ezechiel Havrenne";
-  return { date, title, authors };
-}
-
 const Home = () => {
   const navigate = useNavigate();
+  const [articles] = useState<Article[]>(fallbackArticles);
+
+  // Get latest published articles
+  const latestArticles = articles
+    .filter(article => article.status === 'published')
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
+
+  // Get featured articles for hero section
+  const featuredArticles = articles
+    .filter(article => article.status === 'published' && article.featured)
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 2);
 
   // Intersection Observer setup for animations
   useEffect(() => {
@@ -156,7 +212,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Hero Section with Overview and Latest News */}
+      {/* Hero Section with Overview and Featured Articles */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
         <div className="container mx-auto px-6 py-20 pb-4 mb-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -192,7 +248,7 @@ const Home = () => {
               </div>
             </ScrollReveal>
 
-            {/* Right side - Journal and News Column */}
+            {/* Right side - Featured Articles Hero */}
             <div className="flex flex-col gap-6 mb-0 pb-0">
               {/* Investment Management Journal - Separate Box */}
               <ScrollReveal direction="left" delay={180}>
@@ -220,11 +276,11 @@ const Home = () => {
                 </div>
               </ScrollReveal>
 
-              {/* Latest News & Articles - Directly Under Journal Box */}
+              {/* Featured Articles - Hero Section */}
               <ScrollReveal direction="left" delay={200}>
-                <div className="bg-[#F5F7FA] rounded-2xl p-8 shadow-2xl">
+                <div className="bg-gradient-to-br from-newtifi-navy/5 to-newtifi-teal/5 rounded-2xl p-8 shadow-2xl border border-newtifi-navy/10">
                   <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-2xl font-semibold text-newtifi-navy">Latest News & Articles</h2>
+                    <h2 className="text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
                     <Button 
                       to="/publishing/journals/investment-management" 
                       className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
@@ -236,23 +292,46 @@ const Home = () => {
                     </Button>
                   </div>
                   <div className="space-y-6">
-                    {articleFiles.slice(0,2).map((file, index) => {
-                      const meta = parseArticleMeta(file.filename);
-                      return (
+                    {featuredArticles.length > 0 ? (
+                      featuredArticles.map((article, index) => (
                         <div 
-                          key={index}
-                          className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
-                          onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(file.filename)}`)}
+                          key={article.id}
+                          className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-l-4 border-newtifi-teal"
+                          onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`)}
                         >
-                          <h3 className="text-lg font-medium text-newtifi-navy mb-2">{meta.title}</h3>
-                          <div className="flex items-center gap-2 mb-2">
-                            <span className="text-sm text-newtifi-teal">Journal Article</span>
-                            <span className="text-sm text-gray-500">{meta.date}</span>
-                            {meta.authors && <span className="text-sm text-gray-500">By {meta.authors}</span>}
+                          <div className="flex items-start justify-between mb-3">
+                            <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
+                              Featured Article {index + 1}
+                            </span>
+                            <span className="text-sm text-gray-500">{article.date}</span>
+                          </div>
+                          <h3 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">{article.title}</h3>
+                          <div className="flex items-center gap-2 mb-3">
+                            <span className="text-sm text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                            {article.author && <span className="text-sm text-gray-600">By {article.author}</span>}
+                          </div>
+                          <p className="text-sm text-gray-600 line-clamp-2 mb-3">{article.abstract}</p>
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2 text-newtifi-teal">
+                              <span className="text-sm font-medium">Read Article</span>
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                              </svg>
+                            </div>
                           </div>
                         </div>
-                      );
-                    })}
+                      ))
+                    ) : (
+                      <div className="text-center py-8">
+                        <div className="text-newtifi-teal mb-2">
+                          <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                        </div>
+                        <p className="text-gray-600 font-medium">No featured articles available</p>
+                        <p className="text-sm text-gray-500 mt-1">Check back soon for new publications</p>
+                      </div>
+                    )}
                   </div>
                 </div>
               </ScrollReveal>
@@ -302,7 +381,7 @@ const Home = () => {
                     icon: "💳",
                     image: "/images/fin-tech.jpg"
                   }
-                ].map((pillar, index) => (
+                ].map((pillar, index: number) => (
                   <ScrollReveal 
                     key={pillar.title} 
                     direction="right" 
@@ -360,7 +439,7 @@ const Home = () => {
                     description: "Comprehensive risk management solutions providing protection and financial security for various contingencies.",
                     icon: "🛡️"
                   }
-                ].map((item, index) => (
+                ].map((item, index: number) => (
                   <ScrollReveal 
                     key={item.title} 
                     direction="right" 
@@ -400,51 +479,58 @@ const Home = () => {
                       key={item.title}
                       onClick={() => setActiveScholarship(item.title)}
                       className={cn(
-                        "px-8 py-4 rounded-lg text-lg font-light transition-all duration-300",
-                        "border border-newtifi-navy/20 backdrop-blur-sm",
+                        "p-4 rounded-lg text-left transition-all duration-300",
                         activeScholarship === item.title
-                          ? "bg-newtifi-navy text-white"
-                          : "bg-transparent hover:bg-newtifi-navy/10 text-newtifi-navy"
+                          ? "bg-newtifi-navy text-white shadow-lg"
+                          : "bg-gray-50 text-gray-700 hover:bg-gray-100"
                       )}
                     >
-                      {item.title}
+                      <h3 className="font-semibold mb-2">{item.title}</h3>
+                      <p className="text-sm opacity-80">{item.description}</p>
                     </button>
                   ))}
                 </div>
               </ScrollReveal>
 
-              {/* Content */}
+              {/* Content Display */}
               <ScrollReveal direction="right" delay={400}>
-                <div className="mt-12">
-                  <h3 className="text-2xl font-light italic mb-6 text-newtifi-navy">
-                    {scholarshipContent.find(s => s.title === activeScholarship)?.description}
-                  </h3>
-                  <div className="mt-8">
-                    <ul className="space-y-3">
-                      {scholarshipContent.find(s => s.title === activeScholarship)?.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-base text-gray-700">
-                          <span className="text-newtifi-teal mt-1">•</span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
+                {scholarshipContent.map((item) => (
+                  <div
+                    key={item.title}
+                    className={cn(
+                      "transition-all duration-500",
+                      activeScholarship === item.title ? "block" : "hidden"
+                    )}
+                  >
+                    <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
+                      <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
+                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <ul className="space-y-3">
+                        {item.details.map((detail, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
+                            <span className="text-gray-700">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                ))}
               </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>
       </section>
-      
-      {/* Trusted Legal Insight */}
-      <section className="py-12 bg-white">
+
+      {/* Legal Insights */}
+      <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
-            <div className="bg-[#F5F7FA] rounded-2xl p-8 md:p-12">
+            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Trusted Legal Insight</h2>
+                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Legal Insights</h2>
                 <p className="text-xl text-gray-700 font-light">
-                  Our legal expertise helps organizations navigate the evolving landscape of technology regulation. We provide comprehensive guidance on compliance, risk management, and strategic implementation of innovative solutions.
+                  Expert legal analysis and regulatory guidance for technology innovation and investment.
                 </p>
               </ScrollReveal>
               
@@ -456,103 +542,77 @@ const Home = () => {
                       key={item.title}
                       onClick={() => setActiveLegalInsight(item.title)}
                       className={cn(
-                        "px-8 py-4 rounded-lg text-lg font-light transition-all duration-300",
-                        "border border-newtifi-navy/20 backdrop-blur-sm",
+                        "p-4 rounded-lg text-left transition-all duration-300",
                         activeLegalInsight === item.title
-                          ? "bg-newtifi-navy text-white"
-                          : "bg-transparent hover:bg-newtifi-navy/10 text-newtifi-navy"
+                          ? "bg-newtifi-navy text-white shadow-lg"
+                          : "bg-gray-50 text-gray-700 hover:bg-gray-100"
                       )}
                     >
-                      {item.title}
+                      <h3 className="font-semibold mb-2">{item.title}</h3>
+                      <p className="text-sm opacity-80">{item.description}</p>
                     </button>
                   ))}
                 </div>
               </ScrollReveal>
 
-              {/* Content */}
+              {/* Content Display */}
               <ScrollReveal direction="right" delay={400}>
-                <div className="mt-12">
-                  <h3 className="text-2xl font-light italic mb-6 text-newtifi-navy">
-                    {legalInsightContent.find(l => l.title === activeLegalInsight)?.description}
-                  </h3>
-                  <div className="mt-8">
-                    <ul className="space-y-3">
-                      {legalInsightContent.find(l => l.title === activeLegalInsight)?.details.map((detail, i) => (
-                        <li key={i} className="flex items-start gap-2 text-base text-gray-700">
-                          <span className="text-newtifi-teal mt-1">•</span>
-                          {detail}
-                        </li>
-                      ))}
-                    </ul>
+                {legalInsightContent.map((item) => (
+                  <div
+                    key={item.title}
+                    className={cn(
+                      "transition-all duration-500",
+                      activeLegalInsight === item.title ? "block" : "hidden"
+                    )}
+                  >
+                    <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
+                      <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
+                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <ul className="space-y-3">
+                        {item.details.map((detail, index) => (
+                          <li key={index} className="flex items-start gap-3">
+                            <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
+                            <span className="text-gray-700">{detail}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
-                </div>
+                ))}
               </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>
       </section>
-      
-      {/* Join the Institute */}
+
+      {/* Connect Section */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 relative overflow-hidden max-w-4xl mx-auto">
-              <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-center relative">
-                {/* Left side - Content */}
-                <div className="space-y-6 flex-1">
-                  <ScrollReveal direction="right" delay={200}>
-                    <h2 className="text-2xl md:text-3xl uppercase text-newtifi-navy">
-                      Join Our Global Network
-                    </h2>
-                    <p className="text-lg text-gray-700 font-light">
-                      Connect with innovators, researchers, and industry leaders shaping the future of technology.
-                    </p>
-                  </ScrollReveal>
-
-                  <ScrollReveal direction="right" delay={300}>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-newtifi-teal rounded-full" />
-                        <span className="text-gray-700">Access to exclusive research and insights</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-newtifi-teal rounded-full" />
-                        <span className="text-gray-700">Collaboration opportunities with industry leaders</span>
-                      </div>
-                      <div className="flex items-center gap-3">
-                        <div className="w-2 h-2 bg-newtifi-teal rounded-full" />
-                        <span className="text-gray-700">Priority access to events and workshops</span>
-                      </div>
-                    </div>
-                  </ScrollReveal>
-
-                  <ScrollReveal direction="right" delay={400}>
-                    <Button 
-                      to="/membership" 
-                      className="bg-newtifi-navy text-white hover:bg-newtifi-teal transition-all duration-300 transform hover:scale-105"
-                    >
-                      Become a Member
-                    </Button>
-                  </ScrollReveal>
+            <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
+              <ScrollReveal direction="right" delay={200} className="mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
+                <p className="text-xl opacity-90 mb-8">
+                  Join our community of innovators, researchers, and industry leaders.
+                </p>
+              </ScrollReveal>
+              
+              <ScrollReveal direction="right" delay={300}>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    to="/contact" 
+                    className="bg-white text-newtifi-navy hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                  >
+                    Get in Touch
+                  </Button>
+                  <Button 
+                    to="/membership" 
+                    className="border-2 border-white text-white hover:bg-white hover:text-newtifi-navy transition-all duration-300 transform hover:scale-105"
+                  >
+                    Join Our Network
+                  </Button>
                 </div>
-
-                {/* Right side - Image with overlay */}
-                <ScrollReveal direction="left" delay={300}>
-                  <div className="relative w-32 lg:w-40 aspect-[3/4] rounded-xl overflow-hidden group transform transition-all duration-300 hover:scale-105">
-                    <img
-                      src="https://newtifi.com/wp-content/uploads/2024/08/009ea3ac2018c459ce84161d1b88796f.png"
-                      alt="New Technologies and Investment Funds Institute Global Network"
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-newtifi-navy/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                      <p className="text-xs font-light">
-                        Join our community of innovators and shape the future of technology.
-                      </p>
-                    </div>
-                  </div>
-                </ScrollReveal>
-              </div>
+              </ScrollReveal>
             </div>
           </ScrollReveal>
         </div>

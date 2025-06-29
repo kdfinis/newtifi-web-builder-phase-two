@@ -17,9 +17,6 @@ export default defineConfig({
       overlay: true,
       timeout: 5000,
     },
-    proxy: {
-      '/auth': 'http://localhost:3000',
-    },
   },
   plugins: [react()],
   resolve: {

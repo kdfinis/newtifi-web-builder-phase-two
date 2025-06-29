@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Download, ArrowLeft, ChevronDown, ChevronUp, CheckCircle, Clock, Users, Archive, ExternalLink } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 
@@ -23,55 +23,6 @@ const journalMetadata = {
     reviewCriteria: ["Originality", "Methodology", "Contribution to field", "Clarity of presentation"]
   }
 };
-
-// Article info background object
-const articleInfo = [
-  {
-    id: 'IMJ-2025-001',
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    title: "Closed-Ended Luxembourg ELTIFs Compulsory Redemption Matters and Compartment Termination & Amalgamation Provisions",
-    author: "Ezechiel Havrenne",
-    affiliation: "Lecturer at the Luxembourg School of Business",
-    peerReviewStatus: "N/A",
-    reviewDate: "N/A",
-    acceptanceDate: "N/A",
-    keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Fund Management"],
-    abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection.",
-    doi: "10.1234/newtifi.2025.001"
-  },
-  {
-    id: 'IMJ-2025-002',
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
-    author: "Ezechiel Havrenne",
-    affiliation: "Lecturer at the Luxembourg School of Business",
-    peerReviewStatus: "N/A",
-    reviewDate: "N/A",
-    acceptanceDate: "N/A",
-    keywords: ["AIFM", "BaFin", "Portfolio Control", "Investor Oversight"],
-    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM's exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions.",
-    doi: "10.1234/newtifi.2025.002"
-  },
-  {
-    id: 'IMJ-2025-003',
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    title: "Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion",
-    author: "Ezechiel Havrenne",
-    affiliation: "Lecturer at the Luxembourg School of Business",
-    peerReviewStatus: "N/A",
-    reviewDate: "N/A",
-    acceptanceDate: "N/A",
-    keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
-    abstract: "This article provides a comprehensive analysis of Luxembourg's \"Well-Informed Investor\" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades.",
-    doi: "10.1234/newtifi.2025.003"
-  }
-];
-
-// Use articleInfo for all article rendering
-const articles = articleInfo;
 
 // Add a mapping of descriptions for each article
 const articleDescriptions = {
@@ -100,11 +51,43 @@ function parseArticleMeta(filename) {
 }
 
 export default function InvestmentManagementJournal() {
+  const [articles, setArticles] = useState([]);
   const [selectedTab, setSelectedTab] = useState<'journal' | 'articles' | 'editorial' | 'archiving'>('journal');
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [expandedOverview, setExpandedOverview] = useState(null);
   const [expandedCriterion, setExpandedCriterion] = useState(null);
   const navigate = useNavigate();
+
+  // Use static article data instead of API calls
+  useEffect(() => {
+    const staticArticles = [
+      {
+        filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+        doi: "10.1234/newtifi.2025.001",
+        author: "Ezechiel Havrenne",
+        abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
+        keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
+      },
+      {
+        filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+        doi: "10.1234/newtifi.2025.002",
+        author: "Ezechiel Havrenne",
+        abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
+        keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
+      },
+      {
+        filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+        url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+        doi: "10.1234/newtifi.2025.003",
+        author: "Ezechiel Havrenne",
+        abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
+        keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
+      }
+    ];
+    setArticles(staticArticles);
+  }, []);
 
   // Sort articles by date descending (most recent first)
   const sortedArticles = articles
@@ -537,38 +520,96 @@ export default function InvestmentManagementJournal() {
       )}
 
       {/* Latest Publications Preview */}
-      <section className="max-w-3xl mx-auto px-4 pt-8">
-        <h3 className="text-lg font-bold text-newtifi-navy mb-4">Latest Publications</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {sortedArticles.slice(0, 4).map((article, idx) => (
+      <section className="max-w-6xl mx-auto px-4 pt-8">
+        <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Latest Publications</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {sortedArticles.slice(0, 10).map((article, idx) => (
             <div
               key={idx}
-              className="bg-white rounded-xl shadow p-4 border border-gray-100 flex flex-col justify-between cursor-pointer hover:border-newtifi-teal transition"
+              className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 flex flex-col justify-between cursor-pointer hover:border-newtifi-teal hover:shadow-xl transition-all duration-300"
               onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`)}
               tabIndex={0}
               role="button"
               aria-label={`Read article: ${article.title}`}
               onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`); } }}
             >
-              <div className="flex items-center justify-between">
-                <div className="text-sm font-semibold text-newtifi-navy mb-1 line-clamp-2">{article.title}</div>
-                <button
-                  className="ml-2 p-1 rounded hover:bg-newtifi-teal/10"
-                  onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === `preview-${idx}` ? null : `preview-${idx}`); }}
-                  aria-label={expandedOverview === `preview-${idx}` ? 'Collapse overview' : 'Expand overview'}
-                >
-                  {expandedOverview === `preview-${idx}` ? <ChevronUp className="h-5 w-5 text-newtifi-teal" /> : <ChevronDown className="h-5 w-5 text-newtifi-teal" />}
-                </button>
-              </div>
-              <div className="text-xs text-gray-500 mb-1">{article.date}</div>
-              {expandedOverview === `preview-${idx}` && (
-                <div className="text-gray-700 text-xs mb-2 border-l-4 border-newtifi-teal pl-3 py-2 bg-[#f5f7fa] rounded">
-                  {article.overview} This is a longer preview. The article explores the subject in detail, providing context, analysis, and key findings. For the full abstract and content, please see the PDF.
+              <div className="flex-1">
+                <div className="flex items-start justify-between mb-3">
+                  <div className="flex-1">
+                    <h4 className="text-sm font-semibold text-newtifi-navy mb-2 line-clamp-3 leading-tight">{article.title}</h4>
+                    <div className="text-xs text-gray-500 mb-2">{article.date}</div>
+                    {article.author && (
+                      <div className="text-xs text-gray-600 mb-2">By {article.author}</div>
+                    )}
+                  </div>
+                  <button
+                    className="ml-2 p-1 rounded hover:bg-newtifi-teal/10 flex-shrink-0"
+                    onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === `preview-${idx}` ? null : `preview-${idx}`); }}
+                    aria-label={expandedOverview === `preview-${idx}` ? 'Collapse overview' : 'Expand overview'}
+                  >
+                    {expandedOverview === `preview-${idx}` ? <ChevronUp className="h-4 w-4 text-newtifi-teal" /> : <ChevronDown className="h-4 w-4 text-newtifi-teal" />}
+                  </button>
                 </div>
-              )}
+                
+                {/* Keywords */}
+                {article.keywords && article.keywords.length > 0 && (
+                  <div className="flex flex-wrap gap-1 mb-3">
+                    {article.keywords.slice(0, 3).map((keyword, kIdx) => (
+                      <span key={kIdx} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                        {keyword}
+                      </span>
+                    ))}
+                    {article.keywords.length > 3 && (
+                      <span className="text-xs text-gray-500">+{article.keywords.length - 3} more</span>
+                    )}
+                  </div>
+                )}
+
+                {/* Abstract preview */}
+                {article.abstract && (
+                  <p className="text-gray-700 text-xs mb-3 line-clamp-2 italic">
+                    {article.abstract}
+                  </p>
+                )}
+
+                {expandedOverview === `preview-${idx}` && (
+                  <div className="mb-3">
+                    <div className="text-gray-700 text-xs border-l-4 border-newtifi-teal pl-3 py-2 bg-[#f5f7fa] rounded">
+                      {article.overview || article.abstract} This is a detailed preview. The article explores the subject in depth, providing comprehensive analysis and key findings. For the complete content, please see the full PDF.
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* Footer with DOI and read more */}
+              <div className="mt-auto pt-3 border-t border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div className="text-xs text-newtifi-teal font-mono truncate flex-1">
+                    {article.doi}
+                  </div>
+                  <div className="flex items-center gap-1 text-newtifi-teal text-xs font-medium">
+                    <span>Read</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
+        
+        {/* Show more articles button if there are more than 10 */}
+        {sortedArticles.length > 10 && (
+          <div className="text-center mt-8">
+            <button
+              className="bg-newtifi-navy text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-newtifi-teal transition-colors duration-300"
+              onClick={() => setSelectedTab('articles')}
+            >
+              View All {sortedArticles.length} Articles
+            </button>
+          </div>
+        )}
       </section>
     </main>
   );

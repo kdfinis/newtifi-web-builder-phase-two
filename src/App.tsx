@@ -18,6 +18,7 @@ import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import InvestmentManagementJournal from "./pages/publishing/journals/investment-management";
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
+import Admin from './pages/Admin';
 import "./styles/typography.css";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/publishing/journals/investment-management" element={<InvestmentManagementJournal />} />
             <Route path="/publishing/journals/investment-management/article/:slug" element={<ArticlePage />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
