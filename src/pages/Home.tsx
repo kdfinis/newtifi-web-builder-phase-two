@@ -106,6 +106,7 @@ function parseArticleMeta(filename) {
   let title = match[2] || filename;
   let authors = '';
   if (title.includes("Closed-Ended Luxembourg ELTIFs")) authors = "Ezechiel Havrenne";
+  if (title.includes("Investor Oversight or Undue Influence")) authors = "Ezechiel Havrenne";
   return { date, title, authors };
 }
 
@@ -243,13 +244,11 @@ const Home = () => {
                           className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 cursor-pointer"
                           onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(file.filename)}`)}
                         >
-                          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3 gap-1 md:gap-0">
-                            <h3 className="text-lg font-medium text-newtifi-navy mb-0 md:mb-0">{meta.title}</h3>
-                            <div className="flex items-center gap-3 flex-shrink-0">
-                              <span className="text-sm text-newtifi-teal whitespace-nowrap">Journal Article</span>
-                              <span className="text-sm text-gray-500 whitespace-nowrap">{meta.date}</span>
-                              {meta.authors && <span className="text-sm text-gray-500 whitespace-nowrap">By {meta.authors}</span>}
-                            </div>
+                          <h3 className="text-lg font-medium text-newtifi-navy mb-2">{meta.title}</h3>
+                          <div className="flex items-center gap-2 mb-2">
+                            <span className="text-sm text-newtifi-teal">Journal Article</span>
+                            <span className="text-sm text-gray-500">{meta.date}</span>
+                            {meta.authors && <span className="text-sm text-gray-500">By {meta.authors}</span>}
                           </div>
                         </div>
                       );
