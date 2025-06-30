@@ -5,7 +5,7 @@ import Button from '@/components/Button';
 
 const Connect = () => {
   return (
-    <main className="min-h-screen bg-[#F5E6E8]">
+    <main className="min-h-screen bg-white">
       {/* Hero Section with Overlapping Card */}
       <section className="relative px-6 pt-32 pb-40 bg-newtifi-navy text-white overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90"></div>
@@ -24,10 +24,10 @@ const Connect = () => {
         <div className="container mx-auto">
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
-              <div className="bg-[#F5F7FA] rounded-3xl shadow-2xl p-8 md:p-12">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-12">
                 {/* Quick Contact Options */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                  <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
                     <div className="flex items-center justify-between mb-4">
                       <Mail className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -36,7 +36,7 @@ const Connect = () => {
                     <p className="text-newtifi-navy/70 text-sm">info@newtifi.com</p>
                   </div>
 
-                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                  <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
                     <div className="flex items-center justify-between mb-4">
                       <Phone className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -45,7 +45,7 @@ const Connect = () => {
                     <p className="text-newtifi-navy/70 text-sm">+352 123 456 789</p>
                   </div>
 
-                  <div className="group p-6 bg-[#F5F7FA] rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
+                  <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
                     <div className="flex items-center justify-between mb-4">
                       <MapPin className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -157,7 +157,7 @@ const Connect = () => {
       <section className="px-6 py-20">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-4xl mx-auto">
-            <div className="bg-[#F5F7FA] rounded-3xl overflow-hidden shadow-lg">
+            <div className="bg-white rounded-3xl overflow-hidden shadow-lg">
               <div className="grid md:grid-cols-2">
                 <div className="p-12 flex flex-col justify-center bg-newtifi-navy text-white relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-newtifi-teal/10 rounded-bl-full"></div>
