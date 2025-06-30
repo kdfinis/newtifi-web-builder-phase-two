@@ -23,7 +23,8 @@
     "category": "journal",
     "journal": "NewTiFi Investment Management Journal",
     "fileSize": "0.39 MB",
-    "lastModified": "2025-06-28T11:59:53.645Z"
+    "lastModified": "2025-06-28T11:59:53.645Z",
+    "requiresLogin": false
   },
   {
     "id": "IMJ-2025-002",
@@ -49,7 +50,8 @@
     "category": "journal",
     "journal": "NewTiFi Investment Management Journal",
     "fileSize": "0.33 MB",
-    "lastModified": "2025-06-28T11:59:53.646Z"
+    "lastModified": "2025-06-28T11:59:53.646Z",
+    "requiresLogin": false
   },
   {
     "id": "IMJ-2025-003",
@@ -76,6 +78,7 @@
     "category": "journal",
     "journal": "NewTiFi Investment Management Journal",
     "fileSize": "0.47 MB",
-    "lastModified": "2025-06-28T11:59:53.647Z"
+    "lastModified": "2025-06-28T11:59:53.647Z",
+    "requiresLogin": false
   }
 ]
