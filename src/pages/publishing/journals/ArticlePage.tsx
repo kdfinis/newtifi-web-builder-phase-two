@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive } from "lucide-react";
+import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown } from "lucide-react";
 
 // Journal metadata for ISSN compliance
 const journalMetadata = {
@@ -59,6 +59,7 @@ export default function ArticlePage() {
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showPdfPreview, setShowPdfPreview] = useState(false);
 
   // Fetch articles from API
   useEffect(() => {
@@ -209,12 +210,6 @@ export default function ArticlePage() {
                 <h2 className="text-xl font-semibold text-newtifi-navy mt-2 mb-1 font-serif">Abstract</h2>
                 <p className="text-gray-800 text-base italic mb-2 font-serif" style={{ textAlign: 'justify' }}>{article.abstract}</p>
               </div>
-              <button
-                className="flex items-center justify-center gap-2 bg-newtifi-teal text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-newtifi-navy hover:text-white transition text-lg w-full md:w-fit mt-2"
-                onClick={() => setShowModal(true)}
-              >
-                <Download className="h-5 w-5" /> Download PDF
-              </button>
             </div>
           </div>
         </div>
@@ -258,55 +253,6 @@ export default function ArticlePage() {
           <h2 className="text-2xl text-newtifi-navy font-bold font-serif">Description</h2>
           <p className="text-gray-900 font-serif" style={{ textAlign: 'justify' }}>{academic?.description}</p>
         </article>
-        {/* PDF Viewer - Collapsible menu style, flat navy blue, all corners rounded, shadowed, 80/20 split */}
-        <div className="w-full flex flex-col items-center">
-          <div
-            className={`w-full cursor-pointer select-none rounded-xl border border-newtifi-navy bg-newtifi-navy text-white px-6 py-4 text-lg font-bold flex items-center justify-between transition shadow-lg`}
-            onClick={() => setPdfOpen(v => !v)}
-            aria-expanded={pdfOpen}
-            aria-controls="pdf-viewer"
-            role="button"
-            tabIndex={0}
-            style={{ outline: 'none' }}
-          >
-            {pdfOpen ? "Hide Preview Article" : "Preview Article"}
-            <span className="ml-2">{pdfOpen ? "▲" : "▼"}</span>
-          </div>
-          {pdfOpen && (
-            <div id="pdf-viewer" className="w-full bg-white rounded-xl shadow-2xl border-2 border-newtifi-teal p-4 md:p-8 transition-all" style={{ boxShadow: '0 16px 48px 0 rgba(31, 38, 135, 0.18)' }}>
-              <iframe
-                src={article.url}
-                title={meta.title}
-                className="w-full min-h-[40vh] md:min-h-[60vh] h-[60vh] rounded-xl border transition-all"
-                style={{ background: '#f5f7fa', boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.10)' }}
-              />
-            </div>
-          )}
-        </div>
-        {/* Download Modal */}
-        {showModal && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
-            <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full flex flex-col gap-6 items-center">
-              <h2 className="text-xl font-bold text-newtifi-navy mb-2">Access Journal PDF</h2>
-              <p className="text-gray-700 text-base mb-2 text-center">Please log in or sign up to download this article.</p>
-              <div className="flex gap-4 w-full justify-center">
-                <button
-                  className="bg-newtifi-navy text-white px-6 py-2 rounded font-semibold hover:bg-newtifi-teal transition w-32"
-                  onClick={() => { setShowModal(false); navigate('/login'); }}
-                >
-                  Login
-                </button>
-                <button
-                  className="bg-newtifi-teal text-white px-6 py-2 rounded font-semibold hover:bg-newtifi-navy transition w-32"
-                  onClick={() => { setShowModal(false); navigate('/signup'); }}
-                >
-                  Sign Up
-                </button>
-              </div>
-              <button className="text-sm text-gray-500 mt-2 hover:underline" onClick={() => setShowModal(false)}>Cancel</button>
-            </div>
-          </div>
-        )}
       </section>
     </main>
   );

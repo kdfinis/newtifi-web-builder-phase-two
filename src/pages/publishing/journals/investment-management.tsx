@@ -519,12 +519,8 @@ export default function InvestmentManagementJournal() {
                 {expandedOverview === idx && (
                   <div className="mb-2">
                     <div className="w-full rounded border border-gray-200 bg-[#f5f7fa] overflow-hidden" style={{ height: '360px' }}>
-                      <iframe
-                        src={article.url}
-                        title={article.title}
-                        className="w-full h-full border-0 rounded"
-                        style={{ minHeight: '320px', height: '90%' }}
-                      />
+                      {/* PDF Viewer */}
+                      // Removed PDF viewer and download link
                     </div>
                   </div>
                 )}
@@ -570,13 +566,7 @@ export default function InvestmentManagementJournal() {
             <div className="mb-4">
               <h2 className="text-xl font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
               <div className="text-gray-500 text-xs mb-2">{selectedArticle.date}</div>
-              <a href={selectedArticle.url} target="_blank" rel="noopener noreferrer" download className="text-newtifi-teal hover:underline text-sm font-medium">Download PDF</a>
             </div>
-            <iframe
-              src={selectedArticle.url}
-              title={selectedArticle.title}
-              className="w-full min-h-[60vh] h-[70vh] border rounded"
-            />
           </div>
         </section>
       )}
