@@ -94,6 +94,16 @@ export default function ArticlePage() {
       // Try to find by id
       article = articles.find(a => a.id === mapping.id);
     }
+    
+    // Fallback: if no mapping found, try to find by filename (backward compatibility)
+    if (!article) {
+      article = articles.find(a => 
+        encodeURIComponent(a.filename) === slug || 
+        a.filename === decodeURIComponent(slug) ||
+        encodeURIComponent(a.pdfUrl) === slug ||
+        a.pdfUrl === decodeURIComponent(slug)
+      );
+    }
   }
 
   if (loading) {
