@@ -51,21 +51,64 @@ function parseArticleMeta(filename) {
   return { date, title, overview };
 }
 
-// Helper function to get the correct URL for an article
-function getArticleUrl(article) {
-  // Try to find the article by ID first
-  const mapping = getArticleById(article.id);
-  if (mapping) {
-    return `/publishing/journals/investment-management/article/${mapping.slug}`;
+// Static articles data - replace API calls
+const staticArticles = [
+  {
+    id: "eltifs-compulsory-redemptions",
+    title: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.001",
+    keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
+    abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "bafin-portfolio-control",
+    title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.002",
+    keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
+    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "luxembourg-well-informed-investor",
+    title: "Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.003",
+    keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
+    abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
   }
-  
-  // Fallback to filename-based URL for backward compatibility
-  return `/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`;
-}
+];
 
 export default function InvestmentManagementJournal() {
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [articles] = useState(staticArticles);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [selectedTab, setSelectedTab] = useState<'journal' | 'articles' | 'editorial' | 'archiving'>('journal');
   const [selectedArticle, setSelectedArticle] = useState(null);
@@ -73,108 +116,10 @@ export default function InvestmentManagementJournal() {
   const [expandedCriterion, setExpandedCriterion] = useState(null);
   const navigate = useNavigate();
 
-  // Fetch articles from API
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/articles');
-        if (response.ok) {
-          const data = await response.json();
-          // Transform API data to match expected format
-          const transformedArticles = data.map(article => ({
-            filename: article.filename || article.pdfUrl?.split('/').pop() || '',
-            url: article.pdfUrl || article.url || '',
-            doi: article.doi || '',
-            author: article.author || '',
-            abstract: article.abstract || '',
-            keywords: article.keywords || [],
-            date: article.date || '',
-            title: article.title || '',
-            status: article.status || 'published'
-          }));
-          setArticles(transformedArticles);
-        } else {
-          console.warn('Failed to fetch articles, using fallback data');
-          // Use fallback data if API fails
-          const fallbackArticles = [
-            {
-              filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-              doi: "10.1234/newtifi.2025.001",
-              author: "Ezechiel Havrenne",
-              abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
-              keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
-            },
-            {
-              filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-              doi: "10.1234/newtifi.2025.002",
-              author: "Ezechiel Havrenne",
-              abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
-              keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
-            },
-            {
-              filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-              url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-              doi: "10.1234/newtifi.2025.003",
-              author: "Ezechiel Havrenne",
-              abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
-              keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
-            }
-          ];
-          setArticles(fallbackArticles);
-        }
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-        setError('Failed to load articles');
-        // Use fallback data on error
-        const fallbackArticles = [
-          {
-            filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-            doi: "10.1234/newtifi.2025.001",
-            author: "Ezechiel Havrenne",
-            abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
-            keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"]
-          },
-          {
-            filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-            doi: "10.1234/newtifi.2025.002",
-            author: "Ezechiel Havrenne",
-            abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
-            keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"]
-          },
-          {
-            filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-            url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-            doi: "10.1234/newtifi.2025.003",
-            author: "Ezechiel Havrenne",
-            abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
-            keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"]
-          }
-        ];
-        setArticles(fallbackArticles);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
-
-  // Sort articles by date descending (most recent first)
-  const sortedArticles = articles
-    .map(file => {
-      const meta = parseArticleMeta(file.filename);
-      // Custom overview for the specified article
-      if (meta.title === "Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control") {
-        meta.overview = '40';
-      }
-      return { ...meta, ...file, url: file.url, filename: file.filename };
-    })
-    .sort((a, b) => (b.date > a.date ? 1 : -1));
+  // Helper function to get the correct URL for an article
+  function getArticleUrl(article) {
+    return `/publishing/journals/investment-management/article/${article.id}`;
+  }
 
   return (
     <main className="min-h-screen bg-white pb-20 font-sans">
@@ -480,7 +425,7 @@ export default function InvestmentManagementJournal() {
 
       {selectedTab === 'articles' && !selectedArticle && (
         <section id="articles" className="max-w-4xl mx-auto px-4 pt-8">
-          {sortedArticles.map((article, idx) => (
+          {articles.map((article, idx) => (
             <div key={idx} className="mb-6">
               <div
                 className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 cursor-pointer hover:border-newtifi-teal transition"
@@ -552,7 +497,7 @@ export default function InvestmentManagementJournal() {
             <div className="bg-white rounded-xl shadow p-4 border border-gray-100 mb-4">
               <div className="font-semibold text-newtifi-navy mb-2">Other Articles</div>
               <ul className="space-y-2">
-                {sortedArticles.map((article, idx) => (
+                {articles.map((article, idx) => (
                   <li key={idx}>
                     <button
                       className={`w-full text-left px-2 py-1 rounded hover:bg-newtifi-teal/10 transition ${selectedArticle.filename === article.filename ? 'bg-newtifi-teal/10 font-bold text-newtifi-navy ring-2 ring-newtifi-teal' : 'text-newtifi-navy'}`}
@@ -588,7 +533,7 @@ export default function InvestmentManagementJournal() {
       <section className="max-w-6xl mx-auto px-4 pt-8">
         <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Latest Publications</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {sortedArticles.slice(0, 10).map((article, idx) => (
+          {articles.slice(0, 10).map((article, idx) => (
             <div
               key={idx}
               className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 flex flex-col justify-between cursor-pointer hover:border-newtifi-teal hover:shadow-xl transition-all duration-300"
@@ -640,7 +585,7 @@ export default function InvestmentManagementJournal() {
                 {expandedOverview === `preview-${idx}` && (
                   <div className="mb-3">
                     <div className="text-gray-700 text-xs border-l-4 border-newtifi-teal pl-3 py-2 bg-[#f5f7fa] rounded">
-                      {article.overview || article.abstract} This is a detailed preview. The article explores the subject in depth, providing comprehensive analysis and key findings. For the complete content, please see the full PDF.
+                      {article.abstract} This is a detailed preview. The article explores the subject in depth, providing comprehensive analysis and key findings. For the complete content, please see the full PDF.
                     </div>
                   </div>
                 )}
@@ -665,13 +610,13 @@ export default function InvestmentManagementJournal() {
         </div>
         
         {/* Show more articles button if there are more than 10 */}
-        {sortedArticles.length > 10 && (
+        {articles.length > 10 && (
           <div className="text-center mt-8">
             <button
               className="bg-newtifi-navy text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-newtifi-teal transition-colors duration-300"
               onClick={() => setSelectedTab('articles')}
             >
-              View All {sortedArticles.length} Articles
+              View All {articles.length} Articles
             </button>
           </div>
         )}

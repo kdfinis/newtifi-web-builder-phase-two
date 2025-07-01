@@ -1,7 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown } from "lucide-react";
-import { getArticleBySlug } from "../../../lib/urlMapping";
+
+// Static articles data - replace API calls
+const staticArticles = [
+  {
+    id: "eltifs-compulsory-redemptions",
+    title: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.001",
+    keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
+    abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "bafin-portfolio-control",
+    title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.002",
+    keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
+    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "luxembourg-well-informed-investor",
+    title: "Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion",
+    author: "Ezechiel Havrenne",
+    date: "2025-06-28",
+    doi: "10.1234/newtifi.2025.003",
+    keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
+    abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
+    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  }
+];
 
 // Journal metadata for ISSN compliance
 const journalMetadata = {
@@ -57,51 +111,22 @@ export default function ArticlePage() {
   const [form, setForm] = React.useState({ name: '', email: '' });
   const [formSubmitted, setFormSubmitted] = React.useState(false);
   const [showDescription, setShowDescription] = React.useState(false);
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [articles] = useState(staticArticles);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPdfPreview, setShowPdfPreview] = useState(false);
 
-  // Fetch articles from API
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/articles');
-        if (response.ok) {
-          const data = await response.json();
-          setArticles(data);
-        } else {
-          console.error('Failed to fetch articles');
-          setError('Failed to load articles');
-        }
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-        setError('Failed to load articles');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
-
   // Find the article by slug or filename
-  let article: Article | undefined = undefined;
+  let article = undefined;
   if (slug && articles.length > 0) {
     console.log('Looking for article with slug:', slug);
     console.log('Available articles:', articles.map(a => ({ id: a.id, filename: a.filename })));
     
-    // First, try to find by slug using the URL mapping
-    const mapping = getArticleBySlug(slug);
-    if (mapping) {
-      console.log('Found mapping:', mapping);
-      // Try to find by id
-      article = articles.find(a => a.id === mapping.id);
-      console.log('Article found by mapping:', article ? 'YES' : 'NO');
-    }
+    // Try to find by ID first (slug might be the article ID)
+    article = articles.find(a => a.id === slug);
+    console.log('Article found by ID:', article ? 'YES' : 'NO');
     
-    // Fallback: if no mapping found, try to find by filename (backward compatibility)
+    // Fallback: try to find by filename (backward compatibility)
     if (!article) {
       console.log('Trying filename fallback...');
       const decodedSlug = decodeURIComponent(slug);

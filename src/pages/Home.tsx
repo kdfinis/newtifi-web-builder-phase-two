@@ -102,11 +102,11 @@ const legalInsightContent = [
   }
 ];
 
-// Fallback articles if API is not available
-const fallbackArticles = [
+// Static articles data - replace API calls
+const staticArticles = [
   {
-    id: '1',
-    title: "Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
+    id: "eltifs-compulsory-redemptions",
+    title: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
     author: "Ezechiel Havrenne",
     date: "2025-06-28",
     doi: "10.1234/newtifi.2025.001",
@@ -114,6 +114,7 @@ const fallbackArticles = [
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
     url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -121,8 +122,8 @@ const fallbackArticles = [
     category: "journal" as const
   },
   {
-    id: '2',
-    title: "Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control",
+    id: "bafin-portfolio-control",
+    title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
     author: "Ezechiel Havrenne",
     date: "2025-06-28",
     doi: "10.1234/newtifi.2025.002",
@@ -130,6 +131,7 @@ const fallbackArticles = [
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
     url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -137,75 +139,41 @@ const fallbackArticles = [
     category: "journal" as const
   },
   {
-    id: '3',
-    title: "Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion",
+    id: "luxembourg-well-informed-investor",
+    title: "Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion",
     author: "Ezechiel Havrenne",
     date: "2025-06-28",
     doi: "10.1234/newtifi.2025.003",
     keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
-    abstract: "This article provides a comprehensive analysis of Luxembourg's Well-Informed Investor regime as applied to SICARs, SIFs, and RAIFs.",
+    abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
     filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
     url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
+    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
-    featured: false,
+    featured: true,
     category: "journal" as const
   }
 ];
 
 // Helper function to get the correct URL for an article
 function getArticleUrl(article) {
-  // Try to find the article by ID first
-  const mapping = getArticleById(article.id);
-  if (mapping) {
-    return `/publishing/journals/investment-management/article/${mapping.slug}`;
-  }
-  
-  // Fallback to filename-based URL for backward compatibility
-  return `/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`;
+  return `/publishing/journals/investment-management/article/${article.id}`;
 }
 
 const Home = () => {
+  const [articles] = useState(staticArticles);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const [articles, setArticles] = useState<Article[]>(fallbackArticles);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
-  // Fetch articles from API
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('/api/articles');
-        if (response.ok) {
-          const data = await response.json();
-          setArticles(data);
-        } else {
-          console.warn('Failed to fetch articles, using fallback data');
-          setArticles(fallbackArticles);
-        }
-      } catch (error) {
-        console.error('Error fetching articles:', error);
-        setError('Failed to load articles');
-        setArticles(fallbackArticles);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
+  // Get featured articles
+  const featuredArticles = articles.filter(article => article.featured);
 
   // Get latest published articles
   const latestArticles = articles
     .filter(article => article.status === 'published')
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 2);
-
-  // Get featured articles for hero section
-  const featuredArticles = articles
-    .filter(article => article.status === 'published' && article.featured)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 2);
 
