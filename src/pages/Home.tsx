@@ -5,6 +5,7 @@ import Button from '@/components/Button';
 import TechCard from '@/components/TechCard';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
+import { getArticleById } from '@/lib/urlMapping';
 
 interface Article {
   id: string;
@@ -152,6 +153,18 @@ const fallbackArticles = [
     category: "journal" as const
   }
 ];
+
+// Helper function to get the correct URL for an article
+function getArticleUrl(article) {
+  // Try to find the article by ID first
+  const mapping = getArticleById(article.id);
+  if (mapping) {
+    return `/publishing/journals/investment-management/article/${mapping.slug}`;
+  }
+  
+  // Fallback to filename-based URL for backward compatibility
+  return `/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`;
+}
 
 const Home = () => {
   const navigate = useNavigate();
@@ -324,7 +337,7 @@ const Home = () => {
                         <div 
                           key={article.id}
                           className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-l-4 border-newtifi-teal"
-                          onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`)}
+                          onClick={() => navigate(getArticleUrl(article))}
                         >
                           <div className="flex items-start justify-between mb-3">
                             <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">

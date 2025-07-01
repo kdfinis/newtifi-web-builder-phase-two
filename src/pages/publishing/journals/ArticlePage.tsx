@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown } from "lucide-react";
+import { getArticleBySlug } from "../../../lib/urlMapping";
 
 // Journal metadata for ISSN compliance
 const journalMetadata = {
@@ -85,13 +86,40 @@ export default function ArticlePage() {
     fetchArticles();
   }, []);
 
-  // Find the article by filename
-  const article = articles.find(a => 
-    encodeURIComponent(a.filename) === slug || 
-    a.filename === decodeURIComponent(slug) ||
-    encodeURIComponent(a.pdfUrl) === slug ||
-    a.pdfUrl === decodeURIComponent(slug)
-  );
+  // Find the article by slug or filename
+  let article: Article | undefined = undefined;
+  if (slug && articles.length > 0) {
+    console.log('Looking for article with slug:', slug);
+    console.log('Available articles:', articles.map(a => ({ id: a.id, filename: a.filename })));
+    
+    // First, try to find by slug using the URL mapping
+    const mapping = getArticleBySlug(slug);
+    if (mapping) {
+      console.log('Found mapping:', mapping);
+      // Try to find by id
+      article = articles.find(a => a.id === mapping.id);
+      console.log('Article found by mapping:', article ? 'YES' : 'NO');
+    }
+    
+    // Fallback: if no mapping found, try to find by filename (backward compatibility)
+    if (!article) {
+      console.log('Trying filename fallback...');
+      const decodedSlug = decodeURIComponent(slug);
+      console.log('Decoded slug:', decodedSlug);
+      
+      article = articles.find(a => {
+        const match = a.filename === decodedSlug || 
+                     a.filename === slug ||
+                     encodeURIComponent(a.filename) === slug ||
+                     a.pdfUrl === decodedSlug ||
+                     a.pdfUrl === slug ||
+                     encodeURIComponent(a.pdfUrl) === slug;
+        console.log(`Checking ${a.filename}: ${match ? 'MATCH' : 'no match'}`);
+        return match;
+      });
+      console.log('Article found by filename fallback:', article ? 'YES' : 'NO');
+    }
+  }
 
   if (loading) {
     return (
@@ -109,6 +137,23 @@ export default function ArticlePage() {
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 text-lg mb-4">Article not found</p>
+          <p className="text-gray-600 text-sm mb-4">Slug: {slug}</p>
+          <p className="text-gray-600 text-sm mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
+          
+          {/* Debug info */}
+          <div className="bg-gray-100 p-4 rounded mb-4 text-left max-w-2xl">
+            <h3 className="font-bold mb-2">Debug Info:</h3>
+            <p className="text-sm mb-2">Available articles:</p>
+            {articles.map((a, idx) => (
+              <div key={idx} className="text-xs mb-2 p-2 bg-white rounded">
+                <div><strong>ID:</strong> {a.id}</div>
+                <div><strong>Filename:</strong> {a.filename}</div>
+                <div><strong>Encoded filename:</strong> {encodeURIComponent(a.filename)}</div>
+                <div><strong>URL:</strong> {a.url}</div>
+              </div>
+            ))}
+          </div>
+          
           <button
             onClick={() => navigate('/publishing/journals/investment-management')}
             className="bg-newtifi-navy text-white px-4 py-2 rounded hover:bg-newtifi-teal transition"

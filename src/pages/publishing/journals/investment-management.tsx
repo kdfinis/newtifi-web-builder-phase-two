@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Download, ArrowLeft, ChevronDown, ChevronUp, CheckCircle, Clock, Users, Archive, ExternalLink } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { getArticleById } from "../../../lib/urlMapping";
 
 // ISSN and Journal Metadata
 const journalMetadata = {
@@ -48,6 +49,18 @@ function parseArticleMeta(filename) {
   // Placeholder overview for now
   let overview = `This article provides an in-depth analysis of the topic: ${title}. For the full abstract, please see the PDF.`;
   return { date, title, overview };
+}
+
+// Helper function to get the correct URL for an article
+function getArticleUrl(article) {
+  // Try to find the article by ID first
+  const mapping = getArticleById(article.id);
+  if (mapping) {
+    return `/publishing/journals/investment-management/article/${mapping.slug}`;
+  }
+  
+  // Fallback to filename-based URL for backward compatibility
+  return `/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`;
 }
 
 export default function InvestmentManagementJournal() {
@@ -474,8 +487,8 @@ export default function InvestmentManagementJournal() {
                 tabIndex={0}
                 role="button"
                 aria-label={`Read article: ${article.title}`}
-                onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`)}
-                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`); }}
+                onClick={() => navigate(getArticleUrl(article))}
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(getArticleUrl(article)); }}
               >
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-lg font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
@@ -579,11 +592,11 @@ export default function InvestmentManagementJournal() {
             <div
               key={idx}
               className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 flex flex-col justify-between cursor-pointer hover:border-newtifi-teal hover:shadow-xl transition-all duration-300"
-              onClick={() => navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`)}
+              onClick={() => navigate(getArticleUrl(article))}
               tabIndex={0}
               role="button"
               aria-label={`Read article: ${article.title}`}
-              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(`/publishing/journals/investment-management/article/${encodeURIComponent(article.filename)}`); } }}
+              onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(getArticleUrl(article)); } }}
             >
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-3">
