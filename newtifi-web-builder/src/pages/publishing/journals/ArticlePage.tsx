@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown } from "lucide-react";
+import { getArticleBySlug } from '../../../lib/urlMapping';
 
 // Journal metadata for ISSN compliance
 const journalMetadata = {
@@ -85,13 +86,15 @@ export default function ArticlePage() {
     fetchArticles();
   }, []);
 
-  // Find the article by filename
-  const article = articles.find(a => 
-    encodeURIComponent(a.filename) === slug || 
-    a.filename === decodeURIComponent(slug) ||
-    encodeURIComponent(a.pdfUrl) === slug ||
-    a.pdfUrl === decodeURIComponent(slug)
-  );
+  // Find the article by slug using the permanent URL mapping
+  let article: Article | undefined = undefined;
+  if (slug && articles.length > 0) {
+    const mapping = getArticleBySlug(slug);
+    if (mapping) {
+      // Try to find by id
+      article = articles.find(a => a.id === mapping.id);
+    }
+  }
 
   if (loading) {
     return (
