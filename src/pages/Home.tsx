@@ -538,15 +538,10 @@ const Home = () => {
                 ))}
               </ScrollReveal>
                {/* Internships Info Box - now styled to match the preview box */}
-               <div className="mt-8 bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-6 max-w-xl mx-auto text-left flex items-center gap-0">
-                  <div className="w-1/2 flex flex-col justify-center p-4">
-                    <span className="text-xl font-semibold text-newtifi-navy mb-2 block">Internships</span>
-                    <span className="text-base text-gray-700">We are driven to turn curiosity into capability – so we welcome aspiring professionals into our ecosystem through hands-on internships that shape both their path and ours</span>
-                  </div>
-                  <div className="w-1/2 flex justify-center items-center p-4">
-                    <img src="/assets/images/team/student-intern.jpg" alt="Student Intern" className="w-32 h-32 object-cover rounded-lg" />
-                  </div>
-                </div>
+               <div className="mt-8 bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8 w-full text-left -ml-4">
+                 <span className="text-xl font-semibold text-newtifi-navy mb-2 block">Internships</span>
+                 <span className="text-base text-gray-700">We are driven to turn curiosity into capability – so we welcome aspiring professionals into our ecosystem through hands-on internships that shape both their path and ours</span>
+               </div>
             </div>
           </ScrollReveal>
         </div>
