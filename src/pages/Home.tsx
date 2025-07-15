@@ -367,27 +367,51 @@ const Home = () => {
                 {[
                   {
                     title: "HealthTech",
-                    description: "Enhancing personal care and diagnostics through innovative technology solutions.",
+                    description: "Enhancing personal care, diagnostics, and healthcare delivery through innovative technological solutions.",
                     icon: "🏥",
                     image: "/images/health-tech.jpg"
                   },
                   {
                     title: "FoodTech",
-                    description: "Transforming food systems for greater efficiency and sustainability.",
+                    description: "Transforming food systems to increase efficiency, sustainability, and nutritional outcomes.",
                     icon: "🌱",
                     image: "/images/food-tech.jpg"
                   },
                   {
                     title: "EnergyTech",
-                    description: "Advancing resource management and conservation technologies.",
+                    description: "Advancing technologies for smarter resource management, energy efficiency, and environmental conservation.",
                     icon: "⚡",
                     image: "/images/energy-tech.jpg"
                   },
                   {
                     title: "FinTech",
-                    description: "Revolutionizing financial services through cutting-edge technology.",
-                    icon: "💳",
+                    description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
+                    icon: "💸",
                     image: "/images/fin-tech.jpg"
+                  },
+                  {
+                    title: "Investment Funds",
+                    description: "Strategic vehicles aimed at investing to optimise returns while managing risk including through diversification.",
+                    icon: "📈",
+                    image: "/images/Investment-funds.jpg"
+                  },
+                  {
+                    title: "Securitisation Vehicles",
+                    description: "Special-purpose entities that assume risks linked to assets or third-party obligations and finance them through instruments or loans with returns tied to those.",
+                    icon: "📊",
+                    image: "/images/Securitisation-vehicles.jpeg"
+                  },
+                  {
+                    title: "Pension Funds",
+                    description: "Long-term investment solutions focused on financial security and sustainable retirement planning.",
+                    icon: "🏦",
+                    image: "/images/Pension-funds.jpg"
+                  },
+                  {
+                    title: "Life Insurance Products",
+                    description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
+                    icon: "🛡️",
+                    image: "/images/Life insurance.jpg"
                   }
                 ].map((pillar, index: number) => (
                   <ScrollReveal 
@@ -429,23 +453,27 @@ const Home = () => {
                 {[
                   {
                     title: "Investment Funds",
-                    description: "Strategic investment vehicles designed to maximize returns while managing risk through diversified portfolios.",
-                    icon: "💰"
+                    description: "Strategic vehicles aimed at investing to optimise returns while managing risk including through diversification.",
+                    icon: "📈",
+                    image: "/images/Investment-funds.jpg"
                   },
                   {
                     title: "Securitisation Vehicles",
-                    description: "Innovative structures that transform illiquid assets into tradable securities, enhancing market liquidity.",
-                    icon: "📊"
+                    description: "Special-purpose entities that assume risks linked to assets or third-party obligations and finance them through instruments or loans with returns tied to those.",
+                    icon: "📊",
+                    image: "/images/Securitisation-vehicles.jpeg"
                   },
                   {
                     title: "Pension Funds",
-                    description: "Long-term investment solutions focused on securing retirement benefits through prudent asset management.",
-                    icon: "🏦"
+                    description: "Long-term investment solutions focused on financial security and sustainable retirement planning.",
+                    icon: "🏦",
+                    image: "/images/Pension-funds.jpg"
                   },
                   {
-                    title: "Insurance Products",
-                    description: "Comprehensive risk management solutions providing protection and financial security for various contingencies.",
-                    icon: "🛡️"
+                    title: "Life Insurance Products",
+                    description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
+                    icon: "🛡️",
+                    image: "/images/Life insurance.jpg"
                   }
                 ].map((item, index: number) => (
                   <ScrollReveal 
@@ -455,6 +483,16 @@ const Home = () => {
                     className="transform transition-all duration-300 hover:scale-105"
                   >
                     <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
+                      <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
+                        {/* Space for photo */}
+                        {item.image && (
+                          <img
+                            src={item.image}
+                            alt={item.title + " photo"}
+                            className="w-full h-full object-cover"
+                          />
+                        )}
+                      </div>
                       <div className="text-4xl mb-4">{item.icon}</div>
                       <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
                       <p className="text-gray-700 flex-grow">{item.description}</p>
