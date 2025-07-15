@@ -231,28 +231,15 @@ const Home = () => {
                   New Technologies and Investment Funds Institute
                 </h1>
                 <p className="text-xl text-gray-700">
-                  A global research institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
+                  An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
-                    <p className="text-gray-700">Bridging technology and finance for meaningful impact</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
-                    <p className="text-gray-700">Connecting researchers, innovators, academics and industry leaders</p>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3" />
-                    <p className="text-gray-700">Driving sustainable technological advancement</p>
-                  </div>
-                </div>
-                <Button 
-                  to="/about" 
-                  className="bg-newtifi-navy text-white hover:bg-newtifi-teal transition-all duration-300 transform hover:scale-105"
-                >
-                  Learn More About Us
-                </Button>
+                <ul className="list-disc pl-6 space-y-2 text-gray-700 text-lg">
+                  <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
+                  <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
+                  <li>Supporting future talent through scholarships, internships, and mentorships</li>
+                  <li>Delivering accessible education and insights to professionals and communities</li>
+                  <li>Shaping policy through thought leadership and a shared vision of inclusion, well-being, and sustainability</li>
+                </ul>
               </div>
             </ScrollReveal>
 
@@ -388,30 +375,6 @@ const Home = () => {
                     description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
                     icon: "💸",
                     image: "/images/fin-tech.jpg"
-                  },
-                  {
-                    title: "Investment Funds",
-                    description: "Strategic vehicles aimed at investing to optimise returns while managing risk including through diversification.",
-                    icon: "📈",
-                    image: "/images/Investment-funds.jpg"
-                  },
-                  {
-                    title: "Securitisation Vehicles",
-                    description: "Special-purpose entities that assume risks linked to assets or third-party obligations and finance them through instruments or loans with returns tied to those.",
-                    icon: "📊",
-                    image: "/images/Securitisation-vehicles.jpeg"
-                  },
-                  {
-                    title: "Pension Funds",
-                    description: "Long-term investment solutions focused on financial security and sustainable retirement planning.",
-                    icon: "🏦",
-                    image: "/images/Pension-funds.jpg"
-                  },
-                  {
-                    title: "Life Insurance Products",
-                    description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
-                    icon: "🛡️",
-                    image: "/images/Life insurance.jpg"
                   }
                 ].map((pillar, index: number) => (
                   <ScrollReveal 
@@ -513,7 +476,7 @@ const Home = () => {
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
                 <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
                 <p className="text-xl text-gray-700 font-light">
-                  Our comprehensive scholarship programs support academic excellence and professional development in technology innovation.
+                  Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
                 </p>
               </ScrollReveal>
               
@@ -551,7 +514,18 @@ const Home = () => {
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-lg text-gray-700 mb-6">{item.description}</p>
-                    <ul className="space-y-3">
+                      {/* Insert extra paragraph for Doctoral Scholarships and Mentorship Programs only */}
+                      {item.title === 'Doctoral Scholarships' && (
+                        <p className="text-base text-gray-700 mb-6">
+                          NewTIFI believes the future of investment innovation depends on courageous minds unafraid to ask the big questions – so we fund doctoral scholars in promising technological fields who dare to challenge convention and push their field forward
+                        </p>
+                      )}
+                      {item.title === 'Mentorship Programs' && (
+                        <p className="text-base text-gray-700 mb-6">
+                          NewTIFI is committed to cultivating leadership that lasts – so we pair emerging talent with experienced mentors to transfer wisdom, values, and vision
+                        </p>
+                      )}
+                      <ul className="space-y-3">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3">
                             <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
@@ -563,6 +537,16 @@ const Home = () => {
                 </div>
                 ))}
               </ScrollReveal>
+               {/* Internships Info Box - now styled to match the preview box */}
+               <div className="mt-8 bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-6 max-w-xl mx-auto text-left flex items-center gap-0">
+                  <div className="w-1/2 flex flex-col justify-center p-4">
+                    <span className="text-xl font-semibold text-newtifi-navy mb-2 block">Internships</span>
+                    <span className="text-base text-gray-700">We are driven to turn curiosity into capability – so we welcome aspiring professionals into our ecosystem through hands-on internships that shape both their path and ours</span>
+                  </div>
+                  <div className="w-1/2 flex justify-center items-center p-4">
+                    <img src="/assets/images/team/student-intern.jpg" alt="Student Intern" className="w-32 h-32 object-cover rounded-lg" />
+                  </div>
+                </div>
             </div>
           </ScrollReveal>
         </div>
