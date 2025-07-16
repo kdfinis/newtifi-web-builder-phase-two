@@ -91,16 +91,11 @@ interface Article {
 
 // This should match the logic in the main journal page
 function parseArticleMeta(filename) {
-  const match = filename.match(/^(\d{4}\.\d{2}\.\d{2})_(.+?) - (.+?)_Final\.pdf$/);
-  if (!match) return { date: '', title: filename, authors: '' };
+  const match = filename.match(/^\(\d{4}\.\d{2}\.\d{2}\)_(.+?) - (.+?)_Final\.pdf$/);
+  if (!match) return { date: '', title: filename };
   let date = match[1] ? match[1].replace(/\./g, '-') : '';
   let title = match[3] || filename;
-  // AI-extracted author names based on title
-  let authors = "NewTiFi Editorial Team";
-  if (title.includes("Closed-Ended Luxembourg ELTIFs")) authors = "Ezechiel Havrenne";
-  if (title.includes("Investor Oversight or Undue Influence")) authors = "Delphine Filsack";
-  if (title.includes("Luxembourg SICARs, SIFs and RAIFs")) authors = "Ezechiel Havrenne";
-  return { date, title, authors };
+  return { date, title };
 }
 
 export default function ArticlePage() {
@@ -190,7 +185,7 @@ export default function ArticlePage() {
     );
   }
 
-  const meta = parseArticleMeta(article.filename);
+  const meta = { ...parseArticleMeta(article.filename), authors: article.author };
 
   // Academic-style preview and description for each article
   const academicPreviews = {
