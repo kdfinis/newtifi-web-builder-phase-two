@@ -387,56 +387,59 @@ const Home = () => {
                 </h3>
               </ScrollReveal>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-                {[
-                  {
-                    title: "HealthTech",
-                    description: "Enhancing personal care, diagnostics, and healthcare delivery through innovative technological solutions.",
-                    icon: "🏥",
-                    image: "/images/health-tech.jpg"
-                  },
-                  {
-                    title: "FoodTech",
-                    description: "Transforming food systems to increase efficiency, sustainability, and nutritional outcomes.",
-                    icon: "🌱",
-                    image: "/images/food-tech.jpg"
-                  },
-                  {
-                    title: "EnergyTech",
-                    description: "Advancing technologies for smarter resource management, energy efficiency, and environmental conservation.",
-                    icon: "⚡",
-                    image: "/images/energy-tech.jpg"
-                  },
-                  {
-                    title: "FinTech",
-                    description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
-                    icon: "💸",
-                    image: "/images/fin-tech.jpg"
-                  }
-                ].map((pillar, index: number) => (
-                  <ScrollReveal 
-                    key={pillar.title} 
-                    direction="right" 
-                    delay={200 + (index * 100)}
-                    className="transform transition-all duration-300 hover:scale-105"
-                  >
-                    <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
-                      <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
-                        {/* Space for photo */}
-                        {pillar.image && (
-                          <img
-                            src={pillar.image}
-                            alt={pillar.title + " photo"}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
+              {/* Wrap the grid in a flex container to center it horizontally: */}
+              <div className="flex justify-center">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+                  {[
+                    {
+                      title: "HealthTech",
+                      description: "Enhancing personal care, diagnostics, and healthcare delivery through innovative technological solutions.",
+                      icon: "🏥",
+                      image: "/images/health-tech.jpg"
+                    },
+                    {
+                      title: "FoodTech",
+                      description: "Transforming food systems to increase efficiency, sustainability, and nutritional outcomes.",
+                      icon: "🌱",
+                      image: "/images/food-tech.jpg"
+                    },
+                    {
+                      title: "EnergyTech",
+                      description: "Advancing technologies for smarter resource management, energy efficiency, and environmental conservation.",
+                      icon: "⚡",
+                      image: "/images/energy-tech.jpg"
+                    },
+                    {
+                      title: "FinTech",
+                      description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
+                      icon: "💸",
+                      image: "/images/fin-tech.jpg"
+                    }
+                  ].map((pillar, index: number) => (
+                    <ScrollReveal 
+                      key={pillar.title} 
+                      direction="right" 
+                      delay={200 + (index * 100)}
+                      className="transform transition-all duration-300 hover:scale-105"
+                    >
+                      <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
+                        <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
+                          {/* Space for photo */}
+                          {pillar.image && (
+                            <img
+                              src={pillar.image}
+                              alt={pillar.title + " photo"}
+                              className="w-full h-full object-cover"
+                            />
+                          )}
+                        </div>
+                        <div className="text-4xl mb-4">{pillar.icon}</div>
+                        <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
+                        <p className="text-gray-700 flex-grow">{pillar.description}</p>
                       </div>
-                      <div className="text-4xl mb-4">{pillar.icon}</div>
-                      <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
-                      <p className="text-gray-700 flex-grow">{pillar.description}</p>
-                    </div>
-                  </ScrollReveal>
-                ))}
+                    </ScrollReveal>
+                  ))}
+                </div>
               </div>
 
               {/* What We Do Section */}

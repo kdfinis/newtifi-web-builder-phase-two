@@ -87,7 +87,9 @@
     font-weight: 300;
   }
 
+  /* Set base font size to 93.75% (15px) for less zoomed-in look */
   html {
+    font-size: 93.75%;
     scroll-behavior: smooth;
   }
 }
