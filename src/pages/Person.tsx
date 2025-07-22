@@ -250,7 +250,7 @@ const Person = () => {
                   href={member.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-4 rounded-full bg-[#0077B5] text-white hover:bg-[#005983] transition-colors shadow-lg flex items-center justify-center"
+                  className="p-4 rounded-full bg-white text-[#0077B5] hover:bg-[#e6f7fa] transition-colors shadow flex items-center justify-center"
                   style={{ minWidth: 56, minHeight: 56 }}
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
@@ -260,7 +260,7 @@ const Person = () => {
               )}
               <a
                 href={`mailto:${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`}
-                className="p-4 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-navy transition-colors shadow-lg flex items-center justify-center"
+                className="p-4 rounded-full bg-white text-[#00C2CB] hover:bg-[#e6f7fa] transition-colors shadow flex items-center justify-center"
                 style={{ minWidth: 56, minHeight: 56 }}
               >
                 <Mail className="h-8 w-8" />
