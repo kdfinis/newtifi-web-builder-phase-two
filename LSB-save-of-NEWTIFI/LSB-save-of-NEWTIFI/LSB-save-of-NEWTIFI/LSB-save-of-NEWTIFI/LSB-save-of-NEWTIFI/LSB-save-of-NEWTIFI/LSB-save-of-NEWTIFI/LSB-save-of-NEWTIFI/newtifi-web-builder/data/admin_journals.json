@@ -1,0 +1,17 @@
+[
+  {
+    "id": "IMJ-001",
+    "title": "NewTiFi Investment Management Journal",
+    "issn": "XXXX-XXXX",
+    "description": "A peer-reviewed journal focusing on investment management, financial regulation, and sustainable finance in Luxembourg and the EU.",
+    "status": "active",
+    "articles": [
+      "IMJ-2025-001",
+      "IMJ-2025-002",
+      "IMJ-2025-003"
+    ],
+    "publisher": "New Technologies and Investment Fund Institute",
+    "frequency": "Quarterly",
+    "peerReviewStatus": "Double-blind peer review"
+  }
+]
