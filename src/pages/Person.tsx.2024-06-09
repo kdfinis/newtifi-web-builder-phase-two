@@ -169,7 +169,7 @@ const Person = () => {
                     </a>
                   )}
                   <a
-                    href={`mailto:${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.org`}
+                    href={`mailto:${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`}
                     className="p-2 rounded-full bg-newtifi-teal/10 text-newtifi-navy hover:bg-newtifi-teal/20 transition-colors"
                   >
                     <Mail className="h-5 w-5" />

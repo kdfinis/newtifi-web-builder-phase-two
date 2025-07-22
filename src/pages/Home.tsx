@@ -99,6 +99,45 @@ const legalInsightContent = [
   }
 ];
 
+const insightsContent = [
+  {
+    title: 'Journals',
+    subtext: 'Peer-reviewed academic publications featuring cutting-edge research and applied scholarship in both new technologies central to NewTIFI’s missions (i.e., FinTech, HealthTech, FoodTech, and EnergyTech) and finance (including investment funds, securitisation vehicles, pension funds and insurance products)',
+    description: 'Advancing knowledge through rigorous, peer-reviewed academic publishing at the crossroads of innovation and finance. NewTIFI’s journals provide contributors and readers with opportunities to:',
+    details: [
+      'Publish original research in high-quality, peer-reviewed journals focused on new technologies and finance',
+      'Engage in interdisciplinary dialogue across academia, policy, and industry',
+      'Contribute to shaping emerging fields by addressing complex regulatory, technological, and market challenges',
+      'Collaborate with leading researchers and experts through special issues and editorial initiatives',
+      'Access and participate in the peer review process to uphold academic excellence and scholarly impact'
+    ]
+  },
+  {
+    title: 'Reviews',
+    subtext: 'Practitioner-oriented insights delivered in an accessible format, modelled on leading thought-leadership platforms, translating research, case studies, and expert commentary into actionable perspectives for professionals, policymakers, and entrepreneurs',
+    description: 'Bridging research and real-world application through practitioner-focused publications. NewTIFI’s reviews transform expert insights into actionable knowledge by enabling contributors and readers to:',
+    details: [
+      'Share applied perspectives on innovation and finance grounded in professional experience and case-based learning',
+      'Translate academic research into practical strategies for entrepreneurs, investors, policymakers, and corporate leaders',
+      'Contribute to a platform inspired by leading review-style publications, blending clarity with intellectual rigour',
+      'Engage with cross-sector voices to explore how technology and finance intersect in shaping the future',
+      'Access a curated body of thought leadership that informs decision-making and inspires responsible innovation'
+    ]
+  },
+  {
+    title: 'Advocacy',
+    subtext: 'NewTIFI engages in non-partisan advocacy to support innovation-friendly regulation, sustainability, and responsible technology adoption, through position papers, regulatory consultations, and dialogue with public and private institutions',
+    description: 'Promoting responsible innovation through constructive engagement with public and private stakeholders. NewTIFI’s advocacy efforts empower the ecosystem by enabling participants to:',
+    details: [
+      'Contribute to non-partisan policy dialogue on new technologies and financial innovation',
+      'Participate in the development of position papers, consultation responses, and regulatory insights',
+      'Engage with institutional partners to support innovation-friendly, transparent, and sustainable frameworks',
+      'Help shape the ethical adoption of new technologies',
+      'Join a collaborative platform that amplifies expert voices in service of long-term public interest'
+    ]
+  }
+];
+
 // Static articles data - replace API calls
 const staticArticles = [
   {
@@ -197,6 +236,7 @@ const Home = () => {
 
   const [activeScholarship, setActiveScholarship] = useState(scholarshipContent[0].title);
   const [activeLegalInsight, setActiveLegalInsight] = useState(legalInsightContent[0].title);
+  const [activeInsight, setActiveInsight] = useState('Journals');
 
   return (
     <main className="min-h-screen pb-20">
@@ -540,56 +580,56 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Legal Insights</h2>
+                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Insights</h2>
                 <p className="text-xl text-gray-700 font-light">
-                  Expert legal analysis and regulatory guidance for technology innovation and investment.
+                  At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
                 </p>
               </ScrollReveal>
-              
-              {/* Menu Buttons */}
+              {/* Insights Menu Buttons */}
               <ScrollReveal direction="right" delay={300}>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                  {legalInsightContent.map((item, index) => (
+                  {insightsContent.map((item, index) => (
                     <button
                       key={item.title}
-                      onClick={() => setActiveLegalInsight(item.title)}
+                      onClick={() => setActiveInsight(item.title)}
                       className={cn(
                         "p-4 rounded-lg text-left transition-all duration-300",
-                        activeLegalInsight === item.title
+                        activeInsight === item.title
                           ? "bg-newtifi-navy text-white shadow-lg"
                           : "bg-gray-50 text-gray-700 hover:bg-gray-100"
                       )}
                     >
-                      <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm opacity-80">{item.description}</p>
+                      <h3 className="font-semibold mb-2 text-center uppercase w-full">{item.title}</h3>
+                      <p className="text-sm opacity-80">{item.subtext}</p>
                     </button>
                   ))}
                 </div>
               </ScrollReveal>
-
-              {/* Content Display */}
+              {/* Insights Content Display */}
               <ScrollReveal direction="right" delay={400}>
-                {legalInsightContent.map((item) => (
+                {insightsContent.map((item) => (
                   <div
                     key={item.title}
                     className={cn(
                       "transition-all duration-500",
-                      activeLegalInsight === item.title ? "block" : "hidden"
+                      activeInsight === item.title ? "block" : "hidden"
                     )}
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-lg text-gray-700 mb-6">{item.description}</p>
-                    <ul className="space-y-3">
-                        {item.details.map((detail, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
-                            <span className="text-gray-700">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
+                      {item.details && (
+                        <ul className="space-y-3">
+                          {item.details.map((detail, idx) => (
+                            <li key={idx} className="flex items-center gap-3 text-base">
+                              <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-0.5 flex-shrink-0" />
+                              <span className="text-gray-700 align-middle">{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
-                </div>
                 ))}
               </ScrollReveal>
             </div>
