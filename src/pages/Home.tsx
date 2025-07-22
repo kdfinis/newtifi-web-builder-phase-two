@@ -29,38 +29,35 @@ const scholarshipContent = [
     title: 'Doctoral Scholarships',
     description: 'Supporting the next generation of innovators and researchers.',
     details: [
-      'Full funding for innovative PhD research projects aligned with New Technologies and Investment Funds Institute\'s focus areas',
-      'Access to New Technologies and Investment Funds Institute\'s global network of experts and mentors',
-      'Opportunities to present research at international conferences',
-      'Support for publishing and commercialization of research findings',
-      'Annual stipend and research budget allocation',
-      'Integration into New Technologies and Investment Funds Institute\'s research community'
+      'Secure funding for pioneering PhD research aligned with NewTIFI’s strategic focus in HealthTech, FoodTech, EnergyTech, and FinTech',
+      'Connect with NewTIFI’s global network of leading experts, mentors, and industry practitioners',
+      'Showcase their work at major international research and innovation conferences',
+      'Disseminate findings through high-impact academic and professional publications',
+      'Participate in the peer review process for articles submitted to leading journals'
     ]
   },
   {
     title: 'Mentorship Programs',
     description: 'Fostering growth through expert guidance and support.',
     details: [
-      'One-on-one mentoring with industry leaders and experts',
-      'Regular workshops and skill development sessions',
-      'Career development and networking opportunities',
-      'Access to New Technologies and Investment Funds Institute\'s resource library and tools',
-      'Participation in innovation challenges and hackathons',
-      'Opportunities for collaborative research projects'
+      'One-on-one mentorship with accomplished leaders across NewTIFI’s focus areas',
+      'Workshops and training sessions designed to build both soft and technical skills',
+      'Strategic career guidance and access to a global professional network',
+      'Full access to NewTIFI’s resource library, research tools, and expert content',
+      'Pathways to continued collaboration with mentors and peers beyond the formal program'
     ]
   },
   {
-    title: 'Research Support',
-    description: 'Providing resources for groundbreaking research initiatives.',
+    title: 'Internships',
+    description: 'Providing for immersive and hands-on internships at NewTIFI allowing aspiring professionals to:',
     details: [
-      'State-of-the-art research facilities and equipment',
-      'Access to comprehensive databases and research tools',
-      'Funding for conference attendance and publication fees',
-      'Collaboration opportunities with partner institutions',
-      'Support for patent applications and IP protection',
-      'Regular research symposiums and knowledge sharing sessions'
+      'Contribute meaningfully to cutting-edge projects in HealthTech, FoodTech, EnergyTech, and FinTech',
+      'Gain real-world experience alongside leading experts, innovators, and policy thinkers',
+      'Develop professional and technical skills through structured mentorship and training',
+      'Assist meaningfully in cross-disciplinary research and strategic initiatives that advance NewTIFI’s mission',
+      'Build lasting connections and explore career paths within innovation, regulation, and impact-driven technology'
     ]
-  }
+  },
 ];
 
 const legalInsightContent = [
@@ -514,15 +511,10 @@ const Home = () => {
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-lg text-gray-700 mb-6">{item.description}</p>
-                      {/* Insert extra paragraph for Doctoral Scholarships and Mentorship Programs only */}
+                      {/* Insert extra paragraph for Doctoral Scholarships only */}
                       {item.title === 'Doctoral Scholarships' && (
                         <p className="text-base text-gray-700 mb-6">
                           NewTIFI believes the future of investment innovation depends on courageous minds unafraid to ask the big questions – so we fund doctoral scholars in promising technological fields who dare to challenge convention and push their field forward
-                        </p>
-                      )}
-                      {item.title === 'Mentorship Programs' && (
-                        <p className="text-base text-gray-700 mb-6">
-                          NewTIFI is committed to cultivating leadership that lasts – so we pair emerging talent with experienced mentors to transfer wisdom, values, and vision
                         </p>
                       )}
                       <ul className="space-y-3">
@@ -537,11 +529,6 @@ const Home = () => {
                 </div>
                 ))}
               </ScrollReveal>
-               {/* Internships Info Box - now styled to match the preview box */}
-               <div className="mt-8 bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8 w-full text-left -ml-4">
-                 <span className="text-xl font-semibold text-newtifi-navy mb-2 block">Internships</span>
-                 <span className="text-base text-gray-700">We are driven to turn curiosity into capability – so we welcome aspiring professionals into our ecosystem through hands-on internships that shape both their path and ours</span>
-               </div>
             </div>
           </ScrollReveal>
         </div>
