@@ -805,12 +805,7 @@ export default function InvestmentManagementJournal() {
                 </p>
 
                 {expandedOverview === idx && (
-                  <div className="mb-2">
-                    <div className="w-full rounded border border-gray-200 bg-[#f5f7fa] overflow-hidden" style={{ height: '360px' }}>
-                      {/* PDF Viewer */}
-                      // Removed PDF viewer and download link
-                    </div>
-                  </div>
+                  <></>
                 )}
                 <div className="mt-2 text-xs text-newtifi-teal truncate">Click to read full article</div>
               </div>

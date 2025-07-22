@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('user'));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,12 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkLogin = () => setIsLoggedIn(!!localStorage.getItem('user'));
+    window.addEventListener('storage', checkLogin);
+    return () => window.removeEventListener('storage', checkLogin);
   }, []);
 
   const toggleMenu = () => {
@@ -42,10 +49,12 @@ const Navbar = () => {
           <img 
             src="/assets/images/logo.png" 
             alt="NewTIFI Logo" 
-            className="h-7 md:h-9 w-auto"
-            style={{ minHeight: '28px' }}
+            className="h-[33px] md:h-[44px] w-auto"
+            style={{ minHeight: '34px' }}
           />
-          <span className="text-white text-[10px] md:text-xs font-light hidden md:block whitespace-nowrap">
+          <span 
+            className="text-white text-[12px] md:text-base font-light hidden md:block whitespace-nowrap"
+          >
             New Technologies & Investment Fund Institute
           </span>
         </Link>
@@ -69,7 +78,7 @@ const Navbar = () => {
           <Link 
             to="/" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname === "/" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -79,7 +88,7 @@ const Navbar = () => {
           <Link 
             to="/who-we-are" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname === "/who-we-are" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -89,7 +98,7 @@ const Navbar = () => {
           <Link 
             to="/publishing/journals/investment-management" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname.startsWith("/publishing") && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -99,7 +108,7 @@ const Navbar = () => {
           <Link 
             to="/membership" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname === "/membership" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -109,7 +118,7 @@ const Navbar = () => {
           <Link 
             to="/contact" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname === "/contact" && "text-newtifi-teal"
             )}
             onClick={() => setIsMenuOpen(false)}
@@ -119,15 +128,32 @@ const Navbar = () => {
         </nav>
 
         {/* Login Button */}
+        <div className="flex items-center gap-3">
+          {isLoggedIn && (
+            <span className="hidden md:inline-block text-green-200 text-sm font-semibold">Your Account (Logged in)</span>
+          )}
+          <Link 
+            to="/login" 
+            className={cn(
+              "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase",
+              "text-base font-medium tracking-wide"
+            )}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            Sign In
+          </Link>
+        </div>
+
+        {/* For mobile menu, add below nav links: */}
+        {isLoggedIn && (
+          <span className="md:hidden block text-green-200 text-sm font-semibold text-center mt-2">Your Account (Logged in)</span>
+        )}
         <Link 
           to="/login" 
-          className={cn(
-            "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300",
-            "text-base font-medium tracking-wide"
-          )}
+          className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
           onClick={() => setIsMenuOpen(false)}
         >
-          Login / Sign Up
+          Sign In
         </Link>
       </div>
     </header>
