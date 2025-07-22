@@ -14,6 +14,15 @@ const GoogleIcon = () => (
   </svg>
 );
 
+// Replace GoogleIcon with official SVG (already present)
+// Add LinkedIn official SVG
+const LinkedInLogo = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+    <rect width="24" height="24" rx="4" fill="#0077B5"/>
+    <path d="M7.1 9.5H4.9V19H7.1V9.5ZM6 8.4C6.7 8.4 7.2 7.9 7.2 7.2C7.2 6.5 6.7 6 6 6C5.3 6 4.8 6.5 4.8 7.2C4.8 7.9 5.3 8.4 6 8.4ZM19 19H16.8V14.2C16.8 13.1 16.8 11.7 15.2 11.7C13.6 11.7 13.4 12.9 13.4 14.1V19H11.2V9.5H13.3V10.7H13.3C13.6 10.1 14.4 9.4 15.6 9.4C18.1 9.4 19 10.9 19 13.1V19Z" fill="white"/>
+  </svg>
+);
+
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
@@ -40,6 +49,19 @@ export default function Login() {
     }, 1000);
   };
 
+  const handleSocialLogin = (provider) => {
+    // Simulate user info
+    const user = {
+      name: provider === 'google' ? 'Google User' : 'LinkedIn User',
+      email: provider === 'google' ? 'user@gmail.com' : 'user@linkedin.com',
+      isLoggedIn: true,
+      provider
+    };
+    localStorage.setItem('user', JSON.stringify(user));
+    navigate('/');
+  };
+  const isLoggedIn = !!localStorage.getItem('user');
+
   return (
     <main className="min-h-screen flex items-center justify-center bg-[#f8fafc]" style={{ minHeight: '100vh' }}>
       <div className="w-full max-w-lg flex flex-col gap-8 mt-16">
@@ -55,6 +77,7 @@ export default function Login() {
               type="button"
               className="w-full flex items-center justify-center gap-2 border border-newtifi-teal rounded-lg py-3 px-4 text-newtifi-navy hover:bg-newtifi-teal hover:text-white transition-colors font-medium shadow-sm focus:ring-2 focus:ring-newtifi-navy"
               style={{ background: '#fff' }}
+              onClick={() => handleSocialLogin('google')}
             >
               <GoogleIcon />
               Continue with Google
@@ -63,11 +86,15 @@ export default function Login() {
               type="button"
               className="w-full flex items-center justify-center gap-2 border border-newtifi-navy rounded-lg py-3 px-4 text-newtifi-navy hover:bg-newtifi-navy hover:text-white transition-colors font-medium shadow-sm focus:ring-2 focus:ring-newtifi-navy"
               style={{ background: '#fff' }}
+              onClick={() => handleSocialLogin('linkedin')}
             >
-              <Linkedin className="w-5 h-5" />
+              <LinkedInLogo />
               Continue with LinkedIn
             </button>
           </div>
+          {isLoggedIn && (
+            <div className="text-green-700 text-center mt-4 font-semibold">Your Account (Logged in)</div>
+          )}
         </div>
         {/* Email/Password Card */}
         <div className="bg-white rounded-xl shadow-lg border border-newtifi-navy/20 p-8 flex flex-col gap-6">

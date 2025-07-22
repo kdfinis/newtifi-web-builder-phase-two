@@ -32,34 +32,20 @@ const teamMembers = [
 
 const values = [
   {
-    title: 'Unseen Opportunities',
-    description: 'We push boundaries and challenge conventional thinking to develop breakthrough solutions.',
-    details: [
-      'Fostering creative thinking and experimentation',
-      'Embracing emerging technologies and methodologies',
-      'Encouraging cross-disciplinary collaboration',
-      'Supporting risk-taking and learning from failure'
-    ]
+    title: 'Purposeful Innovation',
+    description: 'We exist to empower scientific breakthroughs that address the world’s most pressing challenges – from healthcare and food security to sustainable resources and financial systems. Our mission is to turn transformative ideas into solutions that serve society for generations to come.'
   },
   {
-    title: 'Value Creation',
-    description: 'We maintain the highest standards of ethical conduct and transparency in all our work.',
-    details: [
-      'Rigorous research methodologies',
-      'Transparent reporting and communication',
-      'Ethical considerations in all projects',
-      'Accountability to our stakeholders'
-    ]
+    title: 'Integrity Through Knowledge',
+    description: 'We are committed to academic independence, intellectual rigour, and open access to knowledge. Our journals, reviews, and events are designed to inform, educate, and influence – with no commercial or political agenda. Our publishing model ensures trust, and our governance guarantees transparency.'
   },
   {
-    title: 'Exceptional Partnerships',
-    description: 'We focus on creating meaningful, lasting change that benefits society as a whole.',
-    details: [
-      'Measurable outcomes and success metrics',
-      'Sustainable and scalable solutions',
-      'Long-term partnerships and engagement',
-      'Focus on systemic change'
-    ]
+    title: 'Investing in People',
+    description: 'All profits are reinvested into PhD scholarships. Through mentorships, internships, and funding, we nurture the next generation of researchers and innovators, supporting their journey from vision to real-world impact.'
+  },
+  {
+    title: 'Collaboration Without Border for the Common Good',
+    description: 'We unite a global network of academics, professionals, policymakers, and entrepreneurs to foster interdisciplinary dialogue and systemic change. Our governance is transparent, our structure non-profit, and our mission aligned with the public interest.'
   }
 ];
 
@@ -106,7 +92,7 @@ const WhoWeAre = () => {
         <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-teal/5 to-transparent"></div>
         <div className="container mx-auto relative">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-lg shadow-newtifi-teal/5">
               <p className="text-xl text-white/90 leading-relaxed">
@@ -127,47 +113,19 @@ const WhoWeAre = () => {
             </p>
           </div>
           
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
-              {/* Menu Buttons */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                {values.map((value) => (
-                  <button
-                    key={value.title}
-                    onClick={() => setActiveValue(value.title)}
-                    className={cn(
-                      "px-8 py-4 rounded-lg text-lg font-light transition-all duration-300",
-                      "border border-white/20 backdrop-blur-sm",
-                      activeValue === value.title
-                        ? "bg-[#6F8FBF] text-white"
-                        : "bg-transparent hover:bg-white/10 text-white"
-                    )}
-                  >
-                    {value.title}
-                  </button>
-                ))}
+              <div className="mb-10 text-center">
+                <p className="text-xl text-white/80 font-light mb-2">Some Key principles that guide our work and shape our impact</p>
+                <p className="text-lg text-white/70">At NewTIFI, our values are rooted in purpose, guided by principle, and designed to support lasting impact through research, innovation, and collaboration</p>
               </div>
-
-              {/* Content */}
-              <div className="mt-12">
-                <h3 className="text-2xl font-light italic mb-6 text-white">
-                  Collaborations and partnerships are critical to our success.
-                </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
-                  We build collaborative relationships with investors and partners, including best-in-class brands,
-                  businesses and individuals. Our portfolio has prospered on the strong relationships we've built with
-                  management teams and collaborators from day one.
-                </p>
-                <div className="mt-8">
-                  <ul className="space-y-3">
-                    {values.find(v => v.title === activeValue)?.details.map((detail, i) => (
-                      <li key={i} className="flex items-start gap-2 text-base text-white/80">
-                        <span className="text-newtifi-teal mt-1">•</span>
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {values.map((value) => (
+                  <div key={value.title} className="bg-white/10 rounded-xl p-6 border border-white/10 shadow">
+                    <h3 className="text-xl font-bold mb-4 text-newtifi-teal">{value.title}</h3>
+                    <p className="text-white/90 leading-relaxed">{value.description}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
