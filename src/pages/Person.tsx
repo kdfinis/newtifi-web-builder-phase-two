@@ -43,27 +43,28 @@ Ezechiel holds an LL.M. from the University of Pennsylvania Carey Law School, an
     urlName: 'karlo-definis-ficp',
     title: 'COO & General Secretary',
     shortBio: 'Overseeing operational excellence and strategic initiatives across NewTIFI\'s programs and partnerships.',
-    fullBio: `As Chief Operating Officer and General Secretary of the New Technologies & Investment Funds Institute, Karlo Definis is responsible for the day-to-day management and strategic direction of the organization. He oversees operations, coordinates cross-functional teams, and ensures that NewTIFI’s programs and initiatives run smoothly and efficiently.
+    fullBio: `Karlo Definis is a senior executive with a strong record of operational leadership, strategic execution, and client-focused program delivery. As Chief Operating Officer and General Secretary of NewTIFI, he is responsible for managing internal operations, coordinating institutional initiatives, and ensuring effective execution across research, policy, and education programs. His approach is defined by accountability, clear systems thinking, and an ability to implement institutional priorities with discipline and integrity.
 
-Karlo’s leadership is grounded in a practical, results-oriented approach. He has played a key role in developing and scaling innovative programs in FinTech, HealthTech, FoodTech, and EnergyTech, as well as fostering cross-sector partnerships that advance NewTIFI’s mission. He has built strong professional networks, maintained high standards of compliance and service delivery, and contributed to the Institute’s reputation for excellence in research, education, and industry engagement.
+Prior to this role, Karlo served as Director of the Executive Master in Financial Services Innovation at Luxembourg School of Business, where he led one of the institution’s flagship programs for industry professionals. His work spanned program design, marketing strategy, and corporate outreach, with direct responsibility for relationship management and business development across key institutional clients. He has successfully translated academic objectives into commercially viable solutions and built long-term partnerships based on trust and value delivery.
 
-With a background in Economics and Business Administration, Karlo is recognized for his analytical mindset, strategic vision, and ability to drive organizational growth. He is skilled in business development, partnership management, and process optimization, and is passionate about fostering a collaborative and high-performing culture at NewTIFI. His work includes designing and implementing executive education programs, supporting doctoral scholarship initiatives, and facilitating dialogue between researchers, industry leaders, and policymakers.
+Karlo also led the full digital transformation of the business school, overseeing the design and implementation of enterprise-level cloud systems, online learning environments, and digital infrastructure for both faculty and administrative teams. As a certified IT professional, he continues to advise on technology integration and automation, with a particular focus on operational efficiency, compliance workflows, and contributed to the development of AI tools and solutions.
 
-Karlo’s international perspective and commitment to continuous improvement have made him a trusted leader within the Institute and among its partners. He is fluent in English, Italian, and Croatian, and is valued for his integrity, adaptability, and dedication to advancing NewTIFI’s mission of responsible innovation and sustainable impact.`,
+Throughout his career, he has taken on key roles in accreditation and audit readiness, managing complex documentation processes aligned with European quality standards and national frameworks. He is known for his attention to detail, clarity in communication, and ability to align strategic goals with measurable execution.`,
     expertise: [
-      'Operational leadership and strategic management at NewTIFI',
-      'Program development and execution in FinTech, HealthTech, FoodTech, and EnergyTech',
-      'Cross-sector partnerships and stakeholder engagement',
-      'Business development and organizational growth',
-      'Executive education and professional training',
-      'Process optimization and compliance in research and innovation',
-      'Facilitating collaboration between academia, industry, and policymakers'
+      'Executive operations and institutional management',
+      'Client relationship development and stakeholder engagement',
+      'Sales strategy, B2B marketing, and corporate outreach',
+      'Digital transformation, cloud systems, and IT integration',
+      'AI tools and applied innovation in organizational settings',
+      'Program design and professional learning delivery',
+      'Accreditation management and audit preparation under European standards'
     ],
     achievements: [
-      'Streamlined NewTIFI\'s operational processes',
-      'Established key strategic partnerships',
-      'Implemented innovative program management systems',
-      'Led successful international collaboration initiatives'
+      'Directed the Executive Master in Financial Services Innovation, aligning business education with the needs of the financial industry',
+      'Led full-scale digital transformation of academic operations at LSB, including cloud infrastructure and virtual delivery models',
+      'Contributed to the development of AI tools and solutions for internal and external institutional use',
+      'Designed and delivered client-facing education programs with lasting institutional partnerships',
+      'Managed accreditation documentation and audits across multiple quality frameworks, ensuring full compliance and institutional readiness'
     ],
     imageSrc: '/assets/images/team/karlo-definis.jpg',
     linkedin: 'https://linkedin.com/in/karlo-definis'
