@@ -156,7 +156,7 @@ const LegalCommentaryManager: React.FC = () => {
             <button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-base font-medium whitespace-nowrap ${
                 selectedCategory === category.id
                   ? 'bg-[#0A0A23] text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -172,7 +172,7 @@ const LegalCommentaryManager: React.FC = () => {
             <button
               key={status.id}
               onClick={() => setSelectedStatus(status.id)}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+              className={`px-4 py-2 rounded-full text-base font-medium whitespace-nowrap ${
                 selectedStatus === status.id
                   ? 'bg-[#0A0A23] text-white'
                   : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -187,7 +187,7 @@ const LegalCommentaryManager: React.FC = () => {
       {/* Add/Edit Form */}
       {showAddForm && (
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-[#0A0A23] mb-4">
+          <h3 className="text-base font-semibold text-[#0A0A23] mb-4">
             {editingItem ? 'Edit Legal Commentary' : 'Add Legal Commentary'}
           </h3>
           <LegalCommentaryForm
@@ -231,8 +231,8 @@ const LegalCommentaryManager: React.FC = () => {
               {filteredCommentaries.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4">
-                    <div className="text-sm font-medium text-[#0A0A23]">{item.title}</div>
-                    <div className="text-sm text-gray-500 line-clamp-2">{item.summary}</div>
+                    <div className="text-base font-medium text-[#0A0A23]">{item.title}</div>
+                    <div className="text-base text-gray-500 line-clamp-2">{item.summary}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getCategoryColor(item.category)}`}>
@@ -244,13 +244,13 @@ const LegalCommentaryManager: React.FC = () => {
                       {item.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-base text-gray-500">
                     {item.author}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-base text-gray-500">
                     {item.views}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium">
                     <button
                       onClick={() => handleEditCommentary(item)}
                       className="text-[#0A0A23] hover:text-[#1a1a40] mr-3"
@@ -276,7 +276,7 @@ const LegalCommentaryManager: React.FC = () => {
             </svg>
           </div>
           <p className="text-gray-600 font-medium">No legal commentaries found</p>
-          <p className="text-sm text-gray-500 mt-1">Create your first legal commentary to get started</p>
+          <p className="text-base text-gray-500 mt-1">Create your first legal commentary to get started</p>
         </div>
       )}
     </div>
@@ -301,7 +301,7 @@ const CommentaryCard: React.FC<{
         </span>
       </div>
       <h3 className="font-semibold text-[#0A0A23] mb-2 line-clamp-2">{item.title}</h3>
-      <p className="text-sm text-gray-600 mb-3 line-clamp-3">{item.summary}</p>
+      <p className="text-base text-gray-600 mb-3 line-clamp-3">{item.summary}</p>
       <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
         <span>{item.author}</span>
         <span>{item.publishDate}</span>
@@ -323,7 +323,7 @@ const CommentaryCard: React.FC<{
         </div>
         <button
           onClick={onEdit}
-          className="text-sm text-[#0A0A23] hover:text-[#1a1a40] font-medium"
+          className="text-base text-[#0A0A23] hover:text-[#1a1a40] font-medium"
         >
           Edit
         </button>
@@ -365,7 +365,7 @@ const LegalCommentaryForm: React.FC<{
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Title</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Title</label>
           <input
             type="text"
             value={formData.title}
@@ -375,7 +375,7 @@ const LegalCommentaryForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Category</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Category</label>
           <select
             value={formData.category}
             onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
@@ -390,7 +390,7 @@ const LegalCommentaryForm: React.FC<{
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Status</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Status</label>
           <select
             value={formData.status}
             onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
@@ -403,7 +403,7 @@ const LegalCommentaryForm: React.FC<{
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Author</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Author</label>
           <input
             type="text"
             value={formData.author}
@@ -414,7 +414,7 @@ const LegalCommentaryForm: React.FC<{
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-[#0A0A23] mb-1">Summary</label>
+        <label className="block text-base font-medium text-[#0A0A23] mb-1">Summary</label>
         <textarea
           value={formData.summary}
           onChange={(e) => setFormData({ ...formData, summary: e.target.value })}
@@ -425,7 +425,7 @@ const LegalCommentaryForm: React.FC<{
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#0A0A23] mb-1">Content</label>
+        <label className="block text-base font-medium text-[#0A0A23] mb-1">Content</label>
         <textarea
           value={formData.content}
           onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -438,7 +438,7 @@ const LegalCommentaryForm: React.FC<{
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Tags</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Tags</label>
           <input
             type="text"
             value={formData.tags}
@@ -448,7 +448,7 @@ const LegalCommentaryForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Legal References</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Legal References</label>
           <input
             type="text"
             value={formData.legalReferences}
@@ -460,7 +460,7 @@ const LegalCommentaryForm: React.FC<{
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-[#0A0A23] mb-1">Related Articles</label>
+        <label className="block text-base font-medium text-[#0A0A23] mb-1">Related Articles</label>
         <input
           type="text"
           value={formData.relatedArticles}
@@ -478,7 +478,7 @@ const LegalCommentaryForm: React.FC<{
           onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
           className="h-4 w-4 text-[#0A0A23] focus:ring-[#0A0A23] border-gray-300 rounded"
         />
-        <label htmlFor="featured" className="ml-2 block text-sm text-[#0A0A23]">
+        <label htmlFor="featured" className="ml-2 block text-base text-[#0A0A23]">
           Featured commentary
         </label>
       </div>

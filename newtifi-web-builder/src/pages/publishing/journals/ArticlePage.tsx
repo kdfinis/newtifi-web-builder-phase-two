@@ -130,14 +130,14 @@ export default function ArticlePage() {
     return (
       <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 text-lg mb-4">Article not found</p>
-          <p className="text-gray-600 text-sm mb-4">Slug: {slug}</p>
-          <p className="text-gray-600 text-sm mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
+          <p className="text-red-600 text-base mb-4">Article not found</p>
+          <p className="text-gray-600 text-base mb-4">Slug: {slug}</p>
+          <p className="text-gray-600 text-base mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
           
           {/* Debug info */}
           <div className="bg-gray-100 p-4 rounded mb-4 text-left max-w-2xl">
             <h3 className="font-bold mb-2">Debug Info:</h3>
-            <p className="text-sm mb-2">Available articles:</p>
+            <p className="text-base mb-2">Available articles:</p>
             {articles.map((a, idx) => (
               <div key={idx} className="text-xs mb-2 p-2 bg-white rounded">
                 <div><strong>ID:</strong> {a.id}</div>
@@ -182,7 +182,7 @@ export default function ArticlePage() {
     <main className="min-h-screen bg-white pb-20 font-sans">
       <div className="h-20 md:h-24" />
       {/* Breadcrumb navigation */}
-      <nav className="max-w-4xl mx-auto px-2 pt-2 pb-2 text-sm text-gray-500 flex items-center gap-2" aria-label="Breadcrumb">
+      <nav className="max-w-4xl mx-auto px-2 pt-2 pb-2 text-base text-gray-500 flex items-center gap-2" aria-label="Breadcrumb">
         <a href="/" className="hover:underline text-gray-700">Home</a>
         <span className="mx-1">&gt;</span>
         <a href="/publishing/journals/investment-management" className="hover:underline text-gray-700">Articles</a>
@@ -199,7 +199,7 @@ export default function ArticlePage() {
         
         {/* ISSN and Journal Info Banner */}
         <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-4 border border-newtifi-teal/20">
-          <div className="flex flex-wrap items-center justify-between gap-4 text-sm">
+          <div className="flex flex-wrap items-center justify-between gap-4 text-base">
             <div className="flex items-center gap-4">
               <span className="font-semibold text-newtifi-navy">{journalMetadata.title}</span>
               <span className="font-mono text-newtifi-teal">ISSN: {journalMetadata.issn}</span>
@@ -219,12 +219,12 @@ export default function ArticlePage() {
             </div>
             {/* Title, author, date to the right, aligned */}
             <div className="flex-1 flex flex-col justify-start pl-8" style={{ minWidth: 0 }}>
-              <h1 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-1 leading-tight break-words">{meta.title}</h1>
-              <div className="text-gray-700 text-lg mb-1 font-serif">by {meta.authors}</div>
+              <h1 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-1 leading-tight break-words">{meta.title}</h1>
+              <div className="text-gray-700 text-base mb-1 font-serif">by {meta.authors}</div>
               <div className="text-newtifi-teal text-base mb-4 font-serif">Published: <span className="font-medium">{meta.date}</span></div>
               
               {/* DOI and Peer Review Status */}
-              <div className="flex flex-wrap gap-4 mb-4 text-sm">
+              <div className="flex flex-wrap gap-4 mb-4 text-base">
                 <div className="flex items-center gap-1">
                   <ExternalLink className="h-4 w-4 text-newtifi-teal" />
                   <span className="font-mono text-newtifi-teal">DOI: {article.doi}</span>
@@ -246,14 +246,14 @@ export default function ArticlePage() {
 
               {/* Article Preview heading and text wraps around crest */}
               <div className="relative">
-                <h2 className="text-xl font-semibold text-newtifi-navy mt-2 mb-1 font-serif">Abstract</h2>
+                <h2 className="text-base font-semibold text-newtifi-navy mt-2 mb-1 font-serif">Abstract</h2>
                 <p className="text-gray-800 text-base italic mb-2 font-serif" style={{ textAlign: 'justify' }}>{article.abstract}</p>
               </div>
               {/* PDF Download Button */}
               <a
                 href={article.pdfUrl}
                 download
-                className="flex items-center justify-center gap-2 bg-newtifi-teal text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-newtifi-navy hover:text-white transition text-lg w-full md:w-fit mt-2"
+                className="flex items-center justify-center gap-2 bg-newtifi-teal text-white px-8 py-3 rounded-lg font-semibold shadow hover:bg-newtifi-navy hover:text-white transition text-base w-full md:w-fit mt-2"
               >
                 <Download className="h-5 w-5" /> Download PDF
               </a>
@@ -261,7 +261,7 @@ export default function ArticlePage() {
               {/* PDF Preview Dropdown Box */}
               <div className="w-full max-w-2xl mx-auto mt-6 mb-8 bg-white border border-gray-200 rounded-xl shadow">
                 <button
-                  className="w-full flex items-center justify-between px-4 py-2 text-newtifi-navy font-semibold text-sm bg-gray-50 rounded-t-xl hover:bg-newtifi-teal hover:text-white transition"
+                  className="w-full flex items-center justify-between px-4 py-2 text-newtifi-navy font-semibold text-base bg-gray-50 rounded-t-xl hover:bg-newtifi-teal hover:text-white transition"
                   onClick={() => setShowPdfPreview((prev) => !prev)}
                 >
                   <span>Show PDF Preview</span>
@@ -286,8 +286,8 @@ export default function ArticlePage() {
         {/* Peer Review and Archiving Information */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-newtifi-navy mb-3">Peer Review Information</h3>
-            <div className="space-y-2 text-sm text-gray-700">
+            <h3 className="text-base font-semibold text-newtifi-navy mb-3">Peer Review Information</h3>
+            <div className="space-y-2 text-base text-gray-700">
               <div><span className="font-semibold">Status:</span> N/A</div>
               <div><span className="font-semibold">Review Date:</span> N/A</div>
               <div><span className="font-semibold">Acceptance Date:</span> N/A</div>
@@ -296,11 +296,11 @@ export default function ArticlePage() {
           </div>
           
           <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-newtifi-navy mb-3">
+            <h3 className="text-base font-semibold text-newtifi-navy mb-3">
               <Archive className="h-5 w-5 text-newtifi-teal" />
               Archiving & Preservation
             </h3>
-            <div className="space-y-2 text-sm text-gray-700">
+            <div className="space-y-2 text-base text-gray-700">
               <div className="flex items-center gap-2">
                 <CheckCircle className="h-4 w-4 text-newtifi-teal" />
                 <span>CLOCKSS Archive</span>
@@ -318,7 +318,7 @@ export default function ArticlePage() {
         </div>
 
         {/* Article Description - Academic style, bookish font, shaded and shadowed */}
-        <article className="prose prose-lg max-w-none bg-white p-8 rounded-xl border border-gray-100 shadow font-serif" style={{ boxShadow: '0 4px 32px 0 rgba(31, 38, 135, 0.08)', background: 'linear-gradient(180deg, #f5f7fa 0%, #fff 100%)' }}>
+        <article className="prose prose max-w-none bg-white p-8 rounded-xl border border-gray-100 shadow font-serif" style={{ boxShadow: '0 4px 32px 0 rgba(31, 38, 135, 0.08)', background: 'linear-gradient(180deg, #f5f7fa 0%, #fff 100%)' }}>
           <h2 className="text-2xl text-newtifi-navy font-bold font-serif">Description</h2>
           <p className="text-gray-900 font-serif" style={{ textAlign: 'justify' }}>{academic?.description}</p>
         </article>

@@ -9,11 +9,11 @@ const Terms = () => {
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100}>
             <div className="mb-10">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-wider leading-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
                 TERMS &<br />INNOVATION
               </h1>
             </div>
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Building trust through transparent collaboration
             </p>
           </ScrollReveal>

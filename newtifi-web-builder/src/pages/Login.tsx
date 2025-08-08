@@ -44,7 +44,7 @@ export default function Login() {
     <main className="min-h-screen flex items-center justify-center bg-[#f8fafc]" style={{ minHeight: '100vh' }}>
       <div className="w-full max-w-lg flex flex-col gap-8 mt-16">
         <div className="mb-6 mt-2">
-          <h1 className="text-3xl md:text-4xl font-bold text-newtifi-navy leading-tight">
+          <h1 className="text-2xl md:text-4xl font-bold text-newtifi-navy leading-tight">
             Welcome to<br />NewTIFI
           </h1>
         </div>
@@ -78,7 +78,7 @@ export default function Login() {
           </div>
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-newtifi-navy mb-1">Email</label>
+              <label htmlFor="email" className="block text-base font-medium text-newtifi-navy mb-1">Email</label>
               <div className="relative">
                 <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-newtifi-teal" />
                 <input
@@ -94,7 +94,7 @@ export default function Login() {
               </div>
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-newtifi-navy mb-1">Password</label>
+              <label htmlFor="password" className="block text-base font-medium text-newtifi-navy mb-1">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-newtifi-teal" />
                 <input

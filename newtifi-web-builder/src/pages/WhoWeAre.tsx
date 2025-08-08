@@ -72,8 +72,8 @@ const WhoWeAre = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Who We Are</h1>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Who We Are</h1>
+            <p className="text-base text-white/80 leading-relaxed">
               Meet the team driving innovation at Newtifi. We're a diverse group of thinkers, builders, and innovators committed to shaping a better future through technology.
             </p>
           </div>
@@ -84,7 +84,7 @@ const WhoWeAre = () => {
       <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16 pt-24">
-            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Senior Leadership</h2>
+            <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Senior Leadership</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -107,9 +107,9 @@ const WhoWeAre = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-teal/5 to-transparent"></div>
         <div className="container mx-auto relative">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
+            <h2 className="text-2xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-lg shadow-newtifi-teal/5">
-              <p className="text-xl text-white/90 leading-relaxed">
+              <p className="text-base text-white/90 leading-relaxed">
                 NewTIFI exists to empower scientific breakthroughs that create lasting impact for a sustainable and equitable future. We champion researchers and visionaries, providing support to help translate transformative ideas into real-world solutions—advancing healthcare, food security, sustainable resources, and financial systems for the long-term benefit of society.
               </p>
             </div>
@@ -121,8 +121,8 @@ const WhoWeAre = () => {
       <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-12 text-center pt-20">
-            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
-            <p className="text-xl text-gray-700 font-light">
+            <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
+            <p className="text-base text-gray-700 font-light">
               The principles that guide our work and shape our impact.
             </p>
           </div>
@@ -136,7 +136,7 @@ const WhoWeAre = () => {
                     key={value.title}
                     onClick={() => setActiveValue(value.title)}
                     className={cn(
-                      "px-8 py-4 rounded-lg text-lg font-light transition-all duration-300",
+                      "px-8 py-4 rounded-lg text-base font-light transition-all duration-300",
                       "border border-white/20 backdrop-blur-sm",
                       activeValue === value.title
                         ? "bg-[#6F8FBF] text-white"
@@ -153,7 +153,7 @@ const WhoWeAre = () => {
                 <h3 className="text-2xl font-light italic mb-6 text-white">
                   Collaborations and partnerships are critical to our success.
                 </h3>
-                <p className="text-lg text-white/80 leading-relaxed">
+                <p className="text-base text-white/80 leading-relaxed">
                   We build collaborative relationships with investors and partners, including best-in-class brands,
                   businesses and individuals. Our portfolio has prospered on the strong relationships we've built with
                   management teams and collaborators from day one.

@@ -154,7 +154,7 @@ const Person = () => {
               <ScrollReveal className="space-y-6">
                 <div>
                   <h1 className="text-4xl font-bold text-newtifi-navy mb-2">{member.name}</h1>
-                  <p className="text-xl text-gray-600">{member.title}</p>
+                  <p className="text-base text-gray-600">{member.title}</p>
                 </div>
 
                 <div className="flex gap-4">
@@ -176,7 +176,7 @@ const Person = () => {
                   </a>
                 </div>
 
-                <div className="prose prose-lg">
+                <div className="prose prose">
                   {member.fullBio.split('\n\n').map((paragraph, index) => (
                     <p key={index} className="text-gray-600 leading-relaxed">
                       {paragraph}

@@ -226,13 +226,13 @@ const Home = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100} className="max-w-2xl">
-            <h1 className="text-2xl md:text-3xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
             <div className="mb-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-wider leading-tight">
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
                 FOCUS RESEARCH<br />INNOVATE IMPLEMENT
               </h2>
             </div>
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Welcome to the hub where Scientific, Tech and Finance Professionals meet
             </p>
           </ScrollReveal>
@@ -246,10 +246,10 @@ const Home = () => {
             {/* Left side - New Technologies and Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-8">
-                <h1 className="text-4xl md:text-5xl font-light text-newtifi-navy">
+                <h1 className="text-4xl md:text-4xl font-light text-newtifi-navy">
                   New Technologies and Investment Funds Institute
                 </h1>
-                <p className="text-xl text-gray-700">
+                <p className="text-base text-gray-700">
                   A global research institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
                 <div className="space-y-4">
@@ -287,11 +287,11 @@ const Home = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
+                      <h3 className="text-2xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
                         Investment Management Journal
                       </h3>
                     </div>
-                    <p className="text-base md:text-lg text-gray-600 font-light mb-3">
+                    <p className="text-base md:text-base text-gray-600 font-light mb-3">
                       Peer-reviewed research and insights in investment management and financial technology
                     </p>
                     <div className="flex items-center justify-end">
@@ -330,17 +330,17 @@ const Home = () => {
                             <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
                               Featured Article {index + 1}
                             </span>
-                            <span className="text-sm text-gray-500">{article.date}</span>
+                            <span className="text-base text-gray-500">{article.date}</span>
                           </div>
-                          <h3 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">{article.title}</h3>
+                          <h3 className="text-base font-semibold text-newtifi-navy mb-2 line-clamp-2">{article.title}</h3>
                           <div className="flex items-center gap-2 mb-3">
-                            <span className="text-sm text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
-                            {article.author && <span className="text-sm text-gray-600">By {article.author}</span>}
+                            <span className="text-base text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                            {article.author && <span className="text-base text-gray-600">By {article.author}</span>}
                           </div>
-                          <p className="text-sm text-gray-600 line-clamp-2 mb-3">{article.abstract}</p>
+                          <p className="text-base text-gray-600 line-clamp-2 mb-3">{article.abstract}</p>
                           <div className="flex items-center justify-between">
                             <div className="flex items-center gap-2 text-newtifi-teal">
-                              <span className="text-sm font-medium">Read Article</span>
+                              <span className="text-base font-medium">Read Article</span>
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
@@ -356,7 +356,7 @@ const Home = () => {
                           </svg>
                         </div>
                         <p className="text-gray-600 font-medium">No featured articles available</p>
-                        <p className="text-sm text-gray-500 mt-1">Check back soon for new publications</p>
+                        <p className="text-base text-gray-500 mt-1">Check back soon for new publications</p>
                       </div>
                     )}
                     </div>
@@ -374,10 +374,10 @@ const Home = () => {
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
               {/* New Technologies and Investment Funds Institute Pillars Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
-                <h3 className="text-xl text-white/80 text-center mb-12">
+                <h3 className="text-base text-white/80 text-center mb-12">
                   Technology Pillars
                 </h3>
               </ScrollReveal>
@@ -427,7 +427,7 @@ const Home = () => {
                         )}
                       </div>
                       <div className="text-4xl mb-4">{pillar.icon}</div>
-                      <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
+                      <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
                       <p className="text-gray-700 flex-grow">{pillar.description}</p>
                     </div>
                   </ScrollReveal>
@@ -436,10 +436,10 @@ const Home = () => {
 
               {/* What We Do Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
-                <h3 className="text-xl text-white/80 text-center mb-12">
+                <h3 className="text-base text-white/80 text-center mb-12">
                   Financial Pillars
                 </h3>
               </ScrollReveal>
@@ -475,7 +475,7 @@ const Home = () => {
                   >
                     <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
                       <div className="text-4xl mb-4">{item.icon}</div>
-                      <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
+                      <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
                       <p className="text-gray-700 flex-grow">{item.description}</p>
                     </div>
                   </ScrollReveal>
@@ -492,8 +492,8 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
-                <p className="text-xl text-gray-700 font-light">
+                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
+                <p className="text-base text-gray-700 font-light">
                   Our comprehensive scholarship programs support academic excellence and professional development in technology innovation.
                 </p>
               </ScrollReveal>
@@ -513,7 +513,7 @@ const Home = () => {
                       )}
                     >
                       <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm opacity-80">{item.description}</p>
+                      <p className="text-base opacity-80">{item.description}</p>
                     </button>
                   ))}
                 </div>
@@ -531,7 +531,7 @@ const Home = () => {
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
                     <ul className="space-y-3">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3">
@@ -555,8 +555,8 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Legal Insights</h2>
-                <p className="text-xl text-gray-700 font-light">
+                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Legal Insights</h2>
+                <p className="text-base text-gray-700 font-light">
                   Expert legal analysis and regulatory guidance for technology innovation and investment.
                 </p>
               </ScrollReveal>
@@ -576,7 +576,7 @@ const Home = () => {
                       )}
                     >
                       <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm opacity-80">{item.description}</p>
+                      <p className="text-base opacity-80">{item.description}</p>
                     </button>
                   ))}
                 </div>
@@ -594,7 +594,7 @@ const Home = () => {
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
                     <ul className="space-y-3">
                         {item.details.map((detail, index) => (
                           <li key={index} className="flex items-start gap-3">
@@ -618,8 +618,8 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
               <ScrollReveal direction="right" delay={200} className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
-                <p className="text-xl opacity-90 mb-8">
+                <h2 className="text-2xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
+                <p className="text-base opacity-90 mb-8">
                   Join our community of innovators, researchers, and industry leaders.
                     </p>
                   </ScrollReveal>

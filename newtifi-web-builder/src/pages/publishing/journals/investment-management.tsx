@@ -176,13 +176,13 @@ export default function InvestmentManagementJournal() {
               <img src="/assets/images/Lux-Philharmonie.jpeg" alt="Luxembourg Philharmonie" className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200" />
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-newtifi-navy mb-2 leading-tight">New Technologies and Investment Fund Institute Publishing</h1>
-              <p className="text-lg text-gray-700 mb-4">The NewTiFi Publishing platform curates peer-reviewed research, original articles, and thought leadership in investment management, financial technology, and sustainable finance. Our mission is to advance academic discourse and provide actionable insights for professionals, scholars, and policymakers worldwide.</p>
+              <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">New Technologies and Investment Fund Institute Publishing</h1>
+              <p className="text-base text-gray-700 mb-4">The NewTiFi Publishing platform curates peer-reviewed research, original articles, and thought leadership in investment management, financial technology, and sustainable finance. Our mission is to advance academic discourse and provide actionable insights for professionals, scholars, and policymakers worldwide.</p>
               <div className="text-base text-gray-600 mb-2">Featured Journal: <span className="font-semibold text-newtifi-navy">{journalMetadata.title}</span></div>
               <div className="text-base text-newtifi-navy font-semibold mb-2">Editor-in-Chief: <span className="font-bold">Ezechiel Havrenne</span></div>
-              <div className="text-sm text-gray-500 mb-2">Volume 1, Issue 1 &mdash; June 2025</div>
+              <div className="text-base text-gray-500 mb-2">Volume 1, Issue 1 &mdash; June 2025</div>
               {/* ISSN Display */}
-              <div className="text-sm text-newtifi-teal font-mono bg-gray-50 px-3 py-1 rounded inline-block mb-2">
+              <div className="text-base text-newtifi-teal font-mono bg-gray-50 px-3 py-1 rounded inline-block mb-2">
                 ISSN: {journalMetadata.issn}
               </div>
               <div className="text-base text-gray-700 mt-4">Explore our latest issues, in-depth articles, and expert perspectives below.</div>
@@ -195,28 +195,28 @@ export default function InvestmentManagementJournal() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex gap-2 bg-white rounded-full shadow px-1 py-1 w-fit mx-auto overflow-x-auto">
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'journal' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'journal' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('journal'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'journal' ? 'page' : undefined}
             >
               Journal Info
             </button>
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('articles'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'articles' ? 'page' : undefined}
             >
               Articles
             </button>
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'editorial' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'editorial' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('editorial'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'editorial' ? 'page' : undefined}
             >
               Editorial Board
             </button>
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'archiving' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'archiving' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('archiving'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'archiving' ? 'page' : undefined}
             >
@@ -236,8 +236,8 @@ export default function InvestmentManagementJournal() {
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20 mb-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-newtifi-navy mb-3">Journal Information</h3>
-                  <div className="space-y-2 text-sm">
+                  <h3 className="text-base font-semibold text-newtifi-navy mb-3">Journal Information</h3>
+                  <div className="space-y-2 text-base">
                     <div><span className="font-semibold">Title:</span> {journalMetadata.title}</div>
                     <div><span className="font-semibold">ISSN:</span> <span className="font-mono text-newtifi-teal">{journalMetadata.issn}</span></div>
                     <div><span className="font-semibold">Publisher:</span> {journalMetadata.publisher}</div>
@@ -246,8 +246,8 @@ export default function InvestmentManagementJournal() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-newtifi-navy mb-3">Contact Information</h3>
-                  <div className="space-y-2 text-sm">
+                  <h3 className="text-base font-semibold text-newtifi-navy mb-3">Contact Information</h3>
+                  <div className="space-y-2 text-base">
                     <div><span className="font-semibold">Editor-in-Chief:</span> Ezechiel Havrenne</div>
                     <div><span className="font-semibold">Email:</span> <a href="mailto:info@newtifi.com" className="text-newtifi-teal hover:underline">info@newtifi.com</a></div>
                     <div><span className="font-semibold">Location:</span> Luxembourg</div>
@@ -258,21 +258,21 @@ export default function InvestmentManagementJournal() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
+                <h3 className="text-base font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
                   <CheckCircle className="h-5 w-5 text-newtifi-teal" />
                   Aims & Scope
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-gray-700 text-base">
                   Investment management, financial technology, sustainable finance, portfolio theory, fintech innovation, regulatory compliance, and European financial markets.
                 </p>
               </div>
               
               <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
+                <h3 className="text-base font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
                   <Clock className="h-5 w-5 text-newtifi-teal" />
                   Review Process
                 </h3>
-                <div className="text-sm text-gray-700 space-y-1">
+                <div className="text-base text-gray-700 space-y-1">
                   <div><span className="font-semibold">Average Review Time:</span> {journalMetadata.reviewProcess.averageTime}</div>
                   <div><span className="font-semibold">Acceptance Rate:</span> {journalMetadata.reviewProcess.acceptanceRate}</div>
                   <div><span className="font-semibold">Review Type:</span> Double-blind</div>
@@ -281,10 +281,10 @@ export default function InvestmentManagementJournal() {
             </div>
 
             <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm mb-6">
-              <h3 className="text-lg font-semibold text-newtifi-navy mb-3">Indexing & Abstracting</h3>
+              <h3 className="text-base font-semibold text-newtifi-navy mb-3">Indexing & Abstracting</h3>
               <div className="flex flex-wrap gap-2">
                 {journalMetadata.indexing.map((index, idx) => (
-                  <span key={idx} className="bg-newtifi-teal/10 text-newtifi-navy px-3 py-1 rounded-full text-sm font-medium">
+                  <span key={idx} className="bg-newtifi-teal/10 text-newtifi-navy px-3 py-1 rounded-full text-base font-medium">
                     {index}
                   </span>
                 ))}
@@ -312,20 +312,20 @@ export default function InvestmentManagementJournal() {
                     <div className="w-16 h-16 bg-newtifi-navy rounded-full flex items-center justify-center mx-auto mb-3">
                       <Users className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold text-newtifi-navy mb-1">{member.name}</h3>
-                    <p className="text-newtifi-teal font-medium text-sm mb-2">{member.role}</p>
-                    <p className="text-gray-600 text-sm">{member.affiliation}</p>
+                    <h3 className="text-base font-semibold text-newtifi-navy mb-1">{member.name}</h3>
+                    <p className="text-newtifi-teal font-medium text-base mb-2">{member.role}</p>
+                    <p className="text-gray-600 text-base">{member.affiliation}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20">
-              <h3 className="text-lg font-semibold text-newtifi-navy mb-4">Peer Review Process</h3>
+              <h3 className="text-base font-semibold text-newtifi-navy mb-4">Peer Review Process</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-newtifi-navy mb-2">Review Criteria</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
+                  <ul className="text-base text-gray-700 space-y-1">
                     {journalMetadata.reviewProcess.reviewCriteria.map((criterion, idx) => (
                       <li key={idx} className="flex flex-col gap-1">
                         <button
@@ -350,7 +350,7 @@ export default function InvestmentManagementJournal() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-newtifi-navy mb-2">Review Timeline</h4>
-                  <div className="text-sm text-gray-700 space-y-2">
+                  <div className="text-base text-gray-700 space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full"></div>
                       <span>Initial Review: 2-3 weeks</span>
@@ -377,22 +377,22 @@ export default function InvestmentManagementJournal() {
             <h2 className="text-2xl font-semibold text-newtifi-navy mb-6">Digital Preservation & Archiving</h2>
             
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20 mb-6">
-              <h3 className="text-lg font-semibold text-newtifi-navy mb-3">ISSN Compliance Statement</h3>
-              <p className="text-gray-700 text-sm mb-4">
+              <h3 className="text-base font-semibold text-newtifi-navy mb-3">ISSN Compliance Statement</h3>
+              <p className="text-gray-700 text-base mb-4">
                 As part of our commitment to ISSN compliance and academic publishing standards, NewTiFi implements comprehensive digital preservation strategies to ensure long-term accessibility and citation stability of all published content.
               </p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
+                <h3 className="text-base font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
                   <Archive className="h-5 w-5 text-newtifi-teal" />
                   Archiving Policy
                 </h3>
-                <p className="text-gray-700 text-sm mb-4">
+                <p className="text-gray-700 text-base mb-4">
                   {journalMetadata.archivingPolicy}
                 </p>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-base">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-newtifi-teal" />
                     <span>CLOCKSS Archive</span>
@@ -409,14 +409,14 @@ export default function InvestmentManagementJournal() {
               </div>
               
               <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-                <h3 className="text-lg font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
+                <h3 className="text-base font-semibold text-newtifi-navy mb-3 flex items-center gap-2">
                   <ExternalLink className="h-5 w-5 text-newtifi-teal" />
                   DOI Assignment
                 </h3>
-                <p className="text-gray-700 text-sm mb-4">
+                <p className="text-gray-700 text-base mb-4">
                   All articles are assigned Digital Object Identifiers (DOIs) for permanent citation and accessibility, meeting ISSN compliance requirements for persistent identification.
                 </p>
-                <div className="space-y-2 text-sm">
+                <div className="space-y-2 text-base">
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-newtifi-teal" />
                     <span>Permanent URLs</span>
@@ -434,11 +434,11 @@ export default function InvestmentManagementJournal() {
             </div>
 
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20">
-              <h3 className="text-lg font-semibold text-newtifi-navy mb-4">ISSN Compliance: Long-term Preservation Strategy</h3>
-              <p className="text-gray-700 text-sm mb-6">
+              <h3 className="text-base font-semibold text-newtifi-navy mb-4">ISSN Compliance: Long-term Preservation Strategy</h3>
+              <p className="text-gray-700 text-base mb-6">
                 Our preservation strategy is designed to meet and exceed ISSN compliance requirements, ensuring that all published content remains accessible and citable for future generations of researchers and practitioners.
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-base">
                 <div className="text-center">
                   <div className="w-12 h-12 bg-newtifi-navy rounded-full flex items-center justify-center mx-auto mb-2">
                     <span className="text-white font-bold">1</span>
@@ -495,7 +495,7 @@ export default function InvestmentManagementJournal() {
                 }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
+                  <h2 className="text-base font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
                   <button
                     className="ml-2 p-1 rounded hover:bg-newtifi-teal/10"
                     onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === idx ? null : idx); }}
@@ -514,7 +514,7 @@ export default function InvestmentManagementJournal() {
                   <div className="flex items-center gap-1">
                     <span className="font-mono text-newtifi-teal">DOI: {article.doi}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
+                  <div className="flex items-center gap-2 text-base text-gray-600 mb-1">
                     <span>By {article.author}</span>
                   </div>
                 </div>
@@ -529,7 +529,7 @@ export default function InvestmentManagementJournal() {
                 </div>
 
                 {/* Abstract */}
-                <p className="text-gray-700 text-sm mb-3 italic">
+                <p className="text-gray-700 text-base mb-3 italic">
                   {article.abstract}
                 </p>
 
@@ -567,7 +567,7 @@ export default function InvestmentManagementJournal() {
                       onClick={() => setSelectedArticle(article)}
                       aria-current={selectedArticle.filename === article.filename ? 'page' : undefined}
                     >
-                      <div className="truncate text-sm">{article.title}</div>
+                      <div className="truncate text-base">{article.title}</div>
                       <div className="text-xs text-gray-500">{article.date}</div>
                     </button>
                   </li>
@@ -585,9 +585,9 @@ export default function InvestmentManagementJournal() {
           {/* PDF Viewer */}
           <div className="flex-1 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 overflow-auto">
             <div className="mb-4">
-              <h2 className="text-xl font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
+              <h2 className="text-base font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
               <div className="text-gray-500 text-xs mb-2">{selectedArticle.date}</div>
-              <a href={selectedArticle.url} target="_blank" rel="noopener noreferrer" download className="text-newtifi-teal hover:underline text-sm font-medium">Download PDF</a>
+              <a href={selectedArticle.url} target="_blank" rel="noopener noreferrer" download className="text-newtifi-teal hover:underline text-base font-medium">Download PDF</a>
             </div>
             <iframe
               src={selectedArticle.url}
@@ -631,7 +631,7 @@ export default function InvestmentManagementJournal() {
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
-                    <h4 className="text-sm font-semibold text-newtifi-navy mb-2 line-clamp-3 leading-tight">{article.title}</h4>
+                    <h4 className="text-base font-semibold text-newtifi-navy mb-2 line-clamp-3 leading-tight">{article.title}</h4>
                     <div className="text-xs text-gray-500 mb-2">{article.date}</div>
                     {article.author && (
                       <div className="text-xs text-gray-600 mb-2">By {article.author}</div>

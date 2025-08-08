@@ -12,8 +12,8 @@ const Membership = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Join NewTIFI</h1>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Join NewTIFI</h1>
+            <p className="text-base text-white/80 leading-relaxed">
               Become part of a global network of innovators and industry leaders who are shaping the future of technology.
             </p>
           </ScrollReveal>
@@ -24,8 +24,8 @@ const Membership = () => {
       <section className="px-6 py-20 bg-white">
         <div className="container mx-auto">
           <ScrollReveal className="max-w-4xl mx-auto text-center mb-12">
-            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Choose Your Membership</h2>
-            <p className="text-xl text-gray-700 font-light">
+            <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Choose Your Membership</h2>
+            <p className="text-base text-gray-700 font-light">
               Select the membership tier that best fits your needs and goals.
             </p>
           </ScrollReveal>
@@ -115,7 +115,7 @@ const Membership = () => {
                         id="terms-institutional"
                         className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                       />
-                      <label htmlFor="terms-institutional" className="ml-2 block text-sm text-gray-600">
+                      <label htmlFor="terms-institutional" className="ml-2 block text-base text-gray-600">
                         I agree to receive communications
                       </label>
                     </div>
@@ -209,7 +209,7 @@ const Membership = () => {
                         id="terms-individual"
                         className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                       />
-                      <label htmlFor="terms-individual" className="ml-2 block text-sm text-gray-600">
+                      <label htmlFor="terms-individual" className="ml-2 block text-base text-gray-600">
                         I agree to receive communications
                       </label>
                     </div>
@@ -298,7 +298,7 @@ const Membership = () => {
                         id="terms-open"
                         className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                       />
-                      <label htmlFor="terms-open" className="ml-2 block text-sm text-gray-600">
+                      <label htmlFor="terms-open" className="ml-2 block text-base text-gray-600">
                         I agree to receive communications
                       </label>
                     </div>

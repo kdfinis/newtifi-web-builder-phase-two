@@ -98,14 +98,14 @@ export default function Signup() {
           <div className="w-20 h-20 bg-newtifi-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
             <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-12 h-12 object-contain" />
           </div>
-          <h1 className="text-3xl font-bold text-newtifi-navy mb-2">Create Account</h1>
+          <h1 className="text-2xl font-bold text-newtifi-navy mb-2">Create Account</h1>
           <p className="text-gray-600">Join NewTiFi to access research and connect with professionals</p>
         </div>
 
         {/* Signup Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-base font-medium text-gray-700 mb-2">
               Full Name
             </label>
             <div className="relative">
@@ -124,7 +124,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-base font-medium text-gray-700 mb-2">
               Email Address
             </label>
             <div className="relative">
@@ -143,7 +143,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-base font-medium text-gray-700 mb-2">
               Password
             </label>
             <div className="relative">
@@ -169,7 +169,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="confirmPassword" className="block text-base font-medium text-gray-700 mb-2">
               Confirm Password
             </label>
             <div className="relative">
@@ -196,7 +196,7 @@ export default function Signup() {
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-red-600 text-sm">{error}</p>
+              <p className="text-red-600 text-base">{error}</p>
             </div>
           )}
 
@@ -238,7 +238,7 @@ export default function Signup() {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-base text-gray-500">
             Already have an account?{" "}
             <button
               onClick={() => navigate('/login')}

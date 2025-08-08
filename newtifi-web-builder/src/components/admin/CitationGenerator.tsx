@@ -65,12 +65,12 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
 
   return (
     <div className="bg-white border rounded-lg p-4 max-w-2xl">
-      <h3 className="font-semibold text-lg mb-4">Citation & Metadata Generator</h3>
+      <h3 className="font-semibold text-base mb-4">Citation & Metadata Generator</h3>
       
       <div className="space-y-4">
         {/* Format Selection */}
         <div>
-          <label className="block text-sm font-medium mb-2">Citation Format</label>
+          <label className="block text-base font-medium mb-2">Citation Format</label>
           <select 
             value={format} 
             onChange={(e) => setFormat(e.target.value as any)}
@@ -85,7 +85,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
 
         {/* DOI Validator */}
         <div>
-          <label className="block text-sm font-medium mb-2">DOI Validator</label>
+          <label className="block text-base font-medium mb-2">DOI Validator</label>
           <div className="flex space-x-2">
             <input
               type="text"
@@ -98,7 +98,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
               }`}
             />
             {isValidDoi !== null && (
-              <span className={`px-2 py-2 rounded text-sm ${
+              <span className={`px-2 py-2 rounded text-base ${
                 isValidDoi ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
               }`}>
                 {isValidDoi ? '✓ Valid' : '✗ Invalid'}
@@ -109,12 +109,12 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
 
         {/* Citation Output */}
         <div>
-          <label className="block text-sm font-medium mb-2">Generated Citation</label>
+          <label className="block text-base font-medium mb-2">Generated Citation</label>
           <div className="relative">
             <textarea
               value={citation}
               readOnly
-              className="w-full border rounded p-3 bg-gray-50 font-mono text-sm min-h-[100px] resize-none"
+              className="w-full border rounded p-3 bg-gray-50 font-mono text-base min-h-[100px] resize-none"
               style={{ fontFamily: 'monospace' }}
             />
             <button
@@ -129,7 +129,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
         {/* Metadata Preview */}
         {citationData && (
           <div className="bg-gray-50 rounded p-3">
-            <h4 className="font-medium text-sm mb-2">Metadata Preview</h4>
+            <h4 className="font-medium text-base mb-2">Metadata Preview</h4>
             <div className="text-xs space-y-1">
               <div><strong>Title:</strong> {citationData.title || 'N/A'}</div>
               <div><strong>Authors:</strong> {citationData.authors?.join(', ') || 'N/A'}</div>

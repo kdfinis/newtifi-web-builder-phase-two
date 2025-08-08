@@ -48,7 +48,7 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
     return (
       <div className="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">New Scholarship Call</h2>
+          <h2 className="text-base font-bold">New Scholarship Call</h2>
           <button 
             className="text-gray-500 hover:text-gray-700"
             onClick={() => setShowForm(false)}
@@ -58,20 +58,20 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
         </div>
         <form className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-1">Title</label>
+            <label className="block text-base font-medium mb-1">Title</label>
             <input type="text" className="w-full border rounded p-2" />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-base font-medium mb-1">Description</label>
             <textarea className="w-full border rounded p-2 min-h-[120px]" />
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Deadline</label>
+              <label className="block text-base font-medium mb-1">Deadline</label>
               <input type="date" className="w-full border rounded p-2" />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Fields</label>
+              <label className="block text-base font-medium mb-1">Fields</label>
               <select multiple className="w-full border rounded p-2">
                 <option value="healthtech">HealthTech</option>
                 <option value="foodtech">FoodTech</option>
@@ -81,7 +81,7 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Flyer</label>
+            <label className="block text-base font-medium mb-1">Flyer</label>
             <input type="file" className="w-full border rounded p-2" />
           </div>
           <div className="flex gap-2">
@@ -96,7 +96,7 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Scholar Funding Program Manager</h2>
+        <h2 className="text-base font-bold">Scholar Funding Program Manager</h2>
         <button 
           className="bg-[#0A0A23] text-white px-4 py-2 rounded shadow"
           onClick={() => setShowForm(true)}
@@ -117,7 +117,7 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
               onClick={() => setSelectedCall(selectedCall === call.id ? null : call.id)}
             >
               <div className="flex justify-between items-start mb-2">
-                <h3 className="font-semibold text-sm">{call.title}</h3>
+                <h3 className="font-semibold text-base">{call.title}</h3>
                 <span className={`px-2 py-1 rounded text-xs ${getStatusColor(call.status)}`}>
                   {call.status}
                 </span>
@@ -140,10 +140,10 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
         <div className="bg-white rounded-lg shadow p-4">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-semibold">Applicants</h3>
-            <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-sm">Export CSV</button>
+            <button className="bg-gray-100 text-gray-700 px-3 py-1 rounded text-base">Export CSV</button>
           </div>
           <div className="overflow-x-auto">
-            <table className="min-w-full text-sm">
+            <table className="min-w-full text-base">
               <thead>
                 <tr className="bg-gray-50">
                   <th className="p-2 text-left">Name</th>

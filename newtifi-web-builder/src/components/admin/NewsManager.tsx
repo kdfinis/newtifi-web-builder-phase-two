@@ -127,7 +127,7 @@ const NewsManager: React.FC = () => {
           <button
             key={filter.id}
             onClick={() => setSelectedFilter(filter.id)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+            className={`px-4 py-2 rounded-full text-base font-medium whitespace-nowrap ${
               selectedFilter === filter.id
                 ? 'bg-[#0A0A23] text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -141,7 +141,7 @@ const NewsManager: React.FC = () => {
       {/* Add/Edit Form */}
       {showAddForm && (
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-lg font-semibold text-[#0A0A23] mb-4">
+          <h3 className="text-base font-semibold text-[#0A0A23] mb-4">
             {editingItem ? 'Edit News Item' : 'Add News Item'}
           </h3>
           <NewsForm
@@ -185,24 +185,24 @@ const NewsManager: React.FC = () => {
               {filteredNews.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className="text-lg">{getTypeIcon(item.type)}</span>
+                    <span className="text-base">{getTypeIcon(item.type)}</span>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="text-sm font-medium text-[#0A0A23]">{item.title}</div>
-                    <div className="text-sm text-gray-500">{item.author}</div>
+                    <div className="text-base font-medium text-[#0A0A23]">{item.title}</div>
+                    <div className="text-base text-gray-500">{item.author}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(item.status)}`}>
                       {item.status}
                     </span>
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-base text-gray-500">
                     {item.publishDate}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-6 py-4 whitespace-nowrap text-base text-gray-500">
                     {item.views}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium">
                     <button
                       onClick={() => handleEditNews(item)}
                       className="text-[#0A0A23] hover:text-[#1a1a40] mr-3"
@@ -228,7 +228,7 @@ const NewsManager: React.FC = () => {
             </svg>
           </div>
           <p className="text-gray-600 font-medium">No news items found</p>
-          <p className="text-sm text-gray-500 mt-1">Create your first news item to get started</p>
+          <p className="text-base text-gray-500 mt-1">Create your first news item to get started</p>
         </div>
       )}
     </div>
@@ -250,13 +250,13 @@ const NewsCard: React.FC<{
     )}
     <div className="p-4">
       <div className="flex items-center justify-between mb-2">
-        <span className="text-lg">{getTypeIcon(item.type)}</span>
+        <span className="text-base">{getTypeIcon(item.type)}</span>
         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(item.status)}`}>
           {item.status}
         </span>
       </div>
       <h3 className="font-semibold text-[#0A0A23] mb-2 line-clamp-2">{item.title}</h3>
-      <p className="text-sm text-gray-600 mb-3 line-clamp-3">{item.content}</p>
+      <p className="text-base text-gray-600 mb-3 line-clamp-3">{item.content}</p>
       <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
         <span>{item.author}</span>
         <span>{item.publishDate}</span>
@@ -265,7 +265,7 @@ const NewsCard: React.FC<{
         <span className="text-xs text-gray-500">{item.views} views</span>
         <button
           onClick={onEdit}
-          className="text-sm text-[#0A0A23] hover:text-[#1a1a40] font-medium"
+          className="text-base text-[#0A0A23] hover:text-[#1a1a40] font-medium"
         >
           Edit
         </button>
@@ -305,7 +305,7 @@ const NewsForm: React.FC<{
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Title</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Title</label>
           <input
             type="text"
             value={formData.title}
@@ -315,7 +315,7 @@ const NewsForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Type</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Type</label>
           <select
             value={formData.type}
             onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
@@ -328,7 +328,7 @@ const NewsForm: React.FC<{
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Status</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Status</label>
           <select
             value={formData.status}
             onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
@@ -341,7 +341,7 @@ const NewsForm: React.FC<{
           </select>
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Publish Date</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Publish Date</label>
           <input
             type="datetime-local"
             value={formData.publishDate}
@@ -350,7 +350,7 @@ const NewsForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Author</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Author</label>
           <input
             type="text"
             value={formData.author}
@@ -359,7 +359,7 @@ const NewsForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Image URL</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Image URL</label>
           <input
             type="url"
             value={formData.imageUrl}
@@ -371,7 +371,7 @@ const NewsForm: React.FC<{
       </div>
       
       <div>
-        <label className="block text-sm font-medium text-[#0A0A23] mb-1">Content</label>
+        <label className="block text-base font-medium text-[#0A0A23] mb-1">Content</label>
         <textarea
           value={formData.content}
           onChange={(e) => setFormData({ ...formData, content: e.target.value })}
@@ -383,7 +383,7 @@ const NewsForm: React.FC<{
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">Tags</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">Tags</label>
           <input
             type="text"
             value={formData.tags}
@@ -393,7 +393,7 @@ const NewsForm: React.FC<{
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-[#0A0A23] mb-1">External Link</label>
+          <label className="block text-base font-medium text-[#0A0A23] mb-1">External Link</label>
           <input
             type="url"
             value={formData.externalLink}
@@ -412,7 +412,7 @@ const NewsForm: React.FC<{
           onChange={(e) => setFormData({ ...formData, featured: e.target.checked })}
           className="h-4 w-4 text-[#0A0A23] focus:ring-[#0A0A23] border-gray-300 rounded"
         />
-        <label htmlFor="featured" className="ml-2 block text-sm text-[#0A0A23]">
+        <label htmlFor="featured" className="ml-2 block text-base text-[#0A0A23]">
           Featured item
         </label>
       </div>

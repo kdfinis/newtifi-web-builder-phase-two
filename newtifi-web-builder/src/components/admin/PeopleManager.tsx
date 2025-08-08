@@ -38,7 +38,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
     return (
       <div className="bg-white rounded-lg shadow p-6 max-w-2xl mx-auto">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Edit Profile</h2>
+          <h2 className="text-base font-bold">Edit Profile</h2>
           <button 
             className="text-gray-500 hover:text-gray-700"
             onClick={() => setEditingPerson(null)}
@@ -58,7 +58,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
             <input type="file" className="flex-1" />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Name</label>
+            <label className="block text-base font-medium mb-1">Name</label>
             <input 
               type="text" 
               className="w-full border rounded p-2" 
@@ -66,7 +66,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Title</label>
+            <label className="block text-base font-medium mb-1">Title</label>
             <input 
               type="text" 
               className="w-full border rounded p-2" 
@@ -74,7 +74,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1">Bio</label>
+            <label className="block text-base font-medium mb-1">Bio</label>
             <textarea 
               className="w-full border rounded p-2 min-h-[120px]" 
               value={editBio}
@@ -89,7 +89,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
               defaultChecked={editingPerson.isPublic}
               className="mr-2"
             />
-            <label htmlFor="public-facing" className="text-sm">Public-facing</label>
+            <label htmlFor="public-facing" className="text-base">Public-facing</label>
           </div>
           <div className="flex gap-2">
             <button type="submit" className="bg-[#0A0A23] text-white px-4 py-2 rounded">Save</button>
@@ -102,11 +102,11 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
 
   return (
     <div className="space-y-8">
-      <h2 className="text-xl font-bold">People & Contributors Management</h2>
+      <h2 className="text-base font-bold">People & Contributors Management</h2>
 
       {/* Executive Team */}
       <div>
-        <h3 className="text-lg font-semibold mb-4">Executive Team</h3>
+        <h3 className="text-base font-semibold mb-4">Executive Team</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {executives.map((person) => (
             <div 
@@ -121,13 +121,13 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
                 {person.imageUrl ? (
                   <img src={person.imageUrl} alt="" className="w-16 h-16 rounded-full object-cover" />
                 ) : (
-                  <span className="text-gray-500 text-xl">👤</span>
+                  <span className="text-gray-500 text-base">👤</span>
                 )}
               </div>
-              <h4 className="font-semibold text-sm">{person.name}</h4>
+              <h4 className="font-semibold text-base">{person.name}</h4>
               <p className="text-xs text-gray-600">{person.role}</p>
               <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                <span className="text-gray-400 text-sm">✏️</span>
+                <span className="text-gray-400 text-base">✏️</span>
               </div>
             </div>
           ))}
@@ -147,7 +147,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
             </summary>
             <div className="p-4 border-t">
               {people.length === 0 ? (
-                <p className="text-gray-400 text-sm">No {title.toLowerCase()} found.</p>
+                <p className="text-gray-400 text-base">No {title.toLowerCase()} found.</p>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
                   {people.map((person) => (
@@ -163,11 +163,11 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
                         {person.imageUrl ? (
                           <img src={person.imageUrl} alt="" className="w-10 h-10 rounded-full object-cover" />
                         ) : (
-                          <span className="text-gray-500 text-sm">👤</span>
+                          <span className="text-gray-500 text-base">👤</span>
                         )}
                       </div>
                       <div className="flex-1">
-                        <div className="font-medium text-sm">{person.name}</div>
+                        <div className="font-medium text-base">{person.name}</div>
                         <div className="text-xs text-gray-600">{person.role}</div>
                       </div>
                     </div>

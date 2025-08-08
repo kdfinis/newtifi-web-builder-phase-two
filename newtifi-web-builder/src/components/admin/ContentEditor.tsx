@@ -73,7 +73,7 @@ const ContentEditor: React.FC = () => {
         <div className="flex gap-3">
           <button
             onClick={() => setPreviewMode(!previewMode)}
-            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+            className={`px-4 py-2 rounded-md text-base font-medium transition-colors ${
               previewMode 
                 ? 'bg-[#0A0A23] text-white' 
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -123,10 +123,10 @@ const ContentEditor: React.FC = () => {
             <div className="p-6">
               {/* Page Header */}
               <div className="mb-6">
-                <h3 className="text-xl font-semibold text-[#0A0A23] mb-2">
+                <h3 className="text-base font-semibold text-[#0A0A23] mb-2">
                   {currentPage.title}
                 </h3>
-                <div className="flex items-center gap-4 text-sm text-gray-500">
+                <div className="flex items-center gap-4 text-base text-gray-500">
                   <span>Path: {currentPage.path}</span>
                   <span>Last modified: {currentPage.lastModified}</span>
                   <span className={`px-2 py-1 rounded-full text-xs ${
@@ -143,33 +143,33 @@ const ContentEditor: React.FC = () => {
               {!previewMode ? (
                 <div className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+                    <label className="block text-base font-medium text-[#0A0A23] mb-2">
                       Page Content
                     </label>
                     <textarea
                       value={content || currentPage.content}
                       onChange={(e) => setContent(e.target.value)}
                       rows={20}
-                      className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23] font-mono text-sm"
+                      className="w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23] focus:border-[#0A0A23] font-mono text-base"
                       placeholder="Enter your content here..."
                     />
                   </div>
 
                   {/* Toolbar */}
                   <div className="flex gap-2 p-3 bg-gray-50 rounded-lg">
-                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                    <button className="px-3 py-1 text-base bg-white border border-gray-300 rounded hover:bg-gray-50">
                       Bold
                     </button>
-                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                    <button className="px-3 py-1 text-base bg-white border border-gray-300 rounded hover:bg-gray-50">
                       Italic
                     </button>
-                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                    <button className="px-3 py-1 text-base bg-white border border-gray-300 rounded hover:bg-gray-50">
                       Link
                     </button>
-                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                    <button className="px-3 py-1 text-base bg-white border border-gray-300 rounded hover:bg-gray-50">
                       Image
                     </button>
-                    <button className="px-3 py-1 text-sm bg-white border border-gray-300 rounded hover:bg-gray-50">
+                    <button className="px-3 py-1 text-base bg-white border border-gray-300 rounded hover:bg-gray-50">
                       List
                     </button>
                   </div>
@@ -178,7 +178,7 @@ const ContentEditor: React.FC = () => {
                 /* Preview Mode */
                 <div className="prose max-w-none">
                   <div className="p-6 border border-gray-200 rounded-lg bg-gray-50">
-                    <h4 className="text-lg font-semibold text-[#0A0A23] mb-4">Preview</h4>
+                    <h4 className="text-base font-semibold text-[#0A0A23] mb-4">Preview</h4>
                     <div className="bg-white p-4 rounded border">
                       {content || currentPage.content}
                     </div>
@@ -192,10 +192,10 @@ const ContentEditor: React.FC = () => {
 
       {/* SEO Section */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h3 className="text-lg font-semibold text-[#0A0A23] mb-4">SEO Settings</h3>
+        <h3 className="text-base font-semibold text-[#0A0A23] mb-4">SEO Settings</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+            <label className="block text-base font-medium text-[#0A0A23] mb-2">
               Meta Title
             </label>
             <input
@@ -205,7 +205,7 @@ const ContentEditor: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+            <label className="block text-base font-medium text-[#0A0A23] mb-2">
               Meta Description
             </label>
             <input
@@ -215,7 +215,7 @@ const ContentEditor: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+            <label className="block text-base font-medium text-[#0A0A23] mb-2">
               Keywords
             </label>
             <input
@@ -225,7 +225,7 @@ const ContentEditor: React.FC = () => {
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-[#0A0A23] mb-2">
+            <label className="block text-base font-medium text-[#0A0A23] mb-2">
               Canonical URL
             </label>
             <input
