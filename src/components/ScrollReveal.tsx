@@ -1,57 +1,76 @@
-import React, { useEffect, useRef, ReactNode } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
-type ScrollRevealProps = {
-  children: ReactNode;
-  className?: string;
+interface ScrollRevealProps {
+  children: React.ReactNode;
+  direction?: 'up' | 'down' | 'left' | 'right';
   delay?: number;
-  direction?: 'up' | 'down' | 'left' | 'right' | 'none';
-  distance?: number;
-  once?: boolean;
-  duration?: number;
-};
+  className?: string;
+}
 
-const ScrollReveal: React.FC<ScrollRevealProps> = ({
-  children,
-  className = '',
-  delay = 0,
-  direction = 'up',
-  distance = 20,
-  once = true,
-  duration = 800,
+const ScrollReveal: React.FC<ScrollRevealProps> = React.memo(({ 
+  children, 
+  direction = 'up', 
+  delay = 0, 
+  className = '' 
 }) => {
   const elementRef = useRef<HTMLDivElement>(null);
 
-  const getTransformClass = () => {
+  useEffect(() => {
+    const currentElement = elementRef.current;
+    if (!currentElement) return;
+
+    // Ensure content is visible by default
+    currentElement.classList.add('is-visible');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(currentElement);
+
+    return () => {
+      observer.unobserve(currentElement);
+    };
+  }, []);
+
+  const getTransformStyle = () => {
     switch (direction) {
       case 'up':
-        return 'translate-y-[20px]';
+        return 'translateY(30px)';
       case 'down':
-        return '-translate-y-[20px]';
+        return 'translateY(-30px)';
       case 'left':
-        return 'translate-x-[20px]';
+        return 'translateX(30px)';
       case 'right':
-        return '-translate-x-[20px]';
-      case 'none':
-        return '';
+        return 'translateX(-30px)';
       default:
-        return 'translate-y-[20px]';
+        return 'translateY(30px)';
     }
   };
 
   return (
-    <div 
-      ref={elementRef} 
-      className={cn(
-        'appear-on-scroll transition-all duration-1000 ease-out',
-        getTransformClass(),
-        className
-      )}
-      style={{ transitionDelay: `${delay}ms` }}
+    <div
+      ref={elementRef}
+      className={`appear-on-scroll ${className}`}
+      style={{
+        opacity: 1, // Start visible
+        transform: 'translateY(0)', // Start in final position
+        transition: `all 0.6s ease-out ${delay}ms`,
+      }}
     >
       {children}
     </div>
   );
-};
+});
+
+ScrollReveal.displayName = 'ScrollReveal';
 
 export default ScrollReveal;

@@ -148,9 +148,9 @@ const staticArticles = [
     doi: "10.1234/newtifi.2025.001",
     keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
+    filename: "eltifs-compulsory-redemptions.pdf",
+    url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
+    pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -165,9 +165,9 @@ const staticArticles = [
     doi: "10.1234/newtifi.2025.002",
     keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
+    filename: "bafin-portfolio-control.pdf",
+    url: "/articles/investment-management-journal/bafin-portfolio-control",
+    pdfUrl: "/articles/bafin-portfolio-control.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -182,9 +182,9 @@ const staticArticles = [
     doi: "10.1234/newtifi.2025.003",
     keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
     abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
+    filename: "luxembourg-well-informed-investor.pdf",
+    url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
+    pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -201,7 +201,7 @@ function getArticleUrl(article) {
 const Home = () => {
   const [articles] = useState(staticArticles);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   // Get featured articles
@@ -267,10 +267,10 @@ const Home = () => {
                 <h1 className="text-4xl md:text-5xl font-light text-newtifi-navy">
                   New Technologies and Investment Funds Institute
                 </h1>
-                <p className="text-xl text-gray-700">
+                <p className="text-2xl text-gray-700">
                   An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-700 text-lg">
+                <ul className="list-disc pl-6 space-y-3 text-gray-700 text-xl">
                   <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
                   <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
                   <li>Supporting future talent through scholarships, internships, and mentorships</li>
@@ -323,30 +323,80 @@ const Home = () => {
                     </svg>
                   </Button>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-8">
                     {featuredArticles.length > 0 ? (
                       featuredArticles.map((article, index) => (
                         <div 
                           key={article.id}
-                          className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border-l-4 border-newtifi-teal"
+                          className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
-                          <div className="flex items-start justify-between mb-3">
-                            <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
-                              Featured Article {index + 1}
-                            </span>
-                            <span className="text-sm text-gray-500">{article.date}</span>
+                          {/* Article Header with Logo */}
+                          <div className="flex items-start gap-6 mb-6">
+                            {/* Logo */}
+                            <div className="flex-shrink-0">
+                              <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-white group-hover:border-newtifi-teal/30 transition-colors">
+                                <img 
+                                  src="/images/logo.png" 
+                                  alt="NewTIFI Logo"
+                                  className="w-full h-full object-contain p-2"
+                                  onError={(e) => {
+                                    e.currentTarget.style.display = 'none';
+                                  }}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Article Info */}
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-3 mb-2">
+                                <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
+                                  Latest Publication
+                                </span>
+                                <span className="text-sm text-gray-500">{article.date}</span>
+                              </div>
+                              <h3 className="text-xl font-bold text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
+                                {article.title}
+                              </h3>
+                              <div className="flex items-center gap-2 mb-3">
+                                <span className="text-sm text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                                {article.author && (
+                                  <>
+                                    <span className="text-gray-400">•</span>
+                                    <span className="text-sm text-gray-600">By {article.author}</span>
+                                  </>
+                                )}
+                              </div>
+                            </div>
                           </div>
-                          <h3 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">{article.title}</h3>
-                          <div className="flex items-center gap-2 mb-3">
-                            <span className="text-sm text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
-                            {article.author && <span className="text-sm text-gray-600">By {article.author}</span>}
+
+                          {/* Keywords */}
+                          <div className="mb-4">
+                            <div className="flex flex-wrap gap-2">
+                              {article.keywords?.slice(0, 3).map((keyword, kIdx) => (
+                                <span key={kIdx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-medium">
+                                  {keyword}
+                                </span>
+                              ))}
+                              {article.keywords?.length > 3 && (
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-lg text-xs font-medium">
+                                  +{article.keywords.length - 3} more
+                                </span>
+                              )}
+                            </div>
                           </div>
-                          <p className="text-sm text-gray-600 line-clamp-2 mb-3">{article.abstract}</p>
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2 text-newtifi-teal">
-                              <span className="text-sm font-medium">Read Article</span>
-                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                          {/* Abstract */}
+                          <p className="text-gray-600 line-clamp-3 mb-6 leading-relaxed">{article.abstract}</p>
+
+                          {/* Footer */}
+                          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <div className="text-sm text-gray-500">
+                              DOI: {article.doi}
+                            </div>
+                            <div className="flex items-center gap-2 text-newtifi-teal group-hover:text-newtifi-navy transition-colors">
+                              <span className="font-medium">Read Article</span>
+                              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                               </svg>
                             </div>
@@ -354,14 +404,14 @@ const Home = () => {
                         </div>
                       ))
                     ) : (
-                      <div className="text-center py-8">
-                        <div className="text-newtifi-teal mb-2">
-                          <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="text-center py-12">
+                        <div className="text-newtifi-teal mb-4">
+                          <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                           </svg>
                         </div>
-                        <p className="text-gray-600 font-medium">No featured articles available</p>
-                        <p className="text-sm text-gray-500 mt-1">Check back soon for new publications</p>
+                        <p className="text-gray-600 font-medium text-lg">No featured articles available</p>
+                        <p className="text-sm text-gray-500 mt-2">Check back soon for new publications</p>
                       </div>
                     )}
                     </div>

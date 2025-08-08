@@ -33,3 +33,45 @@
 .read-the-docs {
   color: #888;
 }
+
+/* ScrollReveal animations */
+.appear-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.appear-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Direction-specific animations */
+.appear-on-scroll[style*="translateX(30px)"].is-visible {
+  transform: translateX(0);
+}
+
+.appear-on-scroll[style*="translateX(-30px)"].is-visible {
+  transform: translateX(0);
+}
+
+.appear-on-scroll[style*="translateY(-30px)"].is-visible {
+  transform: translateY(0);
+}
+
+/* Fallback: Ensure content is visible after a delay if ScrollReveal fails */
+.appear-on-scroll {
+  animation: fallback-visible 2s ease-out 1s forwards;
+}
+
+@keyframes fallback-visible {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Debug: Add a visible border to ScrollReveal elements */
+.appear-on-scroll {
+  /* border: 1px solid red; */
+}

@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown } from "lucide-react";
+import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown, ChevronUp, User, Calendar, FileText, Award, Globe, BookOpen, Mail, Phone, MapPin, Sparkles, Target, Rocket, Users, Shield, Zap, Star, Quote, Eye, FileText as FileTextIcon, ArrowUpRight } from "lucide-react";
+import ScrollReveal from '@/components/ScrollReveal';
+import PDFPreview from '@/components/PDFPreview';
+import AuthModal from '@/components/AuthModal';
+
 
 // Static articles data - replace API calls
 const staticArticles = [
@@ -23,9 +27,9 @@ const staticArticles = [
       "CSSF PRACTICE"
     ],
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection. The study clarifies the compatibility of redemption provisions with the closed-ended ELTIF model and outlines best practices for implementing termination and amalgamation clauses within fund documentation. It concludes that Luxembourg offers a coherent and operationally flexible platform for ELTIF structuring aligned with the evolving European regulatory landscape.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
+    filename: "eltifs-compulsory-redemptions.pdf",
+    url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
+    pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -54,10 +58,10 @@ const staticArticles = [
       "DAY-TO-DAY DISCRETION",
       "GOVERNANCE RIGHTS IN AIFS"
     ],
-    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM’s exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
+    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM's exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
+    filename: "bafin-aifm-portfolio-control.pdf",
+    url: "/articles/investment-management-journal/bafin-portfolio-control",
+    pdfUrl: "/articles/bafin-aifm-portfolio-control.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -92,10 +96,10 @@ const staticArticles = [
       "ASSESSMENT PROCEDURES",
       "CONTRACTUAL & CRIMINAL LIABILITY"
     ],
-    abstract: "This article provides a comprehensive analysis of Luxembourg’s “Well-Informed Investor” regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg’s private fund landscape.",
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
+    abstract: "This article provides a comprehensive analysis of Luxembourg's \"Well-Informed Investor\" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg's private fund landscape.",
+    filename: "luxembourg-well-informed-investor.pdf",
+    url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
+    pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -115,10 +119,56 @@ const journalMetadata = {
   archivingPolicy: "Digital preservation through CLOCKSS and Portico"
 };
 
+// Submission rules and guidelines
+const submissionRules = {
+  generalGuidelines: [
+    "Articles must be original, unpublished work not submitted elsewhere",
+    "Manuscripts should be between 5,000-12,000 words",
+    "All submissions must be in English",
+    "Authors must follow the journal's citation and formatting guidelines",
+    "Submissions must include an abstract (150-250 words) and keywords (5-10 terms)"
+  ],
+  formattingRequirements: [
+    "Use Times New Roman, 12pt font, double-spaced",
+    "Include page numbers and line numbers",
+    "Use footnotes for citations (not endnotes)",
+    "Include a title page with author information",
+    "Provide separate files for main text, figures, and tables"
+  ],
+  peerReviewProcess: [
+    "All submissions undergo double-blind peer review",
+    "Review process typically takes 6-8 weeks",
+    "Reviewers are selected based on expertise in the field",
+    "Authors receive detailed feedback and revision suggestions",
+    "Final acceptance is subject to editorial approval"
+  ],
+  ethicalGuidelines: [
+    "Authors must disclose any conflicts of interest",
+    "All sources must be properly cited and referenced",
+    "Data and methodology must be transparent and reproducible",
+    "Authors must obtain necessary permissions for copyrighted material",
+    "Plagiarism and self-plagiarism are strictly prohibited"
+  ],
+  publicationTimeline: [
+    "Initial submission review: 2-3 weeks",
+    "Peer review process: 6-8 weeks",
+    "Revision period: 4-6 weeks",
+    "Final acceptance to publication: 2-4 weeks",
+    "Total timeline: 4-6 months from submission to publication"
+  ]
+};
+
 interface Article {
   id: string;
   title: string;
   author: string;
+  authorPhoto?: string;
+  authorBio?: string;
+  authorCredentials?: string;
+  authorEmail?: string;
+  authorCompany?: string;
+  authorCompanyLogo?: string;
+  authorCompanyUrl?: string;
   date: string;
   doi: string;
   keywords: string[];
@@ -136,13 +186,12 @@ interface Article {
   peerReviewStatus?: string;
 }
 
-// This should match the logic in the main journal page
-function parseArticleMeta(filename) {
-  const match = filename.match(/^\(\d{4}\.\d{2}\.\d{2}\)_(.+?) - (.+?)_Final\.pdf$/);
-  if (!match) return { date: '', title: filename };
-  let date = match[1] ? match[1].replace(/\./g, '-') : '';
-  let title = match[3] || filename;
-  return { date, title };
+// Parse article metadata from the article object
+function parseArticleMeta(article) {
+  return { 
+    date: article.date, 
+    title: article.title 
+  };
 }
 
 export default function ArticlePage() {
@@ -157,6 +206,10 @@ export default function ArticlePage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPdfPreview, setShowPdfPreview] = useState(false);
+
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [currentUser, setCurrentUser] = useState<any>(null);
 
   // Find the article by slug or filename
   let article = undefined;
@@ -190,7 +243,7 @@ export default function ArticlePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-newtifi-teal mx-auto mb-4"></div>
           <p className="text-gray-600">Loading article...</p>
@@ -201,7 +254,7 @@ export default function ArticlePage() {
 
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
           <p className="text-red-600 text-lg mb-4">Article not found</p>
           <p className="text-gray-600 text-sm mb-4">Slug: {slug}</p>
@@ -232,7 +285,7 @@ export default function ArticlePage() {
     );
   }
 
-  const meta = { ...parseArticleMeta(article.filename), authors: article.author };
+  const meta = { ...parseArticleMeta(article), authors: article.author };
 
   // Academic-style preview and description for each article
   const academicPreviews = {
@@ -251,121 +304,290 @@ export default function ArticlePage() {
   };
   const academic = academicPreviews[article.filename];
 
+  // Authentication handlers
+  const handleAuthSuccess = (user: any) => {
+    setCurrentUser(user);
+    setIsAuthenticated(true);
+    setShowLoginModal(false);
+  };
+
+  const handleDownload = () => {
+    if (!isAuthenticated) {
+      setShowLoginModal(true);
+      return;
+    }
+    window.open(article.pdfUrl, '_blank');
+  };
+
+  const handlePdfPreview = () => {
+    setShowPdfPreview(true);
+  };
+
   return (
-    <main className="min-h-screen bg-white pb-20 font-sans">
-      <div className="h-20 md:h-24" />
-      {/* Breadcrumb navigation */}
-      <nav className="max-w-4xl mx-auto px-2 pt-2 pb-2 text-sm text-gray-500 flex items-center gap-2" aria-label="Breadcrumb">
-        <a href="/" className="hover:underline text-gray-700">Home</a>
-        <span className="mx-1">&gt;</span>
-        <a href="/publishing/journals/investment-management" className="hover:underline text-gray-700">Articles</a>
-        <span className="mx-1">&gt;</span>
-        <span className="text-newtifi-navy font-semibold truncate" title={meta.title}>{meta.title}</span>
-      </nav>
-      <section className="max-w-4xl mx-auto px-2 pt-4 flex flex-col gap-8">
-        <button
-          className="flex items-center gap-2 px-3 py-2 mb-2 bg-newtifi-navy text-white rounded shadow hover:bg-newtifi-teal hover:text-newtifi-navy transition font-medium w-fit"
-          onClick={() => navigate(-1)}
-        >
-          <ArrowLeft className="h-4 w-4" /> Back
-        </button>
+    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      {/* Hero Section with Background Graphics */}
+      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        {/* Background Graphics */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         
-        {/* ISSN and Journal Info Banner */}
-        <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-4 border border-newtifi-teal/20">
-          <div className="flex flex-wrap items-center justify-between gap-4 text-sm">
-            <div className="flex items-center gap-4">
-              <span className="font-semibold text-newtifi-navy">{journalMetadata.title}</span>
-              <span className="font-mono text-newtifi-teal">ISSN: {journalMetadata.issn}</span>
-              <span className="text-gray-600">{journalMetadata.publisher}</span>
-            </div>
-          </div>
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-newtifi-teal/10 rounded-full"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/10 transform rotate-45"></div>
+        
+        {/* Stencil-style decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <path d="M20,20 L180,20 L180,180 L20,180 Z" stroke="white" strokeWidth="2" fill="none"/>
+            <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="2" fill="none"/>
+            <path d="M60,100 L140,100 M100,60 L100,140" stroke="white" strokeWidth="2"/>
+          </svg>
         </div>
 
-        {/* Article Preview - Crest square with rounded corners, text wraps, title/author/date beside image, image 20% larger */}
-        <div className="w-full bg-white rounded-2xl border border-gray-100 mb-2 shadow-2xl flex flex-col p-0" style={{ boxShadow: '0 0 48px 0 rgba(31, 38, 135, 0.18)' }}>
-          <div className="flex flex-row gap-0 items-start p-8">
-            {/* Crest/logo, square with rounded corners and navy background, 20% larger */}
-            <div className="flex-shrink-0 flex items-start justify-center" style={{ minWidth: '8.4rem', minHeight: '8.4rem' }}>
-              <div className="bg-newtifi-navy flex items-center justify-center rounded-xl" style={{ width: '8.4rem', height: '8.4rem', padding: '0.5rem' }}>
-                <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-full h-full object-contain rounded-xl bg-transparent" />
-              </div>
-            </div>
-            {/* Title, author, date to the right, aligned */}
-            <div className="flex-1 flex flex-col justify-start pl-8" style={{ minWidth: 0 }}>
-              <h1 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-1 leading-tight break-words">{meta.title}</h1>
-              <div className="text-gray-700 text-lg mb-1 font-serif">by {meta.authors}</div>
-              <div className="text-newtifi-teal text-base mb-4 font-serif">Published: <span className="font-medium">{meta.date}</span></div>
-              
-              {/* DOI and Peer Review Status */}
-              <div className="flex flex-wrap gap-4 mb-4 text-sm">
-                <div className="flex items-center gap-1">
-                  <ExternalLink className="h-4 w-4 text-newtifi-teal" />
-                  <span className="font-mono text-newtifi-teal">DOI: {article.doi}</span>
-                </div>
-                <div className="flex items-center gap-1">
-                  <Clock className="h-4 w-4 text-gray-500" />
-                  <span className="text-gray-600">Accepted: {article.acceptanceDate}</span>
-                </div>
-              </div>
+        <div className="container mx-auto relative">
+          <div className="max-w-6xl mx-auto">
+      {/* Breadcrumb navigation */}
+            <nav className="mb-8 text-sm text-white/80 flex items-center gap-2" aria-label="Breadcrumb">
+              <a href="/" className="hover:text-white transition-colors">Home</a>
+        <span className="mx-1">&gt;</span>
+              <a href="/publishing/journals/investment-management" className="hover:text-white transition-colors">Articles</a>
+        <span className="mx-1">&gt;</span>
+              <span className="text-white font-semibold truncate" title={meta.title}>{meta.title}</span>
+      </nav>
 
-              {/* Keywords */}
-              <div className="flex flex-wrap gap-1 mb-4">
+            <ScrollReveal>
+              <div className="space-y-6">
+                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-sm font-medium">
+                  <BookOpen className="w-4 h-4 mr-2" />
+                  Investment Management Journal
+                </div>
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+                  {meta.title}
+                </h1>
+                <p className="text-xl text-white/90 leading-relaxed max-w-4xl">
+                  {article.abstract}
+                </p>
+                
+                {/* Quick Stats */}
+                <div className="flex flex-wrap gap-6 pt-4">
+                  <div className="flex items-center gap-2">
+                    <User className="w-5 h-5 text-newtifi-teal" />
+                    <span className="text-white/80">Author: {article.author}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-5 h-5 text-newtifi-teal" />
+                    <span className="text-white/80">Published: {meta.date}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <ExternalLink className="w-5 h-5 text-newtifi-teal" />
+                    <span className="text-white/80">DOI: {article.doi}</span>
+                  </div>
+                </div>
+            </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Content Section */}
+      <section className="px-6 py-20 bg-white">
+        <div className="container mx-auto">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-12">
+              {/* Main Content - 2 columns */}
+              <div className="lg:col-span-2 space-y-12">
+                {/* Article Header with Logo */}
+                <ScrollReveal>
+                  <div className="bg-gradient-to-br from-newtifi-teal/5 to-newtifi-navy/5 rounded-3xl p-8 border border-newtifi-teal/20">
+                    <h2 className="text-2xl font-bold text-newtifi-navy mb-4">{article.title}</h2>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3">
+                        <span className="text-newtifi-teal font-semibold text-lg">By {article.author}</span>
+                        <span className="text-gray-500">•</span>
+                        <span className="text-gray-600 text-lg">{article.date}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-newtifi-teal font-medium">Luxembourg Investment Fund Regulation Expert</span>
+                      </div>
+                    </div>
+                    
+                    <div className="mt-6 p-4 bg-white/50 rounded-xl border border-newtifi-teal/20">
+                      <p className="text-gray-700 leading-relaxed">
+                        This research examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs, providing comprehensive analysis for practitioners and policymakers in the European investment fund landscape.
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+
+
+                {/* Keywords Section */}
+                <ScrollReveal delay={200}>
+                  <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                    <h3 className="text-xl font-bold text-newtifi-navy mb-6">Keywords</h3>
+                    <div className="flex flex-wrap gap-2">
                 {article.keywords?.map((keyword, kIdx) => (
-                  <span key={kIdx} className="bg-gray-100 text-gray-600 px-2 py-1 rounded text-xs">
+                        <span key={kIdx} className="bg-newtifi-teal/10 text-newtifi-navy px-3 py-2 rounded-xl text-sm font-medium border border-newtifi-teal/20">
                     {keyword}
                   </span>
                 ))}
               </div>
+                  </div>
+                </ScrollReveal>
 
-              {/* Article Preview heading and text wraps around crest */}
-              <div className="relative">
-                <h2 className="text-xl font-semibold text-newtifi-navy mt-2 mb-1 font-serif">Abstract</h2>
-                <p className="text-gray-800 text-base italic mb-2 font-serif" style={{ textAlign: 'justify' }}>{article.abstract}</p>
+                {/* Academic Description */}
+                <ScrollReveal delay={400}>
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Academic Context</h3>
+                    <div className="prose prose-lg max-w-none">
+                      <p className="text-gray-800 leading-relaxed mb-6 text-lg">
+                        {article.abstract}
+                      </p>
+                      <p className="text-gray-700 leading-relaxed text-lg">
+                        This research contributes to the broader academic discourse on {article.keywords?.slice(0, 3).join(', ').toLowerCase()} by providing comprehensive analysis and practical insights for practitioners and policymakers. The study addresses critical gaps in current understanding and offers evidence-based recommendations for regulatory compliance and operational best practices in the Luxembourg financial services sector.
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+                {/* Download Section */}
+                <ScrollReveal delay={600}>
+                  <div className="bg-gradient-to-br from-newtifi-navy to-newtifi-teal text-white rounded-3xl p-8 shadow-2xl">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+                      <div>
+                        <h3 className="text-2xl font-bold mb-2">Access Full Article</h3>
+                        <p className="text-white/90">
+                          {isAuthenticated 
+                            ? 'Access the complete research paper in PDF format' 
+                            : 'Sign in to download or preview the complete research paper'
+                          }
+                        </p>
+                        {isAuthenticated && (
+                          <p className="text-white/70 text-sm mt-2">
+                            Welcome back, {currentUser?.name || 'User'}!
+                          </p>
+                        )}
+                      </div>
+                      <div className="flex flex-col sm:flex-row gap-3">
+                        <button
+                          onClick={handlePdfPreview}
+                          className="bg-white/10 text-white px-6 py-3 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 border border-white/20"
+                        >
+                          <Eye className="w-4 h-4" />
+                          Preview PDF
+                        </button>
+                        <button
+                          onClick={handleDownload}
+                          className="bg-white text-newtifi-navy px-6 py-3 rounded-2xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                        >
+                          <Download className="w-4 h-4" />
+                          {isAuthenticated ? 'Download PDF' : 'Sign In to Download'}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
               </div>
+
+              {/* Sidebar - 1 column */}
+              <div className="space-y-8">
+                {/* Journal Info */}
+                <ScrollReveal delay={200}>
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">Journal Information</h3>
+                    <div className="space-y-3 text-sm">
+                      <div>
+                        <span className="font-semibold text-gray-700">Title:</span>
+                        <p className="text-gray-600">{journalMetadata.title}</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-gray-700">ISSN:</span>
+                        <p className="font-mono text-newtifi-teal">{journalMetadata.issn}</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-gray-700">Publisher:</span>
+                        <p className="text-gray-600">{journalMetadata.publisher}</p>
+                      </div>
+                      <div>
+                        <span className="font-semibold text-gray-700">Frequency:</span>
+                        <p className="text-gray-600">{journalMetadata.frequency}</p>
             </div>
           </div>
         </div>
+                </ScrollReveal>
 
-        {/* Peer Review and Archiving Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-newtifi-navy mb-3">Peer Review Information</h3>
-            <div className="space-y-2 text-sm text-gray-700">
-              <div><span className="font-semibold">Status:</span> N/A</div>
-              <div><span className="font-semibold">Review Date:</span> N/A</div>
-              <div><span className="font-semibold">Acceptance Date:</span> N/A</div>
-              <div><span className="font-semibold">Review Type:</span> N/A</div>
+                {/* Peer Review Info */}
+                <ScrollReveal delay={400}>
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">Peer Review Status</h3>
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="w-5 h-5 text-newtifi-teal" />
+                        <span className="text-gray-700">Double-blind peer review</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-5 h-5 text-gray-500" />
+                        <span className="text-gray-600">Review completed</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Award className="w-5 h-5 text-newtifi-teal" />
+                        <span className="text-gray-700">Accepted for publication</span>
+                      </div>
             </div>
           </div>
-          
-          <div className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
-            <h3 className="text-lg font-semibold text-newtifi-navy mb-3">
-              <Archive className="h-5 w-5 text-newtifi-teal" />
+                </ScrollReveal>
+
+                {/* Archiving Info */}
+                <ScrollReveal delay={600}>
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">
+                      <Archive className="w-5 h-5 text-newtifi-teal inline mr-2" />
               Archiving & Preservation
             </h3>
-            <div className="space-y-2 text-sm text-gray-700">
+                    <div className="space-y-3 text-sm">
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-newtifi-teal" />
-                <span>CLOCKSS Archive</span>
+                        <CheckCircle className="w-4 h-4 text-newtifi-teal" />
+                        <span className="text-gray-700">CLOCKSS Archive</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-newtifi-teal" />
-                <span>Portico Digital Archive</span>
+                        <CheckCircle className="w-4 h-4 text-newtifi-teal" />
+                        <span className="text-gray-700">Portico Digital Archive</span>
               </div>
               <div className="flex items-center gap-2">
-                <CheckCircle className="h-4 w-4 text-newtifi-teal" />
-                <span>Permanent DOI: {article.doi}</span>
+                        <CheckCircle className="w-4 h-4 text-newtifi-teal" />
+                        <span className="text-gray-700">Permanent DOI</span>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollReveal>
+
+
               </div>
             </div>
           </div>
         </div>
-
-        {/* Article Description - Academic style, bookish font, shaded and shadowed */}
-        <article className="prose prose-lg max-w-none bg-white p-8 rounded-xl border border-gray-100 shadow font-serif" style={{ boxShadow: '0 4px 32px 0 rgba(31, 38, 135, 0.08)', background: 'linear-gradient(180deg, #f5f7fa 0%, #fff 100%)' }}>
-          <h2 className="text-2xl text-newtifi-navy font-bold font-serif">Description</h2>
-          <p className="text-gray-900 font-serif" style={{ textAlign: 'justify' }}>{academic?.description}</p>
-        </article>
       </section>
+
+      {/* PDF Preview Modal */}
+      {showPdfPreview && (
+        <PDFPreview
+          pdfUrl={article.pdfUrl}
+          title={article.title}
+          onClose={() => setShowPdfPreview(false)}
+          onDownload={handleDownload}
+          requireAuth={false}
+          isAuthenticated={isAuthenticated}
+          onLoginRequired={() => setShowLoginModal(true)}
+        />
+      )}
+
+      {/* Authentication Modal */}
+      <AuthModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        onSuccess={handleAuthSuccess}
+        mode="login"
+      />
     </main>
   );
 } 

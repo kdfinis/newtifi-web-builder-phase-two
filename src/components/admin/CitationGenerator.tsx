@@ -73,7 +73,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
           <label className="block text-sm font-medium mb-2">Citation Format</label>
           <select 
             value={format} 
-            onChange={(e) => setFormat(e.target.value as any)}
+            onChange={(e) => setFormat(e.target.value as 'APA' | 'MLA' | 'Chicago' | 'BibTeX')}
             className="w-full border rounded p-2 bg-white"
           >
             <option value="APA">APA</option>

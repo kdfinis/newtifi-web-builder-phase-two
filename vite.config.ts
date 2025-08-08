@@ -12,6 +12,7 @@ export default defineConfig({
     watch: {
       usePolling: true,
       interval: 1000,
+      ignored: ['**/LSB-save-of-NEWTIFI/**', '**/node_modules/**', '**/dist/**']
     },
     hmr: {
       overlay: true,
@@ -19,11 +20,6 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        secure: false,
-      },
-      '/articles': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,

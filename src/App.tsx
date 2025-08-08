@@ -16,10 +16,13 @@ import Person from "./pages/Person";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
+import Publishing from "./pages/Publishing";
 import InvestmentManagementJournal from "./pages/publishing/journals/investment-management";
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
 import Admin from './pages/Admin';
+import AuthCallback from './pages/AuthCallback';
 import "./styles/typography.css";
+import "./App.css";
 
 const queryClient = new QueryClient();
 
@@ -41,8 +44,10 @@ const App = () => (
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/publishing" element={<Publishing />} />
             <Route path="/publishing/journals/investment-management" element={<InvestmentManagementJournal />} />
             <Route path="/publishing/journals/investment-management/article/:slug" element={<ArticlePage />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -39,8 +39,8 @@ interface Article {
 function parseArticleMeta(filename) {
   const match = filename.match(/^\(\d{4}\.\d{2}\.\d{2}\)_(.+?) - (.+?)_Final\.pdf$/);
   if (!match) return { date: '', title: filename };
-  let date = match[1] ? match[1].replace(/\./g, '-') : '';
-  let title = match[3] || filename;
+  const date = match[1] ? match[1].replace(/\./g, '-') : '';
+  const title = match[3] || filename;
   return { date, title };
 }
 

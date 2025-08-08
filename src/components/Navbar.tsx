@@ -129,9 +129,6 @@ const Navbar = () => {
 
         {/* Login Button */}
         <div className="flex items-center gap-3">
-          {isLoggedIn && (
-            <span className="hidden md:inline-block text-green-200 text-sm font-semibold">Your Account (Logged in)</span>
-          )}
           <Link 
             to="/login" 
             className={cn(

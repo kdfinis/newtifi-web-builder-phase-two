@@ -159,9 +159,7 @@ export default function Signup() {
             <LinkedInLogo />
             Sign up with LinkedIn
           </button>
-          {isLoggedIn && (
-            <div className="text-green-700 text-center mt-2 font-semibold">Your Account (Logged in)</div>
-          )}
+          
         </div>
 
         {/* Signup Form */}

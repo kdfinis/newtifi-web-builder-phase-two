@@ -1,9 +1,0 @@
-{
-  "watch": ["express-server.js", "src/**/*"],
-  "ext": "js,jsx,ts,tsx,json,css",
-  "ignore": ["node_modules", "dist"],
-  "exec": "node express-server.js",
-  "env": {
-    "NODE_ENV": "development"
-  }
-} 

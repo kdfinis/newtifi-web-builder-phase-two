@@ -44,10 +44,10 @@ function parseArticleMeta(filename) {
   // Example: 2025.06.28_NewTIFI Investment Management Journal - Article Title_Final.pdf
   const match = filename.match(/^(\d{4}\.\d{2}\.\d{2})_(.+?) - (.+?)_Final\.pdf$/);
   if (!match) return { date: '', title: filename };
-  let date = match[1] ? match[1].replace(/\./g, '-') : '';
-  let title = match[3] || filename;
+  const date = match[1] ? match[1].replace(/\./g, '-') : '';
+  const title = match[3] || filename;
   // Placeholder overview for now
-  let overview = `This article provides an in-depth analysis of the topic: ${title}. For the full abstract, please see the PDF.`;
+  const overview = `This article provides an in-depth analysis of the topic: ${title}. For the full abstract, please see the PDF.`;
   return { date, title, overview };
 }
 
@@ -550,9 +550,7 @@ export default function InvestmentManagementJournal() {
                                 >
                                   <LinkedInLogo /> Continue with LinkedIn
                                 </button>
-                                {localStorage.getItem('user') && (
-                                  <div className="text-green-700 text-center mt-2 font-semibold w-full">Your Account (Logged in)</div>
-                                )}
+                                
                               </div>
                               <form onSubmit={handleRegister} className="space-y-4">
                                 <input

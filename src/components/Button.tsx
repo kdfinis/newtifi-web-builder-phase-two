@@ -14,6 +14,8 @@ type ButtonProps = {
   disabled?: boolean;
   type?: 'button' | 'submit' | 'reset';
   fullWidth?: boolean;
+  'aria-label'?: string;
+  'aria-describedby'?: string;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -27,6 +29,8 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   type = 'button',
   fullWidth = false,
+  'aria-label': ariaLabel,
+  'aria-describedby': ariaDescribedBy,
 }) => {
   const baseClasses = cn(
     'inline-flex items-center justify-center rounded-md font-medium transition-all focus:outline-none',
@@ -45,7 +49,12 @@ const Button: React.FC<ButtonProps> = ({
 
   if (to) {
     return (
-      <Link to={to} className={baseClasses}>
+      <Link 
+        to={to} 
+        className={baseClasses}
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
+      >
         {children}
       </Link>
     );
@@ -53,7 +62,14 @@ const Button: React.FC<ButtonProps> = ({
 
   if (href) {
     return (
-      <a href={href} className={baseClasses} target="_blank" rel="noopener noreferrer">
+      <a 
+        href={href} 
+        className={baseClasses} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        aria-label={ariaLabel}
+        aria-describedby={ariaDescribedBy}
+      >
         {children}
       </a>
     );
@@ -65,6 +81,8 @@ const Button: React.FC<ButtonProps> = ({
       className={baseClasses}
       onClick={onClick}
       disabled={disabled}
+      aria-label={ariaLabel}
+      aria-describedby={ariaDescribedBy}
     >
       {children}
     </button>
