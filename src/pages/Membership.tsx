@@ -92,7 +92,7 @@ const Membership = () => {
       <section className="px-6 py-20 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto">
           <ScrollReveal className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
               Choose Your Path to Innovation
             </h2>
             <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
@@ -299,7 +299,7 @@ const Membership = () => {
             {activeContent === 'overview' && (
               <ScrollReveal>
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
                     Compare Membership Benefits
                   </h2>
                   <p className="text-xl text-white/90">
@@ -337,7 +337,7 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Individual Membership
                     </h2>
                     <p className="text-xl text-gray-600 mb-8">
@@ -390,7 +390,7 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Institutional Membership
                     </h2>
                     <p className="text-xl text-gray-600 mb-8">
@@ -546,7 +546,7 @@ const Membership = () => {
         <div className="container mx-auto">
           <div className="max-w-6xl mx-auto">
             <ScrollReveal className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">
+              <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
                 Luxembourg: Innovation Powerhouse
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -558,7 +558,7 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-3xl font-bold text-newtifi-teal">3.2%</span>
+                    <span className="text-2xl font-bold text-newtifi-teal">3.2%</span>
                     <button 
                       onClick={() => setExpandedStats(expandedStats === 'rd' ? null : 'rd')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"
@@ -580,7 +580,7 @@ const Membership = () => {
               <ScrollReveal delay={100}>
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-3xl font-bold text-newtifi-teal">€6.2T</span>
+                    <span className="text-2xl font-bold text-newtifi-teal">€6.2T</span>
                 <button
                       onClick={() => setExpandedStats(expandedStats === 'assets' ? null : 'assets')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"
@@ -602,7 +602,7 @@ const Membership = () => {
               <ScrollReveal delay={200}>
                 <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-3xl font-bold text-newtifi-teal">500+</span>
+                    <span className="text-2xl font-bold text-newtifi-teal">500+</span>
                     <button
                       onClick={() => setExpandedStats(expandedStats === 'fintech' ? null : 'fintech')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"

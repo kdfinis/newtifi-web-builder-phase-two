@@ -71,7 +71,7 @@ const Contact = () => {
                   <Sparkles className="w-4 h-4 mr-2" />
                   Get in Touch
                 </div>
-                <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-4xl font-bold leading-tight">
                   Let's Connect and
                   <span className="text-newtifi-teal block">Shape the Future</span>
                 </h1>
@@ -117,7 +117,7 @@ const Contact = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                   <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
-                    <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Get in Touch
                     </h2>
                     <p className="text-xl text-gray-600 mb-8">
@@ -244,7 +244,7 @@ const Contact = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+                    <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Our Location
                     </h2>
                     <p className="text-xl text-gray-600 mb-8">
@@ -343,7 +343,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
             <ScrollReveal>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-6">
+                <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                   Luxembourg Innovation Powerhouse
                 </h2>
                 <p className="text-xl text-gray-600 mb-8">
@@ -487,7 +487,7 @@ const Contact = () => {
         
         <div className="container mx-auto text-center relative z-10">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-2xl md:text-4xl font-bold mb-6">
               Ready to Get Started?
             </h2>
             <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">

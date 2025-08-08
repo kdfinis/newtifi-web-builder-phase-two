@@ -80,7 +80,7 @@ export default function Login() {
                   Secure Access
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   Welcome Back
                 </h1>
                 
@@ -106,7 +106,7 @@ export default function Login() {
           <div className="max-w-2xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold text-newtifi-navy mb-4">
+                <h2 className="text-2xl font-bold text-newtifi-navy mb-4">
                   Choose Your Sign-In Method
                 </h2>
                 <p className="text-gray-600 text-lg">

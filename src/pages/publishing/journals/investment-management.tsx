@@ -352,7 +352,7 @@ export default function InvestmentManagementJournal() {
               <img src="/assets/images/Lux-Philharmonie.jpeg" alt="Luxembourg Philharmonie" className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200" />
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Publishing</h1>
+              <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Publishing</h1>
               <h2 className="text-lg text-newtifi-teal font-semibold mb-4">Empowering knowledge & education for a sustainable future</h2>
               <p className="text-lg text-gray-700 mb-3">
                 NewTIFI Publishing is the scientific and editorial arm of the New Technologies & Investment Funds Institute, dedicated to advancing accessible, high-quality research and thought leadership across the fields of new technologies and finance.
@@ -420,7 +420,7 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'journals' && (
         <section ref={journalsRef} className="w-full bg-white py-8">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
             <p className="text-lg text-gray-800 mb-4">
@@ -747,7 +747,7 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'reviews' && (
         <section ref={reviewsRef} className="w-full bg-white py-8">
           <div className="max-w-6xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">A Review Series by NewTIFI Publishing</h3>
             
@@ -820,7 +820,7 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'books' && (
         <section ref={booksRef} className="w-full bg-white py-8">
           <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
             <p>Books content coming soon.</p>
@@ -830,7 +830,7 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'interviews' && (
         <section ref={interviewsRef} className="w-full bg-white py-8">
           <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
             <p>Interviews content coming soon.</p>
@@ -840,7 +840,7 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'podcasts' && (
         <section ref={podcastsRef} className="w-full bg-white py-8">
           <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
             <p>Podcasts content coming soon.</p>
@@ -850,7 +850,7 @@ export default function InvestmentManagementJournal() {
 
       {selectedTab === 'articles' && !selectedArticle && (
         <section ref={articlesRef} id="articles" className="max-w-4xl mx-auto px-4 pt-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
+          <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
           <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
           <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
           {articles.map((article, idx) => (

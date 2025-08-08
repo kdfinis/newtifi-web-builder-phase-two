@@ -39,7 +39,7 @@ const Publishing: React.FC = () => {
                   NewTIFI
                   <span className="text-newtifi-teal block">Publishing</span>
                 </h1>
-                <h2 className="text-2xl md:text-3xl font-semibold text-newtifi-teal">
+                <h2 className="text-2xl md:text-2xl font-semibold text-newtifi-teal">
                   Empowering knowledge & education for a sustainable future
                 </h2>
                 <p className="text-xl text-white/90 leading-relaxed">
@@ -191,7 +191,7 @@ const Publishing: React.FC = () => {
                   <FileText className="w-4 h-4 mr-2" />
                   Submission Guidelines
                 </div>
-                <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-4">
+                <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
                   How to Submit Your Research
                 </h2>
                 <p className="text-xl text-gray-600 max-w-2xl mx-auto">

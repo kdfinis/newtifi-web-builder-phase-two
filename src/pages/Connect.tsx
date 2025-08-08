@@ -11,7 +11,7 @@ const Connect = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90"></div>
         <div className="container mx-auto relative">
           <ScrollReveal className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Get in Touch</h1>
+            <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Get in Touch</h1>
             <p className="text-lg text-white/80 leading-relaxed">
               Have questions about New Technologies and Investment Funds Institute's initiatives? We're here to help you navigate the future of innovation.
             </p>
@@ -58,7 +58,7 @@ const Connect = () => {
                 {/* Contact Form */}
                 <div className="space-y-8">
                   <div className="text-center">
-                    <h2 className="text-2xl md:text-3xl font-bold text-newtifi-navy mb-4">Send Us a Message</h2>
+                    <h2 className="text-2xl md:text-2xl font-bold text-newtifi-navy mb-4">Send Us a Message</h2>
                     <p className="text-newtifi-navy/70">We'll get back to you as soon as possible.</p>
                   </div>
 

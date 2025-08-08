@@ -145,7 +145,7 @@ const Person = () => {
           {/* Header with color and social */}
           <div className="bg-[#00C2CB] px-12 py-8 flex flex-col md:flex-row items-center md:items-end gap-4">
             <div className="flex-1">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-1">{member.name}</h1>
+              <h1 className="text-4xl md:text-4xl font-bold text-white mb-1">{member.name}</h1>
               <h2 className="text-2xl text-white font-medium">{member.title}</h2>
             </div>
             <div className="flex gap-4 mt-2 md:mt-0">

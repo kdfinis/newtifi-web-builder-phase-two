@@ -135,7 +135,7 @@ export default function Signup() {
           <div className="w-20 h-20 bg-newtifi-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
             <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-12 h-12 object-contain" />
           </div>
-          <h1 className="text-3xl font-bold text-newtifi-navy mb-2">Create Account</h1>
+          <h1 className="text-2xl font-bold text-newtifi-navy mb-2">Create Account</h1>
           <p className="text-gray-600">Join NewTiFi to access research and connect with professionals</p>
         </div>
 

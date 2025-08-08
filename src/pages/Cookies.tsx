@@ -9,7 +9,7 @@ const Cookies = () => {
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100}>
             <div className="mb-10">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-wider leading-tight">
+              <h1 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
                 COOKIES &<br />DIGITAL EXPERIENCE
               </h1>
             </div>

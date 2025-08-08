@@ -244,9 +244,9 @@ const Home = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100} className="max-w-2xl">
-            <h1 className="text-2xl md:text-3xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
             <div className="mb-10">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-wider leading-tight">
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
                 FOCUS RESEARCH<br />INNOVATE IMPLEMENT
               </h2>
             </div>
@@ -264,7 +264,7 @@ const Home = () => {
             {/* Left side - New Technologies and Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-8">
-                <h1 className="text-4xl md:text-5xl font-light text-newtifi-navy">
+                <h1 className="text-4xl md:text-4xl font-light text-newtifi-navy">
                   New Technologies and Investment Funds Institute
                 </h1>
                 <p className="text-2xl text-gray-700">
@@ -292,7 +292,7 @@ const Home = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
+                      <h3 className="text-2xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
                         Investment Management Journal
                       </h3>
                     </div>
@@ -429,7 +429,7 @@ const Home = () => {
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
               {/* New Technologies and Investment Funds Institute Pillars Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
                 <h3 className="text-xl text-white/80 text-center mb-12">
@@ -494,7 +494,7 @@ const Home = () => {
 
               {/* What We Do Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-3xl md:text-4xl text-center mb-4 text-white">
+                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
                 <h3 className="text-xl text-white/80 text-center mb-12">
@@ -564,7 +564,7 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
+                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
                 <p className="text-xl text-gray-700 font-light">
                   Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
                 </p>
@@ -633,7 +633,7 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Insights</h2>
+                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Insights</h2>
                 <p className="text-xl text-gray-700 font-light">
                   At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
                 </p>
@@ -696,7 +696,7 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
               <ScrollReveal direction="right" delay={200} className="mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
+                <h2 className="text-2xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
                 <p className="text-xl opacity-90 mb-8">
                   Join our community of innovators, researchers, and industry leaders.
                     </p>
