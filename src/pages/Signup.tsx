@@ -165,7 +165,7 @@ export default function Signup() {
         {/* Signup Form */}
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-base font-medium text-gray-700 mb-2">
               Full Name
             </label>
             <div className="relative">
@@ -184,7 +184,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="email" className="block text-base font-medium text-gray-700 mb-2">
               Email Address
             </label>
             <div className="relative">
@@ -203,7 +203,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-base font-medium text-gray-700 mb-2">
               Password
             </label>
             <div className="relative">
@@ -229,7 +229,7 @@ export default function Signup() {
           </div>
 
           <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="confirmPassword" className="block text-base font-medium text-gray-700 mb-2">
               Confirm Password
             </label>
             <div className="relative">
@@ -256,7 +256,7 @@ export default function Signup() {
 
           {error && (
             <div className="bg-red-50 border border-red-200 rounded-lg p-3">
-              <p className="text-red-600 text-sm">{error}</p>
+              <p className="text-red-600 text-base">{error}</p>
             </div>
           )}
 
@@ -298,7 +298,7 @@ export default function Signup() {
 
         {/* Footer */}
         <div className="mt-8 text-center">
-          <p className="text-sm text-gray-500">
+          <p className="text-base text-gray-500">
             Already have an account?{" "}
             <button
               onClick={() => navigate('/login')}

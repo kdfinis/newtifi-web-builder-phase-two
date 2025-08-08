@@ -250,7 +250,7 @@ const Home = () => {
                 FOCUS RESEARCH<br />INNOVATE IMPLEMENT
               </h2>
             </div>
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Welcome to the hub where Scientific, Tech and Finance Professionals meet
             </p>
           </ScrollReveal>
@@ -270,7 +270,7 @@ const Home = () => {
                 <p className="text-2xl text-gray-700">
                   An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
-                <ul className="list-disc pl-6 space-y-3 text-gray-700 text-xl">
+                <ul className="list-disc pl-6 space-y-3 text-gray-700 text-base">
                   <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
                   <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
                   <li>Supporting future talent through scholarships, internships, and mentorships</li>
@@ -296,7 +296,7 @@ const Home = () => {
                         Investment Management Journal
                       </h3>
                     </div>
-                    <p className="text-base md:text-lg text-gray-600 font-light mb-3">
+                    <p className="text-base md:text-base text-gray-600 font-light mb-3">
                       Peer-reviewed research and insights in investment management and financial technology
                     </p>
                     <div className="flex items-center justify-end">
@@ -353,17 +353,17 @@ const Home = () => {
                                 <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
                                   Latest Publication
                                 </span>
-                                <span className="text-sm text-gray-500">{article.date}</span>
+                                <span className="text-base text-gray-500">{article.date}</span>
                               </div>
-                              <h3 className="text-xl font-bold text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
+                              <h3 className="text-base font-bold text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
                                 {article.title}
                               </h3>
                               <div className="flex items-center gap-2 mb-3">
-                                <span className="text-sm text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                                <span className="text-base text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
                                 {article.author && (
                                   <>
                                     <span className="text-gray-400">•</span>
-                                    <span className="text-sm text-gray-600">By {article.author}</span>
+                                    <span className="text-base text-gray-600">By {article.author}</span>
                                   </>
                                 )}
                               </div>
@@ -391,7 +391,7 @@ const Home = () => {
 
                           {/* Footer */}
                           <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                            <div className="text-sm text-gray-500">
+                            <div className="text-base text-gray-500">
                               DOI: {article.doi}
                             </div>
                             <div className="flex items-center gap-2 text-newtifi-teal group-hover:text-newtifi-navy transition-colors">
@@ -410,8 +410,8 @@ const Home = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                           </svg>
                         </div>
-                        <p className="text-gray-600 font-medium text-lg">No featured articles available</p>
-                        <p className="text-sm text-gray-500 mt-2">Check back soon for new publications</p>
+                        <p className="text-gray-600 font-medium text-base">No featured articles available</p>
+                        <p className="text-base text-gray-500 mt-2">Check back soon for new publications</p>
                       </div>
                     )}
                     </div>
@@ -432,7 +432,7 @@ const Home = () => {
                 <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
-                <h3 className="text-xl text-white/80 text-center mb-12">
+                <h3 className="text-base text-white/80 text-center mb-12">
                   Technology Pillars
                 </h3>
               </ScrollReveal>
@@ -484,7 +484,7 @@ const Home = () => {
                           )}
                         </div>
                         <div className="text-4xl mb-4">{pillar.icon}</div>
-                        <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
+                        <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
                         <p className="text-gray-700 flex-grow">{pillar.description}</p>
                       </div>
                     </ScrollReveal>
@@ -497,7 +497,7 @@ const Home = () => {
                 <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
                   New Technologies and Investment Funds Institute Pillars
                 </h2>
-                <h3 className="text-xl text-white/80 text-center mb-12">
+                <h3 className="text-base text-white/80 text-center mb-12">
                   Financial Pillars
                 </h3>
               </ScrollReveal>
@@ -547,7 +547,7 @@ const Home = () => {
                         )}
                       </div>
                       <div className="text-4xl mb-4">{item.icon}</div>
-                      <h3 className="text-xl font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
+                      <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
                       <p className="text-gray-700 flex-grow">{item.description}</p>
                     </div>
                   </ScrollReveal>
@@ -565,7 +565,7 @@ const Home = () => {
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
                 <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
-                <p className="text-xl text-gray-700 font-light">
+                <p className="text-base text-gray-700 font-light">
                   Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
                 </p>
               </ScrollReveal>
@@ -585,7 +585,7 @@ const Home = () => {
                       )}
                     >
                       <h3 className="font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm opacity-80">{item.description}</p>
+                      <p className="text-base opacity-80">{item.description}</p>
                     </button>
                   ))}
                 </div>
@@ -603,7 +603,7 @@ const Home = () => {
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
                       {/* Insert extra paragraph for Doctoral Scholarships only */}
                       {item.title === 'Doctoral Scholarships' && (
                         <p className="text-base text-gray-700 mb-6">
@@ -634,7 +634,7 @@ const Home = () => {
             <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
                 <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Insights</h2>
-                <p className="text-xl text-gray-700 font-light">
+                <p className="text-base text-gray-700 font-light">
                   At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
                 </p>
               </ScrollReveal>
@@ -653,7 +653,7 @@ const Home = () => {
                       )}
                     >
                       <h3 className="font-semibold mb-2 text-center uppercase w-full">{item.title}</h3>
-                      <p className="text-sm opacity-80">{item.subtext}</p>
+                      <p className="text-base opacity-80">{item.subtext}</p>
                     </button>
                   ))}
                 </div>
@@ -670,7 +670,7 @@ const Home = () => {
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
                       <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-lg text-gray-700 mb-6">{item.description}</p>
+                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
                       {item.details && (
                         <ul className="space-y-3">
                           {item.details.map((detail, idx) => (
@@ -697,7 +697,7 @@ const Home = () => {
             <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
               <ScrollReveal direction="right" delay={200} className="mb-8">
                 <h2 className="text-2xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
-                <p className="text-xl opacity-90 mb-8">
+                <p className="text-base opacity-90 mb-8">
                   Join our community of innovators, researchers, and industry leaders.
                     </p>
                   </ScrollReveal>

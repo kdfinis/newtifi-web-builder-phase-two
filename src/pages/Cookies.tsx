@@ -13,7 +13,7 @@ const Cookies = () => {
                 COOKIES &<br />DIGITAL EXPERIENCE
               </h1>
             </div>
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Enhancing your journey through responsible technology
             </p>
           </ScrollReveal>
@@ -53,13 +53,13 @@ const Cookies = () => {
                 <h2 className="text-2xl font-light text-newtifi-navy mb-4">3. Types of Cookies We Use</h2>
                 <div className="space-y-4">
                   <div>
-                    <h3 className="text-lg font-medium text-newtifi-navy mb-2">Essential Cookies</h3>
+                    <h3 className="text-base font-medium text-newtifi-navy mb-2">Essential Cookies</h3>
                     <p className="text-gray-600 leading-relaxed">
                       These cookies are necessary for the website to function and cannot be switched off in our systems. They are usually only set in response to actions made by you which amount to a request for services, such as setting your privacy preferences, logging in, or filling in forms.
                     </p>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium text-newtifi-navy mb-2">Analytics Cookies</h3>
+                    <h3 className="text-base font-medium text-newtifi-navy mb-2">Analytics Cookies</h3>
                     <p className="text-gray-600 leading-relaxed">
                       These cookies allow us to count visits and traffic sources so we can measure and improve the performance of our site. They help us know which pages are the most and least popular and see how visitors move around the site.
                     </p>

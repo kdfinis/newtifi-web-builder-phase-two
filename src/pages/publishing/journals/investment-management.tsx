@@ -353,17 +353,17 @@ export default function InvestmentManagementJournal() {
             </div>
             <div className="flex-1">
               <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Publishing</h1>
-              <h2 className="text-lg text-newtifi-teal font-semibold mb-4">Empowering knowledge & education for a sustainable future</h2>
-              <p className="text-lg text-gray-700 mb-3">
+              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Empowering knowledge & education for a sustainable future</h2>
+              <p className="text-base text-gray-700 mb-3">
                 NewTIFI Publishing is the scientific and editorial arm of the New Technologies & Investment Funds Institute, dedicated to advancing accessible, high-quality research and thought leadership across the fields of new technologies and finance.
               </p>
-              <p className="text-lg text-gray-700 mb-3">
+              <p className="text-base text-gray-700 mb-3">
                 We publish peer-reviewed journals, practitioner-oriented reviews, academic articles, books, and interviews that explore the intersections of innovation, sustainability, and public policy.
               </p>
-              <p className="text-lg text-gray-700 mb-3">
+              <p className="text-base text-gray-700 mb-3">
                 Our mission is to foster informed dialogue and bridge the gap between cutting-edge research and real-world decision-making. All publications are produced with academic integrity, intellectual independence, and an emphasis on clarity and impact.
               </p>
-              <p className="text-lg text-gray-700">
+              <p className="text-base text-gray-700">
                 Contrary to many publishing houses, NewTIFI operates as a non-profit. All profits realised by NewTIFI are used to fund Doctoral Scholarships.
               </p>
             </div>
@@ -373,42 +373,42 @@ export default function InvestmentManagementJournal() {
       {/* Modern Tab Navigation */}
       <nav className="w-full max-w-6xl mx-auto flex flex-wrap gap-2 md:gap-4 px-4 pt-2 pb-2 border-b border-gray-200 mb-4" aria-label="Publishing Navigation">
         <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'journals' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'journals' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('journals'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'journals' ? 'page' : undefined}
         >
           Journals
         </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'reviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'reviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('reviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'reviews' ? 'page' : undefined}
         >
           Reviews
             </button>
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('articles'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'articles' ? 'page' : undefined}
             >
               Articles
             </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'books' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'books' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('books'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'books' ? 'page' : undefined}
         >
           Books
         </button>
         <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'interviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'interviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('interviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'interviews' ? 'page' : undefined}
         >
           Interviews
             </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${selectedTab === 'podcasts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'podcasts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('podcasts'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'podcasts' ? 'page' : undefined}
         >
@@ -422,42 +422,42 @@ export default function InvestmentManagementJournal() {
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
-            <p className="text-lg text-gray-800 mb-4">
+            <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
+            <p className="text-base text-gray-800 mb-4">
               The NewTIFI Publishing – Investment Management Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in the field of investment management.
             </p>
-            <p className="text-lg text-gray-800 mb-4">
+            <p className="text-base text-gray-800 mb-4">
               With a focus on legal, tax, regulatory, and operational dimensions, the journal brings together leading academics, practitioners, and policymakers to explore the evolving landscape of alternative investment funds. It covers topics such as fund structuring, asset management regulation, fiduciary duty, tax policy, compliance and risk management, and financial innovation.
             </p>
-            <p className="text-lg text-gray-800 mb-4">
+            <p className="text-base text-gray-800 mb-4">
               Our mission is to foster intellectually independent and practically relevant research that informs the decisions of fund managers, investors, depositaries and central administrators, auditors, regulators, and courts worldwide.
             </p>
-            <p className="text-lg text-gray-800 mb-4">
+            <p className="text-base text-gray-800 mb-4">
               The NewTIFI Publishing – Investment Management Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of global investment frameworks and the financial architecture shaping the future of capital markets.
             </p>
-            <p className="text-lg text-gray-800 mb-4">
+            <p className="text-base text-gray-800 mb-4">
               As part of NewTIFI Publishing, the journal operates under a non-profit model.
             </p>
-            <p className="text-lg text-gray-800">
+            <p className="text-base text-gray-800">
               All profits realised by NewTIFI including through publication efforts are used to fund Doctoral Scholarships.
             </p>
             {/* Subtabs for Committee Members, Abstracts, Technical Information */}
             <div className="mt-10">
               <div className="flex gap-4 mb-6">
                 <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${journalSubtab === 'committee' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'committee' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
                   onClick={() => setJournalSubtab('committee')}
                 >
                   Committee Members
                 </button>
                 <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${journalSubtab === 'abstracts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'abstracts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
                   onClick={() => setJournalSubtab('abstracts')}
                 >
                   Abstracts
                 </button>
                 <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-sm md:text-base whitespace-nowrap ${journalSubtab === 'technical' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'technical' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
                   onClick={() => setJournalSubtab('technical')}
                 >
                   Technical Information
@@ -497,19 +497,19 @@ export default function InvestmentManagementJournal() {
                           >
                             <div className="flex items-center justify-between">
                               <h4 className="text-2xl font-bold text-newtifi-navy mb-1">{article.title}</h4>
-                              <span className="ml-4 text-newtifi-teal font-bold text-lg">{expandedAbstractIdx === idx ? '−' : '+'}</span>
+                              <span className="ml-4 text-newtifi-teal font-bold text-base">{expandedAbstractIdx === idx ? '−' : '+'}</span>
                             </div>
                             <div className="text-gray-700 text-base mb-1">| {article.author} | {authorRole} | {readingTime}</div>
                           </button>
                           {expandedAbstractIdx === idx && (
                             <div className="mt-4">
                               <div className="mb-4">
-                                <h5 className="text-lg font-semibold text-newtifi-navy mb-1">Abstract</h5>
+                                <h5 className="text-base font-semibold text-newtifi-navy mb-1">Abstract</h5>
                                 <p className="text-gray-800 text-base italic mb-2" style={{ textAlign: 'justify' }}>{article.abstract}</p>
                               </div>
                               <div className="mb-2">
                                 <span className="font-bold uppercase text-newtifi-navy">Key Words:</span>
-                                <span className="ml-2 text-gray-700 text-sm">{(Array.isArray(keywords) ? keywords : (typeof keywords === 'string' ? keywords.split('·').map(k => k.trim()).filter(Boolean) : [])).join(', ')}</span>
+                                <span className="ml-2 text-gray-700 text-base">{(Array.isArray(keywords) ? keywords : (typeof keywords === 'string' ? keywords.split('·').map(k => k.trim()).filter(Boolean) : [])).join(', ')}</span>
                               </div>
                               <div className="mb-2 text-xs text-gray-600 italic">
                                 <span className="font-bold text-newtifi-navy">Quick Citation Reference:</span> {citation}
@@ -532,7 +532,7 @@ export default function InvestmentManagementJournal() {
                         <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
                           {!showLogin ? (
                             <>
-                              <h3 className="text-xl font-bold text-newtifi-navy mb-4">Create Account</h3>
+                              <h3 className="text-base font-bold text-newtifi-navy mb-4">Create Account</h3>
                               <div className="flex flex-col gap-3 mb-4">
                                 <button
                                   type="button"
@@ -609,7 +609,7 @@ export default function InvestmentManagementJournal() {
                                     {showConfirmPassword ? '🙈' : '👁️'}
                                   </button>
                   </div>
-                                {registerError && <div className="text-red-600 text-sm">{registerError}</div>}
+                                {registerError && <div className="text-red-600 text-base">{registerError}</div>}
                                 <button
                                   type="submit"
                                   className="w-full bg-newtifi-navy text-white py-2 rounded font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition"
@@ -617,7 +617,7 @@ export default function InvestmentManagementJournal() {
                                 >
                                   {registerLoading ? 'Creating account...' : 'Create Account'}
                                 </button>
-                                <div className="text-center text-sm mt-2">
+                                <div className="text-center text-base mt-2">
                                   Already have an account?{' '}
                                   <button type="button" className="text-newtifi-teal hover:text-newtifi-navy font-medium" onClick={() => setShowLogin(true)}>
                                     Sign in
@@ -628,7 +628,7 @@ export default function InvestmentManagementJournal() {
               </div>
                                 <button
                                   type="button"
-                                  className="w-full mt-2 text-sm text-gray-500 hover:text-newtifi-navy"
+                                  className="w-full mt-2 text-base text-gray-500 hover:text-newtifi-navy"
                                   onClick={() => setShowRegisterModal(false)}
                                 >
                                   Cancel
@@ -637,7 +637,7 @@ export default function InvestmentManagementJournal() {
                             </>
                           ) : (
                             <>
-                              <h3 className="text-xl font-bold text-newtifi-navy mb-4">Sign In</h3>
+                              <h3 className="text-base font-bold text-newtifi-navy mb-4">Sign In</h3>
                               <form onSubmit={handleLogin} className="space-y-4">
                                 <input
                                   type="email"
@@ -667,7 +667,7 @@ export default function InvestmentManagementJournal() {
                                     {showPassword ? '🙈' : '👁️'}
                                   </button>
             </div>
-                                {loginError && <div className="text-red-600 text-sm">{loginError}</div>}
+                                {loginError && <div className="text-red-600 text-base">{loginError}</div>}
                                 <button
                                   type="submit"
                                   className="w-full bg-newtifi-navy text-white py-2 rounded font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition"
@@ -675,7 +675,7 @@ export default function InvestmentManagementJournal() {
                                 >
                                   {loginLoading ? 'Signing in...' : 'Sign In'}
                                 </button>
-                                <div className="text-center text-sm mt-2">
+                                <div className="text-center text-base mt-2">
                                   Don&apos;t have an account?{' '}
                                   <button type="button" className="text-newtifi-teal hover:text-newtifi-navy font-medium" onClick={() => setShowLogin(false)}>
                                     Create one
@@ -683,7 +683,7 @@ export default function InvestmentManagementJournal() {
               </div>
                                 <button
                                   type="button"
-                                  className="w-full mt-2 text-sm text-gray-500 hover:text-newtifi-navy"
+                                  className="w-full mt-2 text-base text-gray-500 hover:text-newtifi-navy"
                                   onClick={() => setShowRegisterModal(false)}
                                 >
                                   Cancel
@@ -698,7 +698,7 @@ export default function InvestmentManagementJournal() {
                 )}
                 {journalSubtab === 'technical' && (
                   <div ref={technicalRef} className="max-w-2xl mx-auto mt-6">
-                    <table className="w-full border border-blue-200 text-left text-sm">
+                    <table className="w-full border border-blue-200 text-left text-base">
                       <tbody>
                         <tr className="bg-blue-100">
                           <td className="border border-blue-200 px-3 py-2 font-semibold">Publication Title</td>
@@ -749,7 +749,7 @@ export default function InvestmentManagementJournal() {
           <div className="max-w-6xl mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">A Review Series by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Review Series by NewTIFI Publishing</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {journalMetadata.editorialBoard.map((member, idx) => (
@@ -758,20 +758,20 @@ export default function InvestmentManagementJournal() {
                     <div className="w-16 h-16 bg-newtifi-navy rounded-full flex items-center justify-center mx-auto mb-3">
                       <Users className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold text-newtifi-navy mb-1">{member.name}</h3>
-                    <p className="text-newtifi-teal font-medium text-sm mb-2">{member.role}</p>
-                    <p className="text-gray-600 text-sm">{member.affiliation}</p>
+                    <h3 className="text-base font-semibold text-newtifi-navy mb-1">{member.name}</h3>
+                    <p className="text-newtifi-teal font-medium text-base mb-2">{member.role}</p>
+                    <p className="text-gray-600 text-base">{member.affiliation}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20">
-              <h3 className="text-lg font-semibold text-newtifi-navy mb-4">Peer Review Process</h3>
+              <h3 className="text-base font-semibold text-newtifi-navy mb-4">Peer Review Process</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold text-newtifi-navy mb-2">Review Criteria</h4>
-                  <ul className="text-sm text-gray-700 space-y-1">
+                  <ul className="text-base text-gray-700 space-y-1">
                     {journalMetadata.reviewProcess.reviewCriteria.map((criterion, idx) => (
                       <li key={idx} className="flex flex-col gap-1">
                         <button
@@ -796,7 +796,7 @@ export default function InvestmentManagementJournal() {
                 </div>
                 <div>
                   <h4 className="font-semibold text-newtifi-navy mb-2">Review Timeline</h4>
-                  <div className="text-sm text-gray-700 space-y-2">
+                  <div className="text-base text-gray-700 space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full"></div>
                       <span>Initial Review: 2-3 weeks</span>
@@ -819,30 +819,30 @@ export default function InvestmentManagementJournal() {
 
       {selectedTab === 'books' && (
         <section ref={booksRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
+          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
             <p>Books content coming soon.</p>
             </div>
         </section>
       )}
       {selectedTab === 'interviews' && (
         <section ref={interviewsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
+          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
             <p>Interviews content coming soon.</p>
                   </div>
         </section>
       )}
       {selectedTab === 'podcasts' && (
         <section ref={podcastsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-lg">
+          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
             <p>Podcasts content coming soon.</p>
           </div>
         </section>
@@ -852,7 +852,7 @@ export default function InvestmentManagementJournal() {
         <section ref={articlesRef} id="articles" className="max-w-4xl mx-auto px-4 pt-8">
           <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
           <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-          <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
+          <h3 className="text-base text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
           {articles.map((article, idx) => (
             <div key={idx} className="mb-6">
               <div
@@ -864,7 +864,7 @@ export default function InvestmentManagementJournal() {
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(getArticleUrl(article)); }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
+                  <h2 className="text-base font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
                   <button
                     className="ml-2 p-1 rounded hover:bg-newtifi-teal/10"
                     onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === idx ? null : idx); }}
@@ -883,7 +883,7 @@ export default function InvestmentManagementJournal() {
                   <div className="flex items-center gap-1">
                     <span className="font-mono text-newtifi-teal">DOI: {article.doi}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-1">
+                  <div className="flex items-center gap-2 text-base text-gray-600 mb-1">
                     <span>By {article.author}</span>
                   </div>
                 </div>
@@ -898,7 +898,7 @@ export default function InvestmentManagementJournal() {
                 </div>
 
                 {/* Abstract */}
-                <p className="text-gray-700 text-sm mb-3 italic">
+                <p className="text-gray-700 text-base mb-3 italic">
                   {article.abstract}
                 </p>
 
@@ -927,7 +927,7 @@ export default function InvestmentManagementJournal() {
                       onClick={() => setSelectedArticle(article)}
                       aria-current={selectedArticle.filename === article.filename ? 'page' : undefined}
                     >
-                      <div className="truncate text-sm">{article.title}</div>
+                      <div className="truncate text-base">{article.title}</div>
                       <div className="text-xs text-gray-500">{article.date}</div>
                     </button>
                   </li>
@@ -945,7 +945,7 @@ export default function InvestmentManagementJournal() {
           {/* PDF Viewer */}
           <div className="flex-1 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 overflow-auto">
             <div className="mb-4">
-              <h2 className="text-xl font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
+              <h2 className="text-base font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
               <div className="text-gray-500 text-xs mb-2">{selectedArticle.date}</div>
             </div>
           </div>
@@ -969,7 +969,7 @@ export default function InvestmentManagementJournal() {
               <div className="flex-1">
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
-                    <h4 className="text-sm font-semibold text-newtifi-navy mb-2 line-clamp-3 leading-tight">{article.title}</h4>
+                    <h4 className="text-base font-semibold text-newtifi-navy mb-2 line-clamp-3 leading-tight">{article.title}</h4>
                     <div className="text-xs text-gray-500 mb-2">{article.date}</div>
                     {article.author && (
                       <div className="text-xs text-gray-600 mb-2">By {article.author}</div>

@@ -13,7 +13,7 @@ const Privacy = () => {
                 PRIVACY & DATA<br />PROTECTION
               </h1>
             </div>
-            <p className="text-lg md:text-xl leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Protecting your data while advancing innovation
             </p>
           </ScrollReveal>

@@ -31,7 +31,7 @@ const Publishing: React.FC = () => {
           <div className="max-w-4xl">
             <ScrollReveal>
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-base font-medium">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Scientific & Editorial Arm
                 </div>
@@ -42,7 +42,7 @@ const Publishing: React.FC = () => {
                 <h2 className="text-2xl md:text-2xl font-semibold text-newtifi-teal">
                   Empowering knowledge & education for a sustainable future
                 </h2>
-                <p className="text-xl text-white/90 leading-relaxed">
+                <p className="text-base text-white/90 leading-relaxed">
           NewTIFI Publishing is the scientific and editorial arm of the New Technologies & Investment Funds Institute, dedicated to advancing accessible, high-quality research and thought leadership across the fields of new technologies and finance.
         </p>
               </div>
@@ -60,7 +60,7 @@ const Publishing: React.FC = () => {
                 <div className="space-y-8">
                   <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/10 rounded-2xl p-8">
                     <h3 className="text-2xl font-bold text-newtifi-navy mb-4">Our Publications</h3>
-                    <p className="text-lg text-gray-700 mb-6">
+                    <p className="text-base text-gray-700 mb-6">
           We publish peer-reviewed journals, practitioner-oriented reviews, academic articles, books, and interviews that explore the intersections of innovation, sustainability, and public policy.
         </p>
                     <div className="space-y-4">
@@ -85,7 +85,7 @@ const Publishing: React.FC = () => {
                   
                   <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
                     <h3 className="text-2xl font-bold text-newtifi-navy mb-4">Our Mission</h3>
-                    <p className="text-lg text-gray-700 mb-6">
+                    <p className="text-base text-gray-700 mb-6">
           Our mission is to foster informed dialogue and bridge the gap between cutting-edge research and real-world decision-making. All publications are produced with academic integrity, intellectual independence, and an emphasis on clarity and impact.
         </p>
                     <div className="grid grid-cols-3 gap-4">
@@ -93,19 +93,19 @@ const Publishing: React.FC = () => {
                         <div className="w-12 h-12 bg-newtifi-teal/20 rounded-xl flex items-center justify-center mx-auto mb-2">
                           <Award className="w-6 h-6 text-newtifi-teal" />
                         </div>
-                        <div className="text-sm text-gray-600">Academic Integrity</div>
+                        <div className="text-base text-gray-600">Academic Integrity</div>
                       </div>
                       <div className="text-center">
                         <div className="w-12 h-12 bg-newtifi-teal/20 rounded-xl flex items-center justify-center mx-auto mb-2">
                           <Target className="w-6 h-6 text-newtifi-teal" />
                         </div>
-                        <div className="text-sm text-gray-600">Intellectual Independence</div>
+                        <div className="text-base text-gray-600">Intellectual Independence</div>
                       </div>
                       <div className="text-center">
                         <div className="w-12 h-12 bg-newtifi-teal/20 rounded-xl flex items-center justify-center mx-auto mb-2">
                           <Globe className="w-6 h-6 text-newtifi-teal" />
                         </div>
-                        <div className="text-sm text-gray-600">Clarity & Impact</div>
+                        <div className="text-base text-gray-600">Clarity & Impact</div>
                       </div>
                     </div>
                   </div>
@@ -121,21 +121,21 @@ const Publishing: React.FC = () => {
                         <div className="w-2 h-2 bg-white rounded-full mt-3 mr-4 flex-shrink-0"></div>
                         <div>
                           <h5 className="font-semibold mb-1">Contrary to many publishing houses</h5>
-                          <p className="text-white/80 text-sm">NewTIFI operates as a non-profit organization</p>
+                          <p className="text-white/80 text-base">NewTIFI operates as a non-profit organization</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <div className="w-2 h-2 bg-white rounded-full mt-3 mr-4 flex-shrink-0"></div>
                         <div>
                           <h5 className="font-semibold mb-1">All profits reinvested</h5>
-                          <p className="text-white/80 text-sm">Used to fund Doctoral Scholarships</p>
+                          <p className="text-white/80 text-base">Used to fund Doctoral Scholarships</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <div className="w-2 h-2 bg-white rounded-full mt-3 mr-4 flex-shrink-0"></div>
                         <div>
                           <h5 className="font-semibold mb-1">Supporting education</h5>
-                          <p className="text-white/80 text-sm">Advancing the next generation of researchers</p>
+                          <p className="text-white/80 text-base">Advancing the next generation of researchers</p>
                         </div>
                       </div>
                     </div>
@@ -148,28 +148,28 @@ const Publishing: React.FC = () => {
                         <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-4"></div>
                         <div>
                           <h5 className="font-semibold text-newtifi-navy">New Technologies</h5>
-                          <p className="text-sm text-gray-600">Cutting-edge innovation and development</p>
+                          <p className="text-base text-gray-600">Cutting-edge innovation and development</p>
                         </div>
                       </div>
                       <div className="flex items-center p-4 bg-gray-50 rounded-xl">
                         <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-4"></div>
                         <div>
                           <h5 className="font-semibold text-newtifi-navy">Investment Funds</h5>
-                          <p className="text-sm text-gray-600">Financial innovation and management</p>
+                          <p className="text-base text-gray-600">Financial innovation and management</p>
                         </div>
                       </div>
                       <div className="flex items-center p-4 bg-gray-50 rounded-xl">
                         <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-4"></div>
                         <div>
                           <h5 className="font-semibold text-newtifi-navy">Sustainability</h5>
-                          <p className="text-sm text-gray-600">Environmental and social impact</p>
+                          <p className="text-base text-gray-600">Environmental and social impact</p>
                         </div>
                       </div>
                       <div className="flex items-center p-4 bg-gray-50 rounded-xl">
                         <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-4"></div>
                         <div>
                           <h5 className="font-semibold text-newtifi-navy">Public Policy</h5>
-                          <p className="text-sm text-gray-600">Regulatory frameworks and governance</p>
+                          <p className="text-base text-gray-600">Regulatory frameworks and governance</p>
                         </div>
                       </div>
                     </div>
@@ -187,14 +187,14 @@ const Publishing: React.FC = () => {
           <div className="max-w-4xl mx-auto">
             <ScrollReveal>
               <div className="text-center mb-16">
-                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/10 text-newtifi-teal rounded-full text-sm font-medium mb-6">
+                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/10 text-newtifi-teal rounded-full text-base font-medium mb-6">
                   <FileText className="w-4 h-4 mr-2" />
                   Submission Guidelines
                 </div>
                 <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
                   How to Submit Your Research
                 </h2>
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                <p className="text-base text-gray-600 max-w-2xl mx-auto">
                   Follow our comprehensive guidelines to ensure your submission meets our standards for quality and academic rigor.
                 </p>
               </div>
@@ -226,8 +226,8 @@ const Publishing: React.FC = () => {
                     className="flex items-center justify-between w-full text-left"
                   >
                     <div>
-                      <h4 className="text-lg font-semibold text-newtifi-navy">View Complete Guidelines</h4>
-                      <p className="text-sm text-gray-600 mt-1">
+                      <h4 className="text-base font-semibold text-newtifi-navy">View Complete Guidelines</h4>
+                      <p className="text-base text-gray-600 mt-1">
                         {showSubmissionRules ? 'Click to collapse' : 'Click to expand detailed submission requirements'}
                       </p>
                     </div>
@@ -246,9 +246,9 @@ const Publishing: React.FC = () => {
                       <div key={category.id} className="border-b border-gray-100 last:border-b-0 pb-8 last:pb-0">
                         <div className="flex items-center gap-3 mb-4">
                           <div className="w-8 h-8 bg-newtifi-teal/20 rounded-lg flex items-center justify-center">
-                            <span className="text-newtifi-teal font-bold text-sm">{index + 1}</span>
+                            <span className="text-newtifi-teal font-bold text-base">{index + 1}</span>
                           </div>
-                          <h5 className="text-xl font-bold text-newtifi-navy">{category.name}</h5>
+                          <h5 className="text-base font-bold text-newtifi-navy">{category.name}</h5>
                         </div>
                         <p className="text-gray-600 mb-6 leading-relaxed">{category.description}</p>
                         
@@ -256,7 +256,7 @@ const Publishing: React.FC = () => {
                           {category.rules.map((rule) => (
                             <div key={rule.id} className="bg-gray-50 rounded-xl p-4 border border-gray-100">
                               <h6 className="font-semibold text-newtifi-navy mb-2">{rule.title}</h6>
-                              <p className="text-sm text-gray-700 leading-relaxed">{rule.content}</p>
+                              <p className="text-base text-gray-700 leading-relaxed">{rule.content}</p>
                             </div>
                           ))}
                         </div>

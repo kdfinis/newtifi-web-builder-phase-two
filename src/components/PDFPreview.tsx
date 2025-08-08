@@ -72,7 +72,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
       <div className={`bg-white rounded-2xl shadow-2xl flex flex-col ${isFullscreen ? 'w-full h-full rounded-none' : 'w-full max-w-6xl h-full max-h-[90vh]'}`}>
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-semibold text-gray-800 truncate">{title}</h2>
+          <h2 className="text-base font-semibold text-gray-800 truncate">{title}</h2>
           <div className="flex items-center gap-2">
             {/* Controls */}
             <button
@@ -82,7 +82,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
             >
               <ZoomOut className="w-4 h-4" />
             </button>
-            <span className="text-sm text-gray-600 min-w-[60px] text-center">{Math.round(scale * 100)}%</span>
+            <span className="text-base text-gray-600 min-w-[60px] text-center">{Math.round(scale * 100)}%</span>
             <button
               onClick={handleZoomIn}
               className="p-2 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-colors"
@@ -133,7 +133,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
                     setIsLoading(false);
                     setPdfError(true);
                   }}
-                  className="text-sm text-gray-500 hover:text-gray-700 underline"
+                  className="text-base text-gray-500 hover:text-gray-700 underline"
                 >
                   Skip loading
                 </button>
@@ -147,7 +147,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
                 <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FileTextIcon className="w-8 h-8 text-red-500" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">PDF Preview Error</h3>
+                <h3 className="text-base font-semibold text-gray-800 mb-2">PDF Preview Error</h3>
                 <p className="text-gray-600 mb-4">Unable to load the PDF preview</p>
                 <button
                   onClick={onDownload}
@@ -177,7 +177,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
               <div className="w-16 h-16 bg-newtifi-teal/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Download className="w-8 h-8 text-newtifi-teal" />
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Authentication Required</h3>
+              <h3 className="text-base font-semibold text-gray-800 mb-2">Authentication Required</h3>
               <p className="text-gray-600 mb-6">Please sign in to download this PDF</p>
               <button
                 onClick={onLoginRequired}

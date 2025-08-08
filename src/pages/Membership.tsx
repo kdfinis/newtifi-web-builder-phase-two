@@ -160,7 +160,7 @@ const Membership = () => {
               }`}>
                 {/* Featured badge */}
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-newtifi-teal text-newtifi-navy px-4 py-1 rounded-full text-sm font-bold">
+                  <div className="bg-newtifi-teal text-newtifi-navy px-4 py-1 rounded-full text-base font-bold">
                     MOST POPULAR
                   </div>
               </div>
@@ -302,7 +302,7 @@ const Membership = () => {
                   <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
                     Compare Membership Benefits
                   </h2>
-                  <p className="text-xl text-white/90">
+                  <p className="text-base text-white/90">
                     See exactly what each membership tier includes
                   </p>
                 </div>
@@ -340,7 +340,7 @@ const Membership = () => {
                     <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Individual Membership
                     </h2>
-                    <p className="text-xl text-gray-600 mb-8">
+                    <p className="text-base text-gray-600 mb-8">
                       Join as an individual professional and gain exclusive access to NewTIFI's comprehensive research library, networking events, and policy advocacy opportunities.
                     </p>
                     <div className="space-y-4">
@@ -393,7 +393,7 @@ const Membership = () => {
                     <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Institutional Membership
                     </h2>
-                    <p className="text-xl text-gray-600 mb-8">
+                    <p className="text-base text-gray-600 mb-8">
                       Empower your entire organization with comprehensive access to NewTIFI's resources, custom training programs, and dedicated support for enterprise-level innovation initiatives.
                     </p>
                     <div className="space-y-4">
@@ -522,7 +522,7 @@ const Membership = () => {
                     id="terms"
                         className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                       />
-                  <label htmlFor="terms" className="ml-2 block text-sm text-gray-600">
+                  <label htmlFor="terms" className="ml-2 block text-base text-gray-600">
                     I agree to receive communications and accept the terms of membership
                       </label>
                     </div>
@@ -549,7 +549,7 @@ const Membership = () => {
               <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
                 Luxembourg: Innovation Powerhouse
               </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base text-gray-600 max-w-3xl mx-auto">
                 NewTIFI leverages Luxembourg's strategic advantages and research capabilities in Europe's most dynamic innovation ecosystem.
               </p>
             </ScrollReveal>
@@ -567,7 +567,7 @@ const Membership = () => {
                     </button>
                   </div>
                   <p className="text-newtifi-navy font-medium mb-2">R&D Investment Rate</p>
-                  <p className="text-sm text-gray-600 mb-3">Highest in the EU, exceeding 3% target</p>
+                  <p className="text-base text-gray-600 mb-3">Highest in the EU, exceeding 3% target</p>
                   {expandedStats === 'rd' && (
                     <div className="text-xs text-gray-500 border-t pt-3">
                       <p><strong>Source:</strong> Eurostat, 2023</p>
@@ -589,7 +589,7 @@ const Membership = () => {
                 </button>
               </div>
                   <p className="text-newtifi-navy font-medium mb-2">Financial Assets</p>
-                  <p className="text-sm text-gray-600 mb-3">Under management in Luxembourg</p>
+                  <p className="text-base text-gray-600 mb-3">Under management in Luxembourg</p>
                   {expandedStats === 'assets' && (
                     <div className="text-xs text-gray-500 border-t pt-3">
                       <p><strong>Source:</strong> CSSF Annual Report, 2023</p>
@@ -611,7 +611,7 @@ const Membership = () => {
                     </button>
                   </div>
                   <p className="text-newtifi-navy font-medium mb-2">FinTech Companies</p>
-                  <p className="text-sm text-gray-600 mb-3">Leading European ecosystem</p>
+                  <p className="text-base text-gray-600 mb-3">Leading European ecosystem</p>
                   {expandedStats === 'fintech' && (
                     <div className="text-xs text-gray-500 border-t pt-3">
                       <p><strong>Source:</strong> Luxembourg House of Financial Technology, 2023</p>
@@ -625,8 +625,8 @@ const Membership = () => {
             <div className="grid lg:grid-cols-2 gap-8">
               <ScrollReveal>
                 <div className="bg-gradient-to-br from-newtifi-navy to-newtifi-teal text-white rounded-2xl p-6 shadow-xl">
-                  <h4 className="text-xl font-bold mb-4">Key Advantages</h4>
-                  <div className="space-y-3 text-sm">
+                  <h4 className="text-base font-bold mb-4">Key Advantages</h4>
+                  <div className="space-y-3 text-base">
                     <div className="flex items-start">
                       <div className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <div>
@@ -654,7 +654,7 @@ const Membership = () => {
               
               <ScrollReveal delay={100}>
                 <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
-                  <h4 className="text-xl font-bold text-newtifi-navy mb-4">Research Institutions</h4>
+                  <h4 className="text-base font-bold text-newtifi-navy mb-4">Research Institutions</h4>
                   <div className="space-y-3">
                     <a 
                       href="https://wwwen.uni.lu" 

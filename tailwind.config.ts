@@ -83,15 +83,12 @@ export default {
 				sans: ['Verdana', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
 			},
 			fontSize: {
-				// Simplified 9-size typography system
-				'xs': ['0.75rem', { lineHeight: '1rem' }],        // 12px - Extra small text
-				'sm': ['0.875rem', { lineHeight: '1.25rem' }],    // 14px - Small text
-				'base': ['1rem', { lineHeight: '1.5rem' }],       // 16px - Body text
-				'lg': ['1.125rem', { lineHeight: '1.75rem' }],    // 18px - Large body text
-				'xl': ['1.25rem', { lineHeight: '1.75rem' }],     // 20px - Subsection headings
-				'2xl': ['1.5rem', { lineHeight: '2rem' }],        // 24px - Section headings
-				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],     // 36px - Page headings
-				'6xl': ['3.75rem', { lineHeight: '1' }],          // 60px - Hero/Display text
+				// Unified 6-size typography system - All body text same size
+				'xs': ['0.75rem', { lineHeight: '1rem' }],        // 12px - Labels, badges, fine print only
+				'base': ['1rem', { lineHeight: '1.5rem' }],       // 16px - ALL body text, paragraphs, descriptions
+				'2xl': ['1.5rem', { lineHeight: '2rem' }],        // 24px - Section headings, card titles
+				'4xl': ['2.25rem', { lineHeight: '2.5rem' }],     // 36px - Page headings, main titles
+				'6xl': ['3.75rem', { lineHeight: '1' }],          // 60px - Hero text, display headlines
 				
 				// Legacy support (deprecated - will be removed)
 				'primary': ['2.5rem', { lineHeight: '1.2', fontWeight: '700' }],

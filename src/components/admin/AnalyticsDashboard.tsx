@@ -60,13 +60,13 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
         
         {/* Timeframe Filter */}
         <div className="mb-6">
-          <label className="block text-sm font-medium mb-2">Timeframe</label>
+          <label className="block text-base font-medium mb-2">Timeframe</label>
           <div className="space-y-2">
             {timeframes.map((tf) => (
               <button
                 key={tf.value}
                 onClick={() => setSelectedTimeframe(tf.value)}
-                className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                className={`w-full text-left px-3 py-2 rounded text-base transition-colors ${
                   selectedTimeframe === tf.value 
                     ? 'bg-[#0A0A23] text-white' 
                     : 'hover:bg-gray-100'
@@ -80,13 +80,13 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
 
         {/* Content Type Filter */}
         <div className="mb-6">
-          <label className="block text-sm font-medium mb-2">Content Type</label>
+          <label className="block text-base font-medium mb-2">Content Type</label>
           <div className="space-y-2">
             {contentTypes.map((ct) => (
               <button
                 key={ct.value}
                 onClick={() => setSelectedContentType(ct.value)}
-                className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                className={`w-full text-left px-3 py-2 rounded text-base transition-colors ${
                   selectedContentType === ct.value 
                     ? 'bg-[#0A0A23] text-white' 
                     : 'hover:bg-gray-100'
@@ -110,8 +110,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
       {/* Right Charts Section */}
       <div className="flex-1 space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">Analytics Dashboard</h2>
-          <div className="text-sm text-gray-500">
+          <h2 className="text-base font-bold">Analytics Dashboard</h2>
+          <div className="text-base text-gray-500">
             Last updated: {new Date().toLocaleDateString()}
           </div>
         </div>
@@ -122,25 +122,25 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
             <div className="text-2xl font-bold text-blue-600">
               {data?.totalDownloads || 0}
             </div>
-            <div className="text-sm text-gray-600">Journal Downloads</div>
+            <div className="text-base text-gray-600">Journal Downloads</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
             <div className="text-2xl font-bold text-green-600">
               {data?.totalViews || 0}
             </div>
-            <div className="text-sm text-gray-600">Page Views</div>
+            <div className="text-base text-gray-600">Page Views</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
             <div className="text-2xl font-bold text-purple-600">
               {data?.totalArticles || 0}
             </div>
-            <div className="text-sm text-gray-600">Applications</div>
+            <div className="text-base text-gray-600">Applications</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
             <div className="text-2xl font-bold text-orange-600">
               {data?.totalViews || 0}
             </div>
-            <div className="text-sm text-gray-600">Commentary Views</div>
+            <div className="text-base text-gray-600">Commentary Views</div>
           </div>
         </div>
 
@@ -153,14 +153,14 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
               <div className="space-y-2">
                 {data.monthlyStats.map((item, index) => (
                   <div key={index} className="flex items-center space-x-3">
-                    <div className="w-20 text-sm text-gray-600">{item.name}</div>
+                    <div className="w-20 text-base text-gray-600">{item.name}</div>
                     <div className="flex-1 bg-gray-200 rounded-full h-2">
                       <div 
                         className="bg-blue-500 h-2 rounded-full" 
                         style={{ width: `${Math.min(100, (item.value / Math.max(...data.monthlyStats.map(d => d.value))) * 100)}%` }}
                       ></div>
                     </div>
-                    <div className="w-12 text-sm text-right">{item.value}</div>
+                    <div className="w-12 text-base text-right">{item.value}</div>
                   </div>
                 ))}
               </div>
@@ -176,8 +176,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
               <div className="space-y-3">
                 {data.categoryStats.slice(0, 5).map((item, index) => (
                   <div key={index} className="flex justify-between items-center">
-                    <div className="text-sm truncate flex-1">{item.name}</div>
-                    <div className="text-sm font-medium text-gray-600">{item.value}</div>
+                    <div className="text-base truncate flex-1">{item.name}</div>
+                    <div className="text-base font-medium text-gray-600">{item.value}</div>
                   </div>
                 ))}
               </div>
@@ -193,8 +193,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
               <div className="space-y-3">
                 {data.categoryStats.map((item, index) => (
                   <div key={index} className="flex justify-between items-center">
-                    <div className="text-sm">{item.name}</div>
-                    <div className="text-sm font-medium text-gray-600">{item.value}</div>
+                    <div className="text-base">{item.name}</div>
+                    <div className="text-base font-medium text-gray-600">{item.value}</div>
                   </div>
                 ))}
               </div>
@@ -210,8 +210,8 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
               <div className="space-y-3">
                 {data.categoryStats.slice(0, 5).map((item, index) => (
                   <div key={index} className="flex justify-between items-center">
-                    <div className="text-sm truncate flex-1">{item.name}</div>
-                    <div className="text-sm font-medium text-gray-600">{item.value}</div>
+                    <div className="text-base truncate flex-1">{item.name}</div>
+                    <div className="text-base font-medium text-gray-600">{item.value}</div>
                   </div>
                 ))}
               </div>

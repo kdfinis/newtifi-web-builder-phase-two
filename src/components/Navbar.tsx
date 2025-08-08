@@ -143,7 +143,7 @@ const Navbar = () => {
 
         {/* For mobile menu, add below nav links: */}
         {isLoggedIn && (
-          <span className="md:hidden block text-green-200 text-sm font-semibold text-center mt-2">Your Account (Logged in)</span>
+          <span className="md:hidden block text-green-200 text-base font-semibold text-center mt-2">Your Account (Logged in)</span>
         )}
         <Link 
           to="/login" 

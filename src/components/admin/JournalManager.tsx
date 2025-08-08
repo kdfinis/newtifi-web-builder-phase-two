@@ -142,7 +142,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-[#0A0A23]">Article Collating Tool</h2>
-          <p className="text-sm text-gray-600 mt-1">
+          <p className="text-base text-gray-600 mt-1">
             Manage and organize real articles with actual PDF files
           </p>
         </div>
@@ -174,10 +174,10 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
       {tab === 'articles' && (
         <div className="bg-white rounded-lg shadow p-4">
           <div className="flex justify-between items-center mb-4">
-            <div className="text-xl font-bold">
+            <div className="text-base font-bold">
               Real Articles ({validArticles.length})
             </div>
-            <div className="text-sm text-gray-500">
+            <div className="text-base text-gray-500">
               Only articles with actual PDF files
             </div>
           </div>
@@ -190,13 +190,13 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                 </svg>
               </div>
               <p className="text-gray-600 font-medium">No real articles found</p>
-              <p className="text-sm text-gray-500 mt-1">
+              <p className="text-base text-gray-500 mt-1">
                 Use the Scan tab to find articles or Upload tab to add new ones
               </p>
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="min-w-full text-sm">
+              <table className="min-w-full text-base">
                 <thead>
                   <tr className="bg-gray-100">
                     <th className="p-2 text-left">Title</th>
@@ -276,7 +276,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
       {/* Upload Tab */}
       {tab === 'upload' && (
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-bold mb-4">Upload Articles</h3>
+          <h3 className="text-base font-bold mb-4">Upload Articles</h3>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
             <div className="text-gray-400 mb-4">
               <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,7 +295,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
             />
             <label
               htmlFor="article-upload"
-              className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#0A0A23] hover:bg-[#1a1a40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0A0A23] cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-[#0A0A23] hover:bg-[#1a1a40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0A0A23] cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
               {uploading ? 'Uploading...' : 'Select PDF Files'}
             </label>
@@ -306,11 +306,11 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
       {/* Scan Tab */}
       {tab === 'scan' && (
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-xl font-bold mb-4">Scan for Articles</h3>
+          <h3 className="text-base font-bold mb-4">Scan for Articles</h3>
           <div className="space-y-4">
             <div className="p-4 bg-blue-50 rounded-lg">
               <h4 className="font-semibold text-blue-800 mb-2">Scan Results</h4>
-              <p className="text-sm text-blue-700">
+              <p className="text-base text-blue-700">
                 This will scan the website directories for PDF articles and automatically add them to the system.
               </p>
             </div>
@@ -330,7 +330,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                   {realArticles.map((article, index) => (
                     <div key={index} className="p-3 bg-gray-50 rounded border">
                       <div className="font-medium">{article.title}</div>
-                      <div className="text-sm text-gray-500">{article.filename}</div>
+                      <div className="text-base text-gray-500">{article.filename}</div>
                     </div>
                   ))}
                 </div>

@@ -194,7 +194,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300" />
             </div>
-            <div className="relative flex justify-center text-sm">
+            <div className="relative flex justify-center text-base">
               <span className="px-2 bg-white text-gray-500">or</span>
             </div>
           </div>
@@ -205,7 +205,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           {authMode === 'signup' && (
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">First Name</label>
+                <label className="block text-base font-medium text-gray-700 mb-1">First Name</label>
                 <input
                   type="text"
                   name="firstName"
@@ -217,7 +217,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Last Name</label>
+                <label className="block text-base font-medium text-gray-700 mb-1">Last Name</label>
                 <input
                   type="text"
                   name="lastName"
@@ -232,7 +232,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           )}
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -248,7 +248,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -272,7 +272,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
           {authMode === 'signup' && (
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Confirm Password</label>
+              <label className="block text-base font-medium text-gray-700 mb-1">Confirm Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                 <input
@@ -296,7 +296,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           )}
 
           {error && (
-            <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg">
+            <div className="text-red-600 text-base bg-red-50 p-3 rounded-lg">
               {error}
             </div>
           )}

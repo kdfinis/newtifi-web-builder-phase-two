@@ -67,7 +67,7 @@ const Contact = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <ScrollReveal>
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-base font-medium">
                   <Sparkles className="w-4 h-4 mr-2" />
                   Get in Touch
                 </div>
@@ -75,7 +75,7 @@ const Contact = () => {
                   Let's Connect and
                   <span className="text-newtifi-teal block">Shape the Future</span>
                 </h1>
-                <p className="text-lg text-white/90 leading-relaxed">
+                <p className="text-base text-white/90 leading-relaxed">
                   Ready to explore opportunities with NewTIFI? Our team is here to help you navigate the intersection of technology and finance, and connect you with our global network of innovators.
                 </p>
                 <div className="flex flex-wrap gap-4">
@@ -120,12 +120,12 @@ const Contact = () => {
                     <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Get in Touch
                     </h2>
-                    <p className="text-xl text-gray-600 mb-8">
+                    <p className="text-base text-gray-600 mb-8">
                       Ready to explore opportunities with NewTIFI? Our team is here to help you navigate the intersection of technology and finance.
                     </p>
                     
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/10 rounded-2xl p-6">
-                      <h3 className="text-xl font-semibold text-newtifi-navy mb-3">Quick Contact</h3>
+                      <h3 className="text-base font-semibold text-newtifi-navy mb-3">Quick Contact</h3>
                       <div className="space-y-3">
                         <div className="flex items-center">
                           <Mail className="w-5 h-5 text-newtifi-teal mr-3" />
@@ -208,7 +208,7 @@ const Contact = () => {
                           id="terms-contact"
                           className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                         />
-                        <label htmlFor="terms-contact" className="ml-2 block text-sm text-gray-600">
+                        <label htmlFor="terms-contact" className="ml-2 block text-base text-gray-600">
                           I agree to receive communications and accept the privacy policy
                         </label>
                       </div>
@@ -247,13 +247,13 @@ const Contact = () => {
                     <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                       Our Location
                     </h2>
-                    <p className="text-xl text-gray-600 mb-8">
+                    <p className="text-base text-gray-600 mb-8">
                       Located in the heart of Europe's financial district, NewTIFI benefits from Luxembourg's strategic position and world-class infrastructure.
                     </p>
                     
                     <div className="space-y-6">
                       <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/10 rounded-2xl p-6">
-                        <h3 className="text-xl font-semibold text-newtifi-navy mb-4">Mailing Address</h3>
+                        <h3 className="text-base font-semibold text-newtifi-navy mb-4">Mailing Address</h3>
                         <div className="space-y-3 text-gray-700">
                           <p className="font-medium">New Technologies and Investment Funds Institute A.s.b.l.</p>
                           <p>14, rue Jean-Pierre Biermann</p>
@@ -263,7 +263,7 @@ const Contact = () => {
                       </div>
                       
                       <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                        <h3 className="text-xl font-semibold text-newtifi-navy mb-4">Why Luxembourg?</h3>
+                        <h3 className="text-base font-semibold text-newtifi-navy mb-4">Why Luxembourg?</h3>
                         <div className="space-y-3 text-gray-600">
                           <div className="flex items-start">
                             <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-2 mr-3 flex-shrink-0"></div>
@@ -312,15 +312,15 @@ const Contact = () => {
                         <div className="space-y-3 text-gray-600">
                           <div>
                             <p className="font-medium">By Public Transport:</p>
-                            <p className="text-sm">5-minute walk from Luxembourg Central Station</p>
+                            <p className="text-base">5-minute walk from Luxembourg Central Station</p>
                           </div>
                           <div>
                             <p className="font-medium">By Car:</p>
-                            <p className="text-sm">Parking available in nearby public garages</p>
+                            <p className="text-base">Parking available in nearby public garages</p>
                           </div>
                           <div>
                             <p className="font-medium">By Air:</p>
-                            <p className="text-sm">20-minute drive from Luxembourg Airport</p>
+                            <p className="text-base">20-minute drive from Luxembourg Airport</p>
                           </div>
                         </div>
                       </div>
@@ -346,7 +346,7 @@ const Contact = () => {
                 <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-6">
                   Luxembourg Innovation Powerhouse
                 </h2>
-                <p className="text-xl text-gray-600 mb-8">
+                <p className="text-base text-gray-600 mb-8">
                   Luxembourg's strategic advantages make it the ideal location for NewTIFI's mission to connect technology and finance.
                 </p>
                 
@@ -355,8 +355,8 @@ const Contact = () => {
                     <div key={index} className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
                       <div className="text-center">
                         <div className="text-2xl font-bold text-newtifi-teal mb-2">{advantage.stat}</div>
-                        <h3 className="text-lg font-semibold text-newtifi-navy mb-2">{advantage.title}</h3>
-                        <p className="text-sm text-gray-600 mb-2">{advantage.description}</p>
+                        <h3 className="text-base font-semibold text-newtifi-navy mb-2">{advantage.title}</h3>
+                        <p className="text-base text-gray-600 mb-2">{advantage.description}</p>
                         <p className="text-xs text-newtifi-teal font-medium">{advantage.detail}</p>
                       </div>
                     </div>
@@ -490,7 +490,7 @@ const Contact = () => {
             <h2 className="text-2xl md:text-4xl font-bold mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
+            <p className="text-base text-white/90 mb-8 max-w-3xl mx-auto">
               Connect with our team and discover how NewTIFI can help you navigate the future of technology and finance.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

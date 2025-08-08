@@ -75,7 +75,7 @@ export default function Login() {
 
             <ScrollReveal>
               <div className="space-y-8">
-                <div className="inline-flex items-center px-4 py-2 bg-white/10 text-white rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-white/10 text-white rounded-full text-base font-medium">
                   <Shield className="w-4 h-4 mr-2" />
                   Secure Access
                 </div>
@@ -84,7 +84,7 @@ export default function Login() {
                   Welcome Back
                 </h1>
                 
-                <p className="text-xl text-white/90 leading-relaxed max-w-2xl mx-auto">
+                <p className="text-base text-white/90 leading-relaxed max-w-2xl mx-auto">
                   Sign in to access our research platform and join our community of professionals.
                 </p>
               </div>
@@ -109,7 +109,7 @@ export default function Login() {
                 <h2 className="text-2xl font-bold text-newtifi-navy mb-4">
                   Choose Your Sign-In Method
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="text-gray-600 text-base">
                   Quick and secure access to your account
                 </p>
               </div>
@@ -152,7 +152,7 @@ export default function Login() {
 
                 {/* Social Login */}
                 <div className="bg-white rounded-2xl p-8 shadow-xl border border-gray-100 hover:shadow-2xl transition-all duration-300">
-                  <h3 className="text-xl font-semibold text-newtifi-navy mb-6 text-center">
+                  <h3 className="text-base font-semibold text-newtifi-navy mb-6 text-center">
                     Quick Sign In
                   </h3>
                   
@@ -190,14 +190,14 @@ export default function Login() {
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-200" />
                   </div>
-                  <div className="relative flex justify-center text-sm">
+                  <div className="relative flex justify-center text-base">
                     <span className="px-4 bg-white text-gray-500">or</span>
                   </div>
                 </div>
 
                 {/* Email Login */}
                 <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                  <h3 className="text-xl font-semibold text-newtifi-navy mb-6 text-center">
+                  <h3 className="text-base font-semibold text-newtifi-navy mb-6 text-center">
                     Email Sign In
                   </h3>
                   

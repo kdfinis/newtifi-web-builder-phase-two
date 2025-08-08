@@ -12,7 +12,7 @@ const Connect = () => {
         <div className="container mx-auto relative">
           <ScrollReveal className="max-w-2xl">
             <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Get in Touch</h1>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-base text-white/80 leading-relaxed">
               Have questions about New Technologies and Investment Funds Institute's initiatives? We're here to help you navigate the future of innovation.
             </p>
           </ScrollReveal>
@@ -32,8 +32,8 @@ const Connect = () => {
                       <Mail className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Email</h3>
-                    <p className="text-newtifi-navy/70 text-sm">info@newtifi.com</p>
+                    <h3 className="text-base font-semibold text-newtifi-navy mb-2">Email</h3>
+                    <p className="text-newtifi-navy/70 text-base">info@newtifi.com</p>
                   </div>
 
                   <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
@@ -41,8 +41,8 @@ const Connect = () => {
                       <Phone className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Phone</h3>
-                    <p className="text-newtifi-navy/70 text-sm">+352 123 456 789</p>
+                    <h3 className="text-base font-semibold text-newtifi-navy mb-2">Phone</h3>
+                    <p className="text-newtifi-navy/70 text-base">+352 123 456 789</p>
                   </div>
 
                   <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
@@ -50,8 +50,8 @@ const Connect = () => {
                       <MapPin className="h-6 w-6 text-newtifi-navy" />
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
-                    <h3 className="text-lg font-semibold text-newtifi-navy mb-2">Location</h3>
-                    <p className="text-newtifi-navy/70 text-sm">Luxembourg</p>
+                    <h3 className="text-base font-semibold text-newtifi-navy mb-2">Location</h3>
+                    <p className="text-newtifi-navy/70 text-base">Luxembourg</p>
                   </div>
                 </div>
 
@@ -81,7 +81,7 @@ const Connect = () => {
                       ></textarea>
 
                       <div>
-                        <label className="block text-sm font-medium text-newtifi-navy mb-2">
+                        <label className="block text-base font-medium text-newtifi-navy mb-2">
                           Select the role that applies to you
                         </label>
                         <select
@@ -96,7 +96,7 @@ const Connect = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-newtifi-navy mb-2">
+                        <label className="block text-base font-medium text-newtifi-navy mb-2">
                           Select your country
                         </label>
                         <select
@@ -120,7 +120,7 @@ const Connect = () => {
                             id="privacy"
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
-                          <label htmlFor="privacy" className="ml-2 block text-sm text-newtifi-navy/70">
+                          <label htmlFor="privacy" className="ml-2 block text-base text-newtifi-navy/70">
                             I confirm that I have read and agree to the New Technologies and Investment Funds Institute Privacy Policy
                           </label>
                         </div>
@@ -131,7 +131,7 @@ const Connect = () => {
                             id="communications"
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
-                          <label htmlFor="communications" className="ml-2 block text-sm text-newtifi-navy/70">
+                          <label htmlFor="communications" className="ml-2 block text-base text-newtifi-navy/70">
                             I would like to receive occasional communications and insights reports from New Technologies and Investment Funds Institute
                           </label>
                         </div>

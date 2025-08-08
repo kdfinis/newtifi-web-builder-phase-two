@@ -56,13 +56,13 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ analytics, activityLog 
 
       {/* Activity Log */}
       <div className="bg-white rounded-lg shadow p-6">
-        <div className="font-semibold text-lg mb-2">Recent Activity</div>
+        <div className="font-semibold text-base mb-2">Recent Activity</div>
         {activityLog.length === 0 ? (
-          <div className="text-gray-400 text-sm">No recent activity.</div>
+          <div className="text-gray-400 text-base">No recent activity.</div>
         ) : (
           <ul className="space-y-2">
             {activityLog.map((item, idx) => (
-              <li key={idx} className="flex items-center text-sm">
+              <li key={idx} className="flex items-center text-base">
                 <span className="text-gray-400 mr-2">{item.timestamp}</span>
                 <span>{item.description}</span>
               </li>

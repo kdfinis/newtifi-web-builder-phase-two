@@ -256,14 +256,14 @@ export default function ArticlePage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
         <div className="text-center">
-          <p className="text-red-600 text-lg mb-4">Article not found</p>
-          <p className="text-gray-600 text-sm mb-4">Slug: {slug}</p>
-          <p className="text-gray-600 text-sm mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
+          <p className="text-red-600 text-base mb-4">Article not found</p>
+          <p className="text-gray-600 text-base mb-4">Slug: {slug}</p>
+          <p className="text-gray-600 text-base mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
           
           {/* Debug info */}
           <div className="bg-gray-100 p-4 rounded mb-4 text-left max-w-2xl">
             <h3 className="font-bold mb-2">Debug Info:</h3>
-            <p className="text-sm mb-2">Available articles:</p>
+            <p className="text-base mb-2">Available articles:</p>
             {articles.map((a, idx) => (
               <div key={idx} className="text-xs mb-2 p-2 bg-white rounded">
                 <div><strong>ID:</strong> {a.id}</div>
@@ -347,7 +347,7 @@ export default function ArticlePage() {
         <div className="container mx-auto relative">
           <div className="max-w-6xl mx-auto">
       {/* Breadcrumb navigation */}
-            <nav className="mb-8 text-sm text-white/80 flex items-center gap-2" aria-label="Breadcrumb">
+            <nav className="mb-8 text-base text-white/80 flex items-center gap-2" aria-label="Breadcrumb">
               <a href="/" className="hover:text-white transition-colors">Home</a>
         <span className="mx-1">&gt;</span>
               <a href="/publishing/journals/investment-management" className="hover:text-white transition-colors">Articles</a>
@@ -357,14 +357,14 @@ export default function ArticlePage() {
 
             <ScrollReveal>
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-sm font-medium">
+                <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-base font-medium">
                   <BookOpen className="w-4 h-4 mr-2" />
                   Investment Management Journal
                 </div>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   {meta.title}
                 </h1>
-                <p className="text-xl text-white/90 leading-relaxed max-w-4xl">
+                <p className="text-base text-white/90 leading-relaxed max-w-4xl">
                   {article.abstract}
                 </p>
                 
@@ -402,9 +402,9 @@ export default function ArticlePage() {
                     <h2 className="text-2xl font-bold text-newtifi-navy mb-4">{article.title}</h2>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
-                        <span className="text-newtifi-teal font-semibold text-lg">By {article.author}</span>
+                        <span className="text-newtifi-teal font-semibold text-base">By {article.author}</span>
                         <span className="text-gray-500">•</span>
-                        <span className="text-gray-600 text-lg">{article.date}</span>
+                        <span className="text-gray-600 text-base">{article.date}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-newtifi-teal font-medium">Luxembourg Investment Fund Regulation Expert</span>
@@ -424,10 +424,10 @@ export default function ArticlePage() {
                 {/* Keywords Section */}
                 <ScrollReveal delay={200}>
                   <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                    <h3 className="text-xl font-bold text-newtifi-navy mb-6">Keywords</h3>
+                    <h3 className="text-base font-bold text-newtifi-navy mb-6">Keywords</h3>
                     <div className="flex flex-wrap gap-2">
                 {article.keywords?.map((keyword, kIdx) => (
-                        <span key={kIdx} className="bg-newtifi-teal/10 text-newtifi-navy px-3 py-2 rounded-xl text-sm font-medium border border-newtifi-teal/20">
+                        <span key={kIdx} className="bg-newtifi-teal/10 text-newtifi-navy px-3 py-2 rounded-xl text-base font-medium border border-newtifi-teal/20">
                     {keyword}
                   </span>
                 ))}
@@ -440,10 +440,10 @@ export default function ArticlePage() {
                   <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Academic Context</h3>
                     <div className="prose prose-lg max-w-none">
-                      <p className="text-gray-800 leading-relaxed mb-6 text-lg">
+                      <p className="text-gray-800 leading-relaxed mb-6 text-base">
                         {article.abstract}
                       </p>
-                      <p className="text-gray-700 leading-relaxed text-lg">
+                      <p className="text-gray-700 leading-relaxed text-base">
                         This research contributes to the broader academic discourse on {article.keywords?.slice(0, 3).join(', ').toLowerCase()} by providing comprehensive analysis and practical insights for practitioners and policymakers. The study addresses critical gaps in current understanding and offers evidence-based recommendations for regulatory compliance and operational best practices in the Luxembourg financial services sector.
                       </p>
                     </div>
@@ -463,7 +463,7 @@ export default function ArticlePage() {
                           }
                         </p>
                         {isAuthenticated && (
-                          <p className="text-white/70 text-sm mt-2">
+                          <p className="text-white/70 text-base mt-2">
                             Welcome back, {currentUser?.name || 'User'}!
                           </p>
                         )}
@@ -494,8 +494,8 @@ export default function ArticlePage() {
                 {/* Journal Info */}
                 <ScrollReveal delay={200}>
                   <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">Journal Information</h3>
-                    <div className="space-y-3 text-sm">
+                    <h3 className="text-base font-bold text-newtifi-navy mb-4">Journal Information</h3>
+                    <div className="space-y-3 text-base">
                       <div>
                         <span className="font-semibold text-gray-700">Title:</span>
                         <p className="text-gray-600">{journalMetadata.title}</p>
@@ -519,8 +519,8 @@ export default function ArticlePage() {
                 {/* Peer Review Info */}
                 <ScrollReveal delay={400}>
                   <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">Peer Review Status</h3>
-                    <div className="space-y-3 text-sm">
+                    <h3 className="text-base font-bold text-newtifi-navy mb-4">Peer Review Status</h3>
+                    <div className="space-y-3 text-base">
                       <div className="flex items-center gap-2">
                         <CheckCircle className="w-5 h-5 text-newtifi-teal" />
                         <span className="text-gray-700">Double-blind peer review</span>
@@ -540,11 +540,11 @@ export default function ArticlePage() {
                 {/* Archiving Info */}
                 <ScrollReveal delay={600}>
                   <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
-                    <h3 className="text-lg font-bold text-newtifi-navy mb-4">
+                    <h3 className="text-base font-bold text-newtifi-navy mb-4">
                       <Archive className="w-5 h-5 text-newtifi-teal inline mr-2" />
               Archiving & Preservation
             </h3>
-                    <div className="space-y-3 text-sm">
+                    <div className="space-y-3 text-base">
               <div className="flex items-center gap-2">
                         <CheckCircle className="w-4 h-4 text-newtifi-teal" />
                         <span className="text-gray-700">CLOCKSS Archive</span>

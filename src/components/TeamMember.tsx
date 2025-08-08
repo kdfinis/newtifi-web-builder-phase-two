@@ -41,7 +41,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
          
         <div className="p-6 transition-all duration-300 bg-white group-hover:bg-white h-[180px] flex flex-col justify-between shadow-sm group-hover:shadow-xl">
           <div>
-            <h3 className="text-xl font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
+            <h3 className="text-base font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
             <p className="text-newtifi-navy font-medium text-base line-clamp-2">{title}</p>
           </div>
           

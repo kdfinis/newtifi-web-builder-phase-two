@@ -256,7 +256,7 @@ const MediaLibrary: React.FC = () => {
           />
           <label
             htmlFor="media-upload"
-            className={`inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-[#0A0A23] hover:bg-[#1a1a40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0A0A23] cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
+            className={`inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-[#0A0A23] hover:bg-[#1a1a40] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#0A0A23] cursor-pointer ${uploading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             {uploading ? 'Uploading...' : '+ Upload Media'}
           </label>
@@ -269,7 +269,7 @@ const MediaLibrary: React.FC = () => {
           <button
             key={category.id}
             onClick={() => setSelectedCategory(category.id)}
-            className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap ${
+            className={`px-4 py-2 rounded-full text-base font-medium whitespace-nowrap ${
               selectedCategory === category.id
                 ? 'bg-[#0A0A23] text-white'
                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -300,13 +300,13 @@ const MediaLibrary: React.FC = () => {
                   <svg className="w-12 h-12 mx-auto text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
-                  <span className="text-sm text-gray-500">{item.type.toUpperCase()}</span>
+                  <span className="text-base text-gray-500">{item.type.toUpperCase()}</span>
                 </div>
               )}
             </div>
             <div className="p-4">
               <h3 className="font-semibold text-[#0A0A23] mb-1 truncate">{item.name}</h3>
-              <p className="text-sm text-gray-500 mb-2">{item.size} • {item.uploadedAt}</p>
+              <p className="text-base text-gray-500 mb-2">{item.size} • {item.uploadedAt}</p>
               <div className="flex gap-2">
                 <button
                   onClick={() => copyToClipboard(item.url)}
@@ -334,7 +334,7 @@ const MediaLibrary: React.FC = () => {
             </svg>
           </div>
           <p className="text-gray-600 font-medium">No media found</p>
-          <p className="text-sm text-gray-500 mt-1">Try adjusting your search or category filter</p>
+          <p className="text-base text-gray-500 mt-1">Try adjusting your search or category filter</p>
         </div>
       )}
     </div>

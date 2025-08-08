@@ -194,7 +194,7 @@ const Person = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
               {member.expertise && member.expertise.length > 0 && (
                 <div className="bg-[#00C2CB] rounded-xl p-8 shadow-lg">
-                  <h3 className="text-xl font-bold mb-4 text-white">Areas of Expertise</h3>
+                  <h3 className="text-base font-bold mb-4 text-white">Areas of Expertise</h3>
                   <ul className="list-disc list-inside space-y-2 text-white">
                     {member.expertise.map((item, index) => (
                       <li key={index}>{item}</li>
@@ -204,7 +204,7 @@ const Person = () => {
               )}
               {member.achievements && member.achievements.length > 0 && (
                 <div className="bg-[#0A0A23] rounded-xl p-8 shadow-lg">
-                  <h3 className="text-xl font-bold mb-4 text-[#00C2CB]">Key Achievements</h3>
+                  <h3 className="text-base font-bold mb-4 text-[#00C2CB]">Key Achievements</h3>
                   <ul className="list-disc list-inside space-y-2 text-white">
                     {member.achievements.map((item, index) => (
                       <li key={index}>{item}</li>
@@ -272,7 +272,7 @@ const Person = () => {
           <div className="flex-1 flex flex-col gap-8">
             <div>
               <h1 className="text-4xl font-bold text-newtifi-navy mb-1">{member.name}</h1>
-              <p className="text-xl text-gray-600 mb-4">{member.title}</p>
+              <p className="text-base text-gray-600 mb-4">{member.title}</p>
               <div className="prose prose-lg max-w-none">
                 {member.fullBio.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="text-gray-600 leading-relaxed">
@@ -285,7 +285,7 @@ const Person = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {member.expertise && member.expertise.length > 0 && (
                 <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-sm">
-                  <h2 className="text-xl font-semibold text-newtifi-navy mb-4">Areas of Expertise</h2>
+                  <h2 className="text-base font-semibold text-newtifi-navy mb-4">Areas of Expertise</h2>
                   <ul className="space-y-3">
                     {member.expertise.map((item, index) => (
                       <li key={index} className="flex items-center gap-3 text-base">
@@ -298,7 +298,7 @@ const Person = () => {
               )}
               {member.achievements && member.achievements.length > 0 && (
                 <div className="bg-gray-50 rounded-xl p-6 border border-gray-100 shadow-sm">
-                  <h2 className="text-xl font-semibold text-newtifi-navy mb-4">Key Achievements</h2>
+                  <h2 className="text-base font-semibold text-newtifi-navy mb-4">Key Achievements</h2>
                   <ul className="space-y-3">
                     {member.achievements.map((item, index) => (
                       <li key={index} className="flex items-center gap-3 text-base">
