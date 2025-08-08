@@ -273,7 +273,7 @@ const Person = () => {
             <div>
               <h1 className="text-4xl font-bold text-newtifi-navy mb-1">{member.name}</h1>
               <p className="text-base text-gray-600 mb-4">{member.title}</p>
-              <div className="prose prose-lg max-w-none">
+              <div className="prose prose max-w-none">
                 {member.fullBio.split('\n\n').map((paragraph, index) => (
                   <p key={index} className="text-gray-600 leading-relaxed">
                     {paragraph}

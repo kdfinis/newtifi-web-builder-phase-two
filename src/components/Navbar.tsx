@@ -53,7 +53,7 @@ const Navbar = () => {
             style={{ minHeight: '34px' }}
           />
           <span 
-            className="text-white text-[12px] md:text-base font-light hidden md:block whitespace-nowrap"
+                            className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
           >
             New Technologies & Investment Fund Institute
           </span>
@@ -70,7 +70,7 @@ const Navbar = () => {
 
         {/* Navigation Links - Desktop */}
         <nav className={cn(
-          "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-[1.2rem] md:text-[2.4rem] font-medium tracking-wide",
+                          "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-medium tracking-wide",
           "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
           "transition-all duration-300 ease-in-out",
           isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"

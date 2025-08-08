@@ -439,7 +439,7 @@ export default function ArticlePage() {
                 <ScrollReveal delay={400}>
                   <div className="bg-gradient-to-br from-gray-50 to-white rounded-3xl p-8 shadow-lg border border-gray-100">
                     <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Academic Context</h3>
-                    <div className="prose prose-lg max-w-none">
+                    <div className="prose prose max-w-none">
                       <p className="text-gray-800 leading-relaxed mb-6 text-base">
                         {article.abstract}
                       </p>
