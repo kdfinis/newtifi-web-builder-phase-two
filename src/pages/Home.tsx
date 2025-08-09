@@ -278,7 +278,7 @@ const Home = () => {
                   <li>Shaping policy through thought leadership and a shared vision of inclusion, well-being, and sustainability</li>
                 </ul>
                 {/* Luxembourg photo boxes to balance right column height */}
-                <div className="mt-4 grid grid-rows-2 gap-4">
+                <div className="mt-4 grid grid-rows-3 gap-4">
                   <div
                     className="rounded-2xl w-full h-48 md:h-64 bg-top bg-cover shadow-xl border border-gray-100"
                     style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }}
@@ -288,6 +288,11 @@ const Home = () => {
                     className="rounded-2xl w-full h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
                     style={{ backgroundImage: "url('/images/uploads/kirchberg-fort-thungen.jpg')" }}
                     aria-label="Fort Thüngen, Kirchberg, Luxembourg"
+                  />
+                  <div
+                    className="rounded-2xl w-full h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
+                    style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
+                    aria-label="Luxembourg skyline"
                   />
                 </div>
               </div>
