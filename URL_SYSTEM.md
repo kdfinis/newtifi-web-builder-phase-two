@@ -51,6 +51,14 @@ The system maintains backward compatibility with:
 3. `data/admin_articles.json` - Add article with urlId
 4. `admin-server.js` - URL generation functions (automatic)
 
+## Non-Article File Repository
+
+- Canonical location for ALL non-article downloadable/servable files: `public/files/`
+- Access via `/files/<filename>` at runtime
+- Place any datasets, docs, PDFs (non-article), CSVs, images for download here
+- Mirror for nested app: `newtifi-web-builder/public/files/`
+- For Future AI: Always store new non-article assets under `public/files/` and reference with absolute paths like `/files/<name>`
+
 ## Important Notes
 - **NEVER change urlId** once assigned
 - **NEVER delete urlId** mappings
