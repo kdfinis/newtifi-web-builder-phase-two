@@ -28,6 +28,8 @@ app.use(compression());
 
 // Security headers
 app.use(helmet({
+    // Allow cross-origin iframes like Google Maps
+    crossOriginEmbedderPolicy: false,
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
@@ -36,15 +38,31 @@ app.use(helmet({
               if (process.env.LIVE_RELOAD) base.push('http://localhost:35729');
               return base;
             })(),
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-            fontSrc: ["'self'", "https://fonts.gstatic.com"],
+            styleSrc: ["'self'", "'unsafe-inline'"],
+            fontSrc: ["'self'"],
             imgSrc: ["'self'", "data:", "https:"],
             connectSrc: (() => {
               const base = ["'self'", "http://localhost:8080"];
               if (process.env.LIVE_RELOAD) base.push('http://localhost:35729');
               return base;
             })(),
-            frameSrc: ["'self'", "https://www.google.com", "https://maps.google.com"],
+            // Allow map embeds (Google and OpenStreetMap)
+            frameSrc: [
+              "'self'",
+              "https://www.google.com",
+              "https://google.com",
+              "https://maps.google.com",
+              "https://*.google.com",
+              "https://www.openstreetmap.org"
+            ],
+            childSrc: [
+              "'self'",
+              "https://www.google.com",
+              "https://google.com",
+              "https://maps.google.com",
+              "https://*.google.com",
+              "https://www.openstreetmap.org"
+            ],
         },
     },
 }));
