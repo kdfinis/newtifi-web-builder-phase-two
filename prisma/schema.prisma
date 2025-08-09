@@ -1,0 +1,40 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  EDITOR
+  ADMIN
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String?  // null for OAuth-only users
+  name         String?
+  role         Role     @default(USER)
+  googleId     String?  @unique
+  linkedinId   String?  @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  resetTokens  ResetToken[]
+}
+
+model ResetToken {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}

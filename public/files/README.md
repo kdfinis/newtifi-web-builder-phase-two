@@ -12,3 +12,8 @@ Rules
 For Future AI
 - When adding any new data/assets for runtime or download, store them here and update any links to `/files/...`.
 - Do not place such files under `src/` (they won’t be statically served).
+
+Research Submissions
+- Place all user-uploaded or admin-managed research submission documents under `/public/files/research-submissions/`.
+- Create a subfolder per submission or user, e.g. `/public/files/research-submissions/2025-08-09-project-abc/`.
+- Public access path example: `/files/research-submissions/2025-08-09-project-abc/proposal.pdf`.

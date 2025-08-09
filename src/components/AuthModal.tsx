@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, Mail, Lock, Eye, EyeOff, User, ArrowRight, ExternalLink } from 'lucide-react';
-import { FcGoogle } from 'react-icons/fc';
-import { FaLinkedin } from 'react-icons/fa';
-import LinkedInLogin from 'react-linkedin-login-oauth2';
+import React, { useState } from 'react';
+import { loginEmail, registerEmail, loginWithGoogle, loginWithLinkedIn } from '@/lib/auth';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -38,72 +35,9 @@ const AuthModal: React.FC<AuthModalProps> = ({
     setError('');
   };
 
-  const handleGoogleSignIn = async () => {
-    setIsLoading(true);
-    try {
-      // Google OAuth implementation
-      const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || 'your-google-client-id';
-      const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback');
-      const scope = encodeURIComponent('openid email profile');
-      
-      const googleAuthUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${googleClientId}&redirect_uri=${redirectUri}&response_type=code&scope=${scope}&state=${Date.now()}`;
-      
-      console.log('Initiating Google OAuth flow...');
-      
-      // For demo purposes, simulate the OAuth flow
-      // In production, you would redirect to Google
-      if (googleClientId === 'your-google-client-id') {
-        // Demo mode - simulate successful OAuth
-        setTimeout(() => {
-          onSuccess({ 
-            id: 'google-user-' + Date.now(), 
-            email: 'user@gmail.com', 
-            name: 'Google User',
-            provider: 'google',
-            avatar: 'https://via.placeholder.com/40/4285F4/FFFFFF?text=G'
-          });
-          onClose();
-        }, 1500);
-      } else {
-        // Production mode - redirect to Google
-        window.location.href = googleAuthUrl;
-      }
-    } catch (error) {
-      setError('Google sign-in failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const handleGoogleSignIn = () => loginWithGoogle();
 
-  const handleLinkedInSignIn = async () => {
-    setIsLoading(true);
-    setError('');
-
-    try {
-      // LinkedIn OAuth implementation
-      const linkedinClientId = process.env.REACT_APP_LINKEDIN_CLIENT_ID || 'your-linkedin-client-id';
-      const redirectUri = encodeURIComponent(window.location.origin + '/auth/callback');
-      const scope = encodeURIComponent('r_liteprofile r_emailaddress');
-      
-      const linkedinAuthUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${linkedinClientId}&redirect_uri=${redirectUri}&scope=${scope}&state=${Date.now()}`;
-      
-      console.log('Initiating LinkedIn OAuth flow...');
-      console.log('LinkedIn Auth URL:', linkedinAuthUrl);
-      
-      // Always redirect to LinkedIn for now (demo mode will be handled differently)
-      // Store the intended action in localStorage for when user returns
-      localStorage.setItem('auth_intent', 'linkedin');
-      localStorage.setItem('auth_timestamp', Date.now().toString());
-      
-      // Redirect to LinkedIn
-      window.location.href = linkedinAuthUrl;
-      
-    } catch (error) {
-      console.error('LinkedIn OAuth error:', error);
-      setError('LinkedIn sign-in failed. Please try again.');
-      setIsLoading(false);
-    }
-  };
+  const handleLinkedInSignIn = () => loginWithLinkedIn();
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -116,18 +50,15 @@ const AuthModal: React.FC<AuthModalProps> = ({
         return;
       }
 
-      // Implement email authentication
-      console.log('Email auth:', authMode, formData);
-      // Mock success for now
-      setTimeout(() => {
-        onSuccess({ 
-          id: 'email-user-123', 
-          email: formData.email, 
-          name: `${formData.firstName} ${formData.lastName}`,
-          provider: 'email' 
-        });
-        onClose();
-      }, 1000);
+      if (authMode === 'login') {
+        const { email, password } = formData as any;
+        await loginEmail(email, password);
+      } else {
+        const { email, password, firstName, lastName } = formData as any;
+        await registerEmail(email, password, `${firstName} ${lastName}`.trim());
+      }
+      onSuccess({ id: 'me', email: formData.email });
+      onClose();
     } catch (error) {
       setError(authMode === 'login' ? 'Invalid credentials' : 'Registration failed');
     } finally {
@@ -138,70 +69,66 @@ const AuthModal: React.FC<AuthModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4">
-      <div className="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
-        {/* Header */}
-        <div className="relative p-6 border-b border-gray-100">
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-800">
-              {authMode === 'login' ? 'Welcome Back' : 'Create Account'}
-            </h2>
-            <p className="text-gray-600 mt-2">
-              {authMode === 'login' ? 'Sign in to access your account' : 'Join our community of researchers'}
-            </p>
-          </div>
+    <div className="fixed inset-0 z-50 bg-black/70">
+      {/* Fullscreen split layout, spacious and professional */}
+      <div className="grid md:grid-cols-2 w-full h-screen overflow-hidden">
+        {/* Left visual panel with Luxembourg photography */}
+        <div className="hidden md:block relative h-full w-full">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: "url('/assets/images/Lux-Philharmonie.jpeg')" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-tr from-black/55 to-black/10" />
         </div>
 
-        {/* Social Auth Buttons */}
-        <div className="p-6 space-y-4">
-          <button
-            onClick={handleGoogleSignIn}
-            disabled={isLoading}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
-          >
-            {isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-600"></div>
-            ) : (
-              <FcGoogle className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            )}
-            <span className="font-medium">
-              {isLoading ? 'Connecting to Google...' : 'Continue with Google'}
-            </span>
-          </button>
-
-          <button
-            onClick={handleLinkedInSignIn}
-            disabled={isLoading}
-            className="w-full flex items-center justify-center gap-3 px-4 py-3 bg-blue-600 text-white rounded-xl hover:bg-blue-700 hover:shadow-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed group"
-          >
-            {isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-            ) : (
-              <FaLinkedin className="w-5 h-5 group-hover:scale-110 transition-transform" />
-            )}
-            <span className="font-medium">
-              {isLoading ? 'Connecting to LinkedIn...' : 'Continue with LinkedIn'}
-            </span>
-          </button>
-
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
-            </div>
-            <div className="relative flex justify-center text-base">
-              <span className="px-2 bg-white text-gray-500">or</span>
-            </div>
+        {/* Right form panel - glass card */}
+        <div className="relative h-full w-full bg-white/70 backdrop-blur-sm">
+          <div className="absolute top-6 right-6">
+            <button
+              onClick={onClose}
+              className="px-3 py-1.5 text-base text-gray-700 hover:text-newtifi-navy rounded-full bg-white/70 border border-gray-200 hover:bg-white transition"
+            >
+              Close
+            </button>
           </div>
-        </div>
 
-        {/* Email Form */}
-        <form onSubmit={handleEmailAuth} className="p-6 space-y-4">
+          <div className="h-full w-full flex items-center justify-center p-6">
+            <div className="w-full max-w-lg bg-white/90 border border-gray-200 rounded-2xl p-8 shadow-xl">
+              <div className="text-center mb-8">
+                <img src="/assets/images/logo.png" alt="NewTIFI" className="mx-auto h-12 mb-4" />
+                <h2 className="text-3xl font-bold text-newtifi-navy tracking-tight">
+                  {authMode === 'login' ? 'Sign in to NewTIFI' : 'Create your NewTIFI account'}
+                </h2>
+                <p className="text-base text-gray-600 mt-2">
+                  Secure access to Luxembourg-focused research and insights
+                </p>
+              </div>
+
+              {/* Option cards */}
+              <div className="grid grid-cols-1 gap-3 mb-6">
+                <button
+                  onClick={handleGoogleSignIn}
+                  disabled={isLoading}
+                  className="w-full px-5 py-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition disabled:opacity-50"
+                >
+                  {isLoading ? 'Connecting to Google…' : 'Continue with Google'}
+                </button>
+                <button
+                  onClick={handleLinkedInSignIn}
+                  disabled={isLoading}
+                  className="w-full px-5 py-4 rounded-xl bg-newtifi-navy text-white hover:bg-newtifi-navy/90 transition disabled:opacity-50"
+                >
+                  {isLoading ? 'Connecting to LinkedIn…' : 'Continue with LinkedIn'}
+                </button>
+              </div>
+
+              <div className="relative my-6">
+                <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-gray-200"/></div>
+                <div className="relative flex justify-center"><span className="px-2 bg-white text-gray-500 text-base">or</span></div>
+              </div>
+
+              {/* Email Form */}
+              <form onSubmit={handleEmailAuth} className="space-y-5">
           {authMode === 'signup' && (
             <div className="grid grid-cols-2 gap-4">
               <div>
@@ -234,7 +161,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           <div>
             <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
             <div className="relative">
-              <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              {/* Removed icon */}
               <input
                 type="email"
                 name="email"
@@ -250,7 +177,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           <div>
             <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
             <div className="relative">
-              <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              {/* Removed icon */}
               <input
                 type={showPassword ? 'text' : 'password'}
                 name="password"
@@ -265,7 +192,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? 'Hide' : 'Show'}
               </button>
             </div>
           </div>
@@ -274,7 +201,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
             <div>
               <label className="block text-base font-medium text-gray-700 mb-1">Confirm Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                {/* Removed icon */}
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
                   name="confirmPassword"
@@ -289,7 +216,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
                 >
-                  {showConfirmPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showConfirmPassword ? 'Hide' : 'Show'}
                 </button>
               </div>
             </div>
@@ -306,32 +233,28 @@ const AuthModal: React.FC<AuthModalProps> = ({
             disabled={isLoading}
             className="w-full bg-newtifi-navy text-white py-3 rounded-xl font-medium hover:bg-newtifi-navy/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
           >
-            {isLoading ? (
-              <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-            ) : (
-              <>
-                {authMode === 'login' ? 'Sign In' : 'Create Account'}
-                <ArrowRight className="w-4 h-4" />
-              </>
-            )}
+                {isLoading ? 'Please wait…' : (authMode === 'login' ? 'Sign In' : 'Create Account')}
           </button>
-        </form>
+                </form>
 
-        {/* Footer */}
-        <div className="p-6 border-t border-gray-100 text-center">
-          <p className="text-gray-600">
-            {authMode === 'login' ? "Don't have an account? " : "Already have an account? "}
-            <button
-              onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
-              className="text-newtifi-teal hover:text-newtifi-navy font-medium transition-colors"
-            >
-              {authMode === 'login' ? 'Sign up' : 'Sign in'}
-            </button>
-          </p>
-        </div>
+                {/* Footer */}
+                <div className="p-6 border-t border-gray-100 text-center">
+                  <p className="text-gray-600">
+                    {authMode === 'login' ? "Don't have an account? " : "Already have an account? "}
+                    <button
+                      onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
+                      className="text-newtifi-teal hover:text-newtifi-navy font-medium transition-colors"
+                    >
+                      {authMode === 'login' ? 'Sign up' : 'Sign in'}
+                    </button>
+                  </p>
+                </div>
+              </div>{/* end max-w-md */}
+            </div>{/* end flex center wrapper */}
+          </div>{/* end right panel */}
+        </div>{/* end grid */}
       </div>
-    </div>
-  );
-};
+    );
+  };
 
 export default AuthModal;

@@ -331,23 +331,8 @@ const Home = () => {
                           className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
-                          {/* Article Header with Logo */}
-                          <div className="flex items-start gap-6 mb-6">
-                            {/* Logo */}
-                            <div className="flex-shrink-0">
-                              <div className="w-12 h-12 rounded-xl overflow-hidden shadow-lg border-2 border-gray-100 bg-white group-hover:border-newtifi-teal/30 transition-colors">
-                                <img 
-                                  src="/images/logo.png" 
-                                  alt="NewTIFI Logo"
-                                  className="w-full h-full object-contain p-2"
-                                  onError={(e) => {
-                                    e.currentTarget.style.display = 'none';
-                                  }}
-                                />
-                              </div>
-                            </div>
-
-                            {/* Article Info */}
+                          {/* Article Header (text only, logo removed) */}
+                          <div className="flex items-start mb-6">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-3 mb-2">
                                 <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
@@ -526,7 +511,7 @@ const Home = () => {
                     title: "Life Insurance Products",
                     description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
                     icon: "🛡️",
-                    image: "/images/Life insurance.jpg"
+                    image: "/images/life-insurance.jpg"
                   }
                 ].map((item, index: number) => (
                   <ScrollReveal 
