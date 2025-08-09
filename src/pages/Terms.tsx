@@ -8,10 +8,11 @@ const Terms = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100}>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">Terms</h1>
             <div className="mb-10">
-              <h1 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
-                TERMS &<br />INNOVATION
-              </h1>
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                Transparent Collaboration
+              </h2>
             </div>
             <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Building trust through transparent collaboration

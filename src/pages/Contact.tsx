@@ -9,8 +9,15 @@ const Contact = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <div className="w-full">
-            <h1 className="text-4xl md:text-4xl font-bold mb-4">Contact</h1>
-            <p className="text-base text-white/80 leading-relaxed">We’d love to hear from you. Get in touch to explore partnerships, submissions, or general inquiries.</p>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">Contact</h1>
+            <div className="mb-10">
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                We’d love to hear from you
+              </h2>
+            </div>
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              Get in touch to explore partnerships, submissions, or general inquiries.
+            </p>
           </div>
         </div>
       </section>

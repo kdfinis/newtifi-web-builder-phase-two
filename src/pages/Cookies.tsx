@@ -8,10 +8,11 @@ const Cookies = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100}>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">Cookies</h1>
             <div className="mb-10">
-              <h1 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
-                COOKIES &<br />DIGITAL EXPERIENCE
-              </h1>
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
+                Digital Experience
+              </h2>
             </div>
             <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
               Enhancing your journey through responsible technology

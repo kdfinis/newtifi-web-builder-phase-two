@@ -57,10 +57,15 @@ const WhoWeAre = () => {
       {/* Header Section */}
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
-        <div className="w-full">
-            <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Who We Are</h1>
-            <p className="text-base text-white/80 leading-relaxed">
-              Meet the team driving innovation at Newtifi. We're a diverse group of thinkers, builders, and innovators committed to shaping a better future through technology.
+          <div className="w-full">
+            <h1 className="text-2xl md:text-2xl font-light mb-10">Who We Are</h1>
+            <div className="mb-10">
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                Senior Leadership & Vision
+              </h2>
+            </div>
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              Meet the team driving innovation at NewTIFI. We’re a diverse group committed to shaping a better future through technology.
             </p>
           </div>
         </div>

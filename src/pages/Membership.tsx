@@ -69,19 +69,18 @@ const Membership = () => {
         </div>
 
         <div className="container mx-auto relative">
-        <div className="w-full">
+          <div className="w-full">
             <ScrollReveal>
-              <div className="space-y-6">
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-                  Shape the Future of
-                  <span className="text-newtifi-teal block">Technology & Finance</span>
-                </h1>
-                <p className="text-2xl text-white/90 leading-relaxed">
-                  Connect with world-class researchers, policymakers, and industry leaders. Access cutting-edge insights and drive innovation across HealthTech, FoodTech, EnergyTech, and FinTech.
-                </p>
-
+              <h1 className="text-2xl md:text-2xl font-light mb-10">Membership</h1>
+              <div className="mb-10">
+                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                  Shape the Future of <span className="text-newtifi-teal">Technology & Finance</span>
+                </h2>
               </div>
-          </ScrollReveal>
+              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+                Connect with world-class researchers, policymakers, and industry leaders. Access cutting-edge insights and drive innovation across HealthTech, FoodTech, EnergyTech, and FinTech.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>

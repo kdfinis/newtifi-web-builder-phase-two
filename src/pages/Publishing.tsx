@@ -159,8 +159,15 @@ const Publishing: React.FC = () => {
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <div className="w-full">
-            <h1 className="text-4xl md:text-4xl font-bold mb-4">Publishing</h1>
-            <p className="text-base text-white/80 leading-relaxed">Submission guidelines, workflow and documents for the Investment Management Journal.</p>
+            <h1 className="text-2xl md:text-2xl font-light mb-10">Publishing</h1>
+            <div className="mb-10">
+              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                Submission Guidelines & Workflow
+              </h2>
+            </div>
+            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              Submission guidelines, workflow and documents for the Investment Management Journal.
+            </p>
           </div>
         </div>
       </section>
@@ -203,23 +210,7 @@ const Publishing: React.FC = () => {
 
                 {/* Integrated Submission Builder per blueprint */}
                 <div className="p-6 space-y-6">
-                  {/* Top notice and login prompt */}
-                  <div className="bg-white rounded-2xl shadow p-5 border border-gray-100 mb-6">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                      <div className="text-base text-gray-700">
-                        <span className="font-semibold text-newtifi-navy">Journal:</span> <a className="text-newtifi-teal hover:underline" href={journalHomeUrl}>Investment Management Journal</a>
-                        <span className="mx-2">·</span>
-                        <a className="text-newtifi-teal hover:underline" href="#rules-link" onClick={(e)=>{e.preventDefault(); window.location.href='/publishing#submission-guidelines';}}>Rules for Submission</a>
-                      </div>
-                      <div className="text-base text-gray-700">
-                        {isLoggedIn ? (
-                          <span>Logged in as <span className="font-semibold text-newtifi-navy">{memberEmail || 'member'}</span></span>
-                        ) : (
-                          <span>To submit, log in or create a free Open Member account.</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+                  {/* Removed top notice and login identity box per request */}
 
                   {/* Official Documents – direct downloads */}
                   <div className="bg-white rounded-2xl shadow border border-gray-100 p-5">
