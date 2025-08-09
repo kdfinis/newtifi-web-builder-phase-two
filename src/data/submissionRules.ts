@@ -276,7 +276,7 @@ export const generateSubmissionRulesPDF = (): string => {
     <html>
     <head>
       <style>
-        body { font-family: Arial, sans-serif; margin: 40px; line-height: 1.6; }
+        body { font-family: Verdana, sans-serif; margin: 40px; line-height: 1.6; }
         h1 { color: #0A0A23; text-align: center; border-bottom: 2px solid #00C2CB; padding-bottom: 10px; }
         h2 { color: #0A0A23; margin-top: 30px; }
         h3 { color: #00C2CB; margin-top: 20px; }

@@ -138,7 +138,7 @@ app.use((err, req, res, next) => {
             <head>
                 <title>Error - New Technologies and Investment Funds Institute</title>
                 <style>
-                    body { font-family: 'Inter', sans-serif; padding: 2rem; text-align: center; }
+                    body { font-family: Verdana, sans-serif; padding: 2rem; text-align: center; }
                     h1 { color: #1a365d; }
                     p { color: #2d3748; }
                 </style>

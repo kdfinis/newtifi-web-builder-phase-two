@@ -9,7 +9,7 @@ export default {
 		"./src/**/*.{ts,tsx}",
 	],
 	prefix: "",
-	theme: {
+		theme: {
 		container: {
 			center: true,
 			padding: '2rem',
@@ -17,7 +17,13 @@ export default {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
+			// Fully override font families to use Verdana exclusively
+			fontFamily: {
+				sans: ['Verdana'],
+				serif: ['Verdana'],
+				mono: ['Verdana']
+			},
+			extend: {
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -79,9 +85,7 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			fontFamily: {
-				sans: ['Verdana', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
-			},
+				
 			fontSize: {
 				// Unified 6-size typography system - All body text same size
 				'xs': ['0.75rem', { lineHeight: '1rem' }],        // 12px - Labels, badges, fine print only

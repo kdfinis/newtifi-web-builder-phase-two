@@ -11,7 +11,10 @@ module.exports = {
         'newtifi-grey': '#B5BEC1',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        // Force Verdana across this legacy config too
+        sans: ['Verdana'],
+        serif: ['Verdana'],
+        mono: ['Verdana'],
       },
     },
   },
