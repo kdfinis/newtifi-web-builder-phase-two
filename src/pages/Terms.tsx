@@ -23,7 +23,7 @@ const Terms = () => {
       {/* Policy content */}
       <section className="bg-white">
         <div className="container mx-auto px-6 py-20">
-          <div className="max-w-4xl mx-auto space-y-12">
+          <div className="w-full mx-auto space-y-12">
             <ScrollReveal direction="right" delay={200}>
               <section>
                 <h2 className="text-2xl font-light text-newtifi-navy mb-4">1. Agreement to Terms</h2>

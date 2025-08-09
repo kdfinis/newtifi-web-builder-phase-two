@@ -46,7 +46,7 @@ const ScholarshipManager: React.FC<ScholarshipManagerProps> = ({ calls = [], app
 
   if (showForm) {
     return (
-      <div className="bg-white rounded-lg shadow p-6 max-w-4xl mx-auto">
+  <div className="bg-white rounded-lg shadow p-6 w-full mx-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-base font-bold">New Scholarship Call</h2>
           <button 

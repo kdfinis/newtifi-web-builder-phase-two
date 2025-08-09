@@ -12,8 +12,13 @@ export default {
 		theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '0rem',
 			screens: {
+				// Enforce a single fixed content width across all breakpoints
+				'sm': '1400px',
+				'md': '1400px',
+				'lg': '1400px',
+				'xl': '1400px',
 				'2xl': '1400px'
 			}
 		},

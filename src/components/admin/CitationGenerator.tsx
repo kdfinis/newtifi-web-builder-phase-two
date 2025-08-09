@@ -64,7 +64,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
   const citation = generateCitation(citationData, format);
 
   return (
-    <div className="bg-white border rounded-lg p-4 max-w-2xl">
+  <div className="bg-white border rounded-lg p-4 w-full">
       <h3 className="font-semibold text-base mb-4">Citation & Metadata Generator</h3>
       
       <div className="space-y-4">

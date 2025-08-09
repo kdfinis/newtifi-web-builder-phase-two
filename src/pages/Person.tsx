@@ -141,7 +141,7 @@ const Person = () => {
   ) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#e6f7fa] to-[#fafdff] flex items-center justify-center pb-8 px-2" style={{ paddingTop: '112px' }}>
-        <div className="w-full max-w-7xl bg-white rounded-2xl shadow-2xl p-0 md:p-0 overflow-hidden">
+    <div className="w-full bg-white rounded-2xl shadow-2xl p-0 md:p-0 overflow-hidden">
           {/* Header with color and social */}
           <div className="bg-[#00C2CB] px-12 py-8 flex flex-col md:flex-row items-center md:items-end gap-4">
             <div className="flex-1">
@@ -236,7 +236,7 @@ const Person = () => {
 
       {/* Main content */}
       <div className="container mx-auto px-6 py-12">
-        <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12 flex flex-col md:flex-row gap-12">
+    <div className="w-full mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12 flex flex-col md:flex-row gap-12">
           {/* Left: Profile Photo */}
           <div className="flex-shrink-0 flex flex-col items-center w-full md:w-1/3">
             <img

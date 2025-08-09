@@ -57,7 +57,7 @@ const WhoWeAre = () => {
       {/* Header Section */}
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
-          <div className="max-w-2xl">
+        <div className="w-full">
             <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Who We Are</h1>
             <p className="text-base text-white/80 leading-relaxed">
               Meet the team driving innovation at Newtifi. We're a diverse group of thinkers, builders, and innovators committed to shaping a better future through technology.
@@ -68,7 +68,7 @@ const WhoWeAre = () => {
 
       {/* Team Section */}
       <section className="px-6 pb-20 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto w-full">
           <div className="text-center mb-16 pt-24">
             <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Senior Leadership</h2>
           </div>
@@ -91,7 +91,7 @@ const WhoWeAre = () => {
       <section className="px-6 py-20 bg-gradient-to-br from-newtifi-navy via-[#1a2b4d] to-[#162544] text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('/assets/images/grid-pattern.svg')] opacity-5"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-newtifi-teal/5 to-transparent"></div>
-        <div className="container mx-auto relative">
+        <div className="container mx-auto relative w-full">
           <div className="max-w-7xl mx-auto text-center">
             <h2 className="text-2xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
             <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-lg shadow-newtifi-teal/5">
@@ -105,7 +105,7 @@ const WhoWeAre = () => {
 
       {/* Our Values Section */}
       <section className="px-6 pb-20 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto w-full">
           <div className="mb-12 text-center pt-20">
             <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
             <p className="text-base text-gray-700 font-light">
@@ -113,7 +113,7 @@ const WhoWeAre = () => {
             </p>
           </div>
           
-          <div className="max-w-7xl mx-auto">
+          <div className="w-full mx-auto">
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
               <div className="mb-10 text-center">
                 <p className="text-base text-white/80 font-light mb-2">Some Key principles that guide our work and shape our impact</p>

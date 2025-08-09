@@ -43,7 +43,7 @@ const Navbar = () => {
         isAtTop && "animate-[bump_0.6s_ease-in-out]"
       )}
     >
-      <div className="container mx-auto px-4 md:px-8 h-full flex items-center justify-between relative">
+      <div className="container mx-auto h-full flex items-center justify-between relative">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-1.5">
           <img 
@@ -96,7 +96,7 @@ const Navbar = () => {
             Who We Are
           </Link>
           <Link 
-            to="/publishing/journals/investment-management" 
+            to="/publishing" 
             className={cn(
               "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname.startsWith("/publishing") && "text-newtifi-teal"

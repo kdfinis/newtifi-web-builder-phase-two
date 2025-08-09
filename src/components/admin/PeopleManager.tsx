@@ -36,7 +36,7 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
 
   if (editingPerson) {
     return (
-      <div className="bg-white rounded-lg shadow p-6 max-w-2xl mx-auto">
+  <div className="bg-white rounded-lg shadow p-6 w-full mx-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-base font-bold">Edit Profile</h2>
           <button 

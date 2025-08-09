@@ -14,7 +14,7 @@ export default function LearnMoreAboutUs() {
   const navigate = useNavigate();
   return (
     <main className="min-h-screen bg-gradient-to-br from-white to-newtifi-teal/10 pb-20">
-      <section className="container mx-auto px-6 py-16">
+      <section className="mx-auto px-6 py-16">
         <div className="bg-white rounded-3xl shadow-xl p-8 md:p-16 flex flex-col items-center">
           <h1 className="text-4xl md:text-4xl font-bold text-newtifi-navy mb-8 text-center">Learn More About Us</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full mb-12">

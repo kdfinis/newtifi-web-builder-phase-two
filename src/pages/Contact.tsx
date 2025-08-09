@@ -4,10 +4,19 @@ import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 
 const Contact = () => {
   return (
-    <main className="min-h-screen bg-white pt-[128px]">
+    <main className="min-h-screen bg-white">
+      {/* Top Navy Section (consistent with Home/Who We Are) */}
+      <section className="px-6 py-32 bg-newtifi-navy text-white">
+        <div className="container mx-auto">
+          <div className="w-full">
+            <h1 className="text-4xl md:text-4xl font-bold mb-4">Contact</h1>
+            <p className="text-base text-white/80 leading-relaxed">We’d love to hear from you. Get in touch to explore partnerships, submissions, or general inquiries.</p>
+          </div>
+        </div>
+      </section>
       {/* Single compact section: one box, one map, one column */}
       <section className="px-6 py-12">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto w-full">
           <ScrollReveal>
             <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden p-4 space-y-6">
               {/* One Map only */}
@@ -96,7 +105,7 @@ const Contact = () => {
 
       {/* Luxembourg Innovation Powerhouse - one column, navy box */}
       <section className="px-6 pb-16">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto w-full">
           <ScrollReveal>
             <div className="bg-newtifi-navy text-white rounded-3xl shadow-2xl border border-newtifi-navy/20 overflow-hidden p-4 space-y-6">
               {/* Hero image of Adolphe Bridge (using available Luxembourg image) */}
@@ -130,7 +139,7 @@ const Contact = () => {
 
       {/* White section under Innovation - brief about NewTIFI */}
       <section className="px-6 pb-16 bg-white">
-        <div className="container mx-auto max-w-7xl">
+        <div className="container mx-auto w-full">
           <ScrollReveal>
             <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
               <h3 className="text-2xl font-bold text-newtifi-navy mb-4">About NewTIFI</h3>

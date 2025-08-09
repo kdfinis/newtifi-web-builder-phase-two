@@ -32,7 +32,7 @@ export default function Login() {
   return (
     <main className="min-h-screen bg-white pt-[90px]">
       <section className="min-h-[calc(100vh-90px)] w-full flex items-center justify-center bg-gradient-to-br from-newtifi-navy to-newtifi-teal p-6">
-        <div className="w-full max-w-6xl grid md:grid-cols-2 gap-0 bg-white/95 rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+        <div className="w-full grid md:grid-cols-2 gap-0 bg-white/95 rounded-3xl shadow-2xl overflow-hidden">
           {/* Left: Brand block */}
           <div className="flex flex-col justify-between bg-newtifi-navy text-white p-12">
             <div>
@@ -41,13 +41,14 @@ export default function Login() {
               <p className="text-base text-white/80 mt-2">Access research, publishing tools, and member services.</p>
             </div>
             <div
-              className="mt-10 rounded-2xl w-full h-80 md:h-[28rem] border border-white/10 bg-center bg-cover"
+              className="mt-10 rounded-2xl w-full h-80 md:h-[28rem] bg-center bg-cover"
               style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
             />
           </div>
 
           {/* Right: Auth card */}
           <div className="p-10 md:p-12">
+            <p className="text-base text-gray-600 mb-4">Choose a sign-in option. You can use Google or LinkedIn for a quick, secure login, or sign in with your email and password below.</p>
 
             {/* SSO */}
             <div className="grid grid-cols-1 gap-4 mb-8">

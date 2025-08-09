@@ -164,7 +164,7 @@ export default function InvestmentManagementJournal() {
   const [expandedCriterion, setExpandedCriterion] = useState(null);
   const navigate = useNavigate();
 
-  const [journalSubtab, setJournalSubtab] = React.useState<'committee' | 'abstracts' | 'technical'>('committee');
+  const [journalSubtab, setJournalSubtab] = React.useState<'abstracts' | 'technical'>('technical');
   const [isRegistered, setIsRegistered] = React.useState(false);
   const [showRegisterModal, setShowRegisterModal] = React.useState(false);
   const [registerName, setRegisterName] = React.useState('');
@@ -224,9 +224,7 @@ export default function InvestmentManagementJournal() {
           window.scrollTo({ top, behavior: 'smooth' });
         }
       };
-      if (journalSubtab === 'committee') {
-        scrollToSubtab(committeeRef);
-      } else if (journalSubtab === 'abstracts') {
+      if (journalSubtab === 'abstracts') {
         scrollToSubtab(abstractsRef);
       } else if (journalSubtab === 'technical') {
         scrollToSubtab(technicalRef);
@@ -320,7 +318,7 @@ export default function InvestmentManagementJournal() {
 
   // Helper function to get the correct URL for an article
   function getArticleUrl(article) {
-    return `/publishing/journals/investment-management/article/${article.id}`;
+    return `/publishing/article/${article.id}`;
   }
 
   const GoogleIcon = () => (
@@ -345,7 +343,7 @@ export default function InvestmentManagementJournal() {
       <div className="h-20 md:h-24" />
       {/* Header & Publishing Info */}
       <header className="w-full px-4 pt-6 pb-6 border-b border-gray-200">
-        <div className="max-w-6xl mx-auto">
+        <div className="w-full mx-auto">
           <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
             {/* Luxembourg Philharmonie Photo */}
             <div className="hidden md:block flex-shrink-0">
@@ -371,7 +369,7 @@ export default function InvestmentManagementJournal() {
         </div>
       </header>
       {/* Modern Tab Navigation */}
-      <nav className="w-full max-w-6xl mx-auto flex flex-wrap gap-2 md:gap-4 px-4 pt-2 pb-2 border-b border-gray-200 mb-4" aria-label="Publishing Navigation">
+      <nav className="w-full mx-auto flex flex-wrap gap-2 md:gap-4 px-4 pt-2 pb-2 border-b border-gray-200 mb-4" aria-label="Publishing Navigation">
         <button
           className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'journals' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('journals'); setSelectedArticle(null); }}
@@ -419,7 +417,7 @@ export default function InvestmentManagementJournal() {
       {/* Tab Content */}
       {selectedTab === 'journals' && (
         <section ref={journalsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4">
+        <div className="w-full mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
@@ -441,91 +439,29 @@ export default function InvestmentManagementJournal() {
             <p className="text-base text-gray-800">
               All profits realised by NewTIFI including through publication efforts are used to fund Doctoral Scholarships.
             </p>
-            {/* Subtabs for Committee Members, Abstracts, Technical Information */}
-            <div className="mt-10">
-              <div className="flex gap-4 mb-6">
-                <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'committee' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
-                  onClick={() => setJournalSubtab('committee')}
-                >
-                  Committee Members
-                </button>
-                <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'abstracts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
-                  onClick={() => setJournalSubtab('abstracts')}
-                >
-                  Abstracts
-                </button>
-                <button
-                  className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${journalSubtab === 'technical' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
-                  onClick={() => setJournalSubtab('technical')}
-                >
-                  Technical Information
-                </button>
+            {/* Submission Guidelines (prominent, navy section) */}
+            <div className="mt-10 rounded-3xl bg-newtifi-navy px-6 py-8 md:px-10 md:py-12 shadow-2xl border border-newtifi-navy/80">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <div className="w-full">
+                  <h4 className="text-2xl font-extrabold text-white">Submission Guidelines</h4>
+                  <p className="text-base text-white/90 mt-2">How to prepare and submit manuscripts to the Investment Management Journal.</p>
                 </div>
+                <a
+                  href="/publishing#submission-guidelines"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-newtifi-navy transition font-semibold shadow"
+                  aria-label="View Submission Guidelines"
+                >
+                  View Guidelines
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+            {/* Subtabs removed per request */}
+            <div className="mt-10">
                 <div>
-                {journalSubtab === 'committee' && (
-                  <div ref={committeeRef} className="text-gray-700 text-base">Committee Members content coming soon.</div>
-                )}
                 {journalSubtab === 'abstracts' && (
                   <div ref={abstractsRef} className="space-y-8">
-                    {articles.slice(0, 3).map((article, idx) => {
-                      // Example metadata for demonstration
-                      const authorRole = idx === 0 ? 'Lecturer at the Luxembourg School of Business' : idx === 1 ? 'Legal Scholar' : 'Investment Funds Specialist';
-                      const readingTime = idx === 0 ? '40 min' : idx === 1 ? '35 min' : '30 min';
-                      const keywords = idx === 0
-                        ? 'LUXEMBOURG CLOSED-ENDED ELTIFs · COMPULSORY REDEMPTION · INVESTOR PROTECTION · DISTRIBUTION MECHANISMS · FUND LIQUIDITY MANAGEMENT · TERMINATION & AMALGAMATION OF COMPARTMENTS · CAPITAL REDUCTION · REDEMPTION CLAUSES · FUND DOCUMENTATION · CSSF PRACTICE'
-                        : idx === 1
-                        ? 'WELL-INFORMED INVESTOR · LUXEMBOURG SICAR · SIF · RAIF · ALTERNATIVE FUNDS · INVESTOR PROTECTION · ELIGIBILITY · REGULATORY FRAMEWORK · CSSF PRACTICE'
-                        : 'AIFM PORTFOLIO CONTROL · BAFIN · LUXEMBOURG FUNDS · INVESTOR OVERSIGHT · REGULATORY POLICY · PORTFOLIO MANAGEMENT';
-                      const citation = idx === 0
-                        ? `Ezechiel Havrenne, ‘Closed-Ended Luxembourg ELTIFs: Compulsory Redemption Matters and Compartment Termination & Amalgamation Provisions’, NewTIFI Publishing – Investment Management Journal, Vol. 1, N°4, pp.31-44, The New Technologies & Investment Funds Institute (2025)`
-                        : idx === 1
-                        ? `Ezechiel Havrenne, ‘Luxembourg SICARs, SIFs and RAIFs – A 20-year Perspective on the Well-Informed Investor notion’, NewTIFI Publishing – Investment Management Journal, Vol. 1, N°3, pp.21-30, The New Technologies & Investment Funds Institute (2025)`
-                        : `Ezechiel Havrenne, ‘Investor Oversight or Undue Influence? Reassessing BaFin’s Stance on AIFM Portfolio Control’, NewTIFI Publishing – Investment Management Journal, Vol. 1, N°2, pp.11-20, The New Technologies & Investment Funds Institute (2025)`;
-                      const journalInfo = idx === 0
-                        ? 'Investment Management Journal | Vol. 1 – N° 4 – pp.31-44\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication'
-                        : idx === 1
-                        ? 'Investment Management Journal | Vol. 1 – N° 3 – pp.21-30\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication'
-                        : 'Investment Management Journal | Vol. 1 – N° 2 – pp.11-20\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication';
-                      return (
-                        <div key={idx} className="bg-white rounded-xl shadow p-6 border border-gray-100">
-                          <button
-                            className="w-full text-left focus:outline-none"
-                            onClick={() => setExpandedAbstractIdx(expandedAbstractIdx === idx ? null : idx)}
-                            aria-expanded={expandedAbstractIdx === idx}
-                          >
-                            <div className="flex items-center justify-between">
-                              <h4 className="text-2xl font-bold text-newtifi-navy mb-1">{article.title}</h4>
-                              <span className="ml-4 text-newtifi-teal font-bold text-base">{expandedAbstractIdx === idx ? '−' : '+'}</span>
-                            </div>
-                            <div className="text-gray-700 text-base mb-1">| {article.author} | {authorRole} | {readingTime}</div>
-                          </button>
-                          {expandedAbstractIdx === idx && (
-                            <div className="mt-4">
-                              <div className="mb-4">
-                                <h5 className="text-base font-semibold text-newtifi-navy mb-1">Abstract</h5>
-                                <p className="text-gray-800 text-base italic mb-2" style={{ textAlign: 'justify' }}>{article.abstract}</p>
-                              </div>
-                              <div className="mb-2">
-                                <span className="font-bold uppercase text-newtifi-navy">Key Words:</span>
-                                <span className="ml-2 text-gray-700 text-base">{(Array.isArray(keywords) ? keywords : (typeof keywords === 'string' ? keywords.split('·').map(k => k.trim()).filter(Boolean) : [])).join(', ')}</span>
-                              </div>
-                              <div className="mb-2 text-xs text-gray-600 italic">
-                                <span className="font-bold text-newtifi-navy">Quick Citation Reference:</span> {citation}
-                              </div>
-                              <div className="mb-2 text-xs text-gray-600 whitespace-pre-line">{journalInfo}</div>
-                              <button
-                                className="mt-4 px-5 py-2 bg-newtifi-navy text-white rounded shadow hover:bg-newtifi-teal hover:text-newtifi-navy transition font-medium"
-                                onClick={() => handleDownload(article.pdfUrl)}
-                              >
-                                Click here to download the PDF
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
+                    {/* Abstract cards removed per request */}
                     {/* Registration Modal */}
                     {showRegisterModal && (
                       <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
@@ -697,7 +633,7 @@ export default function InvestmentManagementJournal() {
             </div>
                 )}
                 {journalSubtab === 'technical' && (
-                  <div ref={technicalRef} className="max-w-2xl mx-auto mt-6">
+                  <div ref={technicalRef} className="w-full mx-auto mt-6">
                     <table className="w-full border border-blue-200 text-left text-base">
                       <tbody>
                         <tr className="bg-blue-100">
@@ -746,7 +682,7 @@ export default function InvestmentManagementJournal() {
 
       {selectedTab === 'reviews' && (
         <section ref={reviewsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4">
+        <div className="w-full mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Review Series by NewTIFI Publishing</h3>
@@ -819,7 +755,7 @@ export default function InvestmentManagementJournal() {
 
       {selectedTab === 'books' && (
         <section ref={booksRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
+        <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
@@ -829,7 +765,7 @@ export default function InvestmentManagementJournal() {
       )}
       {selectedTab === 'interviews' && (
         <section ref={interviewsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
+        <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
@@ -839,7 +775,7 @@ export default function InvestmentManagementJournal() {
       )}
       {selectedTab === 'podcasts' && (
         <section ref={podcastsRef} className="w-full bg-white py-8">
-          <div className="max-w-6xl mx-auto px-4 text-gray-500 text-base">
+        <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
@@ -849,7 +785,7 @@ export default function InvestmentManagementJournal() {
       )}
 
       {selectedTab === 'articles' && !selectedArticle && (
-        <section ref={articlesRef} id="articles" className="max-w-4xl mx-auto px-4 pt-8">
+      <section ref={articlesRef} id="articles" className="w-full mx-auto px-4 pt-8">
           <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
           <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
           <h3 className="text-base text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
@@ -914,7 +850,7 @@ export default function InvestmentManagementJournal() {
 
       {/* Article Reader Page */}
       {selectedTab === 'articles' && selectedArticle && (
-        <section className="max-w-4xl mx-auto px-2 pt-8 flex flex-col md:flex-row gap-8">
+      <section className="w-full mx-auto px-2 pt-8 flex flex-col md:flex-row gap-8">
           {/* Sidebar/Dropdown for navigation */}
           <aside className="md:w-64 w-full mb-4 md:mb-0">
             <div className="bg-white rounded-xl shadow p-4 border border-gray-100 mb-4">
@@ -953,7 +889,7 @@ export default function InvestmentManagementJournal() {
       )}
 
       {/* Latest Publications Preview */}
-      <section className="max-w-6xl mx-auto px-4 pt-8">
+      <section className="w-full mx-auto px-4 pt-8">
         <h3 className="text-2xl font-bold text-newtifi-navy mb-6">Latest Publications</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {articles.slice(0, 10).map((article, idx) => (

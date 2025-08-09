@@ -45,7 +45,8 @@ const App = () => (
             <Route path="/terms" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
             <Route path="/publishing" element={<Publishing />} />
-            <Route path="/publishing/journals/investment-management" element={<InvestmentManagementJournal />} />
+            <Route path="/publishing/journals/investment-management" element={<Publishing />} />
+            <Route path="/publishing/journal" element={<Publishing />} />
             <Route path="/publishing/journals/investment-management/article/:slug" element={<ArticlePage />} />
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/admin" element={<Admin />} />

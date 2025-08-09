@@ -195,7 +195,7 @@ const staticArticles = [
 
 // Helper function to get the correct URL for an article
 function getArticleUrl(article) {
-  return `/publishing/journals/investment-management/article/${article.id}`;
+  return `/publishing/article/${article.id}`;
 }
 
 const Home = () => {
@@ -243,7 +243,7 @@ const Home = () => {
       {/* Our Journey Section */}
       <section className="px-6 py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
-          <ScrollReveal direction="right" delay={100} className="max-w-2xl">
+          <ScrollReveal direction="right" delay={100}>
             <h1 className="text-2xl md:text-2xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
             <div className="mb-10">
               <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
@@ -285,7 +285,7 @@ const Home = () => {
               {/* Investment Management Journal - Separate Box */}
               <ScrollReveal direction="left" delay={180}>
                 <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                  <div onClick={() => navigate('/publishing/journals/investment-management')} className="cursor-pointer">
+                  <div onClick={() => navigate('/publishing')} className="cursor-pointer">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 bg-newtifi-teal/20 rounded-lg">
                         <svg className="w-5 h-5 text-newtifi-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -314,7 +314,7 @@ const Home = () => {
                 <div className="flex justify-between items-center mb-8">
                     <h2 className="text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
                   <Button 
-                      to="/publishing/journals/investment-management" 
+                      to="/publishing" 
                     className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
                   >
                     View All

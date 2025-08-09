@@ -275,7 +275,7 @@ export default function ArticlePage() {
           </div>
           
           <button
-            onClick={() => navigate('/publishing/journals/investment-management')}
+            onClick={() => navigate('/publishing')}
             className="bg-newtifi-navy text-white px-4 py-2 rounded hover:bg-newtifi-teal transition"
           >
             Back to Articles
@@ -345,12 +345,12 @@ export default function ArticlePage() {
         </div>
 
         <div className="container mx-auto relative">
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full mx-auto">
       {/* Breadcrumb navigation */}
             <nav className="mb-8 text-base text-white/80 flex items-center gap-2" aria-label="Breadcrumb">
               <a href="/" className="hover:text-white transition-colors">Home</a>
         <span className="mx-1">&gt;</span>
-              <a href="/publishing/journals/investment-management" className="hover:text-white transition-colors">Articles</a>
+              <a href="/publishing" className="hover:text-white transition-colors">Articles</a>
         <span className="mx-1">&gt;</span>
               <span className="text-white font-semibold truncate" title={meta.title}>{meta.title}</span>
       </nav>
@@ -364,7 +364,7 @@ export default function ArticlePage() {
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   {meta.title}
                 </h1>
-                <p className="text-base text-white/90 leading-relaxed max-w-4xl">
+                <p className="text-base text-white/90 leading-relaxed w-full">
                   {article.abstract}
                 </p>
                 
@@ -391,8 +391,8 @@ export default function ArticlePage() {
 
       {/* Main Content Section */}
       <section className="px-6 py-20 bg-white">
-        <div className="container mx-auto">
-          <div className="max-w-7xl mx-auto">
+        <div className="container mx-auto w-full">
+          <div className="w-full mx-auto">
             <div className="grid lg:grid-cols-3 gap-12">
               {/* Main Content - 2 columns */}
               <div className="lg:col-span-2 space-y-12">

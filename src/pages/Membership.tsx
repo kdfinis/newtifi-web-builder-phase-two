@@ -69,7 +69,7 @@ const Membership = () => {
         </div>
 
         <div className="container mx-auto relative">
-          <div className="max-w-4xl">
+        <div className="w-full">
             <ScrollReveal>
               <div className="space-y-6">
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
@@ -95,12 +95,12 @@ const Membership = () => {
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
               Choose Your Path to Innovation
             </h2>
-            <p className="text-2xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-2xl text-gray-600 w-full">
               Three distinct membership tiers designed to meet your organization's needs and goals.
             </p>
           </ScrollReveal>
           
-          <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-3 gap-8 w-full mx-auto">
             {/* Open Member */}
             <ScrollReveal delay={100}>
               <div className={`relative bg-white rounded-3xl p-8 shadow-lg border-2 transition-all duration-300 hover:shadow-xl ${
@@ -295,7 +295,7 @@ const Membership = () => {
         </div>
         
         <div className="container mx-auto relative z-10">
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full mx-auto">
             {activeContent === 'overview' && (
               <ScrollReveal>
                 <div className="text-center mb-16">
@@ -445,7 +445,7 @@ const Membership = () => {
       {/* Application Forms */}
       {activeForm && (
         <section className="fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50 bg-white">
-          <div className="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-8">
               <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-bold text-newtifi-navy">
@@ -544,12 +544,12 @@ const Membership = () => {
       {/* Luxembourg Innovation Statistics Section */}
       <section className="px-6 py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto">
-          <div className="max-w-6xl mx-auto">
+          <div className="w-full mx-auto">
             <ScrollReveal className="text-center mb-12">
               <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-4">
                 Luxembourg: Innovation Powerhouse
               </h2>
-              <p className="text-base text-gray-600 max-w-3xl mx-auto">
+              <p className="text-base text-gray-600 w-full">
                 NewTIFI leverages Luxembourg's strategic advantages and research capabilities in Europe's most dynamic innovation ecosystem.
               </p>
             </ScrollReveal>

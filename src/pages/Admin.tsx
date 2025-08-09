@@ -265,7 +265,7 @@ const Admin = () => {
     <div className="min-h-screen bg-gray-50">
       {/* Top Navigation */}
       <div className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold text-gray-900">NewTIFI Admin</h1>
@@ -284,7 +284,7 @@ const Admin = () => {
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+  <div className="w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex space-x-6">
           {/* Sidebar Navigation */}
           <div className="w-64 bg-white rounded-lg shadow p-4 h-fit">
