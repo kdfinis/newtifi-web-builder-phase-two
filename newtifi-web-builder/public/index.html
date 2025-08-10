@@ -9,6 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>New Technologies and Investment Funds Institute</title>
     <meta name="description" content="New Technologies and Investment Funds Institute - Shaping the Future of Technology" />
+    <script>
+      // GitHub Pages SPA routing fix
+      // Check if we have a redirect path stored from 404.html
+      (function() {
+        const redirectPath = sessionStorage.getItem('redirectPath');
+        if (redirectPath) {
+          // Clear the stored path
+          sessionStorage.removeItem('redirectPath');
+          // Update the URL to the intended path
+          window.history.replaceState(null, '', redirectPath);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

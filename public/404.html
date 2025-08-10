@@ -1,20 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NewTIFI - Page Not Found</title>
     <script>
-        // Single Page App routing - redirect to index.html
-        // This allows React Router to handle the routing
-        const path = window.location.pathname;
-        const search = window.location.search;
-        const hash = window.location.hash;
-        
-        // Redirect to index.html with the original path
-        window.location.href = '/index.html' + search + hash;
+        // GitHub Pages SPA routing fix
+        // This script runs before the main app loads and handles routing
+        (function() {
+            // Get the current path
+            const path = window.location.pathname;
+            const search = window.location.search;
+            const hash = window.location.hash;
+            
+            // If this is not the root path, redirect to root and let React Router handle it
+            if (path !== '/') {
+                // Store the intended path in sessionStorage
+                sessionStorage.setItem('redirectPath', path + search + hash);
+                // Redirect to root
+                window.location.replace('/');
+            }
+        })();
     </script>
 </head>
 <body>
-    <p>Redirecting...</p>
+    <div id="root">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+            <div style="text-align: center;">
+                <h1 style="font-size: 4rem; margin: 0; color: #333;">404</h1>
+                <p style="font-size: 1.2rem; color: #666;">Page not found</p>
+                <p style="color: #999;">Redirecting to home...</p>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
