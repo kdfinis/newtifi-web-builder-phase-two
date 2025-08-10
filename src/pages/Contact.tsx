@@ -26,15 +26,35 @@ const Contact = () => {
         <div className="container mx-auto w-full">
             <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden p-4 space-y-6">
               {/* Map embed (OpenStreetMap centered on Cents, Luxembourg) */}
-              <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden">
+              <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden relative">
                 <iframe
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=6.15200%2C49.61200%2C6.17000%2C49.62000&layer=mapnik&marker=49.61650%2C6.16000"
+                  id="map-iframe"
+                  src="https://www.openstreetmap.org/export/embed.html?bbox=6.15200%2C49.61200%2C6.17000%2C49.62000&layer=mapnik&marker=49.61650%2C6.16000&scrollwheel=false&zoomControl=true&dragPan=false&touchZoom=false&doubleClickZoom=false&keyboard=false"
                   width="100%"
                   height="100%"
-                  style={{ border: 0 }}
+                  style={{ border: 0, pointerEvents: 'none' }}
                   loading="lazy"
                   title="New Technologies and Investment Funds Institute Location Map (OpenStreetMap)"
                 ></iframe>
+                {/* Overlay to capture clicks and enable interaction */}
+                <div 
+                  id="map-overlay"
+                  className="absolute inset-0 cursor-pointer bg-transparent hover:bg-black/5 transition-colors"
+                  onClick={() => {
+                    const iframe = document.getElementById('map-iframe') as HTMLIFrameElement;
+                    const overlay = document.getElementById('map-overlay');
+                    if (iframe && overlay) {
+                      iframe.style.pointerEvents = 'auto';
+                      overlay.style.display = 'none';
+                    }
+                  }}
+                >
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-lg px-4 py-2 text-sm text-gray-700 shadow-lg">
+                      Click to interact with map
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="text-right">
                 <a
