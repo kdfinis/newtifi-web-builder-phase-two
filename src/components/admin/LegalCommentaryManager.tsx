@@ -378,7 +378,7 @@ const LegalCommentaryForm: React.FC<{
           <label className="block text-base font-medium text-[#0A0A23] mb-1">Category</label>
           <select
             value={formData.category}
-            onChange={(e) => setFormData({ ...formData, category: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, category: e.target.value as LegalCommentary['category'] })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
           >
             <option value="RAIF">RAIF Code</option>
@@ -393,7 +393,7 @@ const LegalCommentaryForm: React.FC<{
           <label className="block text-base font-medium text-[#0A0A23] mb-1">Status</label>
           <select
             value={formData.status}
-            onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, status: e.target.value as LegalCommentary['status'] })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
           >
             <option value="draft">Draft</option>

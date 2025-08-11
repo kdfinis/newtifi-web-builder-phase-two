@@ -158,6 +158,12 @@ const submissionRules = {
   ]
 };
 
+interface User {
+  id: string;
+  email: string;
+  name?: string;
+}
+
 interface Article {
   id: string;
   title: string;
@@ -209,7 +215,7 @@ export default function ArticlePage() {
 
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [currentUser, setCurrentUser] = useState<any>(null);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
 
   // Find the article by slug or filename
   let article = undefined;
@@ -305,7 +311,7 @@ export default function ArticlePage() {
   const academic = academicPreviews[article.filename];
 
   // Authentication handlers
-  const handleAuthSuccess = (user: any) => {
+  const handleAuthSuccess = (user: User) => {
     setCurrentUser(user);
     setIsAuthenticated(true);
     setShowLoginModal(false);

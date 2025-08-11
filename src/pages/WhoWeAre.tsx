@@ -12,7 +12,8 @@ const teamMembers = [
   },
   {
     name: 'Karlo Definis, FICP',
-    title: 'COO & General Secretary',
+    title: 'Head of Operations & Digital Transformation',
+    subtitle: 'General Secretary',
     bio: 'Overseeing operational excellence and strategic initiatives across NewTIFI\'s programs and partnerships. Coordinating technology programs and maintaining organizational records. Karlo brings expertise in operational management and program coordination, ensuring efficient execution of NewTIFI\'s initiatives while maintaining high standards of organizational governance.',
     imageSrc: '/assets/images/team/karlo-definis.jpg'
   },
@@ -84,6 +85,7 @@ const WhoWeAre = () => {
                 key={member.name}
                 name={member.name}
                 title={member.title}
+                subtitle={member.subtitle}
                 bio={member.bio}
                 imageSrc={member.imageSrc}
               />

@@ -318,7 +318,7 @@ const NewsForm: React.FC<{
           <label className="block text-base font-medium text-[#0A0A23] mb-1">Type</label>
           <select
             value={formData.type}
-            onChange={(e) => setFormData({ ...formData, type: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, type: e.target.value as NewsItem['type'] })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
           >
             <option value="news">News</option>
@@ -331,7 +331,7 @@ const NewsForm: React.FC<{
           <label className="block text-base font-medium text-[#0A0A23] mb-1">Status</label>
           <select
             value={formData.status}
-            onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+            onChange={(e) => setFormData({ ...formData, status: e.target.value as NewsItem['status'] })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
           >
             <option value="draft">Draft</option>

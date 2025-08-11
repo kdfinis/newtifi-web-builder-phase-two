@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
 
+interface Timeframe {
+  value: string;
+  label: string;
+}
+
+interface ContentType {
+  value: string;
+  label: string;
+}
+
 interface ChartData {
   name: string;
   value: number;
@@ -19,21 +29,21 @@ interface AnalyticsDashboardProps {
 }
 
 const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
-  const [selectedTimeframe, setSelectedTimeframe] = useState<'7d' | '30d' | '90d' | '1y'>('30d');
-  const [selectedContentType, setSelectedContentType] = useState<'all' | 'journal' | 'scholarship' | 'legal'>('all');
+  const [selectedTimeframe, setSelectedTimeframe] = useState<string>('7d');
+  const [selectedContentType, setSelectedContentType] = useState<string>('all');
 
-  const timeframes: Array<{ value: '7d' | '30d' | '90d' | '1y'; label: string }> = [
+  const timeframes: Timeframe[] = [
     { value: '7d', label: 'Last 7 days' },
     { value: '30d', label: 'Last 30 days' },
     { value: '90d', label: 'Last 90 days' },
     { value: '1y', label: 'Last year' }
   ];
 
-  const contentTypes: Array<{ value: 'all' | 'journal' | 'scholarship' | 'legal'; label: string }> = [
+  const contentTypes: ContentType[] = [
     { value: 'all', label: 'All Content' },
-    { value: 'journal', label: 'Journal Articles' },
-    { value: 'scholarship', label: 'Scholarships' },
-    { value: 'legal', label: 'Legal Commentary' }
+    { value: 'journals', label: 'Journals' },
+    { value: 'commentary', label: 'Legal Commentary' },
+    { value: 'news', label: 'News' }
   ];
 
   const exportCSV = () => {

@@ -34,6 +34,12 @@ type SidebarContext = {
   toggleSidebar: () => void
 }
 
+type SidebarProviderProps = React.ComponentProps<"div"> & {
+  defaultOpen?: boolean
+  open?: boolean
+  onOpenChange?: (open: boolean) => void
+}
+
 const SidebarContext = React.createContext<SidebarContext | null>(null)
 
 function useSidebar() {
@@ -47,11 +53,7 @@ function useSidebar() {
 
 const SidebarProvider = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & {
-    defaultOpen?: boolean
-    open?: boolean
-    onOpenChange?: (open: boolean) => void
-  }
+  SidebarProviderProps
 >(
   (
     {

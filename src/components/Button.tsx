@@ -18,7 +18,7 @@ type ButtonProps = {
   'aria-describedby'?: string;
 };
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = React.memo(({
   children,
   to,
   href,
@@ -87,6 +87,8 @@ const Button: React.FC<ButtonProps> = ({
       {children}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 export default Button;

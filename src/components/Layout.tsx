@@ -3,6 +3,7 @@ import React, { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import { usePerformance } from '@/hooks/usePerformance';
 
 type LayoutProps = {
   children: ReactNode;
@@ -10,11 +11,14 @@ type LayoutProps = {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const location = useLocation();
+  const { trackUserInteraction } = usePerformance();
   
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+    // Track route changes for analytics
+    trackUserInteraction('route_change', { path: location.pathname });
+  }, [location.pathname, trackUserInteraction]);
   
   // Initialize scroll animations
   useEffect(() => {

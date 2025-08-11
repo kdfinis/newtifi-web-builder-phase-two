@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+type TabType = 'articles' | 'upload' | 'scan';
+
 interface Article {
   id: string;
   title: string;
@@ -27,7 +29,7 @@ interface ArticleCollatingToolProps {
 }
 
 const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, onRefresh }) => {
-  const [tab, setTab] = useState<'articles' | 'upload' | 'scan'>('articles');
+  const [tab, setTab] = useState<TabType>('articles');
   const [uploading, setUploading] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [realArticles, setRealArticles] = useState<Article[]>([]);
@@ -159,11 +161,11 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
 
       {/* Tabs */}
       <div className="flex gap-4 border-b mb-4">
-        {['articles', 'upload', 'scan'].map((t) => (
+        {(['articles', 'upload', 'scan'] as const).map((t) => (
           <button
             key={t}
             className={`px-4 py-2 font-semibold border-b-2 ${tab === t ? 'border-[#0A0A23] text-[#0A0A23]' : 'border-transparent text-gray-500'}`}
-            onClick={() => setTab(t as any)}
+            onClick={() => setTab(t)}
           >
             {t === 'articles' ? '📄 Articles' : t === 'upload' ? '📤 Upload' : '🔍 Scan'}
           </button>

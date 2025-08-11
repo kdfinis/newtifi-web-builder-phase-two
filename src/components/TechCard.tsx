@@ -11,7 +11,7 @@ type TechCardProps = {
   className?: string;
 };
 
-const TechCard: React.FC<TechCardProps> = ({
+const TechCard: React.FC<TechCardProps> = React.memo(({
   title,
   description,
   icon,
@@ -35,6 +35,8 @@ const TechCard: React.FC<TechCardProps> = ({
       </div>
     </ScrollReveal>
   );
-};
+});
+
+TechCard.displayName = 'TechCard';
 
 export default TechCard;

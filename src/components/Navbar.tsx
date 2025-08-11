@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
@@ -9,6 +9,8 @@ const Navbar = () => {
   const [isAtTop, setIsAtTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('user'));
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +33,34 @@ const Navbar = () => {
     return () => window.removeEventListener('storage', checkLogin);
   }, []);
 
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleKeyDown);
+      // Focus first menu item when menu opens
+      const firstMenuItem = menuRef.current?.querySelector('a');
+      if (firstMenuItem) {
+        (firstMenuItem as HTMLElement).focus();
+      }
+    }
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMenuOpen]);
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    menuButtonRef.current?.focus();
   };
 
   return (
@@ -42,10 +70,12 @@ const Navbar = () => {
         isScrolled ? "h-[78px] shadow-md" : "h-[90px]",
         isAtTop && "animate-[bump_0.6s_ease-in-out]"
       )}
+      role="banner"
+      aria-label="Main navigation"
     >
       <div className="container mx-auto h-full flex items-center justify-between relative">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-1.5">
+        <Link to="/" className="flex items-center gap-1.5" aria-label="NewTIFI Home">
           <img 
             src="/assets/images/logo.png" 
             alt="NewTIFI Logo" 
@@ -53,7 +83,7 @@ const Navbar = () => {
             style={{ minHeight: '34px' }}
           />
           <span 
-                            className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
+            className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
           >
             New Technologies & Investment Fund Institute
           </span>
@@ -61,37 +91,49 @@ const Navbar = () => {
 
         {/* Mobile Menu Button */}
         <button 
+          ref={menuButtonRef}
           className="md:hidden text-white p-2"
           onClick={toggleMenu}
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="main-navigation"
+          aria-haspopup="true"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Navigation Links - Desktop */}
-        <nav className={cn(
-                          "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-medium tracking-wide",
-          "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
-          "transition-all duration-300 ease-in-out",
-          isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"
-        )}>
+        <nav 
+          ref={menuRef}
+          id="main-navigation"
+          className={cn(
+            "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-medium tracking-wide",
+            "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
+            "transition-all duration-300 ease-in-out",
+            isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"
+          )}
+          role="navigation"
+          aria-label="Main navigation"
+        >
           <Link 
             to="/" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase focus:outline-none focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 focus:ring-offset-newtifi-navy rounded",
               location.pathname === "/" && "text-newtifi-teal"
             )}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
+            aria-current={location.pathname === "/" ? "page" : undefined}
           >
             Home
           </Link>
           <Link 
             to="/who-we-are" 
             className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase focus:outline-none focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 focus:ring-offset-newtifi-navy rounded",
               location.pathname === "/who-we-are" && "text-newtifi-teal"
             )}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={closeMenu}
+            aria-current={location.pathname === "/who-we-are" ? "page" : undefined}
           >
             Who We Are
           </Link>

@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 type TeamMemberProps = {
   name: string;
   title: string;
+  subtitle?: string;
   bio: string;
   imageSrc: string;
   className?: string;
@@ -14,6 +15,7 @@ type TeamMemberProps = {
 const TeamMember: React.FC<TeamMemberProps> = ({
   name,
   title,
+  subtitle,
   bio,
   imageSrc,
   className,
@@ -43,6 +45,9 @@ const TeamMember: React.FC<TeamMemberProps> = ({
           <div>
             <h3 className="text-base font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
             <p className="text-newtifi-navy font-medium text-base line-clamp-2">{title}</p>
+            {subtitle && (
+              <p className="text-newtifi-navy/70 font-medium text-sm line-clamp-1">{subtitle}</p>
+            )}
           </div>
           
           <div className="flex justify-start">

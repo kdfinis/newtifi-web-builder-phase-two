@@ -1,10 +1,24 @@
 import React, { useState } from 'react';
 import { loginEmail, registerEmail, loginWithGoogle, loginWithLinkedIn } from '@/lib/auth';
 
+interface User {
+  id: string;
+  email: string;
+  name?: string;
+}
+
+interface FormData {
+  email: string;
+  password: string;
+  confirmPassword: string;
+  firstName: string;
+  lastName: string;
+}
+
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSuccess: (user: any) => void;
+  onSuccess: (user: User) => void;
   mode?: 'login' | 'signup';
 }
 
@@ -15,7 +29,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
   mode = 'login'
 }) => {
   const [authMode, setAuthMode] = useState<'login' | 'signup'>(mode);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     email: '',
     password: '',
     confirmPassword: '',
@@ -51,10 +65,10 @@ const AuthModal: React.FC<AuthModalProps> = ({
       }
 
       if (authMode === 'login') {
-        const { email, password } = formData as any;
+        const { email, password } = formData;
         await loginEmail(email, password);
       } else {
-        const { email, password, firstName, lastName } = formData as any;
+        const { email, password, firstName, lastName } = formData;
         await registerEmail(email, password, `${firstName} ${lastName}`.trim());
       }
       onSuccess({ id: 'me', email: formData.email });

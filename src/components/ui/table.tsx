@@ -2,9 +2,11 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
+type TableProps = React.HTMLAttributes<HTMLTableElement>;
+
 const Table = React.forwardRef<
   HTMLTableElement,
-  React.HTMLAttributes<HTMLTableElement>
+  TableProps
 >(({ className, ...props }, ref) => (
   <div className="relative w-full overflow-auto">
     <table

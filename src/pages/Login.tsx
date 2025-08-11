@@ -22,8 +22,9 @@ export default function Login() {
       }
       localStorage.setItem('user', JSON.stringify({ email }));
       window.location.href = '/';
-    } catch (e: any) {
-      setError(e.message || 'Authentication failed');
+    } catch (e: unknown) {
+      const errorMessage = e instanceof Error ? e.message : 'Authentication failed';
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }

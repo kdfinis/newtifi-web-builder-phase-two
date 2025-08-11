@@ -77,7 +77,7 @@ const Publishing: React.FC = () => {
   function checkFileName(name: string, docType: 'Title Page' | 'Manuscript' | 'CV' | 'Cover Letter' | 'Co Author Approval') {
     // Pattern: YYYY.MM.DD_<DocType>_<Article Title>
     const safeDocType = docType.replace(/ /g, ' ');
-    const pattern = new RegExp(`^\\\d{4}\\.\\\d{2}\\.\\\d{2}_${safeDocType}_.+`);
+    const pattern = new RegExp(`^\\d{4}\\.\\d{2}\\.\\d{2}_${safeDocType}_.+`);
     return pattern.test(name);
   }
 

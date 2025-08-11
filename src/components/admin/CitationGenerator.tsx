@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+type CitationFormat = 'APA' | 'MLA' | 'Chicago' | 'BibTeX';
+
 interface CitationData {
   title: string;
   authors: string[];
@@ -14,33 +16,30 @@ interface CitationGeneratorProps {
 }
 
 const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) => {
-  const [format, setFormat] = useState<'APA' | 'MLA' | 'Chicago' | 'BibTeX'>('APA');
-  const [doi, setDoi] = useState(citationData?.doi || '');
+  const [format, setFormat] = useState<CitationFormat>('APA');
+  const [doi, setDoi] = useState('');
   const [isValidDoi, setIsValidDoi] = useState<boolean | null>(null);
 
   const generateCitation = (data: CitationData | undefined, format: string): string => {
-    if (!data) return 'N/A - No citation data available';
-    
-    const { title, authors, journal, year, doi, url } = data;
+    if (!data) return 'No citation data available';
     
     switch (format) {
       case 'APA':
-        return `${authors.join(', ')} (${year}). ${title}. ${journal || 'N/A'}. ${doi ? `https://doi.org/${doi}` : url || 'N/A'}`;
+        return `${data.authors.join(', ')} (${data.year}). ${data.title}. ${data.journal || 'Journal'}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
       case 'MLA':
-        return `${authors.join(', ')}. "${title}." ${journal || 'N/A'}, ${year}. ${doi ? `https://doi.org/${doi}` : url || 'N/A'}`;
+        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'}, ${data.year}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
       case 'Chicago':
-        return `${authors.join(', ')}, "${title}," ${journal || 'N/A'} (${year}): ${doi ? `https://doi.org/${doi}` : url || 'N/A'}`;
+        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'} ${data.year}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
       case 'BibTeX':
-        return `@article{${doi?.replace(/[^a-zA-Z0-9]/g, '') || 'article'},\n  title={${title}},\n  author={${authors.join(' and ')}},\n  journal={${journal || 'N/A'}},\n  year={${year}},\n  doi={${doi || 'N/A'}},\n  url={${url || 'N/A'}}\n}`;
+        return `@article{${data.doi || 'article'},\n  title={${data.title}},\n  author={${data.authors.join(' and ')}},\n  journal={${data.journal || 'Journal'}},\n  year={${data.year}},\n  doi={${data.doi}},\n}`;
       default:
-        return 'N/A';
+        return 'Unsupported format';
     }
   };
 
   const validateDoi = (doi: string): boolean => {
-    // Basic DOI validation pattern
-    const doiPattern = /^10\.\d{4,}(?:\.\d+)*\/\S+(?:\?\S+)?$/;
-    return doiPattern.test(doi);
+    const doiRegex = /^10\.\d{4,}(?:\.\d+)*\/\S+(?:\?\S+)?$/;
+    return doiRegex.test(doi);
   };
 
   const handleDoiChange = (value: string) => {
@@ -73,7 +72,7 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
           <label className="block text-base font-medium mb-2">Citation Format</label>
           <select 
             value={format} 
-            onChange={(e) => setFormat(e.target.value as 'APA' | 'MLA' | 'Chicago' | 'BibTeX')}
+            onChange={(e) => setFormat(e.target.value as CitationFormat)}
             className="w-full border rounded p-2 bg-white"
           >
             <option value="APA">APA</option>
