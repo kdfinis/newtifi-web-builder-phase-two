@@ -6,16 +6,39 @@ import Button from '@/components/Button';
 const Connect = () => {
   return (
     <main className="min-h-screen bg-white">
-      {/* Hero Section with Overlapping Card */}
-      <section className="relative px-6 pt-32 pb-40 bg-newtifi-navy text-white overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90"></div>
+      {/* Hero Section */}
+      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        {/* Background Graphics */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-newtifi-teal/10 rounded-full"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/10 transform rotate-45"></div>
+        
+        {/* Stencil-style decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <path d="M20,20 L180,20 L180,180 L20,180 Z" stroke="white" strokeWidth="2" fill="none"/>
+            <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="2" fill="none"/>
+            <path d="M60,100 L140,100 M100,60 L100,140" stroke="white" strokeWidth="2"/>
+          </svg>
+        </div>
+
         <div className="container mx-auto relative">
-          <ScrollReveal className="max-w-2xl">
-            <h1 className="text-4xl md:text-4xl font-bold mb-8 mt-32">Get in Touch</h1>
-            <p className="text-base text-white/80 leading-relaxed">
-              Have questions about New Technologies and Investment Funds Institute's initiatives? We're here to help you navigate the future of innovation.
-            </p>
-          </ScrollReveal>
+          <div className="w-full">
+            <ScrollReveal>
+              <h1 className="text-2xl md:text-2xl font-light mb-10">Connect</h1>
+              <div className="mb-10">
+                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                  We are here to <span className="text-newtifi-teal">help</span>
+                </h2>
+              </div>
+              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+                Connect with NewTIFI to explore partnerships, submit research, or get involved in our mission to advance technology innovation.
+              </p>
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
@@ -59,7 +82,7 @@ const Connect = () => {
                 <div className="space-y-8">
                   <div className="text-center">
                     <h2 className="text-2xl md:text-2xl font-bold text-newtifi-navy mb-4">Send Us a Message</h2>
-                    <p className="text-newtifi-navy/70">We'll get back to you as soon as possible.</p>
+                    <p className="text-newtifi-navy/70">We will get back to you as soon as possible.</p>
                   </div>
 
                   <form className="space-y-6">
@@ -121,7 +144,7 @@ const Connect = () => {
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
                           <label htmlFor="privacy" className="ml-2 block text-base text-newtifi-navy/70">
-                            I confirm that I have read and agree to the New Technologies and Investment Funds Institute Privacy Policy
+                            I confirm that I have read and agree to the New Technologies & Investment Funds Institute Privacy Policy
                           </label>
                         </div>
 
@@ -132,7 +155,7 @@ const Connect = () => {
                             className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                           />
                           <label htmlFor="communications" className="ml-2 block text-base text-newtifi-navy/70">
-                            I would like to receive occasional communications and insights reports from New Technologies and Investment Funds Institute
+                            I would like to receive occasional communications and insights reports from New Technologies & Investment Funds Institute
                           </label>
                         </div>
                       </div>
@@ -173,7 +196,7 @@ const Connect = () => {
                         <MapPin className="h-5 w-5 text-newtifi-teal" />
                       </div>
                       <div className="space-y-1">
-                        <p className="text-white/90 font-medium">New Technologies and Investment Funds Institute A.s.b.l.</p>
+                        <p className="text-white/90 font-medium">New Technologies & Investment Funds Institute A.s.b.l.</p>
                         <p className="text-white/70">14, rue Jean-Pierre Biermann</p>
                         <p className="text-white/70">L-1268 Luxembourg</p>
                         <p className="text-white/70">Grand Duchy of Luxembourg</p>
@@ -206,7 +229,7 @@ const Connect = () => {
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="New Technologies and Investment Funds Institute Location Map"
+                    title="New Technologies & Investment Funds Institute Location Map"
                   ></iframe>
                 </div>
               </div>

@@ -97,7 +97,7 @@ fontSize: {
 
 ## 🎯 Implementation Script
 
-I'll create a script to:
+I will create a script to:
 1. Replace `text-sm`, `text-lg`, `text-xl` with `text-base`
 2. Update responsive variants
 3. Remove custom font size classes

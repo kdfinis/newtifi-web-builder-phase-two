@@ -1,6 +1,6 @@
 # NewTIFI Web Builder
 
-A comprehensive web platform for New Technologies and Investment Funds Institute, featuring academic publishing, ISSN compliance, and a full admin management suite.
+A comprehensive web platform for New Technologies & Investment Funds Institute, featuring academic publishing, ISSN compliance, and a full admin management suite.
 
 ## 🚀 Quick Start
 
@@ -237,7 +237,7 @@ DEBUG=* node simple-admin-server.js
 
 ## 📝 License
 
-This project is proprietary to New Technologies and Investment Funds Institute.
+This project is proprietary to New Technologies & Investment Funds Institute.
 
 ## 🤝 Support
 

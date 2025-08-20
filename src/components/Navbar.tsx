@@ -82,11 +82,11 @@ const Navbar = () => {
             className="h-[33px] md:h-[44px] w-auto"
             style={{ minHeight: '34px' }}
           />
-          <span 
-            className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
-          >
-            New Technologies & Investment Fund Institute
-          </span>
+                            <span
+                    className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
+                  >
+                    New Technologies & Investment Funds Institute
+                  </span>
         </Link>
 
         {/* Mobile Menu Button */}

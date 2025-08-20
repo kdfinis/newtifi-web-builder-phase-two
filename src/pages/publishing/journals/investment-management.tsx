@@ -7,7 +7,7 @@ import { getArticleById } from "../../../lib/urlMapping";
 const journalMetadata = {
   title: "NewTiFi Investment Management Journal",
   issn: "XXXX-XXXX", // Placeholder - needs to be registered with ISSN International Centre
-  publisher: "New Technologies and Investment Fund Institute",
+          publisher: "New Technologies & Investment Funds Institute",
   publisherLocation: "Luxembourg",
   frequency: "Quarterly",
   peerReviewStatus: "Double-blind peer review",

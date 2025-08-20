@@ -289,7 +289,7 @@ export const generateSubmissionRulesPDF = (): string => {
       <h1>NewTIFI Investment Management Journal</h1>
       <h1>Submission Guidelines</h1>
       <p><strong>Last Updated:</strong> January 15, 2025</p>
-      <p><strong>Publisher:</strong> New Technologies and Investment Fund Institute</p>
+              <p><strong>Publisher:</strong> New Technologies & Investment Funds Institute</p>
       <p><strong>ISSN:</strong> XXXX-XXXX</p>
   `;
 
@@ -315,7 +315,7 @@ export const generateSubmissionRulesPDF = (): string => {
   pdfContent += `
       <div class="footer">
         <p>For questions about these guidelines, please contact: submissions@newtifi.com</p>
-        <p>New Technologies and Investment Fund Institute | Luxembourg</p>
+        <p>New Technologies & Investment Funds Institute | Luxembourg</p>
       </div>
     </body>
     </html>

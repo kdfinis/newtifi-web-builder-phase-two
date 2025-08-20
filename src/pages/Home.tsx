@@ -261,11 +261,11 @@ const Home = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
         <div className="container mx-auto px-6 py-20 pb-4 mb-0">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            {/* Left side - New Technologies and Investment Funds Institute Overview */}
+            {/* Left side - New Technologies & Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-8">
                 <h1 className="text-4xl md:text-4xl font-light text-newtifi-navy">
-                  New Technologies and Investment Funds Institute
+                  New Technologies & Investment Funds Institute
                 </h1>
                 <p className="text-2xl text-gray-700">
                   An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
@@ -425,17 +425,17 @@ const Home = () => {
         </div>
       </section>
       
-      {/* New Technologies and Investment Funds Institute Pillars & What We Do */}
+              {/* New Technologies & Investment Funds Institute Pillars & What We Do */}
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
-              {/* New Technologies and Investment Funds Institute Pillars Section */}
+              {/* New Technologies & Investment Funds Institute Pillars Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
-                  New Technologies and Investment Funds Institute Pillars
+                <h2 className="text-2xl md:text-4xl text-center mb-12 text-white">
+                  New Technologies & Investment Funds Institute Pillars
                 </h2>
-                <h3 className="text-base text-white/80 text-center mb-12">
+                <h3 className="text-2xl md:text-4xl text-center mb-12 text-white font-light uppercase">
                   Technology Pillars
                 </h3>
               </ScrollReveal>
@@ -495,12 +495,9 @@ const Home = () => {
                 </div>
               </div>
 
-              {/* What We Do Section */}
+              {/* Financial Services Section */}
               <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-2xl md:text-4xl text-center mb-4 text-white">
-                  New Technologies and Investment Funds Institute Pillars
-                </h2>
-                <h3 className="text-base text-white/80 text-center mb-12">
+                <h3 className="text-2xl md:text-4xl text-center mb-20 text-white font-light uppercase">
                   Financial Pillars
                 </h3>
               </ScrollReveal>

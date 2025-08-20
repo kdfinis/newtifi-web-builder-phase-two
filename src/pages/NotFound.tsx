@@ -1,29 +1,54 @@
 
-import React, { useEffect } from "react";
-import { useLocation, Link } from "react-router-dom";
-import Button from "@/components/Button";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '@/components/Button';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-6">
-      <div className="text-center max-w-lg">
-        <h1 className="text-6xl md:text-6xl font-bold text-newtifi-navy mb-4">404</h1>
-        <p className="text-base md:text-2xl text-gray-600 mb-8">
-          Oops! The page you're looking for doesn't exist.
-        </p>
-        <Button to="/" size="lg">
-          Return to Home
-        </Button>
-      </div>
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        {/* Background Graphics */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-newtifi-teal/10 rounded-full"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/10 transform rotate-45"></div>
+        
+        {/* Stencil-style decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <path d="M20,20 L180,20 L180,180 L20,180 Z" stroke="white" strokeWidth="2" fill="none"/>
+            <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="2" fill="none"/>
+            <path d="M60,100 L140,100 M100,60 L100,140" stroke="white" strokeWidth="2"/>
+          </svg>
+        </div>
+
+        <div className="container mx-auto relative">
+          <div className="w-full">
+            <ScrollReveal>
+              <h1 className="text-2xl md:text-2xl font-light mb-10">Page Not Found</h1>
+              <div className="mb-10">
+                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                  Oops! <span className="text-newtifi-teal">404</span>
+                </h2>
+              </div>
+              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+                The page you are looking for does not exist. Let us help you find what you need.
+              </p>
+              <div className="mt-8">
+                <Button to="/" size="lg">
+                  Return to Home
+                </Button>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

@@ -254,7 +254,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 {/* Footer */}
                 <div className="p-6 border-t border-gray-100 text-center">
                   <p className="text-gray-600">
-                    {authMode === 'login' ? "Don't have an account? " : "Already have an account? "}
+                    {authMode === 'login' ? "Do not have an account? " : "Already have an account? "}
                     <button
                       onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
                       className="text-newtifi-teal hover:text-newtifi-navy font-medium transition-colors"

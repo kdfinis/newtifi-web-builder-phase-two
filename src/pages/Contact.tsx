@@ -5,19 +5,38 @@ import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
 const Contact = () => {
   return (
     <main className="min-h-screen bg-white">
-      {/* Top Navy Section (consistent with Home/Who We Are) */}
-      <section className="px-6 py-32 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
-          <div className="w-full">
-            <h1 className="text-2xl md:text-2xl font-light mb-10">Contact</h1>
-            <div className="mb-10">
-              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
-                We’d love to hear from you
-              </h2>
+      {/* Top Navy Section with Premium Design (consistent with Membership) */}
+      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        {/* Background Graphics */}
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
+        
+        {/* Floating Geometric Shapes */}
+        <div className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-newtifi-teal/10 rounded-full"></div>
+        <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/10 transform rotate-45"></div>
+        
+        {/* Stencil-style decorative elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 opacity-5">
+          <svg viewBox="0 0 200 200" className="w-full h-full">
+            <path d="M20,20 L180,20 L180,180 L20,180 Z" stroke="white" strokeWidth="2" fill="none"/>
+            <circle cx="100" cy="100" r="40" stroke="white" strokeWidth="2" fill="none"/>
+            <path d="M60,100 L140,100 M100,60 L100,140" stroke="white" strokeWidth="2"/>
+          </svg>
         </div>
-            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
-              Get in touch to explore partnerships, submissions, or general inquiries.
-            </p>
+
+        <div className="container mx-auto relative">
+          <div className="w-full">
+            <ScrollReveal>
+              <h1 className="text-2xl md:text-2xl font-light mb-10">Contact</h1>
+              <div className="mb-10">
+                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
+                  We would love to hear from <span className="text-newtifi-teal">you</span>
+                </h2>
+              </div>
+              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+                Get in touch to explore partnerships, submissions, or general inquiries.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -34,7 +53,7 @@ const Contact = () => {
                   height="100%"
                   style={{ border: 0, pointerEvents: 'none' }}
                   loading="lazy"
-                  title="New Technologies and Investment Funds Institute Location Map (OpenStreetMap)"
+                  title="New Technologies & Investment Funds Institute Location Map (OpenStreetMap)"
                 ></iframe>
                 {/* Overlay to capture clicks and enable interaction */}
                 <div 
@@ -195,7 +214,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-newtifi-navy mb-6">About NewTIFI</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-4">
-                  <p className="text-base text-gray-700">New Technologies and Investment Funds Institute (NewTIFI) connects research, industry, and policy to accelerate innovation that serves the public good.</p>
+                  <p className="text-base text-gray-700">New Technologies & Investment Funds Institute (NewTIFI) connects research, industry, and policy to accelerate innovation that serves the public good.</p>
                   <p className="text-base text-gray-700">We publish peer‑reviewed journals and practitioner insights, support talent through scholarships and mentorships, and engage with institutions to promote innovation‑friendly regulation.</p>
                   <p className="text-base text-gray-700">Based in Luxembourg, we collaborate with universities, financial institutions, and technology leaders to translate research into practical outcomes that benefit society and markets.</p>
                 </div>

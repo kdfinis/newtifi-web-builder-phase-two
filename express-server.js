@@ -258,7 +258,7 @@ app.post('/admin/api/users/:id/role', async (req, res) => {
   res.json(user);
 });
 
-// Dev catch-all must come AFTER API routes, so APIs don't get swallowed
+    // Dev catch-all must come AFTER API routes, so APIs do not get swallowed
 if (process.env.NODE_ENV === 'development') {
   app.get(/.*/, async (req, res, next) => {
     try {
@@ -296,7 +296,7 @@ app.use((err, req, res, next) => {
     res.status(500).send(`
         <html>
             <head>
-                <title>Error - New Technologies and Investment Funds Institute</title>
+                <title>Error - New Technologies & Investment Funds Institute</title>
                 <style>
                     body { font-family: Verdana, sans-serif; padding: 2rem; text-align: center; }
                     h1 { color: #1a365d; }
@@ -305,7 +305,7 @@ app.use((err, req, res, next) => {
             </head>
             <body>
                 <h1>Something went wrong</h1>
-                <p>We're working on fixing this issue. Please try again later.</p>
+                <p>We are working on fixing this issue. Please try again later.</p>
             </body>
         </html>
     `);

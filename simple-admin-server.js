@@ -86,7 +86,7 @@ const initialJournals = [
     description: 'A peer-reviewed journal focusing on investment management, financial regulation, and sustainable finance in Luxembourg and the EU.',
     status: 'active',
     articles: ['IMJ-2025-001', 'IMJ-2025-002', 'IMJ-2025-003'],
-    publisher: 'New Technologies and Investment Fund Institute',
+            publisher: 'New Technologies & Investment Funds Institute',
     frequency: 'Quarterly',
     peerReviewStatus: 'Double-blind peer review'
   }
@@ -139,7 +139,7 @@ function readArticles() {
         article.filename.includes('Closed-Ended Luxembourg ELTIFs')
       );
       
-      // If we don't have the real articles or have too many fake ones, reset
+      // If we do not have the real articles or have too many fake ones, reset
       if (!hasRealArticles || articles.length > 3) {
         console.log('Resetting articles to only real PDF articles...');
         writeArticles(initialArticles);
@@ -148,7 +148,7 @@ function readArticles() {
       
       return articles;
     } else {
-      // If file doesn't exist, create it with initial articles
+      // If file does not exist, create it with initial articles
       writeArticles(initialArticles);
       return initialArticles;
     }
@@ -185,7 +185,7 @@ function readJournals() {
       }
       return journals;
     } else {
-      // If file doesn't exist, create it with initial journals
+      // If file does not exist, create it with initial journals
       writeJournals(initialJournals);
       return initialJournals;
     }
@@ -501,8 +501,8 @@ const server = http.createServer(async (req, res) => {
 
     // Upload article endpoint
     if (path === '/api/admin/upload-article' && req.method === 'POST') {
-      // This is a placeholder - in a real implementation, you'd handle file uploads
-      // For now, we'll just return success
+      // This is a placeholder - in a real implementation, you would handle file uploads
+      // For now, we will just return success
       sendJsonResponse(res, 200, { success: true, message: 'Upload endpoint ready' });
       return;
     }
