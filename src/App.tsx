@@ -75,9 +75,8 @@ const App = () => (
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/publishing" element={<Publishing />} />
-                <Route path="/publishing/journals/investment-management" element={<Publishing />} />
-                <Route path="/publishing/journal" element={<Publishing />} />
-                <Route path="/publishing/journals/investment-management/article/:slug" element={<LazyArticlePage />} />
+                <Route path="/publishing/investment-management" element={<Publishing />} />
+                <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
                 <Route path="/admin" element={<LazyAdmin />} />
                 {/* LMS Routes - Additional to existing website */}

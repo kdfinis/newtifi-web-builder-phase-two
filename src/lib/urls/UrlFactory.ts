@@ -31,32 +31,32 @@ export class UrlFactory {
   // Journal URLs
   static getJournalUrl(journalSlug: string): string {
     const baseUrl = configManager.getCurrentUrl();
-    return `${baseUrl}/publishing/journals/${journalSlug}`;
+    return `${baseUrl}/publishing/${journalSlug}`;
   }
 
   // Journal URL (path-only)
   static getJournalPath(journalSlug: string): string {
-    return `/publishing/journals/${journalSlug}`;
+    return `/publishing/${journalSlug}`;
   }
 
   static getJournalArticlesUrl(journalSlug: string): string {
     const baseUrl = configManager.getCurrentUrl();
-    return `${baseUrl}/publishing/journals/${journalSlug}/articles`;
+    return `${baseUrl}/publishing/${journalSlug}/articles`;
   }
 
   // Journal Articles URL (path-only)
   static getJournalArticlesPath(journalSlug: string): string {
-    return `/publishing/journals/${journalSlug}/articles`;
+    return `/publishing/${journalSlug}/articles`;
   }
 
   static getJournalArticleUrl(journalSlug: string, articleSlug: string): string {
     const baseUrl = configManager.getCurrentUrl();
-    return `${baseUrl}/publishing/journals/${journalSlug}/articles/${articleSlug}`;
+    return `${baseUrl}/publishing/${journalSlug}/article/${articleSlug}`;
   }
 
   // Journal Article URL (path-only)
   static getJournalArticlePath(journalSlug: string, articleSlug: string): string {
-    return `/publishing/journals/${journalSlug}/articles/${articleSlug}`;
+    return `/publishing/${journalSlug}/article/${articleSlug}`;
   }
 
   // Main page URLs
