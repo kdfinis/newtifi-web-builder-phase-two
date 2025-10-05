@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Download, ArrowLeft, ChevronDown, ChevronUp, CheckCircle, Clock, Users, Archive, ExternalLink } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
 import { getArticleById } from "../../../lib/urlMapping";
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 // ISSN and Journal Metadata
 const journalMetadata = {
@@ -447,7 +448,7 @@ export default function InvestmentManagementJournal() {
                   <p className="text-base text-white/90 mt-2">How to prepare and submit manuscripts to the Investment Management Journal.</p>
                 </div>
                 <a
-                  href="/publishing#submission-guidelines"
+                  href={`${urlFactory.getPublishingPath()}#submission-guidelines`}
                   className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-newtifi-navy transition font-semibold shadow"
                   aria-label="View Submission Guidelines"
                 >

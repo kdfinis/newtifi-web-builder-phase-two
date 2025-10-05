@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
+import urlFactory from '@/utils/urlFactory';
 
 const Navbar = () => {
   const location = useLocation();
@@ -138,7 +139,7 @@ const Navbar = () => {
             Who We Are
           </Link>
           <Link 
-            to="/publishing" 
+            to={urlFactory.getPublishingPath()} 
             className={cn(
               "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
               location.pathname.startsWith("/publishing") && "text-newtifi-teal"

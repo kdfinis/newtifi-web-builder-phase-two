@@ -6,6 +6,7 @@ import TechCard from '@/components/TechCard';
 import { cn } from '@/lib/utils';
 import { useNavigate } from 'react-router-dom';
 import { getArticleById } from '@/lib/urlMapping';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 interface Article {
   id: string;
@@ -303,7 +304,7 @@ const Home = () => {
               {/* Investment Management Journal - Separate Box */}
               <ScrollReveal direction="left" delay={180}>
                 <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                  <div onClick={() => navigate('/publishing')} className="cursor-pointer">
+                  <div onClick={() => navigate(urlFactory.getPublishingPath())} className="cursor-pointer">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 bg-newtifi-teal/20 rounded-lg">
                         <svg className="w-5 h-5 text-newtifi-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -332,7 +333,7 @@ const Home = () => {
                 <div className="flex justify-between items-center mb-8">
                     <h2 className="text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
                   <Button 
-                      to="/publishing" 
+                      to={urlFactory.getPublishingPath()} 
                     className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
                   >
                     View All

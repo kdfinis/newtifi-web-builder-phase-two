@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { urlFactory } from '@/lib/urls/UrlFactory';
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Download, CheckCircle, Clock, ExternalLink, Archive, ChevronDown, ChevronUp, User, Calendar, FileText, Award, Globe, BookOpen, Mail, Phone, MapPin, Sparkles, Target, Rocket, Users, Shield, Zap, Star, Quote, Eye, FileText as FileTextIcon, ArrowUpRight } from "lucide-react";
 import ScrollReveal from '@/components/ScrollReveal';
@@ -281,7 +282,7 @@ export default function ArticlePage() {
           </div>
           
           <button
-            onClick={() => navigate('/publishing')}
+            onClick={() => navigate(urlFactory.getPublishingPath())}
             className="bg-newtifi-navy text-white px-4 py-2 rounded hover:bg-newtifi-teal transition"
           >
             Back to Articles
