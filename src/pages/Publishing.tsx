@@ -504,70 +504,7 @@ const Publishing: React.FC = () => {
         </section>
       )}
 
-      {/* Latest Publications Preview */}
-      <section className="container mx-auto px-4 pt-8">
-        <ScrollReveal>
-          <h3 className="text-2xl font-bold text-newtifi-navy mb-8">Latest Publications</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            {articles.slice(0, 10).map((article, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-3xl shadow-2xl p-6 border border-gray-100 flex flex-col justify-between cursor-pointer hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
-                onClick={() => navigate(getArticleUrl(article))}
-                tabIndex={0}
-                role="button"
-                aria-label={`Read article: ${article.title}`}
-                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { navigate(getArticleUrl(article)); } }}
-              >
-                <div className="flex-1">
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex-1">
-                      <h4 className="text-sm font-semibold text-newtifi-navy mb-3 line-clamp-3 leading-tight">{article.title}</h4>
-                      <div className="text-xs text-gray-500 mb-2">{article.date}</div>
-                      {article.author && (
-                        <div className="text-xs text-gray-600 mb-3">By {article.author}</div>
-                      )}
-                    </div>
-                    <button
-                      className="ml-2 p-2 rounded-xl hover:bg-newtifi-teal/10 flex-shrink-0 transition-colors"
-                      onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === `preview-${idx}` ? null : `preview-${idx}`); }}
-                      aria-label={expandedOverview === `preview-${idx}` ? 'Collapse overview' : 'Expand overview'}
-                    >
-                      {expandedOverview === `preview-${idx}` ? <ChevronUp className="h-4 w-4 text-newtifi-teal" /> : <ChevronDown className="h-4 w-4 text-newtifi-teal" />}
-                    </button>
-                  </div>
-                  
-                  {/* Keywords */}
-                  {article.keywords && article.keywords.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {article.keywords.slice(0, 3).map((keyword, kIdx) => (
-                        <span key={kIdx} className="bg-gray-100 text-gray-600 px-2 py-1 rounded-lg text-xs">
-                          {keyword}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Abstract Preview */}
-                  <p className="text-gray-600 text-xs line-clamp-3 mb-4 leading-relaxed">
-                    {article.abstract}
-                  </p>
-                </div>
-
-                {/* Action Button */}
-                <div className="mt-auto">
-                  <button
-                    className="w-full px-4 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white text-sm rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
-                    onClick={(e) => { e.stopPropagation(); navigate(getArticleUrl(article)); }}
-                  >
-                    Read Article
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </section>
+      {/* Latest Publications Preview - removed as requested */}
 
       {/* Submission Guidelines Section - At Bottom as Requested */}
       <section className="px-6 py-20 bg-gradient-to-br from-gray-50 to-white">
