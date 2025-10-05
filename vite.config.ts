@@ -6,7 +6,7 @@ import path from "path";
 export default defineConfig({
   base: '/',
   server: {
-    port: 8080,
+    port: parseInt(process.env.VITE_FRONTEND_PORT || '8080'),
     strictPort: true,
     host: true,
     watch: {
@@ -20,7 +20,7 @@ export default defineConfig({
     },
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: process.env.VITE_BACKEND_URL || 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
       },

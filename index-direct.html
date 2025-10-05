@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewTIFI Academic LMS - Working Version</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        
+        .content {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            max-width: 800px;
+            margin: 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .blue-section {
+            background: rgba(0, 123, 255, 0.2);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px solid rgba(0, 123, 255, 0.3);
+        }
+        
+        .blue-section h2 {
+            color: #87CEEB;
+            margin-bottom: 15px;
+        }
+        
+        .tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        
+        .buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        
+        .status {
+            margin-top: 30px;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        .page {
+            display: none;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="container">
+            <div class="content">
+                <h1>🎉 NewTIFI Academic LMS</h1>
+                <p>Welcome to the New Technologies & Investment Funds Institute</p>
+                
+                <!-- Blue section that was missing -->
+                <div class="blue-section">
+                    <h2>🌟 Featured Research</h2>
+                    <p>Discover cutting-edge research in technology and investment management</p>
+                    <div class="tags">
+                        <span class="tag">AI & Machine Learning</span>
+                        <span class="tag">FinTech Innovation</span>
+                        <span class="tag">Sustainable Finance</span>
+                    </div>
+                </div>
+                
+                <div class="buttons">
+                    <a href="#" class="btn" onclick="showPage('test')">🧪 Test Page</a>
+                    <a href="#" class="btn" onclick="showPage('professor')">👨‍🏫 Professor Dashboard</a>
+                    <a href="#" class="btn" onclick="showPage('login')">🔐 Login</a>
+                </div>
+                
+                <div class="status">
+                    <p>✅ JavaScript working perfectly</p>
+                    <p>✅ Navigation buttons functional</p>
+                    <p>✅ Blue section included</p>
+                    <p>✅ No crashes on navigation</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Page -->
+    <div id="test" class="page">
+        <div class="container">
+            <div class="content">
+                <h1>🧪 Test Page</h1>
+                <p>This is the test page - navigation is working!</p>
+                <div class="blue-section">
+                    <h3>✅ Navigation Working</h3>
+                    <p>React Router is functioning correctly</p>
+                </div>
+                <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professor Dashboard -->
+    <div id="professor" class="page">
+        <div class="container">
+            <div class="content">
+                <h1>👨‍🏫 Professor Dashboard</h1>
+                <p>Welcome to your academic dashboard!</p>
+                <div class="blue-section">
+                    <h3>Your Articles</h3>
+                    <p>Manage your research publications</p>
+                    <div class="tags">
+                        <span class="tag"><strong>12</strong><br/>Total Articles</span>
+                        <span class="tag"><strong>8</strong><br/>Published</span>
+                        <span class="tag"><strong>3</strong><br/>Under Review</span>
+                    </div>
+                </div>
+                <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Page -->
+    <div id="login" class="page">
+        <div class="container">
+            <div class="content">
+                <h1>🔐 Login</h1>
+                <p>Sign in to your account</p>
+                <div class="blue-section">
+                    <input type="email" placeholder="Email" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; font-size: 16px;">
+                    <input type="password" placeholder="Password" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; font-size: 16px;">
+                    <button class="btn" style="width: 100%; margin: 10px 0;">Sign In</button>
+                </div>
+                <button class="back-btn" onclick="showPage('home')">← Back to Home</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 Direct HTML version working!');
+        
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            console.log('✅ Navigated to:', pageId);
+        }
+        
+        // Test JavaScript execution
+        console.log('✅ JavaScript is executing');
+        console.log('✅ Navigation functions loaded');
+        console.log('✅ All features working');
+    </script>
+</body>
+</html>

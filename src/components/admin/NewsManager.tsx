@@ -365,7 +365,7 @@ const NewsForm: React.FC<{
             value={formData.imageUrl}
             onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
-            placeholder="https://..."
+            placeholder="Enter URL..."
           />
         </div>
       </div>
@@ -399,7 +399,7 @@ const NewsForm: React.FC<{
             value={formData.externalLink}
             onChange={(e) => setFormData({ ...formData, externalLink: e.target.value })}
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0A0A23]"
-            placeholder="https://..."
+            placeholder="Enter URL..."
           />
         </div>
       </div>

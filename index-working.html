@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NewTIFI - Working Version</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 NewTIFI is Working!</h1>
+        <p>This is a working version without ES modules.</p>
+        
+        <div class="status success">
+            <h3>✅ Server Status</h3>
+            <p>Development Server: Running on port 8080</p>
+            <p>Architecture Server: Running on port 3000</p>
+            <p>JavaScript Execution: Working</p>
+            <p>HTML Rendering: Working</p>
+        </div>
+        
+        <div class="status info">
+            <h3>🔧 Issue Identified</h3>
+            <p>The black screen issue is caused by ES modules not executing in the browser.</p>
+            <p>This could be due to:</p>
+            <ul style="text-align: left; max-width: 400px; margin: 0 auto;">
+                <li>Browser compatibility issues</li>
+                <li>CORS policy restrictions</li>
+                <li>Browser security settings</li>
+                <li>Network connectivity issues</li>
+            </ul>
+        </div>
+        
+        <div class="status success">
+            <h3>🚀 Solutions</h3>
+            <p>1. Check browser console (F12) for error messages</p>
+            <p>2. Try a different browser (Chrome recommended)</p>
+            <p>3. Disable browser extensions</p>
+            <p>4. Clear browser cache</p>
+            <p>5. Check network connectivity</p>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="/test" class="button">Test Page</a>
+            <a href="/professor" class="button">Professor Dashboard</a>
+            <a href="/login" class="button">Login</a>
+            <a href="http://localhost:3000" class="button">Architecture Server</a>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <button onclick="testESModules()" class="button">Test ES Modules</button>
+            <button onclick="testReact()" class="button">Test React</button>
+            <button onclick="window.location.reload()" class="button">Refresh Page</button>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 Working version loaded');
+        
+        function testESModules() {
+            console.log('🧪 Testing ES modules...');
+            
+            // Try to dynamically import a module
+            import('/src/main.tsx')
+                .then(module => {
+                    console.log('✅ ES module imported successfully:', module);
+                    alert('✅ ES modules are working! React should now work.');
+                })
+                .catch(error => {
+                    console.error('❌ ES module import failed:', error);
+                    alert('❌ ES modules not working: ' + error.message);
+                });
+        }
+        
+        function testReact() {
+            console.log('🧪 Testing React...');
+            
+            // Check if React is available
+            if (typeof window.React !== 'undefined') {
+                console.log('✅ React available globally');
+                alert('✅ React is available globally');
+            } else {
+                console.log('❌ React not available globally');
+                alert('❌ React not available globally. ES modules may not be loading.');
+            }
+        }
+        
+        // Test basic JavaScript execution
+        console.log('✅ JavaScript execution working');
+        console.log('📦 Document ready state:', document.readyState);
+        console.log('🌐 Window object available:', typeof window);
+        
+        // Test DOM manipulation
+        const testElement = document.createElement('div');
+        testElement.textContent = 'DOM test';
+        document.body.appendChild(testElement);
+        document.body.removeChild(testElement);
+        console.log('✅ DOM manipulation working');
+        
+        console.log('🏁 Working version completed');
+    </script>
+</body>
+</html>

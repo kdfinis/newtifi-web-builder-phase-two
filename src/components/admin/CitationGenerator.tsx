@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { URLS } from '@/lib/urls';
 
 type CitationFormat = 'APA' | 'MLA' | 'Chicago' | 'BibTeX';
 
@@ -25,11 +26,11 @@ const CitationGenerator: React.FC<CitationGeneratorProps> = ({ citationData }) =
     
     switch (format) {
       case 'APA':
-        return `${data.authors.join(', ')} (${data.year}). ${data.title}. ${data.journal || 'Journal'}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
+        return `${data.authors.join(', ')} (${data.year}). ${data.title}. ${data.journal || 'Journal'}. ${data.doi ? `${URLS.EXTERNAL.DOI_BASE}/${data.doi}` : ''}`;
       case 'MLA':
-        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'}, ${data.year}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
+        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'}, ${data.year}. ${data.doi ? `${URLS.EXTERNAL.DOI_BASE}/${data.doi}` : ''}`;
       case 'Chicago':
-        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'} ${data.year}. ${data.doi ? `https://doi.org/${data.doi}` : ''}`;
+        return `${data.authors.join(', ')}. "${data.title}." ${data.journal || 'Journal'} ${data.year}. ${data.doi ? `${URLS.EXTERNAL.DOI_BASE}/${data.doi}` : ''}`;
       case 'BibTeX':
         return `@article{${data.doi || 'article'},\n  title={${data.title}},\n  author={${data.authors.join(' and ')}},\n  journal={${data.journal || 'Journal'}},\n  year={${data.year}},\n  doi={${data.doi}},\n}`;
       default:

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple JavaScript Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 JavaScript Execution Test</h1>
+        <p>This page tests if JavaScript is executing in your browser.</p>
+        
+        <div id="status-container">
+            <div class="status info">⏳ Running tests...</div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Test Results:</h3>
+            <div id="test-results"></div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Next Steps:</h3>
+            <ol style="text-align: left; max-width: 400px; margin: 0 auto;">
+                <li>If you see green checkmarks above, JavaScript is working</li>
+                <li>If you see red X marks, there's a JavaScript issue</li>
+                <li>Check browser console (F12) for any error messages</li>
+                <li>Try refreshing the page</li>
+                <li>Try a different browser</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 Simple JavaScript test starting...');
+        
+        function addStatus(message, type = 'info') {
+            const container = document.getElementById('status-container');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            container.appendChild(div);
+        }
+        
+        function addTestResult(test, result, details = '') {
+            const container = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `status ${result ? 'success' : 'error'}`;
+            div.innerHTML = `${result ? '✅' : '❌'} ${test} ${details ? `- ${details}` : ''}`;
+            container.appendChild(div);
+        }
+        
+        try {
+            // Test 1: Basic JavaScript execution
+            addStatus('Testing basic JavaScript execution...', 'info');
+            addTestResult('JavaScript execution', true, 'Script is running');
+            
+            // Test 2: DOM manipulation
+            addStatus('Testing DOM manipulation...', 'info');
+            const testElement = document.createElement('div');
+            testElement.textContent = 'DOM test';
+            document.body.appendChild(testElement);
+            document.body.removeChild(testElement);
+            addTestResult('DOM manipulation', true, 'Can create and remove elements');
+            
+            // Test 3: Console logging
+            addStatus('Testing console logging...', 'info');
+            console.log('✅ Console logging test');
+            addTestResult('Console logging', true, 'Check browser console (F12)');
+            
+            // Test 4: Error handling
+            addStatus('Testing error handling...', 'info');
+            try {
+                throw new Error('Test error');
+            } catch (e) {
+                addTestResult('Error handling', true, 'Can catch and handle errors');
+            }
+            
+            // Test 5: Async operations
+            addStatus('Testing async operations...', 'info');
+            setTimeout(() => {
+                addTestResult('Async operations', true, 'setTimeout working');
+            }, 100);
+            
+            addStatus('✅ All tests completed!', 'success');
+            
+        } catch (error) {
+            addStatus('❌ JavaScript test failed!', 'error');
+            addTestResult('JavaScript execution', false, error.message);
+            console.error('Test error:', error);
+        }
+        
+        console.log('🏁 Simple JavaScript test completed');
+    </script>
+</body>
+</html>

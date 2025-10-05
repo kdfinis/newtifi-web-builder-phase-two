@@ -1,0 +1,71 @@
+{
+  "visualConsistency": {
+    "preserveExistingStyles": true,
+    "useCurrentColorPalette": true,
+    "maintainTypographyScale": true,
+    "keepCurrentSpacing": true,
+    "preserveAnimations": true
+  },
+  "components": {
+    "ArticleCard": {
+      "variants": ["default", "featured", "compact", "minimal"],
+      "showAuthor": true,
+      "showDate": true,
+      "showCategory": true,
+      "showReadingTime": true,
+      "maxTitleLength": 100,
+      "maxAbstractLength": 200,
+      "baseClasses": "bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200",
+      "titleClasses": "text-xl font-semibold text-gray-900 mb-2",
+      "abstractClasses": "text-gray-600 text-sm leading-relaxed"
+    },
+    "JournalCard": {
+      "variants": ["default", "featured", "compact"],
+      "showIssn": true,
+      "showPublisher": true,
+      "showFrequency": true,
+      "showPeerReview": true,
+      "baseClasses": "bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200",
+      "titleClasses": "text-xl font-semibold text-gray-900 mb-2",
+      "descriptionClasses": "text-gray-600 text-sm leading-relaxed"
+    },
+    "JournalHeader": {
+      "showIssn": true,
+      "showPublisher": true,
+      "showFrequency": true,
+      "showPeerReview": true,
+      "baseClasses": "bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 rounded-lg",
+      "titleClasses": "text-3xl font-bold mb-2",
+      "descriptionClasses": "text-blue-100 text-lg"
+    },
+    "Navigation": {
+      "showSearch": true,
+      "showUserMenu": true,
+      "showLanguageSwitcher": false,
+      "maxMenuItems": 7,
+      "baseClasses": "bg-white shadow-sm border-b border-gray-200",
+      "linkClasses": "text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium"
+    }
+  },
+  "layouts": {
+    "homepage": {
+      "heroSection": true,
+      "featuredArticles": 3,
+      "latestArticles": 6,
+      "showCategories": true
+    },
+    "journal": {
+      "showEditorialBoard": true,
+      "showSubmissionGuidelines": true,
+      "articlesPerPage": 12,
+      "showFilters": true
+    },
+    "article": {
+      "showAuthor": true,
+      "showDate": true,
+      "showCategory": true,
+      "showReadingTime": true,
+      "showRelatedArticles": true
+    }
+  }
+}

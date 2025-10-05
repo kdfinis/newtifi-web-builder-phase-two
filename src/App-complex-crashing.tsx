@@ -19,19 +19,29 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
 import Publishing from "./pages/Publishing";
-import InvestmentManagementJournal from "./pages/publishing/journals/investment-management";
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
 import Admin from './pages/Admin';
 import AuthCallback from './pages/AuthCallback';
-// LMS Components - Additional to existing website
-import LMSLogin from './components/lms/LMSLogin';
-import ProfessorDashboard from './pages/lms/ProfessorDashboard';
+import SimpleLogin from './components/SimpleLogin';
+import SimpleProfessorDashboard from './pages/SimpleProfessorDashboard';
+import TestPage from './pages/TestPage';
+import ArticleSubmission from './pages/ArticleSubmission';
+import AdminConsole from './pages/AdminConsole';
+import ReviewInterface from './pages/ReviewInterface';
+import KPIDashboard from './pages/KPIDashboard';
+import MemberDashboard from './pages/MemberDashboard';
 import "./styles/typography.css";
 import "./App.css";
 
 // Lazy load heavy components for better performance
 const LazyAdmin = React.lazy(() => import('./pages/Admin'));
 const LazyArticlePage = React.lazy(() => import('./pages/publishing/journals/ArticlePage'));
+const LazyProfessorDashboard = React.lazy(() => import('./pages/ProfessorDashboard'));
+const LazyArticleSubmission = React.lazy(() => import('./pages/ArticleSubmission'));
+const LazyAdminConsole = React.lazy(() => import('./pages/AdminConsole'));
+const LazyReviewInterface = React.lazy(() => import('./pages/ReviewInterface'));
+const LazyKPIDashboard = React.lazy(() => import('./pages/KPIDashboard'));
+const LazyMemberDashboard = React.lazy(() => import('./pages/MemberDashboard'));
 
 // Loading component for Suspense fallback
 const LoadingSpinner = () => (
@@ -68,21 +78,25 @@ const App = () => (
                 <Route path="/who-we-are" element={<WhoWeAre />} />
                 <Route path="/membership" element={<Membership />} />
                 <Route path="/contact" element={<Contact />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<SimpleLogin />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/person/:name" element={<Person />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/publishing" element={<Publishing />} />
-                <Route path="/publishing/journals/investment-management" element={<Publishing />} />
-                <Route path="/publishing/journal" element={<Publishing />} />
-                <Route path="/publishing/journals/investment-management/article/:slug" element={<LazyArticlePage />} />
+                <Route path="/publishing/articles/:slug" element={<LazyArticlePage />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
                 <Route path="/admin" element={<LazyAdmin />} />
-                {/* LMS Routes - Additional to existing website */}
-                <Route path="/lms/login" element={<LMSLogin />} />
-                <Route path="/lms/professor" element={<ProfessorDashboard />} />
+                <Route path="/professor" element={<SimpleProfessorDashboard />} />
+                <Route path="/test" element={<TestPage />} />
+                {/* Temporarily disabled for testing */}
+                {/* <Route path="/admin-console" element={<LazyAdminConsole />} />
+                <Route path="/articles/submit" element={<LazyArticleSubmission />} />
+                <Route path="/articles/edit/:id" element={<LazyArticleSubmission />} />
+                <Route path="/reviews" element={<LazyReviewInterface />} />
+                <Route path="/analytics" element={<LazyKPIDashboard />} />
+                <Route path="/member" element={<LazyMemberDashboard />} /> */}
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
