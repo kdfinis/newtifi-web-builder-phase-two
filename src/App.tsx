@@ -3,7 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-dom";
 import Layout from "./components/Layout";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
@@ -54,6 +54,11 @@ const queryClient = new QueryClient({
   },
 });
 
+function OldArticleRedirect() {
+  const { journalSlug, slug } = useParams();
+  return <Navigate to={`/publishing/${journalSlug}/article/${slug}`} replace />;
+}
+
 const App = () => (
   <ErrorBoundary>
     <QueryClientProvider client={queryClient}>
@@ -77,6 +82,8 @@ const App = () => (
                 <Route path="/publishing" element={<Publishing />} />
                 <Route path="/publishing/investment-management" element={<Publishing />} />
                 <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />
+                {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
+                <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
                 <Route path="/admin" element={<LazyAdmin />} />
                 {/* LMS Routes - Additional to existing website */}
