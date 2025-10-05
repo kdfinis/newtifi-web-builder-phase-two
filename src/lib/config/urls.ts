@@ -4,16 +4,16 @@
 export const URLS = {
   // Development URLs
   DEV: {
-    FRONTEND: process.env.VITE_FRONTEND_URL || 'http://localhost:8080',
-    BACKEND: process.env.VITE_BACKEND_URL || 'http://localhost:3001',
-    ARCHITECTURE: process.env.VITE_ARCHITECTURE_URL || 'http://localhost:3000',
+    FRONTEND: process.env.VITE_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
+    BACKEND: process.env.VITE_BACKEND_URL || '',
+    ARCHITECTURE: process.env.VITE_ARCHITECTURE_URL || '',
   },
   
   // Production URLs
   PROD: {
-    FRONTEND: process.env.VITE_PROD_FRONTEND_URL || 'https://newtifi.com',
-    BACKEND: process.env.VITE_PROD_BACKEND_URL || 'https://api.newtifi.com',
-    ARCHITECTURE: process.env.VITE_PROD_ARCHITECTURE_URL || 'https://arch.newtifi.com',
+    FRONTEND: process.env.VITE_PROD_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
+    BACKEND: process.env.VITE_PROD_BACKEND_URL || '',
+    ARCHITECTURE: process.env.VITE_PROD_ARCHITECTURE_URL || '',
   },
   
   // API Endpoints
@@ -48,11 +48,12 @@ export const getCurrentUrls = () => {
 // Helper function to build API URLs
 export const buildApiUrl = (endpoint: string) => {
   const urls = getCurrentUrls();
-  return `${urls.BACKEND}${URLS.API.BASE}${endpoint}`;
+  const base = urls.BACKEND ? `${urls.BACKEND}${URLS.API.BASE}` : `${URLS.API.BASE}`;
+  return `${base}${endpoint}`;
 };
 
 // Helper function to build asset URLs
 export const buildAssetUrl = (path: string) => {
   const urls = getCurrentUrls();
-  return `${urls.FRONTEND}${path}`;
+  return urls.FRONTEND ? `${urls.FRONTEND}${path}` : `${path}`;
 };

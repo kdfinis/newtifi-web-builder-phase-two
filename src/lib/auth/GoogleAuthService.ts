@@ -11,7 +11,7 @@ class GoogleAuthService {
   constructor() {
     this.clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'your-google-client-id';
     this.clientSecret = import.meta.env.VITE_GOOGLE_CLIENT_SECRET || 'your-google-client-secret';
-    this.redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI || 'http://localhost:1000/auth/callback';
+    this.redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI || (typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : '/auth/callback');
   }
 
   async authenticateUser(googleToken: string): Promise<AuthResult> {

@@ -24,6 +24,14 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       "@typescript-eslint/no-unused-vars": "off",
+      // Disallow absolute localhost URLs and unresolved imports
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector: "Literal[value=/^http:\\/\\/localhost:\\d+/]",
+          message: "Do not hardcode localhost URLs; use UrlFactory or config."
+        }
+      ],
     },
   }
 );

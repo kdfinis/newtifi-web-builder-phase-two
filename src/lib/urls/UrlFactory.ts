@@ -222,6 +222,19 @@ export class UrlFactory {
   static sanitizeUrl(url: string): string {
     return url.replace(/[^a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]/g, '');
   }
+
+  // Dev guard: log suspicious hardcoded localhost usage
+  static guard(url: string): string {
+    try {
+      // @ts-ignore
+      if (typeof window !== 'undefined' && (import.meta?.env?.DEV)) {
+        if (/^http:\/\/localhost:\d+\//.test(url)) {
+          console.warn('[UrlFactory.guard] Detected absolute localhost URL. Use UrlFactory helpers instead:', url);
+        }
+      }
+    } catch {}
+    return url;
+  }
 }
 
 // Export singleton instance

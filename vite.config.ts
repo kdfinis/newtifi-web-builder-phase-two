@@ -15,7 +15,7 @@ export default defineConfig({
       ignored: ['**/LSB-save-of-NEWTIFI/**', '**/node_modules/**', '**/dist/**']
     },
     hmr: {
-      overlay: true,
+      overlay: false,
       timeout: 5000,
     },
     proxy: {

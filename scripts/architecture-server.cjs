@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { URL } = require('url');
 
-const PORT = 3000;
+const PORT = parseInt(process.env.PORT || '8080', 10);
 const DIST_DIR = path.join(__dirname, '..', 'dist');
 
 // MIME types for proper module serving
@@ -47,10 +47,14 @@ function serveFile(req, res, filePath) {
     }
 
     const mimeType = getMimeType(filePath);
-    const headers = {
-      'Content-Type': mimeType,
-      'Cache-Control': 'public, max-age=3600'
-    };
+    const headers = { 'Content-Type': mimeType };
+    // HTML should never be cached strongly; assets are hashed and can be cached
+    if (mimeType === 'text/html') {
+      headers['Cache-Control'] = 'no-store, must-revalidate';
+    } else {
+      headers['Cache-Control'] = 'public, max-age=31536000, immutable';
+    }
+    headers['X-Build-Id'] = process.env.BUILD_ID || 'dev-local';
 
     // Add CORS headers for development
     headers['Access-Control-Allow-Origin'] = '*';
@@ -105,7 +109,7 @@ const server = http.createServer(handleRequest);
 server.listen(PORT, () => {
   console.log(`🚀 Architecture localhost running at http://localhost:${PORT}`);
   console.log('📝 This showcases the new architecture with all services');
-  console.log('🔧 Port: 1000 (exclusive)');
+  console.log(`🔧 Port: ${PORT}`);
   console.log('✅ Proper MIME types for ES modules enabled');
 });
 
