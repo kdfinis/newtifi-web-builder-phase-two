@@ -13,6 +13,11 @@ export class UrlFactory {
     return `${baseUrl}/publishing/articles/${slug}`;
   }
 
+  // Article URL (path-only)
+  static getArticlePath(slug: string): string {
+    return `/publishing/articles/${slug}`;
+  }
+
   static getArticlePdfUrl(slug: string): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/articles/${slug}.pdf`;
@@ -29,14 +34,29 @@ export class UrlFactory {
     return `${baseUrl}/publishing/journals/${journalSlug}`;
   }
 
+  // Journal URL (path-only)
+  static getJournalPath(journalSlug: string): string {
+    return `/publishing/journals/${journalSlug}`;
+  }
+
   static getJournalArticlesUrl(journalSlug: string): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/publishing/journals/${journalSlug}/articles`;
   }
 
+  // Journal Articles URL (path-only)
+  static getJournalArticlesPath(journalSlug: string): string {
+    return `/publishing/journals/${journalSlug}/articles`;
+  }
+
   static getJournalArticleUrl(journalSlug: string, articleSlug: string): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/publishing/journals/${journalSlug}/articles/${articleSlug}`;
+  }
+
+  // Journal Article URL (path-only)
+  static getJournalArticlePath(journalSlug: string, articleSlug: string): string {
+    return `/publishing/journals/${journalSlug}/articles/${articleSlug}`;
   }
 
   // Main page URLs
@@ -47,6 +67,11 @@ export class UrlFactory {
   static getPublishingUrl(): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/publishing`;
+  }
+
+  // Publishing (path-only)
+  static getPublishingPath(): string {
+    return `/publishing`;
   }
 
   static getContactUrl(): string {

@@ -356,7 +356,7 @@ export default function ArticlePage() {
             <nav className="mb-8 text-base text-white/80 flex items-center gap-2" aria-label="Breadcrumb">
               <a href="/" className="hover:text-white transition-colors">Home</a>
         <span className="mx-1">&gt;</span>
-              <a href="/publishing" className="hover:text-white transition-colors">Articles</a>
+              <a href={urlFactory.getPublishingPath()} className="hover:text-white transition-colors">Articles</a>
         <span className="mx-1">&gt;</span>
               <span className="text-white font-semibold truncate" title={meta.title}>{meta.title}</span>
       </nav>

@@ -3,6 +3,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { BookOpen, FileText, Download, Upload, AlertCircle, CheckCircle, ChevronRight, ExternalLink, ArrowLeft, ChevronDown, ChevronUp, Clock, Users, Archive, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { submissionRulesData, downloadSubmissionRulesPDF } from '@/data/submissionRules';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Publishing: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('journals');
@@ -34,7 +35,7 @@ const Publishing: React.FC = () => {
       keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
       abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
       filename: "eltifs-compulsory-redemptions.pdf",
-      url: "/publishing/journals/investment-management/article/eltifs-compulsory-redemptions",
+      url: urlFactory.getJournalArticlePath('investment-management', 'eltifs-compulsory-redemptions'),
       pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
       status: "published",
       views: 0,
@@ -51,7 +52,7 @@ const Publishing: React.FC = () => {
       keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
       abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
       filename: "bafin-portfolio-control.pdf",
-      url: "/publishing/journals/investment-management/article/bafin-portfolio-control",
+      url: urlFactory.getJournalArticlePath('investment-management', 'bafin-portfolio-control'),
       pdfUrl: "/articles/bafin-portfolio-control.pdf",
       status: "published",
       views: 0,
@@ -68,7 +69,7 @@ const Publishing: React.FC = () => {
       keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
       abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
       filename: "luxembourg-well-informed-investor.pdf",
-      url: "/publishing/journals/investment-management/article/luxembourg-well-informed-investor",
+      url: urlFactory.getJournalArticlePath('investment-management', 'luxembourg-well-informed-investor'),
       pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
       status: "published",
       views: 0,
@@ -79,7 +80,7 @@ const Publishing: React.FC = () => {
   ];
 
   const getArticleUrl = (article) => {
-    return `/publishing/journals/investment-management/article/${article.id}`;
+    return urlFactory.getJournalArticlePath('investment-management', article.id);
   };
 
   const handleDownload = (pdfUrl) => {
