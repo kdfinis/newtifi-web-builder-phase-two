@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
-import urlFactory from '@/utils/urlFactory';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Navbar = () => {
   const location = useLocation();
