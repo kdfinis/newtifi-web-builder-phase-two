@@ -12,8 +12,8 @@ datasource db {
 }
 
 enum Role {
-  USER
-  EDITOR
+  MEMBER
+  CONTRIBUTOR
   ADMIN
 }
 
@@ -22,12 +22,19 @@ model User {
   email        String   @unique
   passwordHash String?  // null for OAuth-only users
   name         String?
-  role         Role     @default(USER)
+  role         Role     @default(MEMBER)
   googleId     String?  @unique
   linkedinId   String?  @unique
+  bio          String?
+  organization String?
+  avatarUrl    String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  
   resetTokens  ResetToken[]
+  applications ContributorApplication[]
+  articles     Article[]
+  bookmarks    Bookmark[]
 }
 
 model ResetToken {
@@ -37,4 +44,43 @@ model ResetToken {
   token     String   @unique
   expiresAt DateTime
   createdAt DateTime @default(now())
+}
+
+model ContributorApplication {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id])
+  bio        String
+  motivation String
+  status     String   @default("pending") // pending|approved|rejected
+  createdAt  DateTime @default(now())
+}
+
+model Article {
+  id          String   @id @default(cuid())
+  authorId    String
+  author      User     @relation(fields: [authorId], references: [id])
+  title       String
+  slug        String   @unique
+  summary     String
+  body        String
+  journal     String   // Investment Management|Bankruptcy|Legal
+  category    String   // HealthTech, FinTech, etc
+  status      String   @default("draft") // draft|pending|published|rejected
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  publishedAt DateTime?
+  
+  bookmarks   Bookmark[]
+}
+
+model Bookmark {
+  id        String   @id @default(cuid())
+  userId    String
+  articleId String
+  user      User     @relation(fields: [userId], references: [id])
+  article   Article  @relation(fields: [articleId], references: [id])
+  createdAt DateTime @default(now())
+  
+  @@unique([userId, articleId])
 }

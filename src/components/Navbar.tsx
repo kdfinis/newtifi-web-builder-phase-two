@@ -3,13 +3,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Menu, X } from 'lucide-react';
 import { urlFactory } from '@/lib/urls/UrlFactory';
+import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 
 const Navbar = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAtTop, setIsAtTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('user'));
+  const { user, loading, logout, isAuthenticated } = useSimpleAuth();
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
 
@@ -28,11 +29,6 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    const checkLogin = () => setIsLoggedIn(!!localStorage.getItem('user'));
-    window.addEventListener('storage', checkLogin);
-    return () => window.removeEventListener('storage', checkLogin);
-  }, []);
 
   // Handle keyboard navigation
   useEffect(() => {
@@ -180,31 +176,70 @@ const Navbar = () => {
           </Link>
         </nav>
 
-        {/* Login Button */}
+        {/* Auth Section */}
         <div className="flex items-center gap-3">
+          {loading ? (
+            <div className="hidden md:block px-4 py-1.5 text-sm text-gray-500">Loading...</div>
+          ) : isAuthenticated ? (
+            <div className="hidden md:flex items-center gap-4">
+              <span className="text-sm text-gray-700">Hello, {user?.name || user?.email}</span>
+              <Link 
+                to="/dashboard" 
+                className="px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase text-base font-medium tracking-wide"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Dashboard
+              </Link>
+              <button 
+                onClick={logout}
+                className="px-4 py-1.5 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase text-base font-medium tracking-wide"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <Link 
+              to="/login" 
+              className={cn(
+                "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase",
+                "text-base font-medium tracking-wide"
+              )}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Sign In
+            </Link>
+          )}
+        </div>
+
+        {/* Mobile Auth Section */}
+        {isAuthenticated ? (
+          <div className="md:hidden space-y-2 mt-4">
+            <div className="text-center text-sm text-gray-700 mb-2">
+              Hello, {user?.name || user?.email}
+            </div>
+            <Link 
+              to="/dashboard" 
+              className="block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Dashboard
+            </Link>
+            <button 
+              onClick={() => { logout(); setIsMenuOpen(false); }}
+              className="block w-full text-center px-4 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase"
+            >
+              Logout
+            </button>
+          </div>
+        ) : (
           <Link 
             to="/login" 
-            className={cn(
-              "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase",
-              "text-base font-medium tracking-wide"
-            )}
+            className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
             onClick={() => setIsMenuOpen(false)}
           >
             Sign In
           </Link>
-        </div>
-
-        {/* For mobile menu, add below nav links: */}
-        {isLoggedIn && (
-          <span className="md:hidden block text-green-200 text-base font-semibold text-center mt-2">Your Account (Logged in)</span>
         )}
-        <Link 
-          to="/login" 
-          className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          Sign In
-        </Link>
       </div>
     </header>
   );

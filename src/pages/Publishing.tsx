@@ -21,8 +21,45 @@ const Publishing: React.FC = () => {
   const [loginLoading, setLoginLoading] = useState(false);
   const [registerError, setRegisterError] = useState('');
   const [loginError, setLoginError] = useState('');
+  const [dbArticles, setDbArticles] = useState([]);
+  const [loadingDbArticles, setLoadingDbArticles] = useState(true);
 
   const navigate = useNavigate();
+
+  // Load database articles
+  useEffect(() => {
+    fetch('/api/articles?status=published', { credentials: 'include' })
+      .then(r => r.json())
+      .then(data => {
+        // Transform database articles to match the expected format
+        const transformedArticles = data.map(article => ({
+          id: article.slug,
+          title: article.title,
+          author: article.author.name || article.author.email,
+          date: new Date(article.publishedAt || article.createdAt).toISOString().split('T')[0],
+          doi: `10.1234/newtifi.${article.id.slice(-6)}`,
+          keywords: [article.category, article.journal],
+          abstract: article.summary,
+          filename: `${article.slug}.pdf`,
+          url: urlFactory.getJournalArticlePath(article.journal.toLowerCase().replace(/\s+/g, '-'), article.slug),
+          pdfUrl: `/articles/${article.slug}.pdf`,
+          status: article.status,
+          views: 0,
+          downloads: 0,
+          featured: false,
+          category: "journal",
+          source: "contributor",
+          journal: article.journal,
+          articleCategory: article.category
+        }));
+        setDbArticles(transformedArticles);
+        setLoadingDbArticles(false);
+      })
+      .catch(err => {
+        console.error('Failed to load database articles:', err);
+        setLoadingDbArticles(false);
+      });
+  }, []);
 
   // Static articles data
   const articles = [
@@ -414,7 +451,15 @@ const Publishing: React.FC = () => {
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
-            {articles.map((article, idx) => (
+            
+            {/* Combine static and database articles */}
+            {loadingDbArticles ? (
+              <div className="text-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-newtifi-navy mx-auto"></div>
+                <p className="mt-2 text-gray-600">Loading articles...</p>
+              </div>
+            ) : (
+              [...articles, ...dbArticles].map((article, idx) => (
               <div key={idx} className="mb-8">
                 <div
                   className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 cursor-pointer hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
@@ -447,6 +492,17 @@ const Publishing: React.FC = () => {
                     <div className="flex items-center gap-2 text-gray-600">
                       <span>By {article.author}</span>
                     </div>
+                    {article.source && (
+                      <div className="flex items-center gap-2">
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                          article.source === 'contributor' 
+                            ? 'bg-green-100 text-green-800' 
+                            : 'bg-blue-100 text-blue-800'
+                        }`}>
+                          {article.source === 'contributor' ? 'Contributor' : 'Legacy'}
+                        </span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Keywords */}
@@ -466,7 +522,8 @@ const Publishing: React.FC = () => {
                   <div className="mt-4 text-sm text-newtifi-teal font-medium">Click to read full article</div>
                 </div>
               </div>
-            ))}
+            ))
+            )}
           </div>
         </section>
       )}

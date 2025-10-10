@@ -23,6 +23,10 @@ import InvestmentManagementJournal from "./pages/publishing/journals/investment-
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
 import Admin from './pages/Admin';
 import AuthCallback from './pages/AuthCallback';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
+import ApplyContributor from './pages/ApplyContributor';
+import ArticleEditor from './pages/articles/ArticleEditor';
 // LMS Components - Additional to existing website
 import LMSLogin from './components/lms/LMSLogin';
 import ProfessorDashboard from './pages/lms/ProfessorDashboard';
@@ -85,6 +89,11 @@ const App = () => (
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
                 <Route path="/auth/callback" element={<AuthCallback />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/apply-contributor" element={<ApplyContributor />} />
+                <Route path="/articles/new" element={<ArticleEditor />} />
+                <Route path="/articles/edit/:id" element={<ArticleEditor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
                 {/* LMS Routes - Additional to existing website */}
                 <Route path="/lms/login" element={<LMSLogin />} />

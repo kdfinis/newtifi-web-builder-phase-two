@@ -21,7 +21,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 // Enable compression
 app.use(compression());
@@ -243,6 +243,185 @@ app.get('/auth/status', (req, res) => {
   } else {
     res.json({ loggedIn: false });
   }
+});
+
+// Profile endpoints
+app.get('/api/me', (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  res.json(req.user);
+});
+
+app.put('/api/me', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const { name, bio, organization } = req.body;
+  const user = await prisma.user.update({
+    where: { id: req.user.id },
+    data: { name, bio, organization }
+  });
+  res.json(user);
+});
+
+// Contributor application endpoints
+app.post('/api/applications', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const { bio, motivation } = req.body;
+  const app = await prisma.contributorApplication.create({
+    data: { userId: req.user.id, bio, motivation, status: 'pending' }
+  });
+  res.json(app);
+});
+
+app.get('/api/applications/me', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const app = await prisma.contributorApplication.findUnique({
+    where: { userId: req.user.id }
+  });
+  res.json(app);
+});
+
+// Admin application management
+app.get('/api/admin/applications', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const applications = await prisma.contributorApplication.findMany({
+    include: { user: true },
+    orderBy: { createdAt: 'desc' }
+  });
+  res.json(applications);
+});
+
+app.post('/api/admin/applications/:id/approve', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const app = await prisma.contributorApplication.update({
+    where: { id: req.params.id },
+    data: { status: 'approved' }
+  });
+  await prisma.user.update({
+    where: { id: app.userId },
+    data: { role: 'CONTRIBUTOR' }
+  });
+  res.json({ ok: true });
+});
+
+app.post('/api/admin/applications/:id/reject', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const app = await prisma.contributorApplication.update({
+    where: { id: req.params.id },
+    data: { status: 'rejected' }
+  });
+  res.json({ ok: true });
+});
+
+// Article endpoints
+app.post('/api/articles', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role === 'MEMBER') 
+    return res.status(403).json({ error: 'Contributors only' });
+  
+  const { title, summary, body, journal, category } = req.body;
+  let slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  
+  // Handle slug conflicts
+  let existingArticle = await prisma.article.findUnique({ where: { slug } });
+  let counter = 2;
+  while (existingArticle) {
+    slug = `${slug}-${counter}`;
+    existingArticle = await prisma.article.findUnique({ where: { slug } });
+    counter++;
+  }
+  
+  const article = await prisma.article.create({
+    data: {
+      authorId: req.user.id,
+      title, slug, summary, body, journal, category,
+      status: 'draft'
+    }
+  });
+  res.json(article);
+});
+
+app.get('/api/articles/my', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const articles = await prisma.article.findMany({
+    where: { authorId: req.user.id },
+    orderBy: { updatedAt: 'desc' }
+  });
+  res.json(articles);
+});
+
+app.get('/api/articles', async (req, res) => {
+  const { status } = req.query;
+  const where = status ? { status } : {};
+  const articles = await prisma.article.findMany({
+    where,
+    include: { author: true },
+    orderBy: { updatedAt: 'desc' }
+  });
+  res.json(articles);
+});
+
+app.get('/api/articles/:id', async (req, res) => {
+  const article = await prisma.article.findUnique({
+    where: { id: req.params.id },
+    include: { author: true }
+  });
+  if (!article) return res.status(404).json({ error: 'Article not found' });
+  
+  // Check permissions
+  if (article.status !== 'published' && article.authorId !== req.user?.id && req.user?.role !== 'ADMIN') {
+    return res.status(403).json({ error: 'Not authorized' });
+  }
+  
+  res.json(article);
+});
+
+app.put('/api/articles/:id', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const article = await prisma.article.findUnique({ where: { id: req.params.id } });
+  if (article.authorId !== req.user.id && req.user.role !== 'ADMIN')
+    return res.status(403).json({ error: 'Not your article' });
+  
+  const updated = await prisma.article.update({
+    where: { id: req.params.id },
+    data: req.body
+  });
+  res.json(updated);
+});
+
+app.post('/api/articles/:id/submit', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  const article = await prisma.article.update({
+    where: { id: req.params.id },
+    data: { status: 'pending' }
+  });
+  res.json(article);
+});
+
+// Admin article management
+app.get('/api/admin/articles', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const articles = await prisma.article.findMany({
+    include: { author: true },
+    orderBy: { updatedAt: 'desc' }
+  });
+  res.json(articles);
+});
+
+app.post('/api/admin/articles/:id/publish', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const article = await prisma.article.update({
+    where: { id: req.params.id },
+    data: { status: 'published', publishedAt: new Date() }
+  });
+  res.json(article);
+});
+
+app.post('/api/admin/articles/:id/reject', async (req, res) => {
+  if (!req.isAuthenticated() || req.user.role !== 'ADMIN') return res.status(403).json({ error: 'Forbidden' });
+  const { editorNotes } = req.body;
+  const article = await prisma.article.update({
+    where: { id: req.params.id },
+    data: { status: 'rejected' }
+  });
+  res.json(article);
 });
 
 // Admin Users basic endpoints (expand later)
