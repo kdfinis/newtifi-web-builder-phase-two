@@ -3,7 +3,7 @@
   "description": "New Technologies & Investment Funds Institute",
   "version": "2.0.0",
   "urls": {
-    "base": "https://newtifi.org",
+    "base": "https://newtifi.com",
     "api": "https://api.newtifi.org",
     "cdn": "https://cdn.newtifi.org",
     "local": "http://localhost:8080",
@@ -12,13 +12,13 @@
       "google": {
         "callback": {
           "development": "http://localhost:8080/auth/google/callback",
-          "production": "https://newtifi.org/auth/google/callback"
+          "production": "https://newtifi.com/auth/google/callback"
         }
       },
       "linkedin": {
         "callback": {
           "development": "http://localhost:8080/auth/linkedin/callback",
-          "production": "https://newtifi.org/auth/linkedin/callback"
+          "production": "https://newtifi.com/auth/linkedin/callback"
         }
       }
     }
