@@ -23,6 +23,8 @@ import InvestmentManagementJournal from "./pages/publishing/journals/investment-
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
 import Admin from './pages/Admin';
 import AuthCallback from './pages/AuthCallback';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import ApplyContributor from './pages/ApplyContributor';
@@ -69,8 +71,13 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-          <Layout>
+            <BrowserRouter
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true
+              }}
+            >
+              <Layout>
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path="/" element={<Home />} />
@@ -79,6 +86,8 @@ const App = () => (
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/person/:name" element={<Person />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
@@ -88,7 +97,9 @@ const App = () => (
                 <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
-                <Route path="/auth/callback" element={<AuthCallback />} />
+                    <Route path="/auth/callback" element={<AuthCallback />} />
+                    <Route path="/auth/google/callback" element={<AuthCallback />} />
+                    <Route path="/auth/linkedin/callback" element={<AuthCallback />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/apply-contributor" element={<ApplyContributor />} />

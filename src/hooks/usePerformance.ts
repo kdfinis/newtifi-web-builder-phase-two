@@ -14,14 +14,17 @@ export const usePerformance = () => {
         const pageLoadTime = navigation.loadEventEnd - navigation.loadEventStart;
         const timeToInteractive = navigation.domInteractive - navigation.fetchStart;
         
-        console.log('Performance Metrics:', {
-          pageLoadTime: `${pageLoadTime.toFixed(2)}ms`,
-          timeToInteractive: `${timeToInteractive.toFixed(2)}ms`,
-          totalTime: `${(navigation.loadEventEnd - navigation.fetchStart).toFixed(2)}ms`
-        });
+        // Only log in development
+        if (import.meta.env.DEV) {
+          console.log('Performance Metrics:', {
+            pageLoadTime: `${pageLoadTime.toFixed(2)}ms`,
+            timeToInteractive: `${timeToInteractive.toFixed(2)}ms`,
+            totalTime: `${(navigation.loadEventEnd - navigation.fetchStart).toFixed(2)}ms`
+          });
+        }
 
         // Send to analytics in production
-        if (process.env.NODE_ENV === 'production') {
+        if (import.meta.env.PROD === 'production') {
           // You can send these metrics to your analytics service
           console.log('Performance metrics logged to analytics service');
         }
@@ -35,10 +38,13 @@ export const usePerformance = () => {
         const entries = list.getEntries();
         entries.forEach((entry) => {
           if (entry.name === 'first-contentful-paint') {
-            console.log('First Contentful Paint:', `${entry.startTime.toFixed(2)}ms`);
+            // Only log in development
+            if (import.meta.env.DEV) {
+              console.log('First Contentful Paint:', `${entry.startTime.toFixed(2)}ms`);
+            }
             
             // Send to analytics in production
-            if (process.env.NODE_ENV === 'production') {
+            if (import.meta.env.PROD === 'production') {
               console.log('FCP logged to analytics service');
             }
           }
@@ -54,7 +60,7 @@ export const usePerformance = () => {
   }, []);
 
   const trackUserInteraction = useCallback((event: string, data?: Record<string, unknown>) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (import.meta.env.PROD === 'production') {
       // Track user interactions for analytics
       console.log('User Interaction:', event, data);
     }

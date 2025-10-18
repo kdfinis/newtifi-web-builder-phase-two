@@ -1,6 +1,13 @@
 import { createRoot } from 'react-dom/client'
+import React from 'react'
 import App from './App.tsx'
 import './index.css'
+import { configManager } from './lib/config/ConfigManager'
+
+// Suppress React DevTools message in production
+if (import.meta.env.PROD) {
+  window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = { isDisabled: true };
+}
 
 // Dev-only: aggressively unregister any service workers to prevent stale caches
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
@@ -33,4 +40,11 @@ if (import.meta.env.DEV) {
   });
 }
 
-createRoot(document.getElementById('root')!).render(<App />);
+// Initialize configuration before rendering the app
+configManager.initialize().then(() => {
+  createRoot(document.getElementById('root')!).render(<App />);
+}).catch((error) => {
+  console.error('Failed to initialize configuration:', error);
+  // Still render the app, but with a fallback
+  createRoot(document.getElementById('root')!).render(<App />);
+});

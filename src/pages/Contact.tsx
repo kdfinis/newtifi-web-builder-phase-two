@@ -1,6 +1,7 @@
 import React from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
 import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Contact = () => {
   return (
@@ -48,7 +49,7 @@ const Contact = () => {
               <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden relative">
                 <iframe
                   id="map-iframe"
-                  src="https://www.openstreetmap.org/export/embed.html?bbox=6.15200%2C49.61200%2C6.17000%2C49.62000&layer=mapnik&marker=49.61650%2C6.16000&scrollwheel=false&zoomControl=true&dragPan=false&touchZoom=false&doubleClickZoom=false&keyboard=false"
+                  src={urlFactory.getOpenStreetMapEmbedUrl()}
                   width="100%"
                   height="100%"
                   style={{ border: 0, pointerEvents: 'none' }}
@@ -77,7 +78,7 @@ const Contact = () => {
               </div>
               <div className="text-right">
                 <a
-                  href="https://www.openstreetmap.org/?mlat=49.61650&mlon=6.16000#map=16/49.61650/6.16000"
+                  href={urlFactory.getOpenStreetMapUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-newtifi-teal hover:underline"
@@ -101,7 +102,7 @@ const Contact = () => {
                       <div className="p-3 rounded-xl bg-newtifi-teal/10">
                         <Mail className="h-5 w-5 text-newtifi-teal" />
                       </div>
-                      <a href="mailto:info@newtifi.com" className="text-newtifi-navy hover:text-newtifi-teal transition-colors">info@newtifi.com</a>
+                      <a href={urlFactory.getEmailUrl('info@newtifi.com')} className="text-newtifi-navy hover:text-newtifi-teal transition-colors">info@newtifi.com</a>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="p-3 rounded-xl bg-newtifi-teal/10">
@@ -123,7 +124,7 @@ const Contact = () => {
                   {/* WhatsApp Contact Button */}
                   <div>
                     <a
-                      href="https://wa.me/352621815753"
+                      href={urlFactory.getWhatsAppUrl('352621815753')}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-xl shadow transition-colors"
@@ -163,7 +164,7 @@ const Contact = () => {
 
       {/* Floating WhatsApp Button (hidden number) */}
       <a
-        href="https://wa.me/352621815753"
+        href={urlFactory.getWhatsAppUrl('352621815753')}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 z-50 inline-flex items-center justify-center w-14 h-14 rounded-full bg-green-600 shadow-lg hover:bg-green-700 transition-colors"

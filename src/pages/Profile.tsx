@@ -1,6 +1,6 @@
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 import ScrollReveal from '@/components/ScrollReveal';
-import { User, Save, ArrowLeft } from 'lucide-react';
+import { User, Save, ArrowLeft, Home, Settings, FileText, Users, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -106,6 +106,55 @@ export default function Profile() {
         </div>
       </section>
 
+      {/* Secondary Navigation */}
+      <section className="w-full bg-white border-b border-gray-200">
+        <div className="container mx-auto px-6">
+          <nav className="flex items-center space-x-1 py-3">
+            <Link
+              to="/dashboard"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <Home className="h-4 w-4" />
+              <span>Dashboard</span>
+            </Link>
+            <div className="w-px h-6 bg-gray-300"></div>
+            <Link
+              to="/profile"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-newtifi-navy bg-newtifi-teal/10 rounded-lg"
+            >
+              <User className="h-4 w-4" />
+              <span>Profile</span>
+            </Link>
+            <Link
+              to="/apply-contributor"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Apply Contributor</span>
+            </Link>
+            <Link
+              to="/articles/new"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <FileText className="h-4 w-4" />
+              <span>New Article</span>
+            </Link>
+            {user?.role === 'ADMIN' && (
+              <>
+                <div className="w-px h-6 bg-gray-300"></div>
+                <Link
+                  to="/admin"
+                  className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span>Admin</span>
+                </Link>
+              </>
+            )}
+          </nav>
+        </div>
+      </section>
+
       {/* Main Content */}
       <section className="w-full bg-white py-8">
         <div className="container mx-auto px-6">
@@ -138,7 +187,7 @@ export default function Profile() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all"
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -154,7 +203,7 @@ export default function Profile() {
                     value={formData.bio}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[150px] transition-all"
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[150px] transition-all text-newtifi-navy placeholder:text-gray-500"
                     placeholder="Tell us about yourself..."
                   />
                 </div>
@@ -170,7 +219,7 @@ export default function Profile() {
                     name="organization"
                     value={formData.organization}
                     onChange={handleChange}
-                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all"
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
                     placeholder="Your company or institution"
                   />
                 </div>

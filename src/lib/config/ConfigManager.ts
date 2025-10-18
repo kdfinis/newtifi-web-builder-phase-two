@@ -35,7 +35,9 @@ export class ConfigManager {
       };
 
       this.initialized = true;
-      console.log('✅ Configuration loaded successfully');
+      if (import.meta.env.DEV) {
+        console.log('✅ Configuration loaded successfully');
+      }
     } catch (error) {
       console.error('❌ Failed to load configuration:', error);
       throw new Error('Configuration initialization failed');
@@ -89,6 +91,12 @@ export class ConfigManager {
     return cdnUrl ? `${cdnUrl}${path}` : this.getSiteUrl(path);
   }
 
+  // External app URLs
+  getPrjUrl(): string | undefined {
+    const urls = this.getSiteConfig().urls as any;
+    return urls?.prj;
+  }
+
   // Component configuration helpers
   getComponentConfig(componentName: keyof UIConfig['components']): UIConfig['components'][typeof componentName] {
     return this.getUIConfig().components[componentName];
@@ -131,6 +139,25 @@ export class ConfigManager {
 
   shouldUseLazyLoading(): boolean {
     return this.getSiteConfig().performance.lazyLoading;
+  }
+
+  // OAuth configuration helpers
+  getOAuthCallbackUrl(provider: 'google' | 'linkedin'): string {
+    const urls = this.getSiteConfig().urls;
+    const isDev = this.isDevelopment();
+    const env = isDev ? 'development' : 'production';
+    
+    const callbackUrl = urls.oauth?.[provider]?.callback?.[env];
+    if (callbackUrl) return callbackUrl;
+    
+    // Fallback to constructed URL
+    const baseUrl = isDev ? this.getLocalUrl() : this.getSiteUrl();
+    return `${baseUrl}/auth/${provider}/callback`;
+  }
+
+  getOAuthProviderUrl(provider: 'google' | 'linkedin'): string {
+    const baseUrl = this.isDevelopment() ? this.getLocalUrl() : this.getSiteUrl();
+    return `${baseUrl}/auth/${provider}`;
   }
 }
 

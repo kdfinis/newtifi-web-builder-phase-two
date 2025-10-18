@@ -1,5 +1,6 @@
 import React from 'react';
 import ScrollReveal from '../components/ScrollReveal';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Terms = () => {
   return (
@@ -122,7 +123,7 @@ const Terms = () => {
                   <p>NewTIFI A.s.b.l.</p>
                   <p>14 rue Jean-Pierre Biermann</p>
                   <p>L-1268 Luxembourg</p>
-                  <p>Email: <a href="mailto:info@newtifi.com" className="text-newtifi-teal hover:underline">info@newtifi.com</a></p>
+                  <p>Email: <a href={urlFactory.getEmailUrl('info@newtifi.com')} className="text-newtifi-teal hover:underline">info@newtifi.com</a></p>
                 </div>
               </section>
             </ScrollReveal>

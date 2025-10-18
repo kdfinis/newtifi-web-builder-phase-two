@@ -2,6 +2,7 @@ import React from 'react';
 import { MapPin, Phone, Mail, Clock, ArrowRight, ArrowUpRight } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Connect = () => {
   return (
@@ -56,7 +57,9 @@ const Connect = () => {
                       <ArrowUpRight className="h-5 w-5 text-newtifi-navy opacity-0 group-hover:opacity-100 transition-opacity" />
                     </div>
                     <h3 className="text-base font-semibold text-newtifi-navy mb-2">Email</h3>
-                    <p className="text-newtifi-navy/70 text-base">info@newtifi.com</p>
+                    <p className="text-newtifi-navy/70 text-base">
+                      <a href={urlFactory.getEmailUrl('info@newtifi.com')} className="hover:underline">info@newtifi.com</a>
+                    </p>
                   </div>
 
                   <div className="group p-6 bg-white rounded-2xl shadow-2xl hover:bg-white/80 transition-all duration-300 cursor-pointer">
@@ -210,7 +213,7 @@ const Connect = () => {
                       <div className="space-y-1">
                         <p className="text-white/90 font-medium">Email</p>
                         <a 
-                          href="mailto:info@newtifi.com" 
+                          href={urlFactory.getEmailUrl('info@newtifi.com')} 
                           className="text-newtifi-teal hover:text-white transition-colors"
                         >
                           info@newtifi.com

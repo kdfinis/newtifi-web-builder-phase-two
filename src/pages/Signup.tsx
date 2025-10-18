@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff, Mail, Lock, User, CheckCircle, ArrowLeft, Linkedin } from "lucide-react";
+import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 import ScrollReveal from '@/components/ScrollReveal';
 
 // Inline Google SVG icon as fallback
@@ -25,6 +26,7 @@ const LinkedInLogo = () => (
 );
 
 export default function Signup() {
+  const { register, isAuthenticated } = useSimpleAuth();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -37,6 +39,12 @@ export default function Signup() {
   const [isSignedUp, setIsSignedUp] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  // Redirect if already authenticated
+  if (isAuthenticated) {
+    navigate('/dashboard');
+    return null;
+  }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -64,25 +72,18 @@ export default function Signup() {
       return;
     }
 
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Dummy signup - accept any valid form data
-    if (formData.name.trim() && formData.email.trim() && formData.password.trim()) {
-      setIsSignedUp(true);
-      // Store dummy user session
-      localStorage.setItem('user', JSON.stringify({
-        name: formData.name,
-        email: formData.email,
-        isLoggedIn: true
-      }));
-      
-      // Redirect after a brief success message
-      setTimeout(() => {
-        navigate('/');
-      }, 1500);
-    } else {
-      setError("Please fill in all fields");
+    try {
+      const success = await register(formData.email, formData.password, formData.name);
+      if (success) {
+        setIsSignedUp(true);
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 1500);
+      } else {
+        setError("Registration failed. Please try again.");
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Registration failed");
     }
     
     setIsLoading(false);

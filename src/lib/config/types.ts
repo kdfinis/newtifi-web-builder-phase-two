@@ -8,6 +8,21 @@ export interface SiteConfig {
     api: string;
     cdn: string;
     local: string;
+    prj?: string;
+    oauth?: {
+      google?: {
+        callback?: {
+          development?: string;
+          production?: string;
+        };
+      };
+      linkedin?: {
+        callback?: {
+          development?: string;
+          production?: string;
+        };
+      };
+    };
   };
   features: {
     analytics: boolean;

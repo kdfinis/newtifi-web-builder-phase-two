@@ -6,7 +6,22 @@
     "base": "https://newtifi.org",
     "api": "https://api.newtifi.org",
     "cdn": "https://cdn.newtifi.org",
-    "local": "http://localhost:8080"
+    "local": "http://localhost:8080",
+    "prj": "https://prj.newtifi.org",
+    "oauth": {
+      "google": {
+        "callback": {
+          "development": "http://localhost:8080/auth/google/callback",
+          "production": "https://newtifi.org/auth/google/callback"
+        }
+      },
+      "linkedin": {
+        "callback": {
+          "development": "http://localhost:8080/auth/linkedin/callback",
+          "production": "https://newtifi.org/auth/linkedin/callback"
+        }
+      }
+    }
   },
   "features": {
     "analytics": true,

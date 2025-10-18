@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Linkedin, Mail } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 // Team member detailed data
 const teamMembersData = [
@@ -164,7 +165,7 @@ const Person = () => {
                 </a>
               )}
               <a
-                href={`mailto:${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`}
+                href={urlFactory.getEmailUrl(`${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`)}
                 className="p-3 rounded-full bg-white text-[#00C2CB] hover:bg-[#e6f7fa] transition-colors shadow flex items-center justify-center"
                 style={{ minWidth: 44, minHeight: 44 }}
                 aria-label="Email"
@@ -296,7 +297,7 @@ const Person = () => {
                 </a>
               )}
               <a
-                href={`mailto:${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`}
+                href={urlFactory.getEmailUrl(`${member.urlName.split('-')[0]}.${member.urlName.split('-')[1]}@newtifi.com`)}
                 className="p-4 rounded-full bg-white text-[#00C2CB] hover:bg-[#e6f7fa] transition-colors shadow flex items-center justify-center"
                 style={{ minWidth: 56, minHeight: 56 }}
               >

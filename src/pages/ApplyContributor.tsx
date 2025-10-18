@@ -1,6 +1,6 @@
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 import ScrollReveal from '@/components/ScrollReveal';
-import { FileText, ArrowLeft, Send, CheckCircle } from 'lucide-react';
+import { FileText, ArrowLeft, Send, CheckCircle, Home, User, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
@@ -220,6 +220,55 @@ export default function ApplyContributor() {
         </div>
       </section>
 
+      {/* Secondary Navigation */}
+      <section className="w-full bg-white border-b border-gray-200">
+        <div className="container mx-auto px-6">
+          <nav className="flex items-center space-x-1 py-3">
+            <Link
+              to="/dashboard"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <Home className="h-4 w-4" />
+              <span>Dashboard</span>
+            </Link>
+            <div className="w-px h-6 bg-gray-300"></div>
+            <Link
+              to="/profile"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <User className="h-4 w-4" />
+              <span>Profile</span>
+            </Link>
+            <Link
+              to="/apply-contributor"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-newtifi-navy bg-newtifi-teal/10 rounded-lg"
+            >
+              <FileText className="h-4 w-4" />
+              <span>Apply Contributor</span>
+            </Link>
+            <Link
+              to="/articles/new"
+              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+            >
+              <FileText className="h-4 w-4" />
+              <span>New Article</span>
+            </Link>
+            {user?.role === 'ADMIN' && (
+              <>
+                <div className="w-px h-6 bg-gray-300"></div>
+                <Link
+                  to="/admin"
+                  className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+                >
+                  <Settings className="h-4 w-4" />
+                  <span>Admin</span>
+                </Link>
+              </>
+            )}
+          </nav>
+        </div>
+      </section>
+
       {/* Main Content */}
       <section className="w-full bg-white py-8">
         <div className="container mx-auto px-6">
@@ -259,7 +308,7 @@ export default function ApplyContributor() {
                       onChange={handleChange}
                       rows={6}
                       required
-                      className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[150px] transition-all"
+                      className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[150px] transition-all text-newtifi-navy placeholder:text-gray-500"
                       placeholder="Tell us about your professional background, expertise, and experience in your field..."
                     />
                     <p className="text-xs text-gray-500 mt-1">
@@ -279,7 +328,7 @@ export default function ApplyContributor() {
                       onChange={handleChange}
                       rows={4}
                       required
-                      className="w-full px-5 py-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[120px] transition-all"
+                      className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent min-h-[120px] transition-all text-newtifi-navy placeholder:text-gray-500"
                       placeholder="What motivates you to write for NewTIFI? What topics are you passionate about? How do you hope to contribute to our community?"
                     />
                     <p className="text-xs text-gray-500 mt-1">

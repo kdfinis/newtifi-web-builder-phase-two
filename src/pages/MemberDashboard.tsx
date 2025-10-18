@@ -15,12 +15,15 @@ import {
   TrendingUp,
   Clock
 } from 'lucide-react';
-import { useAuth } from '@/hooks/useAuth';
+import { UrlFactory } from '@/lib/urls/UrlFactory';
+import { useSimpleAuth } from '@/hooks/useSimpleAuth';
+import { unlinkProvider } from '@/lib/auth';
+// import { toast } from 'sonner';
 import { articleService } from '@/lib/articles/ArticleService';
 import { Article, ArticleFilters, ArticleSearchParams } from '@/lib/articles/types';
 
 const MemberDashboard: React.FC = () => {
-  const { user, isMember, isAuthor, isProfessor } = useAuth();
+  const { user, isMember, isContributor } = useSimpleAuth();
   const navigate = useNavigate();
   const [articles, setArticles] = useState<Article[]>([]);
   const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
@@ -32,13 +35,13 @@ const MemberDashboard: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    if (!isMember() && !isAuthor() && !isProfessor()) {
+    if (!isMember && !isContributor) {
       navigate('/');
       return;
     }
 
     loadArticles();
-  }, [isMember, isAuthor, isProfessor, navigate]);
+  }, [isMember, isContributor, navigate]);
 
   useEffect(() => {
     applyFilters();
@@ -182,8 +185,16 @@ const MemberDashboard: React.FC = () => {
               <p className="text-gray-600">Explore the latest research and insights</p>
             </div>
             <div className="flex items-center space-x-4">
+              <a
+                href={UrlFactory.getPrjAssistantUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-3 py-2 rounded-md text-sm font-medium text-newtifi-navy border border-gray-300 hover:bg-gray-50"
+              >
+                Open PRJ Assistant
+              </a>
               <img 
-                src={user?.profile.avatar || '/placeholder-avatar.png'} 
+                src={user?.avatarUrl || '/placeholder-avatar.png'} 
                 alt={user?.name}
                 className="h-10 w-10 rounded-full"
               />
@@ -403,6 +414,132 @@ const MemberDashboard: React.FC = () => {
             <p className="text-gray-500">Try adjusting your search or filter criteria</p>
           </div>
         )}
+      </div>
+
+      {/* Connected Accounts Section */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section className="bg-white rounded-2xl shadow-sm p-8">
+          <h2 className="text-2xl font-semibold text-newtifi-navy mb-6">Connected Accounts</h2>
+          
+          <div className="space-y-4">
+            {/* Google Account */}
+            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#EA4335" d="M12 10.2v3.6h5.1c-.2 1.2-1.5 3.6-5.1 3.6-3.1 0-5.7-2.6-5.7-5.7S8.9 6 12 6c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.8 14.7 3 12 3 6.9 3 2.7 7.2 2.7 12.3S6.9 21.6 12 21.6c6.9 0 9.3-4.8 9.3-7.2 0-.5 0-1-.1-1.2H12z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium text-newtifi-navy">Google Account</p>
+                  <p className="text-sm text-gray-500">
+                    {user?.hasGoogleAuth ? 'Connected' : 'Not connected'}
+                  </p>
+                </div>
+              </div>
+              {user?.hasGoogleAuth ? (
+                <button
+                  onClick={async () => {
+                    if (confirm('Are you sure you want to disconnect your Google account?')) {
+                      try {
+                        await unlinkProvider('google');
+                        console.log('Google account disconnected');
+                        // toast.success('Google account disconnected');
+                        window.location.reload();
+                      } catch (err) {
+                        console.error('Failed to disconnect Google account');
+                        // toast.error('Failed to disconnect Google account');
+                      }
+                    }
+                  }}
+                  className="px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg"
+                >
+                  Disconnect
+                </button>
+              ) : (
+                <a
+                  href="/auth/google"
+                  className="px-4 py-2 text-sm text-newtifi-navy hover:bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  Connect
+                </a>
+              )}
+            </div>
+
+            {/* LinkedIn Account */}
+            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.853 0-2.136 1.446-2.136 2.941v5.664H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.602 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM7.114 20.452H3.56V9h3.554v11.452z"/>
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium text-newtifi-navy">LinkedIn Account</p>
+                  <p className="text-sm text-gray-500">
+                    {user?.hasLinkedInAuth ? 'Connected' : 'Not connected'}
+                  </p>
+                </div>
+              </div>
+              {user?.hasLinkedInAuth ? (
+                <button
+                  onClick={async () => {
+                    if (confirm('Are you sure you want to disconnect your LinkedIn account?')) {
+                      try {
+                        await unlinkProvider('linkedin');
+                        console.log('LinkedIn account disconnected');
+                        // toast.success('LinkedIn account disconnected');
+                        window.location.reload();
+                      } catch (err) {
+                        console.error('Failed to disconnect LinkedIn account');
+                        // toast.error('Failed to disconnect LinkedIn account');
+                      }
+                    }
+                  }}
+                  className="px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-lg"
+                >
+                  Disconnect
+                </button>
+              ) : (
+                <a
+                  href="/auth/linkedin"
+                  className="px-4 py-2 text-sm text-newtifi-navy hover:bg-gray-50 rounded-lg border border-gray-200"
+                >
+                  Connect
+                </a>
+              )}
+            </div>
+
+            {/* Password Authentication */}
+            <div className="flex items-center justify-between p-4 border border-gray-200 rounded-xl">
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="font-medium text-newtifi-navy">Password</p>
+                  <p className="text-sm text-gray-500">
+                    {user?.hasPasswordAuth ? 'Set' : 'Not set'}
+                  </p>
+                </div>
+              </div>
+              <a
+                href="/forgot-password"
+                className="px-4 py-2 text-sm text-newtifi-navy hover:bg-gray-50 rounded-lg border border-gray-200"
+              >
+                {user?.hasPasswordAuth ? 'Change' : 'Set Password'}
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <p className="text-sm text-blue-900">
+              <strong>Tip:</strong> Connect multiple accounts for easier sign-in options. You can disconnect any account as long as you have at least one authentication method remaining.
+            </p>
+          </div>
+        </section>
       </div>
     </div>
   );

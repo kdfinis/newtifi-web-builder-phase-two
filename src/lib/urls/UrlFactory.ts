@@ -18,6 +18,16 @@ export class UrlFactory {
     return `/publishing/articles/${slug}`;
   }
 
+  // Permanent Article URLs by id (canonical)
+  static getArticlePermanentUrl(id: string): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}${this.getArticlePermanentPath(id)}`;
+  }
+
+  static getArticlePermanentPath(id: string): string {
+    return `/publishing/article/${id}`;
+  }
+
   static getArticlePdfUrl(slug: string): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/articles/${slug}.pdf`;
@@ -89,6 +99,12 @@ export class UrlFactory {
     return `${baseUrl}/login`;
   }
 
+  // PRJ Assistant App URL
+  static getPrjAssistantUrl(): string {
+    const prjUrl = (configManager as any).getPrjUrl?.();
+    return prjUrl || 'https://prj.newtifi.org';
+  }
+
   static getSignupUrl(): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/signup`;
@@ -117,6 +133,51 @@ export class UrlFactory {
   static getAdminUrl(): string {
     const baseUrl = configManager.getCurrentUrl();
     return `${baseUrl}/admin`;
+  }
+
+  // OAuth URLs
+  static getOAuthGoogleUrl(): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}/auth/google`;
+  }
+
+  static getOAuthLinkedInUrl(): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}/auth/linkedin`;
+  }
+
+  static getOAuthCallbackUrl(provider: 'google' | 'linkedin'): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}/auth/${provider}/callback`;
+  }
+
+  // Dashboard and Auth URLs
+  static getDashboardUrl(): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}/dashboard`;
+  }
+
+  static getForgotPasswordUrl(): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return `${baseUrl}/forgot-password`;
+  }
+
+  static getResetPasswordUrl(token?: string): string {
+    const baseUrl = configManager.getCurrentUrl();
+    return token ? `${baseUrl}/reset-password?token=${token}` : `${baseUrl}/reset-password`;
+  }
+
+  // Path-only versions (for routing)
+  static getDashboardPath(): string {
+    return `/dashboard`;
+  }
+
+  static getForgotPasswordPath(): string {
+    return `/forgot-password`;
+  }
+
+  static getResetPasswordPath(): string {
+    return `/reset-password`;
   }
 
   // Person URLs

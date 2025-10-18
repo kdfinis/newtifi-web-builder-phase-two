@@ -9,13 +9,17 @@ import { createServer as createViteServer } from 'vite';
 import session from 'express-session';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import { Strategy as LinkedInStrategy } from 'passport-linkedin-oauth2';
+// LinkedIn OAuth will be implemented manually
 import { Strategy as LocalStrategy } from 'passport-local';
 import cors from 'cors';
 import bcrypt from 'bcrypt';
+import fs from 'fs';
 import prismaPkg from './generated/prisma/index.js';
 const { PrismaClient } = prismaPkg;
 const prisma = new PrismaClient();
+
+// Load auth configuration
+const authConfig = JSON.parse(fs.readFileSync('./config/auth.json', 'utf8'));
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -91,12 +95,15 @@ if (process.env.NODE_ENV === 'development') {
 
 // Session middleware
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'changeme',
+  secret: process.env.SESSION_SECRET || 'changeme-please-use-env-var',
   resave: false,
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    sameSite: 'lax'
+    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+    maxAge: parseInt(process.env.SESSION_MAX_AGE || '604800000'), // 7 days default
+    domain: process.env.NODE_ENV === 'production' ? '.newtifi.org' : undefined
   }
 }));
 app.use(passport.initialize());
@@ -116,10 +123,8 @@ passport.deserializeUser(async (id, done) => {
 
 // Helper to get callback URL based on environment
 function getCallbackUrl(provider) {
-  if (process.env.NODE_ENV === 'development') {
-    return `http://localhost:8080/auth/${provider}/callback`;
-  }
-  return `/auth/${provider}/callback`;
+  const appOrigin = process.env.APP_ORIGIN || 'http://localhost:8080';
+  return `${appOrigin}/auth/${provider}/callback`;
 }
 
 // Local (email/password) strategy
@@ -137,68 +142,204 @@ passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'passwor
 
 // Google OAuth Strategy
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID || 'GOOGLE_CLIENT_ID',
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET || 'GOOGLE_CLIENT_SECRET',
+  clientID: process.env.GOOGLE_CLIENT_ID || authConfig.google.clientId,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET || authConfig.google.clientSecret,
   callbackURL: getCallbackUrl('google'),
 }, async (accessToken, refreshToken, profile, done) => {
   try {
+    console.log('🔐 Google OAuth - Processing authentication');
+    
     const email = profile.emails?.[0]?.value;
     const googleId = profile.id;
+    const displayName = profile.displayName || '';
+    const avatarUrl = profile.photos?.[0]?.value || null;
+    
+    if (!email) {
+      console.error('❌ No email provided by Google');
+      return done(new Error('No email provided by Google'), null);
+    }
+    
+    // Try to find existing user by googleId
     let user = await prisma.user.findUnique({ where: { googleId } });
-    if (!user && email) {
-      // Upsert by email if exists
-      user = await prisma.user.upsert({
-        where: { email },
-        update: { googleId },
-        create: { email, name: profile.displayName || email, googleId }
+    
+    if (!user) {
+      // Try to find by email (user might have registered with email first)
+      const existingEmailUser = await prisma.user.findUnique({ where: { email } });
+      
+      if (existingEmailUser) {
+        // Link Google account to existing email user
+        console.log('🔗 Linking Google account to existing user:', email);
+        user = await prisma.user.update({
+          where: { email },
+          data: { 
+            googleId,
+            avatarUrl: avatarUrl || existingEmailUser.avatarUrl,
+            name: existingEmailUser.name || displayName
+          }
+        });
+      } else {
+        // Create new user
+        console.log('👤 Creating new user from Google:', email);
+        user = await prisma.user.create({ 
+          data: { 
+            email, 
+            name: displayName,
+            googleId,
+            avatarUrl
+          } 
+        });
+      }
+    } else {
+      // Update existing user's avatar and name if not set
+      console.log('✅ Existing Google user found:', email);
+      user = await prisma.user.update({
+        where: { googleId },
+        data: {
+          avatarUrl: avatarUrl || user.avatarUrl,
+          name: user.name || displayName,
+          updatedAt: new Date()
+        }
       });
     }
-    if (!user) {
-      user = await prisma.user.create({ data: { email: email || `${googleId}@google.local`, name: profile.displayName || 'Google User', googleId } });
-    }
+    
+    console.log('✅ Google OAuth successful for:', user.email);
     return done(null, user);
   } catch (e) {
-    return done(e);
+    console.error('❌ Google OAuth error:', e);
+    return done(e, null);
   }
 }));
 
-// LinkedIn OAuth Strategy
-passport.use(new LinkedInStrategy({
-  clientID: process.env.LINKEDIN_CLIENT_ID || 'LINKEDIN_CLIENT_ID',
-  clientSecret: process.env.LINKEDIN_CLIENT_SECRET || 'LINKEDIN_CLIENT_SECRET',
-  callbackURL: getCallbackUrl('linkedin'),
-  scope: ['r_emailaddress', 'r_liteprofile'],
-}, async (accessToken, refreshToken, profile, done) => {
-  try {
-    const email = profile.emails?.[0]?.value;
-    const linkedinId = profile.id;
-    let user = await prisma.user.findUnique({ where: { linkedinId } });
-    if (!user && email) {
-      user = await prisma.user.upsert({
-        where: { email },
-        update: { linkedinId },
-        create: { email, name: profile.displayName || email, linkedinId }
-      });
-    }
-    if (!user) {
-      user = await prisma.user.create({ data: { email: email || `${linkedinId}@linkedin.local`, name: profile.displayName || 'LinkedIn User', linkedinId } });
-    }
-    return done(null, user);
-  } catch (e) {
-    return done(e);
-  }
-}));
+// LinkedIn OAuth will be handled manually in routes
 
 // Google OAuth endpoints
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/auth/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res) => {
-  res.redirect('/');
+app.get('/auth/google', passport.authenticate('google', { 
+  scope: ['profile', 'email'],
+  prompt: 'select_account' // Always show account selection
+}));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login?error=google_auth_failed' }), 
+  (req, res) => {
+    console.log('✅ Google OAuth callback successful');
+    res.redirect('/dashboard?auth=success&provider=google');
+  }
+);
+
+// LinkedIn OAuth endpoints - Manual Implementation
+app.get('/auth/linkedin', (req, res) => {
+  const state = Math.random().toString(36).substring(2, 15);
+  req.session.linkedinState = state;
+  
+  const params = new URLSearchParams({
+    response_type: 'code',
+    client_id: process.env.LINKEDIN_CLIENT_ID || authConfig.linkedin.clientId,
+    redirect_uri: getCallbackUrl('linkedin'),
+    state: state,
+    scope: 'openid profile email'
+  });
+  
+  const linkedinAuthUrl = `https://www.linkedin.com/oauth/v2/authorization?${params.toString()}`;
+  console.log('🔐 Redirecting to LinkedIn:', linkedinAuthUrl);
+  res.redirect(linkedinAuthUrl);
 });
 
-// LinkedIn OAuth endpoints
-app.get('/auth/linkedin', passport.authenticate('linkedin'));
-app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/login' }), (req, res) => {
-  res.redirect('/');
+app.get('/auth/linkedin/callback', async (req, res) => {
+  try {
+    console.log('🔍 LinkedIn callback received:', req.query);
+    
+    const { code, state, error } = req.query;
+    
+    if (error) {
+      console.error('❌ LinkedIn OAuth error:', error);
+      return res.redirect('/login?error=linkedin_auth_failed&details=' + encodeURIComponent(error));
+    }
+    
+    if (!code) {
+      console.error('❌ No authorization code received');
+      return res.redirect('/login?error=linkedin_auth_failed&details=no_code');
+    }
+    
+    // Verify state parameter
+    if (state !== req.session.linkedinState) {
+      console.error('❌ Invalid state parameter');
+      return res.redirect('/login?error=linkedin_auth_failed&details=invalid_state');
+    }
+    
+    // Exchange code for access token
+    const tokenResponse = await fetch('https://www.linkedin.com/oauth/v2/accessToken', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: getCallbackUrl('linkedin'),
+        client_id: process.env.LINKEDIN_CLIENT_ID || authConfig.linkedin.clientId,
+        client_secret: process.env.LINKEDIN_CLIENT_SECRET || authConfig.linkedin.clientSecret,
+      }),
+    });
+    
+    const tokenData = await tokenResponse.json();
+    console.log('🔑 Token response:', tokenData);
+    
+    if (!tokenData.access_token) {
+      console.error('❌ No access token received:', tokenData);
+      return res.redirect('/login?error=linkedin_auth_failed&details=no_token');
+    }
+    
+    // Get user info from LinkedIn
+    const userResponse = await fetch('https://api.linkedin.com/v2/userinfo', {
+      headers: {
+        'Authorization': `Bearer ${tokenData.access_token}`,
+      },
+    });
+    
+    const userData = await userResponse.json();
+    console.log('👤 User data from LinkedIn:', userData);
+    
+    // Extract user information
+    const linkedinId = userData.sub;
+    const email = userData.email || `${linkedinId}@linkedin.local`;
+    const displayName = userData.name || 'LinkedIn User';
+    const avatarUrl = userData.picture || null;
+    
+    console.log('📋 Extracted data:', { linkedinId, email, displayName, avatarUrl });
+    
+    // Create or find user
+    let user = await prisma.user.upsert({
+      where: { linkedinId },
+      update: {
+        email,
+        name: displayName,
+        avatarUrl: avatarUrl || undefined,
+        updatedAt: new Date()
+      },
+      create: {
+        email,
+        name: displayName,
+        linkedinId,
+        avatarUrl,
+        role: 'MEMBER'
+      }
+    });
+    
+    // Log user in
+    req.login(user, (err) => {
+      if (err) {
+        console.error('❌ Login error:', err);
+        return res.redirect('/login?error=linkedin_auth_failed&details=login_error');
+      }
+      
+      console.log('✅ LinkedIn OAuth successful for:', user.email);
+      res.redirect('/dashboard?auth=success&provider=linkedin');
+    });
+    
+  } catch (error) {
+    console.error('❌ LinkedIn OAuth error:', error);
+    res.redirect('/login?error=linkedin_auth_failed&details=' + encodeURIComponent(error.message));
+  }
 });
 
 // Email auth endpoints
@@ -236,14 +377,95 @@ app.post('/auth/logout', (req, res) => {
   });
 });
 
-// Auth status endpoint
+// Enhanced auth status endpoint
 app.get('/auth/status', (req, res) => {
   if (req.isAuthenticated()) {
-    res.json({ loggedIn: true, user: req.user });
+    const user = req.user;
+    res.json({ 
+      loggedIn: true, 
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        role: user.role,
+        avatarUrl: user.avatarUrl,
+        bio: user.bio,
+        organization: user.organization,
+        hasGoogleAuth: !!user.googleId,
+        hasLinkedInAuth: !!user.linkedinId,
+        hasPasswordAuth: !!user.passwordHash,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt
+      }
+    });
   } else {
     res.json({ loggedIn: false });
   }
 });
+
+// Additional auth check endpoint (alias)
+app.get('/auth/check', (req, res) => {
+  res.redirect(307, '/auth/status');
+});
+
+// Password reset: request reset link
+app.post('/auth/forgot-password', async (req, res) => {
+  try {
+    const { email } = req.body || {};
+    if (!email) return res.status(400).json({ error: 'Email is required' });
+    const user = await prisma.user.findUnique({ where: { email } });
+    // Do not leak existence; still behave as success
+    if (!user) return res.json({ ok: true });
+
+    const token = Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2);
+    const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+    await prisma.resetToken.create({ data: { userId: user.id, token, expiresAt } });
+
+    // For dev MVP: log link to console instead of sending email
+    const link = `${process.env.APP_ORIGIN || 'http://localhost:8080'}/reset-password?token=${encodeURIComponent(token)}`;
+    console.log(`Password reset link for ${email}: ${link}`);
+
+    res.json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Failed to process request' });
+  }
+});
+
+// Password reset: perform reset
+app.post('/auth/reset-password', async (req, res) => {
+  try {
+    const { token, password } = req.body || {};
+    if (!token || !password) return res.status(400).json({ error: 'Invalid request' });
+
+    const record = await prisma.resetToken.findUnique({ where: { token } });
+    if (!record || record.expiresAt < new Date()) {
+      return res.status(400).json({ error: 'Token invalid or expired' });
+    }
+
+    const hashed = await bcrypt.hash(password, 11);
+    await prisma.user.update({ where: { id: record.userId }, data: { passwordHash: hashed } });
+    await prisma.resetToken.delete({ where: { token } });
+    res.json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Failed to reset password' });
+  }
+});
+
+// DEV-ONLY: fetch latest reset token (to aid local testing)
+if (process.env.NODE_ENV !== 'production') {
+  app.get('/auth/dev/latest-reset-token', async (req, res) => {
+    try {
+      const latest = await prisma.resetToken.findFirst({ orderBy: { createdAt: 'desc' } });
+      if (!latest) return res.status(404).json({ error: 'No tokens found' });
+      res.json({ token: latest.token, userId: latest.userId, expiresAt: latest.expiresAt });
+    } catch (e) {
+      console.error(e);
+      res.status(500).json({ error: 'Failed to fetch token' });
+    }
+  });
+}
 
 // Profile endpoints
 app.get('/api/me', (req, res) => {
@@ -259,6 +481,95 @@ app.put('/api/me', async (req, res) => {
     data: { name, bio, organization }
   });
   res.json(user);
+});
+
+// Account linking endpoints
+app.post('/api/me/link-google', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  
+  const { googleId } = req.body;
+  if (!googleId) return res.status(400).json({ error: 'Google ID required' });
+  
+  try {
+    // Check if googleId is already linked to another user
+    const existing = await prisma.user.findUnique({ where: { googleId } });
+    if (existing && existing.id !== req.user.id) {
+      return res.status(409).json({ error: 'Google account already linked to another user' });
+    }
+    
+    const user = await prisma.user.update({
+      where: { id: req.user.id },
+      data: { googleId }
+    });
+    res.json({ ok: true, user });
+  } catch (e) {
+    console.error('Link Google error:', e);
+    res.status(500).json({ error: 'Failed to link Google account' });
+  }
+});
+
+app.post('/api/me/link-linkedin', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  
+  const { linkedinId } = req.body;
+  if (!linkedinId) return res.status(400).json({ error: 'LinkedIn ID required' });
+  
+  try {
+    // Check if linkedinId is already linked to another user
+    const existing = await prisma.user.findUnique({ where: { linkedinId } });
+    if (existing && existing.id !== req.user.id) {
+      return res.status(409).json({ error: 'LinkedIn account already linked to another user' });
+    }
+    
+    const user = await prisma.user.update({
+      where: { id: req.user.id },
+      data: { linkedinId }
+    });
+    res.json({ ok: true, user });
+  } catch (e) {
+    console.error('Link LinkedIn error:', e);
+    res.status(500).json({ error: 'Failed to link LinkedIn account' });
+  }
+});
+
+app.post('/api/me/unlink-provider', async (req, res) => {
+  if (!req.isAuthenticated()) return res.status(401).json({ error: 'Not logged in' });
+  
+  const { provider } = req.body;
+  if (!['google', 'linkedin'].includes(provider)) {
+    return res.status(400).json({ error: 'Invalid provider' });
+  }
+  
+  try {
+    const user = req.user;
+    
+    // Ensure user has at least one auth method remaining
+    const authMethods = [
+      !!user.passwordHash,
+      !!user.googleId,
+      !!user.linkedinId
+    ].filter(Boolean).length;
+    
+    if (authMethods <= 1) {
+      return res.status(400).json({ 
+        error: 'Cannot unlink last authentication method. Please set a password first.' 
+      });
+    }
+    
+    const updateData = provider === 'google' 
+      ? { googleId: null } 
+      : { linkedinId: null };
+    
+    const updatedUser = await prisma.user.update({
+      where: { id: user.id },
+      data: updateData
+    });
+    
+    res.json({ ok: true, user: updatedUser });
+  } catch (e) {
+    console.error('Unlink provider error:', e);
+    res.status(500).json({ error: 'Failed to unlink provider' });
+  }
 });
 
 // Contributor application endpoints

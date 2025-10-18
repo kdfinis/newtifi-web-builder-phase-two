@@ -4,21 +4,21 @@
 export const URLS = {
   // Development URLs
   DEV: {
-    FRONTEND: process.env.VITE_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
-    BACKEND: process.env.VITE_BACKEND_URL || '',
-    ARCHITECTURE: process.env.VITE_ARCHITECTURE_URL || '',
+    FRONTEND: import.meta.env.VITE_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
+    BACKEND: import.meta.env.VITE_BACKEND_URL || '',
+    ARCHITECTURE: import.meta.env.VITE_ARCHITECTURE_URL || '',
   },
   
   // Production URLs
   PROD: {
-    FRONTEND: process.env.VITE_PROD_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
-    BACKEND: process.env.VITE_PROD_BACKEND_URL || '',
-    ARCHITECTURE: process.env.VITE_PROD_ARCHITECTURE_URL || '',
+    FRONTEND: import.meta.env.VITE_PROD_FRONTEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
+    BACKEND: import.meta.env.VITE_PROD_BACKEND_URL || '',
+    ARCHITECTURE: import.meta.env.VITE_PROD_ARCHITECTURE_URL || '',
   },
   
   // API Endpoints
   API: {
-    BASE: process.env.VITE_API_BASE || '/api',
+    BASE: import.meta.env.VITE_API_BASE || '/api',
     ARTICLES: '/api/articles',
     JOURNALS: '/api/journals',
     AUTH: '/api/auth',
@@ -27,8 +27,8 @@ export const URLS = {
   
   // External Services
   EXTERNAL: {
-    GOOGLE_AUTH: process.env.VITE_GOOGLE_AUTH_URL || 'https://accounts.google.com',
-    LINKEDIN_AUTH: process.env.VITE_LINKEDIN_AUTH_URL || 'https://www.linkedin.com',
+    GOOGLE_AUTH: import.meta.env.VITE_GOOGLE_AUTH_URL || 'https://accounts.google.com',
+    LINKEDIN_AUTH: import.meta.env.VITE_LINKEDIN_AUTH_URL || 'https://www.linkedin.com',
     GOOGLE_OAUTH: 'https://oauth2.googleapis.com',
     GOOGLE_APIS: 'https://www.googleapis.com',
     DOI_BASE: 'https://doi.org',

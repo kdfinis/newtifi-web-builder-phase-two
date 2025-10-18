@@ -317,9 +317,9 @@ export default function InvestmentManagementJournal() {
     setShowRegisterModal(false);
   };
 
-  // Helper function to get the correct URL for an article
+  // Helper function to get the correct URL for an article (permanent)
   function getArticleUrl(article) {
-    return `/publishing/article/${article.id}`;
+    return urlFactory.getArticlePermanentPath(article.id);
   }
 
   const GoogleIcon = () => (

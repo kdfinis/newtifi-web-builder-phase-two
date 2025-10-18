@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,7 +24,7 @@ const Footer = () => {
               L-1268 Luxembourg
             </p>
             <p className="text-xs text-gray-300 mt-2 font-light">
-              <a href="mailto:info@newtifi.com" className="hover:text-newtifi-teal transition-colors">
+              <a href={urlFactory.getEmailUrl('info@newtifi.com')} className="hover:text-newtifi-teal transition-colors">
                 info@newtifi.com
               </a>
             </p>
