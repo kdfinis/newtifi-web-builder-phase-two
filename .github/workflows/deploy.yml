@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -20,26 +20,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: Setup Node
+        
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '18'
           cache: 'npm'
-      
+          
       - name: Install dependencies
-        run: npm install
-      
+        run: npm ci
+        
       - name: Build
         run: npm run build
-      
+        
+      - name: Add timestamp for cache busting
+        run: |
+          echo "<!-- DEPLOY_$(date +%s) -->" >> dist/index.html
+          echo "<!-- DEPLOY_$(date +%s) -->" >> dist/404.html
+          
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: './dist'
 
   deploy:
     environment:
@@ -50,4 +55,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
