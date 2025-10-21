@@ -24,7 +24,6 @@ export const ENV = {
   // Features
   VITE_ENABLE_ANALYTICS: import.meta.env.VITE_ENABLE_ANALYTICS === 'true',
   VITE_ENABLE_DEBUG: import.meta.env.VITE_ENABLE_DEBUG === 'true',
-  VITE_ENABLE_LMS: import.meta.env.VITE_ENABLE_LMS === 'true',
 } as const;
 
 // Validation function

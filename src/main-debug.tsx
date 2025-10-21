@@ -55,7 +55,7 @@ try {
             border-radius: 10px;
             backdrop-filter: blur(10px);
           ">
-            <h1>🎉 NewTIFI Academic LMS</h1>
+            <h1>🎉 NewTIFI Platform</h1>
             <p>React rendering error occurred, but JavaScript is working!</p>
             <p>Check browser console (F12) for details.</p>
             <div style="margin-top: 20px; font-size: 14px; opacity: 0.8;">

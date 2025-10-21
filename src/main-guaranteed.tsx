@@ -33,7 +33,7 @@ try {
           max-width: 800px;
         ">
           <h1 style="font-size: 3rem; margin-bottom: 20px;">
-            🎉 NewTIFI Academic LMS
+            🎉 NewTIFI Platform
           </h1>
           <p style="font-size: 1.2rem; margin-bottom: 30px;">
             Welcome to the New Technologies & Investment Funds Institute
@@ -83,7 +83,7 @@ try {
               🧪 Test Page
             </button>
             <button 
-              onclick="window.location.href = '/professor'"
+              onclick="window.location.href = '/dashboard'"
               style="
                 background: rgba(255,255,255,0.2);
                 border: 1px solid rgba(255,255,255,0.3);
@@ -95,7 +95,7 @@ try {
                 font-weight: bold;
               "
             >
-              👨‍🏫 Professor Dashboard
+              👤 User Dashboard
             </button>
             <button 
               onclick="window.location.href = '/login'"

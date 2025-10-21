@@ -65,7 +65,7 @@ const App = () => {
             Test Page
           </button>
           <button 
-            onClick={() => window.location.href = '/professor'}
+            onClick={() => window.location.href = '/dashboard'}
             style={{
               background: 'rgba(255,255,255,0.2)',
               border: '1px solid rgba(255,255,255,0.3)',
@@ -75,7 +75,7 @@ const App = () => {
               cursor: 'pointer'
             }}
           >
-            Professor Dashboard
+            User Dashboard
           </button>
           <button 
             onClick={() => window.location.href = '/login'}
@@ -91,7 +91,7 @@ const App = () => {
             Login
           </button>
           <button 
-            onClick={() => window.location.href = '/lms/login'}
+            onClick={() => window.location.href = '/dashboard'}
             style={{
               background: 'rgba(255,255,255,0.2)',
               border: '1px solid rgba(255,255,255,0.3)',
