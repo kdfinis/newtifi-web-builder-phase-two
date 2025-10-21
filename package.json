@@ -11,10 +11,11 @@
     "dev:parallel": "concurrently \"npm run dev\" \"npm run dev:stable\"",
     "dev:watch": "nodemon --watch src --ext js,jsx,ts,tsx,css,scss,json --ignore dist/ --exec 'npm run dev'",
     "prebuild": "node scripts/scan-hardcoded-urls.cjs",
-    "build": "node ./scripts/prebuild-check.js && npm run prebuild && vite build",
+    "build": "node ./scripts/prebuild-check.js && npm run prebuild && vite build && npm run validate-mime",
+    "validate-mime": "node scripts/validate-mime-types.cjs",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "predeploy": "npm run build && cp dist/index.html dist/404.html",
+    "predeploy": "npm run build && cp dist/index.html dist/404.html && cp .htaccess dist/ && cp _headers dist/",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

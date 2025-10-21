@@ -1,0 +1,45 @@
+# GitHub Pages Headers Configuration
+# This file forces correct MIME types for all JavaScript files
+
+# JavaScript files - Force correct MIME type
+/*.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+/*.mjs
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+/*.jsx
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+/*.ts
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+/*.tsx
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+# CSS files
+/*.css
+  Content-Type: text/css; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+# HTML files
+/*.html
+  Content-Type: text/html; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+# JSON files
+/*.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=31536000
+
+# Security headers for all files
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin

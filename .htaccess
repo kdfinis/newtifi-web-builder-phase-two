@@ -1,8 +1,31 @@
-# Fix MIME types for GitHub Pages
+# Fix MIME types for GitHub Pages - ENHANCED VERSION
+# Force correct MIME types for JavaScript files
 AddType application/javascript .js
 AddType application/javascript .mjs
+AddType application/javascript .jsx
+AddType application/javascript .ts
+AddType application/javascript .tsx
+
+# Force correct MIME types for other files
 AddType text/css .css
 AddType application/json .json
+AddType image/svg+xml .svg
+AddType application/font-woff .woff
+AddType application/font-woff2 .woff2
+
+# Remove any existing MIME type that might be wrong
+RemoveType .js
+RemoveType .mjs
+RemoveType .jsx
+RemoveType .ts
+RemoveType .tsx
+
+# Re-add with correct MIME type
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType application/javascript .jsx
+AddType application/javascript .ts
+AddType application/javascript .tsx
 
 # Enable CORS for OAuth
 Header always set Access-Control-Allow-Origin "*"
