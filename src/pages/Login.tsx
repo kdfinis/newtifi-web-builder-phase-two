@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { loginEmail, registerEmail, loginWithGoogle, loginWithLinkedIn } from '@/lib/auth';
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
-import { handleOAuthCallback, isOAuthCallback } from '@/lib/oauth-handler';
+import { GoogleAuth } from '@/lib/auth/GoogleAuth';
+import { LinkedInAuth } from '@/lib/auth/LinkedInAuth';
+import { getGoogleOAuthUrl } from '@/lib/auth/GoogleOAuthConfig';
+import { getLinkedInAuthUrl } from '@/lib/auth/LinkedInOAuthConfig';
 import ScrollReveal from '@/components/ScrollReveal';
 
 export default function Login() {
-  const { login, register, isAuthenticated } = useSimpleAuth();
+  const { isAuthenticated } = useSimpleAuth();
   const [mode, setMode] = useState<'login' | 'signup'>('login');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,11 +16,16 @@ export default function Login() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Handle OAuth callback
+  // Initialize OAuth SDKs
   useEffect(() => {
-    if (isOAuthCallback()) {
-      handleOAuthCallback();
-    }
+    const initializeAuth = async () => {
+      try {
+        await GoogleAuth.getInstance().initialize();
+      } catch (err) {
+        console.error('Failed to initialize Google Auth:', err);
+      }
+    };
+    initializeAuth();
   }, []);
 
   // Handle URL parameters for error messages
@@ -44,32 +51,43 @@ export default function Login() {
     return null;
   }
 
-  const submit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    setIsLoading(true);
-
+  const handleGoogleSignIn = async () => {
     try {
-      if (mode === 'login') {
-        const success = await login(email, password);
-        if (success) {
-          window.location.href = '/dashboard';
-        } else {
-          setError('Invalid credentials');
-        }
-      } else {
-        const success = await register(email, password, `${firstName} ${lastName}`);
-        if (success) {
-          window.location.href = '/dashboard';
-        } else {
-          setError('Registration failed');
-        }
-      }
+      setError('');
+      setIsLoading(true);
+      
+      // Use configurable Google OAuth URL
+      const googleUrl = getGoogleOAuthUrl();
+      window.location.href = googleUrl;
     } catch (err) {
-      setError('An error occurred');
-    } finally {
+      console.error('Google sign-in error:', err);
+      setError('Google sign-in failed. Please try again.');
       setIsLoading(false);
     }
+  };
+
+  const handleLinkedInSignIn = async () => {
+    try {
+      setError('');
+      setIsLoading(true);
+      
+      const redirectUri = window.location.origin + '/auth/linkedin/callback';
+      const state = 'linkedin_auth_' + Math.random().toString(36).substring(7);
+      
+      sessionStorage.setItem('linkedin_state', state);
+      
+      const linkedinUrl = getLinkedInAuthUrl(redirectUri, state);
+      window.location.href = linkedinUrl;
+    } catch (err) {
+      console.error('LinkedIn sign-in error:', err);
+      setError('LinkedIn sign-in failed. Please try again.');
+      setIsLoading(false);
+    }
+  };
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('Email/password authentication is not available in client-side mode. Please use Google or LinkedIn.');
   };
 
   return (
@@ -90,11 +108,20 @@ export default function Login() {
                 </p>
               </div>
             </div>
-            <div className="absolute bottom-8 left-8 right-8">
+            <div className="mt-8 max-w-md">
               <img 
-                src="/assets/images/luxembourg-skyline.png" 
+                src="/images/uploads/luxembourg-skyline-golden-hour.jpg" 
                 alt="Luxembourg Skyline"
-                className="w-full h-48 object-cover rounded-lg opacity-80"
+                className="w-full h-40 object-cover rounded-lg opacity-90 shadow-lg"
+              />
+            </div>
+            
+            {/* NewTIFI Logo */}
+            <div className="mt-6 max-w-md">
+              <img 
+                src="/assets/images/logo.png" 
+                alt="NewTIFI Logo"
+                className="w-full h-auto"
               />
             </div>
           </div>
@@ -122,10 +149,7 @@ export default function Login() {
                 {/* SSO */}
                 <div className="grid grid-cols-1 gap-4 mb-8">
                   <button 
-                    onClick={() => {
-                      setIsLoading(true);
-                      loginWithGoogle();
-                    }} 
+                    onClick={handleGoogleSignIn}
                     disabled={isLoading}
                     className="w-full px-6 py-4 border border-gray-200 rounded-2xl hover:bg-gray-50 text-newtifi-navy text-left text-base flex items-center gap-3 disabled:opacity-50"
                   >
@@ -133,10 +157,7 @@ export default function Login() {
                     <span>{isLoading ? 'Redirecting...' : 'Continue with Google'}</span>
                   </button>
                   <button 
-                    onClick={() => {
-                      setIsLoading(true);
-                      loginWithLinkedIn();
-                    }} 
+                    onClick={handleLinkedInSignIn}
                     disabled={isLoading}
                     className="w-full px-6 py-4 rounded-2xl bg-newtifi-navy text-white hover:bg-newtifi-navy/90 text-left text-base flex items-center gap-3 disabled:opacity-50"
                   >

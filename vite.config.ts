@@ -18,18 +18,7 @@ export default defineConfig({
       overlay: false,
       timeout: 5000,
     },
-    proxy: {
-      '/api': {
-        target: process.env.VITE_BACKEND_URL || 'http://127.0.0.1:3001',
-        changeOrigin: true,
-        secure: false,
-      },
-      '/auth': {
-        target: process.env.VITE_BACKEND_URL || 'http://127.0.0.1:3001',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
+    // No proxy needed for client-side OAuth
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']

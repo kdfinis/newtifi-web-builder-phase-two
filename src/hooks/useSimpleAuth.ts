@@ -46,11 +46,17 @@ export function useSimpleAuth() {
         return;
       }
       
-      // Fallback to API auth check
-      const data = await authStatus();
-      if (data.loggedIn) {
-        setUser(data.user);
-      } else {
+      // Fallback to API auth check (only if no OAuth user found)
+      try {
+        const data = await authStatus();
+        if (data.loggedIn) {
+          setUser(data.user);
+        } else {
+          setUser(null);
+        }
+      } catch (apiError) {
+        // API auth failed, but that's ok for OAuth-only setup
+        console.log('API auth not available (OAuth-only mode)');
         setUser(null);
       }
     } catch (err) {

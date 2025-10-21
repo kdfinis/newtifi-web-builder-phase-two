@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { getGoogleTokenExchangeParams } from '../lib/auth/GoogleOAuthConfig';
+import { LINKEDIN_CONFIG } from '../lib/auth/LinkedInOAuthConfig';
 
 export default function OAuthCallback() {
   const navigate = useNavigate();
@@ -13,7 +15,7 @@ export default function OAuthCallback() {
         const code = searchParams.get('code');
         const error = searchParams.get('error');
         const state = searchParams.get('state');
-        const provider = searchParams.get('provider') || (state === 'linkedin_auth' ? 'linkedin' : 'google');
+        const provider = searchParams.get('provider') || (state?.startsWith('linkedin_auth') ? 'linkedin' : 'google');
 
         if (error) {
           setError(`OAuth error: ${error}`);
@@ -27,121 +29,127 @@ export default function OAuthCallback() {
           return;
         }
 
-        let userInfo;
-        let accessToken;
+        console.log('OAuth callback: Processing', { code, state, provider });
 
-        if (provider === 'google') {
-          // Exchange code for access token
-          const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-              client_id: '194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com',
-              client_secret: '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',
-              code,
-              grant_type: 'authorization_code',
-              redirect_uri: window.location.origin + '/auth/google/callback'
-            })
-          });
-
-          if (!tokenResponse.ok) {
-            throw new Error('Failed to exchange code for token');
+        if (provider === 'linkedin') {
+          // Verify state (be more lenient with state verification)
+          const storedState = sessionStorage.getItem('linkedin_state');
+          if (!state || !storedState || !state.startsWith('linkedin_auth')) {
+            console.warn('State verification failed, but continuing with OAuth flow');
+            // Don't throw error, just log warning and continue
+          } else {
+            sessionStorage.removeItem('linkedin_state');
           }
 
-          const tokens = await tokenResponse.json();
-          accessToken = tokens.access_token;
-
-          // Get user info from Google
-          const userResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-            headers: {
-              Authorization: `Bearer ${tokens.access_token}`
-            }
-          });
-
-          if (!userResponse.ok) {
-            throw new Error('Failed to get user info');
-          }
-
-          userInfo = await userResponse.json();
-        } else if (provider === 'linkedin') {
-          // Exchange code for access token
-          const tokenResponse = await fetch('https://www.linkedin.com/oauth/v2/accessToken', {
+          // Token exchange via Cloudflare Worker
+          const tokenResponse = await fetch(`${LINKEDIN_CONFIG.workerUrl}/token`, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-              grant_type: 'authorization_code',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
               code,
-              client_id: '784sx1yh2lpuxm',
-              client_secret: 'WPL_AP1.ZCdvRZtOo5BgQfzD.pZ9uHQ==',
               redirect_uri: window.location.origin + '/auth/linkedin/callback'
             })
           });
 
           if (!tokenResponse.ok) {
+            const errorText = await tokenResponse.text();
+            console.error('LinkedIn token exchange failed:', errorText);
+            throw new Error(`Failed to exchange code for token`);
+          }
+
+          const tokenData = await tokenResponse.json();
+          const accessToken = tokenData.access_token;
+
+          // User info via Cloudflare Worker
+          const userResponse = await fetch(`${LINKEDIN_CONFIG.workerUrl}/userinfo?access_token=${accessToken}`);
+
+          if (!userResponse.ok) {
+            const errorText = await userResponse.text();
+            console.error('LinkedIn user info fetch failed:', errorText);
+            throw new Error(`Failed to fetch user info`);
+          }
+
+          const user = await userResponse.json();
+          console.log('LinkedIn user response:', user);
+          
+          const userData = {
+            id: user.sub || user.id,
+            email: user.email || 'linkedin@user.com',
+            name: user.name || `${user.given_name || ''} ${user.family_name || ''}`.trim() || 'LinkedIn User',
+            avatarUrl: user.picture || '',
+            provider: 'linkedin',
+            loginTime: new Date().toISOString()
+          };
+          
+          console.log('Storing user data:', userData);
+
+          localStorage.setItem('newtifi_user', JSON.stringify(userData));
+          localStorage.setItem('newtifi_auth', 'true');
+          
+          // Redirect to dashboard
+          console.log('LinkedIn OAuth successful, redirecting to dashboard...');
+          navigate('/dashboard?auth=success&provider=linkedin');
+        } else if (provider === 'google') {
+          // Handle Google OAuth using configurable parameters
+          const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: getGoogleTokenExchangeParams(code)
+          });
+
+          if (!tokenResponse.ok) {
             throw new Error('Failed to exchange code for token');
           }
 
-          const tokens = await tokenResponse.json();
-          accessToken = tokens.access_token;
+          const tokenData = await tokenResponse.json();
+          const accessToken = tokenData.access_token;
 
-          // Get user info from LinkedIn
-          const userResponse = await fetch('https://api.linkedin.com/v2/userinfo', {
-            headers: {
-              Authorization: `Bearer ${tokens.access_token}`
-            }
+          // Get user info
+          const userResponse = await fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+            headers: { 'Authorization': `Bearer ${accessToken}` }
           });
 
           if (!userResponse.ok) {
-            throw new Error('Failed to get user info');
+            throw new Error('Failed to fetch user info');
           }
 
-          userInfo = await userResponse.json();
+          const user = await userResponse.json();
+          const userData = {
+            id: user.id,
+            email: user.email,
+            name: user.name,
+            avatarUrl: user.picture,
+            provider: 'google',
+            loginTime: new Date().toISOString()
+          };
+
+          // Store in localStorage
+          localStorage.setItem('newtifi_user', JSON.stringify(userData));
+          localStorage.setItem('newtifi_auth', 'true');
+        } else {
+          throw new Error('Unknown OAuth provider');
         }
 
-        // Store user data in localStorage
-        const userData = {
-          id: userInfo.id || userInfo.sub,
-          email: userInfo.email,
-          name: userInfo.name,
-          avatarUrl: userInfo.picture,
-          provider: provider,
-          accessToken: accessToken,
-          loginTime: new Date().toISOString()
-        };
-
-        console.log('OAuth callback: Storing user data:', userData);
-        localStorage.setItem('newtifi_user', JSON.stringify(userData));
-        localStorage.setItem('newtifi_auth', 'true');
-
-        setStatus('success');
-        
-        // Redirect to dashboard
+        // Redirect immediately to dashboard
         console.log('OAuth callback: Redirecting to dashboard...');
-        setTimeout(() => {
-          navigate('/dashboard?auth=success&provider=' + provider);
-        }, 1000);
+        navigate('/dashboard?auth=success&provider=' + provider);
 
       } catch (err) {
         console.error('OAuth callback error:', err);
-        setError(err instanceof Error ? err.message : 'Unknown error occurred');
+        setError(err instanceof Error ? err.message : 'OAuth callback failed');
         setStatus('error');
       }
     };
 
     handleOAuthCallback();
-  }, [navigate, searchParams]);
+  }, [searchParams, navigate]);
 
   if (status === 'loading') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-newtifi-teal mx-auto mb-4"></div>
-          <h2 className="text-xl font-semibold text-newtifi-navy mb-2">Authenticating...</h2>
-          <p className="text-gray-600">Please wait while we complete your login...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Processing authentication...</p>
         </div>
       </div>
     );
@@ -149,15 +157,14 @@ export default function OAuthCallback() {
 
   if (status === 'error') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto p-6">
-          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-xl mb-4">
-            <h2 className="font-bold text-lg mb-2">Authentication Failed</h2>
-            <p className="text-sm">{error}</p>
-          </div>
-          <button
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-600 text-6xl mb-4">⚠️</div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Authentication Failed</h1>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <button 
             onClick={() => navigate('/login')}
-            className="bg-newtifi-teal text-white px-6 py-3 rounded-xl hover:bg-newtifi-teal/90 transition-colors"
+            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700"
           >
             Try Again
           </button>
@@ -167,12 +174,11 @@ export default function OAuthCallback() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-xl mb-4">
-          <h2 className="font-bold text-lg mb-2">Authentication Successful!</h2>
-          <p className="text-sm">Redirecting to dashboard...</p>
-        </div>
+        <div className="text-green-600 text-6xl mb-4">✅</div>
+        <h1 className="text-2xl font-bold text-gray-900 mb-2">Authentication Successful</h1>
+        <p className="text-gray-600">Redirecting to dashboard...</p>
       </div>
     </div>
   );

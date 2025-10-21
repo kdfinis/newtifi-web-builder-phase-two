@@ -107,7 +107,7 @@ export default function Articles() {
                 placeholder="Search articles, authors, or keywords..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent bg-white text-gray-900 placeholder-gray-500"
               />
             </div>
 
@@ -117,7 +117,7 @@ export default function Articles() {
               <select
                 value={selectedStatus}
                 onChange={(e) => setSelectedStatus(e.target.value as ArticleStatus | 'ALL')}
-                className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent bg-white text-gray-900"
               >
                 <option value="ALL">All Articles</option>
                 <option value={ArticleStatus.PUBLISHED}>Published</option>
