@@ -42,7 +42,7 @@ export default function OAuthCallback() {
               client_secret: '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',
               code,
               grant_type: 'authorization_code',
-              redirect_uri: window.location.origin + '/oauth-callback'
+              redirect_uri: window.location.origin + '/auth/google/callback'
             })
           });
 
@@ -77,7 +77,7 @@ export default function OAuthCallback() {
               code,
               client_id: '784sx1yh2lpuxm',
               client_secret: 'WPL_AP1.ZCdvRZtOo5BgQfzD.pZ9uHQ==',
-              redirect_uri: window.location.origin + '/oauth-callback'
+              redirect_uri: window.location.origin + '/auth/linkedin/callback'
             })
           });
 

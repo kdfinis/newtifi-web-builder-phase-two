@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Fixed - Test Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .container { max-width: 800px; margin: auto; }
+        .section { background: #f8f9fa; padding: 20px; margin: 15px 0; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .button { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; margin: 8px; font-size: 14px; }
+        .button:hover { background: #0056b3; }
+        .button.google { background: #4285f4; }
+        .button.linkedin { background: #0077b5; }
+        .button.google:hover { background: #3367d6; }
+        .button.linkedin:hover { background: #005885; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎉 OAuth Fixed - Test Page</h1>
+        
+        <div class="section">
+            <div class="success">
+                <strong>✅ OAuth Redirect URIs Fixed!</strong><br>
+                The code now matches your Google Console settings exactly.
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🔧 What Was Fixed</h2>
+            <ul>
+                <li><strong>Google OAuth:</strong> Now uses <code>/auth/google/callback</code> (matches your Google Console)</li>
+                <li><strong>LinkedIn OAuth:</strong> Now uses <code>/auth/linkedin/callback</code> (you need to add this to LinkedIn Console)</li>
+                <li><strong>Routes Added:</strong> Both callback routes are now available in the app</li>
+                <li><strong>Config Updated:</strong> All config files updated to match</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>🧪 Test OAuth Flow</h2>
+            <p>Click these buttons to test the OAuth flow:</p>
+            <button class="button google" onclick="testGoogle()">Test Google OAuth</button>
+            <button class="button linkedin" onclick="testLinkedIn()">Test LinkedIn OAuth</button>
+        </div>
+        
+        <div class="section">
+            <h2>📋 LinkedIn Console Setup Required</h2>
+            <p>You still need to add these URLs to your LinkedIn Developer Console:</p>
+            <div class="code">http://localhost:8080/auth/linkedin/callback</div>
+            <div class="code">https://newtifi.com/auth/linkedin/callback</div>
+            <p><strong>Steps:</strong></p>
+            <ol>
+                <li>Go to: <a href="https://www.linkedin.com/developers/" target="_blank">LinkedIn Developer Portal</a></li>
+                <li>Find your app: <code>784sx1yh2lpuxm</code></li>
+                <li>Go to <strong>Auth</strong> tab</li>
+                <li>Add the URLs above to <strong>Redirect URLs</strong></li>
+                <li>Click <strong>Update</strong></li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>✅ Expected Results</h2>
+            <ul>
+                <li><strong>Google OAuth:</strong> Should work immediately (matches your Google Console)</li>
+                <li><strong>LinkedIn OAuth:</strong> Will work after you update LinkedIn Console</li>
+                <li><strong>Both localhost and newtifi.com:</strong> Should work flawlessly</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const isDev = window.location.hostname === 'localhost';
+        const baseUrl = isDev ? 'http://localhost:8080' : 'https://newtifi.com';
+        
+        function testGoogle() {
+            const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+                `client_id=194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com&` +
+                `redirect_uri=${encodeURIComponent(baseUrl + '/auth/google/callback')}&` +
+                `response_type=code&` +
+                `scope=profile email&` +
+                `prompt=select_account&` +
+                `state=google_auth`;
+            
+            window.open(googleUrl, '_blank');
+        }
+        
+        function testLinkedIn() {
+            const linkedinUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+                `response_type=code&` +
+                `client_id=784sx1yh2lpuxm&` +
+                `redirect_uri=${encodeURIComponent(baseUrl + '/auth/linkedin/callback')}&` +
+                `scope=openid profile email&` +
+                `state=linkedin_auth`;
+            
+            window.open(linkedinUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
