@@ -244,3 +244,4 @@ This project is proprietary to New Technologies & Investment Funds Institute.
 For technical support or questions:
 - Email: info@newtifi.com
 - Check the admin panel for system status
+# Force deployment Tue Oct 21 12:29:32 CEST 2025
