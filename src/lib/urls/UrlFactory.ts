@@ -140,23 +140,24 @@ export class UrlFactory {
     // Client-side OAuth - redirect to Google directly
     const clientId = '194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com';
     const redirectUri = import.meta.env.DEV 
-      ? 'http://localhost:8080/auth/google/callback'
-      : 'https://newtifi.com/auth/google/callback';
+      ? 'http://localhost:8080/oauth-callback'
+      : 'https://newtifi.com/oauth-callback';
     
     return `https://accounts.google.com/o/oauth2/v2/auth?` +
       `client_id=${clientId}&` +
       `redirect_uri=${encodeURIComponent(redirectUri)}&` +
       `response_type=code&` +
       `scope=profile email&` +
-      `prompt=select_account`;
+      `prompt=select_account&` +
+      `state=google_auth`;
   }
 
   static getOAuthLinkedInUrl(): string {
     // Client-side OAuth - redirect to LinkedIn directly
     const clientId = '784sx1yh2lpuxm';
     const redirectUri = import.meta.env.DEV 
-      ? 'http://localhost:8080/auth/linkedin/callback'
-      : 'https://newtifi.com/auth/linkedin/callback';
+      ? 'http://localhost:8080/oauth-callback'
+      : 'https://newtifi.com/oauth-callback';
     
     return `https://www.linkedin.com/oauth/v2/authorization?` +
       `response_type=code&` +
