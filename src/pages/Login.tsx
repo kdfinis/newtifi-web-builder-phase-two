@@ -21,6 +21,23 @@ export default function Login() {
     }
   }, []);
 
+  // Handle URL parameters for error messages
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get('error');
+    const message = urlParams.get('message');
+    
+    if (error === 'google_not_configured') {
+      setError('Google OAuth is not configured. Please use LinkedIn login or email/password.');
+    } else if (error === 'google_auth_failed') {
+      setError('Google authentication failed. Please try again or use LinkedIn login.');
+    } else if (error === 'linkedin_auth_failed') {
+      setError('LinkedIn authentication failed. Please try again or use Google login.');
+    } else if (message) {
+      setError(decodeURIComponent(message));
+    }
+  }, []);
+
   // Redirect if already authenticated
   if (isAuthenticated) {
     window.location.href = '/dashboard';
@@ -100,7 +117,7 @@ export default function Login() {
 
             <div className="bg-white rounded-3xl shadow-2xl p-8">
               <div className="p-10 md:p-12">
-                <p className="text-base text-gray-600 mb-4">Choose a sign-in option. You can use Google or LinkedIn for a quick, secure login, or sign in with your email and password below.</p>
+                <p className="text-base text-gray-600 mb-4">Choose a sign-in option. You can use LinkedIn for a quick, secure login, or sign in with your email and password below.</p>
 
                 {/* SSO */}
                 <div className="grid grid-cols-1 gap-4 mb-8">

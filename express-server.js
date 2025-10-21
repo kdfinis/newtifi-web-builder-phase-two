@@ -151,9 +151,21 @@ passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'passwor
 }));
 
 // Google OAuth Strategy
+const googleClientId = process.env.GOOGLE_CLIENT_ID || authConfig.google.clientId;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || authConfig.google.clientSecret;
+
+// Check if Google credentials are properly configured
+if (googleClientId === 'YOUR_GOOGLE_CLIENT_ID' || googleClientSecret === 'PLACEHOLDER_GOOGLE_CLIENT_SECRET') {
+  console.log('⚠️  Google OAuth not configured - using placeholder credentials');
+  console.log('📝 To enable Google OAuth:');
+  console.log('   1. Get Google OAuth credentials from Google Cloud Console');
+  console.log('   2. Update config/auth.json with real credentials');
+  console.log('   3. Restart the server');
+}
+
 passport.use(new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID || authConfig.google.clientId,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET || authConfig.google.clientSecret,
+  clientID: googleClientId,
+  clientSecret: googleClientSecret,
   callbackURL: getCallbackUrl('google'),
 }, async (accessToken, refreshToken, profile, done) => {
   try {
@@ -223,10 +235,19 @@ passport.use(new GoogleStrategy({
 // LinkedIn OAuth will be handled manually in routes
 
 // Google OAuth endpoints
-app.get('/auth/google', passport.authenticate('google', { 
-  scope: ['profile', 'email'],
-  prompt: 'select_account' // Always show account selection
-}));
+app.get('/auth/google', (req, res) => {
+  // Check if Google credentials are properly configured
+  if (googleClientId === 'YOUR_GOOGLE_CLIENT_ID' || googleClientSecret === 'PLACEHOLDER_GOOGLE_CLIENT_SECRET') {
+    console.log('❌ Google OAuth not configured - redirecting to setup page');
+    return res.redirect('/login?error=google_not_configured&message=Google OAuth credentials not configured. Please contact administrator.');
+  }
+  
+  // Use passport authentication if credentials are configured
+  passport.authenticate('google', { 
+    scope: ['profile', 'email'],
+    prompt: 'select_account' // Always show account selection
+  })(req, res);
+});
 
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login?error=google_auth_failed' }), 
