@@ -8,20 +8,20 @@
     "cdn": "https://cdn.newtifi.org",
     "local": "http://localhost:8080",
     "prj": "https://prj.newtifi.org",
-        "oauth": {
-          "google": {
-            "callback": {
-              "development": "http://localhost:8080/oauth-callback",
-              "production": "https://newtifi.com/oauth-callback"
+            "oauth": {
+              "google": {
+                "callback": {
+                  "development": "http://localhost:8080/auth/google/callback",
+                  "production": "https://newtifi.com/auth/google/callback"
+                }
+              },
+              "linkedin": {
+                "callback": {
+                  "development": "http://localhost:8080/auth/linkedin/callback",
+                  "production": "https://newtifi.com/auth/linkedin/callback"
+                }
+              }
             }
-          },
-          "linkedin": {
-            "callback": {
-              "development": "http://localhost:8080/oauth-callback",
-              "production": "https://newtifi.com/oauth-callback"
-            }
-          }
-        }
   },
   "features": {
     "analytics": true,

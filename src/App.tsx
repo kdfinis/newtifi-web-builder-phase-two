@@ -91,7 +91,9 @@ const App = () => (
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
                     <Route path="/auth/callback" element={<AuthCallback />} />
-                    <Route path="/oauth-callback" element={<OAuthCallback />} />
+                    <Route path="/auth/google/callback" element={<OAuthCallback />} />
+                    <Route path="/auth/linkedin/callback" element={<OAuthCallback />} />
+                    <Route path="/oauth-callback" element={<OAuthCallback />} /> {/* Fallback for old URLs */}
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/profile" element={<Profile />} />
