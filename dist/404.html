@@ -1,46 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
-    <!-- Preconnects removed to avoid external Google font calls; Verdana only -->
-    <!-- Removed external Inter font to enforce Verdana exclusively -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>New Technologies & Investment Funds Institute</title>
-    <meta name="description" content="New Technologies & Investment Funds Institute - Shaping the Future of Technology" />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="keywords" content="NewTIFI, technology, investment funds, innovation, regulation, fintech, healthtech, foodtech, energytech" />
-    <meta name="author" content="NewTIFI" />
-    <meta name="robots" content="index, follow" />
-    
-    <!-- Open Graph Meta Tags for Social Media -->
-    <meta property="og:title" content="New Technologies & Investment Funds Institute" />
-    <meta property="og:description" content="Shaping the Future of Technology through Innovation and Regulation" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://newtifi.org" />
-    <meta property="og:image" content="/assets/images/logo.png" />
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="New Technologies & Investment Funds Institute" />
-    <meta name="twitter:description" content="Shaping the Future of Technology through Innovation and Regulation" />
-    <meta name="twitter:image" content="/assets/images/logo.png" />
-    
-    <!-- Accessibility Meta Tags -->
-    <meta name="theme-color" content="#00C2CB" />
-    <meta name="color-scheme" content="light dark" />
-    
-    <!-- Performance Meta Tags -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <!-- Dev-only: assets are served by Vite; production assets are injected into dist/index.html at build time -->
-    <script type="module" crossorigin src="/assets/index-Bzqwu6z9.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-Tn0D3w-M.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DprUwHW6.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewTIFI - Page Not Found</title>
+    <script>
+        // GitHub Pages SPA routing fix
+        // This script runs before the main app loads and handles routing
+        (function() {
+            // Get the current path
+            const path = window.location.pathname;
+            const search = window.location.search;
+            const hash = window.location.hash;
+            
+            // If this is not the root path, redirect to root and let React Router handle it
+            if (path !== '/') {
+                // Store the intended path in sessionStorage
+                sessionStorage.setItem('redirectPath', path + search + hash);
+                // Redirect to root
+                window.location.replace('/');
+            }
+        })();
+    </script>
+</head>
+<body>
+    <div id="root">
+        <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+            <div style="text-align: center;">
+                <h1 style="font-size: 4rem; margin: 0; color: #333;">404</h1>
+                <p style="font-size: 1.2rem; color: #666;">Page not found</p>
+                <p style="color: #999;">Redirecting to home...</p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
