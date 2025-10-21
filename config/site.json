@@ -11,14 +11,14 @@
         "oauth": {
           "google": {
             "callback": {
-              "development": "http://localhost:8080/auth/google/callback",
-              "production": "https://newtifi-web-builder-phase-two.onrender.com/auth/google/callback"
+              "development": "http://localhost:8080/oauth-callback",
+              "production": "https://newtifi.com/oauth-callback"
             }
           },
           "linkedin": {
             "callback": {
-              "development": "http://localhost:8080/auth/linkedin/callback",
-              "production": "https://newtifi-web-builder-phase-two.onrender.com/auth/linkedin/callback"
+              "development": "http://localhost:8080/oauth-callback",
+              "production": "https://newtifi.com/oauth-callback"
             }
           }
         }
