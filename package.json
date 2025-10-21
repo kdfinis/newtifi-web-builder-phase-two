@@ -60,6 +60,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "express-session": "^1.18.1",
+    "google-auth-library": "^10.4.1",
     "helmet": "^8.1.0",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",

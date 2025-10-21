@@ -135,21 +135,35 @@ export class UrlFactory {
     return `${baseUrl}/admin`;
   }
 
-  // OAuth URLs
+  // OAuth URLs - Client-side OAuth (no backend needed)
   static getOAuthGoogleUrl(): string {
-    // In production, OAuth endpoints are on Render backend
-    const baseUrl = import.meta.env.DEV 
-      ? configManager.getCurrentUrl() 
-      : 'https://newtifi-web-builder-phase-two.onrender.com';
-    return `${baseUrl}/auth/google`;
+    // Client-side OAuth - redirect to Google directly
+    const clientId = '194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com';
+    const redirectUri = import.meta.env.DEV 
+      ? 'http://localhost:8080/auth/google/callback'
+      : 'https://newtifi.com/auth/google/callback';
+    
+    return `https://accounts.google.com/o/oauth2/v2/auth?` +
+      `client_id=${clientId}&` +
+      `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+      `response_type=code&` +
+      `scope=profile email&` +
+      `prompt=select_account`;
   }
 
   static getOAuthLinkedInUrl(): string {
-    // In production, OAuth endpoints are on Render backend
-    const baseUrl = import.meta.env.DEV 
-      ? configManager.getCurrentUrl() 
-      : 'https://newtifi-web-builder-phase-two.onrender.com';
-    return `${baseUrl}/auth/linkedin`;
+    // Client-side OAuth - redirect to LinkedIn directly
+    const clientId = '784sx1yh2lpuxm';
+    const redirectUri = import.meta.env.DEV 
+      ? 'http://localhost:8080/auth/linkedin/callback'
+      : 'https://newtifi.com/auth/linkedin/callback';
+    
+    return `https://www.linkedin.com/oauth/v2/authorization?` +
+      `response_type=code&` +
+      `client_id=${clientId}&` +
+      `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+      `scope=openid profile email&` +
+      `state=linkedin_auth`;
   }
 
   static getOAuthCallbackUrl(provider: 'google' | 'linkedin'): string {

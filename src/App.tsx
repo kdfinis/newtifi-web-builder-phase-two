@@ -20,6 +20,8 @@ import InvestmentManagementJournal from "./pages/publishing/journals/investment-
 import ArticlePage from "./pages/publishing/journals/ArticlePage";
 import Admin from './pages/Admin';
 import AuthCallback from './pages/AuthCallback';
+import GoogleCallback from './pages/auth/google/callback';
+import LinkedInCallback from './pages/auth/linkedin/callback';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import Dashboard from './pages/Dashboard';
@@ -94,8 +96,8 @@ const App = () => (
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
                     <Route path="/auth/callback" element={<AuthCallback />} />
-                    <Route path="/auth/google/callback" element={<AuthCallback />} />
-                    <Route path="/auth/linkedin/callback" element={<AuthCallback />} />
+                    <Route path="/auth/google/callback" element={<GoogleCallback />} />
+                    <Route path="/auth/linkedin/callback" element={<LinkedInCallback />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/articles" element={<Articles />} />
                 <Route path="/google-oauth-test" element={<GoogleOAuthTest />} />
