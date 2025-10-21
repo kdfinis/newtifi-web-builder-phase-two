@@ -150,16 +150,9 @@ passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'passwor
   }
 }));
 
-// Google OAuth Strategy - Load from secure credentials file
-let googleCredentials = {};
-try {
-  googleCredentials = require('./google-credentials.json');
-} catch (e) {
-  console.log('⚠️  Google credentials file not found, using config defaults');
-}
-
-const googleClientId = process.env.GOOGLE_CLIENT_ID || googleCredentials.google?.clientId || authConfig.google.clientId;
-const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || googleCredentials.google?.clientSecret || authConfig.google.clientSecret;
+// Google OAuth Strategy
+const googleClientId = process.env.GOOGLE_CLIENT_ID || authConfig.google.clientId;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || authConfig.google.clientSecret;
 
 // Check if Google credentials are properly configured
 if (googleClientId === 'YOUR_GOOGLE_CLIENT_ID' || googleClientSecret === 'PLACEHOLDER_GOOGLE_CLIENT_SECRET') {
