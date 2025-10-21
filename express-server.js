@@ -46,8 +46,13 @@ app.use(helmet({
             fontSrc: ["'self'"],
             imgSrc: ["'self'", "data:", "https:"],
             connectSrc: (() => {
-              const base = ["'self'", "http://localhost:8080"];
-              if (process.env.LIVE_RELOAD) base.push('http://localhost:35729');
+              const base = ["'self'"];
+              if (process.env.NODE_ENV === 'production') {
+                base.push('https://newtifi.com', 'https://www.newtifi.com');
+              } else {
+                base.push('http://localhost:8080');
+                if (process.env.LIVE_RELOAD) base.push('http://localhost:35729');
+              }
               return base;
             })(),
             // Allow map embeds (Google and OpenStreetMap)
@@ -71,8 +76,11 @@ app.use(helmet({
     },
 }));
 
-// CORS to allow frontend (8080) to call backend (3000)
-app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
+// CORS to allow frontend to call backend
+const allowedOrigins = process.env.NODE_ENV === 'production' 
+  ? ['https://newtifi.com', 'https://www.newtifi.com']
+  : ['http://localhost:8080'];
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 // Development mode - attach Vite middlewares only (catch-all added after APIs)
@@ -123,7 +131,9 @@ passport.deserializeUser(async (id, done) => {
 
 // Helper to get callback URL based on environment
 function getCallbackUrl(provider) {
-  const appOrigin = process.env.APP_ORIGIN || 'http://localhost:8080';
+  const appOrigin = process.env.NODE_ENV === 'production' 
+    ? 'https://newtifi.com'
+    : (process.env.APP_ORIGIN || 'http://localhost:8080');
   return `${appOrigin}/auth/${provider}/callback`;
 }
 
@@ -422,7 +432,10 @@ app.post('/auth/forgot-password', async (req, res) => {
     await prisma.resetToken.create({ data: { userId: user.id, token, expiresAt } });
 
     // For dev MVP: log link to console instead of sending email
-    const link = `${process.env.APP_ORIGIN || 'http://localhost:8080'}/reset-password?token=${encodeURIComponent(token)}`;
+    const appOrigin = process.env.NODE_ENV === 'production' 
+      ? 'https://newtifi.com'
+      : (process.env.APP_ORIGIN || 'http://localhost:8080');
+    const link = `${appOrigin}/reset-password?token=${encodeURIComponent(token)}`;
     console.log(`Password reset link for ${email}: ${link}`);
 
     res.json({ ok: true });
