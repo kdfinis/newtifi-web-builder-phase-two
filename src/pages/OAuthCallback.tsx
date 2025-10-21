@@ -113,12 +113,14 @@ export default function OAuthCallback() {
           loginTime: new Date().toISOString()
         };
 
+        console.log('OAuth callback: Storing user data:', userData);
         localStorage.setItem('newtifi_user', JSON.stringify(userData));
         localStorage.setItem('newtifi_auth', 'true');
 
         setStatus('success');
         
         // Redirect to dashboard
+        console.log('OAuth callback: Redirecting to dashboard...');
         setTimeout(() => {
           navigate('/dashboard?auth=success&provider=' + provider);
         }, 1000);

@@ -22,6 +22,31 @@ export function useSimpleAuth() {
 
   const checkAuth = useCallback(async () => {
     try {
+      // First check localStorage for OAuth users
+      const oauthUser = localStorage.getItem('newtifi_user');
+      const oauthAuth = localStorage.getItem('newtifi_auth');
+      
+      if (oauthUser && oauthAuth === 'true') {
+        const userData = JSON.parse(oauthUser);
+        // Convert OAuth user data to match User interface
+        const user: User = {
+          id: userData.id,
+          email: userData.email,
+          name: userData.name,
+          role: 'MEMBER', // Default role for OAuth users
+          avatarUrl: userData.avatarUrl,
+          hasGoogleAuth: userData.provider === 'google',
+          hasLinkedInAuth: userData.provider === 'linkedin',
+          hasPasswordAuth: false,
+          createdAt: userData.loginTime || new Date().toISOString(),
+          updatedAt: userData.loginTime || new Date().toISOString()
+        };
+        setUser(user);
+        setLoading(false);
+        return;
+      }
+      
+      // Fallback to API auth check
       const data = await authStatus();
       if (data.loggedIn) {
         setUser(data.user);
@@ -70,7 +95,17 @@ export function useSimpleAuth() {
 
   const logout = async () => {
     try {
-      await logoutApi();
+      // Clear OAuth localStorage data
+      localStorage.removeItem('newtifi_user');
+      localStorage.removeItem('newtifi_auth');
+      
+      // Try API logout (might fail for OAuth users, that's ok)
+      try {
+        await logoutApi();
+      } catch (err) {
+        // OAuth users don't have API sessions, ignore this error
+      }
+      
       setUser(null);
       window.location.href = '/';
     } catch (err) {
