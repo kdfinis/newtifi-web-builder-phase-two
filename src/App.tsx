@@ -28,10 +28,8 @@ import Profile from './pages/Profile';
 import ApplyContributor from './pages/ApplyContributor';
 import ArticleEditor from './pages/articles/ArticleEditor';
 import Articles from './pages/Articles';
-import GoogleOAuthTest from './pages/GoogleOAuthTest';
 // LMS Components - Additional to existing website
 import LMSLogin from './components/lms/LMSLogin';
-import ProfessorDashboard from './pages/lms/ProfessorDashboard';
 import "./styles/typography.css";
 import "./App.css";
 
@@ -98,7 +96,6 @@ const App = () => (
                     <Route path="/oauth-callback" element={<OAuthCallback />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/articles" element={<Articles />} />
-                <Route path="/google-oauth-test" element={<GoogleOAuthTest />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/apply-contributor" element={<ApplyContributor />} />
                 <Route path="/articles/new" element={<ArticleEditor />} />
@@ -106,7 +103,6 @@ const App = () => (
                 <Route path="/admin" element={<LazyAdmin />} />
                 {/* LMS Routes - Additional to existing website */}
                 <Route path="/lms/login" element={<LMSLogin />} />
-                <Route path="/lms/professor" element={<ProfessorDashboard />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

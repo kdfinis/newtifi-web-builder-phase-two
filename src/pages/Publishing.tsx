@@ -360,10 +360,10 @@ const Publishing: React.FC = () => {
                         ? `Ezechiel Havrenne, 'Luxembourg SICARs, SIFs and RAIFs – A 20-year Perspective on the Well-Informed Investor notion', NewTIFI Publishing – Investment Management Journal, Vol. 1, N°3, pp.21-30, The New Technologies & Investment Funds Institute (2025)`
                         : `Ezechiel Havrenne, 'Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control', NewTIFI Publishing – Investment Management Journal, Vol. 1, N°2, pp.11-20, The New Technologies & Investment Funds Institute (2025)`;
                       const journalInfo = idx === 0
-                        ? 'Investment Management Journal | Vol. 1 – N° 4 – pp.31-44\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication'
+                        ? 'Investment Management Journal | Vol. 1 – N° 4 – pp.31-44\nISSN: TBD – eISSN: TBD\nQuarterly publication'
                         : idx === 1
-                        ? 'Investment Management Journal | Vol. 1 – N° 3 – pp.21-30\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication'
-                        : 'Investment Management Journal | Vol. 1 – N° 2 – pp.11-20\nISSN: XXXX-XXXX – eISSN: XXXX-XXXX\nQuarterly publication';
+                        ? 'Investment Management Journal | Vol. 1 – N° 3 – pp.21-30\nISSN: TBD – eISSN: TBD\nQuarterly publication'
+                        : 'Investment Management Journal | Vol. 1 – N° 2 – pp.11-20\nISSN: TBD – eISSN: TBD\nQuarterly publication';
                       return (
                         <div key={idx} className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 hover:shadow-3xl transition-all duration-300">
                           <button

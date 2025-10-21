@@ -35,10 +35,8 @@ class ArticleService {
       const stored = localStorage.getItem('newtifi_articles');
       if (stored) {
         this.articles = JSON.parse(stored);
-        console.log('✅ Articles loaded from storage:', this.articles.length);
       } else {
         this.createSampleArticles();
-        console.log('✅ Sample articles created');
       }
     } catch (error) {
       console.error('❌ Error initializing articles:', error);
@@ -176,7 +174,6 @@ class ArticleService {
 
   async createArticle(formData: ArticleFormData, userId: string): Promise<Article> {
     try {
-      console.log('📝 Creating new article:', formData.title);
       
       const newArticle: Article = {
         id: `article-${Date.now()}`,
@@ -213,7 +210,6 @@ class ArticleService {
       this.articles.push(newArticle);
       this.saveArticles();
       
-      console.log('✅ Article created successfully:', newArticle.id);
       return newArticle;
     } catch (error) {
       console.error('❌ Error creating article:', error);
@@ -223,7 +219,6 @@ class ArticleService {
 
   async updateArticle(articleId: string, updates: Partial<Article>): Promise<Article> {
     try {
-      console.log('📝 Updating article:', articleId);
       
       const articleIndex = this.articles.findIndex(a => a.id === articleId);
       if (articleIndex === -1) {

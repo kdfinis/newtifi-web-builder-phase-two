@@ -7,7 +7,7 @@ import { urlFactory } from '@/lib/urls/UrlFactory';
 // ISSN and Journal Metadata
 const journalMetadata = {
   title: "NewTiFi Investment Management Journal",
-  issn: "XXXX-XXXX", // Placeholder - needs to be registered with ISSN International Centre
+  issn: "TBD", // To be registered with ISSN International Centre
           publisher: "New Technologies & Investment Funds Institute",
   publisherLocation: "Luxembourg",
   frequency: "Quarterly",
@@ -643,7 +643,7 @@ export default function InvestmentManagementJournal() {
                         </tr>
                         <tr>
                           <td className="border border-blue-200 px-3 py-2 font-semibold bg-blue-100">e-ISSN</td>
-                          <td className="border border-blue-200 px-3 py-2">XXXX-XXXX</td>
+                          <td className="border border-blue-200 px-3 py-2">TBD</td>
                         </tr>
                         <tr className="bg-blue-100">
                           <td className="border border-blue-200 px-3 py-2 font-semibold">Issues per Year</td>

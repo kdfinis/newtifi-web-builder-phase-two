@@ -112,7 +112,7 @@ const staticArticles = [
 // Journal metadata for ISSN compliance
 const journalMetadata = {
   title: "NewTiFi Investment Management Journal",
-  issn: "XXXX-XXXX", // Placeholder - needs to be registered with ISSN International Centre
+  issn: "TBD", // To be registered with ISSN International Centre
           publisher: "New Technologies & Investment Funds Institute",
   publisherLocation: "Luxembourg",
   frequency: "Quarterly",
