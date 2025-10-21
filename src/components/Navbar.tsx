@@ -164,16 +164,6 @@ const Navbar = () => {
           >
             Contact
           </Link>
-          <Link 
-            to="/lms/login" 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
-              location.pathname.startsWith("/lms") && "text-newtifi-teal"
-            )}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            LMS
-          </Link>
         </nav>
 
         {/* Auth Section */}

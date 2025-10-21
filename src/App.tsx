@@ -28,8 +28,6 @@ import Profile from './pages/Profile';
 import ApplyContributor from './pages/ApplyContributor';
 import ArticleEditor from './pages/articles/ArticleEditor';
 import Articles from './pages/Articles';
-// LMS Components - Additional to existing website
-import LMSLogin from './components/lms/LMSLogin';
 import "./styles/typography.css";
 import "./App.css";
 
@@ -101,8 +99,6 @@ const App = () => (
                 <Route path="/articles/new" element={<ArticleEditor />} />
                 <Route path="/articles/edit/:id" element={<ArticleEditor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
-                {/* LMS Routes - Additional to existing website */}
-                <Route path="/lms/login" element={<LMSLogin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
