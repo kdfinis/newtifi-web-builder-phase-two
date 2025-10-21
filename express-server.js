@@ -48,7 +48,7 @@ app.use(helmet({
             connectSrc: (() => {
               const base = ["'self'"];
               if (process.env.NODE_ENV === 'production') {
-                base.push('https://newtifi.com', 'https://www.newtifi.com');
+                base.push('https://newtifi.com', 'https://www.newtifi.com', 'https://newtifi-web-builder-phase-two.onrender.com');
               } else {
                 base.push('http://localhost:8080');
                 if (process.env.LIVE_RELOAD) base.push('http://localhost:35729');
@@ -78,7 +78,7 @@ app.use(helmet({
 
 // CORS to allow frontend to call backend
 const allowedOrigins = process.env.NODE_ENV === 'production' 
-  ? ['https://newtifi.com', 'https://www.newtifi.com']
+  ? ['https://newtifi.com', 'https://www.newtifi.com', 'https://newtifi-web-builder-phase-two.onrender.com']
   : ['http://localhost:8080'];
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());

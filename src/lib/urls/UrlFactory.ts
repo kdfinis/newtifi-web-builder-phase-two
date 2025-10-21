@@ -137,12 +137,18 @@ export class UrlFactory {
 
   // OAuth URLs
   static getOAuthGoogleUrl(): string {
-    const baseUrl = configManager.getCurrentUrl();
+    // In production, OAuth endpoints are on Render backend
+    const baseUrl = import.meta.env.DEV 
+      ? configManager.getCurrentUrl() 
+      : 'https://newtifi-web-builder-phase-two.onrender.com';
     return `${baseUrl}/auth/google`;
   }
 
   static getOAuthLinkedInUrl(): string {
-    const baseUrl = configManager.getCurrentUrl();
+    // In production, OAuth endpoints are on Render backend
+    const baseUrl = import.meta.env.DEV 
+      ? configManager.getCurrentUrl() 
+      : 'https://newtifi-web-builder-phase-two.onrender.com';
     return `${baseUrl}/auth/linkedin`;
   }
 
