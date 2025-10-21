@@ -48,10 +48,10 @@ export const validateEnvironment = () => {
   }
   
   if (errors.length > 0) {
-    console.error('❌ Environment validation failed:', errors);
+    // Environment validation failed
     throw new Error(`Environment validation failed: ${errors.join(', ')}`);
   }
   
-  console.log('✅ Environment validation passed');
+  // Environment validation passed
   return true;
 };

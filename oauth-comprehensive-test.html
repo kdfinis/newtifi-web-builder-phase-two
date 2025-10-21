@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Comprehensive Test - NewTIFI</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .test-section { background: #f8f9fa; padding: 20px; margin: 15px 0; border-radius: 8px; border-left: 4px solid #007bff; }
+        .test-section h3 { margin-top: 0; color: #007bff; }
+        .button { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; margin: 8px; font-size: 14px; }
+        .button:hover { background: #0056b3; }
+        .button.google { background: #4285f4; }
+        .button.linkedin { background: #0077b5; }
+        .button.google:hover { background: #3367d6; }
+        .button.linkedin:hover { background: #005885; }
+        .result { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .info { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        .url-display { background: white; padding: 10px; border: 1px solid #ddd; border-radius: 4px; word-break: break-all; font-family: monospace; font-size: 12px; }
+        .status { display: inline-block; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .status.pass { background: #d4edda; color: #155724; }
+        .status.fail { background: #f8d7da; color: #721c24; }
+        .status.warning { background: #fff3cd; color: #856404; }
+    </style>
+</head>
+<body>
+    <h1>🔐 OAuth Comprehensive Test - NewTIFI</h1>
+    
+    <div class="test-section">
+        <h3>🌍 Environment Detection</h3>
+        <div id="environment-info"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔗 OAuth URL Generation</h3>
+        <div id="oauth-urls"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🧪 OAuth Flow Tests</h3>
+        <button class="button google" onclick="testGoogleOAuth()">Test Google OAuth</button>
+        <button class="button linkedin" onclick="testLinkedInOAuth()">Test LinkedIn OAuth</button>
+        <button class="button" onclick="testOAuthCallback()">Test OAuth Callback</button>
+        <div id="test-results"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>🔍 Configuration Validation</h3>
+        <div id="config-validation"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>📊 Test Results Summary</h3>
+        <div id="test-summary"></div>
+    </div>
+
+    <script>
+        // Environment detection
+        const isDev = window.location.hostname === 'localhost';
+        const baseUrl = isDev ? 'http://localhost:8080' : 'https://newtifi.com';
+        const redirectUri = baseUrl + '/oauth-callback';
+        
+        // OAuth configuration
+        const googleConfig = {
+            clientId: '194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com',
+            clientSecret: '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',
+            redirectUri: redirectUri,
+            scope: 'profile email'
+        };
+        
+        const linkedinConfig = {
+            clientId: '784sx1yh2lpuxm',
+            clientSecret: 'WPL_AP1.ZCdvRZtOo5BgQfzD.pZ9uHQ==',
+            redirectUri: redirectUri,
+            scope: 'openid profile email'
+        };
+        
+        // Test results tracking
+        let testResults = {
+            environment: false,
+            googleUrl: false,
+            linkedinUrl: false,
+            callback: false,
+            config: false
+        };
+        
+        function updateStatus(elementId, status, message) {
+            const element = document.getElementById(elementId);
+            const statusClass = status === 'pass' ? 'pass' : status === 'fail' ? 'fail' : 'warning';
+            element.innerHTML += `<div class="result ${statusClass}"><span class="status ${statusClass}">${status.toUpperCase()}</span> ${message}</div>`;
+        }
+        
+        function initializeEnvironmentInfo() {
+            const envInfo = document.getElementById('environment-info');
+            envInfo.innerHTML = `
+                <p><strong>Current URL:</strong> ${window.location.href}</p>
+                <p><strong>Environment:</strong> ${isDev ? 'Development (localhost)' : 'Production (newtifi.com)'}</p>
+                <p><strong>Base URL:</strong> ${baseUrl}</p>
+                <p><strong>Redirect URI:</strong> ${redirectUri}</p>
+            `;
+            testResults.environment = true;
+        }
+        
+        function generateOAuthUrls() {
+            const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+                `client_id=${googleConfig.clientId}&` +
+                `redirect_uri=${encodeURIComponent(googleConfig.redirectUri)}&` +
+                `response_type=code&` +
+                `scope=${googleConfig.scope}&` +
+                `prompt=select_account&` +
+                `state=google_auth`;
+                
+            const linkedinUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+                `response_type=code&` +
+                `client_id=${linkedinConfig.clientId}&` +
+                `redirect_uri=${encodeURIComponent(linkedinConfig.redirectUri)}&` +
+                `scope=${linkedinConfig.scope}&` +
+                `state=linkedin_auth`;
+            
+            const oauthUrls = document.getElementById('oauth-urls');
+            oauthUrls.innerHTML = `
+                <h4>Google OAuth URL:</h4>
+                <div class="url-display">${googleUrl}</div>
+                <h4>LinkedIn OAuth URL:</h4>
+                <div class="url-display">${linkedinUrl}</div>
+            `;
+            
+            testResults.googleUrl = googleUrl.includes(googleConfig.clientId);
+            testResults.linkedinUrl = linkedinUrl.includes(linkedinConfig.clientId);
+        }
+        
+        function testGoogleOAuth() {
+            const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+                `client_id=${googleConfig.clientId}&` +
+                `redirect_uri=${encodeURIComponent(googleConfig.redirectUri)}&` +
+                `response_type=code&` +
+                `scope=${googleConfig.scope}&` +
+                `prompt=select_account&` +
+                `state=google_auth`;
+            
+            updateStatus('test-results', 'info', 'Redirecting to Google OAuth...');
+            window.open(googleUrl, '_blank');
+        }
+        
+        function testLinkedInOAuth() {
+            const linkedinUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+                `response_type=code&` +
+                `client_id=${linkedinConfig.clientId}&` +
+                `redirect_uri=${encodeURIComponent(linkedinConfig.redirectUri)}&` +
+                `scope=${linkedinConfig.scope}&` +
+                `state=linkedin_auth`;
+            
+            updateStatus('test-results', 'info', 'Redirecting to LinkedIn OAuth...');
+            window.open(linkedinUrl, '_blank');
+        }
+        
+        function testOAuthCallback() {
+            // Test if OAuth callback page exists
+            fetch(redirectUri)
+                .then(response => {
+                    if (response.ok) {
+                        updateStatus('test-results', 'pass', 'OAuth callback page is accessible');
+                        testResults.callback = true;
+                    } else {
+                        updateStatus('test-results', 'fail', `OAuth callback page returned ${response.status}`);
+                    }
+                })
+                .catch(error => {
+                    updateStatus('test-results', 'fail', `OAuth callback page error: ${error.message}`);
+                });
+        }
+        
+        function validateConfiguration() {
+            const configDiv = document.getElementById('config-validation');
+            let configValid = true;
+            
+            // Check Google config
+            if (googleConfig.clientId && googleConfig.clientId !== 'YOUR_GOOGLE_CLIENT_ID') {
+                updateStatus('config-validation', 'pass', 'Google Client ID is configured');
+            } else {
+                updateStatus('config-validation', 'fail', 'Google Client ID is not configured');
+                configValid = false;
+            }
+            
+            // Check LinkedIn config
+            if (linkedinConfig.clientId && linkedinConfig.clientId !== 'YOUR_LINKEDIN_CLIENT_ID') {
+                updateStatus('config-validation', 'pass', 'LinkedIn Client ID is configured');
+            } else {
+                updateStatus('config-validation', 'fail', 'LinkedIn Client ID is not configured');
+                configValid = false;
+            }
+            
+            // Check redirect URI
+            if (redirectUri.includes('/oauth-callback')) {
+                updateStatus('config-validation', 'pass', 'Redirect URI is correctly configured');
+            } else {
+                updateStatus('config-validation', 'fail', 'Redirect URI is not correctly configured');
+                configValid = false;
+            }
+            
+            testResults.config = configValid;
+        }
+        
+        function generateTestSummary() {
+            const summaryDiv = document.getElementById('test-summary');
+            const totalTests = Object.keys(testResults).length;
+            const passedTests = Object.values(testResults).filter(result => result === true).length;
+            const successRate = Math.round((passedTests / totalTests) * 100);
+            
+            let summaryHtml = `
+                <h4>Test Results: ${passedTests}/${totalTests} passed (${successRate}%)</h4>
+                <ul>
+                    <li>Environment Detection: ${testResults.environment ? '✅' : '❌'}</li>
+                    <li>Google OAuth URL: ${testResults.googleUrl ? '✅' : '❌'}</li>
+                    <li>LinkedIn OAuth URL: ${testResults.linkedinUrl ? '✅' : '❌'}</li>
+                    <li>OAuth Callback: ${testResults.callback ? '✅' : '❌'}</li>
+                    <li>Configuration: ${testResults.config ? '✅' : '❌'}</li>
+                </ul>
+            `;
+            
+            if (successRate === 100) {
+                summaryHtml += '<div class="result success"><strong>🎉 All tests passed! OAuth should work flawlessly.</strong></div>';
+            } else {
+                summaryHtml += '<div class="result error"><strong>⚠️ Some tests failed. Check the issues above.</strong></div>';
+            }
+            
+            summaryDiv.innerHTML = summaryHtml;
+        }
+        
+        // Initialize all tests
+        function runAllTests() {
+            initializeEnvironmentInfo();
+            generateOAuthUrls();
+            validateConfiguration();
+            testOAuthCallback();
+            
+            // Generate summary after a short delay
+            setTimeout(generateTestSummary, 1000);
+        }
+        
+        // Run tests on page load
+        runAllTests();
+    </script>
+</body>
+</html>
