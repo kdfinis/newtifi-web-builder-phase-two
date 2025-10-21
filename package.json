@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node express-server.js",
     "predev": "node scripts/predev-checks.cjs",
     "dev": "npm run predev && vite --host localhost --port 8080 --strictPort --force",
     "dev:stable": "serve -s dist -l 3000",
