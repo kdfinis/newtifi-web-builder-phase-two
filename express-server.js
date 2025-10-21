@@ -132,7 +132,7 @@ passport.deserializeUser(async (id, done) => {
 // Helper to get callback URL based on environment
 function getCallbackUrl(provider) {
   const appOrigin = process.env.NODE_ENV === 'production' 
-    ? 'https://newtifi.com'
+    ? 'https://newtifi-web-builder-phase-two.onrender.com'
     : (process.env.APP_ORIGIN || 'http://localhost:8080');
   return `${appOrigin}/auth/${provider}/callback`;
 }
