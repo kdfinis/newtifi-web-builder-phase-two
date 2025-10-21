@@ -35,36 +35,43 @@ export default function MemberDashboard() {
 
       {/* Secondary Navigation */}
       <section className="w-full bg-white border-b border-gray-200">
-        <div className="container mx-auto px-6">
-          <nav className="flex items-center space-x-1 py-3">
+        <div className="container mx-auto px-4 sm:px-6">
+          <nav className="flex items-center space-x-1 py-3 overflow-x-auto">
             <Link
               to="/dashboard"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-newtifi-navy bg-newtifi-teal/10 rounded-lg"
+              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-newtifi-navy bg-newtifi-teal/10 rounded-lg whitespace-nowrap"
             >
-              <Home className="h-4 w-4" />
-              <span>Dashboard</span>
+              <Home className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Dashboard</span>
             </Link>
-            <div className="w-px h-6 bg-gray-300"></div>
+            <div className="w-px h-6 bg-gray-300 hidden sm:block"></div>
             <Link
               to="/profile"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all whitespace-nowrap"
             >
-              <User className="h-4 w-4" />
-              <span>Profile</span>
+              <User className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Profile</span>
             </Link>
             <Link
               to="/apply-contributor"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all whitespace-nowrap"
             >
-              <FileText className="h-4 w-4" />
-              <span>Apply Contributor</span>
+              <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Apply Contributor</span>
+            </Link>
+            <Link
+              to="/articles"
+              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all whitespace-nowrap"
+            >
+              <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">Articles</span>
             </Link>
             <Link
               to="/articles/new"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
+              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all whitespace-nowrap"
             >
-              <FileText className="h-4 w-4" />
-              <span>New Article</span>
+              <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
+              <span className="hidden sm:inline">New Article</span>
             </Link>
             {user?.role === 'ADMIN' && (
               <>
@@ -83,16 +90,16 @@ export default function MemberDashboard() {
       </section>
 
       {/* Main Content */}
-      <section className="w-full bg-white py-8">
-        <div className="container mx-auto px-6">
+      <section className="w-full bg-white py-4 sm:py-8">
+        <div className="container mx-auto px-4 sm:px-6">
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Your Account</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Manage your NewTIFI experience</h3>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {/* Profile Card */}
-              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-newtifi-teal/10 rounded-2xl">
                     <User className="h-8 w-8 text-newtifi-teal" />
@@ -109,7 +116,7 @@ export default function MemberDashboard() {
               </div>
 
               {/* Apply to Contribute Card */}
-              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-newtifi-navy/10 rounded-2xl">
                     <FileText className="h-8 w-8 text-newtifi-navy" />
@@ -126,7 +133,7 @@ export default function MemberDashboard() {
               </div>
 
               {/* Bookmarks Card */}
-              <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="p-3 bg-yellow-100 rounded-2xl">
                     <Bookmark className="h-8 w-8 text-yellow-600" />
@@ -141,10 +148,110 @@ export default function MemberDashboard() {
               </div>
             </div>
 
+            {/* Article Reading Section */}
+            <div className="mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Latest Articles</h2>
+              <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
+              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Discover and read the latest research</h3>
+              
+              <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
+                  <h3 className="text-xl font-semibold text-newtifi-navy">Featured Articles</h3>
+                  <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                    <input
+                      type="text"
+                      placeholder="Search articles..."
+                      className="px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent text-sm bg-white text-gray-900"
+                    />
+                    <Link 
+                      to="/articles"
+                      className="px-4 py-2 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium text-center"
+                    >
+                      View All Articles
+                    </Link>
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                  {/* Sample Article Cards */}
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Jun 28, 2025</span>
+                    </div>
+                    <Link 
+                      to="/publishing/investment-management/article/eltifs-compulsory-redemptions"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
+
+
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Jun 28, 2025</span>
+                    </div>
+                    <Link 
+                      to="/publishing/investment-management/article/bafin-portfolio-control"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
+
+                  {/* Article 3: Sustainable Finance */}
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article provides a comprehensive analysis of Luxembourg's "Well-Informed Investor" regime as applied to SICARs, SIFs, and RAIFs.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Jun 28, 2025</span>
+                    </div>
+                    <Link 
+                      to="/publishing/investment-management/article/luxembourg-well-informed-investor"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* User Info */}
-            <div className="bg-gray-50 rounded-3xl p-8">
+            <div className="bg-gray-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8">
               <h3 className="text-xl font-semibold text-newtifi-navy mb-4">Account Information</h3>
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-gray-600">Name</label>
                   <p className="text-lg font-medium text-gray-900">{user?.name || 'Not set'}</p>

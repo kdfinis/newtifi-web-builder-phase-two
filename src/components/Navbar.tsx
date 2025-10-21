@@ -182,7 +182,7 @@ const Navbar = () => {
             <div className="hidden md:block px-4 py-1.5 text-sm text-gray-500">Loading...</div>
           ) : isAuthenticated ? (
             <div className="hidden md:flex items-center gap-4">
-              <span className="text-sm text-gray-700">Hello, {user?.name || user?.email}</span>
+              <span className="text-sm text-white">Hello, {user?.name || user?.email}</span>
               <Link 
                 to="/dashboard" 
                 className="px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase text-base font-medium tracking-wide"

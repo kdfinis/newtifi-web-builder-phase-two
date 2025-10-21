@@ -49,14 +49,14 @@ class ArticleService {
   private createSampleArticles(): void {
     const sampleArticles: Article[] = [
       {
-        id: 'article-001',
-        title: 'Digital Transformation in Investment Management',
-        abstract: 'This paper explores the impact of digital transformation on investment management practices, focusing on the integration of AI and machine learning technologies.',
+        id: 'eltifs-compulsory-redemptions',
+        title: 'Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions',
+        abstract: 'This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection.',
         content: 'Full article content here...',
         authors: [
           {
             id: 'author-001',
-            name: 'Dr. Ezechiel Havrenne',
+            name: 'Ezechiel Havrenne',
             email: 'ezechiel.havrenne@newtifi.com',
             institution: 'Luxembourg School of Business',
             isCorresponding: true
@@ -66,8 +66,8 @@ class ArticleService {
         type: ArticleType.RESEARCH,
         journal: 'investment-management',
         metadata: {
-          keywords: ['digital transformation', 'investment management', 'AI', 'machine learning'],
-          subjectAreas: ['Finance', 'Technology'],
+          keywords: ['LUXEMBOURG CLOSED-ENDED ELTIFs', 'COMPULSORY REDEMPTION', 'INVESTOR PROTECTION', 'DISTRIBUTION MECHANISMS', 'FUND LIQUIDITY MANAGEMENT'],
+          subjectAreas: ['Finance', 'Regulation'],
           language: 'English',
           pageCount: 15,
           wordCount: 5000,
@@ -84,29 +84,29 @@ class ArticleService {
           publicationTime: 30,
           lastUpdated: new Date()
         },
-        createdAt: new Date('2024-01-15'),
-        updatedAt: new Date('2024-02-01'),
-        publishedAt: new Date('2024-02-01')
+        createdAt: new Date('2025-06-28'),
+        updatedAt: new Date('2025-06-28'),
+        publishedAt: new Date('2025-06-28')
       },
       {
-        id: 'article-002',
-        title: 'Regulatory Challenges in FinTech Innovation',
-        abstract: 'An analysis of regulatory challenges facing financial technology innovations in the European market.',
+        id: 'bafin-portfolio-control',
+        title: 'Investor Oversight or Undue Influence? Reassessing BaFin\'s Stance on AIFM Portfolio Control',
+        abstract: 'This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM\'s exclusive mandate under the AIFMD, BaFin\'s strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions.',
         content: 'Full article content here...',
         authors: [
           {
             id: 'author-002',
-            name: 'Dr. Karlo Definis',
-            email: 'karlo.definis@newtifi.com',
-            institution: 'NewTIFI',
+            name: 'Ezechiel Havrenne',
+            email: 'ezechiel.havrenne@newtifi.com',
+            institution: 'Luxembourg School of Business',
             isCorresponding: true
           }
         ],
-        status: ArticleStatus.UNDER_REVIEW,
+        status: ArticleStatus.PUBLISHED,
         type: ArticleType.RESEARCH,
-        journal: 'fintech-innovation',
+        journal: 'investment-management',
         metadata: {
-          keywords: ['fintech', 'regulation', 'innovation', 'European market'],
+          keywords: ['AIFM DIRECTIVE', 'REGULATORY DIVERGENCE', 'AIFM DISCRETION', 'INVESTOR INFLUENCE', 'INVESTOR PROTECTION'],
           subjectAreas: ['Finance', 'Regulation'],
           language: 'English',
           pageCount: 12,
@@ -114,31 +114,59 @@ class ArticleService {
           references: []
         },
         files: [],
-        reviews: [
-          {
-            id: 'review-001',
-            reviewerId: 'reviewer-001',
-            reviewerName: 'Dr. Jane Smith',
-            score: 0,
-            comments: '',
-            recommendations: [],
-            status: 'pending' as any,
-            deadline: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000), // 14 days
-            createdAt: new Date()
-          }
-        ],
+        reviews: [],
         kpis: {
-          views: 0,
-          downloads: 0,
-          citations: 0,
-          socialShares: 0,
-          reviewScore: 0,
-          publicationTime: 0,
+          views: 2100,
+          downloads: 156,
+          citations: 23,
+          socialShares: 78,
+          reviewScore: 9.2,
+          publicationTime: 25,
           lastUpdated: new Date()
         },
-        createdAt: new Date('2024-02-10'),
-        updatedAt: new Date('2024-02-10'),
-        submittedAt: new Date('2024-02-10')
+        createdAt: new Date('2025-06-28'),
+        updatedAt: new Date('2025-06-28'),
+        publishedAt: new Date('2025-06-28')
+      },
+      {
+        id: 'luxembourg-well-informed-investor',
+        title: 'Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion',
+        abstract: 'This article provides a comprehensive analysis of Luxembourg\'s "Well-Informed Investor" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation.',
+        content: 'Full article content here...',
+        authors: [
+          {
+            id: 'author-003',
+            name: 'Ezechiel Havrenne',
+            email: 'ezechiel.havrenne@newtifi.com',
+            institution: 'Luxembourg School of Business',
+            isCorresponding: true
+          }
+        ],
+        status: ArticleStatus.PUBLISHED,
+        type: ArticleType.RESEARCH,
+        journal: 'investment-management',
+        metadata: {
+          keywords: ['SICAR', 'SIF', 'RAIF', 'WELL-INFORMED INVESTOR', 'INVESTOR CATEGORISATION', 'INSTITUTIONAL INVESTORS'],
+          subjectAreas: ['Finance', 'Regulation'],
+          language: 'English',
+          pageCount: 18,
+          wordCount: 6500,
+          references: []
+        },
+        files: [],
+        reviews: [],
+        kpis: {
+          views: 1800,
+          downloads: 134,
+          citations: 18,
+          socialShares: 62,
+          reviewScore: 8.8,
+          publicationTime: 28,
+          lastUpdated: new Date()
+        },
+        createdAt: new Date('2025-06-28'),
+        updatedAt: new Date('2025-06-28'),
+        publishedAt: new Date('2025-06-28')
       }
     ];
 

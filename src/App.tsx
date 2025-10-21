@@ -26,6 +26,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import ApplyContributor from './pages/ApplyContributor';
 import ArticleEditor from './pages/articles/ArticleEditor';
+import Articles from './pages/Articles';
 // LMS Components - Additional to existing website
 import LMSLogin from './components/lms/LMSLogin';
 import ProfessorDashboard from './pages/lms/ProfessorDashboard';
@@ -95,6 +96,7 @@ const App = () => (
                     <Route path="/auth/google/callback" element={<AuthCallback />} />
                     <Route path="/auth/linkedin/callback" element={<AuthCallback />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/articles" element={<Articles />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/apply-contributor" element={<ApplyContributor />} />
                 <Route path="/articles/new" element={<ArticleEditor />} />
