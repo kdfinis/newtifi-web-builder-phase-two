@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Debug - NewTIFI</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug-info { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .button { background: #00C2CB; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin: 5px; }
+        .button:hover { background: #00A8B0; }
+    </style>
+</head>
+<body>
+    <h1>OAuth Debug Information</h1>
+    
+    <div class="debug-info">
+        <h3>Current Environment:</h3>
+        <p><strong>URL:</strong> <span id="current-url"></span></p>
+        <p><strong>Is Development:</strong> <span id="is-dev"></span></p>
+    </div>
+    
+    <div class="debug-info">
+        <h3>OAuth URLs:</h3>
+        <p><strong>Google OAuth URL:</strong></p>
+        <p id="google-url" style="word-break: break-all; background: white; padding: 10px; border: 1px solid #ddd;"></p>
+        
+        <p><strong>LinkedIn OAuth URL:</strong></p>
+        <p id="linkedin-url" style="word-break: break-all; background: white; padding: 10px; border: 1px solid #ddd;"></p>
+    </div>
+    
+    <div class="debug-info">
+        <h3>Test OAuth:</h3>
+        <button class="button" onclick="testGoogle()">Test Google OAuth</button>
+        <button class="button" onclick="testLinkedIn()">Test LinkedIn OAuth</button>
+    </div>
+    
+    <div class="debug-info">
+        <h3>Redirect URI Check:</h3>
+        <p><strong>Expected Redirect URI:</strong> <span id="expected-redirect"></span></p>
+        <p><strong>OAuth Callback URL:</strong> <span id="callback-url"></span></p>
+    </div>
+
+    <script>
+        // Get current environment info
+        document.getElementById('current-url').textContent = window.location.href;
+        document.getElementById('is-dev').textContent = window.location.hostname === 'localhost' ? 'Yes' : 'No';
+        
+        // Generate OAuth URLs
+        const isDev = window.location.hostname === 'localhost';
+        const baseUrl = isDev ? 'http://localhost:8080' : 'https://newtifi.com';
+        const redirectUri = baseUrl + '/oauth-callback';
+        
+        document.getElementById('expected-redirect').textContent = redirectUri;
+        document.getElementById('callback-url').textContent = baseUrl + '/oauth-callback';
+        
+        // Google OAuth URL
+        const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+            `client_id=194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com&` +
+            `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+            `response_type=code&` +
+            `scope=profile email&` +
+            `prompt=select_account&` +
+            `state=google_auth`;
+        
+        document.getElementById('google-url').textContent = googleUrl;
+        
+        // LinkedIn OAuth URL
+        const linkedinUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+            `response_type=code&` +
+            `client_id=784sx1yh2lpuxm&` +
+            `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+            `scope=openid profile email&` +
+            `state=linkedin_auth`;
+        
+        document.getElementById('linkedin-url').textContent = linkedinUrl;
+        
+        function testGoogle() {
+            window.open(googleUrl, '_blank');
+        }
+        
+        function testLinkedIn() {
+            window.open(linkedinUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
