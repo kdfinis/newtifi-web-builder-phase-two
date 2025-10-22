@@ -48,7 +48,7 @@ export class GoogleOAuthConfigManager {
   }
 
   private getRedirectUri(): string {
-    return window.location.origin + '/auth/google/callback';
+    return window.location.origin + '/oauth-callback';
   }
 
   getConfig(): GoogleOAuthConfig {
