@@ -1,26 +1,48 @@
-# GitHub Pages Headers Configuration
+# GitHub Pages Headers Configuration - ENHANCED MIME TYPE FIX
 # This file forces correct MIME types for all JavaScript files
 
-# JavaScript files - Force correct MIME type
+# JavaScript files - Force correct MIME type with multiple patterns
 /*.js
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
 
 /*.mjs
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
 
 /*.jsx
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
 
 /*.ts
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
 
 /*.tsx
   Content-Type: application/javascript; charset=utf-8
   Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
+
+# Specific patterns for Vite build assets
+/assets/*.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
+
+# Module scripts specifically
+/assets/index-*.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
+
+/assets/vendor-*.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=31536000
+  X-Content-Type-Options: nosniff
 
 # CSS files
 /*.css

@@ -1,5 +1,25 @@
-# Fix MIME types for GitHub Pages - ENHANCED VERSION
-# Force correct MIME types for JavaScript files
+# Fix MIME types for GitHub Pages - COMPREHENSIVE VERSION
+# Force correct MIME types for JavaScript files with multiple approaches
+
+# Method 1: Direct MIME type assignment
+AddType application/javascript .js
+AddType application/javascript .mjs
+AddType application/javascript .jsx
+AddType application/javascript .ts
+AddType application/javascript .tsx
+
+# Method 2: Force MIME type with RewriteRule
+RewriteEngine On
+RewriteRule ^assets/.*\.js$ - [T=application/javascript]
+
+# Method 3: Remove and re-add MIME types to override server defaults
+RemoveType .js
+RemoveType .mjs
+RemoveType .jsx
+RemoveType .ts
+RemoveType .tsx
+
+# Re-add with correct MIME type
 AddType application/javascript .js
 AddType application/javascript .mjs
 AddType application/javascript .jsx
@@ -13,19 +33,15 @@ AddType image/svg+xml .svg
 AddType application/font-woff .woff
 AddType application/font-woff2 .woff2
 
-# Remove any existing MIME type that might be wrong
-RemoveType .js
-RemoveType .mjs
-RemoveType .jsx
-RemoveType .ts
-RemoveType .tsx
+# Method 4: Force MIME type for specific asset patterns
+<FilesMatch "assets/.*\.js$">
+    ForceType application/javascript
+</FilesMatch>
 
-# Re-add with correct MIME type
-AddType application/javascript .js
-AddType application/javascript .mjs
-AddType application/javascript .jsx
-AddType application/javascript .ts
-AddType application/javascript .tsx
+# Method 5: Override MIME type for all JS files
+<FilesMatch "\.js$">
+    ForceType application/javascript
+</FilesMatch>
 
 # Enable CORS for OAuth
 Header always set Access-Control-Allow-Origin "*"
