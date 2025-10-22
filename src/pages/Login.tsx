@@ -100,29 +100,29 @@ export default function Login() {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
           
           <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
-            <div className="text-center max-w-md">
-              <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+            <div className="text-center max-w-sm">
+              <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
                 Welcome to NewTIFI
               </h1>
-              <p className="text-xl mb-8 text-blue-100 leading-relaxed">
+              <p className="text-lg mb-6 text-blue-100 leading-relaxed">
                 Shaping the Future of Technology through Innovation and Regulation
               </p>
-              <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                <p className="text-sm text-blue-50 leading-relaxed">
+              <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <p className="text-xs text-blue-50 leading-relaxed">
                   Join our community of technology leaders, investors, and innovators working together to build a better future.
                 </p>
               </div>
             </div>
-            <div className="mt-8 max-w-md">
+            <div className="mt-6 max-w-sm">
               <img 
                 src="/images/uploads/luxembourg-skyline-golden-hour.jpg" 
                 alt="Luxembourg Skyline"
-                className="w-full h-40 object-cover rounded-xl shadow-2xl border border-white/20"
+                className="w-full h-32 object-cover rounded-lg shadow-xl border border-white/20"
               />
             </div>
             
             {/* NewTIFI Logo */}
-            <div className="mt-6 max-w-md">
+            <div className="mt-4 max-w-xs">
               <img 
                 src="/assets/images/logo.png" 
                 alt="NewTIFI Logo"
