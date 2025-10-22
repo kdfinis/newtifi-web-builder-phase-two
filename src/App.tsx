@@ -30,6 +30,7 @@ const LazyMembership = React.lazy(() => import('./pages/Membership'));
 const LazyContact = React.lazy(() => import('./pages/Contact'));
 const LazyLogin = React.lazy(() => import('./pages/Login'));
 const LazySignup = React.lazy(() => import('./pages/Signup'));
+const LazyApplyContributor = React.lazy(() => import('./pages/ApplyContributor'));
 
 // Loading component for Suspense fallback
 const LoadingSpinner = () => (
@@ -93,7 +94,7 @@ const App = () => (
                 <Route path="/dashboard" element={<LazyDashboard />} />
                 <Route path="/articles" element={<LazyArticles />} />
                 <Route path="/profile" element={<LazyProfile />} />
-                <Route path="/apply-contributor" element={<ApplyContributor />} />
+                <Route path="/apply-contributor" element={<LazyApplyContributor />} />
                 <Route path="/articles/new" element={<LazyArticleEditor />} />
                 <Route path="/articles/edit/:id" element={<LazyArticleEditor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
