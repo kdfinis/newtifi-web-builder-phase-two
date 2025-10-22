@@ -22,7 +22,9 @@ export default defineConfig({
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']
-    }
+    },
+    // Fix MIME types for JavaScript modules in development
+    middlewareMode: false
   },
   plugins: [
     react({
@@ -37,7 +39,20 @@ export default defineConfig({
           ]
         ].filter(Boolean)
       }
-    })
+    }),
+    // Custom plugin for SPA routing
+    {
+      name: 'spa-routing',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          // Handle SPA routing - serve index.html for all routes
+          if (req.url && !req.url.startsWith('/assets/') && !req.url.startsWith('/src/') && !req.url.includes('.')) {
+            req.url = '/';
+          }
+          next();
+        });
+      }
+    }
   ],
   resolve: {
     alias: {

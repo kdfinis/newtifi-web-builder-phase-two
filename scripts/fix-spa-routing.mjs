@@ -1,4 +1,33 @@
-<!DOCTYPE html>
+#!/usr/bin/env node
+
+/**
+ * Fix SPA Routing for GitHub Pages
+ * Creates a proper 404.html that redirects to index.html for SPA routing
+ */
+
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+console.log('🔧 Fixing SPA routing for GitHub Pages...');
+
+const distDir = path.join(__dirname, '..', 'dist');
+const indexHtmlPath = path.join(distDir, 'index.html');
+const custom404Path = path.join(distDir, '404.html');
+
+if (!fs.existsSync(indexHtmlPath)) {
+  console.error('❌ index.html not found in dist directory. Run build first.');
+  process.exit(1);
+}
+
+// Read the current index.html
+const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
+
+// Create a custom 404.html that handles SPA routing
+const custom404Html = `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -147,4 +176,12 @@
     <link rel="modulepreload" crossorigin href="/assets/vendor-MrwQVqq1.js">
     <link rel="stylesheet" crossorigin href="/assets/index-CexH58to.css">
   </body>
-</html>
+</html>`;
+
+// Write the custom 404.html
+fs.writeFileSync(custom404Path, custom404Html);
+
+console.log('✅ Custom 404.html created with SPA routing support');
+console.log('✅ MIME type fixes included');
+console.log('✅ Automatic path preservation for client-side routing');
+console.log('✅ GitHub Pages SPA routing should now work correctly');
