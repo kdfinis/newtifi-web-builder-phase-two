@@ -35,10 +35,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- MIME Type Fix for GitHub Pages -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script>
+      // Force correct MIME type for JavaScript modules
+      if (typeof window !== 'undefined') {
+        const originalCreateElement = document.createElement;
+        document.createElement = function(tagName) {
+          const element = originalCreateElement.call(this, tagName);
+          if (tagName === 'script' && element.type === 'module') {
+            element.type = 'module';
+          }
+          return element;
+        };
+      }
+    </script>
     <!-- Dev-only: assets are served by Vite; production assets are injected into dist/index.html at build time -->
-    <script type="module" crossorigin src="/assets/index-BeT-nKWn.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/vendor-CaaJdot5.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-BLYRNz4y.css">
+    <script type="module" crossorigin src="/assets/index-GRmovqlt.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-MrwQVqq1.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-Ca-LJOhv.css">
   </head>
   <body>
     <div id="root"></div>

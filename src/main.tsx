@@ -5,6 +5,28 @@ import './index.css'
 // import './lib/mime-type-fix' // TODO: Enable after fixing import issue
 import { configManager } from './lib/config/ConfigManager'
 
+// Prevent React DevTools hook from being set in production
+if (import.meta.env.PROD) {
+  // Make the hook property non-writable
+  try {
+    Object.defineProperty(window, '__REACT_DEVTOOLS_GLOBAL_HOOK__', {
+      value: undefined,
+      writable: false,
+      configurable: false
+    });
+  } catch (e) {
+    // If already defined, try to make it non-writable
+    try {
+      Object.defineProperty(window, '__REACT_DEVTOOLS_GLOBAL_HOOK__', {
+        writable: false,
+        configurable: false
+      });
+    } catch (e2) {
+      // Ignore if we can't modify it
+    }
+  }
+}
+
 // Dev-only: aggressively unregister any service workers to prevent stale caches
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {

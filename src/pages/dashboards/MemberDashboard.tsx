@@ -1,10 +1,11 @@
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import ScrollReveal from '@/components/ScrollReveal';
-import { FileText, User, Bookmark, Home, Settings } from 'lucide-react';
+import { FileText, User, Bookmark, Home, Settings, ArrowLeft } from 'lucide-react';
 
 export default function MemberDashboard() {
   const { user } = useSimpleAuth();
+  const navigate = useNavigate();
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -20,6 +21,16 @@ export default function MemberDashboard() {
         
         <div className="container mx-auto relative">
           <ScrollReveal>
+            <div className="flex items-center gap-4 mb-6">
+              <button
+                onClick={() => navigate(-1)}
+                className="flex items-center gap-2 text-white/80 hover:text-white transition-colors"
+                aria-label="Go back"
+              >
+                <ArrowLeft className="h-5 w-5" />
+                <span className="text-sm">Back</span>
+              </button>
+            </div>
             <h1 className="text-2xl md:text-2xl font-light mb-10">Member Dashboard</h1>
             <div className="mb-10">
               <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">

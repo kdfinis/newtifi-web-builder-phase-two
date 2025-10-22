@@ -175,7 +175,12 @@ const Navbar = () => {
               <span className="text-sm text-white">Hello, {user?.name || user?.email}</span>
               <Link 
                 to="/dashboard" 
-                className="px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase text-base font-medium tracking-wide"
+                className={cn(
+                  "px-4 py-1.5 rounded-lg text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase text-base font-medium tracking-wide",
+                  location.pathname.startsWith('/dashboard') 
+                    ? "bg-newtifi-teal ring-2 ring-newtifi-teal/50" 
+                    : "bg-newtifi-teal"
+                )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Dashboard

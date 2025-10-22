@@ -24,7 +24,21 @@ export default defineConfig({
       allow: ['..']
     }
   },
-  plugins: [react()],
+  plugins: [
+    react({
+      // Disable React DevTools in production
+      jsxRuntime: 'automatic',
+      babel: {
+        plugins: [
+          // Remove React DevTools hook in production
+          process.env.NODE_ENV === 'production' && [
+            'babel-plugin-transform-remove-console',
+            { exclude: ['error', 'warn'] }
+          ]
+        ].filter(Boolean)
+      }
+    })
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -41,6 +55,11 @@ export default defineConfig({
         format: 'es',
       },
     },
+    // Remove React DevTools in production build
+    define: {
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production'),
+      '__REACT_DEVTOOLS_GLOBAL_HOOK__': 'undefined'
+    }
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react-router-dom'],
