@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NewTIFI - Loading...</title>
+    <script>
+      // Immediate redirect to index.html for SPA routing
+      (function() {
+        const currentPath = window.location.pathname + window.location.search;
+        if (currentPath !== '/') {
+          // Store the original path for React Router
+          sessionStorage.setItem('spa_redirect_path', currentPath);
+        }
+        // Redirect to index.html
+        window.location.replace('/');
+      })();
+    </script>
+  </head>
+  <body>
+    <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: Arial, sans-serif;">
+      <div style="text-align: center;">
+        <h2>Loading NewTIFI...</h2>
+        <p>Redirecting to the main application...</p>
+      </div>
+    </div>
+  </body>
+</html>
