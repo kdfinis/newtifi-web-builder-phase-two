@@ -5,11 +5,6 @@ import './index.css'
 // import './lib/mime-type-fix' // TODO: Enable after fixing import issue
 import { configManager } from './lib/config/ConfigManager'
 
-// Suppress React DevTools message in production
-if (import.meta.env.PROD) {
-  window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = { isDisabled: true };
-}
-
 // Dev-only: aggressively unregister any service workers to prevent stale caches
 if (import.meta.env.DEV && 'serviceWorker' in navigator) {
   navigator.serviceWorker.getRegistrations().then(registrations => {
