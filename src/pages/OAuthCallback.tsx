@@ -89,9 +89,8 @@ export default function OAuthCallback() {
           // Trigger auth state refresh
           window.dispatchEvent(new CustomEvent('authStateChanged'));
           
-          // Redirect to dashboard
-          console.log('LinkedIn OAuth successful, redirecting to dashboard...');
-          navigate('/dashboard?auth=success&provider=linkedin');
+          // Set success status
+          setStatus('success');
         } else if (provider === 'google') {
           // Handle Google OAuth using configurable parameters
           const tokenResponse = await fetch('https://oauth2.googleapis.com/token', {
@@ -132,15 +131,18 @@ export default function OAuthCallback() {
           
           // Trigger auth state refresh
           window.dispatchEvent(new CustomEvent('authStateChanged'));
+          
+          // Set success status
+          setStatus('success');
         } else {
           throw new Error('Unknown OAuth provider');
         }
 
-        // Hard redirect ensures production routing works reliably
+        // Small delay to ensure auth state is updated
         setTimeout(() => {
           console.log('OAuth callback: Redirecting to dashboard...');
           window.location.replace('/dashboard?auth=success&provider=' + provider);
-        }, 50);
+        }, 100);
 
       } catch (err) {
         console.error('OAuth callback error:', err);
