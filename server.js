@@ -12,7 +12,8 @@ const PORT = process.env.PORT || 8080;
 app.use(compression());
 app.use(express.static(join(__dirname, 'dist')));
 
-app.get('*', (req, res) => {
+// Use string pattern to avoid path-to-regexp param errors
+app.get('/*', (req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 

@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Breadcrumb from './Breadcrumb';
 import FloatingDashboardButton from './FloatingDashboardButton';
 import { usePerformance } from '@/hooks/usePerformance';
+import CookieConsent from './CookieConsent';
 
 type LayoutProps = {
   children: ReactNode;
@@ -59,6 +60,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </div>
       <Footer />
       <FloatingDashboardButton />
+      <CookieConsent />
     </div>
   );
 };

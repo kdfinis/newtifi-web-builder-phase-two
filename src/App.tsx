@@ -4,36 +4,32 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from "react-router-
 import Layout from "./components/Layout";
 import ErrorBoundary from "./components/ErrorBoundary";
 import Home from "./pages/Home";
-import WhoWeAre from "./pages/WhoWeAre";
-import Membership from "./pages/Membership";
-import Connect from "./pages/Connect";
-import Contact from "./pages/Contact";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
 import Person from "./pages/Person";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Cookies from "./pages/Cookies";
-import Publishing from "./pages/Publishing";
-import InvestmentManagementJournal from "./pages/publishing/journals/investment-management";
-import ArticlePage from "./pages/publishing/journals/ArticlePage";
-import Admin from './pages/Admin';
 import AuthCallback from './pages/AuthCallback';
 import OAuthCallback from './pages/OAuthCallback';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
-import ApplyContributor from './pages/ApplyContributor';
-import ArticleEditor from './pages/articles/ArticleEditor';
-import Articles from './pages/Articles';
 import "./styles/typography.css";
 import "./App.css";
 
 // Lazy load heavy components for better performance
 const LazyAdmin = React.lazy(() => import('./pages/Admin'));
 const LazyArticlePage = React.lazy(() => import('./pages/publishing/journals/ArticlePage'));
+const LazyPublishing = React.lazy(() => import('./pages/Publishing'));
+const LazyInvestmentManagement = React.lazy(() => import('./pages/publishing/journals/investment-management'));
+const LazyDashboard = React.lazy(() => import('./pages/Dashboard'));
+const LazyProfile = React.lazy(() => import('./pages/Profile'));
+const LazyArticles = React.lazy(() => import('./pages/Articles'));
+const LazyArticleEditor = React.lazy(() => import('./pages/articles/ArticleEditor'));
+const LazyWhoWeAre = React.lazy(() => import('./pages/WhoWeAre'));
+const LazyMembership = React.lazy(() => import('./pages/Membership'));
+const LazyContact = React.lazy(() => import('./pages/Contact'));
+const LazyLogin = React.lazy(() => import('./pages/Login'));
+const LazySignup = React.lazy(() => import('./pages/Signup'));
 
 // Loading component for Suspense fallback
 const LoadingSpinner = () => (
@@ -74,19 +70,19 @@ const App = () => (
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/who-we-are" element={<WhoWeAre />} />
-                <Route path="/membership" element={<Membership />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<Signup />} />
+                <Route path="/who-we-are" element={<LazyWhoWeAre />} />
+                <Route path="/membership" element={<LazyMembership />} />
+                <Route path="/contact" element={<LazyContact />} />
+                <Route path="/login" element={<LazyLogin />} />
+                <Route path="/signup" element={<LazySignup />} />
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/reset-password" element={<ResetPassword />} />
                 <Route path="/person/:name" element={<Person />} />
                 <Route path="/privacy" element={<Privacy />} />
                 <Route path="/terms" element={<Terms />} />
                 <Route path="/cookies" element={<Cookies />} />
-                <Route path="/publishing" element={<Publishing />} />
-                <Route path="/publishing/investment-management" element={<Publishing />} />
+                <Route path="/publishing" element={<LazyPublishing />} />
+                <Route path="/publishing/investment-management" element={<LazyInvestmentManagement />} />
                 <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
@@ -94,12 +90,12 @@ const App = () => (
                     <Route path="/auth/google/callback" element={<OAuthCallback />} />
                     <Route path="/auth/linkedin/callback" element={<OAuthCallback />} />
                     <Route path="/oauth-callback" element={<OAuthCallback />} /> {/* Fallback for old URLs */}
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/articles" element={<Articles />} />
-                <Route path="/profile" element={<Profile />} />
+                <Route path="/dashboard" element={<LazyDashboard />} />
+                <Route path="/articles" element={<LazyArticles />} />
+                <Route path="/profile" element={<LazyProfile />} />
                 <Route path="/apply-contributor" element={<ApplyContributor />} />
-                <Route path="/articles/new" element={<ArticleEditor />} />
-                <Route path="/articles/edit/:id" element={<ArticleEditor />} />
+                <Route path="/articles/new" element={<LazyArticleEditor />} />
+                <Route path="/articles/edit/:id" element={<LazyArticleEditor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

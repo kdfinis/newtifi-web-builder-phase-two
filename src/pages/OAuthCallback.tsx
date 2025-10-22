@@ -136,11 +136,11 @@ export default function OAuthCallback() {
           throw new Error('Unknown OAuth provider');
         }
 
-        // Small delay to ensure auth state is updated
+        // Hard redirect ensures production routing works reliably
         setTimeout(() => {
           console.log('OAuth callback: Redirecting to dashboard...');
-          navigate('/dashboard?auth=success&provider=' + provider);
-        }, 100);
+          window.location.replace('/dashboard?auth=success&provider=' + provider);
+        }, 50);
 
       } catch (err) {
         console.error('OAuth callback error:', err);
