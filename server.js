@@ -12,11 +12,11 @@ const PORT = process.env.PORT || 8080;
 app.use(compression());
 app.use(express.static(join(__dirname, 'dist')));
 
-// Use string pattern to avoid path-to-regexp param errors
+// SPA routing - serve index.html for all routes
 app.get('/*', (req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 
 app.listen(PORT, () => {
-  console.log(`Production server running at http://localhost:${PORT}`);
+  console.log(`Server running at http://localhost:${PORT}`);
 }); 

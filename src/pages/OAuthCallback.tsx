@@ -72,13 +72,36 @@ export default function OAuthCallback() {
           const user = await userResponse.json();
           console.log('LinkedIn user response:', user);
           
+          // LinkedIn API v2 exact field mapping
           const userData = {
             id: user.sub || user.id,
             email: user.email || 'linkedin@user.com',
             name: user.name || `${user.given_name || ''} ${user.family_name || ''}`.trim() || 'LinkedIn User',
             avatarUrl: user.picture || '',
             provider: 'linkedin',
-            loginTime: new Date().toISOString()
+            loginTime: new Date().toISOString(),
+            // LinkedIn API v2 exact field names
+            headline: user.headline || '',
+            location: user.location || null,
+            industry: user.industry || '',
+            positions: user.positions || [],
+            educations: user.educations || [],
+            skills: user.skills || [],
+            numConnections: user.numConnections || 0,
+            profileUrl: user.profileUrl || '',
+            firstName: user.given_name || '',
+            lastName: user.family_name || '',
+            vanityName: user.vanityName || '',
+            summary: user.summary || '',
+            specialties: user.specialties || [],
+            interests: user.interests || [],
+            honors: user.honors || [],
+            publications: user.publications || [],
+            patents: user.patents || [],
+            certifications: user.certifications || [],
+            courses: user.courses || [],
+            volunteer: user.volunteer || [],
+            languages: user.languages || []
           };
           
           console.log('Storing user data:', userData);
@@ -116,6 +139,8 @@ export default function OAuthCallback() {
           }
 
           const user = await userResponse.json();
+          
+          // Seamless account linking - just use the OAuth data
           const userData = {
             id: user.id,
             email: user.email,
@@ -124,6 +149,8 @@ export default function OAuthCallback() {
             provider: 'google',
             loginTime: new Date().toISOString()
           };
+
+          console.log('Storing user data:', userData);
 
           // Store in localStorage
           localStorage.setItem('newtifi_user', JSON.stringify(userData));

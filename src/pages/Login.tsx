@@ -87,7 +87,7 @@ export default function Login() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('Email/password authentication is not available in client-side mode. Please use Google or LinkedIn.');
+    setError('Please use Google or LinkedIn to sign in.');
   };
 
   return (

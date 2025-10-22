@@ -31,10 +31,51 @@ model User {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   
+  // LinkedIn API v2 exact field names
+  headline     String?
+  location     Json?    // {name, country, geographicArea}
+  industry     String?
+  positions    Json?    // Array of position objects
+  educations   Json?    // Array of education objects
+  skills       Json?    // Array of skill objects
+  numConnections Int?
+  profileUrl   String?
+  firstName    String?
+  lastName     String?
+  vanityName   String?
+  summary      String?
+  specialties  Json?    // Array of strings
+  interests    Json?    // Array of strings
+  honors       Json?    // Array of strings
+  publications Json?    // Array of strings
+  patents      Json?    // Array of strings
+  certifications Json?  // Array of certification objects
+  courses      Json?    // Array of course objects
+  volunteer    Json?    // Array of volunteer objects
+  languages    Json?    // Array of language objects
+  
   resetTokens  ResetToken[]
   applications ContributorApplication[]
   articles     Article[]
   bookmarks    Bookmark[]
+  linkedAccounts LinkedAccount[]
+}
+
+model LinkedAccount {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  provider  String   // 'google', 'linkedin', 'email'
+  providerId String? // OAuth provider ID (null for email)
+  email     String   // Email associated with this account
+  name      String?  // Name from this provider
+  avatarUrl String?  // Avatar from this provider
+  isPrimary Boolean  @default(false) // Primary login method
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@unique([provider, providerId])
+  @@unique([provider, email])
 }
 
 model ResetToken {

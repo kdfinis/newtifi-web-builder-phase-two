@@ -14,6 +14,95 @@ interface User {
   hasPasswordAuth?: boolean;
   createdAt: string;
   updatedAt: string;
+  // LinkedIn API v2 exact field names
+  headline?: string;
+  location?: {
+    name: string;
+    country: string;
+    geographicArea?: string;
+  };
+  industry?: string;
+  positions?: Array<{
+    title: string;
+    companyName: string;
+    companyId?: string;
+    startDate?: {
+      year: number;
+      month: number;
+    };
+    endDate?: {
+      year: number;
+      month: number;
+    };
+    description?: string;
+    location?: {
+      name: string;
+      country: string;
+    };
+  }>;
+  educations?: Array<{
+    schoolName: string;
+    schoolId?: string;
+    degreeName?: string;
+    fieldOfStudy?: string;
+    startDate?: {
+      year: number;
+    };
+    endDate?: {
+      year: number;
+    };
+    activities?: string;
+  }>;
+  skills?: Array<{
+    name: string;
+    endorsements?: number;
+  }>;
+  numConnections?: number;
+  profileUrl?: string;
+  // Additional LinkedIn fields
+  firstName?: string;
+  lastName?: string;
+  vanityName?: string;
+  summary?: string;
+  specialties?: string[];
+  interests?: string[];
+  honors?: string[];
+  publications?: string[];
+  patents?: string[];
+  certifications?: Array<{
+    name: string;
+    authority: string;
+    number?: string;
+    startDate?: {
+      year: number;
+      month: number;
+    };
+    endDate?: {
+      year: number;
+      month: number;
+    };
+  }>;
+  courses?: Array<{
+    name: string;
+    number?: string;
+  }>;
+  volunteer?: Array<{
+    role: string;
+    organization: string;
+    cause: string;
+    startDate?: {
+      year: number;
+      month: number;
+    };
+    endDate?: {
+      year: number;
+      month: number;
+    };
+  }>;
+  languages?: Array<{
+    name: string;
+    proficiency: string;
+  }>;
 }
 
 export function useSimpleAuth() {
@@ -22,18 +111,19 @@ export function useSimpleAuth() {
 
   const checkAuth = useCallback(async () => {
     try {
-      // First check localStorage for OAuth users
+      // Check localStorage for OAuth users
       const oauthUser = localStorage.getItem('newtifi_user');
       const oauthAuth = localStorage.getItem('newtifi_auth');
       
       if (oauthUser && oauthAuth === 'true') {
         const userData = JSON.parse(oauthUser);
-        // Convert OAuth user data to match User interface
+        
+        // Simple OAuth user - use email as ID for consistency
         const user: User = {
-          id: userData.id,
+          id: userData.email,
           email: userData.email,
           name: userData.name,
-          role: 'MEMBER', // Default role for OAuth users
+          role: 'MEMBER',
           avatarUrl: userData.avatarUrl,
           hasGoogleAuth: userData.provider === 'google',
           hasLinkedInAuth: userData.provider === 'linkedin',
@@ -46,8 +136,7 @@ export function useSimpleAuth() {
         return;
       }
       
-      // Skip API auth check for OAuth-only setup
-      // This prevents 404 errors on /auth/status endpoint
+      // No OAuth user found
       setUser(null);
     } catch (err) {
       console.error('Auth check failed:', err);

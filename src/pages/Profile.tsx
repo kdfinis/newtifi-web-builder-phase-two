@@ -208,6 +208,116 @@ export default function Profile() {
                   />
                 </div>
 
+                {/* LinkedIn Profile Information */}
+                {user?.hasLinkedInAuth && (
+                  <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
+                    <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                      <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="#0077B5">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.853 0-2.136 1.446-2.136 2.941v5.664H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.602 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM7.114 20.452H3.56V9h3.554v11.452z"/>
+                      </svg>
+                      LinkedIn Profile
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {user.headline && (
+                        <div>
+                          <label className="block text-sm font-medium text-blue-800 mb-1">Headline</label>
+                          <p className="text-blue-700">{user.headline}</p>
+                        </div>
+                      )}
+                      
+                      {user.location && (
+                        <div>
+                          <label className="block text-sm font-medium text-blue-800 mb-1">Location</label>
+                          <p className="text-blue-700">{user.location.name}, {user.location.country}</p>
+                        </div>
+                      )}
+                      
+                      {user.industry && (
+                        <div>
+                          <label className="block text-sm font-medium text-blue-800 mb-1">Industry</label>
+                          <p className="text-blue-700">{user.industry}</p>
+                        </div>
+                      )}
+                      
+                      {user.positions && user.positions.length > 0 && (
+                        <div>
+                          <label className="block text-sm font-medium text-blue-800 mb-1">Current Position</label>
+                          <p className="text-blue-700">{user.positions[0].title} at {user.positions[0].companyName}</p>
+                        </div>
+                      )}
+                      
+                      {user.numConnections && (
+                        <div>
+                          <label className="block text-sm font-medium text-blue-800 mb-1">Connections</label>
+                          <p className="text-blue-700">{user.numConnections.toLocaleString()} connections</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {user.skills && user.skills.length > 0 && (
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-blue-800 mb-2">Skills</label>
+                        <div className="flex flex-wrap gap-2">
+                          {user.skills.slice(0, 10).map((skill, index) => (
+                            <span key={index} className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                              {skill.name} {skill.endorsements && `(${skill.endorsements})`}
+                            </span>
+                          ))}
+                          {user.skills.length > 10 && (
+                            <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                              +{user.skills.length - 10} more
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {user.positions && user.positions.length > 0 && (
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-blue-800 mb-2">Recent Experience</label>
+                        <div className="space-y-2">
+                          {user.positions.slice(0, 3).map((position, index) => (
+                            <div key={index} className="bg-white p-3 rounded-lg border border-blue-200">
+                              <p className="font-medium text-blue-900">{position.title}</p>
+                              <p className="text-blue-700">{position.companyName}</p>
+                              <p className="text-blue-600 text-sm">
+                                {position.startDate && `${position.startDate.year}`}
+                                {position.endDate ? ` - ${position.endDate.year}` : ' - Present'}
+                              </p>
+                              {position.description && (
+                                <p className="text-blue-600 text-sm mt-1">{position.description}</p>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {user.educations && user.educations.length > 0 && (
+                      <div className="mt-4">
+                        <label className="block text-sm font-medium text-blue-800 mb-2">Education</label>
+                        <div className="space-y-2">
+                          {user.educations.slice(0, 2).map((education, index) => (
+                            <div key={index} className="bg-white p-3 rounded-lg border border-blue-200">
+                              <p className="font-medium text-blue-900">
+                                {education.degreeName} {education.fieldOfStudy && `in ${education.fieldOfStudy}`}
+                              </p>
+                              <p className="text-blue-700">{education.schoolName}</p>
+                              <p className="text-blue-600 text-sm">
+                                {education.startDate && education.endDate 
+                                  ? `${education.startDate.year} - ${education.endDate.year}`
+                                  : education.startDate ? `${education.startDate.year}` : ''
+                                }
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {/* Organization Field */}
                 <div>
                   <label htmlFor="organization" className="block text-sm font-medium text-gray-700 mb-2">
@@ -279,6 +389,7 @@ export default function Profile() {
                   )}
                 </div>
               </form>
+
 
               {/* Coming Soon Section */}
               <div className="mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-200">
