@@ -53,9 +53,15 @@
           };
         }
 
-        // Layer 2: MIME type error detection and recovery
+        // Layer 2: MIME type error detection and recovery (DEVELOPMENT SAFE)
         window.addEventListener('error', function(event) {
           if (event.message && event.message.includes('MIME type')) {
+            // Skip in development environment
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Development environment - skipping MIME type error recovery');
+              return;
+            }
+            
             console.warn('MIME type error detected, attempting recovery...');
             // Force reload with cache busting
             const url = new URL(window.location);
@@ -64,9 +70,21 @@
           }
         });
 
-        // Layer 3: Module script error handling
+        // Layer 3: Module script error handling (DEVELOPMENT SAFE)
         window.addEventListener('error', function(event) {
           if (event.target && event.target.tagName === 'SCRIPT' && event.target.type === 'module') {
+            // Skip Vite development files
+            if (event.target.src && (event.target.src.includes('@vite/') || event.target.src.includes('@react-refresh'))) {
+              console.log('Development script error (ignored):', event.target.src);
+              return;
+            }
+            
+            // Skip in development environment
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Development environment - skipping MIME type error handling');
+              return;
+            }
+            
             console.warn('Module script error detected, checking MIME type...');
             // Check if the script failed due to MIME type
             fetch(event.target.src, { method: 'HEAD' })
@@ -89,11 +107,17 @@
           }
         });
 
-        // Layer 4: Proactive MIME type validation
+        // Layer 4: Proactive MIME type validation (DEVELOPMENT SAFE)
         document.addEventListener('DOMContentLoaded', function() {
+          // Skip MIME type validation in development environment
+          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('Development environment detected - skipping MIME type validation');
+            return;
+          }
+          
           const scripts = document.querySelectorAll('script[type="module"]');
           scripts.forEach(script => {
-            if (script.src) {
+            if (script.src && !script.src.includes('@vite/') && !script.src.includes('@react-refresh')) {
               fetch(script.src, { method: 'HEAD' })
                 .then(response => {
                   const contentType = response.headers.get('content-type');

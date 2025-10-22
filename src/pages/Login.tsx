@@ -71,7 +71,7 @@ export default function Login() {
       setError('');
       setIsLoading(true);
       
-      const redirectUri = window.location.origin + '/oauth-callback';
+      const redirectUri = window.location.origin + '/auth/linkedin/callback';
       const state = 'linkedin_auth_' + Math.random().toString(36).substring(7);
       
       sessionStorage.setItem('linkedin_state', state);
