@@ -86,6 +86,9 @@ export default function OAuthCallback() {
           localStorage.setItem('newtifi_user', JSON.stringify(userData));
           localStorage.setItem('newtifi_auth', 'true');
           
+          // Trigger auth state refresh
+          window.dispatchEvent(new CustomEvent('authStateChanged'));
+          
           // Redirect to dashboard
           console.log('LinkedIn OAuth successful, redirecting to dashboard...');
           navigate('/dashboard?auth=success&provider=linkedin');
@@ -126,13 +129,18 @@ export default function OAuthCallback() {
           // Store in localStorage
           localStorage.setItem('newtifi_user', JSON.stringify(userData));
           localStorage.setItem('newtifi_auth', 'true');
+          
+          // Trigger auth state refresh
+          window.dispatchEvent(new CustomEvent('authStateChanged'));
         } else {
           throw new Error('Unknown OAuth provider');
         }
 
-        // Redirect immediately to dashboard
-        console.log('OAuth callback: Redirecting to dashboard...');
-        navigate('/dashboard?auth=success&provider=' + provider);
+        // Small delay to ensure auth state is updated
+        setTimeout(() => {
+          console.log('OAuth callback: Redirecting to dashboard...');
+          navigate('/dashboard?auth=success&provider=' + provider);
+        }, 100);
 
       } catch (err) {
         console.error('OAuth callback error:', err);

@@ -59,6 +59,9 @@ export class GoogleAuth {
     localStorage.setItem('newtifi_user', JSON.stringify(userData));
     localStorage.setItem('newtifi_auth', 'true');
 
+    // Trigger auth state refresh
+    window.dispatchEvent(new CustomEvent('authStateChanged'));
+
     // Redirect to dashboard
     window.location.href = '/dashboard?auth=success&provider=google';
   }

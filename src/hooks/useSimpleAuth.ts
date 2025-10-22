@@ -69,6 +69,27 @@ export function useSimpleAuth() {
 
   useEffect(() => {
     checkAuth();
+    
+    // Listen for storage changes (OAuth login from other tabs/windows)
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'newtifi_user' || e.key === 'newtifi_auth') {
+        checkAuth();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom auth events
+    const handleAuthEvent = () => {
+      checkAuth();
+    };
+    
+    window.addEventListener('authStateChanged', handleAuthEvent);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('authStateChanged', handleAuthEvent);
+    };
   }, [checkAuth]);
 
   const login = async (email: string, password: string): Promise<boolean> => {
@@ -121,6 +142,8 @@ export function useSimpleAuth() {
 
   const refreshAuth = useCallback(async () => {
     await checkAuth();
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('authStateChanged'));
   }, [checkAuth]);
 
   return { 
