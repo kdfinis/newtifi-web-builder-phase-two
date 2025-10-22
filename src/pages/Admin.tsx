@@ -15,6 +15,8 @@ import { FileText, Upload, Users, BarChart3, Settings, Plus, Edit, Trash2, Eye, 
 
 // Import all admin components
 import AdminDashboard from '../components/admin/AdminDashboard';
+import UserManagement from '../components/admin/UserManagement';
+import SystemSettings from '../components/admin/SystemSettings';
 import ArticleCollatingTool from '../components/admin/JournalManager';
 import LegalCommentaryManager from '../components/admin/LegalCommentaryManager';
 import NewsManager from '../components/admin/NewsManager';
@@ -70,9 +72,11 @@ const Admin = () => {
 
   const { toast } = useToast();
 
-  // Navigation modules
+  // Navigation modules - Google-like admin interface
   const modules = [
     { id: 'dashboard', label: 'Dashboard', icon: BarChart3, component: AdminDashboard },
+    { id: 'users', label: 'Users', icon: Users, component: UserManagement },
+    { id: 'settings', label: 'Settings', icon: Settings, component: SystemSettings },
     { id: 'journal', label: 'Article Collating Tool', icon: BookOpen, component: ArticleCollatingTool },
     { id: 'legal', label: 'Legal Commentary', icon: FileText, component: LegalCommentaryManager },
     { id: 'news', label: 'News & Events', icon: Newspaper, component: NewsManager },
@@ -181,6 +185,10 @@ const Admin = () => {
     switch (module.id) {
       case 'dashboard':
         return <Component analytics={analytics} activityLog={[]} />;
+      case 'users':
+        return <Component />;
+      case 'settings':
+        return <Component />;
       case 'journal':
         return <Component articles={articles} onRefresh={loadData} />;
       case 'legal':
