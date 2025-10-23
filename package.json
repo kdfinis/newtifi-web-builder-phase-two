@@ -16,7 +16,9 @@
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build && node scripts/fix-github-pages-spa.mjs && cp .htaccess dist/ && cp _headers dist/ && npm run validate-mime",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "deploy:firebase": "./scripts/auto-deploy.sh",
+    "deploy:auto": "npm run build && firebase deploy --only hosting --non-interactive"
   },
   "dependencies": {
     "@alloc/quick-lru": "^5.2.0",
