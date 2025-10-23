@@ -77,13 +77,6 @@ export default function MemberDashboard() {
               <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
               <span className="hidden sm:inline">Articles</span>
             </Link>
-            <Link
-              to="/articles/new"
-              className="flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all whitespace-nowrap"
-            >
-              <FileText className="h-3 w-3 sm:h-4 sm:w-4" />
-              <span className="hidden sm:inline">New Article</span>
-            </Link>
             {user?.role === 'ADMIN' && (
               <>
                 <div className="w-px h-6 bg-gray-300"></div>

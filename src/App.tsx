@@ -24,7 +24,6 @@ const LazyInvestmentManagement = React.lazy(() => import('./pages/publishing/jou
 const LazyDashboard = React.lazy(() => import('./pages/Dashboard'));
 const LazyProfile = React.lazy(() => import('./pages/Profile'));
 const LazyArticles = React.lazy(() => import('./pages/Articles'));
-const LazyArticleEditor = React.lazy(() => import('./pages/articles/ArticleEditor'));
 const LazyWhoWeAre = React.lazy(() => import('./pages/WhoWeAre'));
 const LazyMembership = React.lazy(() => import('./pages/Membership'));
 const LazyContact = React.lazy(() => import('./pages/Contact'));
@@ -95,8 +94,6 @@ const App = () => (
                 <Route path="/articles" element={<LazyArticles />} />
                 <Route path="/profile" element={<LazyProfile />} />
                 <Route path="/apply-contributor" element={<LazyApplyContributor />} />
-                <Route path="/articles/new" element={<LazyArticleEditor />} />
-                <Route path="/articles/edit/:id" element={<LazyArticleEditor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

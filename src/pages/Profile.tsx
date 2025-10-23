@@ -9,7 +9,17 @@ export default function Profile() {
   const [formData, setFormData] = useState({
     name: '',
     bio: '',
-    organization: ''
+    organization: '',
+    title: '',
+    department: '',
+    phone: '',
+    website: '',
+    linkedin: '',
+    twitter: '',
+    researchInterests: '',
+    expertise: '',
+    location: '',
+    timezone: ''
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -19,7 +29,17 @@ export default function Profile() {
       setFormData({
         name: user.name || '',
         bio: user.bio || '',
-        organization: user.organization || ''
+        organization: user.organization || '',
+        title: user.title || '',
+        department: user.department || '',
+        phone: user.phone || '',
+        website: user.website || '',
+        linkedin: user.linkedin || '',
+        twitter: user.twitter || '',
+        researchInterests: user.researchInterests || '',
+        expertise: user.expertise || '',
+        location: user.location || '',
+        timezone: user.timezone || ''
       });
     }
   }, [user]);
@@ -131,13 +151,6 @@ export default function Profile() {
             >
               <FileText className="h-4 w-4" />
               <span>Apply Contributor</span>
-            </Link>
-            <Link
-              to="/articles/new"
-              className="flex items-center space-x-2 px-4 py-2 text-sm font-medium text-gray-600 hover:text-newtifi-navy hover:bg-gray-50 rounded-lg transition-all"
-            >
-              <FileText className="h-4 w-4" />
-              <span>New Article</span>
             </Link>
             {user?.role === 'ADMIN' && (
               <>
@@ -346,6 +359,166 @@ export default function Profile() {
                     className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-gray-50 text-gray-500 cursor-not-allowed"
                   />
                   <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
+                </div>
+
+                {/* Title Field */}
+                <div>
+                  <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+                    Job Title
+                  </label>
+                  <input
+                    type="text"
+                    id="title"
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="Your professional title"
+                  />
+                </div>
+
+                {/* Department Field */}
+                <div>
+                  <label htmlFor="department" className="block text-sm font-medium text-gray-700 mb-2">
+                    Department
+                  </label>
+                  <input
+                    type="text"
+                    id="department"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="Your department or division"
+                  />
+                </div>
+
+                {/* Phone Field */}
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="Your contact number"
+                  />
+                </div>
+
+                {/* Website Field */}
+                <div>
+                  <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-2">
+                    Website
+                  </label>
+                  <input
+                    type="url"
+                    id="website"
+                    name="website"
+                    value={formData.website}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="https://your-website.com"
+                  />
+                </div>
+
+                {/* LinkedIn Field */}
+                <div>
+                  <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700 mb-2">
+                    LinkedIn Profile
+                  </label>
+                  <input
+                    type="url"
+                    id="linkedin"
+                    name="linkedin"
+                    value={formData.linkedin}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="https://linkedin.com/in/yourprofile"
+                  />
+                </div>
+
+                {/* Twitter Field */}
+                <div>
+                  <label htmlFor="twitter" className="block text-sm font-medium text-gray-700 mb-2">
+                    Twitter/X Handle
+                  </label>
+                  <input
+                    type="text"
+                    id="twitter"
+                    name="twitter"
+                    value={formData.twitter}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="@yourusername"
+                  />
+                </div>
+
+                {/* Research Interests Field */}
+                <div>
+                  <label htmlFor="researchInterests" className="block text-sm font-medium text-gray-700 mb-2">
+                    Research Interests
+                  </label>
+                  <textarea
+                    id="researchInterests"
+                    name="researchInterests"
+                    value={formData.researchInterests}
+                    onChange={handleChange}
+                    rows={3}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="Your research areas and interests"
+                  />
+                </div>
+
+                {/* Expertise Field */}
+                <div>
+                  <label htmlFor="expertise" className="block text-sm font-medium text-gray-700 mb-2">
+                    Areas of Expertise
+                  </label>
+                  <textarea
+                    id="expertise"
+                    name="expertise"
+                    value={formData.expertise}
+                    onChange={handleChange}
+                    rows={3}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="Your professional expertise and specializations"
+                  />
+                </div>
+
+                {/* Location Field */}
+                <div>
+                  <label htmlFor="location" className="block text-sm font-medium text-gray-700 mb-2">
+                    Location
+                  </label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="City, Country"
+                  />
+                </div>
+
+                {/* Timezone Field */}
+                <div>
+                  <label htmlFor="timezone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Timezone
+                  </label>
+                  <input
+                    type="text"
+                    id="timezone"
+                    name="timezone"
+                    value={formData.timezone}
+                    onChange={handleChange}
+                    className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-white focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-all text-newtifi-navy placeholder:text-gray-500"
+                    placeholder="e.g., UTC+1, EST, PST"
+                  />
                 </div>
 
                 {/* Role (Read-only) */}

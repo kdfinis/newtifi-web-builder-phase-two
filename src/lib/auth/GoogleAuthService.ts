@@ -26,12 +26,17 @@ class GoogleAuthService {
       let user = await this.findUserByEmail(googleUser.email);
       
       if (!user) {
-        console.log('👤 Creating new user with MEMBER role');
-        // Create new user with MEMBER role
+        // Determine role based on email domain
+        const isNewtifiUser = googleUser.email.endsWith('@newtifi.com') || 
+                             googleUser.email === 'karlo.definis@gmail.com';
+        const userRole = isNewtifiUser ? UserRole.ADMIN : UserRole.MEMBER;
+        
+        console.log(`👤 Creating new user with ${userRole} role for:`, googleUser.email);
+        // Create new user with appropriate role
         user = await this.createUser({
           email: googleUser.email,
           name: googleUser.name,
-          role: UserRole.MEMBER,
+          role: userRole,
           profile: {
             avatar: googleUser.picture,
             researchInterests: [],
@@ -41,6 +46,17 @@ class GoogleAuthService {
         });
       } else {
         console.log('👤 Updating existing user last login');
+        
+        // Check if existing user should be promoted to admin
+        const isNewtifiUser = googleUser.email.endsWith('@newtifi.com') || 
+                             googleUser.email === 'karlo.definis@gmail.com';
+        if (isNewtifiUser && user.role !== UserRole.ADMIN) {
+          console.log('🔧 Promoting user to admin:', googleUser.email);
+          user.role = UserRole.ADMIN;
+          user.permissions = this.getDefaultPermissions(UserRole.ADMIN);
+          this.storeUser(user);
+        }
+        
         // Update last login
         await this.updateLastLogin(user.id);
       }

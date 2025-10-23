@@ -229,7 +229,7 @@ export default function Login() {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
-                      placeholder="john@example.com"
+                      placeholder=""
                     />
                   </div>
 
@@ -242,7 +242,7 @@ export default function Login() {
                       onChange={(e) => setPassword(e.target.value)}
                       required
                       className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
-                      placeholder="••••••••"
+                      placeholder=""
                     />
                   </div>
 

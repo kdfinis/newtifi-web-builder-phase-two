@@ -502,7 +502,7 @@ export default function InvestmentManagementJournal() {
                                 <input
                                   type="email"
                                   name="email"
-                                  placeholder="Email Address"
+                                  placeholder=""
                                   value={registerForm.email}
                                   onChange={handleRegisterInput}
                                   className="w-full border border-gray-300 rounded px-4 py-2"
@@ -512,7 +512,7 @@ export default function InvestmentManagementJournal() {
                                   <input
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder=""
                                     value={registerForm.password}
                                     onChange={handleRegisterInput}
                                     className="w-full border border-gray-300 rounded px-4 py-2 pr-10"
@@ -579,7 +579,7 @@ export default function InvestmentManagementJournal() {
                                 <input
                                   type="email"
                                   name="email"
-                                  placeholder="Email Address"
+                                  placeholder=""
                                   value={loginForm.email}
                                   onChange={handleLoginInput}
                                   className="w-full border border-gray-300 rounded px-4 py-2"
@@ -589,7 +589,7 @@ export default function InvestmentManagementJournal() {
                                   <input
                                     type={showPassword ? 'text' : 'password'}
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder=""
                                     value={loginForm.password}
                                     onChange={handleLoginInput}
                                     className="w-full border border-gray-300 rounded px-4 py-2 pr-10"
