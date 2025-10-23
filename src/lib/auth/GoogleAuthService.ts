@@ -9,9 +9,10 @@ class GoogleAuthService {
   private redirectUri: string;
 
   constructor() {
-    this.clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || 'your-google-client-id';
-    this.clientSecret = import.meta.env.VITE_GOOGLE_CLIENT_SECRET || 'your-google-client-secret';
-    this.redirectUri = import.meta.env.VITE_GOOGLE_REDIRECT_URI || (typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : '/auth/callback');
+    // HARDCODED VALUES - Prevents future failures
+    this.clientId = '194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com';
+    this.clientSecret = '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';
+    this.redirectUri = typeof window !== 'undefined' ? `${window.location.origin}/auth/callback` : '/auth/callback';
   }
 
   async authenticateUser(googleToken: string): Promise<AuthResult> {

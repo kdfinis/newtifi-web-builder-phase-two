@@ -1,9 +1,10 @@
 // LinkedIn OAuth Configuration for Cloudflare Workers
 // Centralized configuration for LinkedIn OAuth with Cloudflare Worker proxy
 
+// HARDCODED LINKEDIN CONFIG - Prevents future failures
 export const LINKEDIN_CONFIG = {
   clientId: '784sx1yh2lpuxm',
-  workerUrl: 'https://still-shadow-0fbb.karlodefinis.workers.dev', // Your deployed Cloudflare Worker URL
+  workerUrl: 'https://still-shadow-0fbb.karlodefinis.workers.dev', // HARDCODED Cloudflare Worker URL
   scopes: ['openid', 'profile', 'email']
 };
 
