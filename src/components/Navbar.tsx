@@ -124,6 +124,17 @@ const Navbar = () => {
             Home
           </Link>
           <Link 
+            to="/who-we-are" 
+            className={cn(
+              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase focus:outline-none focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 focus:ring-offset-newtifi-navy rounded",
+              location.pathname === "/who-we-are" && "text-newtifi-teal"
+            )}
+            onClick={closeMenu}
+            aria-current={location.pathname === "/who-we-are" ? "page" : undefined}
+          >
+            Who We Are
+          </Link>
+          <Link 
             to={urlFactory.getPublishingPath()} 
             className={cn(
               "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
