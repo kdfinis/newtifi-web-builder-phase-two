@@ -126,7 +126,7 @@ const Person = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">Person not found</h1>
-          <Link to="/who-we-are" className="text-newtifi-teal hover:underline">
+          <Link to="/" className="text-newtifi-teal hover:underline">
             Return to Team
           </Link>
         </div>
@@ -226,7 +226,7 @@ const Person = () => {
       <header className="bg-newtifi-navy text-white">
         <div className="container mx-auto px-6 py-8">
           <Link 
-            to="/who-we-are" 
+            to="/" 
             className="inline-flex items-center text-white/80 hover:text-white transition-colors"
           >
             <ArrowLeft className="h-4 w-4 mr-2" />

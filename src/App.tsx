@@ -24,7 +24,6 @@ const LazyInvestmentManagement = React.lazy(() => import('./pages/publishing/jou
 const LazyDashboard = React.lazy(() => import('./pages/Dashboard'));
 const LazyProfile = React.lazy(() => import('./pages/Profile'));
 const LazyArticles = React.lazy(() => import('./pages/Articles'));
-const LazyWhoWeAre = React.lazy(() => import('./pages/WhoWeAre'));
 const LazyMembership = React.lazy(() => import('./pages/Membership'));
 const LazyContact = React.lazy(() => import('./pages/Contact'));
 const LazyLogin = React.lazy(() => import('./pages/Login'));
@@ -70,7 +69,6 @@ const App = () => (
             <Suspense fallback={<LoadingSpinner />}>
               <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/who-we-are" element={<LazyWhoWeAre />} />
                 <Route path="/membership" element={<LazyMembership />} />
                 <Route path="/contact" element={<LazyContact />} />
                 <Route path="/login" element={<LazyLogin />} />

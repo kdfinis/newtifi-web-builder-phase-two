@@ -110,10 +110,6 @@ export class UrlFactory {
     return `${baseUrl}/signup`;
   }
 
-  static getWhoWeAreUrl(): string {
-    const baseUrl = configManager.getCurrentUrl();
-    return `${baseUrl}/who-we-are`;
-  }
 
   static getTermsUrl(): string {
     const baseUrl = configManager.getCurrentUrl();
