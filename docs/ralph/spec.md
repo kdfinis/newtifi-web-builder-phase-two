@@ -1,123 +1,78 @@
-# Ralph Loop Spec - Infrastructure Upgrade for Multi-Journal Publishing Platform
+# Ralph Loop Spec - Fix Deployment to newtifi.com
 
 ## Codebase Notice:
 - Primary website codebase is in the root directory
 - Backend API server: `simple-admin-server.js` (port 3001)
 - Frontend dev server: Vite (port 8080)
-- Current storage: `/public/articles/` and `/public/files/` (rudimentary)
 - **DO NOT** modify secrets, credentials, or OAuth configurations - leave them as-is
+- **DO NOT** change any source code - only fix deployment process
 
 ## Goal:
-Transform the current rudimentary file-based system into a production-ready infrastructure for a multi-journal academic publishing platform. The system must support:
-- Multiple journals with isolated storage
-- Version control for all files
-- Reusable assets across journals/articles
-- Rich metadata management
-- Proper file organization and naming
-- Standards compliance (JATS, OAI-PMH, DOI)
-- Scalable architecture that works with static hosting
+Ensure the latest local code is deployed and visible on newtifi.com. The issue is that local development code is not appearing on the live site.
 
-## Context:
-We are a research institute and academic publisher. We need:
-- Professional file management for research articles
-- Support for multiple journals (currently 2, will grow)
-- Article versioning (drafts, revisions, published versions)
-- Asset reuse (figures, images, datasets shared across articles)
-- Proper metadata for academic standards
-- Search and discovery capabilities
-- Editorial workflows
-- Long-term archival
+## Problem Analysis:
+- Local code: Latest commits on `main` branch (c9eb69a, ce3e3e2, 021efa4)
+- Deployment method: `npm run deploy` uses `gh-pages -d dist` to push to `gh-pages` branch
+- GitHub Pages: May be configured to serve from `main` branch (`.nojekyll` exists in main)
+- Issue: Code deployed to `gh-pages` but site serves from `main` branch
+- Result: Latest local code never appears on newtifi.com
 
 ## Constraints:
 - Do not ask questions. Make reasonable assumptions and proceed.
 - **DO NOT touch secrets, credentials, or OAuth configs** - leave them exactly as-is
-- Maintain backward compatibility during migration
-- Keep it simple and maintainable
-- Use free/open-source solutions where possible
-- Must work with current hosting (static + simple backend)
-- Files must be accessible via web URLs
-- Support for academic publishing standards
+- **DO NOT modify source code** - only fix deployment
+- Ensure latest local code gets to newtifi.com
+- Preserve all local development work
+- Fix deployment process, not the code
 
 ## Acceptance Criteria:
-- [ ] New storage directory structure created (`storage/journals/`, `storage/shared/`, etc.)
-- [ ] StorageService implemented with journal-scoped paths
-- [ ] AssetRegistry implemented for tracking all assets
-- [ ] VersionManager implemented with version control
-- [ ] All existing files migrated to new structure
-- [ ] Backend server updated to use new storage paths
-- [ ] Frontend updated to use new asset URLs
-- [ ] Version control working (upload creates new version)
-- [ ] Asset reuse functional (shared assets accessible)
-- [ ] Multi-journal isolation working
-- [ ] Metadata system enhanced
-- [ ] File serving works correctly
-- [ ] All existing functionality still works
-- [ ] No broken links or 404s
-- [ ] Migration script created and tested
-- [ ] Documentation updated
+- [ ] Latest local code is built correctly
+- [ ] Built files are deployed to the correct branch that GitHub Pages uses
+- [ ] newtifi.com shows the latest code (admin article browser, security fixes, article page fixes)
+- [ ] All features work on live site
+- [ ] Deployment process is documented and repeatable
+- [ ] No code changes made to source files
 
-## Implementation Priorities:
+## Implementation Steps:
 
-### Phase 1: Foundation (Critical - Do First)
-1. Create new storage directory structure
-2. Implement StorageService with journal-scoped operations
-3. Implement AssetRegistry for asset tracking
-4. Implement VersionManager for version control
-5. Create migration script to move existing files
-6. Update backend server to use new storage
-7. Update frontend to use new URLs
-8. Test everything works
+### Step 1: Determine GitHub Pages Source Branch
+- [ ] Check which branch GitHub Pages is configured to use
+- [ ] Verify by checking for `.nojekyll` file location
+- [ ] Check GitHub repository settings (if accessible via git)
 
-### Phase 2: Enhanced Features (After Phase 1 Works)
-1. Enhanced metadata system
-2. File processing pipeline (thumbnails, optimization)
-3. Search functionality
-4. Asset discovery
-5. Standards compliance (JATS, OAI-PMH)
+### Step 2: Build Latest Code
+- [ ] Run `npm run build` to create latest dist
+- [ ] Verify dist contains latest features
+- [ ] Check that ArticleViewer, security fixes, ArticlePage fixes are in dist
 
-## Technical Requirements:
+### Step 3: Deploy to Correct Branch
+- [ ] If GitHub Pages uses `main`: Copy dist files to main branch root
+- [ ] If GitHub Pages uses `gh-pages`: Ensure `npm run deploy` works correctly
+- [ ] Commit and push built files to correct branch
+- [ ] Verify deployment succeeded
 
-### Storage Structure:
-```
-storage/
-├── journals/{journal-id}/
-│   ├── articles/{article-id}/v{version}/
-│   ├── issues/{year}/{volume}/{issue}/
-│   ├── covers/
-│   └── assets/
-├── shared/{type}/{category}/
-└── assets/{category}/
-```
+### Step 4: Verify Live Site
+- [ ] Check newtifi.com shows latest code
+- [ ] Verify admin article browser works at /admin/articles
+- [ ] Verify article pages work (e.g., /publishing/article/eltifs-compulsory-redemptions)
+- [ ] Verify all latest features are present
 
-### Core Services Needed:
-1. **StorageService**: Journal-scoped file operations, path generation
-2. **AssetRegistry**: Track all assets, usage, relationships
-3. **VersionManager**: Version control, rollback, history
-4. **JournalStorage**: Journal-specific storage operations
-5. **AssetManager**: Asset lifecycle management
-
-### File Naming:
-- Articles: `{journal-id}/{article-id}/v{version}/{timestamp}-{article-id}-v{version}.pdf`
-- Shared assets: `shared/{type}/{category}/{asset-id}-{checksum}.{ext}`
-- Journal assets: `{journal-id}/{category}/{asset-id}.{ext}`
-
-### Metadata:
-- Enhanced article metadata with version history
-- Asset metadata with usage tracking
-- Journal configuration per journal
-- Standards-compliant metadata (Dublin Core, JATS-ready)
+### Step 5: Document Deployment Process
+- [ ] Document which branch GitHub Pages uses
+- [ ] Document correct deployment command/process
+- [ ] Update deployment guide if needed
 
 ## What NOT to Touch:
+- Source code files (src/, components, pages, etc.)
 - OAuth credentials and configurations
 - Client secrets (leave hardcoded if present)
 - Authentication provider settings
 - Any secret/credential-related code
+- Local development code
 
 ## Success Metrics:
-- All files organized by journal
-- Version control working
-- Multi-journal support complete
-- Asset reuse functional
-- All existing functionality preserved
-- No regressions
-- Performance maintained or improved
+- newtifi.com shows latest local code
+- All latest features visible on live site
+- Deployment process works correctly
+- No source code changes made
+- Repeatable deployment process documented
