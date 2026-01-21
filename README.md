@@ -46,17 +46,26 @@ npm run dev
 ## 🏗️ Architecture
 
 ### Frontend (React + Vite)
-- **Port**: 8080
+- **Port**: 8080 (development)
 - **Framework**: React with TypeScript
 - **Styling**: Tailwind CSS
 - **UI Components**: Radix UI + custom components
 - **Routing**: React Router
+- **Build Output**: `dist/` directory (Firebase & GitHub Pages compatible)
+- **Hosting**: Supports both GitHub Pages and Firebase Hosting
 
 ### Backend (Node.js + Express)
 - **Port**: 3001
 - **Framework**: Express.js
 - **Database**: In-memory (JSON files)
 - **Features**: Article management, admin authentication, analytics
+- **Future**: Can migrate to Firebase Functions for scalability
+
+### Hosting Configuration
+- **GitHub Pages**: Primary deployment method (serves from `main` branch)
+- **Firebase Hosting**: Available as alternative (serves from `dist/` directory)
+- **SPA Routing**: Configured for both platforms (`firebase.json` + `404.html`)
+- **Asset Serving**: Compatible with both hosting methods
 
 ## 📚 Features
 
@@ -196,17 +205,53 @@ newtifi-web-builder/
 
 ## 🚀 Deployment
 
+### Hosting Platforms
+This codebase supports **both GitHub Pages and Firebase Hosting**. All development must maintain compatibility with both platforms.
+
+**⚠️ FIREBASE PROTOCOL AWARENESS REQUIRED:**
+- See `docs/FIREBASE_PROTOCOL_GUIDE.md` for complete Firebase requirements
+- See `docs/DEVELOPMENT_PROTOCOL.md` for development guidelines
+- **All agents/developers must be aware of Firebase hosting requirements**
+
 ### Production Build
 ```bash
-# Build frontend
+# Build frontend (compatible with both GitHub Pages and Firebase)
 npm run build
 
-# Start production server
+# Test locally (GitHub Pages)
 npm run preview
+
+# Test locally (Firebase)
+firebase serve
 ```
+
+### Deployment Methods
+
+#### GitHub Pages (Primary)
+```bash
+npm run predeploy  # Build + fix SPA routing + validate
+npm run deploy     # Deploy to gh-pages branch
+# OR manually: cp -r dist/* . && git commit && git push
+```
+
+#### Firebase Hosting (Available)
+```bash
+npm run build
+firebase deploy --only hosting
+# OR use: npm run deploy:auto
+```
+
+### Firebase Requirements
+- ✅ Build output in `dist/` directory
+- ✅ SPA routing configured in `firebase.json`
+- ✅ Asset paths are absolute/root-relative (`/assets/...`)
+- ✅ MIME types configured for both platforms
+- ✅ Environment variables use `import.meta.env` (Vite)
 
 ### Environment Variables
 - No environment variables required for development
+- Use `import.meta.env` for client-side variables (Vite)
+- Firebase Functions can be used for server-side env vars
 - Configure production settings as needed
 
 ## 🔧 Troubleshooting

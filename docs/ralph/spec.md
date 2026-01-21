@@ -4,6 +4,15 @@
 - Primary website codebase is in the root directory
 - Backend API server: `simple-admin-server.js` (port 3001)
 - Frontend dev server: Vite (port 8080)
+- **Hosting**: Supports both GitHub Pages (primary) and Firebase Hosting
+- **Firebase Protocol**: **REQUIRED AWARENESS** - Always consider Firebase requirements
+  - See `docs/FIREBASE_PROTOCOL_GUIDE.md` for complete guide
+  - See `docs/DEVELOPMENT_PROTOCOL.md` for development guidelines
+  - See `AGENT_INSTRUCTIONS.md` for agent-specific instructions
+  - See `.cursorrules` for quick reference
+- **Build Output**: Must be in `dist/` directory (Firebase requirement)
+- **Asset Paths**: Must be absolute/root-relative (`/assets/...`) for Firebase compatibility
+- **SPA Routing**: Must work on both platforms (Firebase via `firebase.json`, GitHub Pages via `404.html`)
 - **DO NOT** modify secrets, credentials, or OAuth configurations - leave them as-is
 - **DO NOT** change any source code - only fix deployment process
 
@@ -21,6 +30,8 @@ Ensure the latest local code is deployed and visible on newtifi.com. The issue i
 - Do not ask questions. Make reasonable assumptions and proceed.
 - **DO NOT touch secrets, credentials, or OAuth configs** - leave them exactly as-is
 - **DO NOT modify source code** - only fix deployment
+- **FIREBASE PROTOCOL**: Always consider Firebase hosting requirements - see `docs/FIREBASE_PROTOCOL_GUIDE.md`
+- **DUAL COMPATIBILITY**: Code must work on both GitHub Pages and Firebase Hosting
 - Ensure latest local code gets to newtifi.com
 - Preserve all local development work
 - Fix deployment process, not the code
