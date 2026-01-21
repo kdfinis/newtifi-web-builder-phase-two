@@ -19,7 +19,8 @@
     "deploy": "gh-pages -d dist",
     "deploy:firebase": "./scripts/auto-deploy.sh",
     "deploy:firebase:admin": "node scripts/firebase-deploy-with-admin.js",
-    "deploy:auto": "npm run build && firebase deploy --only hosting --non-interactive"
+    "deploy:auto": "npm run build && firebase deploy --only hosting --non-interactive",
+    "test:firebase-setup": "node scripts/test-firebase-setup.js"
   },
   "dependencies": {
     "@alloc/quick-lru": "^5.2.0",
@@ -64,7 +65,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "express-session": "^1.18.1",
-    "firebase-admin": "^13.0.0",
+    "firebase-admin": "^13.6.0",
     "google-auth-library": "^10.4.1",
     "helmet": "^8.1.0",
     "input-otp": "^1.2.4",
