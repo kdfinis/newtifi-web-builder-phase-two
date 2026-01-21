@@ -110,12 +110,13 @@ jobs:
         
         echo "✅ Project configured: newtifi-web"
       
-    - name: 🔥 Deploy to Firebase Hosting
+    - name: 🔥 Deploy to Firebase Hosting (using Admin SDK)
       env:
         GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-service-account.json
+        FIREBASE_SERVICE_ACCOUNT_PATH: /tmp/firebase-service-account.json
         FIREBASE_PROJECT: newtifi-web
       run: |
-        echo "🚀 Starting Firebase Hosting deployment..."
+        echo "🚀 Starting Firebase Hosting deployment with Admin SDK verification..."
         echo "📁 Build directory: dist/"
         
         # Verify dist directory exists and has content
@@ -124,11 +125,9 @@ jobs:
           exit 1
         fi
         
-        # Deploy with verbose output for debugging
-        firebase deploy --only hosting --non-interactive --project newtifi-web --debug 2>&1 | tee /tmp/firebase-deploy.log || {
+        # Deploy using Node.js script with Firebase Admin SDK
+        npm run deploy:firebase:admin || {
           echo "❌ Deployment failed!"
-          echo "📋 Last 50 lines of deployment log:"
-          tail -50 /tmp/firebase-deploy.log
           exit 1
         }
         

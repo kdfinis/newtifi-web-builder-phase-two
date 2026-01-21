@@ -18,6 +18,7 @@
     "predeploy": "npm run build && node scripts/fix-github-pages-spa.mjs && cp .htaccess dist/ && cp _headers dist/ && npm run validate-mime",
     "deploy": "gh-pages -d dist",
     "deploy:firebase": "./scripts/auto-deploy.sh",
+    "deploy:firebase:admin": "node scripts/firebase-deploy-with-admin.js",
     "deploy:auto": "npm run build && firebase deploy --only hosting --non-interactive"
   },
   "dependencies": {
@@ -63,6 +64,7 @@
     "date-fns": "^3.6.0",
     "embla-carousel-react": "^8.3.0",
     "express-session": "^1.18.1",
+    "firebase-admin": "^13.0.0",
     "google-auth-library": "^10.4.1",
     "helmet": "^8.1.0",
     "input-otp": "^1.2.4",
