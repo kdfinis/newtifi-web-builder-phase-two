@@ -1,9 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ScrollReveal from '@/components/ScrollReveal';
-import { ArrowRight, Mail, Phone, MapPin } from 'lucide-react';
+import { ArrowRight, Mail, Phone, MapPin, CheckCircle, AlertCircle } from 'lucide-react';
 import { urlFactory } from '@/lib/urls/UrlFactory';
+import { buildApiUrl } from '@/lib/urls';
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+    setError('');
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+    setSuccess(false);
+
+    try {
+      const response = await fetch(buildApiUrl('/contact'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify(formData)
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      const data = await response.json();
+      setSuccess(true);
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setError('');
+      
+      setTimeout(() => setSuccess(false), 5000);
+    } catch (err) {
+      const errorMessage = err instanceof Error ? err.message : 'Failed to send message. Please try again.';
+      setError(errorMessage);
+      setSuccess(false);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <main className="min-h-screen bg-white">
       {/* Top Navy Section with Premium Design (consistent with Membership) */}
@@ -135,14 +190,70 @@ const Contact = () => {
                     </a>
                       </div>
                   {/* Compact form */}
-                  <form className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <input type="text" placeholder="Name" className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" />
-                    <input type="email" placeholder="Email" className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" />
-                    <input type="text" placeholder="Subject" className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" />
-                    <textarea placeholder="Message" rows={4} className="md:col-span-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal"></textarea>
-                    <button type="submit" className="md:col-span-3 bg-newtifi-navy text-white py-3 rounded-xl font-medium flex items-center justify-center hover:bg-newtifi-navy/90 transition-colors">
-                      Send Message
-                      <ArrowRight className="h-5 w-5 ml-2" />
+                  {success && (
+                    <div className="md:col-span-3 mb-4 p-4 bg-green-50 border border-green-200 rounded-xl flex items-center gap-2">
+                      <CheckCircle className="h-5 w-5 text-green-600" />
+                      <p className="text-green-700">Your message has been sent successfully!</p>
+                    </div>
+                  )}
+                  {error && (
+                    <div className="md:col-span-3 mb-4 p-4 bg-red-50 border border-red-200 rounded-xl flex items-center gap-2">
+                      <AlertCircle className="h-5 w-5 text-red-600" />
+                      <p className="text-red-700">{error}</p>
+                    </div>
+                  )}
+                  <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <input 
+                      type="text" 
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      placeholder="Name" 
+                      required
+                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                    />
+                    <input 
+                      type="email" 
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Email" 
+                      required
+                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                    />
+                    <input 
+                      type="text" 
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      placeholder="Subject" 
+                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                    />
+                    <textarea 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      placeholder="Message" 
+                      rows={4} 
+                      required
+                      className="md:col-span-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal"
+                    />
+                    <button 
+                      type="submit" 
+                      disabled={isSubmitting}
+                      className="md:col-span-3 bg-newtifi-navy text-white py-3 rounded-xl font-medium flex items-center justify-center hover:bg-newtifi-navy/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Send Message
+                          <ArrowRight className="h-5 w-5 ml-2" />
+                        </>
+                      )}
                     </button>
                   </form>
                       </div>

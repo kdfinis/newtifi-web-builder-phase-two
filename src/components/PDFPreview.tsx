@@ -161,11 +161,24 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
           
           {!isLoading && !pdfError && (
             <iframe
-              src={`${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0`}
+              src={pdfUrl.startsWith('http') ? `${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0` : `${encodeURI(pdfUrl)}#toolbar=0&navpanes=0&scrollbar=0`}
               className="w-full h-full border-0"
               onLoad={handlePdfLoad}
               onError={handlePdfError}
               title="PDF Preview"
+              style={{ display: 'block' }}
+            />
+          )}
+          
+          {/* Always render iframe but hide on error - helps with debugging */}
+          {isLoading && (
+            <iframe
+              src={pdfUrl.startsWith('http') ? `${pdfUrl}#toolbar=0&navpanes=0&scrollbar=0` : `${encodeURI(pdfUrl)}#toolbar=0&navpanes=0&scrollbar=0`}
+              className="w-full h-full border-0"
+              onLoad={handlePdfLoad}
+              onError={handlePdfError}
+              title="PDF Preview"
+              style={{ display: 'none' }}
             />
           )}
         </div>

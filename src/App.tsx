@@ -18,6 +18,7 @@ import "./App.css";
 
 // Lazy load heavy components for better performance
 const LazyAdmin = React.lazy(() => import('./pages/Admin'));
+const LazyArticleViewer = React.lazy(() => import('./pages/admin/ArticleViewer'));
 const LazyArticlePage = React.lazy(() => import('./pages/publishing/journals/ArticlePage'));
 const LazyPublishing = React.lazy(() => import('./pages/Publishing'));
 const LazyInvestmentManagement = React.lazy(() => import('./pages/publishing/journals/investment-management'));
@@ -83,6 +84,8 @@ const App = () => (
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/publishing" element={<LazyPublishing />} />
                 <Route path="/publishing/investment-management" element={<LazyInvestmentManagement />} />
+                {/* Support both formats: with and without journal slug */}
+                <Route path="/publishing/article/:slug" element={<LazyArticlePage />} />
                 <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />
                 {/* Backward-compat redirect: old URLs with '/publishing/journals/...' */}
                 <Route path="/publishing/journals/:journalSlug/article/:slug" element={<OldArticleRedirect />} />
@@ -95,6 +98,7 @@ const App = () => (
                 <Route path="/profile" element={<LazyProfile />} />
                 <Route path="/apply-contributor" element={<LazyApplyContributor />} />
                 <Route path="/admin" element={<LazyAdmin />} />
+                <Route path="/admin/articles" element={<LazyArticleViewer />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

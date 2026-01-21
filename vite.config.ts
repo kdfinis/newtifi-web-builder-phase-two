@@ -18,7 +18,15 @@ export default defineConfig({
       overlay: false,
       timeout: 5000,
     },
-    // No proxy needed for client-side OAuth
+    // Proxy API requests to backend server
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+        ws: false,
+      }
+    },
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']
@@ -46,7 +54,14 @@ export default defineConfig({
       configureServer(server) {
         server.middlewares.use((req, res, next) => {
           // Handle SPA routing - serve index.html for all routes
-          if (req.url && !req.url.startsWith('/assets/') && !req.url.startsWith('/src/') && !req.url.includes('.')) {
+          // BUT exclude API routes, Vite internal paths, assets, and files with extensions
+          if (req.url && 
+              !req.url.startsWith('/api') && 
+              !req.url.startsWith('/@') &&  // Vite internal paths
+              !req.url.startsWith('/node_modules/') &&  // Vite dependencies
+              !req.url.startsWith('/assets/') && 
+              !req.url.startsWith('/src/') && 
+              !req.url.includes('.')) {
             req.url = '/';
           }
           next();

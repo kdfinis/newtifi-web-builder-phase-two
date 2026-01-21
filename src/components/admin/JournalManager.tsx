@@ -28,11 +28,46 @@ interface ArticleCollatingToolProps {
   onRefresh: () => void;
 }
 
+interface ArticleFormState {
+  title: string;
+  author: string;
+  date: string;
+  doi: string;
+  keywords: string;
+  abstract: string;
+  filename: string;
+  pdfUrl: string;
+  status: 'published' | 'draft' | 'archived';
+  featured: boolean;
+  category: 'journal' | 'news';
+  volume: string;
+}
+
 const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, onRefresh }) => {
   const [tab, setTab] = useState<TabType>('articles');
   const [uploading, setUploading] = useState(false);
   const [scanning, setScanning] = useState(false);
   const [realArticles, setRealArticles] = useState<Article[]>([]);
+  const [showOnlyPdf, setShowOnlyPdf] = useState(true);
+  const [showForm, setShowForm] = useState(false);
+  const [formMode, setFormMode] = useState<'create' | 'edit'>('create');
+  const [editingArticle, setEditingArticle] = useState<Article | null>(null);
+  const [saving, setSaving] = useState(false);
+  const [addingArticleId, setAddingArticleId] = useState<string | null>(null);
+  const [formData, setFormData] = useState<ArticleFormState>({
+    title: '',
+    author: '',
+    date: new Date().toISOString().split('T')[0],
+    doi: '',
+    keywords: '',
+    abstract: '',
+    filename: '',
+    pdfUrl: '',
+    status: 'draft',
+    featured: false,
+    category: 'journal',
+    volume: ''
+  });
 
   // Scan for real PDF articles in the website
   const scanForRealArticles = async () => {
@@ -52,13 +87,13 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
   };
 
   // Filter to only show articles that have actual PDF files
-  const validArticles = articles.filter(article => {
+  const validArticles = showOnlyPdf ? articles.filter(article => {
     // Check if article has a real PDF file
     return article.pdfUrl && article.filename && (
       article.pdfUrl.includes('.pdf') || 
       article.filename.includes('.pdf')
     );
-  });
+  }) : articles;
 
   // Get file size and last modified date for articles
   const getArticleMetadata = async (article: Article) => {
@@ -138,6 +173,149 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
     }
   };
 
+  const openCreateForm = () => {
+    setFormMode('create');
+    setEditingArticle(null);
+    setFormData({
+      title: '',
+      author: '',
+      date: new Date().toISOString().split('T')[0],
+      doi: '',
+      keywords: '',
+      abstract: '',
+      filename: '',
+      pdfUrl: '',
+      status: 'draft',
+      featured: false,
+      category: 'journal',
+      volume: ''
+    });
+    setShowForm(true);
+  };
+
+  const openEditForm = (article: Article) => {
+    setFormMode('edit');
+    setEditingArticle(article);
+    setFormData({
+      title: article.title || '',
+      author: article.author || '',
+      date: article.date || new Date().toISOString().split('T')[0],
+      doi: article.doi || '',
+      keywords: (article.keywords || []).join(', '),
+      abstract: article.abstract || '',
+      filename: article.filename || '',
+      pdfUrl: article.pdfUrl || article.url || '',
+      status: article.status || 'draft',
+      featured: article.featured || false,
+      category: article.category || 'journal',
+      volume: article.volume || ''
+    });
+    setShowForm(true);
+  };
+
+  const handleSaveArticle = async () => {
+    const payload = {
+      title: formData.title.trim(),
+      author: formData.author.trim(),
+      date: formData.date,
+      doi: formData.doi.trim(),
+      keywords: formData.keywords
+        .split(',')
+        .map(keyword => keyword.trim())
+        .filter(Boolean),
+      abstract: formData.abstract.trim(),
+      filename: formData.filename.trim(),
+      url: formData.pdfUrl.trim(),
+      pdfUrl: formData.pdfUrl.trim(),
+      status: formData.status,
+      featured: formData.featured,
+      category: formData.category,
+      volume: formData.volume.trim()
+    };
+
+    if (!payload.title) {
+      alert('Title is required.');
+      return;
+    }
+
+    setSaving(true);
+    try {
+      const response = await fetch(
+        formMode === 'create'
+          ? '/api/admin/articles'
+          : `/api/admin/articles/${editingArticle?.id}`,
+        {
+          method: formMode === 'create' ? 'POST' : 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }
+      );
+
+      if (response.ok) {
+        onRefresh();
+        setShowForm(false);
+        setEditingArticle(null);
+      } else {
+        alert('Failed to save article');
+      }
+    } catch (error) {
+      console.error('Save error:', error);
+      alert('Failed to save article');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleRefreshMetadata = async (article: Article) => {
+    const metadata = await getArticleMetadata(article);
+    if (!metadata || !metadata.exists) {
+      alert('No metadata found for this file');
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/admin/articles/${article.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fileSize: metadata.fileSize,
+          lastModified: metadata.lastModified
+        })
+      });
+
+      if (response.ok) {
+        onRefresh();
+      } else {
+        alert('Failed to update metadata');
+      }
+    } catch (error) {
+      console.error('Metadata update error:', error);
+      alert('Failed to update metadata');
+    }
+  };
+
+  const handleAddScannedArticle = async (article: Article) => {
+    setAddingArticleId(article.id);
+    try {
+      const response = await fetch('/api/admin/articles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(article)
+      });
+
+      if (response.ok) {
+        onRefresh();
+      } else {
+        alert('Failed to add scanned article');
+      }
+    } catch (error) {
+      console.error('Add scanned article error:', error);
+      alert('Failed to add scanned article');
+    } finally {
+      setAddingArticleId(null);
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -156,8 +334,152 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
           >
             {scanning ? 'Scanning...' : '🔍 Scan for Articles'}
           </button>
+          <button
+            onClick={openCreateForm}
+            className="px-4 py-2 bg-[#0A0A23] text-white rounded-md hover:bg-[#1a1a40]"
+          >
+            ➕ Add Article
+          </button>
         </div>
       </div>
+
+      {showForm && (
+        <div className="bg-white rounded-lg shadow p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="text-base font-bold">
+              {formMode === 'create' ? 'Create Article' : 'Edit Article'}
+            </h3>
+            <button
+              onClick={() => setShowForm(false)}
+              className="text-gray-500 hover:text-gray-700"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Title</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.title}
+                onChange={(event) => setFormData(prev => ({ ...prev, title: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Author</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.author}
+                onChange={(event) => setFormData(prev => ({ ...prev, author: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Date</label>
+              <input
+                type="date"
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.date}
+                onChange={(event) => setFormData(prev => ({ ...prev, date: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">DOI</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.doi}
+                onChange={(event) => setFormData(prev => ({ ...prev, doi: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Keywords (comma separated)</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.keywords}
+                onChange={(event) => setFormData(prev => ({ ...prev, keywords: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Filename</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.filename}
+                onChange={(event) => setFormData(prev => ({ ...prev, filename: event.target.value }))}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-xs font-semibold text-gray-600 mb-1">PDF URL</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.pdfUrl}
+                onChange={(event) => setFormData(prev => ({ ...prev, pdfUrl: event.target.value }))}
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Abstract</label>
+              <textarea
+                className="w-full border rounded-md px-3 py-2 text-sm h-24"
+                value={formData.abstract}
+                onChange={(event) => setFormData(prev => ({ ...prev, abstract: event.target.value }))}
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Status</label>
+              <select
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.status}
+                onChange={(event) => setFormData(prev => ({ ...prev, status: event.target.value as ArticleFormState['status'] }))}
+              >
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Category</label>
+              <select
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.category}
+                onChange={(event) => setFormData(prev => ({ ...prev, category: event.target.value as ArticleFormState['category'] }))}
+              >
+                <option value="journal">Journal</option>
+                <option value="news">News</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-xs font-semibold text-gray-600 mb-1">Volume</label>
+              <input
+                className="w-full border rounded-md px-3 py-2 text-sm"
+                value={formData.volume}
+                onChange={(event) => setFormData(prev => ({ ...prev, volume: event.target.value }))}
+              />
+            </div>
+            <div className="flex items-center gap-2 mt-6">
+              <input
+                type="checkbox"
+                checked={formData.featured}
+                onChange={(event) => setFormData(prev => ({ ...prev, featured: event.target.checked }))}
+              />
+              <span className="text-sm text-gray-600">Featured</span>
+            </div>
+          </div>
+          <div className="flex justify-end gap-3 mt-6">
+            <button
+              onClick={() => setShowForm(false)}
+              className="px-4 py-2 border rounded-md text-sm"
+              disabled={saving}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSaveArticle}
+              className="px-4 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700 disabled:opacity-50"
+              disabled={saving}
+            >
+              {saving ? 'Saving...' : 'Save Article'}
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Tabs */}
       <div className="flex gap-4 border-b mb-4">
@@ -177,10 +499,18 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
         <div className="bg-white rounded-lg shadow p-4">
           <div className="flex justify-between items-center mb-4">
             <div className="text-base font-bold">
-              Real Articles ({validArticles.length})
+              {showOnlyPdf ? 'Real Articles' : 'All Articles'} ({validArticles.length})
             </div>
-            <div className="text-base text-gray-500">
-              Only articles with actual PDF files
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowOnlyPdf(!showOnlyPdf)}
+                className="text-xs px-3 py-1 rounded border text-gray-600 hover:text-gray-800"
+              >
+                {showOnlyPdf ? 'Show All' : 'Only PDFs'}
+              </button>
+              <div className="text-base text-gray-500">
+                {showOnlyPdf ? 'Only articles with actual PDF files' : 'Includes draft entries without PDFs'}
+              </div>
             </div>
           </div>
           
@@ -220,9 +550,15 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                       <td className="p-2">{article.author || 'Unknown'}</td>
                       <td className="p-2">{article.date || 'N/A'}</td>
                       <td className="p-2">
-                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
-                          PDF
-                        </span>
+                        {article.pdfUrl ? (
+                          <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
+                            PDF
+                          </span>
+                        ) : (
+                          <span className="text-xs bg-gray-100 text-gray-500 px-2 py-1 rounded">
+                            Missing
+                          </span>
+                        )}
                       </td>
                       <td className="p-2 text-xs text-gray-500">
                         {article.fileSize || 'N/A'}
@@ -246,17 +582,31 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                       </td>
                       <td className="p-2">
                         <div className="flex gap-2">
-                          <button 
+                          <button
                             className="text-blue-600 hover:text-blue-800 text-xs"
-                            onClick={() => window.open(article.pdfUrl, '_blank')}
+                            onClick={() => article.pdfUrl && window.open(article.pdfUrl, '_blank')}
+                            disabled={!article.pdfUrl}
                           >
                             View
                           </button>
-                          <button 
+                          <button
                             className="text-green-600 hover:text-green-800 text-xs"
-                            onClick={() => window.open(article.pdfUrl, '_blank')}
+                            onClick={() => article.pdfUrl && window.open(article.pdfUrl, '_blank')}
+                            disabled={!article.pdfUrl}
                           >
                             Download
+                          </button>
+                          <button 
+                            className="text-gray-600 hover:text-gray-800 text-xs"
+                            onClick={() => openEditForm(article)}
+                          >
+                            Edit
+                          </button>
+                          <button 
+                            className="text-purple-600 hover:text-purple-800 text-xs"
+                            onClick={() => handleRefreshMetadata(article)}
+                          >
+                            Metadata
                           </button>
                           <button 
                             className="text-red-600 hover:text-red-800 text-xs"
@@ -333,6 +683,13 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                     <div key={index} className="p-3 bg-gray-50 rounded border">
                       <div className="font-medium">{article.title}</div>
                       <div className="text-base text-gray-500">{article.filename}</div>
+                      <button
+                        onClick={() => handleAddScannedArticle(article)}
+                        className="mt-2 text-xs text-blue-600 hover:text-blue-800"
+                        disabled={addingArticleId === article.id}
+                      >
+                        {addingArticleId === article.id ? 'Adding...' : 'Add to Library'}
+                      </button>
                     </div>
                   ))}
                 </div>

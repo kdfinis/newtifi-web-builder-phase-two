@@ -3,22 +3,37 @@ import { Link } from 'react-router-dom';
 import ScrollReveal from '@/components/ScrollReveal';
 import { FileText, Plus, Clock, CheckCircle, AlertCircle } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { buildApiUrl } from '@/lib/urls';
 
 export default function ContributorDashboard() {
   const { user } = useSimpleAuth();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('/api/articles/my', { credentials: 'include' })
-      .then(r => r.json())
+    fetch(buildApiUrl('/articles/my'), { credentials: 'include' })
+      .then(r => {
+        if (!r.ok) {
+          if (r.status === 401) {
+            throw new Error('Please log in to view your articles');
+          }
+          if (r.status === 403) {
+            throw new Error('Contributor access required');
+          }
+          throw new Error('Failed to load articles');
+        }
+        return r.json();
+      })
       .then(data => {
-        setArticles(data);
+        setArticles(Array.isArray(data) ? data : []);
         setLoading(false);
       })
       .catch(err => {
-        console.error('Failed to load articles:', err);
+        console.error('Error loading articles:', err);
+        setError(err instanceof Error ? err.message : 'Failed to load articles');
+        setArticles([]);
         setLoading(false);
       });
   }, []);
@@ -81,6 +96,13 @@ export default function ContributorDashboard() {
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Article Management</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Create and manage your contributions</h3>
+            
+            {/* Error Message */}
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-red-700 text-sm">{error}</p>
+              </div>
+            )}
             
             {/* Action Bar */}
             <div className="flex flex-col md:flex-row gap-4 mb-8">

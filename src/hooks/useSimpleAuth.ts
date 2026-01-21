@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { loginEmail, registerEmail, logout as logoutApi, authStatus } from '@/lib/auth';
+import { buildApiUrl } from '@/lib/urls';
 
 interface User {
   id: string;
@@ -111,6 +112,26 @@ export function useSimpleAuth() {
 
   const checkAuth = useCallback(async () => {
     try {
+      // First, check backend session via /api/me
+      try {
+        const response = await fetch(buildApiUrl('/me'), {
+          credentials: 'include'
+        });
+        
+        if (response.ok) {
+          const backendUser = await response.json();
+          if (backendUser && !backendUser.error) {
+            // Backend session exists - use this user
+            setUser(backendUser as User);
+            setLoading(false);
+            return;
+          }
+        }
+      } catch (backendErr) {
+        // Backend session check failed, continue to check OAuth
+        console.debug('Backend session check failed, checking OAuth:', backendErr);
+      }
+      
       // Check localStorage for OAuth users
       const oauthUser = localStorage.getItem('newtifi_user');
       const oauthAuth = localStorage.getItem('newtifi_auth');
@@ -136,7 +157,7 @@ export function useSimpleAuth() {
         return;
       }
       
-      // No OAuth user found
+      // No user found
       setUser(null);
     } catch (err) {
       console.error('Auth check failed:', err);

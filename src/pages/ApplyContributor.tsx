@@ -3,6 +3,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { FileText, ArrowLeft, Send, CheckCircle, Home, User, Settings } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { buildApiUrl } from '@/lib/urls';
 
 export default function ApplyContributor() {
   const { user, isAuthenticated } = useSimpleAuth();
@@ -13,27 +14,36 @@ export default function ApplyContributor() {
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [existingApplication, setExistingApplication] = useState(null);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (isAuthenticated) {
       // Check if user already has an application
-      fetch('/api/applications/me', { credentials: 'include' })
-        .then(r => r.json())
+      fetch(buildApiUrl('/applications/me'), { credentials: 'include' })
+        .then(r => {
+          if (r.ok) {
+            return r.json();
+          }
+          return null;
+        })
         .then(data => {
-          if (data) {
+          if (data && !data.error) {
             setExistingApplication(data);
           }
         })
-        .catch(err => console.error('Failed to check application status:', err));
+        .catch(err => {
+          // Silently fail - user may not have an application yet
+        });
     }
   }, [isAuthenticated]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setError('');
     
     try {
-      const response = await fetch('/api/applications', {
+      const response = await fetch(buildApiUrl('/applications'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,15 +52,20 @@ export default function ApplyContributor() {
         body: JSON.stringify(formData)
       });
       
-      if (response.ok) {
-        setSubmitted(true);
+      if (!response.ok) {
         const data = await response.json();
-        setExistingApplication(data);
-      } else {
-        console.error('Failed to submit application');
+        throw new Error(data.error || 'Failed to submit application');
       }
+      
+      const data = await response.json();
+      setSubmitted(true);
+      setExistingApplication(data);
+      setError('');
     } catch (err) {
       console.error('Error submitting application:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Failed to submit application. Please try again.';
+      setError(errorMessage);
+      setSubmitted(false);
     } finally {
       setSubmitting(false);
     }
@@ -278,6 +293,12 @@ export default function ApplyContributor() {
             <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Tell us about yourself and your expertise</h3>
             
             <div className="max-w-2xl mx-auto">
+              {/* Error Message */}
+              {error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                  <p className="text-red-700 text-sm">{error}</p>
+                </div>
+              )}
               {submitted ? (
                 <div className="text-center py-12">
                   <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">

@@ -3,6 +3,7 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { User, Save, ArrowLeft, Home, Settings, FileText, Users, BarChart3 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { buildApiUrl } from '@/lib/urls';
 
 export default function Profile() {
   const { user, isAuthenticated } = useSimpleAuth();
@@ -23,6 +24,7 @@ export default function Profile() {
   });
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (user) {
@@ -47,9 +49,10 @@ export default function Profile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
+    setError('');
     
     try {
-      const response = await fetch('/api/me', {
+      const response = await fetch(buildApiUrl('/me'), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -58,14 +61,27 @@ export default function Profile() {
         body: JSON.stringify(formData)
       });
       
-      if (response.ok) {
-        setSaved(true);
-        setTimeout(() => setSaved(false), 3000);
-      } else {
-        console.error('Failed to save profile');
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to save profile');
+      }
+      
+      const data = await response.json();
+      setSaved(true);
+      setError('');
+      setTimeout(() => setSaved(false), 3000);
+      
+      // Update local user state
+      window.dispatchEvent(new CustomEvent('userUpdated', { detail: data }));
+      
+      // Refresh auth to get updated user data
+      if (window.dispatchEvent) {
+        window.dispatchEvent(new CustomEvent('authStateChanged'));
       }
     } catch (err) {
-      console.error('Error saving profile:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Failed to save profile. Please try again.';
+      setError(errorMessage);
+      setSaved(false);
     } finally {
       setSaving(false);
     }
@@ -533,6 +549,13 @@ export default function Profile() {
                     className="w-full px-5 py-4 border border-gray-300 rounded-2xl bg-gray-50 text-gray-500 cursor-not-allowed"
                   />
                 </div>
+
+                {/* Error Message */}
+                {error && (
+                  <div className="mb-4 p-4 bg-red-50 border border-red-200 rounded-xl">
+                    <p className="text-red-700 text-sm">{error}</p>
+                  </div>
+                )}
 
                 {/* Save Button */}
                 <div className="flex gap-4 pt-6">

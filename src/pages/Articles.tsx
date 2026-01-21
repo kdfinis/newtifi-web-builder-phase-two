@@ -1,25 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { articleService } from '@/lib/articles/ArticleService';
-import { Article, ArticleStatus } from '@/lib/articles/types';
+import { buildApiUrl } from '@/lib/urls';
 import { Calendar, User, Eye, Download, MessageSquare, Star, Filter, Search } from 'lucide-react';
 
+interface ApiArticle {
+  id: string;
+  title: string;
+  author: string;
+  date: string;
+  doi: string;
+  keywords: string[];
+  abstract: string;
+  status: string;
+  views: number;
+  downloads: number;
+  featured: boolean;
+  category: string;
+  journal?: string;
+}
+
 export default function Articles() {
-  const [articles, setArticles] = useState<Article[]>([]);
-  const [filteredArticles, setFilteredArticles] = useState<Article[]>([]);
+  const [articles, setArticles] = useState<ApiArticle[]>([]);
+  const [filteredArticles, setFilteredArticles] = useState<ApiArticle[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedStatus, setSelectedStatus] = useState<ArticleStatus | 'ALL'>('ALL');
+  const [selectedStatus, setSelectedStatus] = useState<string>('ALL');
   const [loading, setLoading] = useState(true);
+
+  // Helper to convert article ID to slug
+  const idToSlug = (id: string): string => {
+    const slugMap: Record<string, string> = {
+      'IMJ-2025-001': 'eltifs-compulsory-redemptions',
+      'IMJ-2025-002': 'bafin-portfolio-control',
+      'IMJ-2025-003': 'luxembourg-well-informed-investor'
+    };
+    return slugMap[id] || id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  };
 
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        const allArticles = await articleService.getArticles();
+        const response = await fetch(buildApiUrl('/articles'), {
+          method: 'GET',
+          credentials: 'include'
+        });
+        
+        if (!response.ok) {
+          throw new Error('Failed to load articles');
+        }
+        
+        const allArticles: ApiArticle[] = await response.json();
         // Only show published articles to the public
-        const publishedArticles = allArticles.filter(article => article.status === ArticleStatus.PUBLISHED);
+        const publishedArticles = allArticles.filter(article => article.status === 'published');
         setArticles(publishedArticles);
         setFilteredArticles(publishedArticles);
       } catch (error) {
+        console.error('Error loading articles:', error);
         // Error loading articles - show empty state with helpful message
         setArticles([]);
         setFilteredArticles([]);
@@ -39,9 +74,7 @@ export default function Articles() {
       filtered = filtered.filter(article =>
         article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         article.abstract.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.authors.some(author => 
-          author.name.toLowerCase().includes(searchTerm.toLowerCase())
-        )
+        article.author.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -53,21 +86,27 @@ export default function Articles() {
     setFilteredArticles(filtered);
   }, [articles, searchTerm, selectedStatus]);
 
-  const formatDate = (date: Date) => {
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    }).format(new Date(date));
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }).format(date);
+    } catch {
+      return dateString;
+    }
   };
 
-  const getStatusColor = (status: ArticleStatus) => {
+  const getStatusColor = (status: string) => {
     switch (status) {
-      case ArticleStatus.PUBLISHED:
+      case 'published':
         return 'bg-green-100 text-green-800';
-      case ArticleStatus.UNDER_REVIEW:
+      case 'under_review':
+      case 'under-review':
         return 'bg-yellow-100 text-yellow-800';
-      case ArticleStatus.DRAFT:
+      case 'draft':
         return 'bg-gray-100 text-gray-800';
       default:
         return 'bg-gray-100 text-gray-800';
@@ -122,8 +161,8 @@ export default function Articles() {
                 className="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent bg-white text-gray-900"
               >
                 <option value="ALL">All Articles</option>
-                <option value={ArticleStatus.PUBLISHED}>Published</option>
-                <option value={ArticleStatus.UNDER_REVIEW}>Under Review</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
               </select>
             </div>
           </div>
@@ -159,7 +198,7 @@ export default function Articles() {
                       {article.title.charAt(0)}
                     </div>
                     <div className="text-sm opacity-90">
-                      {article.journal.toUpperCase()}
+                      {article.journal?.toUpperCase() || article.category.toUpperCase()}
                     </div>
                   </div>
                 </div>
@@ -169,12 +208,14 @@ export default function Articles() {
                   {/* Status Badge */}
                   <div className="flex items-center justify-between mb-3">
                     <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(article.status)}`}>
-                      {article.status.replace('_', ' ')}
+                      {article.status.replace('_', ' ').replace('-', ' ')}
                     </span>
-                    <div className="flex items-center text-sm text-gray-500">
-                      <Star className="w-4 h-4 mr-1" />
-                      {article.kpis.reviewScore.toFixed(1)}
-                    </div>
+                    {article.featured && (
+                      <div className="flex items-center text-sm text-gray-500">
+                        <Star className="w-4 h-4 mr-1 text-yellow-500 fill-yellow-500" />
+                        Featured
+                      </div>
+                    )}
                   </div>
 
                   {/* Title */}
@@ -191,10 +232,10 @@ export default function Articles() {
                   <div className="mb-4">
                     <div className="flex items-center text-sm text-gray-500 mb-2">
                       <User className="w-4 h-4 mr-1" />
-                      Authors
+                      Author
                     </div>
                     <div className="text-sm text-gray-700">
-                      {article.authors.map(author => author.name).join(', ')}
+                      {article.author}
                     </div>
                   </div>
 
@@ -202,25 +243,25 @@ export default function Articles() {
                   <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 mr-1" />
-                      {formatDate(article.publishedAt || article.createdAt)}
+                      {formatDate(article.date)}
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="flex items-center">
                         <Eye className="w-4 h-4 mr-1" />
-                        {article.kpis.views}
+                        {article.views}
                       </div>
                       <div className="flex items-center">
                         <Download className="w-4 h-4 mr-1" />
-                        {article.kpis.downloads}
+                        {article.downloads}
                       </div>
                     </div>
                   </div>
 
                   {/* Keywords */}
-                  {article.metadata.keywords && article.metadata.keywords.length > 0 && (
+                  {article.keywords && article.keywords.length > 0 && (
                     <div className="mb-4">
                       <div className="flex flex-wrap gap-1">
-                        {article.metadata.keywords.slice(0, 3).map((keyword, index) => (
+                        {article.keywords.slice(0, 3).map((keyword, index) => (
                           <span
                             key={index}
                             className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full"
@@ -228,9 +269,9 @@ export default function Articles() {
                             {keyword}
                           </span>
                         ))}
-                        {article.metadata.keywords.length > 3 && (
+                        {article.keywords.length > 3 && (
                           <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                            +{article.metadata.keywords.length - 3} more
+                            +{article.keywords.length - 3} more
                           </span>
                         )}
                       </div>
@@ -239,7 +280,7 @@ export default function Articles() {
 
                   {/* Action Button */}
                   <Link
-                    to={`/publishing/${article.journal}/article/${article.id}`}
+                    to={`/publishing/article/${idToSlug(article.id)}`}
                     className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                   >
                     Read Article

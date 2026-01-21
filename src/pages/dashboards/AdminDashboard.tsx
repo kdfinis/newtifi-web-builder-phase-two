@@ -1,72 +1,110 @@
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 import ScrollReveal from '@/components/ScrollReveal';
-import { Users, FileText, CheckCircle, AlertCircle, Clock } from 'lucide-react';
+import { Users, FileText, CheckCircle, AlertCircle, Clock, Database, ExternalLink } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { buildApiUrl } from '@/lib/urls';
+import { useNavigate } from 'react-router-dom';
 
 export default function AdminDashboard() {
   const { user } = useSimpleAuth();
+  const navigate = useNavigate();
   const [applications, setApplications] = useState([]);
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     Promise.all([
-      fetch('/api/admin/applications', { credentials: 'include' }).then(r => r.json()),
-      fetch('/api/admin/articles', { credentials: 'include' }).then(r => r.json())
+      fetch(buildApiUrl('/admin/applications'), { credentials: 'include' })
+        .then(r => {
+          if (!r.ok) {
+            if (r.status === 403) throw new Error('Access denied. Admin privileges required.');
+            if (r.status === 401) throw new Error('Please log in to continue.');
+            throw new Error('Failed to load applications');
+          }
+          return r.json();
+        }),
+      fetch(buildApiUrl('/admin/articles'), { credentials: 'include' })
+        .then(r => {
+          if (!r.ok) {
+            if (r.status === 403) throw new Error('Access denied. Admin privileges required.');
+            if (r.status === 401) throw new Error('Please log in to continue.');
+            throw new Error('Failed to load articles');
+          }
+          return r.json();
+        })
     ]).then(([apps, arts]) => {
-      setApplications(apps);
-      setArticles(arts);
+      setApplications(Array.isArray(apps) ? apps : []);
+      setArticles(Array.isArray(arts) ? arts : []);
+      setError('');
       setLoading(false);
     }).catch(err => {
-      console.error('Failed to load admin data:', err);
+      setError(err instanceof Error ? err.message : 'Failed to load data');
+      setApplications([]);
+      setArticles([]);
       setLoading(false);
     });
   }, []);
 
   const handleApproveApplication = async (id) => {
     try {
-      await fetch(`/api/admin/applications/${id}/approve`, {
+      const response = await fetch(buildApiUrl(`/admin/applications/${id}/approve`), {
         method: 'POST',
         credentials: 'include'
       });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to approve application');
+      }
+      const data = await response.json();
       setApplications(prev => prev.map(app => 
-        app.id === id ? { ...app, status: 'approved' } : app
+        app.id === id ? { ...app, ...data } : app
       ));
     } catch (err) {
-      console.error('Failed to approve application:', err);
+      alert(err instanceof Error ? err.message : 'Failed to approve application');
     }
   };
 
   const handleRejectApplication = async (id) => {
     try {
-      await fetch(`/api/admin/applications/${id}/reject`, {
+      const response = await fetch(buildApiUrl(`/admin/applications/${id}/reject`), {
         method: 'POST',
         credentials: 'include'
       });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to reject application');
+      }
+      const data = await response.json();
       setApplications(prev => prev.map(app => 
-        app.id === id ? { ...app, status: 'rejected' } : app
+        app.id === id ? { ...app, ...data } : app
       ));
     } catch (err) {
-      console.error('Failed to reject application:', err);
+      alert(err instanceof Error ? err.message : 'Failed to reject application');
     }
   };
 
   const handlePublishArticle = async (id) => {
     try {
-      await fetch(`/api/admin/articles/${id}/publish`, {
+      const response = await fetch(buildApiUrl(`/admin/articles/${id}/publish`), {
         method: 'POST',
         credentials: 'include'
       });
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to publish article');
+      }
+      const data = await response.json();
       setArticles(prev => prev.map(art => 
-        art.id === id ? { ...art, status: 'published' } : art
+        art.id === id ? { ...art, ...data } : art
       ));
     } catch (err) {
-      console.error('Failed to publish article:', err);
+      alert(err instanceof Error ? err.message : 'Failed to publish article');
     }
   };
 
   const pendingApplications = applications.filter(app => app.status === 'pending');
-  const pendingArticles = articles.filter(art => art.status === 'pending');
+  const pendingArticles = articles.filter(art => art.status === 'draft' || art.status === 'pending');
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
@@ -99,9 +137,28 @@ export default function AdminDashboard() {
       <section className="w-full bg-white py-8">
         <div className="container mx-auto px-6">
           <ScrollReveal>
-            <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Admin Console</h2>
-            <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Review and approve content</h3>
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Admin Console</h2>
+                <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
+                <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Review and approve content</h3>
+              </div>
+              <button
+                onClick={() => navigate('/admin/articles')}
+                className="px-6 py-3 bg-newtifi-navy text-white rounded-lg hover:bg-newtifi-teal transition-all flex items-center gap-2 shadow-lg hover:shadow-xl"
+              >
+                <Database className="h-5 w-5" />
+                <span>View All Articles</span>
+                <ExternalLink className="h-4 w-4" />
+              </button>
+            </div>
+            
+            {/* Error Message */}
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
+                <p className="text-red-700 text-sm">{error}</p>
+              </div>
+            )}
             
             {/* Stats Cards */}
             <div className="grid md:grid-cols-3 gap-6 mb-8">
@@ -206,12 +263,30 @@ export default function AdminDashboard() {
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
                           <h4 className="text-lg font-semibold text-newtifi-navy mb-2">
-                            {article.title}
+                            {article.title || 'Untitled Article'}
                           </h4>
                           <p className="text-sm text-gray-600 mb-2">
-                            By {article.author.name || article.author.email} • {article.journal}
+                            By {article.author || article.authorId || 'Unknown'} • {article.journal || article.category || 'Uncategorized'}
+                            {article.status && (
+                              <span className={`ml-2 px-2 py-1 rounded text-xs ${
+                                article.status === 'draft' ? 'bg-gray-200 text-gray-700' :
+                                article.status === 'pending' ? 'bg-yellow-200 text-yellow-800' :
+                                'bg-blue-200 text-blue-800'
+                              }`}>
+                                {article.status}
+                              </span>
+                            )}
                           </p>
-                          <p className="text-sm text-gray-700 line-clamp-2">{article.summary}</p>
+                          {(article.summary || article.abstract) && (
+                            <p className="text-sm text-gray-700 line-clamp-2 mb-2">
+                              {article.summary || article.abstract}
+                            </p>
+                          )}
+                          {article.createdAt && (
+                            <p className="text-xs text-gray-500">
+                              Created: {new Date(article.createdAt).toLocaleDateString()}
+                            </p>
+                          )}
                         </div>
                         <div className="flex gap-2 ml-4">
                           <button
@@ -220,10 +295,6 @@ export default function AdminDashboard() {
                           >
                             <CheckCircle className="h-4 w-4" />
                             Publish
-                          </button>
-                          <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-all flex items-center gap-2">
-                            <AlertCircle className="h-4 w-4" />
-                            Reject
                           </button>
                         </div>
                       </div>

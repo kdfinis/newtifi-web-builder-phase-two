@@ -49,11 +49,26 @@ export const getCurrentUrls = () => {
   return isDev ? URLS.DEV : URLS.PROD;
 };
 
+// Helper function to get API base URL
+export const getApiBaseUrl = () => {
+  const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  if (backendUrl) {
+    return backendUrl;
+  }
+  // In development, use relative URLs (Vite proxy handles it)
+  // In production, use relative URLs if no backend URL is set
+  // This works because Vite dev server proxies /api to localhost:3001
+  return '';
+};
+
 // Helper function to build API URLs
 export const buildApiUrl = (endpoint: string) => {
-  const urls = getCurrentUrls();
-  const base = urls.BACKEND ? `${urls.BACKEND}${URLS.API.BASE}` : `${URLS.API.BASE}`;
-  return `${base}${endpoint}`;
+  const baseUrl = getApiBaseUrl();
+  const apiBase = URLS.API.BASE.startsWith('/') ? URLS.API.BASE : `/${URLS.API.BASE}`;
+  if (baseUrl) {
+    return `${baseUrl}${apiBase}${endpoint}`;
+  }
+  return `${apiBase}${endpoint}`;
 };
 
 // Helper function to build asset URLs

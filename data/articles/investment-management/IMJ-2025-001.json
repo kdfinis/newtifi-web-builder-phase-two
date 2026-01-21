@@ -1,0 +1,48 @@
+{
+  "id": "IMJ-2025-001",
+  "journalId": "investment-management",
+  "version": "v1",
+  "title": "Closed-Ended Luxembourg ELTIFs Compulsory Redemption Matters and Compartment Termination & Amalgamation Provisions",
+  "abstract": "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection.",
+  "authors": [
+    {
+      "name": "Ezechiel Havrenne",
+      "order": 1,
+      "corresponding": true
+    }
+  ],
+  "keywords": [
+    "ELTIFs",
+    "Luxembourg",
+    "Compulsory Redemptions",
+    "Fund Management"
+  ],
+  "doi": "10.1234/newtifi.2025.001",
+  "status": "published",
+  "publishedDate": "2025-06-28",
+  "submittedDate": "2025-06-28",
+  "files": {
+    "main": {
+      "path": "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+      "url": "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
+      "type": "pdf",
+      "size": 0,
+      "mimeType": "application/pdf",
+      "checksum": ""
+    }
+  },
+  "versionHistory": [
+    {
+      "version": "v1",
+      "createdAt": "2025-06-28",
+      "isCurrent": true
+    }
+  ],
+  "currentVersion": "v1",
+  "subjectAreas": [
+    "Investment Funds",
+    "Regulatory Framework"
+  ],
+  "peerReviewed": true,
+  "license": "All Rights Reserved"
+}

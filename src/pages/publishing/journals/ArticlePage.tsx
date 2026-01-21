@@ -30,7 +30,7 @@ const staticArticles = [
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection. The study clarifies the compatibility of redemption provisions with the closed-ended ELTIF model and outlines best practices for implementing termination and amalgamation clauses within fund documentation. It concludes that Luxembourg offers a coherent and operationally flexible platform for ELTIF structuring aligned with the evolving European regulatory landscape.",
     filename: "eltifs-compulsory-redemptions.pdf",
     url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
-    pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
+          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -62,7 +62,7 @@ const staticArticles = [
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM's exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
     filename: "bafin-aifm-portfolio-control.pdf",
     url: "/articles/investment-management-journal/bafin-portfolio-control",
-    pdfUrl: "/articles/bafin-aifm-portfolio-control.pdf",
+          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -100,7 +100,7 @@ const staticArticles = [
     abstract: "This article provides a comprehensive analysis of Luxembourg's \"Well-Informed Investor\" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg's private fund landscape.",
     filename: "luxembourg-well-informed-investor.pdf",
     url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
-    pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
+          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -202,7 +202,7 @@ function parseArticleMeta(article) {
 }
 
 export default function ArticlePage() {
-  const { slug } = useParams();
+  const { slug, journalSlug } = useParams();
   const navigate = useNavigate();
   const [pdfOpen, setPdfOpen] = React.useState(false);
   const [showModal, setShowModal] = React.useState(false);
@@ -218,47 +218,100 @@ export default function ArticlePage() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  // Load articles from ArticleService on mount
+  // Helper to convert article ID to slug
+  const idToSlug = (id: string): string => {
+    const slugMap: Record<string, string> = {
+      'IMJ-2025-001': 'eltifs-compulsory-redemptions',
+      'IMJ-2025-002': 'bafin-portfolio-control',
+      'IMJ-2025-003': 'luxembourg-well-informed-investor'
+    };
+    return slugMap[id] || id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+  };
+
+  // Helper to convert slug to article ID
+  const slugToId = (slug: string): string => {
+    const idMap: Record<string, string> = {
+      'eltifs-compulsory-redemptions': 'IMJ-2025-001',
+      'bafin-portfolio-control': 'IMJ-2025-002',
+      'luxembourg-well-informed-investor': 'IMJ-2025-003'
+    };
+    return idMap[slug] || slug;
+  };
+
+  // Helper to get correct PDF URL from article ID
+  const getPdfUrl = (articleId: string, apiPdfUrl?: string): string => {
+    // Map article IDs to new storage structure paths
+    const pdfMap: Record<string, string> = {
+      'IMJ-2025-001': '/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf',
+      'IMJ-2025-002': '/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf',
+      'IMJ-2025-003': '/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf'
+    };
+    
+    // First try the new storage structure mapping
+    if (pdfMap[articleId]) {
+      return pdfMap[articleId];
+    }
+    
+    // Then try the API URL if it exists and is valid (supports both old and new paths)
+    if (apiPdfUrl && (apiPdfUrl.startsWith('/articles/') || apiPdfUrl.startsWith('/storage/'))) {
+      return apiPdfUrl;
+    }
+    
+    // Fallback: try to construct new storage path
+    if (articleId.startsWith('IMJ-')) {
+      return `/storage/journals/investment-management/articles/${articleId}/current/article.pdf`;
+    }
+    
+    // Final fallback to legacy path
+    return `/articles/${idToSlug(articleId)}.pdf`;
+  };
+
+  // Load articles from API on mount
   useEffect(() => {
     const loadArticles = async () => {
       try {
         setLoading(true);
-        // Try to load from ArticleService
-        const { articleService } = await import('@/lib/articles/ArticleService');
-        const serviceArticles = await articleService.getArticles({ status: ['PUBLISHED'] });
+        // Try to load from API
+        const { buildApiUrl } = await import('@/lib/urls');
+        const response = await fetch(buildApiUrl('/articles'), {
+          method: 'GET',
+          credentials: 'include'
+        });
         
-        if (serviceArticles && serviceArticles.length > 0) {
-          // Convert ArticleService format to ArticlePage format
-          const convertedArticles = serviceArticles.map(a => ({
-            id: a.id,
-            title: a.title,
-            author: a.authors[0]?.name || 'Unknown Author',
-            date: a.publishedAt ? new Date(a.publishedAt).toISOString().split('T')[0] : new Date(a.createdAt).toISOString().split('T')[0],
-            doi: a.metadata?.doi || `10.1234/newtifi.${a.id}`,
-            keywords: a.metadata?.keywords || [],
-            abstract: a.abstract,
-            filename: `${a.id}.pdf`,
-            url: `/publishing/${a.journal}/article/${a.id}`,
-            pdfUrl: a.content?.pdfUrl || `/articles/${a.id}.pdf`,
-            status: a.status === 'PUBLISHED' ? 'published' as const : 'draft' as const,
-            views: a.kpis?.views || 0,
-            downloads: a.kpis?.downloads || 0,
-            featured: a.metadata?.featured || false,
-            category: 'journal' as const
-          }));
+        if (response.ok) {
+          const apiArticles = await response.json();
+           // Convert API format to ArticlePage format
+           const convertedArticles = apiArticles.map((a: any) => ({
+             id: idToSlug(a.id), // Use slug as ID for compatibility
+             originalId: a.id, // Keep original ID
+             title: a.title,
+             author: a.author || 'Unknown Author',
+             date: a.date || new Date().toISOString().split('T')[0],
+             doi: a.doi || `10.1234/newtifi.${a.id}`,
+             keywords: a.keywords || [],
+             abstract: a.abstract || '',
+             filename: a.filename || `${a.id}.pdf`,
+             url: `/publishing/article/${idToSlug(a.id)}`,
+             pdfUrl: getPdfUrl(a.id, a.pdfUrl || a.url), // Use correct PDF path
+             status: a.status === 'published' ? 'published' as const : 'draft' as const,
+             views: a.views || 0,
+             downloads: a.downloads || 0,
+             featured: a.featured || false,
+             category: (a.category || 'journal') as const
+           }));
           
-          // Merge with static articles (avoid duplicates)
+          // Merge with static articles (avoid duplicates by ID)
           const mergedArticles = [...staticArticles];
           convertedArticles.forEach(converted => {
-            if (!mergedArticles.find(a => a.id === converted.id)) {
+            if (!mergedArticles.find(a => a.id === converted.id || a.id === converted.originalId)) {
               mergedArticles.push(converted);
             }
           });
           setArticles(mergedArticles);
         }
       } catch (err) {
-        // Failed to load from ArticleService, using static articles as fallback
-        // Error is silently handled to prevent user-facing errors
+        console.error('Failed to load articles from API:', err);
+        // Failed to load from API, using static articles as fallback
       } finally {
         setLoading(false);
       }
@@ -305,10 +358,16 @@ export default function ArticlePage() {
   if (slug && articles.length > 0) {
     const decodedSlug = decodeURIComponent(slug);
     
-    // Method 1: Find by ID (most common)
+    // Method 1: Find by ID/slug (most common)
     article = articles.find(a => a.id === slug || a.id === decodedSlug);
     
-    // Method 2: Find by filename
+    // Method 2: Try slug to ID mapping
+    if (!article) {
+      const mappedId = slugToId(slug);
+      article = articles.find(a => a.id === mappedId || (a as any).originalId === mappedId);
+    }
+    
+    // Method 3: Find by filename
     if (!article) {
       article = articles.find(a => 
         a.filename === slug || 
@@ -317,7 +376,7 @@ export default function ArticlePage() {
       );
     }
     
-    // Method 3: Find by URL path
+    // Method 4: Find by URL path
     if (!article) {
       article = articles.find(a => 
         a.url === slug || 

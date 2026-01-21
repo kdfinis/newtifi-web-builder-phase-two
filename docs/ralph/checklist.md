@@ -1,128 +1,109 @@
-# Ralph Loop Checklist - NewTIFI Website Optimization
+# Infrastructure Upgrade Checklist
 
-## Phase 1: Code Quality & Type Safety
+## Phase 1: Foundation & Core Services
 
-### Remove Debug Code
-- [ ] Find and remove/replace all console.log statements
-- [ ] Replace with proper logging utility or remove entirely
-- [ ] Check: ArticlePage.tsx, EmbeddedPDFViewer.tsx, and other components
-- [ ] Verify no debug code in production paths
+### Directory Structure
+- [ ] Create `storage/journals/` directory
+- [ ] Create `storage/shared/` directory structure
+- [ ] Create `storage/assets/` directory structure
+- [ ] Create `storage/archives/` directory
+- [ ] Create `data/journals/` for journal metadata
+- [ ] Create `data/articles/` for article metadata
+- [ ] Create `data/assets/` for asset registry
+- [ ] Create `data/versions/` for version tracking
 
-### Type Safety Improvements
-- [ ] Replace `any` types with proper interfaces/types
-- [ ] Replace `unknown` types with proper type guards
-- [ ] Fix type errors in: src/types/common.ts, src/config/environment.ts, src/content/loaders.ts
-- [ ] Add proper types for article data structures
-- [ ] Ensure all components have proper prop types
+### Core Services Implementation
+- [ ] Create `src/lib/storage/StorageService.ts`
+- [ ] Implement journal-scoped path generation
+- [ ] Implement file storage operations
+- [ ] Implement file retrieval operations
+- [ ] Implement file listing operations
+- [ ] Create `src/lib/storage/AssetRegistry.ts`
+- [ ] Implement asset registration
+- [ ] Implement asset lookup
+- [ ] Implement usage tracking
+- [ ] Create `src/lib/storage/VersionManager.ts`
+- [ ] Implement version creation
+- [ ] Implement version listing
+- [ ] Implement current version tracking
+- [ ] Implement symlink management for "current"
+- [ ] Create `src/lib/journals/JournalStorage.ts`
+- [ ] Implement journal-scoped storage operations
+- [ ] Create `src/lib/assets/AssetManager.ts`
+- [ ] Implement asset lifecycle management
 
-### Error Handling
-- [ ] Add try-catch blocks to all async operations
-- [ ] Add error boundaries to major page components
-- [ ] Improve error messages - make them user-friendly
-- [ ] Add error recovery mechanisms where appropriate
-- [ ] Ensure errors are logged properly (not console.log)
+### Migration
+- [ ] Create `scripts/migrate-to-new-structure.js`
+- [ ] Implement file scanning from old structure
+- [ ] Implement journal identification logic
+- [ ] Implement file migration to new structure
+- [ ] Implement version entry creation
+- [ ] Implement checksum generation
+- [ ] Implement metadata migration
+- [ ] Test migration on copy of data
+- [ ] Run migration on actual data
+- [ ] Verify all files migrated correctly
 
-## Phase 2: User Experience Improvements
+### Backend Updates
+- [ ] Update `simple-admin-server.js` file serving
+- [ ] Add new storage API endpoints
+- [ ] Add version management endpoints
+- [ ] Add asset registry endpoints
+- [ ] Update article endpoints to use new paths
+- [ ] Add journal-scoped endpoints
+- [ ] Update file upload handling
+- [ ] Add version creation on upload
+- [ ] Test all backend endpoints
 
-### Loading States
-- [ ] Add loading spinners to ArticlePage
-- [ ] Add loading states to Articles list page
-- [ ] Add loading states to Login/Signup forms
-- [ ] Add loading states to Dashboard
-- [ ] Ensure all data-fetching shows loading feedback
+### Frontend Updates
+- [ ] Update article loading to use new paths
+- [ ] Update asset references
+- [ ] Update file URLs in components
+- [ ] Add version selection UI (if needed)
+- [ ] Update journal navigation
+- [ ] Test all frontend functionality
 
-### Error Messages
-- [ ] Improve password login error messages
-- [ ] Improve OAuth error messages (without touching OAuth config)
-- [ ] Add helpful error messages for article loading failures
-- [ ] Make error messages actionable and user-friendly
-- [ ] Add error recovery suggestions
-
-### UI/UX Polish
-- [ ] Ensure consistent button styles across all pages
-- [ ] Add smooth transitions and animations
-- [ ] Improve form styling and validation feedback
-- [ ] Polish article card displays
-- [ ] Improve article page layout and readability
-- [ ] Add hover states and interactive feedback
-- [ ] Ensure consistent spacing and typography
-
-### Form Validation
-- [ ] Improve email validation in login/signup
-- [ ] Add password strength indicators
-- [ ] Better validation error display
-- [ ] Real-time validation feedback
-- [ ] Prevent form submission with invalid data
-
-### Authentication Flow
-- [ ] Improve login success feedback
-- [ ] Better redirect handling after login
-- [ ] Improve signup flow UX
-- [ ] Add "remember me" functionality (if not present)
-- [ ] Better session management feedback
-
-## Phase 3: Performance & Architecture
-
-### Article Data Consolidation
-- [ ] Identify all article data sources
-- [ ] Create single source of truth for articles
-- [ ] Update ArticlePage to use consolidated source
-- [ ] Update Articles list to use consolidated source
-- [ ] Remove duplicate article data files
-- [ ] Ensure article routing works reliably
-
-### Code Organization
-- [ ] Organize components by feature/domain
-- [ ] Improve import organization
-- [ ] Remove unused code and components
-- [ ] Consolidate duplicate functionality
-- [ ] Improve file structure and naming
-
-### Performance Optimizations
-- [ ] Add React.memo where appropriate
-- [ ] Implement lazy loading for heavy components
-- [ ] Optimize image loading
-- [ ] Add code splitting for routes
-- [ ] Optimize bundle size
-
-## Phase 4: Polish & Refinement
-
-### Article Display
-- [ ] Improve article metadata display
-- [ ] Better keyword/tag presentation
-- [ ] Improve author information display
-- [ ] Better PDF preview integration
-- [ ] Improve article navigation
-
-### Accessibility
-- [ ] Add proper ARIA labels
-- [ ] Ensure keyboard navigation works
-- [ ] Improve screen reader support
-- [ ] Add focus indicators
-- [ ] Ensure color contrast meets standards
+### Testing & Verification
+- [ ] Test file upload creates new version
+- [ ] Test file retrieval works
+- [ ] Test version listing works
+- [ ] Test journal isolation
+- [ ] Test asset reuse
+- [ ] Test all existing functionality
+- [ ] Verify no broken links
+- [ ] Verify no 404 errors
+- [ ] Performance testing
+- [ ] Test migration rollback if needed
 
 ### Documentation
-- [ ] Add JSDoc comments to key functions
-- [ ] Document component props
-- [ ] Update README if needed
-- [ ] Document authentication flow (without secrets)
+- [ ] Document new storage structure
+- [ ] Document API endpoints
+- [ ] Document migration process
+- [ ] Update README with new structure
+- [ ] Create developer guide
 
-## Validation & Testing
-- [ ] Run `npm run lint` and fix all errors
-- [ ] Verify no TypeScript errors
-- [ ] Test password login flow
-- [ ] Test OAuth login flows (Google & LinkedIn)
-- [ ] Test article loading and display
-- [ ] Test article routing and navigation
-- [ ] Verify all pages load without errors
-- [ ] Check browser console for errors
+## Phase 2: Enhanced Features (Future)
 
-## Final Checks
-- [ ] No console.log statements remain
-- [ ] No `any` types in critical paths
-- [ ] All async operations have error handling
-- [ ] All data-fetching has loading states
-- [ ] UI is consistent and polished
-- [ ] Articles work reliably
-- [ ] Authentication flows work smoothly
-- [ ] Validation passes successfully
+### Metadata System
+- [ ] Enhanced metadata schema
+- [ ] Metadata extraction from files
+- [ ] Metadata API endpoints
+- [ ] Metadata editor UI
+
+### File Processing
+- [ ] PDF processing pipeline
+- [ ] Image optimization
+- [ ] Thumbnail generation
+- [ ] File validation
+
+### Search & Discovery
+- [ ] Full-text search
+- [ ] Metadata search
+- [ ] Asset discovery
+- [ ] Search UI
+
+### Standards Compliance
+- [ ] JATS XML support
+- [ ] OAI-PMH endpoint
+- [ ] DOI integration
+- [ ] Dublin Core metadata
