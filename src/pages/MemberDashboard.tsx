@@ -102,7 +102,8 @@ const MemberDashboard: React.FC = () => {
 
     // Apply sorting
     filtered.sort((a, b) => {
-      let aValue: any, bValue: any;
+      let aValue: string | number | Date;
+      let bValue: string | number | Date;
 
       switch (sortBy) {
         case 'title':
@@ -126,8 +127,14 @@ const MemberDashboard: React.FC = () => {
       }
 
       if (sortOrder === 'asc') {
+        if (aValue instanceof Date && bValue instanceof Date) {
+          return aValue.getTime() - bValue.getTime();
+        }
         return aValue > bValue ? 1 : -1;
       } else {
+        if (aValue instanceof Date && bValue instanceof Date) {
+          return bValue.getTime() - aValue.getTime();
+        }
         return aValue < bValue ? 1 : -1;
       }
     });
@@ -139,7 +146,7 @@ const MemberDashboard: React.FC = () => {
     setSearchQuery(query);
   };
 
-  const handleFilterChange = (filterType: keyof ArticleFilters, value: any) => {
+  const handleFilterChange = (filterType: keyof ArticleFilters, value: string | string[] | Date | undefined) => {
     setFilters(prev => ({
       ...prev,
       [filterType]: value
@@ -443,12 +450,9 @@ const MemberDashboard: React.FC = () => {
                     if (confirm('Are you sure you want to disconnect your Google account?')) {
                       try {
                         await unlinkProvider('google');
-                        console.log('Google account disconnected');
-                        // toast.success('Google account disconnected');
                         window.location.reload();
                       } catch (err) {
-                        console.error('Failed to disconnect Google account');
-                        // toast.error('Failed to disconnect Google account');
+                        alert('Failed to disconnect Google account. Please try again.');
                       }
                     }
                   }}
@@ -487,12 +491,9 @@ const MemberDashboard: React.FC = () => {
                     if (confirm('Are you sure you want to disconnect your LinkedIn account?')) {
                       try {
                         await unlinkProvider('linkedin');
-                        console.log('LinkedIn account disconnected');
-                        // toast.success('LinkedIn account disconnected');
                         window.location.reload();
                       } catch (err) {
-                        console.error('Failed to disconnect LinkedIn account');
-                        // toast.error('Failed to disconnect LinkedIn account');
+                        alert('Failed to disconnect LinkedIn account. Please try again.');
                       }
                     }
                   }}

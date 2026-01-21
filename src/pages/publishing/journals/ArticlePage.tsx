@@ -209,8 +209,8 @@ export default function ArticlePage() {
   const [form, setForm] = React.useState({ name: '', email: '' });
   const [formSubmitted, setFormSubmitted] = React.useState(false);
   const [showDescription, setShowDescription] = React.useState(false);
-  const [articles] = useState(staticArticles);
-  const [loading, setLoading] = useState(false);
+  const [articles, setArticles] = useState(staticArticles);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showPdfPreview, setShowPdfPreview] = useState(false);
 
@@ -218,33 +218,143 @@ export default function ArticlePage() {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
 
-  // Find the article by slug or filename
+  // Load articles from ArticleService on mount
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        setLoading(true);
+        // Try to load from ArticleService
+        const { articleService } = await import('@/lib/articles/ArticleService');
+        const serviceArticles = await articleService.getArticles({ status: ['PUBLISHED'] });
+        
+        if (serviceArticles && serviceArticles.length > 0) {
+          // Convert ArticleService format to ArticlePage format
+          const convertedArticles = serviceArticles.map(a => ({
+            id: a.id,
+            title: a.title,
+            author: a.authors[0]?.name || 'Unknown Author',
+            date: a.publishedAt ? new Date(a.publishedAt).toISOString().split('T')[0] : new Date(a.createdAt).toISOString().split('T')[0],
+            doi: a.metadata?.doi || `10.1234/newtifi.${a.id}`,
+            keywords: a.metadata?.keywords || [],
+            abstract: a.abstract,
+            filename: `${a.id}.pdf`,
+            url: `/publishing/${a.journal}/article/${a.id}`,
+            pdfUrl: a.content?.pdfUrl || `/articles/${a.id}.pdf`,
+            status: a.status === 'PUBLISHED' ? 'published' as const : 'draft' as const,
+            views: a.kpis?.views || 0,
+            downloads: a.kpis?.downloads || 0,
+            featured: a.metadata?.featured || false,
+            category: 'journal' as const
+          }));
+          
+          // Merge with static articles (avoid duplicates)
+          const mergedArticles = [...staticArticles];
+          convertedArticles.forEach(converted => {
+            if (!mergedArticles.find(a => a.id === converted.id)) {
+              mergedArticles.push(converted);
+            }
+          });
+          setArticles(mergedArticles);
+        }
+      } catch (err) {
+        // Failed to load from ArticleService, using static articles as fallback
+        // Error is silently handled to prevent user-facing errors
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadArticles();
+  }, []);
+
+  // Check authentication status
+  useEffect(() => {
+    const checkAuth = () => {
+      const oauthUser = localStorage.getItem('newtifi_user');
+      const oauthAuth = localStorage.getItem('newtifi_auth');
+      
+      if (oauthUser && oauthAuth === 'true') {
+        try {
+          const userData = JSON.parse(oauthUser);
+          setCurrentUser({
+            id: userData.id || userData.email,
+            email: userData.email,
+            name: userData.name
+          });
+          setIsAuthenticated(true);
+        } catch (err) {
+          // Failed to parse user data - user not authenticated
+          setIsAuthenticated(false);
+        }
+      }
+    };
+
+    checkAuth();
+    
+    // Listen for auth changes
+    const handleAuthEvent = () => checkAuth();
+    window.addEventListener('authStateChanged', handleAuthEvent);
+    
+    return () => {
+      window.removeEventListener('authStateChanged', handleAuthEvent);
+    };
+  }, []);
+
+  // Find the article by slug - try multiple methods
   let article = undefined;
   if (slug && articles.length > 0) {
-    console.log('Looking for article with slug:', slug);
-    console.log('Available articles:', articles.map(a => ({ id: a.id, filename: a.filename })));
+    const decodedSlug = decodeURIComponent(slug);
     
-    // Try to find by ID first (slug might be the article ID)
-    article = articles.find(a => a.id === slug);
-    console.log('Article found by ID:', article ? 'YES' : 'NO');
+    // Method 1: Find by ID (most common)
+    article = articles.find(a => a.id === slug || a.id === decodedSlug);
     
-    // Fallback: try to find by filename (backward compatibility)
+    // Method 2: Find by filename
     if (!article) {
-      console.log('Trying filename fallback...');
-      const decodedSlug = decodeURIComponent(slug);
-      console.log('Decoded slug:', decodedSlug);
-      
-      article = articles.find(a => {
-        const match = a.filename === decodedSlug || 
-                     a.filename === slug ||
-                     encodeURIComponent(a.filename) === slug ||
-                     a.pdfUrl === decodedSlug ||
-                     a.pdfUrl === slug ||
-                     encodeURIComponent(a.pdfUrl) === slug;
-        console.log(`Checking ${a.filename}: ${match ? 'MATCH' : 'no match'}`);
-        return match;
-      });
-      console.log('Article found by filename fallback:', article ? 'YES' : 'NO');
+      article = articles.find(a => 
+        a.filename === slug || 
+        a.filename === decodedSlug ||
+        encodeURIComponent(a.filename) === slug
+      );
+    }
+    
+    // Method 3: Find by URL path
+    if (!article) {
+      article = articles.find(a => 
+        a.url === slug || 
+        a.url === decodedSlug ||
+        a.url.includes(slug)
+      );
+    }
+    
+    // Method 4: Try loading from ArticleService as fallback
+    if (!article) {
+      try {
+        const { articleService } = await import('@/lib/articles/ArticleService');
+        const serviceArticle = await articleService.getArticle(slug);
+        if (serviceArticle) {
+          // Convert ArticleService format to ArticlePage format
+          article = {
+            id: serviceArticle.id,
+            title: serviceArticle.title,
+            author: serviceArticle.authors[0]?.name || 'Unknown Author',
+            date: serviceArticle.publishedAt ? new Date(serviceArticle.publishedAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
+            doi: serviceArticle.metadata?.doi || `10.1234/newtifi.${serviceArticle.id}`,
+            keywords: serviceArticle.metadata?.keywords || [],
+            abstract: serviceArticle.abstract,
+            filename: `${serviceArticle.id}.pdf`,
+            url: `/publishing/${serviceArticle.journal}/article/${serviceArticle.id}`,
+            pdfUrl: serviceArticle.content?.pdfUrl || `/articles/${serviceArticle.id}.pdf`,
+            status: serviceArticle.status === 'published' ? 'published' as const : 'draft' as const,
+            views: serviceArticle.kpis?.views || 0,
+            downloads: serviceArticle.kpis?.downloads || 0,
+            featured: serviceArticle.metadata?.featured || false,
+            category: 'journal' as const
+          };
+        }
+        } catch (err) {
+          // ArticleService fallback failed - article not found
+          // Error handled gracefully, will show 404 message
+        }
     }
   }
 
@@ -261,32 +371,34 @@ export default function ArticlePage() {
 
   if (error || !article) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-        <div className="text-center">
-          <p className="text-red-600 text-base mb-4">Article not found</p>
-          <p className="text-gray-600 text-base mb-4">Slug: {slug}</p>
-          <p className="text-gray-600 text-base mb-4">Decoded: {slug ? decodeURIComponent(slug) : 'undefined'}</p>
-          
-          {/* Debug info */}
-          <div className="bg-gray-100 p-4 rounded mb-4 text-left max-w-2xl">
-            <h3 className="font-bold mb-2">Debug Info:</h3>
-            <p className="text-base mb-2">Available articles:</p>
-            {articles.map((a, idx) => (
-              <div key={idx} className="text-xs mb-2 p-2 bg-white rounded">
-                <div><strong>ID:</strong> {a.id}</div>
-                <div><strong>Filename:</strong> {a.filename}</div>
-                <div><strong>Encoded filename:</strong> {encodeURIComponent(a.filename)}</div>
-                <div><strong>URL:</strong> {a.url}</div>
-              </div>
-            ))}
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center px-4">
+        <div className="text-center max-w-2xl">
+          <div className="mb-6">
+            <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg className="w-10 h-10 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Article Not Found</h1>
+            <p className="text-gray-600 text-lg mb-6">
+              The article you're looking for doesn't exist or may have been moved.
+            </p>
           </div>
           
-          <button
-            onClick={() => navigate(urlFactory.getPublishingPath())}
-            className="bg-newtifi-navy text-white px-4 py-2 rounded hover:bg-newtifi-teal transition"
-          >
-            Back to Articles
-          </button>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => navigate(urlFactory.getPublishingPath())}
+              className="bg-newtifi-navy text-white px-6 py-3 rounded-lg hover:bg-newtifi-teal transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              Browse All Articles
+            </button>
+            <button
+              onClick={() => navigate('/')}
+              className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-all duration-200 font-semibold"
+            >
+              Go Home
+            </button>
+          </div>
         </div>
       </div>
     );

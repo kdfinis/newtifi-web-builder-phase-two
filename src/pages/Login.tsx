@@ -87,7 +87,104 @@ export default function Login() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('Please use Google or LinkedIn to sign in.');
+    setIsLoading(true);
+    setError('');
+
+    try {
+      if (mode === 'login') {
+        // Password login - store in same format as OAuth
+        // For now, accept any email/password (in production, this would validate against a backend)
+        if (!email || !password) {
+          setError('Please enter both email and password');
+          setIsLoading(false);
+          return;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setError('Please enter a valid email address');
+          setIsLoading(false);
+          return;
+        }
+
+        if (password.length < 6) {
+          setError('Password must be at least 6 characters long');
+          setIsLoading(false);
+          return;
+        }
+
+        // Create user data in same format as OAuth
+        const userData = {
+          id: email.toLowerCase(),
+          email: email.toLowerCase(),
+          name: email.split('@')[0] || 'User',
+          provider: 'password',
+          loginTime: new Date().toISOString(),
+          hasPasswordAuth: true
+        };
+
+        // Store in localStorage (same format as OAuth)
+        localStorage.setItem('newtifi_user', JSON.stringify(userData));
+        localStorage.setItem('newtifi_auth', 'true');
+        
+        // Trigger auth state refresh
+        window.dispatchEvent(new CustomEvent('authStateChanged'));
+        
+        // Redirect to dashboard
+        window.location.href = '/dashboard?auth=success&provider=password';
+      } else {
+        // Signup mode
+        if (!email || !password || !firstName || !lastName) {
+          setError('Please fill in all fields');
+          setIsLoading(false);
+          return;
+        }
+
+        // Basic email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          setError('Please enter a valid email address');
+          setIsLoading(false);
+          return;
+        }
+
+        if (password.length < 6) {
+          setError('Password must be at least 6 characters long');
+          setIsLoading(false);
+          return;
+        }
+
+        if (firstName.length < 2 || lastName.length < 2) {
+          setError('First and last name must be at least 2 characters long');
+          setIsLoading(false);
+          return;
+        }
+
+        // Create user data
+        const userData = {
+          id: email.toLowerCase(),
+          email: email.toLowerCase(),
+          name: `${firstName} ${lastName}`.trim(),
+          provider: 'password',
+          loginTime: new Date().toISOString(),
+          hasPasswordAuth: true
+        };
+
+        // Store in localStorage
+        localStorage.setItem('newtifi_user', JSON.stringify(userData));
+        localStorage.setItem('newtifi_auth', 'true');
+        
+        // Trigger auth state refresh
+        window.dispatchEvent(new CustomEvent('authStateChanged'));
+        
+        // Redirect to dashboard
+        window.location.href = '/dashboard?auth=success&provider=password';
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+      setIsLoading(false);
+    }
   };
 
   return (

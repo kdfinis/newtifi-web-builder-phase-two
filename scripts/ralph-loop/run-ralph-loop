@@ -1,0 +1,99 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+WORKSPACE="${RALPH_WORKSPACE:-/Users/karlodefinis/Projects/NewTIFI/backups/Development/2025-06-10-june10-major-update}"
+SPEC_FILE="${WORKSPACE}/docs/ralph/spec.md"
+CHECKLIST_FILE="${WORKSPACE}/docs/ralph/checklist.md"
+PROGRESS_FILE="${WORKSPACE}/docs/ralph/progress.md"
+LOG_DIR="${RALPH_LOG_DIR:-${WORKSPACE}/scripts/ralph-loop/logs}"
+MAX_ITERS="${RALPH_MAX_ITERS:-5}"
+MODEL="${RALPH_MODEL:-auto}"
+DONE_TOKEN="${RALPH_DONE_TOKEN:-DONE}"
+VALIDATE_SCRIPT="${WORKSPACE}/scripts/ralph-loop/validate.sh"
+
+mkdir -p "${LOG_DIR}"
+
+if [[ ! -f "${SPEC_FILE}" ]]; then
+  echo "[ralph] Missing spec at ${SPEC_FILE}"
+  exit 1
+fi
+
+if [[ ! -f "${CHECKLIST_FILE}" ]]; then
+  echo "[ralph] Missing checklist at ${CHECKLIST_FILE}"
+  exit 1
+fi
+
+if [[ ! -f "${PROGRESS_FILE}" ]]; then
+  echo "[ralph] Missing progress log at ${PROGRESS_FILE}"
+  exit 1
+fi
+
+if [[ ! -x "${VALIDATE_SCRIPT}" ]]; then
+  echo "[ralph] Validation script not executable: ${VALIDATE_SCRIPT}"
+  exit 1
+fi
+
+append_progress() {
+  local status="$1"
+  local iter="$2"
+  local log_file="$3"
+  local timestamp
+  timestamp="$(date -u +"%Y-%m-%dT%H:%M:%SZ")"
+  echo "- ${timestamp} Iteration ${iter}: ${status} (${log_file})" >> "${PROGRESS_FILE}"
+}
+
+check_checklist_complete() {
+  if grep -q "\\[ \\]" "${CHECKLIST_FILE}"; then
+    return 1
+  fi
+  return 0
+}
+
+for ((i=1; i<=MAX_ITERS; i++)); do
+  iter_id="$(printf '%03d' "${i}")"
+  prompt_file="${LOG_DIR}/prompt-${iter_id}.txt"
+  output_file="${LOG_DIR}/iter-${iter_id}.txt"
+
+  {
+    echo "You are running in a Ralph-style loop for Cursor."
+    echo "Do not ask questions. Make reasonable assumptions and proceed."
+    echo "When everything is complete, reply with the exact token: ${DONE_TOKEN}"
+    echo ""
+    echo "SPEC:"
+    echo "-----"
+    cat "${SPEC_FILE}"
+    echo ""
+    echo "CHECKLIST:"
+    echo "----------"
+    cat "${CHECKLIST_FILE}"
+    echo ""
+    echo "PROGRESS (most recent first):"
+    echo "-----------------------------"
+    tail -n 20 "${PROGRESS_FILE}" || true
+  } > "${prompt_file}"
+
+  echo "[ralph] Iteration ${i}/${MAX_ITERS}"
+  echo "[ralph] Prompt: ${prompt_file}"
+  cursor agent --print --force --model "${MODEL}" "$(cat "${prompt_file}")" | tee "${output_file}"
+
+  if grep -q "${DONE_TOKEN}" "${output_file}"; then
+    if "${VALIDATE_SCRIPT}"; then
+      if check_checklist_complete; then
+        append_progress "DONE" "${i}" "${output_file}"
+        echo "[ralph] Completed."
+        exit 0
+      else
+        append_progress "DONE token seen but checklist incomplete" "${i}" "${output_file}"
+        echo "[ralph] DONE token seen, but checklist is incomplete."
+      fi
+    else
+      append_progress "DONE token seen but validation failed" "${i}" "${output_file}"
+      echo "[ralph] DONE token seen, but validation failed."
+    fi
+  else
+    append_progress "No DONE token" "${i}" "${output_file}"
+  fi
+done
+
+echo "[ralph] Max iterations reached without completion."
+exit 1

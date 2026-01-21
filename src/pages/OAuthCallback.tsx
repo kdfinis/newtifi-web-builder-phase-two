@@ -29,7 +29,7 @@ export default function OAuthCallback() {
           return;
         }
 
-        console.log('OAuth callback: Processing', { code, state, provider });
+        // Processing OAuth callback
 
         if (provider === 'linkedin') {
           // Verify state (be more lenient with state verification)
@@ -70,7 +70,6 @@ export default function OAuthCallback() {
           }
 
           const user = await userResponse.json();
-          console.log('LinkedIn user response:', user);
           
           // LinkedIn API v2 exact field mapping
           const userData = {
@@ -103,8 +102,6 @@ export default function OAuthCallback() {
             volunteer: user.volunteer || [],
             languages: user.languages || []
           };
-          
-          console.log('Storing user data:', userData);
 
           localStorage.setItem('newtifi_user', JSON.stringify(userData));
           localStorage.setItem('newtifi_auth', 'true');
@@ -150,8 +147,6 @@ export default function OAuthCallback() {
             loginTime: new Date().toISOString()
           };
 
-          console.log('Storing user data:', userData);
-
           // Store in localStorage
           localStorage.setItem('newtifi_user', JSON.stringify(userData));
           localStorage.setItem('newtifi_auth', 'true');
@@ -167,7 +162,6 @@ export default function OAuthCallback() {
 
         // Small delay to ensure auth state is updated
         setTimeout(() => {
-          console.log('OAuth callback: Redirecting to dashboard...');
           window.location.replace('/dashboard?auth=success&provider=' + provider);
         }, 100);
 

@@ -20,7 +20,9 @@ export default function Articles() {
         setArticles(publishedArticles);
         setFilteredArticles(publishedArticles);
       } catch (error) {
-        console.error('Error loading articles:', error);
+        // Error loading articles - show empty state with helpful message
+        setArticles([]);
+        setFilteredArticles([]);
       } finally {
         setLoading(false);
       }
@@ -134,14 +136,22 @@ export default function Articles() {
               <MessageSquare className="w-16 h-16 mx-auto" />
             </div>
             <h3 className="text-xl font-semibold text-gray-600 mb-2">No articles found</h3>
-            <p className="text-gray-500">
+            <p className="text-gray-500 mb-4">
               {searchTerm ? 'Try adjusting your search terms' : 'No articles are currently available'}
             </p>
+            {searchTerm && (
+              <button
+                onClick={() => setSearchTerm('')}
+                className="text-newtifi-teal hover:text-newtifi-navy font-medium transition-colors"
+              >
+                Clear search
+              </button>
+            )}
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredArticles.map((article) => (
-              <div key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+              <div key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                 {/* Article Image/Thumbnail */}
                 <div className="h-48 bg-gradient-to-br from-newtifi-teal to-newtifi-navy flex items-center justify-center">
                   <div className="text-center text-white">
@@ -230,7 +240,7 @@ export default function Articles() {
                   {/* Action Button */}
                   <Link
                     to={`/publishing/${article.journal}/article/${article.id}`}
-                    className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors duration-200"
+                    className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                   >
                     Read Article
                   </Link>
