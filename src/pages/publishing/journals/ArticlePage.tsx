@@ -326,36 +326,7 @@ export default function ArticlePage() {
       );
     }
     
-    // Method 4: Try loading from ArticleService as fallback
-    if (!article) {
-      try {
-        const { articleService } = await import('@/lib/articles/ArticleService');
-        const serviceArticle = await articleService.getArticle(slug);
-        if (serviceArticle) {
-          // Convert ArticleService format to ArticlePage format
-          article = {
-            id: serviceArticle.id,
-            title: serviceArticle.title,
-            author: serviceArticle.authors[0]?.name || 'Unknown Author',
-            date: serviceArticle.publishedAt ? new Date(serviceArticle.publishedAt).toISOString().split('T')[0] : new Date().toISOString().split('T')[0],
-            doi: serviceArticle.metadata?.doi || `10.1234/newtifi.${serviceArticle.id}`,
-            keywords: serviceArticle.metadata?.keywords || [],
-            abstract: serviceArticle.abstract,
-            filename: `${serviceArticle.id}.pdf`,
-            url: `/publishing/${serviceArticle.journal}/article/${serviceArticle.id}`,
-            pdfUrl: serviceArticle.content?.pdfUrl || `/articles/${serviceArticle.id}.pdf`,
-            status: serviceArticle.status === 'published' ? 'published' as const : 'draft' as const,
-            views: serviceArticle.kpis?.views || 0,
-            downloads: serviceArticle.kpis?.downloads || 0,
-            featured: serviceArticle.metadata?.featured || false,
-            category: 'journal' as const
-          };
-        }
-        } catch (err) {
-          // ArticleService fallback failed - article not found
-          // Error handled gracefully, will show 404 message
-        }
-    }
+    // Article will be found from articles array loaded in useEffect above
   }
 
   if (loading) {
