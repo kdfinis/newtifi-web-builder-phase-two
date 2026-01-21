@@ -164,7 +164,7 @@ const Publishing: React.FC = () => {
     setLoginForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSocialAuth = (provider: 'google' | 'linkedin') => {
+x  const handleSocialAuth = (provider: 'google' | 'linkedin') => {
     // Handle social authentication - redirect to OAuth endpoint
     if (provider === 'google') {
       window.location.href = '/auth/google';

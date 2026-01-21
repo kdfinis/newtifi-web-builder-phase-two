@@ -1,0 +1,7 @@
+import{i as e}from"./index-BY3O4NIH.js";/**
+ * @license lucide-react v0.462.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const c=e("Clock",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["polyline",{points:"12 6 12 12 16 14",key:"68esgv"}]]);export{c as e};
+//# sourceMappingURL=clock-BDkD7QHO-Cezvtk6h-B3ZM-hPS.js.map

@@ -168,18 +168,6 @@
     </script>
     <script type="module" crossorigin src="/assets/index-BY3O4NIH.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-BX2y5d92.css">
-  
-    <script>
-      // Handle SPA redirects from 404.html
-      (function() {
-        const savedPath = sessionStorage.getItem('spa_redirect_path');
-        if (savedPath && savedPath !== '/') {
-          sessionStorage.removeItem('spa_redirect_path');
-          // Let React Router handle the navigation
-          window.history.replaceState(null, '', savedPath);
-        }
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>
