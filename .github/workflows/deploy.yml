@@ -1,9 +1,11 @@
 name: 🚀 Auto Deploy to Firebase
 
+# DISABLED: GitHub Pages is the primary deployment method for newtifi.com
+# Firebase deployments were failing. Use GitHub Pages instead.
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch: # Allow manual trigger
+  workflow_dispatch: # Manual trigger only - disabled auto-deploy
+  # push:
+  #   branches: [ main ]
 
 jobs:
   deploy:

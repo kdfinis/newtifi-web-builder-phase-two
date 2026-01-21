@@ -1,10 +1,13 @@
 name: Deploy to Firebase Hosting
 
+# DISABLED: GitHub Pages is the primary deployment method for newtifi.com
+# Firebase deployments were failing. Use GitHub Pages instead.
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch: # Manual trigger only - disabled auto-deploy
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
 jobs:
   build_and_deploy:
