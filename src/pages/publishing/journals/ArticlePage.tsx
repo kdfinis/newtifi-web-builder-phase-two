@@ -266,52 +266,62 @@ export default function ArticlePage() {
     return `/articles/${idToSlug(articleId)}.pdf`;
   };
 
-  // Load articles from API on mount
+  // Load articles from API on mount, with static articles as fallback
   useEffect(() => {
     const loadArticles = async () => {
       try {
         setLoading(true);
-        // Try to load from API
-        const { buildApiUrl } = await import('@/lib/urls');
-        const response = await fetch(buildApiUrl('/articles'), {
-          method: 'GET',
-          credentials: 'include'
-        });
+        // Start with static articles immediately
+        setArticles(staticArticles);
         
-        if (response.ok) {
-          const apiArticles = await response.json();
-           // Convert API format to ArticlePage format
-           const convertedArticles = apiArticles.map((a: any) => ({
-             id: idToSlug(a.id), // Use slug as ID for compatibility
-             originalId: a.id, // Keep original ID
-             title: a.title,
-             author: a.author || 'Unknown Author',
-             date: a.date || new Date().toISOString().split('T')[0],
-             doi: a.doi || `10.1234/newtifi.${a.id}`,
-             keywords: a.keywords || [],
-             abstract: a.abstract || '',
-             filename: a.filename || `${a.id}.pdf`,
-             url: `/publishing/article/${idToSlug(a.id)}`,
-             pdfUrl: getPdfUrl(a.id, a.pdfUrl || a.url), // Use correct PDF path
-             status: a.status === 'published' ? 'published' as const : 'draft' as const,
-             views: a.views || 0,
-             downloads: a.downloads || 0,
-             featured: a.featured || false,
-             category: (a.category || 'journal') as const
-           }));
-          
-          // Merge with static articles (avoid duplicates by ID)
-          const mergedArticles = [...staticArticles];
-          convertedArticles.forEach(converted => {
-            if (!mergedArticles.find(a => a.id === converted.id || a.id === converted.originalId)) {
-              mergedArticles.push(converted);
-            }
+        // Try to load from API (non-blocking)
+        try {
+          const { buildApiUrl } = await import('@/lib/urls');
+          const response = await fetch(buildApiUrl('/articles'), {
+            method: 'GET',
+            credentials: 'include',
+            // Add timeout for production
+            signal: AbortSignal.timeout(5000)
           });
-          setArticles(mergedArticles);
+          
+          if (response.ok) {
+            const apiArticles = await response.json();
+            // Convert API format to ArticlePage format
+            const convertedArticles = apiArticles.map((a: any) => ({
+              id: idToSlug(a.id), // Use slug as ID for compatibility
+              originalId: a.id, // Keep original ID
+              title: a.title,
+              author: a.author || 'Unknown Author',
+              date: a.date || new Date().toISOString().split('T')[0],
+              doi: a.doi || `10.1234/newtifi.${a.id}`,
+              keywords: a.keywords || [],
+              abstract: a.abstract || '',
+              filename: a.filename || `${a.id}.pdf`,
+              url: `/publishing/article/${idToSlug(a.id)}`,
+              pdfUrl: getPdfUrl(a.id, a.pdfUrl || a.url), // Use correct PDF path
+              status: a.status === 'published' ? 'published' as const : 'draft' as const,
+              views: a.views || 0,
+              downloads: a.downloads || 0,
+              featured: a.featured || false,
+              category: (a.category || 'journal') as const
+            }));
+            
+            // Merge with static articles (avoid duplicates by ID)
+            const mergedArticles = [...staticArticles];
+            convertedArticles.forEach(converted => {
+              if (!mergedArticles.find(a => a.id === converted.id || a.id === converted.originalId)) {
+                mergedArticles.push(converted);
+              }
+            });
+            setArticles(mergedArticles);
+          }
+        } catch (apiErr) {
+          // API failed, but we already have static articles loaded
+          // This is fine - static articles will be used
         }
       } catch (err) {
-        console.error('Failed to load articles from API:', err);
-        // Failed to load from API, using static articles as fallback
+        // If everything fails, at least we have static articles
+        setArticles(staticArticles);
       } finally {
         setLoading(false);
       }
@@ -358,22 +368,34 @@ export default function ArticlePage() {
   if (slug && articles.length > 0) {
     const decodedSlug = decodeURIComponent(slug);
     
-    // Method 1: Find by ID/slug (most common)
-    article = articles.find(a => a.id === slug || a.id === decodedSlug);
+    // Method 1: Find by ID/slug (most common) - check both id and originalId
+    article = articles.find(a => 
+      a.id === slug || 
+      a.id === decodedSlug ||
+      (a as any).originalId === slug ||
+      (a as any).originalId === decodedSlug
+    );
     
     // Method 2: Try slug to ID mapping
     if (!article) {
       const mappedId = slugToId(slug);
-      article = articles.find(a => a.id === mappedId || (a as any).originalId === mappedId);
+      article = articles.find(a => 
+        a.id === mappedId || 
+        (a as any).originalId === mappedId ||
+        a.id === slug ||
+        a.id === decodedSlug
+      );
     }
     
-    // Method 3: Find by filename
+    // Method 3: Find by filename (without extension)
     if (!article) {
-      article = articles.find(a => 
-        a.filename === slug || 
-        a.filename === decodedSlug ||
-        encodeURIComponent(a.filename) === slug
-      );
+      const slugWithoutExt = slug.replace(/\.pdf$/i, '');
+      article = articles.find(a => {
+        const filenameWithoutExt = a.filename?.replace(/\.pdf$/i, '');
+        return filenameWithoutExt === slug || 
+               filenameWithoutExt === decodedSlug ||
+               filenameWithoutExt === slugWithoutExt;
+      });
     }
     
     // Method 4: Find by URL path
@@ -381,11 +403,18 @@ export default function ArticlePage() {
       article = articles.find(a => 
         a.url === slug || 
         a.url === decodedSlug ||
-        a.url.includes(slug)
+        a.url?.includes(slug) ||
+        a.url?.includes(decodedSlug)
       );
     }
     
-    // Article will be found from articles array loaded in useEffect above
+    // Method 5: Fallback - check if slug matches any part of the article
+    if (!article && slug) {
+      article = articles.find(a => 
+        a.id?.toLowerCase().includes(slug.toLowerCase()) ||
+        a.title?.toLowerCase().includes(slug.toLowerCase())
+      );
+    }
   }
 
   if (loading) {
