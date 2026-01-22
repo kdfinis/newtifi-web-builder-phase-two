@@ -40,6 +40,29 @@ jobs:
           fi
           echo "✅ Build verified: $(find dist -type f | wc -l) files"
 
+      - name: Check for loop (prevent infinite retries)
+        run: |
+          node scripts/loop-breaker.mjs check firebase-deploy || {
+            echo ""
+            echo "🔴 LOOP BREAKER ACTIVATED!"
+            echo ""
+            echo "The deployment has failed multiple times in a row."
+            echo "This indicates a persistent issue that needs manual intervention."
+            echo ""
+            echo "Common causes:"
+            echo "  1. Expired or invalid FIREBASE_TOKEN"
+            echo "  2. Invalid FIREBASE_SERVICE_ACCOUNT JSON"
+            echo "  3. Missing Firebase project permissions"
+            echo "  4. Firebase project configuration issue"
+            echo ""
+            echo "To fix:"
+            echo "  1. Check the error logs above"
+            echo "  2. Verify your Firebase credentials"
+            echo "  3. Run: node scripts/loop-breaker.mjs reset firebase-deploy"
+            echo "  4. Retry the deployment"
+            exit 1
+          }
+
       - name: Check authentication
         id: auth_check
         run: |
@@ -65,7 +88,15 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           echo "🔐 Using FIREBASE_TOKEN for deployment"
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive
+          if firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive; then
+            echo "✅ Deployment successful - resetting loop counter"
+            node scripts/loop-breaker.mjs reset firebase-deploy || true
+          else
+            ERROR_MSG="Firebase deployment failed with token"
+            echo "❌ $ERROR_MSG"
+            node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
+            exit 1
+          fi
 
       - name: Deploy with Service Account
         if: steps.auth_check.outputs.method == 'service_account'
@@ -75,4 +106,12 @@ jobs:
           echo "🔐 Using FIREBASE_SERVICE_ACCOUNT for deployment"
           echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > /tmp/firebase-sa.json
           chmod 600 /tmp/firebase-sa.json
-          firebase deploy --only hosting --project newtifi-web --non-interactive
+          if firebase deploy --only hosting --project newtifi-web --non-interactive; then
+            echo "✅ Deployment successful - resetting loop counter"
+            node scripts/loop-breaker.mjs reset firebase-deploy || true
+          else
+            ERROR_MSG="Firebase deployment failed with service account"
+            echo "❌ $ERROR_MSG"
+            node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
+            exit 1
+          fi
