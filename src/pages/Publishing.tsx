@@ -26,22 +26,32 @@ const Publishing: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // Load database articles
+  // Load database articles (non-blocking, fails gracefully in production)
   useEffect(() => {
-    fetch('/api/articles?status=published', { credentials: 'include' })
-      .then(r => r.json())
+    // Set loading to false immediately (static articles will be used)
+    setLoadingDbArticles(false);
+    
+    // Try to load from API (will fail in production, that's OK)
+    fetch('/api/articles?status=published', { 
+      credentials: 'include',
+      signal: AbortSignal.timeout(3000) // Short timeout
+    })
+      .then(r => {
+        if (!r.ok) throw new Error('API not available');
+        return r.json();
+      })
       .then(data => {
         // Transform database articles to match the expected format
-        const transformedArticles = data.map(article => ({
+        const transformedArticles = data.map((article: any) => ({
           id: article.slug,
           title: article.title,
-          author: article.author.name || article.author.email,
+          author: article.author?.name || article.author?.email || 'Unknown Author',
           date: new Date(article.publishedAt || article.createdAt).toISOString().split('T')[0],
-          doi: `10.1234/newtifi.${article.id.slice(-6)}`,
-          keywords: [article.category, article.journal],
-          abstract: article.summary,
+          doi: `10.1234/newtifi.${article.id?.slice(-6) || '000000'}`,
+          keywords: [article.category, article.journal].filter(Boolean),
+          abstract: article.summary || '',
           filename: `${article.slug}.pdf`,
-          url: urlFactory.getJournalArticlePath(article.journal.toLowerCase().replace(/\s+/g, '-'), article.slug),
+          url: urlFactory.getJournalArticlePath(article.journal?.toLowerCase().replace(/\s+/g, '-') || 'investment-management', article.slug),
           pdfUrl: `/articles/${article.slug}.pdf`,
           status: article.status,
           views: 0,
@@ -53,11 +63,11 @@ const Publishing: React.FC = () => {
           articleCategory: article.category
         }));
         setDbArticles(transformedArticles);
-        setLoadingDbArticles(false);
       })
       .catch(err => {
-        console.error('Failed to load database articles:', err);
-        setLoadingDbArticles(false);
+        // API not available (expected in production) - use static articles only
+        console.log('Using static articles (API not available)');
+        setDbArticles([]);
       });
   }, []);
 
@@ -164,7 +174,7 @@ const Publishing: React.FC = () => {
     setLoginForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-x  const handleSocialAuth = (provider: 'google' | 'linkedin') => {
+ in  const handleSocialAuth = (provider: 'google' | 'linkedin') => {
     // Handle social authentication - redirect to OAuth endpoint
     if (provider === 'google') {
       window.location.href = '/auth/google';
