@@ -38,7 +38,7 @@ jobs:
         run: npm install -g firebase-tools
 
       - name: Deploy with Token
-        if: secrets.FIREBASE_TOKEN != ''
+        if: ${{ secrets.FIREBASE_TOKEN != '' }}
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
@@ -46,7 +46,7 @@ jobs:
           firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive
 
       - name: Deploy with Service Account
-        if: secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT != ''
+        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-sa.json
         run: |
@@ -56,7 +56,7 @@ jobs:
           firebase deploy --only hosting --project newtifi-web --non-interactive
 
       - name: Error - No auth configured
-        if: secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT == ''
+        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT == '' }}
         run: |
           echo "❌ No Firebase authentication configured!"
           echo ""
