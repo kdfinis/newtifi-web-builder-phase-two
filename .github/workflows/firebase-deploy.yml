@@ -40,86 +40,38 @@ jobs:
           fi
           echo "✅ Build verified: $(find dist -type f | wc -l) files"
 
-      - name: Install Firebase CLI
-        run: npm install -g firebase-tools@latest
-
       - name: Check authentication
         id: auth_check
         run: |
           echo "🔍 Checking authentication methods..."
           if [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
             echo "method=token" >> $GITHUB_OUTPUT
-            TOKEN_LEN=$(echo "${{ secrets.FIREBASE_TOKEN }}" | wc -c)
-            echo "✅ FIREBASE_TOKEN found (length: $TOKEN_LEN chars)"
+            echo "✅ FIREBASE_TOKEN found"
           elif [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
             echo "method=service_account" >> $GITHUB_OUTPUT
-            SA_LEN=$(echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" | wc -c)
-            echo "✅ FIREBASE_SERVICE_ACCOUNT found (length: $SA_LEN chars)"
+            echo "✅ FIREBASE_SERVICE_ACCOUNT found"
           else
             echo "❌ No Firebase authentication configured!"
             echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
             exit 1
           fi
 
-      - name: Deploy with Token
+      - name: Deploy with Token (using Firebase Action)
         if: steps.auth_check.outputs.method == 'token'
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: ''
+          channelId: live
+          projectId: newtifi-web
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        run: |
-          echo "🔐 Authenticating with FIREBASE_TOKEN..."
-          echo "📋 Project: newtifi-web"
-          echo "📋 Public directory: dist"
-          echo "📋 Checking dist directory..."
-          ls -la dist/ | head -10
-          echo "📋 Checking firebase.json..."
-          cat firebase.json
-          echo "🚀 Deploying to Firebase Hosting..."
-          set -x
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | tee /tmp/deploy.log || {
-            echo ""
-            echo "❌ Deployment failed!"
-            echo ""
-            echo "📋 Last 50 lines of output:"
-            tail -50 /tmp/deploy.log || echo "No log file found"
-            echo ""
-            echo "💡 Troubleshooting steps:"
-            echo "  1. Token might be expired - run: firebase login:ci"
-            echo "  2. Verify project ID 'newtifi-web' is correct"
-            echo "  3. Check that dist/ directory exists and has files"
-            echo "  4. Verify firebase.json has correct 'public' directory"
-            exit 1
-          }
-          echo "✅ Deployment successful!"
 
-      - name: Deploy with Service Account
+      - name: Deploy with Service Account (using Firebase Action)
         if: steps.auth_check.outputs.method == 'service_account'
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-sa.json
-        run: |
-          echo "🔐 Authenticating with FIREBASE_SERVICE_ACCOUNT..."
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" > /tmp/firebase-sa.json
-          chmod 600 /tmp/firebase-sa.json
-          
-          # Validate JSON
-          if ! echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" | jq empty 2>/dev/null; then
-            echo "❌ Invalid JSON in FIREBASE_SERVICE_ACCOUNT"
-            exit 1
-          fi
-          
-          echo "✅ Service account JSON validated"
-          echo "📋 Project: newtifi-web"
-          echo "📋 Public directory: dist"
-          echo "🚀 Deploying to Firebase Hosting..."
-          firebase deploy --only hosting --project newtifi-web --non-interactive 2>&1 || {
-            echo ""
-            echo "❌ Deployment failed!"
-            echo ""
-            echo "💡 Troubleshooting steps:"
-            echo "  1. Service account has Firebase Hosting Admin role"
-            echo "  2. Project ID 'newtifi-web' is correct"
-            echo "  3. firebase.json has correct 'public' directory (should be 'dist')"
-            echo "  4. dist/ directory exists and contains files"
-            echo "  5. Required APIs are enabled (firebasehosting.googleapis.com)"
-            exit 1
-          }
-          echo "✅ Deployment successful!"
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+          channelId: live
+          projectId: newtifi-web
