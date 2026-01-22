@@ -70,18 +70,22 @@ jobs:
           FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
           echo "🔍 Checking authentication methods..."
-          echo "Token length: ${#FIREBASE_TOKEN}"
-          echo "Service account length: ${#FIREBASE_SERVICE_ACCOUNT}"
+          TOKEN_LEN=${#FIREBASE_TOKEN}
+          SA_LEN=${#FIREBASE_SERVICE_ACCOUNT}
+          echo "Token length: $TOKEN_LEN"
+          echo "Service account length: $SA_LEN"
           
-          # Prioritize FIREBASE_TOKEN if it exists and is not empty
-          if [ -n "$FIREBASE_TOKEN" ] && [ "$FIREBASE_TOKEN" != "" ]; then
+          # Prioritize FIREBASE_TOKEN - must be non-empty and have reasonable length (>10 chars)
+          if [ "$TOKEN_LEN" -gt 10 ]; then
             echo "method=token" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_TOKEN found (will use token authentication)"
-          elif [ -n "$FIREBASE_SERVICE_ACCOUNT" ] && [ "$FIREBASE_SERVICE_ACCOUNT" != "" ]; then
+            echo "✅ FIREBASE_TOKEN found (length: $TOKEN_LEN) - will use token authentication"
+          elif [ "$SA_LEN" -gt 10 ]; then
             echo "method=service_account" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_SERVICE_ACCOUNT found (will use service account)"
+            echo "✅ FIREBASE_SERVICE_ACCOUNT found (length: $SA_LEN) - will use service account"
           else
             echo "❌ No Firebase authentication configured!"
+            echo "Token length: $TOKEN_LEN"
+            echo "Service account length: $SA_LEN"
             echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
             exit 1
           fi
