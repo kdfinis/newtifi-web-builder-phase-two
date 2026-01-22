@@ -65,20 +65,20 @@ jobs:
 
       - name: Check authentication (Token)
         id: check_token
-        if: ${{ secrets.FIREBASE_TOKEN != '' }}
+        if: secrets.FIREBASE_TOKEN != ''
         run: |
           echo "✅ FIREBASE_TOKEN found"
           echo "method=token" >> $GITHUB_OUTPUT
 
       - name: Check authentication (Service Account)
         id: check_service_account
-        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
+        if: secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT != ''
         run: |
           echo "✅ FIREBASE_SERVICE_ACCOUNT found"
           echo "method=service_account" >> $GITHUB_OUTPUT
 
       - name: Fail if no auth
-        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT == '' }}
+        if: secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT == ''
         run: |
           echo "❌ No Firebase authentication configured!"
           echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
