@@ -56,18 +56,18 @@ jobs:
             exit 1
           fi
 
-      - name: Deploy with Token (using Firebase Action)
+      - name: Install Firebase CLI
+        run: npm install -g firebase-tools@latest
+
+      - name: Deploy with Token (CLI)
         if: steps.auth_check.outputs.method == 'token'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: ''
-          channelId: live
-          projectId: newtifi-web
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          echo "🔐 Using FIREBASE_TOKEN for deployment"
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive
 
-      - name: Deploy with Service Account (using Firebase Action)
+      - name: Deploy with Service Account (Firebase Action)
         if: steps.auth_check.outputs.method == 'service_account'
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
