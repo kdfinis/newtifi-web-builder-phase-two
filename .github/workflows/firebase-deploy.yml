@@ -134,9 +134,11 @@ jobs:
           
           echo ""
           echo "🚀 Starting deployment..."
-          echo "Command: firebase deploy --only hosting --project newtifi-web --token [REDACTED] --non-interactive"
+          echo "Using .firebaserc for project (default: newtifi-web)"
+          echo "Command: firebase deploy --only hosting --token [REDACTED] --non-interactive"
           
-          DEPLOY_OUTPUT=$(firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1)
+          # Use .firebaserc instead of explicit --project flag
+          DEPLOY_OUTPUT=$(firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive 2>&1)
           DEPLOY_EXIT_CODE=$?
           
           if [ $DEPLOY_EXIT_CODE -ne 0 ]; then
