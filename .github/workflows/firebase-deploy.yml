@@ -107,17 +107,34 @@ jobs:
         # Test Firebase CLI can access the project
         echo "🔍 Verifying Firebase project access..."
         
-        # Try alternative authentication with gcloud if Firebase CLI fails
+        # Activate service account with gcloud first (more reliable)
+        echo "🔐 Activating service account with gcloud..."
+        gcloud auth activate-service-account --key-file=/tmp/firebase-service-account.json --quiet || {
+          echo "❌ Failed to activate service account with gcloud"
+          echo "💡 Check service account JSON is valid and has correct permissions"
+          exit 1
+        }
+        
+        # Set application default credentials
+        gcloud auth application-default login --quiet --no-launch-browser || {
+          echo "⚠️  Application default login failed, continuing..."
+        }
+        
+        # Try Firebase CLI authentication
         if ! firebase projects:list --non-interactive 2>/dev/null; then
-          echo "⚠️  Firebase CLI authentication failed, trying gcloud..."
-          gcloud auth activate-service-account --key-file=/tmp/firebase-service-account.json --quiet
-          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
+          echo "⚠️  Firebase CLI authentication failed, but gcloud auth succeeded"
+          echo "ℹ️  Continuing with gcloud authentication..."
         fi
         
         # Set Firebase project
         firebase use newtifi-web --non-interactive || {
           echo "❌ Failed to set Firebase project"
-          echo "💡 Verify project ID 'newtifi-web' exists and service account has access"
+          echo ""
+          echo "💡 TROUBLESHOOTING:"
+          echo "   1. Verify project ID 'newtifi-web' exists in Firebase Console"
+          echo "   2. Check service account has 'Firebase Admin' IAM role"
+          echo "   3. Verify 'firebase.googleapis.com' API is enabled"
+          echo "   4. Check service account email: $(jq -r '.client_email' /tmp/firebase-service-account.json)"
           exit 1
         }
         

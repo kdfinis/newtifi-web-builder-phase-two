@@ -136,23 +136,62 @@ async function deploy() {
       // Set environment variable for Firebase CLI
       process.env.GOOGLE_APPLICATION_CREDENTIALS = serviceAccountPath;
       
-      // Run Firebase CLI deployment
+      // Verify dist directory one more time before deployment
+      const distFiles = fs.readdirSync(distPath);
+      info(`Deploying ${distFiles.length} files from dist/`);
+      
+      // Run Firebase CLI deployment with better error handling
       const deployCommand = `firebase deploy --only hosting --non-interactive --project ${projectId}`;
       info(`Executing: ${deployCommand}`);
       
-      execSync(deployCommand, {
-        stdio: 'inherit',
-        env: {
-          ...process.env,
-          GOOGLE_APPLICATION_CREDENTIALS: serviceAccountPath
+      try {
+        execSync(deployCommand, {
+          stdio: 'inherit',
+          env: {
+            ...process.env,
+            GOOGLE_APPLICATION_CREDENTIALS: serviceAccountPath,
+            FIREBASE_PROJECT: projectId
+          },
+          maxBuffer: 10 * 1024 * 1024 // 10MB buffer for large outputs
+        });
+        
+        success('Deployment completed successfully!');
+        log('\n🎉 Your site should be live shortly!\n', 'green');
+        log(`🌐 Check your site at: https://${projectId}.web.app or https://${projectId}.firebaseapp.com\n`, 'blue');
+        
+      } catch (deployErr) {
+        // Provide more helpful error messages
+        const errorMessage = deployErr.message || deployErr.toString();
+        
+        if (errorMessage.includes('403') || errorMessage.includes('Permission denied')) {
+          error(`Permission denied (403). Service account needs IAM roles:
+  - Firebase Admin (or Firebase Hosting Admin)
+  - Service Account User
+  - Logging Writer
+  - Monitoring Metric Writer
+  
+  Fix: Go to Google Cloud Console → IAM → Add roles to service account`);
+        } else if (errorMessage.includes('API not enabled')) {
+          error(`Required API not enabled. Enable these APIs:
+  - firebase.googleapis.com
+  - firebasehosting.googleapis.com
+  - cloudbuild.googleapis.com
+  
+  Fix: Go to Google Cloud Console → APIs & Services → Enable APIs`);
+        } else if (errorMessage.includes('Project not found')) {
+          error(`Project '${projectId}' not found or service account doesn't have access.
+  
+  Fix: 
+  1. Verify project ID in Firebase Console
+  2. Check service account has access to project
+  3. Verify project exists: https://console.firebase.google.com/`);
+        } else {
+          error(`Firebase CLI deployment failed: ${errorMessage}`);
         }
-      });
-      
-      success('Deployment completed successfully!');
-      log('\n🎉 Your site should be live shortly!\n', 'green');
+      }
       
     } catch (err) {
-      error(`Firebase CLI deployment failed: ${err.message}`);
+      error(`Deployment setup failed: ${err.message}`);
     }
 
     // Step 9: Cleanup
