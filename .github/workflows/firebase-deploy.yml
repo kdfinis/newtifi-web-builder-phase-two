@@ -64,13 +64,15 @@ jobs:
       
     - name: 🔐 Setup Firebase Authentication
       env:
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
       run: |
+        # Use token if available (prioritize token over service account)
         if [ -n "$FIREBASE_TOKEN" ]; then
           echo "🔐 Using Firebase token authentication..."
           export FIREBASE_TOKEN="$FIREBASE_TOKEN"
           echo "✅ Firebase token configured"
+          echo "TOKEN_MODE=true" >> $GITHUB_ENV
         elif [ -n "$FIREBASE_SERVICE_ACCOUNT" ]; then
           echo "🔐 Using service account authentication..."
           echo "$FIREBASE_SERVICE_ACCOUNT" > /tmp/firebase-service-account.json
@@ -84,6 +86,7 @@ jobs:
           echo "✅ Service account JSON is valid"
           echo "📧 Service account: $SERVICE_ACCOUNT_EMAIL"
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
+          echo "TOKEN_MODE=false" >> $GITHUB_ENV
           
           if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
             echo "❌ Service account file not found"
@@ -98,12 +101,12 @@ jobs:
       
     - name: 🔍 Verify Firebase Project Access
       env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
       run: |
         echo "🔍 Verifying Firebase project access..."
         
-        if [ -n "$FIREBASE_TOKEN" ]; then
+        if [ "$TOKEN_MODE" = "true" ] && [ -n "$FIREBASE_TOKEN" ]; then
           echo "🔐 Using token authentication..."
           firebase use newtifi-web --non-interactive --token "$FIREBASE_TOKEN" || {
             echo "❌ Failed to set Firebase project with token"
@@ -126,8 +129,8 @@ jobs:
       
     - name: 🔥 Deploy to Firebase Hosting
       env:
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
         FIREBASE_PROJECT: newtifi-web
       run: |
         echo "🚀 Starting Firebase Hosting deployment..."
@@ -138,7 +141,7 @@ jobs:
           exit 1
         fi
         
-        if [ -n "$FIREBASE_TOKEN" ]; then
+        if [ "$TOKEN_MODE" = "true" ] && [ -n "$FIREBASE_TOKEN" ]; then
           echo "🔐 Deploying with token authentication..."
           firebase deploy --only hosting --non-interactive --project newtifi-web --token "$FIREBASE_TOKEN" || {
             echo "❌ Deployment failed!"
