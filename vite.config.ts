@@ -19,14 +19,15 @@ export default defineConfig({
       timeout: 5000,
     },
     // Proxy API requests to backend server (only in development)
-    proxy: import.meta.env.DEV ? {
+    // Note: proxy is only used by dev server, not in production builds
+    proxy: {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
         ws: false,
       }
-    } : undefined,
+    },
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']
