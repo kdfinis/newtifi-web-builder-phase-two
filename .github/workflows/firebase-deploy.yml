@@ -65,13 +65,21 @@ jobs:
 
       - name: Check authentication
         id: auth_check
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
-          if [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
+          echo "🔍 Checking authentication methods..."
+          echo "Token length: ${#FIREBASE_TOKEN}"
+          echo "Service account length: ${#FIREBASE_SERVICE_ACCOUNT}"
+          
+          # Prioritize FIREBASE_TOKEN if it exists and is not empty
+          if [ -n "$FIREBASE_TOKEN" ] && [ "$FIREBASE_TOKEN" != "" ]; then
             echo "method=token" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_TOKEN found"
-          elif [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
+            echo "✅ FIREBASE_TOKEN found (will use token authentication)"
+          elif [ -n "$FIREBASE_SERVICE_ACCOUNT" ] && [ "$FIREBASE_SERVICE_ACCOUNT" != "" ]; then
             echo "method=service_account" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_SERVICE_ACCOUNT found"
+            echo "✅ FIREBASE_SERVICE_ACCOUNT found (will use service account)"
           else
             echo "❌ No Firebase authentication configured!"
             echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
