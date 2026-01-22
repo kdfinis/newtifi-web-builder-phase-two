@@ -82,22 +82,13 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
 
-      - name: Verify Firebase configuration
+      - name: Run Firebase diagnostics
         run: |
-          echo "📋 Verifying Firebase configuration..."
-          echo "Project ID: newtifi-web"
-          echo "Public directory: dist"
-          echo ""
-          echo "Checking firebase.json..."
-          cat firebase.json
-          echo ""
-          echo "Checking .firebaserc..."
-          cat .firebaserc
-          echo ""
-          echo "Checking dist directory..."
-          ls -la dist/ | head -20
-          echo ""
-          echo "✅ Configuration verified"
+          echo "🔍 Running Firebase diagnostics..."
+          node scripts/diagnose-firebase.mjs || {
+            echo ""
+            echo "⚠️  Diagnostics found issues - check output above"
+          }
 
       - name: Deploy with Token
         if: steps.auth_check.outputs.method == 'token'
