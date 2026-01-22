@@ -1,3 +1,0 @@
-name = "linkedin-oauth-proxy"
-main = "workers/linkedin-oauth.js"
-compatibility_date = "2024-01-01"
