@@ -46,12 +46,15 @@ jobs:
       - name: Check authentication
         id: auth_check
         run: |
+          echo "🔍 Checking authentication methods..."
           if [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
             echo "method=token" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_TOKEN found"
+            TOKEN_LEN=$(echo "${{ secrets.FIREBASE_TOKEN }}" | wc -c)
+            echo "✅ FIREBASE_TOKEN found (length: $TOKEN_LEN chars)"
           elif [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
             echo "method=service_account" >> $GITHUB_OUTPUT
-            echo "✅ FIREBASE_SERVICE_ACCOUNT found"
+            SA_LEN=$(echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" | wc -c)
+            echo "✅ FIREBASE_SERVICE_ACCOUNT found (length: $SA_LEN chars)"
           else
             echo "❌ No Firebase authentication configured!"
             echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
@@ -66,10 +69,18 @@ jobs:
           echo "🔐 Authenticating with FIREBASE_TOKEN..."
           echo "📋 Project: newtifi-web"
           echo "📋 Public directory: dist"
+          echo "📋 Checking dist directory..."
+          ls -la dist/ | head -10
+          echo "📋 Checking firebase.json..."
+          cat firebase.json
           echo "🚀 Deploying to Firebase Hosting..."
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 || {
+          set -x
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | tee /tmp/deploy.log || {
             echo ""
             echo "❌ Deployment failed!"
+            echo ""
+            echo "📋 Last 50 lines of output:"
+            tail -50 /tmp/deploy.log || echo "No log file found"
             echo ""
             echo "💡 Troubleshooting steps:"
             echo "  1. Token might be expired - run: firebase login:ci"
