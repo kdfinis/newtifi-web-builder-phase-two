@@ -2,162 +2,54 @@ name: Deploy to Firebase Hosting
 
 # NOTE: GitHub Pages is the primary deployment method for newtifi.com
 # This workflow is for Firebase deployment (optional backup)
-# To enable: Add FIREBASE_SERVICE_ACCOUNT secret to GitHub repository
 on:
-  workflow_dispatch: # Manual trigger only
+  workflow_dispatch:    # manual trigger
   # push:
-  #   branches: [ main ]
-  # pull_request:
-  #   branches: [ main ]
+  #   branches:
+  #     - main
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
-    
     steps:
-    - name: 📥 Checkout code
-      uses: actions/checkout@v4
-      
-    - name: 🔍 Check Firebase Authentication
-      id: check_auth
-      run: |
-        if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ] && [ -z "${{ secrets.FIREBASE_TOKEN }}" ]; then
-          echo "❌ Neither FIREBASE_SERVICE_ACCOUNT nor FIREBASE_TOKEN secret found!"
-          echo ""
-          echo "OPTION 1: Use Firebase Token (if service account key creation is blocked):"
-          echo "1. Run locally: firebase login:ci"
-          echo "2. Copy the generated token"
-          echo "3. Add to GitHub Secrets as: FIREBASE_TOKEN"
-          echo ""
-          echo "OPTION 2: Use Service Account (if allowed):"
-          echo "1. Go to Firebase Console → Project Settings → Service Accounts"
-          echo "2. Generate new private key and download JSON"
-          echo "3. Add to GitHub Secrets as: FIREBASE_SERVICE_ACCOUNT"
-          exit 1
-        elif [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
-          echo "✅ FIREBASE_TOKEN secret found (using token authentication)"
-        else
-          echo "✅ FIREBASE_SERVICE_ACCOUNT secret found (using service account)"
-        fi
-      
-    - name: 📦 Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18'
-        cache: 'npm'
-        
-    - name: 📦 Install dependencies
-      run: npm ci
-      
-    - name: 🔧 Install Firebase CLI, gcloud CLI, and jq
-      run: |
-        npm install -g firebase-tools
-        sudo apt-get update && sudo apt-get install -y jq curl gnupg
-        # Install gcloud CLI as backup authentication method
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-        sudo apt-get update && sudo apt-get install -y google-cloud-sdk
-        echo "✅ All tools installed"
-      
-    - name: 🔨 Build project
-      run: npm run build
-      
-    - name: 🔐 Setup Firebase Authentication
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      run: |
-        # Use token if available (prioritize token over service account)
-        if [ -n "$FIREBASE_TOKEN" ]; then
-          echo "🔐 Using Firebase token authentication..."
-          export FIREBASE_TOKEN="$FIREBASE_TOKEN"
-          echo "✅ Firebase token configured"
-          echo "TOKEN_MODE=true" >> $GITHUB_ENV
-        elif [ -n "$FIREBASE_SERVICE_ACCOUNT" ]; then
-          echo "🔐 Using service account authentication..."
-          echo "$FIREBASE_SERVICE_ACCOUNT" > /tmp/firebase-service-account.json
-          
-          if ! jq empty /tmp/firebase-service-account.json 2>/dev/null; then
-            echo "❌ FIREBASE_SERVICE_ACCOUNT is not valid JSON!"
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔍 Ensure auth secret exists
+        run: |
+          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ] && [ -z "${{ secrets.FIREBASE_TOKEN }}" ]; then
+            echo "❌ Repository secret FIREBASE_SERVICE_ACCOUNT or FIREBASE_TOKEN is required."
+            echo ""
+            echo "Option A (recommended when service account creation is allowed):"
+            echo "  1) Create a Service Account JSON in Firebase Console → Project Settings → Service Accounts"
+            echo "  2) Add it to GitHub Repo Secrets as FIREBASE_SERVICE_ACCOUNT"
+            echo ""
+            echo "Option B (works when service account key creation is blocked):"
+            echo "  1) Run locally: firebase login:ci"
+            echo "  2) Add the returned token to GitHub Repo Secrets as FIREBASE_TOKEN"
             exit 1
           fi
-          
-          SERVICE_ACCOUNT_EMAIL=$(jq -r '.client_email' /tmp/firebase-service-account.json)
-          echo "✅ Service account JSON is valid"
-          echo "📧 Service account: $SERVICE_ACCOUNT_EMAIL"
-          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
-          echo "TOKEN_MODE=false" >> $GITHUB_ENV
-          
-          if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
-            echo "❌ Service account file not found"
-            exit 1
-          fi
-          
-          echo "✅ Service account credentials configured"
-        else
-          echo "❌ No authentication method configured!"
-          exit 1
-        fi
-      
-    - name: 🔍 Verify Firebase Project Access
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
-      run: |
-        echo "🔍 Verifying Firebase project access..."
-        
-        if [ "$TOKEN_MODE" = "true" ] && [ -n "$FIREBASE_TOKEN" ]; then
-          echo "🔐 Using token authentication..."
-          firebase use newtifi-web --non-interactive --token "$FIREBASE_TOKEN" || {
-            echo "❌ Failed to set Firebase project with token"
-            exit 1
-          }
-        else
-          if ! firebase projects:list --non-interactive 2>/dev/null; then
-            echo "⚠️  Firebase CLI authentication failed, trying gcloud..."
-            gcloud auth activate-service-account --key-file=/tmp/firebase-service-account.json --quiet
-            export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
-          fi
-          
-          firebase use newtifi-web --non-interactive || {
-            echo "❌ Failed to set Firebase project"
-            exit 1
-          }
-        fi
-        
-        echo "✅ Project configured: newtifi-web"
-      
-    - name: 🔥 Deploy to Firebase Hosting
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-        GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT && '/tmp/firebase-service-account.json' || '' }}
-        FIREBASE_PROJECT: newtifi-web
-      run: |
-        echo "🚀 Starting Firebase Hosting deployment..."
-        echo "📁 Build directory: dist/"
-        
-        if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
-          echo "❌ dist/ directory is empty or missing!"
-          exit 1
-        fi
-        
-        if [ "$TOKEN_MODE" = "true" ] && [ -n "$FIREBASE_TOKEN" ]; then
-          echo "🔐 Deploying with token authentication..."
-          firebase deploy --only hosting --non-interactive --project newtifi-web --token "$FIREBASE_TOKEN" || {
-            echo "❌ Deployment failed!"
-            exit 1
-          }
-        else
-          echo "🔐 Deploying with service account..."
-          firebase deploy --only hosting --non-interactive --project newtifi-web || {
-            echo "❌ Deployment failed!"
-            exit 1
-          }
-        fi
-        
-        echo "✅ Deployment completed successfully"
-        
-    - name: 🧹 Cleanup
-      if: always()
-      run: |
-        rm -f /tmp/firebase-service-account.json
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: 📦 Install dependencies
+        run: |
+          # Deterministic install; switch to legacy-peer-deps if you hit peer dep problems
+          npm ci || npm install --legacy-peer-deps
+
+      - name: 🔨 Build
+        run: npm run build
+
+      - name: 🔥 Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          # Use token authentication (preferred when service account key creation is blocked)
+          firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
+          # Alternative: use service account if token is not available
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          projectId: newtifi-web
