@@ -95,49 +95,68 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          set -e  # Exit on any error
           set -x  # Debug mode - show all commands
           
           echo "🔐 Using FIREBASE_TOKEN for deployment"
+          
+          # Check if token is set
+          if [ -z "$FIREBASE_TOKEN" ]; then
+            echo "❌ FIREBASE_TOKEN is empty or not set!"
+            exit 1
+          fi
+          
           echo "📋 Token length: ${#FIREBASE_TOKEN} characters"
           echo "📋 Token starts with: ${FIREBASE_TOKEN:0:10}..."
           
           echo ""
           echo "📋 Verifying token validity..."
-          TOKEN_TEST=$(firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1) || {
-            echo "❌ Token test failed!"
-            echo "Error output:"
-            echo "$TOKEN_TEST"
-            exit 1
-          }
+          TOKEN_TEST_OUTPUT=$(firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1)
+          TOKEN_TEST_EXIT=$?
           
-          if echo "$TOKEN_TEST" | grep -q "newtifi-web"; then
+          if [ $TOKEN_TEST_EXIT -ne 0 ]; then
+            echo "❌ Token test failed with exit code: $TOKEN_TEST_EXIT"
+            echo "Error output:"
+            echo "$TOKEN_TEST_OUTPUT"
+            echo ""
+            echo "💡 Token might be expired or invalid. Run: firebase login:ci"
+            ERROR_MSG="Token validation failed: $TOKEN_TEST_OUTPUT"
+            node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
+            exit 1
+          fi
+          
+          if echo "$TOKEN_TEST_OUTPUT" | grep -q "newtifi-web"; then
             echo "✅ Token is valid and has access to project"
           else
             echo "⚠️  Warning: Token might not have access to newtifi-web"
             echo "Token test output:"
-            echo "$TOKEN_TEST"
+            echo "$TOKEN_TEST_OUTPUT"
           fi
           
           echo ""
           echo "🚀 Starting deployment..."
           echo "Command: firebase deploy --only hosting --project newtifi-web --token [REDACTED] --non-interactive"
           
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive || {
-            DEPLOY_EXIT_CODE=$?
+          DEPLOY_OUTPUT=$(firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1)
+          DEPLOY_EXIT_CODE=$?
+          
+          if [ $DEPLOY_EXIT_CODE -ne 0 ]; then
             echo ""
             echo "❌ Deployment failed with exit code: $DEPLOY_EXIT_CODE"
+            echo ""
+            echo "📋 Full deployment output:"
+            echo "$DEPLOY_OUTPUT"
             echo ""
             echo "💡 Common fixes:"
             echo "  1. Token might be expired - run: firebase login:ci"
             echo "  2. Check token has Firebase Hosting permissions"
             echo "  3. Verify project ID 'newtifi-web' is correct"
             echo "  4. Check Firebase Console for project status"
-            ERROR_MSG="Firebase deployment failed with exit code $DEPLOY_EXIT_CODE"
+            ERROR_MSG=$(echo "$DEPLOY_OUTPUT" | tail -10 | tr '\n' ' ' || echo "Firebase deployment failed")
             node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
             exit 1
-          }
+          fi
           
+          echo "$DEPLOY_OUTPUT"
           echo ""
           echo "✅ Deployment successful - resetting loop counter"
           node scripts/loop-breaker.mjs reset firebase-deploy || true
