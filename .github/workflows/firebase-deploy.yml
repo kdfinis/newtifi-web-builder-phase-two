@@ -67,11 +67,12 @@ jobs:
         id: auth_check
         run: |
           echo "🔍 Checking authentication methods..."
-          # Prioritize FIREBASE_TOKEN if it exists and is not empty
-          if [ -n "${{ secrets.FIREBASE_TOKEN }}" ] && [ "${{ secrets.FIREBASE_TOKEN }}" != "" ]; then
+          # Check if FIREBASE_TOKEN exists (GitHub Actions syntax)
+          if [ "${{ secrets.FIREBASE_TOKEN }}" != "" ]; then
             echo "method=token" >> $GITHUB_OUTPUT
             echo "✅ FIREBASE_TOKEN found (will use token authentication)"
-          elif [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ] && [ "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" != "" ]; then
+            echo "Token length: ${#FIREBASE_TOKEN} characters"
+          elif [ "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" != "" ]; then
             echo "method=service_account" >> $GITHUB_OUTPUT
             echo "✅ FIREBASE_SERVICE_ACCOUNT found (will use service account)"
           else
@@ -79,6 +80,8 @@ jobs:
             echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
             exit 1
           fi
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
