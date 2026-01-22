@@ -109,26 +109,27 @@ jobs:
           
           echo ""
           echo "🚀 Starting deployment..."
-          set -x
-          if firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | tee /tmp/deploy.log; then
+          DEPLOY_OUTPUT=$(firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1) || {
+            DEPLOY_EXIT_CODE=$?
             echo ""
-            echo "✅ Deployment successful - resetting loop counter"
-            node scripts/loop-breaker.mjs reset firebase-deploy || true
-          else
+            echo "❌ Deployment failed with exit code: $DEPLOY_EXIT_CODE"
             echo ""
-            echo "❌ Deployment failed!"
-            echo ""
-            echo "📋 Last 30 lines of deployment log:"
-            tail -30 /tmp/deploy.log || echo "No log file found"
+            echo "📋 Full deployment output:"
+            echo "$DEPLOY_OUTPUT"
             echo ""
             echo "💡 Common fixes:"
             echo "  1. Token might be expired - run: firebase login:ci"
             echo "  2. Check token has Firebase Hosting permissions"
             echo "  3. Verify project ID 'newtifi-web' is correct"
-            ERROR_MSG="Firebase deployment failed with token"
+            echo "  4. Check Firebase Console for project status"
+            ERROR_MSG=$(echo "$DEPLOY_OUTPUT" | tail -5 | tr '\n' ' ' || echo "Firebase deployment failed")
             node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
             exit 1
-          fi
+          }
+          echo "$DEPLOY_OUTPUT"
+          echo ""
+          echo "✅ Deployment successful - resetting loop counter"
+          node scripts/loop-breaker.mjs reset firebase-deploy || true
 
       - name: Deploy with Service Account
         if: steps.auth_check.outputs.method == 'service_account'
@@ -170,25 +171,26 @@ jobs:
           
           echo ""
           echo "🚀 Starting deployment..."
-          set -x
-          if firebase deploy --only hosting --project newtifi-web --non-interactive 2>&1 | tee /tmp/deploy.log; then
+          DEPLOY_OUTPUT=$(firebase deploy --only hosting --project newtifi-web --non-interactive 2>&1) || {
+            DEPLOY_EXIT_CODE=$?
             echo ""
-            echo "✅ Deployment successful - resetting loop counter"
-            node scripts/loop-breaker.mjs reset firebase-deploy || true
-          else
+            echo "❌ Deployment failed with exit code: $DEPLOY_EXIT_CODE"
             echo ""
-            echo "❌ Deployment failed!"
-            echo ""
-            echo "📋 Last 30 lines of deployment log:"
-            tail -30 /tmp/deploy.log || echo "No log file found"
+            echo "📋 Full deployment output:"
+            echo "$DEPLOY_OUTPUT"
             echo ""
             echo "💡 Common fixes:"
             echo "  1. Service account needs 'Firebase Hosting Admin' role"
             echo "  2. Verify service account JSON is complete and valid"
             echo "  3. Check IAM roles in Google Cloud Console"
-            echo "  4. Ensure required APIs are enabled"
+            echo "  4. Ensure required APIs are enabled (firebasehosting.googleapis.com)"
             echo "  5. Verify project ID 'newtifi-web' is correct"
-            ERROR_MSG="Firebase deployment failed with service account"
+            echo "  6. Check service account has access to project"
+            ERROR_MSG=$(echo "$DEPLOY_OUTPUT" | tail -5 | tr '\n' ' ' || echo "Firebase deployment failed")
             node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
             exit 1
-          fi
+          }
+          echo "$DEPLOY_OUTPUT"
+          echo ""
+          echo "✅ Deployment successful - resetting loop counter"
+          node scripts/loop-breaker.mjs reset firebase-deploy || true
