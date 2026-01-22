@@ -64,9 +64,20 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           echo "🔐 Authenticating with FIREBASE_TOKEN..."
+          echo "📋 Verifying Firebase project access..."
+          firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive || {
+            echo "❌ Authentication failed - cannot list projects"
+            echo "💡 Token might be expired. Run: firebase login:ci"
+            exit 1
+          }
+          echo "✅ Authentication verified"
+          echo "🚀 Deploying to Firebase Hosting..."
           firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive || {
             echo "❌ Deployment failed!"
-            echo "💡 Token might be expired. Run: firebase login:ci"
+            echo "💡 Check:"
+            echo "  1. Token might be expired (run: firebase login:ci)"
+            echo "  2. Project ID 'newtifi-web' is correct"
+            echo "  3. Service account has Firebase Hosting Admin role"
             exit 1
           }
           echo "✅ Deployment successful!"
@@ -86,9 +97,25 @@ jobs:
             exit 1
           fi
           
+          echo "✅ Service account JSON validated"
+          echo "📋 Verifying Firebase project access..."
+          firebase projects:list --non-interactive || {
+            echo "❌ Authentication failed - cannot list projects"
+            echo "💡 Check:"
+            echo "  1. Service account JSON is valid"
+            echo "  2. Service account has Firebase Admin role"
+            echo "  3. Required APIs are enabled"
+            exit 1
+          }
+          echo "✅ Authentication verified"
+          echo "🚀 Deploying to Firebase Hosting..."
           firebase deploy --only hosting --project newtifi-web --non-interactive || {
             echo "❌ Deployment failed!"
-            echo "💡 Check IAM roles and API enablement"
+            echo "💡 Check:"
+            echo "  1. Service account has Firebase Hosting Admin role"
+            echo "  2. Project ID 'newtifi-web' is correct"
+            echo "  3. firebase.json has correct 'public' directory (should be 'dist')"
+            echo "  4. dist/ directory exists and contains files"
             exit 1
           }
           echo "✅ Deployment successful!"
