@@ -4,7 +4,8 @@ name: 🚀 Auto Deploy to Firebase
 # This workflow is for Firebase deployment (optional backup)
 # To enable: Add FIREBASE_SERVICE_ACCOUNT secret to GitHub repository
 on:
-  workflow_dispatch: # Manual trigger only
+  workflow_dispatch: # DISABLED - Use firebase-deploy.yml instead
+  # DISABLED - This workflow is obsolete
   # push:
   #   branches: [ main ]
 
