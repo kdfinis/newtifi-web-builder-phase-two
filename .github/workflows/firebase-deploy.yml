@@ -133,11 +133,16 @@ jobs:
           fi
           
           echo ""
+          echo "🚀 Setting Firebase project..."
+          firebase use newtifi-web --token "$FIREBASE_TOKEN" --non-interactive || {
+            echo "❌ Failed to set Firebase project"
+            exit 1
+          }
+          
+          echo ""
           echo "🚀 Starting deployment..."
-          echo "Using .firebaserc for project (default: newtifi-web)"
           echo "Command: firebase deploy --only hosting --token [REDACTED] --non-interactive"
           
-          # Use .firebaserc instead of explicit --project flag
           DEPLOY_OUTPUT=$(firebase deploy --only hosting --token "$FIREBASE_TOKEN" --non-interactive 2>&1)
           DEPLOY_EXIT_CODE=$?
           
