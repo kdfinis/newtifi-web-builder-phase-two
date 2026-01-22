@@ -96,7 +96,27 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           echo "🔐 Deploying with FIREBASE_TOKEN"
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive
+          echo "📋 Token present: $([ -n "$FIREBASE_TOKEN" ] && echo "yes" || echo "no")"
+          echo "📋 Project: newtifi-web"
+          echo "📋 Checking firebase.json..."
+          cat firebase.json || echo "firebase.json not found"
+          echo ""
+          echo "📋 Checking .firebaserc..."
+          cat .firebaserc || echo ".firebaserc not found"
+          echo ""
+          echo "📋 Listing dist contents..."
+          ls -la dist/ | head -10 || echo "dist/ not found"
+          echo ""
+          echo "🚀 Starting deployment..."
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | tee /tmp/firebase-deploy.log || {
+            echo ""
+            echo "❌ Deployment failed!"
+            echo "📋 Last 50 lines of output:"
+            tail -50 /tmp/firebase-deploy.log || echo "No log file"
+            ERROR_MSG=$(tail -10 /tmp/firebase-deploy.log | tr '\n' ' ' || echo "Firebase deployment failed")
+            node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
+            exit 1
+          }
           echo "✅ Deployment complete"
           node scripts/loop-breaker.mjs reset firebase-deploy || true
 
