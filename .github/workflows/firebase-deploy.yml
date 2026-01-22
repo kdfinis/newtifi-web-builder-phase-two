@@ -48,7 +48,23 @@ jobs:
           if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
             echo "⚠️  Rollup native module not found, trying alternative installation..."
             npm install rollup --force
+            # Verify again after force install
+            if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
+              echo "❌ Failed to install Rollup native module!"
+              echo "📋 Attempting to list installed rollup packages:"
+              ls -la node_modules/@rollup/ 2>/dev/null || echo "No @rollup packages found"
+              echo "📋 Trying to reinstall rollup completely..."
+              npm uninstall rollup
+              npm install rollup --legacy-peer-deps
+              npm install @rollup/rollup-linux-x64-gnu --save-optional --force
+              # Final check
+              if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
+                echo "❌ CRITICAL: Rollup native module still missing after all attempts"
+                exit 1
+              fi
+            fi
           fi
+          echo "✅ Rollup native module verified: $(ls -d node_modules/@rollup/rollup-linux-x64-gnu 2>/dev/null || echo 'NOT FOUND')"
 
       - name: 🔨 Build
         run: npm run build

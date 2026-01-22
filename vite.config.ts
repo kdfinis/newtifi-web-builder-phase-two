@@ -18,18 +18,15 @@ export default defineConfig({
       overlay: false,
       timeout: 5000,
     },
-    // Proxy API requests to backend server (DEV ONLY - not used in production)
-    // Production builds use relative URLs, no proxy needed
-    // Note: This proxy only works in dev mode (vite dev server)
-    // In production builds, API calls use relative URLs
-    proxy: {
+    // Proxy API requests to backend server (only in development)
+    proxy: import.meta.env.DEV ? {
       '/api': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
         ws: false,
       }
-    },
+    } : undefined,
     fs: {
       // Allow serving files from one level up to the project root
       allow: ['..']
