@@ -63,26 +63,20 @@ jobs:
             exit 1
           }
 
-      - name: Check authentication (Token)
-        id: check_token
-        if: ${{ secrets.FIREBASE_TOKEN != '' }}
+      - name: Check authentication
+        id: auth_check
         run: |
-          echo "✅ FIREBASE_TOKEN found"
-          echo "method=token" >> $GITHUB_OUTPUT
-
-      - name: Check authentication (Service Account)
-        id: check_service_account
-        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT != '' }}
-        run: |
-          echo "✅ FIREBASE_SERVICE_ACCOUNT found"
-          echo "method=service_account" >> $GITHUB_OUTPUT
-
-      - name: Fail if no auth
-        if: ${{ secrets.FIREBASE_TOKEN == '' && secrets.FIREBASE_SERVICE_ACCOUNT == '' }}
-        run: |
-          echo "❌ No Firebase authentication configured!"
-          echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
-          exit 1
+          if [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
+            echo "method=token" >> $GITHUB_OUTPUT
+            echo "✅ FIREBASE_TOKEN found"
+          elif [ -n "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ]; then
+            echo "method=service_account" >> $GITHUB_OUTPUT
+            echo "✅ FIREBASE_SERVICE_ACCOUNT found"
+          else
+            echo "❌ No Firebase authentication configured!"
+            echo "Add FIREBASE_TOKEN or FIREBASE_SERVICE_ACCOUNT to GitHub Secrets"
+            exit 1
+          fi
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
@@ -96,7 +90,7 @@ jobs:
           }
 
       - name: Deploy with Token
-        if: steps.check_token.outputs.method == 'token'
+        if: steps.auth_check.outputs.method == 'token'
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
@@ -126,7 +120,7 @@ jobs:
           node scripts/loop-breaker.mjs reset firebase-deploy || true
 
       - name: Deploy with Service Account
-        if: steps.check_service_account.outputs.method == 'service_account'
+        if: steps.auth_check.outputs.method == 'service_account'
         env:
           GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-sa.json
         run: |
