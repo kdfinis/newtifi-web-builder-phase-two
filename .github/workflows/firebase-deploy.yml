@@ -1,6 +1,6 @@
 name: Deploy to Firebase Hosting
 
-# Enable push trigger for testing - will disable after successful deploy
+# Trigger deployment with token authentication
 on:
   workflow_dispatch:
   push:
