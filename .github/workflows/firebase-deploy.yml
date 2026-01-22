@@ -64,20 +64,18 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           echo "🔐 Authenticating with FIREBASE_TOKEN..."
-          echo "📋 Verifying Firebase project access..."
-          firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive || {
-            echo "❌ Authentication failed - cannot list projects"
-            echo "💡 Token might be expired. Run: firebase login:ci"
-            exit 1
-          }
-          echo "✅ Authentication verified"
+          echo "📋 Project: newtifi-web"
+          echo "📋 Public directory: dist"
           echo "🚀 Deploying to Firebase Hosting..."
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive || {
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 || {
+            echo ""
             echo "❌ Deployment failed!"
-            echo "💡 Check:"
-            echo "  1. Token might be expired (run: firebase login:ci)"
-            echo "  2. Project ID 'newtifi-web' is correct"
-            echo "  3. Service account has Firebase Hosting Admin role"
+            echo ""
+            echo "💡 Troubleshooting steps:"
+            echo "  1. Token might be expired - run: firebase login:ci"
+            echo "  2. Verify project ID 'newtifi-web' is correct"
+            echo "  3. Check that dist/ directory exists and has files"
+            echo "  4. Verify firebase.json has correct 'public' directory"
             exit 1
           }
           echo "✅ Deployment successful!"
@@ -98,24 +96,19 @@ jobs:
           fi
           
           echo "✅ Service account JSON validated"
-          echo "📋 Verifying Firebase project access..."
-          firebase projects:list --non-interactive || {
-            echo "❌ Authentication failed - cannot list projects"
-            echo "💡 Check:"
-            echo "  1. Service account JSON is valid"
-            echo "  2. Service account has Firebase Admin role"
-            echo "  3. Required APIs are enabled"
-            exit 1
-          }
-          echo "✅ Authentication verified"
+          echo "📋 Project: newtifi-web"
+          echo "📋 Public directory: dist"
           echo "🚀 Deploying to Firebase Hosting..."
-          firebase deploy --only hosting --project newtifi-web --non-interactive || {
+          firebase deploy --only hosting --project newtifi-web --non-interactive 2>&1 || {
+            echo ""
             echo "❌ Deployment failed!"
-            echo "💡 Check:"
+            echo ""
+            echo "💡 Troubleshooting steps:"
             echo "  1. Service account has Firebase Hosting Admin role"
             echo "  2. Project ID 'newtifi-web' is correct"
             echo "  3. firebase.json has correct 'public' directory (should be 'dist')"
             echo "  4. dist/ directory exists and contains files"
+            echo "  5. Required APIs are enabled (firebasehosting.googleapis.com)"
             exit 1
           }
           echo "✅ Deployment successful!"
