@@ -92,11 +92,13 @@ jobs:
 
       - name: Deploy with Token
         if: steps.auth_check.outputs.method == 'token'
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseToken: '${{ secrets.FIREBASE_TOKEN }}'
-          projectId: newtifi-web
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+        run: |
+          echo "🔐 Deploying with FIREBASE_TOKEN"
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive
+          echo "✅ Deployment complete"
+          node scripts/loop-breaker.mjs reset firebase-deploy || true
 
       - name: Deploy with Service Account
         if: steps.auth_check.outputs.method == 'service_account'
