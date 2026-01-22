@@ -26,32 +26,22 @@ const Publishing: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // Load database articles (non-blocking, fails gracefully in production)
+  // Load database articles
   useEffect(() => {
-    // Set loading to false immediately (static articles will be used)
-    setLoadingDbArticles(false);
-    
-    // Try to load from API (will fail in production, that's OK)
-    fetch('/api/articles?status=published', { 
-      credentials: 'include',
-      signal: AbortSignal.timeout(3000) // Short timeout
-    })
-      .then(r => {
-        if (!r.ok) throw new Error('API not available');
-        return r.json();
-      })
+    fetch('/api/articles?status=published', { credentials: 'include' })
+      .then(r => r.json())
       .then(data => {
         // Transform database articles to match the expected format
-        const transformedArticles = data.map((article: any) => ({
+        const transformedArticles = data.map(article => ({
           id: article.slug,
           title: article.title,
-          author: article.author?.name || article.author?.email || 'Unknown Author',
+          author: article.author.name || article.author.email,
           date: new Date(article.publishedAt || article.createdAt).toISOString().split('T')[0],
-          doi: `10.1234/newtifi.${article.id?.slice(-6) || '000000'}`,
-          keywords: [article.category, article.journal].filter(Boolean),
-          abstract: article.summary || '',
+          doi: `10.1234/newtifi.${article.id.slice(-6)}`,
+          keywords: [article.category, article.journal],
+          abstract: article.summary,
           filename: `${article.slug}.pdf`,
-          url: urlFactory.getJournalArticlePath(article.journal?.toLowerCase().replace(/\s+/g, '-') || 'investment-management', article.slug),
+          url: urlFactory.getJournalArticlePath(article.journal.toLowerCase().replace(/\s+/g, '-'), article.slug),
           pdfUrl: `/articles/${article.slug}.pdf`,
           status: article.status,
           views: 0,
@@ -63,11 +53,11 @@ const Publishing: React.FC = () => {
           articleCategory: article.category
         }));
         setDbArticles(transformedArticles);
+        setLoadingDbArticles(false);
       })
       .catch(err => {
-        // API not available (expected in production) - use static articles only
-        console.log('Using static articles (API not available)');
-        setDbArticles([]);
+        console.error('Failed to load database articles:', err);
+        setLoadingDbArticles(false);
       });
   }, []);
 

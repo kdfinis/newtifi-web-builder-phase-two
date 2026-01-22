@@ -36,86 +36,29 @@ export default function Articles() {
     return slugMap[id] || id.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   };
 
-  // Static articles data - used when API is not available (production)
-  const staticArticles: ApiArticle[] = [
-    {
-      id: "eltifs-compulsory-redemptions",
-      title: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
-      author: "Ezechiel Havrenne",
-      date: "2025-06-28",
-      doi: "10.1234/newtifi.2025.001",
-      keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
-      abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
-      status: "published",
-      views: 0,
-      downloads: 0,
-      featured: true,
-      category: "journal"
-    },
-    {
-      id: "bafin-portfolio-control",
-      title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
-      author: "Ezechiel Havrenne",
-      date: "2025-06-28",
-      doi: "10.1234/newtifi.2025.002",
-      keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
-      abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
-      status: "published",
-      views: 0,
-      downloads: 0,
-      featured: true,
-      category: "journal"
-    },
-    {
-      id: "luxembourg-well-informed-investor",
-      title: "The Well-Informed Investor: Luxembourg's Approach to Investor Protection in Alternative Investment Funds",
-      author: "Ezechiel Havrenne",
-      date: "2025-06-28",
-      doi: "10.1234/newtifi.2025.003",
-      keywords: ["Luxembourg", "AIF", "Investor Protection", "Well-Informed Investor"],
-      abstract: "An analysis of Luxembourg's regulatory framework for investor protection in alternative investment funds.",
-      status: "published",
-      views: 0,
-      downloads: 0,
-      featured: true,
-      category: "journal"
-    }
-  ];
-
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        // Start with static articles immediately (production fallback)
-        setArticles(staticArticles);
-        setFilteredArticles(staticArticles);
-        setLoading(false);
+        const response = await fetch(buildApiUrl('/articles'), {
+          method: 'GET',
+          credentials: 'include'
+        });
         
-        // Try to load from API (non-blocking, will fail in production)
-        try {
-          const response = await fetch(buildApiUrl('/articles'), {
-            method: 'GET',
-            credentials: 'include',
-            signal: AbortSignal.timeout(3000) // Short timeout for production
-          });
-          
-          if (response.ok) {
-            const allArticles: ApiArticle[] = await response.json();
-            // Only show published articles to the public
-            const publishedArticles = allArticles.filter(article => article.status === 'published');
-            if (publishedArticles.length > 0) {
-              setArticles(publishedArticles);
-              setFilteredArticles(publishedArticles);
-            }
-          }
-        } catch (apiError) {
-          // API failed (expected in production) - static articles already loaded
-          console.log('Using static articles (API not available)');
+        if (!response.ok) {
+          throw new Error('Failed to load articles');
         }
+        
+        const allArticles: ApiArticle[] = await response.json();
+        // Only show published articles to the public
+        const publishedArticles = allArticles.filter(article => article.status === 'published');
+        setArticles(publishedArticles);
+        setFilteredArticles(publishedArticles);
       } catch (error) {
         console.error('Error loading articles:', error);
-        // Fallback to static articles
-        setArticles(staticArticles);
-        setFilteredArticles(staticArticles);
+        // Error loading articles - show empty state with helpful message
+        setArticles([]);
+        setFilteredArticles([]);
+      } finally {
         setLoading(false);
       }
     };

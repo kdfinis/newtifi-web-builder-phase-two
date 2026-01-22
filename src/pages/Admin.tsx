@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -54,30 +53,6 @@ interface Journal {
   articles: string[];
 }
 
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-const Admin = () => {
-  const navigate = useNavigate();
-  
-  // Redirect to new dashboard immediately (new admin is at /dashboard)
-  useEffect(() => {
-    navigate('/dashboard', { replace: true });
-  }, [navigate]);
-  
-  // Return loading state while redirecting
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="text-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-newtifi-teal mx-auto mb-4"></div>
-        <p className="text-gray-600">Redirecting to dashboard...</p>
-      </div>
-    </div>
-  );
-};
-
-/* OLD ADMIN CODE - REMOVED, USE /dashboard INSTEAD */
-/*
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [email, setEmail] = useState('');
@@ -352,5 +327,4 @@ const Admin = () => {
   );
 };
 
-// OLD ADMIN CODE REMOVED - Use /dashboard instead
 export default Admin; 

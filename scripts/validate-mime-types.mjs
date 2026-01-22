@@ -1,9 +1,5 @@
 #!/usr/bin/env node
-
-/**
- * MIME Type Validation Script
- * Prevents MIME type issues by validating build output
- */
+// MIME Type Validation Script - validates build output and required config files
 
 import fs from 'fs';
 import path from 'path';
@@ -11,26 +7,31 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const distDir = path.join(__dirname, '..', 'dist');
 
 console.log('🔍 Validating MIME types in build output...');
-
-const distDir = path.join(__dirname, '..', 'dist');
-const indexHtmlPath = path.join(distDir, 'index.html');
 
 if (!fs.existsSync(distDir)) {
   console.error('❌ Dist directory not found. Run build first.');
   process.exit(1);
 }
 
-if (!fs.existsSync(indexHtmlPath)) {
-  console.error('❌ index.html not found in dist directory.');
-  process.exit(1);
+// Check required files
+const requiredFiles = [
+  { path: path.join(distDir, 'index.html'), name: 'index.html' },
+  { path: path.join(distDir, '.htaccess'), name: '.htaccess' },
+  { path: path.join(distDir, '_headers'), name: '_headers' }
+];
+
+for (const file of requiredFiles) {
+  if (!fs.existsSync(file.path)) {
+    console.error(`❌ ${file.name} not found in dist directory`);
+    process.exit(1);
+  }
 }
 
-// Read index.html
-const indexHtml = fs.readFileSync(indexHtmlPath, 'utf8');
-
-// Check for JavaScript module scripts
+// Validate index.html has module scripts
+const indexHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
 const scriptMatches = indexHtml.match(/<script[^>]*type="module"[^>]*src="([^"]*)"[^>]*>/g);
 
 if (!scriptMatches) {
@@ -38,63 +39,39 @@ if (!scriptMatches) {
   process.exit(1);
 }
 
-console.log('✅ Found module scripts:', scriptMatches.length);
-
-// Validate each script reference
+// Validate script files exist
 let hasErrors = false;
-
-scriptMatches.forEach((scriptTag, index) => {
+for (const scriptTag of scriptMatches) {
   const srcMatch = scriptTag.match(/src="([^"]*)"/);
   if (srcMatch) {
     const src = srcMatch[1];
     const scriptPath = path.join(distDir, src);
-    
-    if (fs.existsSync(scriptPath)) {
-      console.log(`✅ Script ${index + 1}: ${src} exists`);
-    } else {
-      console.error(`❌ Script ${index + 1}: ${src} not found`);
+    if (!fs.existsSync(scriptPath)) {
+      console.error(`❌ Script not found: ${src}`);
       hasErrors = true;
     }
   }
-});
+}
 
-// Check for proper MIME type headers in _headers file
-const headersPath = path.join(distDir, '_headers');
-if (fs.existsSync(headersPath)) {
-  const headers = fs.readFileSync(headersPath, 'utf8');
-  
-  if (headers.includes('application/javascript')) {
-    console.log('✅ _headers file contains JavaScript MIME type configuration');
-  } else {
-    console.error('❌ _headers file missing JavaScript MIME type configuration');
-    hasErrors = true;
-  }
-} else {
-  console.error('❌ _headers file not found in dist directory');
+// Validate MIME type configuration
+const headers = fs.readFileSync(path.join(distDir, '_headers'), 'utf8');
+const htaccess = fs.readFileSync(path.join(distDir, '.htaccess'), 'utf8');
+
+if (!headers.includes('application/javascript')) {
+  console.error('❌ _headers file missing JavaScript MIME type configuration');
   hasErrors = true;
 }
 
-// Check for .htaccess file
-const htaccessPath = path.join(distDir, '.htaccess');
-if (fs.existsSync(htaccessPath)) {
-  const htaccess = fs.readFileSync(htaccessPath, 'utf8');
-  
-  if (htaccess.includes('application/javascript')) {
-    console.log('✅ .htaccess file contains JavaScript MIME type configuration');
-  } else {
-    console.error('❌ .htaccess file missing JavaScript MIME type configuration');
-    hasErrors = true;
-  }
-} else {
-  console.error('❌ .htaccess file not found in dist directory');
+if (!htaccess.includes('application/javascript')) {
+  console.error('❌ .htaccess file missing JavaScript MIME type configuration');
   hasErrors = true;
 }
 
 if (hasErrors) {
   console.error('\n❌ MIME type validation failed!');
-  console.error('This will cause "Expected a JavaScript-or-Wasm module script" errors.');
   process.exit(1);
-} else {
-  console.log('\n✅ MIME type validation passed!');
-  console.log('All JavaScript files should load correctly.');
 }
+
+console.log(`✅ Found ${scriptMatches.length} module scripts`);
+console.log('✅ MIME type configuration files validated');
+console.log('✅ MIME type validation passed');

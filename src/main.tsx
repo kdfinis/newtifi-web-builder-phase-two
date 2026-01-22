@@ -2,6 +2,7 @@ import { createRoot } from 'react-dom/client'
 import React from 'react'
 import App from './App.tsx'
 import './index.css'
+// import './lib/mime-type-fix' // TODO: Enable after fixing import issue
 import { configManager } from './lib/config/ConfigManager'
 
 // Prevent React DevTools hook from being set in production

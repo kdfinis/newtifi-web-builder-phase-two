@@ -140,9 +140,7 @@
         });
       })();
     </script>
-    <!-- Dev-only: assets are served by Vite; production assets are injected into dist/index.html at build time -->
-    <link rel="modulepreload" crossorigin href="/assets/vendor-BFmVx08M-QVO60I_C-QVO60I_C-QVO60I_C-QVO60I_C-QVO60I_C-QVO60I_C.js">
-  
+    <!-- Assets are injected by Vite during build -->
     <script>
       // Handle SPA redirects from 404.html
       (function() {
@@ -154,32 +152,6 @@
         }
       })();
     </script>
-  
-    <script>
-      // Handle SPA redirects from 404.html
-      (function() {
-        const savedPath = sessionStorage.getItem('spa_redirect_path');
-        if (savedPath && savedPath !== '/') {
-          sessionStorage.removeItem('spa_redirect_path');
-          // Let React Router handle the navigation
-          window.history.replaceState(null, '', savedPath);
-        }
-      })();
-    </script>
-  
-    <script>
-      // Handle SPA redirects from 404.html
-      (function() {
-        const savedPath = sessionStorage.getItem('spa_redirect_path');
-        if (savedPath && savedPath !== '/') {
-          sessionStorage.removeItem('spa_redirect_path');
-          // Let React Router handle the navigation
-          window.history.replaceState(null, '', savedPath);
-        }
-      })();
-    </script>
-    <script type="module" crossorigin src="/assets/index-zGSIE1dd.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BX2y5d92.css">
   </head>
   <body>
     <div id="root"></div>

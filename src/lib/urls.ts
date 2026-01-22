@@ -51,17 +51,13 @@ export const getCurrentUrls = () => {
 
 // Helper function to get API base URL
 export const getApiBaseUrl = () => {
-  // In production, always use relative URLs (no backend server on GitHub Pages/Firebase)
-  if (import.meta.env.PROD) {
-    return '';
-  }
-  // In development, check if backend URL is set
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
   if (backendUrl) {
     return backendUrl;
   }
   // In development, use relative URLs (Vite proxy handles it)
-  // Vite dev server proxies /api to localhost:3001
+  // In production, use relative URLs if no backend URL is set
+  // This works because Vite dev server proxies /api to localhost:3001
   return '';
 };
 
@@ -77,11 +73,6 @@ export const buildApiUrl = (endpoint: string) => {
 
 // Helper function to build asset URLs
 export const buildAssetUrl = (path: string) => {
-  // In production, always use relative URLs for assets
-  if (import.meta.env.PROD) {
-    return path.startsWith('/') ? path : `/${path}`;
-  }
-  // In development, use full URL if available
   const urls = getCurrentUrls();
   return urls.FRONTEND ? `${urls.FRONTEND}${path}` : `${path}`;
 };
