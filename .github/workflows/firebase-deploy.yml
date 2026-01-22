@@ -24,17 +24,15 @@ jobs:
         if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ] && [ -z "${{ secrets.FIREBASE_TOKEN }}" ]; then
           echo "❌ Neither FIREBASE_SERVICE_ACCOUNT nor FIREBASE_TOKEN secret found!"
           echo ""
-          echo "OPTION 1: Use Firebase Token (Recommended if key creation is blocked):"
+          echo "OPTION 1: Use Firebase Token (if service account key creation is blocked):"
           echo "1. Run locally: firebase login:ci"
           echo "2. Copy the generated token"
           echo "3. Add to GitHub Secrets as: FIREBASE_TOKEN"
           echo ""
           echo "OPTION 2: Use Service Account (if allowed):"
-          echo "1. Go to Firebase Console: https://console.firebase.google.com/"
-          echo "2. Select project 'newtifi-web' → Project Settings → Service Accounts"
-          echo "3. Click 'Generate new private key' and download the JSON file"
-          echo "4. Add to GitHub Secrets as: FIREBASE_SERVICE_ACCOUNT"
-          echo ""
+          echo "1. Go to Firebase Console → Project Settings → Service Accounts"
+          echo "2. Generate new private key and download JSON"
+          echo "3. Add to GitHub Secrets as: FIREBASE_SERVICE_ACCOUNT"
           exit 1
         elif [ -n "${{ secrets.FIREBASE_TOKEN }}" ]; then
           echo "✅ FIREBASE_TOKEN secret found (using token authentication)"
@@ -49,18 +47,7 @@ jobs:
         cache: 'npm'
         
     - name: 📦 Install dependencies
-      run: |
-        # Remove existing node_modules and package-lock.json to fix Rollup optional deps issue
-        rm -rf node_modules package-lock.json
-        # Install dependencies fresh (this ensures optional dependencies are installed)
-        npm install --legacy-peer-deps
-        # Explicitly install Rollup's native module for Linux
-        npm install @rollup/rollup-linux-x64-gnu --save-optional --force || npm install @rollup/rollup-linux-x64-gnu --save-optional
-        # Verify Rollup module exists
-        if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
-          echo "⚠️  Rollup native module not found, trying alternative installation..."
-          npm install rollup --force
-        fi
+      run: npm ci
       
     - name: 🔧 Install Firebase CLI, gcloud CLI, and jq
       run: |
@@ -81,33 +68,25 @@ jobs:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
       run: |
         if [ -n "$FIREBASE_TOKEN" ]; then
-          # Use Firebase token authentication
           echo "🔐 Using Firebase token authentication..."
-          echo "$FIREBASE_TOKEN" > /tmp/firebase-token.txt
           export FIREBASE_TOKEN="$FIREBASE_TOKEN"
           echo "✅ Firebase token configured"
         elif [ -n "$FIREBASE_SERVICE_ACCOUNT" ]; then
-          # Use service account authentication
           echo "🔐 Using service account authentication..."
           echo "$FIREBASE_SERVICE_ACCOUNT" > /tmp/firebase-service-account.json
           
-          # Verify service account is valid JSON
           if ! jq empty /tmp/firebase-service-account.json 2>/dev/null; then
             echo "❌ FIREBASE_SERVICE_ACCOUNT is not valid JSON!"
             exit 1
           fi
           
-          # Extract service account email for verification
           SERVICE_ACCOUNT_EMAIL=$(jq -r '.client_email' /tmp/firebase-service-account.json)
           echo "✅ Service account JSON is valid"
           echo "📧 Service account: $SERVICE_ACCOUNT_EMAIL"
-          
-          # Set environment variable for Firebase CLI
           export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
           
-          # Verify credentials are accessible
           if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
-            echo "❌ Service account file not found at $GOOGLE_APPLICATION_CREDENTIALS"
+            echo "❌ Service account file not found"
             exit 1
           fi
           
@@ -125,31 +104,20 @@ jobs:
         echo "🔍 Verifying Firebase project access..."
         
         if [ -n "$FIREBASE_TOKEN" ]; then
-          # Token authentication - just set project
           echo "🔐 Using token authentication..."
           firebase use newtifi-web --non-interactive --token "$FIREBASE_TOKEN" || {
             echo "❌ Failed to set Firebase project with token"
-            echo "💡 Verify token is valid and has access to project 'newtifi-web'"
             exit 1
           }
         else
-          # Service account authentication
-          echo "🔐 Activating service account with gcloud..."
-          gcloud auth activate-service-account --key-file=/tmp/firebase-service-account.json --quiet || {
-            echo "❌ Failed to activate service account with gcloud"
-            echo "💡 Check service account JSON is valid and has correct permissions"
-            exit 1
-          }
+          if ! firebase projects:list --non-interactive 2>/dev/null; then
+            echo "⚠️  Firebase CLI authentication failed, trying gcloud..."
+            gcloud auth activate-service-account --key-file=/tmp/firebase-service-account.json --quiet
+            export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
+          fi
           
-          # Set Firebase project
           firebase use newtifi-web --non-interactive || {
             echo "❌ Failed to set Firebase project"
-            echo ""
-            echo "💡 TROUBLESHOOTING:"
-            echo "   1. Verify project ID 'newtifi-web' exists in Firebase Console"
-            echo "   2. Check service account has 'Firebase Admin' IAM role"
-            echo "   3. Verify 'firebase.googleapis.com' API is enabled"
-            echo "   4. Check service account email: $(jq -r '.client_email' /tmp/firebase-service-account.json)"
             exit 1
           }
         fi
@@ -165,13 +133,11 @@ jobs:
         echo "🚀 Starting Firebase Hosting deployment..."
         echo "📁 Build directory: dist/"
         
-        # Verify dist directory exists and has content
         if [ ! -d "dist" ] || [ -z "$(ls -A dist)" ]; then
           echo "❌ dist/ directory is empty or missing!"
           exit 1
         fi
         
-        # Deploy using Firebase CLI
         if [ -n "$FIREBASE_TOKEN" ]; then
           echo "🔐 Deploying with token authentication..."
           firebase deploy --only hosting --non-interactive --project newtifi-web --token "$FIREBASE_TOKEN" || {
@@ -180,7 +146,7 @@ jobs:
           }
         else
           echo "🔐 Deploying with service account..."
-          npm run deploy:firebase:admin || {
+          firebase deploy --only hosting --non-interactive --project newtifi-web || {
             echo "❌ Deployment failed!"
             exit 1
           }
