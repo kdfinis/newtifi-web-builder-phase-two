@@ -1,80 +1,35 @@
 name: Deploy to Firebase Hosting
 
-# NOTE: GitHub Pages is the primary deployment method for newtifi.com
-# This workflow is for Firebase deployment (optional backup)
 on:
-  workflow_dispatch:    # manual trigger
-  # push:
-  #   branches:
-  #     - main
+  workflow_dispatch:
+  push:
+    branches: [ main ]
 
 jobs:
-  build_and_deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: 🔍 Ensure auth secret exists
-        run: |
-          if [ -z "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}" ] && [ -z "${{ secrets.FIREBASE_TOKEN }}" ]; then
-            echo "❌ Repository secret FIREBASE_SERVICE_ACCOUNT or FIREBASE_TOKEN is required."
-            echo ""
-            echo "Option A (recommended when service account creation is allowed):"
-            echo "  1) Create a Service Account JSON in Firebase Console → Project Settings → Service Accounts"
-            echo "  2) Add it to GitHub Repo Secrets as FIREBASE_SERVICE_ACCOUNT"
-            echo ""
-            echo "Option B (works when service account key creation is blocked):"
-            echo "  1) Run locally: firebase login:ci"
-            echo "  2) Add the returned token to GitHub Repo Secrets as FIREBASE_TOKEN"
-            exit 1
-          fi
-
-      - name: 📦 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: |
-          # Remove existing node_modules and package-lock.json to fix Rollup optional deps issue
           rm -rf node_modules package-lock.json
-          # Install dependencies fresh (this ensures optional dependencies are installed)
           npm install --legacy-peer-deps
-          # Explicitly install Rollup's native module for Linux
-          npm install @rollup/rollup-linux-x64-gnu --save-optional --force || npm install @rollup/rollup-linux-x64-gnu --save-optional
-          # Verify Rollup module exists
-          if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
-            echo "⚠️  Rollup native module not found, trying alternative installation..."
-            npm install rollup --force
-            # Verify again after force install
-            if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
-              echo "❌ Failed to install Rollup native module!"
-              echo "📋 Attempting to list installed rollup packages:"
-              ls -la node_modules/@rollup/ 2>/dev/null || echo "No @rollup packages found"
-              echo "📋 Trying to reinstall rollup completely..."
-              npm uninstall rollup
-              npm install rollup --legacy-peer-deps
-              npm install @rollup/rollup-linux-x64-gnu --save-optional --force
-              # Final check
-              if [ ! -d "node_modules/@rollup/rollup-linux-x64-gnu" ]; then
-                echo "❌ CRITICAL: Rollup native module still missing after all attempts"
-                exit 1
-              fi
-            fi
-          fi
-          echo "✅ Rollup native module verified: $(ls -d node_modules/@rollup/rollup-linux-x64-gnu 2>/dev/null || echo 'NOT FOUND')"
+          npm install @rollup/rollup-linux-x64-gnu --save-optional --force || true
 
-      - name: 🔨 Build
+      - name: Build
         run: npm run build
 
-      - name: 🔥 Deploy to Firebase Hosting
+      - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
-          # Use token authentication (preferred when service account key creation is blocked)
           firebaseToken: ${{ secrets.FIREBASE_TOKEN }}
-          # Alternative: use service account if token is not available
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
           projectId: newtifi-web
