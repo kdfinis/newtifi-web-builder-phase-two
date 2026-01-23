@@ -50,113 +50,53 @@ jobs:
             echo "This indicates a persistent issue that needs manual intervention."
             echo ""
             echo "Common causes:"
-            echo "  1. Invalid FIREBASE_SERVICE_ACCOUNT JSON"
+            echo "  1. Workload Identity Federation not configured"
             echo "  2. Missing Firebase project permissions"
             echo "  3. Firebase project configuration issue"
             echo ""
             echo "To fix:"
             echo "  1. Check the error logs above"
-            echo "  2. Verify your Firebase service account credentials"
+            echo "  2. Verify Workload Identity Federation is set up correctly"
             echo "  3. Run: node scripts/loop-breaker.mjs reset firebase-deploy"
             echo "  4. Retry the deployment"
             exit 1
           }
 
-      - name: Setup Firebase Service Account Authentication
-        env:
-          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-        run: |
-          echo "🔐 Setting up Firebase Service Account authentication..."
-          
-          # Check if service account JSON is provided
-          if [ -z "${FIREBASE_SERVICE_ACCOUNT:-}" ]; then
-            echo "❌ FIREBASE_SERVICE_ACCOUNT is not set in GitHub Secrets!"
-            echo ""
-            echo "Please add your Firebase service account JSON to GitHub Secrets:"
-            echo "1. Go to: https://github.com/kdfinis/newtifi-web-builder-phase-two/settings/secrets/actions"
-            echo "2. Click 'New repository secret'"
-            echo "3. Name: FIREBASE_SERVICE_ACCOUNT"
-            echo "4. Value: (paste entire JSON from service account key file)"
-            echo "5. Click 'Add secret'"
-            echo ""
-            echo "See docs/FIREBASE_AUTH_ALTERNATIVES.md for detailed setup instructions"
-            exit 1
-          fi
-          
-          # Write service account JSON to file
-          echo "$FIREBASE_SERVICE_ACCOUNT" > /tmp/firebase-service-account.json
-          
-          # Verify JSON is valid
-          if ! command -v jq &> /dev/null; then
-            # Fallback: basic JSON validation
-            if ! echo "$FIREBASE_SERVICE_ACCOUNT" | grep -q '"type".*"service_account"'; then
-              echo "❌ FIREBASE_SERVICE_ACCOUNT does not appear to be valid service account JSON"
-              exit 1
-            fi
-          else
-            if ! jq empty /tmp/firebase-service-account.json 2>/dev/null; then
-              echo "❌ FIREBASE_SERVICE_ACCOUNT is not valid JSON!"
-              exit 1
-            fi
-            
-            # Extract and verify service account email
-            SERVICE_ACCOUNT_EMAIL=$(jq -r '.client_email' /tmp/firebase-service-account.json)
-            if [ "$SERVICE_ACCOUNT_EMAIL" = "null" ] || [ -z "$SERVICE_ACCOUNT_EMAIL" ]; then
-              echo "❌ FIREBASE_SERVICE_ACCOUNT JSON missing 'client_email' field"
-              exit 1
-            fi
-            echo "✅ Service account JSON is valid"
-            echo "📧 Service account: $SERVICE_ACCOUNT_EMAIL"
-          fi
-          
-          # Set environment variable for Firebase CLI
-          export GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json
-          echo "GOOGLE_APPLICATION_CREDENTIALS=/tmp/firebase-service-account.json" >> $GITHUB_ENV
-          
-          # Verify file exists and is readable
-          if [ ! -f "$GOOGLE_APPLICATION_CREDENTIALS" ]; then
-            echo "❌ Service account file not found at $GOOGLE_APPLICATION_CREDENTIALS"
-            exit 1
-          fi
-          
-          echo "✅ Firebase authentication configured"
-          echo "📋 Using service account credentials (never expires)"
+      - name: Authenticate to Google Cloud via OIDC
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+          service_account: ${{ secrets.WIF_SERVICE_ACCOUNT }}
+          token_format: 'access_token'
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools@latest
 
       - name: Verify Firebase Project Access
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-service-account.json
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
           echo "🔍 Verifying Firebase project access..."
           
           # Test Firebase CLI can access the project
-          if firebase projects:list --non-interactive 2>&1 | grep -q "newtifi-web"; then
-            echo "✅ Service account has access to newtifi-web project"
+          if firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | grep -q "newtifi-web"; then
+            echo "✅ Token has access to newtifi-web project"
           else
-            echo "❌ Service account cannot access newtifi-web project"
+            echo "❌ Token cannot access newtifi-web project"
             echo "📋 Available projects:"
-            firebase projects:list --non-interactive 2>&1 | head -10
+            firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | head -10
             echo ""
-            echo "💡 Verify the service account has 'Firebase Hosting Admin' role in Google Cloud Console"
+            echo "💡 Verify the token's account has 'Firebase Hosting Admin' role in Firebase Console"
             exit 1
           fi
           
-          # Set Firebase project
-          firebase use newtifi-web --non-interactive || {
-            echo "❌ Failed to set Firebase project"
-            echo "💡 Verify project ID 'newtifi-web' exists and service account has access"
-            exit 1
-          }
-          
-          echo "✅ Project configured: newtifi-web"
+          echo "✅ Project access verified: newtifi-web"
 
       - name: Deploy to Firebase Hosting
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: /tmp/firebase-service-account.json
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
         run: |
-          echo "🔐 Deploying with Service Account (permanent, never expires)"
+          echo "🔐 Deploying with FIREBASE_TOKEN"
           echo "📋 Project: newtifi-web"
           echo "📋 Checking firebase.json..."
           cat firebase.json || echo "firebase.json not found"
@@ -172,7 +112,7 @@ jobs:
           echo ""
           echo "🚀 Deploying to Firebase Hosting..."
           DEPLOY_START=$(date +%s)
-          firebase deploy --only hosting --project newtifi-web --non-interactive --message "GitHub Actions: Deploy latest code to live" 2>&1 | tee /tmp/firebase-deploy.log
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive --message "GitHub Actions: Deploy latest code to live" 2>&1 | tee /tmp/firebase-deploy.log
           DEPLOY_EXIT=$?
           DEPLOY_END=$(date +%s)
           DEPLOY_DURATION=$((DEPLOY_END - DEPLOY_START))
@@ -210,8 +150,4 @@ jobs:
           echo "✅ Deployment successful - Current release should be updated in Firebase Console"
           echo ""
           node scripts/loop-breaker.mjs reset firebase-deploy || true
-          
-          # Cleanup service account file (security best practice)
-          rm -f /tmp/firebase-service-account.json
-          echo "🧹 Cleaned up service account credentials"
 
