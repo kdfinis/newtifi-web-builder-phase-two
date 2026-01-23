@@ -108,8 +108,9 @@ jobs:
           echo "📋 Listing dist contents..."
           ls -la dist/ | head -10 || echo "dist/ not found"
           echo ""
-          echo "🚀 Starting deployment..."
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | tee /tmp/firebase-deploy.log || {
+          echo "🚀 Starting deployment to LIVE channel..."
+          echo "📋 This will update the Current release in Firebase Hosting"
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive --message "GitHub Actions: Deploy latest code to live" 2>&1 | tee /tmp/firebase-deploy.log || {
             echo ""
             echo "❌ Deployment failed!"
             echo "📋 Last 50 lines of output:"
@@ -119,5 +120,10 @@ jobs:
             exit 1
           }
           echo "✅ Deployment complete"
+          echo ""
+          echo "🔍 Verifying deployment was promoted to Current release..."
+          echo "📋 Check Firebase Console → Hosting → Current release"
+          echo "📋 It should show today's date and a new commit hash"
+          echo ""
           node scripts/loop-breaker.mjs reset firebase-deploy || true
 
