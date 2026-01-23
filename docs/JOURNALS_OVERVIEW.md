@@ -1,5 +1,8 @@
 # Journals Overview - NewTIFI Website
 
+⚠️ **IMPORTANT**: This file is for general overview only.  
+**For accurate, up-to-date information, see**: `docs/WEBSITE_JOURNALS_DATA.md` (PRIMARY SOURCE)
+
 ## Summary
 
 The NewTIFI website hosts academic journals through the **NewTIFI Publishing** platform. Currently, there is **1 active journal** and **1 planned journal**.
@@ -24,9 +27,12 @@ The NewTIFI website hosts academic journals through the **NewTIFI Publishing** p
 A peer-reviewed academic publication dedicated to advancing rigorous scholarship and high-impact analysis in investment management. Focuses on legal, tax, regulatory, and operational dimensions of alternative investment funds.
 
 #### Editorial Board
-- **Editor-in-Chief**: Dr. Ezechiel Havrenne (Luxembourg School of Business)
-- **Associate Editor**: Delphine Filsack (NewTIFI Institute)
-- **Managing Editor**: Karlo Definis (NewTIFI Institute)
+**Source**: Actual website content (`src/pages/publishing/journals/investment-management.tsx`)
+- **Editor-in-Chief**: Ezechiel Havrenne (NewTiFi Institute)
+- **Associate Editor**: Delphine Filsack (NewTiFi Institute)
+- **Managing Editor**: Karlo Definis (NewTiFi Institute)
+
+**Note**: No titles/credentials shown on website - only names and roles as published.
 
 #### Published Articles (3)
 1. **IMJ-2025-001**: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions"
