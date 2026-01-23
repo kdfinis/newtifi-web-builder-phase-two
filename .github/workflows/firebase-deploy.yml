@@ -1,6 +1,6 @@
 name: Deploy to Firebase Hosting
 
-# Hard push: Deploy current codebase to production
+# Deploy latest code to Firebase Hosting (newtifi.com)
 on:
   workflow_dispatch:
   push:
