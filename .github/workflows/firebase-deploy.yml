@@ -112,16 +112,14 @@ jobs:
           echo "📋 This will update the Current release in Firebase Hosting"
           echo ""
           echo "🔍 Testing token access first..."
-          firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | head -10 || {
-            echo "❌ Token cannot list projects - token may be invalid or expired"
+          if firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | grep -q "newtifi-web"; then
+            echo "✅ Token has access to newtifi-web project"
+          else
+            echo "❌ Token cannot access newtifi-web project - token may be invalid or expired"
+            echo "📋 Available projects:"
+            firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | head -10
             exit 1
-          }
-          echo ""
-          echo "🔍 Verifying project access..."
-          firebase use newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 || {
-            echo "❌ Cannot access project 'newtifi-web' - check token permissions"
-            exit 1
-          }
+          fi
           echo ""
           echo "🚀 Deploying to Firebase Hosting..."
           DEPLOY_START=$(date +%s)
