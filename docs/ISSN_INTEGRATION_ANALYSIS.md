@@ -18,8 +18,8 @@
 ⚠️ **Important Finding**: 
 - **ISSN Application**: Lists IMJ-2025-003 as first issue
 - **Website**: Shows all 3 articles (IMJ-2025-001, 002, 003) published on same date
-- **Impact**: May affect volume/issue numbering
-- **Action**: Verify if this changes how articles are numbered or cited
+- **Fact**: ISSN application designates IMJ-2025-003 as first issue, while website shows all articles on same date
+- **Action**: Verify if this affects volume/issue numbering on website
 
 ### 3. Publication Frequency
 ✅ **Matches**: Quarterly (Trimestrielle)  

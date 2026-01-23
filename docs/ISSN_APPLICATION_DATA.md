@@ -15,7 +15,7 @@
 ### First Issue Information
 - **First Issue Article**: "Luxembourg SICARs, SIFs, and RAIFs: A 20-Year Perspective on the 'Well-Informed Investor'"
 - **Article ID**: IMJ-2025-003 (matches website data)
-- **Publication Month**: June (Juillet)
+- **Publication Month**: June (Juin)
 - **Publication Year**: 2025
 - **Frequency**: Trimestrielle (Quarterly)
 
@@ -57,10 +57,9 @@
 ## Key Observations
 
 ### First Issue Designation
-The ISSN application lists **IMJ-2025-003** ("Luxembourg SICARs, SIFs, and RAIFs...") as the first issue, not IMJ-2025-001. This suggests:
-- The articles may have been published in a different order than their IDs suggest
-- Or the first issue of the journal officially began with article IMJ-2025-003
-- This is important for citation and volume/issue numbering
+**Fact from ISSN Application**: The application lists **IMJ-2025-003** ("Luxembourg SICARs, SIFs, and RAIFs: A 20-Year Perspective on the 'Well-Informed Investor'") as the first issue.
+
+**Note**: The website shows all 3 articles (IMJ-2025-001, 002, 003) published on the same date (2025-06-28). The ISSN application designates IMJ-2025-003 as the first issue. This may affect volume/issue numbering and should be verified.
 
 ### Publisher Structure
 - **Legal Publisher**: Individual (Ezechiel Havrenne)
