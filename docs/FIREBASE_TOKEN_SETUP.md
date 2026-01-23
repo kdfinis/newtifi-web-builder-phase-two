@@ -23,9 +23,10 @@
 
 ## Important Notes
 
-- **CI tokens don't expire** (unlike regular login sessions)
+- ⚠️ **CI tokens CAN expire** (expiration time varies, typically weeks to months)
 - **Keep the token secret** - never commit it to the repository
-- If the token is compromised, generate a new one and update the secret
+- If the token is compromised or expired, generate a new one and update the secret
+- When token expires, you'll see: "Authentication Error: Your credentials are no longer valid"
 
 ## Troubleshooting
 

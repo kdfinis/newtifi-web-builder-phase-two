@@ -371,6 +371,8 @@ The workflow will be updated to use:
 
 ## Current Status
 
-Currently using: **CI Token** (expires, requires manual renewal)
+Currently using: **CI Token** (`FIREBASE_TOKEN`) - ✅ **Working as of 2026-01-23**
 
-**Action Required:** Choose one of the options above and we'll implement it.
+**Note**: CI tokens can expire (weeks to months). When expired, regenerate with `firebase login:ci` and update GitHub Secret.
+
+**For Permanent Solution**: Choose one of the options above (Option 1 or Option 2 recommended).

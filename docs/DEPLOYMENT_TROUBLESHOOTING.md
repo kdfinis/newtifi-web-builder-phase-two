@@ -1,10 +1,11 @@
 # Deployment Troubleshooting Guide
 
-## Deployment Methods
+## Deployment Method
 
-This project supports two deployment methods:
-- **Firebase Hosting**: Automatic via GitHub Actions (`.github/workflows/firebase-deploy.yml`)
-- **GitHub Pages**: Manual deployment via `npm run deploy`
+This project uses **Firebase Hosting** for production deployment:
+- **Automatic**: Via GitHub Actions (`.github/workflows/firebase-deploy.yml`)
+- **Live Site**: https://newtifi.com
+- **Firebase Project**: `newtifi-web`
 
 ## Firebase Hosting Deployment
 
@@ -14,18 +15,20 @@ This project supports two deployment methods:
 ### Setup
 - Uses `FIREBASE_TOKEN` from GitHub Secrets
 - See `docs/FIREBASE_TOKEN_SETUP.md` for configuration
+- See `docs/FIREBASE_DEPLOYMENT_SETUP.md` for complete guide
 
 ### Troubleshooting
 - Check GitHub Actions workflow logs for errors
 - Verify `FIREBASE_TOKEN` is set in repository secrets
 - Ensure build completes successfully (`dist/` directory exists)
+- Check Firebase Console: https://console.firebase.google.com/project/newtifi-web/hosting
 
 ## If You're Not Seeing Latest Code on newtifi.com
 
-### Issue: GitHub Pages Cache
-GitHub Pages has a CDN cache that can take **5-15 minutes** to update after deployment.
+### Issue: Firebase CDN Cache
+Firebase Hosting uses a CDN cache that can take **2-5 minutes** to update after deployment.
 
-**Solution**: Wait 10-15 minutes, then try again.
+**Solution**: Wait 2-5 minutes, then try again.
 
 ### Issue: Browser Cache
 Your browser may be caching the old version.
@@ -52,15 +55,17 @@ GitHub Pages uses a CDN that may cache content.
 
 ## Verify Deployment
 
-### Check GitHub Repository
-1. Visit: https://github.com/kdfinis/newtifi-web-builder-phase-two
-2. Check latest commit: Should be `4630ac8` or newer
-3. Verify files exist in root: `index.html`, `assets/ArticleViewer-*.js`
+### Check GitHub Actions
+1. Visit: https://github.com/kdfinis/newtifi-web-builder-phase-two/actions
+2. Look for "Deploy to Firebase Hosting" workflow
+3. Check latest run status (should be green ✅)
+4. Verify deployment completed successfully
 
-### Check GitHub Pages Settings
-1. Visit: https://github.com/kdfinis/newtifi-web-builder-phase-two/settings/pages
-2. Verify source branch (should be `main` or `gh-pages`)
-3. Check deployment status (should show recent deployment)
+### Check Firebase Console
+1. Visit: https://console.firebase.google.com/project/newtifi-web/hosting
+2. Check "Current release" - should show latest deployment
+3. Verify timestamp matches recent GitHub Actions run
+4. Check deployment hash matches latest commit
 
 ### Test Specific Features
 - Admin article browser: https://newtifi.com/admin/articles
@@ -93,24 +98,25 @@ After waiting 15 minutes AND doing a hard refresh:
 ## Quick Test Commands
 
 ```bash
-# Check if files are on GitHub
-curl -I https://newtifi.com/assets/ArticleViewer-5k7SNViw-B-LtLDhY.js
+# Check if site is accessible
+curl -I https://newtifi.com
 
 # Check if index.html is updated
 curl -s https://newtifi.com | grep -o 'ArticleViewer[^"]*' | head -1
 
-# Check GitHub Pages status
-# Visit: https://github.com/kdfinis/newtifi-web-builder-phase-two/settings/pages
+# Test Firebase token
+firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive
+
+# Run diagnostics
+node scripts/diagnose-firebase.mjs
 ```
 
 ## Quick Reference
 
 ### Firebase Hosting
-- **Deployment**: Automatic via GitHub Actions
+- **Deployment**: Automatic via GitHub Actions (`.github/workflows/firebase-deploy.yml`)
 - **Cache**: Firebase CDN cache (usually instant, max 5 minutes)
-- **Check Status**: GitHub Actions → "Deploy to Firebase Hosting" workflow
-
-### GitHub Pages
-- **Deployment**: Manual via `npm run deploy`
-- **Cache**: GitHub Pages CDN (5-15 minutes)
-- **Check Status**: Repository Settings → Pages
+- **Check Status**: 
+  - GitHub Actions: https://github.com/kdfinis/newtifi-web-builder-phase-two/actions
+  - Firebase Console: https://console.firebase.google.com/project/newtifi-web/hosting
+- **Live Site**: https://newtifi.com
