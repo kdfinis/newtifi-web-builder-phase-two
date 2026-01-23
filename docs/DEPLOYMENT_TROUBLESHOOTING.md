@@ -1,16 +1,24 @@
 # Deployment Troubleshooting Guide
 
-## ✅ Code is Deployed
+## Deployment Methods
 
-The latest code has been successfully deployed to both branches:
-- **main branch**: Latest commit `4630ac8` - "Force redeploy: Fresh build with all latest code"
-- **gh-pages branch**: Also updated via `npm run deploy`
+This project supports two deployment methods:
+- **Firebase Hosting**: Automatic via GitHub Actions (`.github/workflows/firebase-deploy.yml`)
+- **GitHub Pages**: Manual deployment via `npm run deploy`
 
-All files are confirmed on GitHub:
-- ArticleViewer component: ✅ Deployed
-- Admin article browser route: ✅ Deployed  
-- Security fixes: ✅ Deployed
-- Article page fixes: ✅ Deployed
+## Firebase Hosting Deployment
+
+### Status
+✅ **Active** - Automatically deploys on push to `main` branch
+
+### Setup
+- Uses `FIREBASE_TOKEN` from GitHub Secrets
+- See `docs/FIREBASE_TOKEN_SETUP.md` for configuration
+
+### Troubleshooting
+- Check GitHub Actions workflow logs for errors
+- Verify `FIREBASE_TOKEN` is set in repository secrets
+- Ensure build completes successfully (`dist/` directory exists)
 
 ## If You're Not Seeing Latest Code on newtifi.com
 
@@ -95,17 +103,14 @@ curl -s https://newtifi.com | grep -o 'ArticleViewer[^"]*' | head -1
 # Visit: https://github.com/kdfinis/newtifi-web-builder-phase-two/settings/pages
 ```
 
-## Current Deployment Status
+## Quick Reference
 
-- ✅ Latest code built
-- ✅ Deployed to main branch
-- ✅ Deployed to gh-pages branch
-- ✅ All files committed and pushed
-- ⏱️ Waiting for GitHub Pages cache to update (5-15 min)
+### Firebase Hosting
+- **Deployment**: Automatic via GitHub Actions
+- **Cache**: Firebase CDN cache (usually instant, max 5 minutes)
+- **Check Status**: GitHub Actions → "Deploy to Firebase Hosting" workflow
 
-## Next Steps
-
-1. **Wait 10-15 minutes** for GitHub Pages cache
-2. **Hard refresh** your browser (Ctrl+Shift+R / Cmd+Shift+R)
-3. **Test in incognito** window
-4. If still not working, provide specific details about what you see
+### GitHub Pages
+- **Deployment**: Manual via `npm run deploy`
+- **Cache**: GitHub Pages CDN (5-15 minutes)
+- **Check Status**: Repository Settings → Pages

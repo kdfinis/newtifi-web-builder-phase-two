@@ -84,6 +84,13 @@ This codebase is designed to work with **both GitHub Pages and Firebase Hosting*
 - **Current**: Using custom OAuth (Google, LinkedIn) + password auth
 - **Compatibility**: Both approaches can coexist
 
+### GitHub Actions Deployment
+- **Method**: CI Token authentication (`FIREBASE_TOKEN`)
+- **Setup**: See `docs/FIREBASE_TOKEN_SETUP.md` for setup instructions
+- **Workflow**: `.github/workflows/firebase-deploy.yml` handles deployment automatically
+- **Trigger**: Automatically deploys on push to `main` branch (when relevant files change)
+- **Status**: ✅ Working - Run #48 successful
+
 ## Development Protocol
 
 ### When Adding New Features
@@ -106,10 +113,12 @@ This codebase is designed to work with **both GitHub Pages and Firebase Hosting*
 
 ## Firebase Deployment Process
 
-### Automatic Deployment (Currently Disabled)
-- **Trigger**: Push to `main` branch
-- **Workflow**: `.github/workflows/deploy.yml` and `.github/workflows/firebase-deploy.yml`
-- **Status**: Disabled (using GitHub Pages as primary)
+### Automatic Deployment (GitHub Actions)
+- **Trigger**: Push to `main` branch (when relevant files change)
+- **Workflow**: `.github/workflows/firebase-deploy.yml`
+- **Authentication**: Uses `FIREBASE_TOKEN` from GitHub Secrets
+- **Status**: ✅ Active and working
+- **Setup**: See `docs/FIREBASE_TOKEN_SETUP.md` for token configuration
 
 ### Manual Deployment
 ```bash
@@ -125,7 +134,8 @@ npm run deploy:auto
 
 ### Firebase CLI Requirements
 - **Installation**: `npm install -g firebase-tools`
-- **Login**: `firebase login`
+- **Login**: `firebase login` (for local deployment)
+- **CI Token**: `firebase login:ci` (for GitHub Actions)
 - **Project**: `newtifi-web` (configured in `.firebaserc`)
 
 ## GitHub Pages vs Firebase Hosting
