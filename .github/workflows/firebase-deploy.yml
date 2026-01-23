@@ -1,6 +1,6 @@
 name: Deploy to Firebase Hosting
 
-# Trigger deployment with FIREBASE_TOKEN (now configured in GitHub Secrets)
+# Force fresh deployment with latest code
 on:
   workflow_dispatch:
   push:
