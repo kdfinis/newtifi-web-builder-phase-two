@@ -79,18 +79,9 @@ storage/journals/investment-management/articles/
 ## Planned Journals
 
 ### 2. FinTech Innovation Journal
-- **Status**: 🟡 Planned
-- **ID**: `fintech-innovation`
-- **ISSN**: YYYY-YYYY (To be assigned)
-- **Publisher**: NewTIFI Publishing
-- **Location**: Luxembourg
-- **Frequency**: Bi-annual
-- **Peer Review**: Single-blind
-- **Launch Date**: 2025-12-01 (planned)
-- **Last Updated**: 2025-10-04
-
-#### Editorial Board
-- **Editor-in-Chief**: Dr. Karlo Definis (NewTIFI)
+- **Status**: 🟡 Planned (not yet active)
+- **Note**: Details not documented until actually published on website
+- **Reference**: See `config/journals.json` for planned configuration (not yet published)
 
 ---
 
