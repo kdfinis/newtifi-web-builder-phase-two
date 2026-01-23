@@ -1,6 +1,6 @@
 name: Deploy to Firebase Hosting
 
-# Force fresh deployment with latest code
+# Hard push: Deploy current codebase to production
 on:
   workflow_dispatch:
   push:
