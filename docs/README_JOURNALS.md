@@ -11,8 +11,21 @@
 - File structure and storage locations
 - Source file references
 - Rules for data accuracy
+- Official publisher information from ISSN application
 
 **⚠️ IMPORTANT**: Always use this file as the primary source. Do not assume or hallucinate information.
+
+### 1a. ISSN_APPLICATION_DATA.md ⭐ OFFICIAL REGISTRATION
+**Purpose**: Official ISSN application data from Bibliothèque Nationale du Luxembourg  
+**Use**: Official publisher information, ISSN status, first issue designation  
+**Contains**:
+- Official journal description
+- Publisher registration details
+- Contact information
+- First issue information
+- Integration notes for website updates
+
+**⚠️ IMPORTANT**: Contains official registration data. Use for publisher information and when ISSN is assigned.
 
 ### 2. JOURNALS_SYSTEM_REQUIREMENTS.md
 **Purpose**: System requirements and future planning  

@@ -28,7 +28,8 @@
 - **Publisher**: New Technologies & Investment Funds Institute
 - **Publisher Location**: Luxembourg
 - **Frequency**: Quarterly
-- **ISSN**: TBD (To be registered with ISSN International Centre)
+- **ISSN**: Application submitted 2026-01-15 (pending assignment)
+- **ISSN Application**: See `docs/ISSN_APPLICATION_DATA.md` for official application details
 - **Peer Review**: Double-blind peer review
 - **Archiving**: Digital preservation through CLOCKSS and Portico
 - **Indexing**: DOAJ, Google Scholar, ResearchGate
@@ -62,6 +63,29 @@
 > The NewTIFI Publishing – Investment Management Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of global investment frameworks and the financial architecture shaping the future of capital markets.
 > 
 > As part of NewTIFI Publishing, the journal operates under a non-profit model. All profits realised by NewTIFI including through publication efforts are used to fund Doctoral Scholarships."
+
+### Official Journal Description (From ISSN Application)
+**Source**: Bibliothèque Nationale du Luxembourg - Demande d'ISSN (2026-01-15)
+
+> "Rigorous, peer-reviewed scholarship and practitioner insight on investment management - legal, regulatory, tax and tech - spanning namely fund structuring, capital raising, strategy, M&A and liquidations across leading jurisdictions."
+
+### Publisher Information (Official)
+**Source**: ISSN Application form
+
+- **Legal Publisher**: HAVRENNE Ezechiel (Individual)
+- **Editorial Brand**: NewTIFI Publishing (appears on publications)
+- **Publisher Address**: 14, rue Jean-Pierre Biermann, 1268 Luxembourg
+- **Contact**: Ezechiel Havrenne, Chairman
+  - Email: ezechiel.havrenne@newtifi.com
+  - Phone: +352.621.567.409
+  - Website: https://newtifi.com
+
+**Note**: The publisher is registered as an individual, with "NewTIFI Publishing" as the editorial brand that appears on publications.
+
+### First Issue (From ISSN Application)
+- **First Issue Article**: IMJ-2025-003 ("Luxembourg SICARs, SIFs, and RAIFs: A 20-Year Perspective on the 'Well-Informed Investor'")
+- **Publication Date**: June 2025
+- **Note**: The ISSN application designates IMJ-2025-003 as the first issue, not IMJ-2025-001
 
 ### Peer Review Process
 - **Average Review Time**: 6-8 weeks
@@ -219,6 +243,7 @@ config/journals.json - Journal metadata
 - **Article Data**: `data/articles/investment-management/*.json`
 - **Article Storage**: `storage/journals/investment-management/articles/`
 - **Journal Config**: `config/journals.json` (may contain outdated info - verify against website)
+- **ISSN Application**: `docs/ISSN_APPLICATION_DATA.md` (official publisher and ISSN information)
 
 ---
 
