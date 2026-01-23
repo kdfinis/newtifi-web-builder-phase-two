@@ -110,20 +110,60 @@ jobs:
           echo ""
           echo "🚀 Starting deployment to LIVE channel..."
           echo "📋 This will update the Current release in Firebase Hosting"
-          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive --message "GitHub Actions: Deploy latest code to live" 2>&1 | tee /tmp/firebase-deploy.log || {
+          echo ""
+          echo "🔍 Testing token access first..."
+          firebase projects:list --token "$FIREBASE_TOKEN" --non-interactive 2>&1 | head -10 || {
+            echo "❌ Token cannot list projects - token may be invalid or expired"
+            exit 1
+          }
+          echo ""
+          echo "🔍 Verifying project access..."
+          firebase use newtifi-web --token "$FIREBASE_TOKEN" --non-interactive 2>&1 || {
+            echo "❌ Cannot access project 'newtifi-web' - check token permissions"
+            exit 1
+          }
+          echo ""
+          echo "🚀 Deploying to Firebase Hosting..."
+          DEPLOY_START=$(date +%s)
+          firebase deploy --only hosting --project newtifi-web --token "$FIREBASE_TOKEN" --non-interactive --message "GitHub Actions: Deploy latest code to live" 2>&1 | tee /tmp/firebase-deploy.log
+          DEPLOY_EXIT=$?
+          DEPLOY_END=$(date +%s)
+          DEPLOY_DURATION=$((DEPLOY_END - DEPLOY_START))
+          
+          echo ""
+          echo "📋 Deployment took ${DEPLOY_DURATION} seconds"
+          echo "📋 Exit code: $DEPLOY_EXIT"
+          
+          if [ $DEPLOY_EXIT -ne 0 ]; then
             echo ""
-            echo "❌ Deployment failed!"
+            echo "❌ Deployment failed with exit code $DEPLOY_EXIT!"
             echo "📋 Last 50 lines of output:"
             tail -50 /tmp/firebase-deploy.log || echo "No log file"
             ERROR_MSG=$(tail -10 /tmp/firebase-deploy.log | tr '\n' ' ' || echo "Firebase deployment failed")
             node scripts/loop-breaker.mjs record firebase-deploy "$ERROR_MSG" || true
             exit 1
-          }
+          fi
+          
+          # Check if deployment actually created a release
+          echo ""
+          echo "🔍 Verifying deployment output..."
+          if grep -q "Deploy complete\|deployed successfully\|Hosting URL" /tmp/firebase-deploy.log 2>/dev/null; then
+            echo "✅ Deployment appears successful in logs"
+          else
+            echo "⚠️  WARNING: Deployment command succeeded but no success message found in logs"
+            echo "📋 Full deployment output:"
+            cat /tmp/firebase-deploy.log || echo "No log file"
+          fi
           echo "✅ Deployment complete"
           echo ""
-          echo "🔍 Verifying deployment was promoted to Current release..."
-          echo "📋 Check Firebase Console → Hosting → Current release"
-          echo "📋 It should show today's date and a new commit hash"
+          echo "🔍 Checking deployment output for release information..."
+          echo "📋 Last 20 lines of deployment log:"
+          tail -20 /tmp/firebase-deploy.log || echo "No log file"
+          echo ""
+          echo "⚠️  IMPORTANT: If 'Current release' in Firebase Console didn't update,"
+          echo "   the FIREBASE_TOKEN may lack permission to promote deployments to live."
+          echo "   Check: Firebase Console → Project Settings → Users and permissions"
+          echo "   Ensure the token's account has 'Firebase Hosting Admin' or 'Owner' role"
           echo ""
           node scripts/loop-breaker.mjs reset firebase-deploy || true
 
