@@ -76,14 +76,13 @@ const Navbar = () => {
       role="banner"
       aria-label="Main navigation"
     >
-      <div className="container mx-auto h-full flex items-center justify-between relative">
+      <div className="container mx-auto h-full flex items-center justify-between relative px-4 md:px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-1.5" aria-label="NewTIFI Home">
+        <Link to="/" className="flex items-center gap-2 min-w-0" aria-label="NewTIFI Home">
           <img 
             src="/assets/images/logo.png" 
             alt="NewTIFI Logo" 
-            className="h-[33px] md:h-[44px] w-auto"
-            style={{ minHeight: '34px' }}
+            className="h-8 sm:h-9 md:h-[44px] w-auto max-w-[150px] md:max-w-none object-contain"
           />
                             <span
                     className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
@@ -95,7 +94,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button 
           ref={menuButtonRef}
-          className="md:hidden text-white p-2"
+          className="md:hidden text-white p-2 -mr-1"
           onClick={toggleMenu}
           aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
@@ -111,9 +110,10 @@ const Navbar = () => {
           id="main-navigation"
           className={cn(
             "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-medium tracking-wide",
-            "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy md:bg-transparent",
+            "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy/95 md:bg-transparent backdrop-blur md:backdrop-blur-0",
+            "px-6 md:px-0 pb-6 md:pb-0 border-b border-white/10 md:border-0",
             "transition-all duration-300 ease-in-out",
-            isMenuOpen ? "flex flex-col items-center py-4 space-y-4" : "hidden md:flex"
+            isMenuOpen ? "flex flex-col items-start py-4 space-y-4" : "hidden md:flex"
           )}
           role="navigation"
           aria-label="Main navigation"
@@ -140,7 +140,7 @@ const Navbar = () => {
           >
             Who We Are
           </Link>
-          <div className="relative group w-full md:w-auto flex flex-col items-center">
+          <div className="relative group w-full md:w-auto flex flex-col items-start md:items-center">
             <Link
               to={urlFactory.getPublishingPath()}
               className={cn(
@@ -169,7 +169,7 @@ const Navbar = () => {
               ))}
             </div>
             {isMenuOpen && (
-              <div className="md:hidden mt-2 w-full flex flex-col items-center gap-1">
+              <div className="md:hidden mt-2 w-full flex flex-col items-start gap-1 pl-2">
                 {publishingLinks.map((item) => (
                   <Link
                     key={item.to}
@@ -206,6 +206,38 @@ const Navbar = () => {
           >
             Contact
           </Link>
+
+          {/* Mobile Auth Section */}
+          {isMenuOpen && (
+            isAuthenticated ? (
+              <div className="md:hidden w-full border-t border-white/10 pt-4 mt-2 space-y-2">
+                <div className="text-left text-sm text-white/80">
+                  Hello, {user?.name || user?.email}
+                </div>
+                <Link 
+                  to="/dashboard" 
+                  className="block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Dashboard
+                </Link>
+                <button 
+                  onClick={() => { logout(); setIsMenuOpen(false); }}
+                  className="block w-full text-center px-4 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase"
+                >
+                  Logout
+                </button>
+              </div>
+            ) : (
+              <Link 
+                to="/login" 
+                className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Sign In
+              </Link>
+            )
+          )}
         </nav>
 
         {/* Auth Section */}
@@ -248,35 +280,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Auth Section */}
-        {isAuthenticated ? (
-          <div className="md:hidden space-y-2 mt-4">
-            <div className="text-center text-sm text-gray-700 mb-2">
-              Hello, {user?.name || user?.email}
-            </div>
-            <Link 
-              to="/dashboard" 
-              className="block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Dashboard
-            </Link>
-            <button 
-              onClick={() => { logout(); setIsMenuOpen(false); }}
-              className="block w-full text-center px-4 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase"
-            >
-              Logout
-            </button>
-          </div>
-        ) : (
-          <Link 
-            to="/login" 
-            className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Sign In
-          </Link>
-        )}
+        
       </div>
     </header>
   );
