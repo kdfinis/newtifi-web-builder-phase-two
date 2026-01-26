@@ -303,16 +303,16 @@ const Home = () => {
   return (
     <main className="min-h-screen pb-20">
       {/* Our Journey Section */}
-      <section className="px-6 py-32 bg-newtifi-navy text-white">
+      <section className="px-6 py-16 sm:py-24 md:py-32 bg-newtifi-navy text-white">
         <div className="container mx-auto">
           <ScrollReveal direction="right" delay={100}>
-            <h1 className="text-2xl md:text-2xl font-light mb-10">For a Journey to a Better Tomorrow</h1>
+            <h1 className="text-xl sm:text-2xl md:text-2xl font-light mb-6 sm:mb-10">For a Journey to a Better Tomorrow</h1>
             <div className="mb-10">
-              <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
                 FOCUS RESEARCH<br />INNOVATE IMPLEMENT
               </h2>
             </div>
-            <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+            <p className="text-sm sm:text-base md:text-base leading-relaxed text-white/90 font-light">
               Welcome to the hub where Scientific, Tech and Finance Professionals meet
             </p>
           </ScrollReveal>
@@ -320,19 +320,19 @@ const Home = () => {
       </section>
 
       {/* Hero Section with Overview and Featured Articles */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
-        <div className="container mx-auto px-6 py-20 pb-4 mb-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      <section className="relative min-h-[60vh] sm:min-h-[75vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
+        <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 pb-4 mb-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* Left side - New Technologies & Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
-              <div className="space-y-8">
-                <h1 className="text-4xl md:text-4xl font-light text-newtifi-navy">
+              <div className="space-y-6 sm:space-y-8">
+                <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-newtifi-navy">
                   New Technologies & Investment Funds Institute
                 </h1>
-                <p className="text-2xl text-gray-700">
+                <p className="text-base sm:text-lg md:text-2xl text-gray-700">
                   An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
-                <ul className="list-disc pl-6 space-y-3 text-gray-700 text-base">
+                <ul className="list-disc pl-5 sm:pl-6 space-y-3 text-gray-700 text-sm sm:text-base">
                   <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
                   <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
                   <li>Supporting future talent through scholarships, internships, and mentorships</li>
@@ -342,17 +342,17 @@ const Home = () => {
                 {/* Luxembourg photo boxes to balance right column height */}
                 <div className="mt-4 grid grid-rows-3 gap-4">
                   <div
-                    className="rounded-2xl w-full h-48 md:h-64 bg-top bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-top bg-cover shadow-xl border border-gray-100"
                     style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }}
                     aria-label="Adolphe Bridge, Luxembourg"
                   />
                   <div
-                    className="rounded-2xl w-full h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
                     style={{ backgroundImage: "url('/images/uploads/kirchberg-fort-thungen.jpg')" }}
                     aria-label="Fort Thüngen, Kirchberg, Luxembourg"
                   />
                   <div
-                    className="rounded-2xl w-full h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
                     style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
                     aria-label="Luxembourg skyline"
                   />
@@ -361,10 +361,10 @@ const Home = () => {
             </ScrollReveal>
 
             {/* Right side - Featured Articles Hero */}
-            <div className="flex flex-col gap-6 mb-0 pb-0">
+            <div className="flex flex-col gap-4 sm:gap-6 mb-0 pb-0">
               {/* Investment Management Journal - Separate Box */}
               <ScrollReveal direction="left" delay={180}>
-                <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-5 sm:p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
                   <div onClick={() => navigate(urlFactory.getPublishingPath())} className="cursor-pointer">
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 bg-newtifi-teal/20 rounded-lg">
@@ -372,11 +372,11 @@ const Home = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
-                      <h3 className="text-2xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
                         NewTIFI Investment Management Journal
                       </h3>
                     </div>
-                    <p className="text-base md:text-base text-gray-600 font-light mb-3">
+                    <p className="text-sm sm:text-base md:text-base text-gray-600 font-light mb-3">
                       Peer-reviewed research and insights in investment management and financial technology
                     </p>
                     <div className="flex items-center justify-end">
@@ -390,12 +390,12 @@ const Home = () => {
 
               {/* Featured Articles - Hero Section */}
             <ScrollReveal direction="left" delay={200}>
-                <div className="bg-gradient-to-br from-newtifi-navy/5 to-newtifi-teal/5 rounded-2xl p-8 shadow-2xl border border-newtifi-navy/10">
-                <div className="flex justify-between items-center mb-8">
-                    <h2 className="text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
+                <div className="bg-gradient-to-br from-newtifi-navy/5 to-newtifi-teal/5 rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl border border-newtifi-navy/10">
+                <div className="flex justify-between items-center mb-5 sm:mb-8">
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
                   <Button 
                       to={urlFactory.getPublishingPath()} 
-                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2"
+                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2 text-sm sm:text-base"
                   >
                     View All
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -403,32 +403,32 @@ const Home = () => {
                     </svg>
                   </Button>
                 </div>
-                <div className="space-y-8">
+                <div className="space-y-5 sm:space-y-8">
                     {featuredArticles.length > 0 ? (
                       featuredArticles.map((article, index) => (
                         <div 
                           key={article.id}
-                          className="bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
+                          className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
                           {/* Article Header (text only, logo removed) */}
-                          <div className="flex items-start mb-6">
+                          <div className="flex items-start mb-4 sm:mb-6">
                             <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-3 mb-2">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-2">
                                 <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
                                   Latest Publication
                                 </span>
-                                <span className="text-base text-gray-500">{article.date}</span>
+                                <span className="text-xs sm:text-base text-gray-500">{article.date}</span>
                               </div>
                               <h3 className="text-base font-bold text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
                                 {article.title}
                               </h3>
                               <div className="flex items-center gap-2 mb-3">
-                                <span className="text-base text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                                <span className="text-xs sm:text-base text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
                                 {article.author && (
                                   <>
                                     <span className="text-gray-400">•</span>
-                                    <span className="text-base text-gray-600">By {article.author}</span>
+                                    <span className="text-xs sm:text-base text-gray-600">By {article.author}</span>
                                   </>
                                 )}
                               </div>
@@ -452,14 +452,14 @@ const Home = () => {
                           </div>
 
                           {/* Abstract */}
-                          <p className="text-gray-600 line-clamp-3 mb-6 leading-relaxed">{article.abstract}</p>
+                          <p className="text-sm sm:text-base text-gray-600 line-clamp-3 mb-6 leading-relaxed">{article.abstract}</p>
 
                           {/* Footer */}
                           <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                            <div className="text-base text-gray-500">
+                            <div className="text-xs sm:text-base text-gray-500">
                               DOI: {article.doi}
                             </div>
-                            <div className="flex items-center gap-2 text-newtifi-teal group-hover:text-newtifi-navy transition-colors">
+                            <div className="flex items-center gap-2 text-newtifi-teal group-hover:text-newtifi-navy transition-colors text-xs sm:text-base">
                               <span className="font-medium">Read Article</span>
                               <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
