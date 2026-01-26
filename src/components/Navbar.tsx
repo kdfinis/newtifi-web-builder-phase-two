@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { urlFactory } from '@/lib/urls/UrlFactory';
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
 
@@ -92,17 +92,41 @@ const Navbar = () => {
         </Link>
 
         {/* Mobile Menu Button */}
-        <button 
-          ref={menuButtonRef}
-          className="md:hidden text-white p-2 -mr-1"
-          onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
-          aria-expanded={isMenuOpen}
-          aria-controls="main-navigation"
-          aria-haspopup="true"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="md:hidden flex items-center gap-3">
+          <Link
+            to="/"
+            className={cn(
+              "text-xs uppercase tracking-wide text-white/90 hover:text-newtifi-teal transition-colors",
+              location.pathname === "/" && "text-newtifi-teal"
+            )}
+            onClick={closeMenu}
+          >
+            Home
+          </Link>
+          <Link
+            to={urlFactory.getPublishingPath()}
+            className={cn(
+              "text-xs uppercase tracking-wide text-white/90 hover:text-newtifi-teal transition-colors",
+              isPublishingActive && "text-newtifi-teal"
+            )}
+            onClick={closeMenu}
+          >
+            Publishing
+          </Link>
+          <button
+            ref={menuButtonRef}
+            className="relative flex items-center gap-1 rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-wide text-white/90 hover:text-white hover:border-white/40 transition-colors"
+            onClick={toggleMenu}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            aria-controls="main-navigation"
+            aria-haspopup="true"
+          >
+            More
+            {isMenuOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+            <span className="absolute -bottom-2 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-newtifi-teal/0 via-newtifi-teal/80 to-newtifi-teal/0 animate-[pulse_3s_ease-in-out_infinite]" />
+          </button>
+        </div>
 
         {/* Navigation Links - Desktop */}
         <nav 
