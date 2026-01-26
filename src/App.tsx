@@ -22,6 +22,7 @@ const LazyArticleViewer = React.lazy(() => import('./pages/admin/ArticleViewer')
 const LazyArticlePage = React.lazy(() => import('./pages/publishing/journals/ArticlePage'));
 const LazyPublishing = React.lazy(() => import('./pages/Publishing'));
 const LazyInvestmentManagement = React.lazy(() => import('./pages/publishing/journals/investment-management'));
+const LazyRestructuringInsolvencyJournal = React.lazy(() => import('./pages/publishing/journals/restructuring-insolvency-journal'));
 const LazyDashboard = React.lazy(() => import('./pages/Dashboard'));
 const LazyProfile = React.lazy(() => import('./pages/Profile'));
 const LazyArticles = React.lazy(() => import('./pages/Articles'));
@@ -84,6 +85,7 @@ const App = () => (
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/publishing" element={<LazyPublishing />} />
                 <Route path="/publishing/investment-management" element={<LazyInvestmentManagement />} />
+                <Route path="/publishing/restructuring-insolvency-journal" element={<LazyRestructuringInsolvencyJournal />} />
                 {/* Support both formats: with and without journal slug */}
                 <Route path="/publishing/article/:slug" element={<LazyArticlePage />} />
                 <Route path="/publishing/:journalSlug/article/:slug" element={<LazyArticlePage />} />

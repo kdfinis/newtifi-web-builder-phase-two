@@ -30,7 +30,8 @@ const staticArticles = [
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection. The study clarifies the compatibility of redemption provisions with the closed-ended ELTIF model and outlines best practices for implementing termination and amalgamation clauses within fund documentation. It concludes that Luxembourg offers a coherent and operationally flexible platform for ELTIF structuring aligned with the evolving European regulatory landscape.",
     filename: "eltifs-compulsory-redemptions.pdf",
     url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
-          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf",
+    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf",
+    journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -62,7 +63,8 @@ const staticArticles = [
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM's exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
     filename: "bafin-aifm-portfolio-control.pdf",
     url: "/articles/investment-management-journal/bafin-portfolio-control",
-          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf",
+    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf",
+    journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -100,24 +102,116 @@ const staticArticles = [
     abstract: "This article provides a comprehensive analysis of Luxembourg's \"Well-Informed Investor\" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg's private fund landscape.",
     filename: "luxembourg-well-informed-investor.pdf",
     url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
-          pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf",
+    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf",
+    journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
     downloads: 0,
     featured: true,
     category: "journal" as const
-  }
+  },
+  {
+    id: "compartment-insolvency-18625",
+    title: "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform",
+    author: "Ezechiel Havrenne",
+    date: "2026-01-15",
+    doi: "10.1234/newtifi.2026.001",
+    keywords: [
+      "COMPARTMENT INSOLVENCY",
+      "LUXEMBOURG FUNDS",
+      "RULING 18625",
+      "JUDICIAL LIQUIDATION"
+    ],
+    abstract: "This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation.",
+    filename: "2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx",
+    url: "/publishing/restructuring-insolvency-journal/article/compartment-insolvency-18625",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx")}`,
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const,
+    journalSlug: "restructuring-insolvency-journal",
+    allowDownload: false
+  },
+  {
+    id: "ipso-jure-dissolution-liquidation",
+    title: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers",
+    author: "Ezechiel Havrenne",
+    date: "2026-02-01",
+    doi: "10.1234/newtifi.2026.002",
+    keywords: [
+      "IPSO JURE DISSOLUTION",
+      "LUXEMBOURG FUNDS",
+      "CIVIL CODE",
+      "PRODUCT FUND LAW"
+    ],
+    abstract: "This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms.",
+    filename: "2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx",
+    url: "/publishing/restructuring-insolvency-journal/article/ipso-jure-dissolution-liquidation",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx")}`,
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const,
+    journalSlug: "restructuring-insolvency-journal",
+    allowDownload: false
+  },
+  {
+    id: "ruling-1019-architecture-liquidation",
+    title: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model",
+    author: "Ezechiel Havrenne",
+    date: "2026-03-01",
+    doi: "10.1234/newtifi.2026.003",
+    keywords: [
+      "RULING 1019",
+      "LIQUIDATION ARCHITECTURE",
+      "CSSF GATEKEEPING",
+      "RAIF COUNTER-MODEL"
+    ],
+    abstract: "This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, general company law, and the RAIF counter-model.",
+    filename: "2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx",
+    url: "/publishing/restructuring-insolvency-journal/article/ruling-1019-architecture-liquidation",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx")}`,
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const,
+    journalSlug: "restructuring-insolvency-journal",
+    allowDownload: false
+  },
 ];
 
 // Journal metadata for ISSN compliance
-const journalMetadata = {
-  title: "NewTiFi Investment Management Journal",
-  issn: "TBD", // To be registered with ISSN International Centre
-          publisher: "New Technologies & Investment Funds Institute",
-  publisherLocation: "Luxembourg",
-  frequency: "Quarterly",
-  peerReviewStatus: "Double-blind peer review",
-  archivingPolicy: "Digital preservation through CLOCKSS and Portico"
+const journalProfiles = {
+  'investment-management': {
+    title: "NewTIFI Investment Management Journal",
+    scope: "Investment management, fund structuring, regulatory change, and fiduciary governance.",
+    expertiseTag: "Luxembourg Investment Fund Regulation Expert",
+    metadata: {
+      issn: "TBD",
+      publisher: "New Technologies & Investment Funds Institute",
+      publisherLocation: "Luxembourg",
+      frequency: "Quarterly",
+      peerReviewStatus: "Double-blind peer review",
+      archivingPolicy: "Digital preservation through CLOCKSS and Portico"
+    }
+  },
+  'restructuring-insolvency-journal': {
+    title: "NewTIFI Restructuring & Insolvency Journal",
+    scope: "Insolvency, restructuring, liquidation architecture, and recovery frameworks.",
+    expertiseTag: "Insolvency & Restructuring Research",
+    metadata: {
+      issn: "TBD",
+      publisher: "New Technologies & Investment Funds Institute",
+      publisherLocation: "Luxembourg",
+      frequency: "Quarterly",
+      peerReviewStatus: "Double-blind peer review",
+      archivingPolicy: "Digital preservation through CLOCKSS and Portico"
+    }
+  }
 };
 
 // Submission rules and guidelines
@@ -183,6 +277,8 @@ interface Article {
   filename: string;
   url: string;
   pdfUrl: string;
+  journalSlug?: string;
+  allowDownload?: boolean;
   status: 'draft' | 'published';
   views: number;
   downloads: number;
@@ -417,6 +513,12 @@ export default function ArticlePage() {
     }
   }
 
+  const resolvedJournalSlug = journalSlug || article?.journalSlug || 'investment-management';
+  const journalProfile = (journalProfiles as any)[resolvedJournalSlug] || journalProfiles['investment-management'];
+  const journalMetadata = journalProfile.metadata;
+  const isPdfAsset = article?.pdfUrl?.toLowerCase().endsWith('.pdf');
+  const hasDownloadAsset = Boolean(article?.pdfUrl) && article?.allowDownload !== false;
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
@@ -494,10 +596,16 @@ export default function ArticlePage() {
       setShowLoginModal(true);
       return;
     }
+    if (!article.pdfUrl || article.allowDownload === false) {
+      return;
+    }
     window.open(article.pdfUrl, '_blank');
   };
 
   const handlePdfPreview = () => {
+    if (!isPdfAsset) {
+      return;
+    }
     setShowPdfPreview(true);
   };
 
@@ -537,7 +645,7 @@ export default function ArticlePage() {
               <div className="space-y-6">
                 <div className="inline-flex items-center px-4 py-2 bg-newtifi-teal/20 text-newtifi-teal rounded-full text-base font-medium">
                   <BookOpen className="w-4 h-4 mr-2" />
-                  Investment Management Journal
+                {journalProfile.title}
                 </div>
                 <h1 className="text-4xl md:text-6xl font-bold leading-tight">
                   {meta.title}
@@ -585,13 +693,13 @@ export default function ArticlePage() {
                         <span className="text-gray-600 text-base">{article.date}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <span className="text-newtifi-teal font-medium">Luxembourg Investment Fund Regulation Expert</span>
+                        <span className="text-newtifi-teal font-medium">{journalProfile.expertiseTag}</span>
                       </div>
                     </div>
                     
                     <div className="mt-6 p-4 bg-white/50 rounded-xl border border-newtifi-teal/20">
                       <p className="text-gray-700 leading-relaxed">
-                        This research examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs, providing comprehensive analysis for practitioners and policymakers in the European investment fund landscape.
+                        {article.abstract}
                       </p>
                     </div>
                   </div>
@@ -622,7 +730,7 @@ export default function ArticlePage() {
                         {article.abstract}
                       </p>
                       <p className="text-gray-700 leading-relaxed text-base">
-                        This research contributes to the broader academic discourse on {article.keywords?.slice(0, 3).join(', ').toLowerCase()} by providing comprehensive analysis and practical insights for practitioners and policymakers. The study addresses critical gaps in current understanding and offers evidence-based recommendations for regulatory compliance and operational best practices in the Luxembourg financial services sector.
+                        This research contributes to the broader academic discourse on {article.keywords?.slice(0, 3).join(', ').toLowerCase()} by providing comprehensive analysis and practical insights for practitioners and policymakers. The study addresses critical gaps in current understanding and offers evidence-based recommendations for regulatory compliance and operational best practices aligned with {journalProfile.scope.toLowerCase()}
                       </p>
                     </div>
                   </div>
@@ -636,8 +744,8 @@ export default function ArticlePage() {
                         <h3 className="text-2xl font-bold mb-2">Access Full Article</h3>
                         <p className="text-white/90">
                           {isAuthenticated 
-                            ? 'Access the complete research paper in PDF format' 
-                            : 'Sign in to download or preview the complete research paper'
+                            ? `Access the complete research ${isPdfAsset ? 'paper in PDF format' : 'document'}`
+                            : `Sign in to download or preview the complete research ${isPdfAsset ? 'paper' : 'document'}`
                           }
                         </p>
                         {isAuthenticated && (
@@ -649,17 +757,19 @@ export default function ArticlePage() {
                       <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           onClick={handlePdfPreview}
-                          className="bg-white/10 text-white px-6 py-3 rounded-2xl font-semibold hover:bg-white/20 transition-all duration-300 flex items-center gap-2 border border-white/20"
+                          className={`bg-white/10 text-white px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-2 border border-white/20 ${isPdfAsset ? 'hover:bg-white/20' : 'opacity-50 cursor-not-allowed'}`}
+                          disabled={!isPdfAsset}
                         >
                           <Eye className="w-4 h-4" />
                           Preview PDF
                         </button>
                         <button
                           onClick={handleDownload}
-                          className="bg-white text-newtifi-navy px-6 py-3 rounded-2xl font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 flex items-center gap-2"
+                          disabled={!hasDownloadAsset}
+                          className={`bg-white text-newtifi-navy px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform flex items-center gap-2 ${hasDownloadAsset ? 'hover:bg-gray-100 hover:scale-105' : 'opacity-60 cursor-not-allowed'}`}
                         >
                           <Download className="w-4 h-4" />
-                          {isAuthenticated ? 'Download PDF' : 'Sign In to Download'}
+                          {isAuthenticated ? (isPdfAsset ? 'Download PDF' : 'Download Document') : 'Sign In to Download'}
                         </button>
                       </div>
                     </div>

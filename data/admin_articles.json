@@ -21,7 +21,7 @@
     "downloads": 0,
     "featured": true,
     "category": "journal",
-    "journal": "NewTiFi Investment Management Journal",
+    "journal": "NewTIFI Investment Management Journal",
     "fileSize": "0.39 MB",
     "lastModified": "2025-06-28T11:59:53.645Z",
     "requiresLogin": false,
@@ -65,7 +65,7 @@
     "downloads": 0,
     "featured": true,
     "category": "journal",
-    "journal": "NewTiFi Investment Management Journal",
+    "journal": "NewTIFI Investment Management Journal",
     "fileSize": "0.33 MB",
     "lastModified": "2025-06-28T11:59:53.646Z",
     "requiresLogin": false,
@@ -110,7 +110,7 @@
     "downloads": 0,
     "featured": false,
     "category": "journal",
-    "journal": "NewTiFi Investment Management Journal",
+    "journal": "NewTIFI Investment Management Journal",
     "fileSize": "0.47 MB",
     "lastModified": "2025-06-28T11:59:53.647Z",
     "requiresLogin": false,
@@ -127,6 +127,138 @@
       "Investment Vehicles",
       "Investment Funds",
       "Regulatory Framework"
+    ],
+    "peerReviewed": true,
+    "license": "All Rights Reserved",
+    "version": "v1",
+    "currentVersion": "v1"
+  },
+  {
+    "id": "RIJ-2026-001",
+    "title": "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform",
+    "author": "Ezechiel Havrenne",
+    "affiliation": "New Technologies & Investment Funds Institute",
+    "date": "2026-01-15",
+    "doi": "10.1234/newtifi.2026.001",
+    "keywords": [
+      "Compartment Insolvency",
+      "Luxembourg Funds",
+      "Ruling 18625",
+      "Judicial Liquidation"
+    ],
+    "abstract": "This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation.",
+    "filename": "2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx",
+    "url": "/files/restructuring-insolvency-journal/2026.1_NewTIFI%20Restructuring%20%26%20Insolvency%20Journal%20-%20Compartment%20Insolvency%20in%20Luxembourg%20Investment%20Funds%20-%20Ruling%2018625%20and%20the%20Boundary%20Between%20Bankruptcy%20and%20Judicial%20Liquidation%20After%20the%202023%20Reform.docx",
+    "pdfUrl": "/files/restructuring-insolvency-journal/2026.1_NewTIFI%20Restructuring%20%26%20Insolvency%20Journal%20-%20Compartment%20Insolvency%20in%20Luxembourg%20Investment%20Funds%20-%20Ruling%2018625%20and%20the%20Boundary%20Between%20Bankruptcy%20and%20Judicial%20Liquidation%20After%20the%202023%20Reform.docx",
+    "status": "published",
+    "views": 0,
+    "downloads": 0,
+    "featured": true,
+    "category": "journal",
+    "journal": "NewTIFI Restructuring & Insolvency Journal",
+    "fileSize": "0.14 MB",
+    "lastModified": "2026-01-23T17:35:56+0100",
+    "requiresLogin": false,
+    "publishedDate": "2026-01-15",
+    "journalId": "restructuring-insolvency-journal",
+    "authors": [
+      {
+        "name": "Ezechiel Havrenne",
+        "order": 1,
+        "corresponding": true
+      }
+    ],
+    "subjectAreas": [
+      "Insolvency Law",
+      "Fund Governance"
+    ],
+    "peerReviewed": true,
+    "license": "All Rights Reserved",
+    "version": "v1",
+    "currentVersion": "v1"
+  },
+  {
+    "id": "RIJ-2026-002",
+    "title": "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers",
+    "author": "Ezechiel Havrenne",
+    "affiliation": "New Technologies & Investment Funds Institute",
+    "date": "2026-02-01",
+    "doi": "10.1234/newtifi.2026.002",
+    "keywords": [
+      "Ipso Jure Dissolution",
+      "Civil Code",
+      "Product Fund Law",
+      "Luxembourg Funds"
+    ],
+    "abstract": "This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms.",
+    "filename": "2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx",
+    "url": "/files/restructuring-insolvency-journal/2026.2_NewTIFI%20Restructuring%20%26%20Bankruptcy%20Journal%20-%20Ipso%20Jure%20Dissolution%20and%20Liquidation%20in%20Luxembourg%20Investment%20Funds%20-%20A%20Doctrinal%20Analysis%20of%20Civil%20Code%20and%20Product%20Fund%20Law%20Triggers.docx",
+    "pdfUrl": "/files/restructuring-insolvency-journal/2026.2_NewTIFI%20Restructuring%20%26%20Bankruptcy%20Journal%20-%20Ipso%20Jure%20Dissolution%20and%20Liquidation%20in%20Luxembourg%20Investment%20Funds%20-%20A%20Doctrinal%20Analysis%20of%20Civil%20Code%20and%20Product%20Fund%20Law%20Triggers.docx",
+    "status": "published",
+    "views": 0,
+    "downloads": 0,
+    "featured": true,
+    "category": "journal",
+    "journal": "NewTIFI Restructuring & Insolvency Journal",
+    "fileSize": "0.15 MB",
+    "lastModified": "2026-01-23T17:35:56+0100",
+    "requiresLogin": false,
+    "publishedDate": "2026-02-01",
+    "journalId": "restructuring-insolvency-journal",
+    "authors": [
+      {
+        "name": "Ezechiel Havrenne",
+        "order": 1,
+        "corresponding": true
+      }
+    ],
+    "subjectAreas": [
+      "Liquidation Law",
+      "Fund Regulation"
+    ],
+    "peerReviewed": true,
+    "license": "All Rights Reserved",
+    "version": "v1",
+    "currentVersion": "v1"
+  },
+  {
+    "id": "RIJ-2026-003",
+    "title": "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model",
+    "author": "Ezechiel Havrenne",
+    "affiliation": "New Technologies & Investment Funds Institute",
+    "date": "2026-03-01",
+    "doi": "10.1234/newtifi.2026.003",
+    "keywords": [
+      "Ruling 1019",
+      "CSSF Gatekeeping",
+      "RAIF Counter-Model",
+      "Liquidation Architecture"
+    ],
+    "abstract": "This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, general company law, and the RAIF counter-model.",
+    "filename": "2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx",
+    "url": "/files/restructuring-insolvency-journal/2026.3_NewTIFI%20Restructuring%20%26%20Insolvency%20Journal%20-%20Ruling%201019%20and%20the%20Architecture%20of%20Liquidation%20in%20Luxembourg%20Investment%20Funds%20-%20CSSF%20Gatekeeping%2C%20General%20Company%20Law%2C%20and%20the%20RAIF%20Counter-Model.docx",
+    "pdfUrl": "/files/restructuring-insolvency-journal/2026.3_NewTIFI%20Restructuring%20%26%20Insolvency%20Journal%20-%20Ruling%201019%20and%20the%20Architecture%20of%20Liquidation%20in%20Luxembourg%20Investment%20Funds%20-%20CSSF%20Gatekeeping%2C%20General%20Company%20Law%2C%20and%20the%20RAIF%20Counter-Model.docx",
+    "status": "published",
+    "views": 0,
+    "downloads": 0,
+    "featured": true,
+    "category": "journal",
+    "journal": "NewTIFI Restructuring & Insolvency Journal",
+    "fileSize": "0.15 MB",
+    "lastModified": "2026-01-23T17:35:56+0100",
+    "requiresLogin": false,
+    "publishedDate": "2026-03-01",
+    "journalId": "restructuring-insolvency-journal",
+    "authors": [
+      {
+        "name": "Ezechiel Havrenne",
+        "order": 1,
+        "corresponding": true
+      }
+    ],
+    "subjectAreas": [
+      "Liquidation Architecture",
+      "Regulatory Oversight"
     ],
     "peerReviewed": true,
     "license": "All Rights Reserved",

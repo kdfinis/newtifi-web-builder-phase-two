@@ -6,18 +6,18 @@ import { urlFactory } from '@/lib/urls/UrlFactory';
 
 // ISSN and Journal Metadata
 const journalMetadata = {
-  title: "NewTiFi Investment Management Journal",
+  title: "NewTIFI Restructuring & Insolvency Journal",
   issn: "TBD", // To be registered with ISSN International Centre
-          publisher: "New Technologies & Investment Funds Institute",
+  publisher: "New Technologies & Investment Funds Institute",
   publisherLocation: "Luxembourg",
   frequency: "Quarterly",
   peerReviewStatus: "Double-blind peer review",
   archivingPolicy: "Digital preservation through CLOCKSS and Portico",
   indexing: ["DOAJ", "Google Scholar", "ResearchGate"],
   editorialBoard: [
-    { name: "Ezechiel Havrenne", role: "Editor-in-Chief", affiliation: "NewTiFi Institute" },
-    { name: "Delphine Filsack", role: "Associate Editor", affiliation: "NewTiFi Institute" },
-    { name: "Karlo Definis", role: "Managing Editor", affiliation: "NewTiFi Institute" }
+    { name: "Ezechiel Havrenne", role: "Editor-in-Chief", affiliation: "NewTIFI Institute" },
+    { name: "Delphine Filsack", role: "Associate Editor", affiliation: "NewTIFI Institute" },
+    { name: "Karlo Definis", role: "Managing Editor", affiliation: "NewTIFI Institute" }
   ],
   reviewProcess: {
     averageTime: "6-8 weeks",
@@ -26,18 +26,13 @@ const journalMetadata = {
   }
 };
 
-// Add a mapping of descriptions for each article
-const articleDescriptions = {
-  "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf":
-    "Through a methodical analysis of statutory provisions and case studies, the article elucidates the practical challenges and strategic considerations faced by fund managers. The discussion is anchored in contemporary academic discourse, drawing parallels with analogous structures in alternative investment vehicles. The authors conclude by proposing best practices for aligning regulatory compliance with investor interests, thereby contributing to the ongoing evolution of Luxembourg's investment fund sector.",
-  // Add more descriptions as needed
-};
+const articleDescriptions = {};
 
 // Add ISSN-compliant explanations for each review criterion
 const reviewCriteriaExplanations = {
-  Originality: 'The article must present <strong class="text-newtifi-navy font-medium">new insights, approaches, or findings</strong> that contribute to the advancement of knowledge in the field, in line with <span class="text-newtifi-teal font-medium">ISSN and NewTIFI standards</span> for academic innovation. This includes <strong class="text-newtifi-navy font-medium">novel theoretical frameworks</strong>, innovative methodologies, or unique applications of existing concepts to new contexts. The work should demonstrate a clear departure from previously published research, offering fresh perspectives on established topics or exploring uncharted areas within the <span class="text-newtifi-navy font-medium">investment management and financial regulation domain</span>. Originality is assessed through comprehensive literature reviews, ensuring the contribution is genuinely new rather than a rehash of existing work. The research should challenge conventional wisdom, propose alternative solutions, or provide deeper analysis of emerging trends in <span class="text-newtifi-navy font-medium">Luxembourg\'s financial sector</span>.',
+  Originality: 'The article must present <strong class="text-newtifi-navy font-medium">new insights, approaches, or findings</strong> that contribute to the advancement of knowledge in the field, in line with <span class="text-newtifi-teal font-medium">ISSN and NewTIFI standards</span> for academic innovation. This includes <strong class="text-newtifi-navy font-medium">novel theoretical frameworks</strong>, innovative methodologies, or unique applications of existing concepts to new contexts. The work should demonstrate a clear departure from previously published research, offering fresh perspectives on established topics or exploring uncharted areas within the <span class="text-newtifi-navy font-medium">insolvency, restructuring, and financial recovery domain</span>. Originality is assessed through comprehensive literature reviews, ensuring the contribution is genuinely new rather than a rehash of existing work. The research should challenge conventional wisdom, propose alternative solutions, or provide deeper analysis of emerging trends in <span class="text-newtifi-navy font-medium">Luxembourg\'s financial sector</span>.',
   Methodology: 'The research design, data collection, and analysis methods must be <strong class="text-newtifi-navy font-medium">robust, transparent, and appropriate</strong> for the study objectives, ensuring reproducibility and compliance with <span class="text-newtifi-teal font-medium">international academic norms</span>. This encompasses rigorous research design principles, including clear research questions, appropriate sample selection, and systematic data collection procedures. The methodology should demonstrate <strong class="text-newtifi-navy font-medium">scientific rigor</strong> through proper statistical analysis, qualitative research frameworks, or legal research methodologies as applicable. <span class="text-newtifi-teal font-medium">Transparency is crucial</span>, with detailed descriptions of data sources, analytical techniques, and potential limitations. The approach must be replicable by other researchers, with sufficient detail provided to allow independent verification of findings. Methodological choices should be justified in relation to the research objectives and aligned with <span class="text-newtifi-teal font-medium">best practices in financial and legal research</span>.',
-  'Contribution to field': 'The work should clearly articulate its impact on the discipline, addressing gaps in the literature and aligning with the mission of <span class="text-newtifi-teal font-medium">NewTIFI and ISSN requirements</span> for scholarly relevance. This involves demonstrating how the research advances understanding in <strong class="text-newtifi-navy font-medium">investment management, financial regulation, or related fields</strong>. The contribution may take various forms: <span class="text-newtifi-navy font-medium">theoretical development, empirical insights, policy implications, or practical applications</span> for industry professionals. The work should identify and address specific gaps in current knowledge, whether through new empirical evidence, theoretical synthesis, or critical analysis of existing frameworks. The research should have clear implications for <strong class="text-newtifi-navy font-medium">practitioners, policymakers, or academics</strong> working in Luxembourg\'s financial sector. The contribution should be substantial enough to warrant publication in a peer-reviewed journal and should advance the field\'s understanding of <span class="text-newtifi-navy font-medium">complex financial instruments, regulatory frameworks, or market dynamics</span>.',
+  'Contribution to field': 'The work should clearly articulate its impact on the discipline, addressing gaps in the literature and aligning with the mission of <span class="text-newtifi-teal font-medium">NewTIFI and ISSN requirements</span> for scholarly relevance. This involves demonstrating how the research advances understanding in <strong class="text-newtifi-navy font-medium">insolvency, restructuring, financial regulation, or related fields</strong>. The contribution may take various forms: <span class="text-newtifi-navy font-medium">theoretical development, empirical insights, policy implications, or practical applications</span> for industry professionals. The work should identify and address specific gaps in current knowledge, whether through new empirical evidence, theoretical synthesis, or critical analysis of existing frameworks. The research should have clear implications for <strong class="text-newtifi-navy font-medium">practitioners, policymakers, or academics</strong> working in Luxembourg\'s financial sector. The contribution should be substantial enough to warrant publication in a peer-reviewed journal and should advance the field\'s understanding of <span class="text-newtifi-navy font-medium">recovery frameworks, regulatory mechanisms, or market dynamics</span>.',
   'Clarity of presentation': 'The manuscript must be <strong class="text-newtifi-navy font-medium">well-structured, logically organized, and written in clear, professional language</strong>, facilitating understanding and peer evaluation as per <span class="text-newtifi-teal font-medium">ISSN and AOA best practices</span>. This includes coherent argument development, logical flow between sections, and clear articulation of complex concepts. The writing should be accessible to the target audience while maintaining <span class="text-newtifi-teal font-medium">academic rigor and technical accuracy</span>. Visual elements such as tables, figures, and diagrams should be used effectively to enhance understanding. The abstract should provide a clear summary of the research, while the introduction should establish context and research objectives. Each section should build logically on previous sections, with <strong class="text-newtifi-navy font-medium">clear transitions and well-defined conclusions</strong>. Technical terminology should be defined appropriately, and complex legal or financial concepts should be explained in accessible terms. The overall presentation should reflect the <span class="text-newtifi-teal font-medium">professional standards expected in academic publishing</span>.'
 };
 
@@ -51,40 +46,33 @@ const documentationPlan = [
 ];
 
 function parseArticleMeta(filename) {
-  // Example: 2025.06.28_NewTIFI Investment Management Journal - Article Title_Final.pdf
-  const match = filename.match(/^(\d{4}\.\d{2}\.\d{2})_(.+?) - (.+?)_Final\.pdf$/);
+  const match = filename.match(/^(\d{4}\.\d{1,2})(?:\.\d{1,2})?_NewTIFI.+? - (.+?)\.docx$/i);
   if (!match) return { date: '', title: filename };
   const date = match[1] ? match[1].replace(/\./g, '-') : '';
-  const title = match[3] || filename;
-  // Placeholder overview for now
-  const overview = `This article provides an in-depth analysis of the topic: ${title}. For the full abstract, please see the PDF.`;
+  const title = match[2] || filename;
+  const overview = `This article provides an in-depth analysis of the topic: ${title}.`;
   return { date, title, overview };
 }
 
 // Static articles data - replace API calls
 const staticArticles = [
   {
-    id: "eltifs-compulsory-redemptions",
-    title: "Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions",
+    id: "compartment-insolvency-18625",
+    title: "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform",
     author: "Ezechiel Havrenne",
-    date: "2025-06-28",
-    doi: "10.1234/newtifi.2025.001",
-    abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection. The study clarifies the compatibility of redemption provisions with the closed-ended ELTIF model and outlines best practices for implementing termination and amalgamation clauses within fund documentation. It concludes that Luxembourg offers a coherent and operationally flexible platform for ELTIF structuring aligned with the evolving European regulatory landscape.",
+    date: "2026-01-15",
+    doi: "10.1234/newtifi.2026.001",
+    abstract: "This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation. It evaluates practical consequences for fund governance, creditor positioning, and judicial oversight.",
     keywords: [
-      "LUXEMBOURG CLOSED-ENDED ELTIFs",
-      "COMPULSORY REDEMPTION",
-      "INVESTOR PROTECTION",
-      "DISTRIBUTION MECHANISMS",
-      "FUND LIQUIDITY MANAGEMENT",
-      "TERMINATION & AMALGAMATION OF COMPARTMENTS",
-      "CAPITAL REDUCTION",
-      "REDEMPTION CLAUSES",
-      "FUND DOCUMENTATION",
-      "CSSF PRACTICE"
+      "COMPARTMENT INSOLVENCY",
+      "LUXEMBOURG FUNDS",
+      "RULING 18625",
+      "JUDICIAL LIQUIDATION"
     ],
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Closed-Ended Luxembourg ELTIFs- Compulsory Redemptions and Compartment Termination & Amalgamation Provisions_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Closed-Ended%20Luxembourg%20ELTIFs-%20Compulsory%20Redemptions%20and%20Compartment%20Termination%20&%20Amalgamation%20Provisions_Final.pdf",
+    filename: "2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'compartment-insolvency-18625'),
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx")}`,
+    allowDownload: false,
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -92,31 +80,22 @@ const staticArticles = [
     category: "journal" as const
   },
   {
-    id: "bafin-portfolio-control",
-    title: "Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control",
+    id: "ipso-jure-dissolution-liquidation",
+    title: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers",
     author: "Ezechiel Havrenne",
-    date: "2025-06-28",
-    doi: "10.1234/newtifi.2025.002",
-    abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM’s exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
+    date: "2026-02-01",
+    doi: "10.1234/newtifi.2026.002",
+    abstract: "This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms and their implications for fund sponsors and stakeholders.",
     keywords: [
-      "AIFM DIRECTIVE",
-      "REGULATORY DIVERGENCE",
-      "AIFM DISCRETION",
-      "INVESTOR INFLUENCE",
-      "INVESTOR PROTECTION",
-      "LPAC RIGHTS",
-      "VETO MECHANISMS",
-      "PORTFOLIO MANAGEMENT OVERSIGHT",
-      "FIDUCIARY DUTIES",
-      "RECORD-KEEPING OBLIGATIONS",
-      "JOINT VENTURE VS AIF QUALIFICATION",
-      "CAPTIVE FUNDS",
-      "DAY-TO-DAY DISCRETION",
-      "GOVERNANCE RIGHTS IN AIFS"
+      "IPSO JURE DISSOLUTION",
+      "LUXEMBOURG FUNDS",
+      "CIVIL CODE",
+      "PRODUCT FUND LAW"
     ],
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Investor Oversight or Undue Influence Reassessing BaFin's Stance on AIFM Portfolio Control_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Investor%20Oversight%20or%20Undue%20Influence%20Reassessing%20BaFin's%20Stance%20on%20AIFM%20Portfolio%20Control_Final.pdf",
+    filename: "2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'ipso-jure-dissolution-liquidation'),
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx")}`,
+    allowDownload: false,
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -124,37 +103,22 @@ const staticArticles = [
     category: "journal" as const
   },
   {
-    id: "luxembourg-well-informed-investor",
-    title: "Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion",
+    id: "ruling-1019-architecture-liquidation",
+    title: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model",
     author: "Ezechiel Havrenne",
-    date: "2025-06-28",
-    doi: "10.1234/newtifi.2025.003",
-    abstract: "This article provides a comprehensive analysis of Luxembourg’s “Well-Informed Investor” regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg’s private fund landscape.",
+    date: "2026-03-01",
+    doi: "10.1234/newtifi.2026.003",
+    abstract: "This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, general company law, and the RAIF counter-model.",
     keywords: [
-      "SICAR",
-      "SIF",
-      "RAIF",
-      "WELL-INFORMED INVESTOR",
-      "INVESTOR CATEGORISATION",
-      "INSTITUTIONAL INVESTORS",
-      "PROFESSIONAL INVESTORS",
-      "OPT-IN INVESTORS",
-      "NOMINEE STRUCTURES",
-      "SUBSCRIPTION ELIGIBILITY",
-      "MINIMUM INVESTMENT THRESHOLD",
-      "INVESTOR VERIFICATION",
-      "AIFMD COMPLIANCE",
-      "DPMA TEST",
-      "REGULATORY RISK",
-      "INVESTOR PROTECTION",
-      "FUND GOVERNANCE",
-      "LEGAL REMEDIES",
-      "ASSESSMENT PROCEDURES",
-      "CONTRACTUAL & CRIMINAL LIABILITY"
+      "RULING 1019",
+      "LIQUIDATION ARCHITECTURE",
+      "CSSF GATEKEEPING",
+      "RAIF COUNTER-MODEL"
     ],
-    filename: "2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    url: "/articles/investment-management-journal/2025.06.28_NewTIFI Investment Management Journal - Luxembourg SICARs, SIFs and RAIFs - A 20-year Perspective on the Well-Informed Investor notion_Final.pdf",
-    pdfUrl: "/articles/2025.06.28_NewTIFI%20Investment%20Management%20Journal%20-%20Luxembourg%20SICARs,%20SIFs%20and%20RAIFs%20-%20A%2020-year%20Perspective%20on%20the%20Well-Informed%20Investor%20notion_Final.pdf",
+    filename: "2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'ruling-1019-architecture-liquidation'),
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx")}`,
+    allowDownload: false,
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -163,7 +127,7 @@ const staticArticles = [
   }
 ];
 
-export default function InvestmentManagementJournal() {
+export default function RestructuringInsolvencyJournal() {
   const [articles] = useState(staticArticles);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -328,7 +292,7 @@ export default function InvestmentManagementJournal() {
 
   // Helper function to get the correct URL for an article (permanent)
   function getArticleUrl(article) {
-    return urlFactory.getArticlePermanentPath(article.id);
+    return urlFactory.getJournalArticlePath('restructuring-insolvency-journal', article.id);
   }
 
   const GoogleIcon = () => (
@@ -356,19 +320,19 @@ export default function InvestmentManagementJournal() {
         <div className="w-full mx-auto">
           <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
             <div className="hidden md:block flex-shrink-0">
-              <img src="/images/Investment-funds.jpg" alt="Investment management journal" className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200" />
+              <img src="/images/Securitisation-vehicles.jpeg" alt="Restructuring and insolvency journal" className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200" />
             </div>
             <div className="flex-1">
-              <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Investment Management Journal</h1>
-              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Governance, structuring, and regulatory insight for investment funds</h2>
+              <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Restructuring & Insolvency Journal</h1>
+              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Insolvency, restructuring, and recovery architecture</h2>
               <p className="text-base text-gray-700 mb-3">
-                The NewTIFI Investment Management Journal publishes peer-reviewed scholarship on fund structuring, fiduciary duties, regulatory change, and operational governance across leading jurisdictions.
+                The NewTIFI Restructuring & Insolvency Journal publishes peer-reviewed research on insolvency law, liquidation structures, and restructuring frameworks within investment funds and broader capital markets.
               </p>
               <p className="text-base text-gray-700 mb-3">
-                We bring together academics, practitioners, and policymakers to explore the legal, tax, and compliance frameworks shaping alternative investment funds and capital markets.
+                It brings together scholars and practitioners to analyze judicial decisions, regulatory reforms, and market practice across Luxembourg and comparative jurisdictions.
               </p>
               <p className="text-base text-gray-700 mb-3">
-                All publications adhere to NewTIFI’s editorial standards for academic integrity, indexing readiness, and citation quality.
+                All publications adhere to NewTIFI’s editorial standards for ISSN alignment, metadata completeness, and indexing readiness.
               </p>
               <p className="text-base text-gray-700">
                 NewTIFI operates as a non-profit. Publication proceeds support Doctoral Scholarships.
@@ -427,20 +391,20 @@ export default function InvestmentManagementJournal() {
       {selectedTab === 'journals' && (
         <section ref={journalsRef} className="w-full bg-white py-8">
         <div className="w-full mx-auto px-4">
-            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">NewTIFI Restructuring & Insolvency Journal</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
             <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
             <p className="text-base text-gray-800 mb-4">
-              The NewTIFI Publishing – Investment Management Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in the field of investment management.
+              The NewTIFI Publishing – Restructuring & Insolvency Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in insolvency, restructuring, and financial recovery.
             </p>
             <p className="text-base text-gray-800 mb-4">
-              With a focus on legal, tax, regulatory, and operational dimensions, the journal brings together leading academics, practitioners, and policymakers to explore the evolving landscape of alternative investment funds. It covers topics such as fund structuring, asset management regulation, fiduciary duty, tax policy, compliance and risk management, and financial innovation.
+              With a focus on legal, regulatory, and operational dimensions, the journal brings together leading academics, practitioners, and policymakers to explore insolvency regimes, creditor rights, liquidation architecture, and cross-border recovery frameworks.
             </p>
             <p className="text-base text-gray-800 mb-4">
               Our mission is to foster intellectually independent and practically relevant research that informs the decisions of fund managers, investors, depositaries and central administrators, auditors, regulators, and courts worldwide.
             </p>
             <p className="text-base text-gray-800 mb-4">
-              The NewTIFI Publishing – Investment Management Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of global investment frameworks and the financial architecture shaping the future of capital markets.
+              The NewTIFI Publishing – Restructuring & Insolvency Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of insolvency architecture and recovery mechanisms shaping capital markets.
             </p>
             <p className="text-base text-gray-800 mb-4">
               As part of NewTIFI Publishing, the journal operates under a non-profit model.
@@ -453,7 +417,7 @@ export default function InvestmentManagementJournal() {
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="w-full">
                   <h4 className="text-2xl font-extrabold text-white">Submission Guidelines</h4>
-                  <p className="text-base text-white/90 mt-2">How to prepare and submit manuscripts to the Investment Management Journal.</p>
+                  <p className="text-base text-white/90 mt-2">How to prepare and submit manuscripts to the NewTIFI Restructuring & Insolvency Journal.</p>
                 </div>
                 <a
                   href={`${urlFactory.getPublishingPath()}#submission-guidelines`}
@@ -647,7 +611,7 @@ export default function InvestmentManagementJournal() {
                       <tbody>
                         <tr className="bg-blue-100">
                           <td className="border border-blue-200 px-3 py-2 font-semibold">Publication Title</td>
-                          <td className="border border-blue-200 px-3 py-2">NewTIFI Publishing – Investment Management Journal</td>
+                          <td className="border border-blue-200 px-3 py-2">NewTIFI Publishing – Restructuring & Insolvency Journal</td>
                         </tr>
                         <tr>
                           <td className="border border-blue-200 px-3 py-2 font-semibold bg-blue-100">e-ISSN</td>

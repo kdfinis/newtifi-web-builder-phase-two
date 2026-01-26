@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/assets/images/logo.png" />
+    <!-- Preconnects removed to avoid external Google font calls; Verdana only -->
+    <!-- Removed external Inter font to enforce Verdana exclusively -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Technologies & Investment Funds Institute</title>
+    <meta name="description" content="New Technologies & Investment Funds Institute - Shaping the Future of Technology" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="keywords" content="NewTIFI, technology, investment funds, innovation, regulation, fintech, healthtech, foodtech, energytech" />
+    <meta name="author" content="NewTIFI" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="New Technologies & Investment Funds Institute" />
+    <meta property="og:description" content="Shaping the Future of Technology through Innovation and Regulation" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://newtifi.org" />
+    <meta property="og:image" content="/assets/images/logo.png" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="New Technologies & Investment Funds Institute" />
+    <meta name="twitter:description" content="Shaping the Future of Technology through Innovation and Regulation" />
+    <meta name="twitter:image" content="/assets/images/logo.png" />
+    
+    <!-- Accessibility Meta Tags -->
+    <meta name="theme-color" content="#00C2CB" />
+    <meta name="color-scheme" content="light dark" />
+    
+    <!-- Performance Meta Tags -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    
+    <!-- MIME Type Fix for GitHub Pages - COMPREHENSIVE VERSION -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script>
+      // COMPREHENSIVE MIME TYPE FIX - Multiple layers of protection
+      (function() {
+        // Layer 1: Override createElement to force correct MIME type
+        if (typeof window !== 'undefined') {
+          const originalCreateElement = document.createElement;
+          document.createElement = function(tagName) {
+            const element = originalCreateElement.call(this, tagName);
+            if (tagName === 'script' && element.type === 'module') {
+              element.type = 'module';
+            }
+            return element;
+          };
+        }
+
+        // Layer 2: MIME type error detection and recovery (DEVELOPMENT SAFE)
+        window.addEventListener('error', function(event) {
+          if (event.message && event.message.includes('MIME type')) {
+            // Skip in development environment
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Development environment - skipping MIME type error recovery');
+              return;
+            }
+            
+            console.warn('MIME type error detected, attempting recovery...');
+            // Force reload with cache busting
+            const url = new URL(window.location);
+            url.searchParams.set('_mime_fix', Date.now());
+            window.location.replace(url.toString());
+          }
+        });
+
+        // Layer 3: Module script error handling (DEVELOPMENT SAFE)
+        window.addEventListener('error', function(event) {
+          if (event.target && event.target.tagName === 'SCRIPT' && event.target.type === 'module') {
+            // Skip Vite development files
+            if (event.target.src && (event.target.src.includes('@vite/') || event.target.src.includes('@react-refresh'))) {
+              console.log('Development script error (ignored):', event.target.src);
+              return;
+            }
+            
+            // Skip in development environment
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+              console.log('Development environment - skipping MIME type error handling');
+              return;
+            }
+            
+            console.warn('Module script error detected, checking MIME type...');
+            // Check if the script failed due to MIME type
+            fetch(event.target.src, { method: 'HEAD' })
+              .then(response => {
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('javascript')) {
+                  console.error('Incorrect MIME type detected:', contentType);
+                  // Force page reload with cache busting
+                  const url = new URL(window.location);
+                  url.searchParams.set('_mime_fix', Date.now());
+                  window.location.replace(url.toString());
+                }
+              })
+              .catch(() => {
+                // If we can't check the MIME type, force reload anyway
+                const url = new URL(window.location);
+                url.searchParams.set('_mime_fix', Date.now());
+                window.location.replace(url.toString());
+              });
+          }
+        });
+
+        // Layer 4: Proactive MIME type validation (DEVELOPMENT SAFE)
+        document.addEventListener('DOMContentLoaded', function() {
+          // Skip MIME type validation in development environment
+          if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('Development environment detected - skipping MIME type validation');
+            return;
+          }
+          
+          const scripts = document.querySelectorAll('script[type="module"]');
+          scripts.forEach(script => {
+            if (script.src && !script.src.includes('@vite/') && !script.src.includes('@react-refresh')) {
+              fetch(script.src, { method: 'HEAD' })
+                .then(response => {
+                  const contentType = response.headers.get('content-type');
+                  if (!contentType || !contentType.includes('javascript')) {
+                    console.error('Script MIME type issue detected:', script.src, contentType);
+                    // Force reload with cache busting
+                    const url = new URL(window.location);
+                    url.searchParams.set('_mime_fix', Date.now());
+                    window.location.replace(url.toString());
+                  }
+                })
+                .catch(() => {
+                  // If we can't check, assume there's an issue and reload
+                  const url = new URL(window.location);
+                  url.searchParams.set('_mime_fix', Date.now());
+                  window.location.replace(url.toString());
+                });
+            }
+          });
+        });
+      })();
+    </script>
+    <script>
+      // Handle SPA redirects from 404.html
+      (function() {
+        const savedPath = sessionStorage.getItem('spa_redirect_path');
+        if (savedPath && savedPath !== '/') {
+          sessionStorage.removeItem('spa_redirect_path');
+          // Let React Router handle the navigation
+          window.history.replaceState(null, '', savedPath);
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-1Q_TJ49M.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/vendor-BFmVx08M.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-xAJDerMN.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

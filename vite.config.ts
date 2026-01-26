@@ -18,8 +18,7 @@ export default defineConfig({
       overlay: false,
       timeout: 5000,
     },
-    // Proxy API requests to backend server (only in development)
-    // Note: proxy is only used by dev server, not in production builds
+    // Proxy API requests to backend server
     proxy: {
       '/api': {
         target: 'http://localhost:3001',

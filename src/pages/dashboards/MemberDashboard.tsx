@@ -201,7 +201,6 @@ export default function MemberDashboard() {
                     </Link>
                   </div>
 
-
                   <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
@@ -248,7 +247,103 @@ export default function MemberDashboard() {
                       Read Article
                     </Link>
                   </div>
+
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Jan 15, 2026</span>
+                    </div>
+                    <Link 
+                      to="/publishing/restructuring-insolvency-journal/article/compartment-insolvency-18625"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Feb 01, 2026</span>
+                    </div>
+                    <Link 
+                      to="/publishing/restructuring-insolvency-journal/article/ipso-jure-dissolution-liquidation"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
+                    </div>
+                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                      Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model
+                    </h4>
+                    <p className="text-sm text-gray-600 mb-4 line-clamp-3">
+                      This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, general company law, and the RAIF counter-model.
+                    </p>
+                    <div className="flex items-center justify-between text-xs text-gray-500 mb-4">
+                      <span>Ezechiel Havrenne</span>
+                      <span>Mar 01, 2026</span>
+                    </div>
+                    <Link 
+                      to="/publishing/restructuring-insolvency-journal/article/ruling-1019-architecture-liquidation"
+                      className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-colors text-sm font-medium"
+                    >
+                      Read Article
+                    </Link>
+                  </div>
                 </div>
+              </div>
+            </div>
+
+            <div className="mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Your Journals</h2>
+              <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
+              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Quick links to journal hubs</h3>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+                <Link
+                  to="/publishing/investment-management"
+                  className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
+                >
+                  <h4 className="text-xl font-semibold text-newtifi-navy mb-2">NewTIFI Investment Management Journal</h4>
+                  <p className="text-sm text-gray-600">
+                    Fund structuring, fiduciary governance, regulatory change, and investment policy research.
+                  </p>
+                </Link>
+                <Link
+                  to="/publishing/restructuring-insolvency-journal"
+                  className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
+                >
+                  <h4 className="text-xl font-semibold text-newtifi-navy mb-2">NewTIFI Restructuring & Insolvency Journal</h4>
+                  <p className="text-sm text-gray-600">
+                    Insolvency, restructuring, liquidation architecture, and recovery frameworks in capital markets.
+                  </p>
+                </Link>
               </div>
             </div>
 

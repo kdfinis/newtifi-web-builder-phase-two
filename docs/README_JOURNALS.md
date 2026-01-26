@@ -69,9 +69,10 @@
 
 ## Quick Facts (From WEBSITE_JOURNALS_DATA.md)
 
-### Active Journal
+### Active Journals
 - **Investment Management Journal**
-- **3 published articles** (all by Ezechiel Havrenne)
+- **Restructuring & Insolvency Journal**
+- **6 published articles** (3 IMJ, 3 RIJ)
 - **Editorial Board**: Ezechiel Havrenne (Editor-in-Chief), Delphine Filsack (Associate Editor), Karlo Definis (Managing Editor)
 - **No titles shown** on website - only names and roles
 
@@ -79,6 +80,9 @@
 - IMJ-2025-001: "Closed-Ended Luxembourg ELTIFs..."
 - IMJ-2025-002: "Investor Oversight or Undue Influence?..."
 - IMJ-2025-003: "Luxembourg SICARs, SIFs, and RAIFs..."
+- RIJ-2026-001: "Compartment Insolvency in Luxembourg Investment Funds..."
+- RIJ-2026-002: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds..."
+- RIJ-2026-003: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds..."
 
 ---
 

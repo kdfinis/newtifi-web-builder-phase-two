@@ -1,7 +1,7 @@
 [
   {
     "id": "IMJ-001",
-    "title": "NewTiFi Investment Management Journal",
+    "title": "NewTIFI Investment Management Journal",
     "issn": "XXXX-XXXX",
     "description": "A peer-reviewed journal focusing on investment management, financial regulation, and sustainable finance in Luxembourg and the EU.",
     "status": "active",
@@ -9,6 +9,21 @@
       "IMJ-2025-001",
       "IMJ-2025-002",
       "IMJ-2025-003"
+    ],
+    "publisher": "New Technologies & Investment Funds Institute",
+    "frequency": "Quarterly",
+    "peerReviewStatus": "Double-blind peer review"
+  },
+  {
+    "id": "RIJ-001",
+    "title": "NewTIFI Restructuring & Insolvency Journal",
+    "issn": "XXXX-XXXX",
+    "description": "A peer-reviewed journal focusing on insolvency, restructuring, and recovery frameworks across Luxembourg and comparative jurisdictions.",
+    "status": "active",
+    "articles": [
+      "RIJ-2026-001",
+      "RIJ-2026-002",
+      "RIJ-2026-003"
     ],
     "publisher": "New Technologies & Investment Funds Institute",
     "frequency": "Quarterly",

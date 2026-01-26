@@ -18,6 +18,7 @@ interface Article {
   abstract: string;
   filename: string;
   url: string;
+  journalSlug?: string;
   status: 'draft' | 'published';
   views: number;
   downloads: number;
@@ -150,7 +151,8 @@ const staticArticles = [
     keywords: ["ELTIFs", "Luxembourg", "Compulsory Redemptions", "Compartment Termination"],
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs.",
     filename: "eltifs-compulsory-redemptions.pdf",
-    url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
+    url: urlFactory.getJournalArticlePath('investment-management', 'eltifs-compulsory-redemptions'),
+    journalSlug: "investment-management",
     pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
     status: "published" as const,
     views: 0,
@@ -167,7 +169,8 @@ const staticArticles = [
     keywords: ["BaFin", "AIFM", "Portfolio Control", "Investor Oversight"],
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions.",
     filename: "bafin-portfolio-control.pdf",
-    url: "/articles/investment-management-journal/bafin-portfolio-control",
+    url: urlFactory.getJournalArticlePath('investment-management', 'bafin-portfolio-control'),
+    journalSlug: "investment-management",
     pdfUrl: "/articles/bafin-portfolio-control.pdf",
     status: "published" as const,
     views: 0,
@@ -184,8 +187,63 @@ const staticArticles = [
     keywords: ["SICARs", "SIFs", "RAIFs", "Well-Informed Investor", "Luxembourg"],
     abstract: "This article provides a comprehensive analysis of Luxembourg's 'Well-Informed Investor' regime as applied to SICARs, SIFs, and RAIFs.",
     filename: "luxembourg-well-informed-investor.pdf",
-    url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
+    url: urlFactory.getJournalArticlePath('investment-management', 'luxembourg-well-informed-investor'),
+    journalSlug: "investment-management",
     pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "compartment-insolvency-18625",
+    title: "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform",
+    author: "Ezechiel Havrenne",
+    date: "2026-01-15",
+    doi: "10.1234/newtifi.2026.001",
+    keywords: ["Compartment Insolvency", "Ruling 18625", "Judicial Liquidation", "Luxembourg Funds"],
+    abstract: "This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation.",
+    filename: "2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'compartment-insolvency-18625'),
+    journalSlug: "restructuring-insolvency-journal",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx")}`,
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "ipso-jure-dissolution-liquidation",
+    title: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers",
+    author: "Ezechiel Havrenne",
+    date: "2026-02-01",
+    doi: "10.1234/newtifi.2026.002",
+    keywords: ["Ipso Jure Dissolution", "Civil Code", "Product Fund Law", "Luxembourg Funds"],
+    abstract: "This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms.",
+    filename: "2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'ipso-jure-dissolution-liquidation'),
+    journalSlug: "restructuring-insolvency-journal",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx")}`,
+    status: "published" as const,
+    views: 0,
+    downloads: 0,
+    featured: true,
+    category: "journal" as const
+  },
+  {
+    id: "ruling-1019-architecture-liquidation",
+    title: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model",
+    author: "Ezechiel Havrenne",
+    date: "2026-03-01",
+    doi: "10.1234/newtifi.2026.003",
+    keywords: ["Ruling 1019", "CSSF Gatekeeping", "RAIF", "Liquidation Architecture"],
+    abstract: "This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, company law, and the RAIF counter-model.",
+    filename: "2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx",
+    url: urlFactory.getJournalArticlePath('restructuring-insolvency-journal', 'ruling-1019-architecture-liquidation'),
+    journalSlug: "restructuring-insolvency-journal",
+    pdfUrl: `/files/restructuring-insolvency-journal/${encodeURIComponent("2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx")}`,
     status: "published" as const,
     views: 0,
     downloads: 0,
@@ -196,6 +254,9 @@ const staticArticles = [
 
 // Helper function to get the correct URL for an article (permanent)
 function getArticleUrl(article) {
+  if (article.journalSlug) {
+    return urlFactory.getJournalArticlePath(article.journalSlug, article.id);
+  }
   return urlFactory.getArticlePermanentPath(article.id);
 }
 
@@ -312,7 +373,7 @@ const Home = () => {
                         </svg>
                       </div>
                       <h3 className="text-2xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
-                        Investment Management Journal
+                        NewTIFI Investment Management Journal
                       </h3>
                     </div>
                     <p className="text-base md:text-base text-gray-600 font-light mb-3">

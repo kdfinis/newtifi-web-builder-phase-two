@@ -1,6 +1,6 @@
 # Website Journals - Actual Published Data
 
-**Last Updated**: 2026-01-23  
+**Last Updated**: 2026-01-26  
 **Source**: Actual website content and published data files  
 **Purpose**: Primary source of truth for journal information on newtifi.com
 
@@ -215,11 +215,135 @@ config/journals.json - Journal metadata
 
 ---
 
-## Future Journals
+---
 
-### Planned: FinTech Innovation Journal
-**Status**: Planned (not yet active)
-**Note**: Do not document details until actually published on website
+## Active Journal: Restructuring & Insolvency Journal
+
+### Basic Information
+- **ID**: `restructuring-insolvency-journal`
+- **Name**: Restructuring & Insolvency Journal
+- **Full Name**: NewTIFI Publishing – Restructuring & Insolvency Journal
+- **URL**: `/publishing/restructuring-insolvency-journal`
+- **Status**: Active
+- **Launch Date**: 2026-01-15
+- **Publisher**: New Technologies & Investment Funds Institute
+- **Publisher Location**: Luxembourg
+- **Frequency**: Quarterly
+- **ISSN**: TBD (to be registered)
+- **Peer Review**: Double-blind peer review
+- **Archiving**: Digital preservation through CLOCKSS and Portico
+- **Indexing**: DOAJ, Google Scholar, ResearchGate
+
+### Editorial Board (As Published on Website)
+**Source**: `src/pages/publishing/journals/restructuring-insolvency-journal.tsx`
+
+1. **Ezechiel Havrenne**
+   - Role: Editor-in-Chief
+   - Affiliation: NewTiFi Institute
+
+2. **Delphine Filsack**
+   - Role: Associate Editor
+   - Affiliation: NewTiFi Institute
+
+3. **Karlo Definis**
+   - Role: Managing Editor
+   - Affiliation: NewTiFi Institute
+
+### Journal Description (As Published)
+**Source**: `src/pages/publishing/journals/restructuring-insolvency-journal.tsx`
+
+> "The NewTIFI Publishing – Restructuring & Insolvency Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in insolvency, restructuring, and financial recovery.
+>
+> With a focus on legal, regulatory, and operational dimensions, the journal brings together leading academics, practitioners, and policymakers to explore insolvency regimes, creditor rights, liquidation architecture, and cross-border recovery frameworks.
+>
+> Our mission is to foster intellectually independent and practically relevant research that informs the decisions of fund managers, investors, depositaries and central administrators, auditors, regulators, and courts worldwide.
+>
+> The NewTIFI Publishing – Restructuring & Insolvency Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of insolvency architecture and recovery mechanisms shaping capital markets.
+>
+> As part of NewTIFI Publishing, the journal operates under a non-profit model. All profits realised by NewTIFI including through publication efforts are used to fund Doctoral Scholarships."
+
+### Access Rules (As Published)
+- **View-only**: Articles are visible on the website
+- **Downloads disabled**: Article download buttons are disabled for users
+- **Source**: `src/pages/publishing/journals/ArticlePage.tsx` (allowDownload=false)
+
+---
+
+## Published Articles (Restructuring & Insolvency Journal)
+
+### Article 1: RIJ-2026-001
+**Source**: `data/admin_articles.json`
+
+- **ID**: RIJ-2026-001
+- **Title**: "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform"
+- **Author**: Ezechiel Havrenne (corresponding author)
+- **Published Date**: 2026-01-15
+- **DOI**: 10.1234/newtifi.2026.001
+- **Status**: published
+- **Version**: v1 (current)
+- **Peer Reviewed**: true
+- **License**: All Rights Reserved
+- **Keywords**: Compartment Insolvency, Luxembourg Funds, Ruling 18625, Judicial Liquidation
+- **Abstract**: "This article analyzes compartment insolvency in Luxembourg investment funds after the 2023 reform, focusing on Ruling 18625 and the boundary between bankruptcy and judicial liquidation."
+- **File Path**: `/files/restructuring-insolvency-journal/2026.1_NewTIFI Restructuring & Insolvency Journal - Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform.docx`
+- **Storage**: `public/files/restructuring-insolvency-journal/`
+
+### Article 2: RIJ-2026-002
+**Source**: `data/admin_articles.json`
+
+- **ID**: RIJ-2026-002
+- **Title**: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers"
+- **Author**: Ezechiel Havrenne (corresponding author)
+- **Published Date**: 2026-02-01
+- **DOI**: 10.1234/newtifi.2026.002
+- **Status**: published
+- **Version**: v1 (current)
+- **Peer Reviewed**: true
+- **License**: All Rights Reserved
+- **Keywords**: Ipso Jure Dissolution, Luxembourg Funds, Civil Code, Product Fund Law
+- **Abstract**: "This article studies ipso jure dissolution and liquidation triggers across Luxembourg fund regimes, comparing civil code doctrine with product fund law mechanisms."
+- **File Path**: `/files/restructuring-insolvency-journal/2026.2_NewTIFI Restructuring & Bankruptcy Journal - Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers.docx`
+- **Storage**: `public/files/restructuring-insolvency-journal/`
+
+### Article 3: RIJ-2026-003
+**Source**: `data/admin_articles.json`
+
+- **ID**: RIJ-2026-003
+- **Title**: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model"
+- **Author**: Ezechiel Havrenne (corresponding author)
+- **Published Date**: 2026-03-01
+- **DOI**: 10.1234/newtifi.2026.003
+- **Status**: published
+- **Version**: v1 (current)
+- **Peer Reviewed**: true
+- **License**: All Rights Reserved
+- **Keywords**: Ruling 1019, Liquidation Architecture, CSSF Gatekeeping, RAIF Counter-Model
+- **Abstract**: "This article examines Ruling 1019 and the liquidation architecture for Luxembourg investment funds, focusing on CSSF gatekeeping, general company law, and the RAIF counter-model."
+- **File Path**: `/files/restructuring-insolvency-journal/2026.3_NewTIFI Restructuring & Insolvency Journal - Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model.docx`
+- **Storage**: `public/files/restructuring-insolvency-journal/`
+
+---
+
+## Article Statistics (Restructuring & Insolvency Journal)
+
+- **Total Published Articles**: 3
+- **All Articles Status**: published
+- **All Articles Peer Reviewed**: true
+- **Unique Authors**: 1 (Ezechiel Havrenne)
+- **All Articles Version**: v1 (current)
+
+---
+
+## Routes & URLs (Restructuring & Insolvency Journal)
+
+### Website Routes
+- **Journal Main Page**: `/publishing/restructuring-insolvency-journal`
+- **Article Pages**: `/publishing/restructuring-insolvency-journal/article/{slug}`
+
+### Article Slugs (URL-friendly)
+- RIJ-2026-001 → `compartment-insolvency-18625`
+- RIJ-2026-002 → `ipso-jure-dissolution-liquidation`
+- RIJ-2026-003 → `ruling-1019-architecture-liquidation`
 
 ---
 
@@ -237,12 +361,12 @@ config/journals.json - Journal metadata
 
 ## Data Sources Reference
 
-- **Journal Metadata**: `src/pages/publishing/journals/investment-management.tsx` (journalMetadata object)
-- **Editorial Board**: `src/pages/publishing/journals/investment-management.tsx` (lines 17-20)
-- **Journal Description**: `src/pages/Publishing.tsx` (lines 292-309)
-- **Article Data**: `data/articles/investment-management/*.json`
-- **Article Storage**: `storage/journals/investment-management/articles/`
-- **Journal Config**: `config/journals.json` (may contain outdated info - verify against website)
+- **Journal Metadata**: `src/pages/publishing/journals/investment-management.tsx`
+- **Journal Metadata**: `src/pages/publishing/journals/restructuring-insolvency-journal.tsx`
+- **Editorial Board**: `src/pages/publishing/journals/investment-management.tsx`
+- **Editorial Board**: `src/pages/publishing/journals/restructuring-insolvency-journal.tsx`
+- **Article Data**: `data/admin_articles.json`
+- **Article Storage**: `public/files/restructuring-insolvency-journal/`
 - **ISSN Application**: `docs/ISSN_APPLICATION_DATA.md` (official publisher and ISSN information)
 
 ---

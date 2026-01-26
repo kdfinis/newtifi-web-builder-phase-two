@@ -7,9 +7,7 @@ import { urlFactory } from '@/lib/urls/UrlFactory';
 
 const Publishing: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState('journals');
-  const [journalSubtab, setJournalSubtab] = useState('committee');
   const [selectedArticle, setSelectedArticle] = useState(null);
-  const [expandedAbstractIdx, setExpandedAbstractIdx] = useState(null);
   const [expandedOverview, setExpandedOverview] = useState(null);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
@@ -173,6 +171,33 @@ const Publishing: React.FC = () => {
     }
   };
 
+  const journalCards = [
+    {
+      slug: 'investment-management',
+      title: 'NewTIFI Investment Management Journal',
+      subtitle: 'Peer-reviewed scholarship for investment funds and regulation.',
+      description:
+        'Focuses on fund structuring, fiduciary duty, regulatory change, tax policy, and operational governance.',
+      plan: [
+        'Finalize editorial governance and review policies.',
+        'Publish full author guidelines and templates.',
+        'Release metadata, archiving, and indexing roadmap.'
+      ]
+    },
+    {
+      slug: 'restructuring-insolvency-journal',
+      title: 'NewTIFI Restructuring & Insolvency Journal',
+      subtitle: 'Insolvency, restructuring, and recovery frameworks.',
+      description:
+        'Explores cross-border insolvency, creditor rights, restructurings, and recovery strategies in capital markets.',
+      plan: [
+        'Define scope, ISSN registration, and visual identity.',
+        'Document review workflow and decision timelines.',
+        'Prepare production, licensing, and preservation policy.'
+      ]
+    }
+  ];
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       {/* Hero Section with Value Proposition */}
@@ -207,6 +232,37 @@ const Publishing: React.FC = () => {
                 Submit your research to our peer-reviewed journals and contribute to advancing knowledge in technology and investment management.
               </p>
             </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
+      {/* NewTIFI Publishing Overview */}
+      <section className="w-full px-4 pt-6 pb-6 border-b border-gray-200">
+        <div className="w-full mx-auto">
+          <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+            <div className="hidden md:block flex-shrink-0">
+              <img
+                src="/assets/images/Lux-Philharmonie.jpeg"
+                alt="Luxembourg Philharmonie"
+                className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200"
+              />
+            </div>
+            <div className="flex-1">
+              <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Publishing</h1>
+              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Empowering knowledge & education for a sustainable future</h2>
+              <p className="text-base text-gray-700 mb-3">
+                NewTIFI Publishing is the scientific and editorial arm of the New Technologies & Investment Funds Institute, dedicated to advancing accessible, high-quality research and thought leadership across the fields of new technologies and finance.
+              </p>
+              <p className="text-base text-gray-700 mb-3">
+                We publish peer-reviewed journals, practitioner-oriented reviews, academic articles, books, and interviews that explore the intersections of innovation, sustainability, and public policy.
+              </p>
+              <p className="text-base text-gray-700 mb-3">
+                Our mission is to foster informed dialogue and bridge the gap between cutting-edge research and real-world decision-making. All publications are produced with academic integrity, intellectual independence, and an emphasis on clarity and impact.
+              </p>
+              <p className="text-base text-gray-700">
+                Contrary to many publishing houses, NewTIFI operates as a non-profit. All profits realised by NewTIFI are used to fund Doctoral Scholarships.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -284,155 +340,46 @@ const Publishing: React.FC = () => {
       {/* Tab Content */}
       {selectedTab === 'journals' && (
         <section className="w-full bg-white py-8">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-6">
             <ScrollReveal>
-              <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Investment Management Journal</h2>
+              <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Journals Directory</h2>
               <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
-              <p className="text-lg text-gray-800 mb-4">
-                The NewTIFI Publishing – Investment Management Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in the field of investment management.
-              </p>
-              <p className="text-lg text-gray-800 mb-4">
-                With a focus on legal, tax, regulatory, and operational dimensions, the journal brings together leading academics, practitioners, and policymakers to explore the evolving landscape of alternative investment funds. It covers topics such as fund structuring, asset management regulation, fiduciary duty, tax policy, compliance and risk management, and financial innovation.
-              </p>
-              <p className="text-lg text-gray-800 mb-4">
-                Our mission is to foster intellectually independent and practically relevant research that informs the decisions of fund managers, investors, depositaries and central administrators, auditors, regulators, and courts worldwide.
-              </p>
-              <p className="text-lg text-gray-800 mb-4">
-                The NewTIFI Publishing – Investment Management Journal welcomes original articles, case studies, and comparative analysis that contribute to a deeper understanding of global investment frameworks and the financial architecture shaping the future of capital markets.
-              </p>
-              <p className="text-lg text-gray-800 mb-4">
-                As part of NewTIFI Publishing, the journal operates under a non-profit model.
-              </p>
-              <p className="text-lg text-gray-800">
-                All profits realised by NewTIFI including through publication efforts are used to fund Doctoral Scholarships.
+              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Publishing programs and documentation roadmaps</h3>
+              <p className="text-lg text-gray-800 mb-10 max-w-4xl">
+                Explore each journal’s focus area and the planned documentation packages. Each journal
+                will ship with complete submission rules, editorial policies, review workflow, and visual
+                identity assets, aligned with NewTIFI Publishing standards.
               </p>
             </ScrollReveal>
 
-            {/* Subtabs for Committee Members, Abstracts, Technical Information */}
-            <div className="mt-10">
-              <div className="flex gap-4 mb-6">
-                <button
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
-                    journalSubtab === 'committee' 
-                      ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-                      : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
-                  }`}
-                  onClick={() => setJournalSubtab('committee')}
-                >
-                  Committee Members
-                </button>
-                <button
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
-                    journalSubtab === 'abstracts' 
-                      ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-                      : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
-                  }`}
-                  onClick={() => setJournalSubtab('abstracts')}
-                >
-                  Abstracts
-                </button>
-                <button
-                  className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
-                    journalSubtab === 'technical' 
-                      ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-                      : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
-                  }`}
-                  onClick={() => setJournalSubtab('technical')}
-                >
-                  Technical Information
-                </button>
-              </div>
-              
-              <div>
-                {journalSubtab === 'committee' && (
-                  <div className="text-gray-700 text-base">Committee Members content coming soon.</div>
-                )}
-                {journalSubtab === 'abstracts' && (
-                  <div className="space-y-8">
-                    {articles.slice(0, 3).map((article, idx) => {
-                      const authorRole = idx === 0 ? 'Lecturer at the Luxembourg School of Business' : idx === 1 ? 'Legal Scholar' : 'Investment Funds Specialist';
-                      const readingTime = idx === 0 ? '40 min' : idx === 1 ? '35 min' : '30 min';
-                      const keywords = idx === 0
-                        ? 'LUXEMBOURG CLOSED-ENDED ELTIFs · COMPULSORY REDEMPTION · INVESTOR PROTECTION · DISTRIBUTION MECHANISMS · FUND LIQUIDITY MANAGEMENT · TERMINATION & AMALGAMATION OF COMPARTMENTS · CAPITAL REDUCTION · REDEMPTION CLAUSES · FUND DOCUMENTATION · CSSF PRACTICE'
-                        : idx === 1
-                        ? 'WELL-INFORMED INVESTOR · LUXEMBOURG SICAR · SIF · RAIF · ALTERNATIVE FUNDS · INVESTOR PROTECTION · ELIGIBILITY · REGULATORY FRAMEWORK · CSSF PRACTICE'
-                        : 'AIFM PORTFOLIO CONTROL · BAFIN · LUXEMBOURG FUNDS · INVESTOR OVERSIGHT · REGULATORY POLICY · PORTFOLIO MANAGEMENT';
-                      const citation = idx === 0
-                        ? `Ezechiel Havrenne, 'Closed-Ended Luxembourg ELTIFs: Compulsory Redemption Matters and Compartment Termination & Amalgamation Provisions', NewTIFI Publishing – Investment Management Journal, Vol. 1, N°4, pp.31-44, The New Technologies & Investment Funds Institute (2025)`
-                        : idx === 1
-                        ? `Ezechiel Havrenne, 'Luxembourg SICARs, SIFs and RAIFs – A 20-year Perspective on the Well-Informed Investor notion', NewTIFI Publishing – Investment Management Journal, Vol. 1, N°3, pp.21-30, The New Technologies & Investment Funds Institute (2025)`
-                        : `Ezechiel Havrenne, 'Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control', NewTIFI Publishing – Investment Management Journal, Vol. 1, N°2, pp.11-20, The New Technologies & Investment Funds Institute (2025)`;
-                      const journalInfo = idx === 0
-                        ? 'Investment Management Journal | Vol. 1 – N° 4 – pp.31-44\nISSN: TBD – eISSN: TBD\nQuarterly publication'
-                        : idx === 1
-                        ? 'Investment Management Journal | Vol. 1 – N° 3 – pp.21-30\nISSN: TBD – eISSN: TBD\nQuarterly publication'
-                        : 'Investment Management Journal | Vol. 1 – N° 2 – pp.11-20\nISSN: TBD – eISSN: TBD\nQuarterly publication';
-                      return (
-                        <div key={idx} className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 hover:shadow-3xl transition-all duration-300">
-                          <button
-                            className="w-full text-left focus:outline-none"
-                            onClick={() => setExpandedAbstractIdx(expandedAbstractIdx === idx ? null : idx)}
-                            aria-expanded={expandedAbstractIdx === idx}
-                          >
-                            <div className="flex items-center justify-between">
-                              <h4 className="text-2xl font-bold text-newtifi-navy mb-1">{article.title}</h4>
-                              <span className="ml-4 text-newtifi-teal font-bold text-lg">{expandedAbstractIdx === idx ? '−' : '+'}</span>
-                            </div>
-                            <div className="text-gray-700 text-base mb-1">| {article.author} | {authorRole} | {readingTime}</div>
-                          </button>
-                          {expandedAbstractIdx === idx && (
-                            <div className="mt-6">
-                              <div className="mb-6">
-                                <h5 className="text-lg font-semibold text-newtifi-navy mb-3">Abstract</h5>
-                                <p className="text-gray-800 text-base italic mb-4 leading-relaxed" style={{ textAlign: 'justify' }}>{article.abstract}</p>
-                              </div>
-                              <div className="mb-4">
-                                <span className="font-bold uppercase text-newtifi-navy">Key Words:</span>
-                                <span className="ml-2 text-gray-700 text-sm">{keywords}</span>
-                              </div>
-                              <div className="mb-4 text-xs text-gray-600 italic">
-                                <span className="font-bold text-newtifi-navy">Quick Citation Reference:</span> {citation}
-                              </div>
-                              <div className="mb-4 text-xs text-gray-600 whitespace-pre-line">{journalInfo}</div>
-                              <button
-                                className="mt-6 px-8 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium"
-                                onClick={() => handleDownload(article.pdfUrl)}
-                              >
-                                Click here to download the PDF
-                              </button>
-                            </div>
-                          )}
-                        </div>
-                      );
-                    })}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {journalCards.map((journal) => (
+                <div key={journal.slug} className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-6 flex flex-col">
+                  <div className="flex items-center gap-3 mb-4">
+                    <BookOpen className="h-6 w-6 text-newtifi-teal" />
+                    <h4 className="text-xl font-bold text-newtifi-navy">{journal.title}</h4>
                   </div>
-                )}
-                {journalSubtab === 'technical' && (
-                  <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 p-8">
-                    <h4 className="text-xl font-bold text-newtifi-navy mb-6">Technical Information</h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div>
-                        <h5 className="font-semibold text-newtifi-navy mb-4">Review Process Timeline</h5>
-                        <div className="text-sm text-gray-700 space-y-3">
-                          <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-newtifi-teal rounded-full"></div>
-                            <span>Initial Review: 2-3 weeks</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-newtifi-navy rounded-full"></div>
-                            <span>Peer Review: 4-6 weeks</span>
-                          </div>
-                          <div className="flex items-center gap-3">
-                            <div className="w-4 h-4 bg-gray-400 rounded-full"></div>
-                            <span>Final Decision: 1-2 weeks</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                  <p className="text-sm text-newtifi-teal font-semibold mb-2">{journal.subtitle}</p>
+                  <p className="text-sm text-gray-700 mb-4">{journal.description}</p>
+                  <div className="mt-auto">
+                    <h5 className="text-sm font-semibold text-newtifi-navy mb-3">Documentation Plan</h5>
+                    <ul className="space-y-2 mb-6">
+                      {journal.plan.map((item) => (
+                        <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                          <CheckCircle className="h-4 w-4 text-newtifi-teal mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <button
+                      className="w-full px-4 py-2 rounded-xl bg-newtifi-navy text-white hover:bg-newtifi-teal transition font-medium"
+                      onClick={() => navigate(urlFactory.getJournalPath(journal.slug))}
+                    >
+                      View Journal
+                    </button>
                   </div>
-                )}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -13,6 +13,12 @@ const Navbar = () => {
   const { user, loading, logout, isAuthenticated } = useSimpleAuth();
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const publishingLinks = [
+    { label: 'NewTIFI Publishing', to: urlFactory.getPublishingPath() },
+    { label: 'NewTIFI Investment Management Journal', to: urlFactory.getJournalPath('investment-management') },
+    { label: 'NewTIFI Restructuring & Insolvency Journal', to: urlFactory.getJournalPath('restructuring-insolvency-journal') }
+  ];
+  const isPublishingActive = location.pathname.startsWith("/publishing");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -134,16 +140,52 @@ const Navbar = () => {
           >
             Who We Are
           </Link>
-          <Link 
-            to={urlFactory.getPublishingPath()} 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
-              location.pathname.startsWith("/publishing") && "text-newtifi-teal"
+          <div className="relative group w-full md:w-auto flex flex-col items-center">
+            <Link
+              to={urlFactory.getPublishingPath()}
+              className={cn(
+                "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
+                isPublishingActive && "text-newtifi-teal"
+              )}
+              onClick={closeMenu}
+              aria-current={isPublishingActive ? "page" : undefined}
+              aria-haspopup="true"
+            >
+              Publishing
+            </Link>
+            <div className="hidden md:flex absolute top-full mt-2 w-72 flex-col rounded-2xl border border-gray-200 bg-white shadow-xl py-2 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition">
+              {publishingLinks.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  className={cn(
+                    "px-4 py-2 text-sm text-newtifi-navy hover:bg-newtifi-teal/10 hover:text-newtifi-teal transition-colors",
+                    location.pathname === item.to && "text-newtifi-teal"
+                  )}
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
+            {isMenuOpen && (
+              <div className="md:hidden mt-2 w-full flex flex-col items-center gap-1">
+                {publishingLinks.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className={cn(
+                      "text-white/90 hover:text-newtifi-teal transition-colors text-sm uppercase",
+                      location.pathname === item.to && "text-newtifi-teal"
+                    )}
+                    onClick={closeMenu}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
             )}
-            onClick={() => setIsMenuOpen(false)}
-          >
-            Publishing
-          </Link>
+          </div>
           <Link 
             to="/membership" 
             className={cn(

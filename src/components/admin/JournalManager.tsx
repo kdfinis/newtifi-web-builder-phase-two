@@ -86,12 +86,15 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
     }
   };
 
-  // Filter to only show articles that have actual PDF files
+  // Filter to only show articles that have actual PDF/DOC files
   const validArticles = showOnlyPdf ? articles.filter(article => {
-    // Check if article has a real PDF file
     return article.pdfUrl && article.filename && (
-      article.pdfUrl.includes('.pdf') || 
-      article.filename.includes('.pdf')
+      article.pdfUrl.includes('.pdf') ||
+      article.filename.includes('.pdf') ||
+      article.pdfUrl.includes('.docx') ||
+      article.filename.includes('.docx') ||
+      article.pdfUrl.includes('.doc') ||
+      article.filename.includes('.doc')
     );
   }) : articles;
 

@@ -5,7 +5,7 @@
 
 ## Summary
 
-The NewTIFI website hosts academic journals through the **NewTIFI Publishing** platform. Currently, there is **1 active journal** and **1 planned journal**.
+The NewTIFI website hosts academic journals through the **NewTIFI Publishing** platform. Currently, there are **2 active journals**.
 
 ---
 
@@ -76,12 +76,45 @@ storage/journals/investment-management/articles/
 
 ---
 
-## Planned Journals
+### 2. Restructuring & Insolvency Journal
+- **Status**: ✅ Active
+- **ID**: `restructuring-insolvency-journal`
+- **URL**: `/publishing/restructuring-insolvency-journal`
+- **ISSN**: TBD (To be registered)
+- **Publisher**: NewTIFI Publishing
+- **Location**: Luxembourg
+- **Frequency**: Quarterly
+- **Peer Review**: Double-blind peer review
+- **Launch Date**: 2026-01-15
+- **Last Updated**: 2026-01-26
 
-### 2. FinTech Innovation Journal
-- **Status**: 🟡 Planned (not yet active)
-- **Note**: Details not documented until actually published on website
-- **Reference**: See `config/journals.json` for planned configuration (not yet published)
+#### Description
+A peer-reviewed academic publication dedicated to advancing rigorous scholarship and high-impact analysis in insolvency, restructuring, and recovery frameworks across Luxembourg and comparative jurisdictions.
+
+#### Editorial Board
+**Source**: Actual website content (`src/pages/publishing/journals/restructuring-insolvency-journal.tsx`)
+- **Editor-in-Chief**: Ezechiel Havrenne (NewTiFi Institute)
+- **Associate Editor**: Delphine Filsack (NewTiFi Institute)
+- **Managing Editor**: Karlo Definis (NewTiFi Institute)
+
+#### Published Articles (3)
+1. **RIJ-2026-001**: "Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform"
+   - Author: Ezechiel Havrenne
+   - Published: 2026-01-15
+   - DOI: 10.1234/newtifi.2026.001
+   - Status: Published, Featured, View-only (no downloads)
+
+2. **RIJ-2026-002**: "Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers"
+   - Author: Ezechiel Havrenne
+   - Published: 2026-02-01
+   - DOI: 10.1234/newtifi.2026.002
+   - Status: Published, Featured, View-only (no downloads)
+
+3. **RIJ-2026-003**: "Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model"
+   - Author: Ezechiel Havrenne
+   - Published: 2026-03-01
+   - DOI: 10.1234/newtifi.2026.003
+   - Status: Published, Featured, View-only (no downloads)
 
 ---
 
@@ -89,7 +122,8 @@ storage/journals/investment-management/articles/
 
 ### Routes
 - **Journal Main Page**: `/publishing/investment-management`
-- **Article Pages**: `/publishing/investment-management/article/{slug}`
+- **Journal Main Page**: `/publishing/restructuring-insolvency-journal`
+- **Article Pages**: `/publishing/{journalSlug}/article/{slug}`
 - **Publishing Hub**: `/publishing` (shows all journals, articles, books, etc.)
 
 ### Components
@@ -108,10 +142,8 @@ storage/journals/investment-management/articles/
 ## Data Structure
 
 ### Configuration Files
-- **`config/journals.json`**: Journal metadata and configuration
-- **`data/articles/investment-management/`**: Article metadata (JSON files)
-- **`data/articles.json`**: Main articles index
 - **`data/admin_journals.json`**: Admin journal management data
+- **`data/admin_articles.json`**: Admin article management data
 
 ### Article Metadata Format
 ```json
@@ -140,7 +172,7 @@ storage/journals/investment-management/articles/
 
 ### Current Features
 ✅ **Journal Display**: Cards and detailed pages  
-✅ **Article Viewing**: PDF viewing with metadata  
+✅ **Article Viewing**: Article pages with metadata (downloads disabled for RIJ)  
 ✅ **Abstracts**: Expandable article abstracts  
 ✅ **Technical Information**: Journal metadata display  
 ✅ **Editorial Board**: Committee member information  
@@ -162,7 +194,8 @@ storage/journals/investment-management/articles/
 - **Homepage**: `/` - Features journal articles
 - **Publishing**: `/publishing` - Publishing hub with journals tab
 - **Journal Page**: `/publishing/investment-management` - Main journal page
-- **Articles**: `/publishing/investment-management/article/{slug}` - Individual articles
+- **Journal Page**: `/publishing/restructuring-insolvency-journal` - Main journal page
+- **Articles**: `/publishing/{journalSlug}/article/{slug}` - Individual articles
 
 ### Admin Access
 - **Admin Dashboard**: `/admin` - Journal and article management
@@ -175,23 +208,25 @@ storage/journals/investment-management/articles/
 
 ### Live Site
 - **Journal**: https://newtifi.com/publishing/investment-management
-- **Article Example**: https://newtifi.com/publishing/investment-management/article/eltifs-compulsory-redemptions
+- **Journal**: https://newtifi.com/publishing/restructuring-insolvency-journal
+- **Article Example**: https://newtifi.com/publishing/restructuring-insolvency-journal/article/compartment-insolvency-18625
 
 ### Internal Routes
 - Publishing Hub: `/publishing`
 - Journal: `/publishing/investment-management`
-- Articles: `/publishing/investment-management/article/{slug}`
+- Journal: `/publishing/restructuring-insolvency-journal`
+- Articles: `/publishing/{journalSlug}/article/{slug}`
 
 ---
 
 ## Statistics
 
-- **Total Journals**: 2 (1 active, 1 planned)
-- **Total Articles**: 3 (all in Investment Management Journal)
-- **Published Articles**: 3
-- **Featured Articles**: 3
+- **Total Journals**: 2 (all active)
+- **Total Articles**: 6 (3 IMJ, 3 RIJ)
+- **Published Articles**: 6
+- **Featured Articles**: 6
 - **Authors**: 1 (Ezechiel Havrenne)
-- **Average Articles per Journal**: 3 (active journal)
+- **Average Articles per Journal**: 3
 
 ---
 
@@ -214,13 +249,12 @@ storage/journals/investment-management/articles/
 
 ## Future Plans
 
-1. **FinTech Innovation Journal**: Launch planned for December 2025
-2. **Additional Journals**: More journals may be added
-3. **Enhanced Features**: Full submission system, peer review workflow
-4. **Analytics**: Article performance tracking
-5. **User System**: Complete registration and authentication
+1. **Additional Journals**: More journals may be added
+2. **Enhanced Features**: Full submission system, peer review workflow
+3. **Analytics**: Article performance tracking
+4. **User System**: Complete registration and authentication
 
 ---
 
-**Last Updated**: 2026-01-23  
+**Last Updated**: 2026-01-26  
 **Status**: ✅ Active and operational

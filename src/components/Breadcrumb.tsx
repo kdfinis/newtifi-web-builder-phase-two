@@ -39,7 +39,8 @@ const Breadcrumb: React.FC = () => {
       else if (segment === 'cookies') name = 'Cookie Policy';
       else if (segment === 'publishing') name = 'Publishing';
       else if (segment === 'journals') name = 'Journals';
-      else if (segment === 'investment-management') name = 'Investment Management Journal';
+      else if (segment === 'investment-management') name = 'NewTIFI Investment Management Journal';
+      else if (segment === 'restructuring-insolvency-journal') name = 'NewTIFI Restructuring & Insolvency Journal';
       
       breadcrumbs.push({
         name,
