@@ -26,6 +26,15 @@ interface Article {
   category: 'journal' | 'news';
 }
 
+const articlePreviewImages = [
+  "/images/Investment-funds.jpg",
+  "/images/Securitisation-vehicles.jpeg",
+  "/images/fin-tech.jpg",
+  "/images/network-meeting.jpg",
+  "/images/health-tech.jpg",
+  "/images/food-tech.jpg"
+];
+
 const scholarshipContent = [
   {
     title: 'Doctoral Scholarships',
@@ -411,6 +420,13 @@ const Home = () => {
                           className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
+                          <div className="mb-5 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+                            <div
+                              className="h-40 sm:h-48 md:h-56 w-full bg-center bg-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                              style={{ backgroundImage: `url('${articlePreviewImages[index % articlePreviewImages.length]}')` }}
+                              aria-label={`${article.title} preview`}
+                            />
+                          </div>
                           {/* Article Header (text only, logo removed) */}
                           <div className="flex items-start mb-4 sm:mb-6">
                             <div className="flex-1 min-w-0">
