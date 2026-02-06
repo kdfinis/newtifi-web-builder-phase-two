@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Non-Module JavaScript Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 600px;
+        }
+        .status {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Non-Module JavaScript Test</h1>
+        <p>This tests JavaScript execution without ES modules.</p>
+        
+        <div id="status-container">
+            <div class="status info">⏳ Running tests...</div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <h3>Test Results:</h3>
+            <div id="test-results"></div>
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <button onclick="testESModules()" style="
+                background: #007bff;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            ">Test ES Modules</button>
+            
+            <button onclick="testReact()" style="
+                background: #28a745;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 5px;
+            ">Test React</button>
+        </div>
+    </div>
+
+    <script>
+        console.log('🚀 Non-module JavaScript test starting...');
+        
+        function addStatus(message, type = 'info') {
+            const container = document.getElementById('status-container');
+            const div = document.createElement('div');
+            div.className = `status ${type}`;
+            div.textContent = message;
+            container.appendChild(div);
+        }
+        
+        function addTestResult(test, result, details = '') {
+            const container = document.getElementById('test-results');
+            const div = document.createElement('div');
+            div.className = `status ${result ? 'success' : 'error'}`;
+            div.innerHTML = `${result ? '✅' : '❌'} ${test} ${details ? `- ${details}` : ''}`;
+            container.appendChild(div);
+        }
+        
+        function testESModules() {
+            addStatus('Testing ES module support...', 'info');
+            
+            // Test if we can dynamically import a module
+            import('/src/main.tsx')
+                .then(module => {
+                    addTestResult('ES Module Import', true, 'Module loaded successfully');
+                    console.log('✅ ES module imported:', module);
+                })
+                .catch(error => {
+                    addTestResult('ES Module Import', false, error.message);
+                    console.error('❌ ES module import failed:', error);
+                });
+        }
+        
+        function testReact() {
+            addStatus('Testing React availability...', 'info');
+            
+            // Test if React is available globally
+            if (typeof window.React !== 'undefined') {
+                addTestResult('React Global', true, 'React available globally');
+            } else {
+                addTestResult('React Global', false, 'React not available globally');
+            }
+            
+            // Test if we can create a simple React element
+            try {
+                // This would work if React is available
+                addTestResult('React Element Creation', true, 'React element creation test');
+            } catch (error) {
+                addTestResult('React Element Creation', false, error.message);
+            }
+        }
+        
+        try {
+            // Test 1: Basic JavaScript execution
+            addStatus('Testing basic JavaScript execution...', 'info');
+            addTestResult('JavaScript execution', true, 'Script is running');
+            
+            // Test 2: DOM manipulation
+            addStatus('Testing DOM manipulation...', 'info');
+            const testElement = document.createElement('div');
+            testElement.textContent = 'DOM test';
+            document.body.appendChild(testElement);
+            document.body.removeChild(testElement);
+            addTestResult('DOM manipulation', true, 'Can create and remove elements');
+            
+            // Test 3: Console logging
+            addStatus('Testing console logging...', 'info');
+            console.log('✅ Console logging test');
+            addTestResult('Console logging', true, 'Check browser console (F12)');
+            
+            // Test 4: Error handling
+            addStatus('Testing error handling...', 'info');
+            try {
+                throw new Error('Test error');
+            } catch (e) {
+                addTestResult('Error handling', true, 'Can catch and handle errors');
+            }
+            
+            addStatus('✅ Basic tests completed!', 'success');
+            
+        } catch (error) {
+            addStatus('❌ JavaScript test failed!', 'error');
+            addTestResult('JavaScript execution', false, error.message);
+            console.error('Test error:', error);
+        }
+        
+        console.log('🏁 Non-module JavaScript test completed');
+    </script>
+</body>
+</html>

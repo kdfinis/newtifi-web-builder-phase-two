@@ -1,0 +1,68 @@
+# Cursor AI Agent Rules for NewTIFI Web Builder
+
+## Firebase Protocol Awareness (REQUIRED)
+
+**ALL agents working on this codebase MUST be aware of Firebase hosting requirements:**
+
+1. **Always check Firebase compatibility** before making changes
+2. **Read `docs/FIREBASE_PROTOCOL_GUIDE.md`** for Firebase requirements
+3. **Read `docs/DEVELOPMENT_PROTOCOL.md`** for development guidelines
+4. **Maintain dual compatibility** with both GitHub Pages and Firebase Hosting
+
+## Core Requirements
+
+### Build Process
+- Build output MUST be in `dist/` directory
+- All assets MUST use absolute or root-relative paths (`/assets/...`)
+- Never use relative paths (`./assets/...` or `../assets/...`) in production
+
+### SPA Routing
+- Must work on both GitHub Pages (via `404.html`) and Firebase (via `firebase.json`)
+- All routes must serve `index.html` for client-side routing
+
+### Asset Paths
+- Use absolute paths: `/assets/...`, `/images/...`
+- Never use: `./assets/...`, `../assets/...`
+- Firebase serves from root, paths must be root-relative
+
+### MIME Types
+- Configured for GitHub Pages via `_headers` and `.htaccess`
+- Firebase auto-detects, but we configure explicitly for compatibility
+
+### Environment Variables
+- Use `import.meta.env` (Vite) for client-side variables
+- Never hardcode localhost URLs in production code
+- Firebase Functions can be used for server-side env vars
+
+## Development Checklist
+
+Before making changes:
+- [ ] Check Firebase compatibility
+- [ ] Read Firebase protocol guide
+- [ ] Ensure build outputs to `dist/`
+- [ ] Verify asset paths are absolute/root-relative
+- [ ] Test SPA routing works
+- [ ] Check MIME types are configured
+
+## What NOT to Do
+
+- ❌ Don't use relative paths in production builds
+- ❌ Don't hardcode localhost URLs
+- ❌ Don't break SPA routing
+- ❌ Don't ignore Firebase requirements
+- ❌ Don't modify secrets/credentials
+- ❌ Don't break compatibility with either hosting platform
+
+## Documentation
+
+- **Firebase Protocol**: `docs/FIREBASE_PROTOCOL_GUIDE.md`
+- **Development Protocol**: `docs/DEVELOPMENT_PROTOCOL.md`
+- **Deployment Guide**: `docs/DEPLOYMENT_TROUBLESHOOTING.md`
+
+## Quick Reference
+
+- **Build**: `npm run build` → outputs to `dist/`
+- **Deploy GitHub Pages**: `npm run deploy` or copy `dist/*` to branch root
+- **Deploy Firebase**: `firebase deploy --only hosting`
+- **Test Firebase**: `firebase serve`
+- **Test GitHub Pages**: `npm run preview`

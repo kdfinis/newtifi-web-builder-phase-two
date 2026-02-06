@@ -1,0 +1,77 @@
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* ScrollReveal animations */
+.appear-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.appear-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Direction-specific animations */
+.appear-on-scroll[style*="translateX(30px)"].is-visible {
+  transform: translateX(0);
+}
+
+.appear-on-scroll[style*="translateX(-30px)"].is-visible {
+  transform: translateX(0);
+}
+
+.appear-on-scroll[style*="translateY(-30px)"].is-visible {
+  transform: translateY(0);
+}
+
+/* Fallback: Ensure content is visible after a delay if ScrollReveal fails */
+.appear-on-scroll {
+  animation: fallback-visible 2s ease-out 1s forwards;
+}
+
+@keyframes fallback-visible {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Debug: Add a visible border to ScrollReveal elements */
+.appear-on-scroll {
+  /* border: 1px solid red; */
+}

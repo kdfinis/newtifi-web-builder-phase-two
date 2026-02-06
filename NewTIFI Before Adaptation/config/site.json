@@ -1,0 +1,45 @@
+{
+  "name": "NewTIFI",
+  "description": "New Technologies & Investment Funds Institute",
+  "version": "2.0.0",
+  "urls": {
+    "base": "https://newtifi.com",
+    "api": "https://api.newtifi.org",
+    "cdn": "https://cdn.newtifi.org",
+    "local": "http://localhost:8080",
+    "prj": "https://prj.newtifi.org",
+            "oauth": {
+              "google": {
+                "callback": {
+                  "development": "http://localhost:8080/auth/google/callback",
+                  "production": "https://newtifi.com/auth/google/callback"
+                }
+              },
+              "linkedin": {
+                "callback": {
+                  "development": "http://localhost:8080/auth/linkedin/callback",
+                  "production": "https://newtifi.com/auth/linkedin/callback"
+                }
+              }
+            }
+  },
+  "features": {
+    "analytics": true,
+    "serviceWorker": true,
+    "pwa": true,
+    "multiJournal": true,
+    "googleAPIs": true
+  },
+  "ui": {
+    "theme": "light",
+    "animations": true,
+    "compactMode": false,
+    "fontFamily": "Verdana, system-ui, sans-serif"
+  },
+  "performance": {
+    "maxBundleSize": 500,
+    "enableCompression": true,
+    "enableCaching": true,
+    "lazyLoading": true
+  }
+}

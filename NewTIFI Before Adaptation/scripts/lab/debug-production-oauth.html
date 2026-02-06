@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production OAuth Debug</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .button { background: #007bff; color: white; padding: 12px 24px; border: none; border-radius: 6px; cursor: pointer; margin: 8px; }
+        .button:hover { background: #0056b3; }
+        .button.google { background: #4285f4; }
+        .button.linkedin { background: #0077b5; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; word-break: break-all; margin: 10px 0; }
+        .error { background: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Production OAuth Debug</h1>
+    
+    <div id="debug-info"></div>
+    
+    <button class="button google" onclick="testGoogle()">Test Google OAuth</button>
+    <button class="button linkedin" onclick="testLinkedIn()">Test LinkedIn OAuth</button>
+    
+    <div id="result"></div>
+
+    <script>
+        // Simulate production environment
+        const isDev = false; // Force production mode
+        const baseUrl = 'https://newtifi.com';
+        
+        const googleRedirectUri = baseUrl + '/auth/google/callback';
+        const linkedinRedirectUri = baseUrl + '/auth/linkedin/callback';
+        
+        const googleUrl = `https://accounts.google.com/o/oauth2/v2/auth?` +
+            `client_id=194507073097-ocntv6b6bou3v4m334tr637pjq2d8702.apps.googleusercontent.com&` +
+            `redirect_uri=${encodeURIComponent(googleRedirectUri)}&` +
+            `response_type=code&` +
+            `scope=profile email&` +
+            `prompt=select_account&` +
+            `state=google_auth`;
+            
+        const linkedinUrl = `https://www.linkedin.com/oauth/v2/authorization?` +
+            `response_type=code&` +
+            `client_id=784sx1yh2lpuxm&` +
+            `redirect_uri=${encodeURIComponent(linkedinRedirectUri)}&` +
+            `scope=openid profile email&` +
+            `state=linkedin_auth`;
+        
+        document.getElementById('debug-info').innerHTML = `
+            <p><strong>Environment:</strong> Production (simulated)</p>
+            <p><strong>Base URL:</strong> ${baseUrl}</p>
+            
+            <h3>Google OAuth:</h3>
+            <p><strong>Redirect URI:</strong> ${googleRedirectUri}</p>
+            <p><strong>Google URL:</strong></p>
+            <div class="code">${googleUrl}</div>
+            
+            <h3>LinkedIn OAuth:</h3>
+            <p><strong>Redirect URI:</strong> ${linkedinRedirectUri}</p>
+            <p><strong>LinkedIn URL:</strong></p>
+            <div class="code">${linkedinUrl}</div>
+            
+            <div class="error">
+                <strong>⚠️ CRITICAL:</strong> Make sure these redirect URIs are added to your OAuth provider consoles!
+            </div>
+        `;
+        
+        function testGoogle() {
+            document.getElementById('result').innerHTML = '<p>Testing Google OAuth...</p>';
+            console.log('Google URL:', googleUrl);
+            window.open(googleUrl, '_blank');
+        }
+        
+        function testLinkedIn() {
+            document.getElementById('result').innerHTML = '<p>Testing LinkedIn OAuth...</p>';
+            console.log('LinkedIn URL:', linkedinUrl);
+            window.open(linkedinUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
