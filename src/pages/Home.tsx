@@ -26,15 +26,6 @@ interface Article {
   category: 'journal' | 'news';
 }
 
-const articlePreviewImages = [
-  "/images/Investment-funds.jpg",
-  "/images/Securitisation-vehicles.jpeg",
-  "/images/fin-tech.jpg",
-  "/images/network-meeting.jpg",
-  "/images/health-tech.jpg",
-  "/images/food-tech.jpg"
-];
-
 const scholarshipContent = [
   {
     title: 'Doctoral Scholarships',
@@ -416,20 +407,13 @@ const Home = () => {
                 </div>
                 <div className="space-y-5 sm:space-y-8">
                     {featuredArticles.length > 0 ? (
-                      featuredArticles.map((article, index) => (
+                      featuredArticles.map((article) => (
                         <div 
                           key={article.id}
                           className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-gray-200 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
-                          <div className="mb-5 overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
-                            <div
-                              className="h-40 sm:h-48 md:h-56 w-full bg-center bg-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                              style={{ backgroundImage: `url('${articlePreviewImages[index % articlePreviewImages.length]}')` }}
-                              aria-label={`${article.title} preview`}
-                            />
-                          </div>
-                          {/* Article Header (text only, logo removed) */}
+                          {/* Article Header (text only) */}
                           <div className="flex items-start mb-4 sm:mb-6">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 sm:gap-3 mb-2">
