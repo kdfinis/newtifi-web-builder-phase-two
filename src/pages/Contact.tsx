@@ -83,13 +83,13 @@ const Contact = () => {
         <div className="container mx-auto relative">
           <div className="w-full">
             <ScrollReveal>
-              <h1 className="text-2xl md:text-2xl font-light mb-10">Contact</h1>
-              <div className="mb-10">
-                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
-                  We would love to hear from <span className="text-newtifi-teal">you</span>
-                </h2>
+              <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Contact</p>
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase">
+                  We would love to hear from <span className="text-newtifi-teal font-light">you</span>
+                </h1>
               </div>
-              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
                 Get in touch to explore partnerships, submissions, or general inquiries.
               </p>
             </ScrollReveal>
@@ -99,7 +99,7 @@ const Contact = () => {
       {/* Single compact section: one box, one map, one column */}
       <section className="px-6 py-12">
         <div className="container mx-auto w-full">
-            <div className="bg-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden p-4 space-y-6">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden p-4 space-y-6">
               {/* Map embed (OpenStreetMap centered on Cents, Luxembourg) */}
               <div className="w-full h-[420px] md:h-[520px] rounded-2xl overflow-hidden relative">
                 <iframe
@@ -148,7 +148,7 @@ const Contact = () => {
                     <div className="space-y-6">
                   {/* Intro copy above contact details */}
                   <div className="space-y-2">
-                    <h3 className="text-2xl font-bold text-newtifi-navy">We’d love to hear from you</h3>
+                    <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy">We’d love to hear from you</h3>
                     <p className="text-base text-gray-600">Whether you’re exploring partnerships, submitting research, or looking to get involved, our team will get back to you promptly. Reach out by email or send us a short message below.</p>
                           </div>
                   {/* Inline quick contact (stacked vertically) */}
@@ -170,7 +170,7 @@ const Contact = () => {
                         <MapPin className="h-5 w-5 text-newtifi-teal" />
                       </div>
                       <div className="text-newtifi-navy">
-                        <div className="font-medium">Mailing address</div>
+                        <div className="font-light uppercase tracking-[0.2em] text-newtifi-navy">Mailing Address</div>
                         <div>14 rue Jean-Pierre Biermann</div>
                         <div>L-1268 Luxembourg</div>
                       </div>
@@ -210,7 +210,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="Name" 
                       required
-                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                      className="px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal" 
                     />
                     <input 
                       type="email" 
@@ -219,7 +219,7 @@ const Contact = () => {
                       onChange={handleChange}
                       placeholder="Email" 
                       required
-                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                      className="px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal" 
                     />
                     <input 
                       type="text" 
@@ -227,7 +227,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="Subject" 
-                      className="px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal" 
+                      className="px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal" 
                     />
                     <textarea 
                       name="message"
@@ -236,12 +236,12 @@ const Contact = () => {
                       placeholder="Message" 
                       rows={4} 
                       required
-                      className="md:col-span-3 px-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal"
+                      className="md:col-span-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
                     />
                     <button 
                       type="submit" 
                       disabled={isSubmitting}
-                      className="md:col-span-3 bg-newtifi-navy text-white py-3 rounded-xl font-medium flex items-center justify-center hover:bg-newtifi-navy/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="md:col-span-3 bg-newtifi-teal text-white py-3 rounded-full font-light text-xs uppercase tracking-[0.2em] flex items-center justify-center hover:bg-newtifi-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? (
                         <>
@@ -259,7 +259,7 @@ const Contact = () => {
                       </div>
                 {/* Right: Luxembourg photo to fill empty space */}
                 <div className="hidden md:block">
-                  <div className="w-full h-full min-h-[420px] rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                  <div className="w-full h-full min-h-[420px] rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
                     <img
                       src="/images/uploads/kirchberg-fort-thungen.jpg"
                       alt="Luxembourg cityscape"
@@ -288,27 +288,27 @@ const Contact = () => {
       <section className="px-6 pb-16">
         <div className="container mx-auto w-full">
           <ScrollReveal>
-            <div className="bg-newtifi-navy text-white rounded-3xl shadow-2xl border border-newtifi-navy/20 overflow-hidden p-4 space-y-6">
+            <div className="bg-newtifi-navy text-white rounded-2xl shadow-sm border border-newtifi-navy/20 overflow-hidden p-4 space-y-6">
               {/* Hero image of Adolphe Bridge (using available Luxembourg image) */}
               <div className="w-full h-64 md:h-80 bg-center bg-cover rounded-2xl" style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }} aria-label="Adolphe Bridge, Luxembourg" />
               <div className="p-8 md:p-10">
-                <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">Luxembourg Innovation Powerhouse</h2>
+                <h2 className="text-2xl md:text-4xl font-extralight uppercase tracking-[0.12em] text-white mb-4">Luxembourg Innovation Powerhouse</h2>
                 <p className="text-base text-white/90 mb-8">Luxembourg's strategic advantages make it the ideal location for NewTIFI's mission to connect technology and finance.</p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                   <div className="bg-white/10 rounded-2xl p-6 border border-white/10 text-center">
-                    <div className="text-2xl font-bold text-newtifi-teal mb-2">EU Capital</div>
+                    <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-teal mb-2">EU Capital</div>
                     <div className="text-base text-white/90">Direct access to EU policymakers and regulators</div>
                       </div>
                   <div className="bg-white/10 rounded-2xl p-6 border border-white/10 text-center">
-                    <div className="text-2xl font-bold text-newtifi-teal mb-2">5+ Languages</div>
+                    <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-teal mb-2">5+ Languages</div>
                     <div className="text-base text-white/90">Multilingual professional environment</div>
                       </div>
                   <div className="bg-white/10 rounded-2xl p-6 border border-white/10 text-center">
-                    <div className="text-2xl font-bold text-newtifi-teal mb-2">€6.2T AUM</div>
+                    <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-teal mb-2">€6.2T AUM</div>
                     <div className="text-base text-white/90">Europe's largest investment fund center</div>
                     </div>
                   <div className="bg-white/10 rounded-2xl p-6 border border-white/10 text-center">
-                    <div className="text-2xl font-bold text-newtifi-teal mb-2">3.2% R&D</div>
+                    <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-teal mb-2">3.2% R&D</div>
                     <div className="text-base text-white/90">Highest GDP investment in R&D in the EU</div>
                   </div>
                 </div>
@@ -322,8 +322,8 @@ const Contact = () => {
       <section className="px-6 pb-16 bg-white">
         <div className="container mx-auto w-full">
           <ScrollReveal>
-            <div className="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
-              <h3 className="text-2xl font-bold text-newtifi-navy mb-6">About NewTIFI</h3>
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+              <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-6">About NewTIFI</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                   <p className="text-base text-gray-700">New Technologies & Investment Funds Institute (NewTIFI) connects research, industry, and policy to accelerate innovation that serves the public good.</p>
@@ -331,8 +331,8 @@ const Contact = () => {
                   <p className="text-base text-gray-700">Based in Luxembourg, we collaborate with universities, financial institutions, and technology leaders to translate research into practical outcomes that benefit society and markets.</p>
                 </div>
                 <div className="space-y-3">
-                  <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                    <h4 className="text-base font-bold text-newtifi-navy mb-2">What we do</h4>
+                  <div className="bg-gray-50 rounded-2xl p-6 border border-gray-200">
+                    <h4 className="text-sm font-light uppercase tracking-[0.2em] text-newtifi-navy mb-2">What We Do</h4>
                     <ul className="list-disc pl-5 text-base text-gray-700 space-y-1">
                       <li>Research publishing and editorial support</li>
                       <li>Events, workshops, and practitioner roundtables</li>

@@ -151,7 +151,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
                 <p className="text-gray-600 mb-4">Unable to load the PDF preview</p>
                 <button
                   onClick={onDownload}
-                  className="bg-newtifi-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-newtifi-navy/90 transition-colors"
+                  className="bg-newtifi-teal text-white px-6 py-3 rounded-lg font-light uppercase tracking-wide hover:bg-newtifi-teal/90 transition-colors"
                 >
                   Download PDF
                 </button>
@@ -194,7 +194,7 @@ const PDFPreview: React.FC<PDFPreviewProps> = ({
               <p className="text-gray-600 mb-6">Please sign in to download this PDF</p>
               <button
                 onClick={onLoginRequired}
-                className="bg-newtifi-navy text-white px-6 py-3 rounded-xl font-medium hover:bg-newtifi-navy/90 transition-colors"
+                className="bg-newtifi-teal text-white px-6 py-3 rounded-lg font-light uppercase tracking-wide hover:bg-newtifi-teal/90 transition-colors"
               >
                 Sign In
               </button>

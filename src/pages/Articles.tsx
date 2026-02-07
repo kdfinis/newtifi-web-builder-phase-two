@@ -138,7 +138,7 @@ export default function Articles() {
         </div>
 
         {/* Search and Filter Bar */}
-        <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 mb-6 sm:mb-8">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-4 sm:p-6 mb-6 sm:mb-8">
           <div className="flex flex-col md:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
@@ -174,7 +174,7 @@ export default function Articles() {
             <div className="text-gray-400 mb-4">
               <MessageSquare className="w-16 h-16 mx-auto" />
             </div>
-            <h3 className="text-xl font-semibold text-gray-600 mb-2">No articles found</h3>
+            <h3 className="text-xl font-light text-gray-600 mb-2">No articles found</h3>
             <p className="text-gray-500 mb-4">
               {searchTerm ? 'Try adjusting your search terms' : 'No articles are currently available'}
             </p>
@@ -190,7 +190,7 @@ export default function Articles() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {filteredArticles.map((article) => (
-              <div key={article.id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              <div key={article.id} className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300">
                 {/* Article Image/Thumbnail */}
                 <div className="h-48 bg-gradient-to-br from-newtifi-teal to-newtifi-navy flex items-center justify-center">
                   <div className="text-center text-white">
@@ -281,7 +281,7 @@ export default function Articles() {
                   {/* Action Button */}
                   <Link
                     to={`/publishing/article/${idToSlug(article.id)}`}
-                    className="block w-full text-center py-2 px-4 bg-newtifi-teal text-white rounded-lg hover:bg-newtifi-teal/90 transition-all duration-200 font-semibold shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                    className="block w-full text-center py-2.5 px-5 bg-newtifi-teal text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal/90 transition-all duration-200 font-light"
                   >
                     Read Article
                   </Link>

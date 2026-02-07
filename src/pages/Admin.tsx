@@ -276,7 +276,7 @@ const Admin = () => {
     <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
-              <h1 className="text-2xl font-bold text-gray-900">NewTIFI Admin</h1>
+              <h1 className="text-2xl font-extralight uppercase tracking-[0.12em] text-gray-900">NewTIFI Admin</h1>
               <div className="text-base text-gray-500">
                 {modules.find(m => m.id === activeModule)?.label}
               </div>

@@ -33,7 +33,7 @@ const Button: React.FC<ButtonProps> = React.memo(({
   'aria-describedby': ariaDescribedBy,
 }) => {
   const baseClasses = cn(
-    'inline-flex items-center justify-center rounded-md font-medium transition-all focus:outline-none',
+    'inline-flex items-center justify-center rounded-lg font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-newtifi-teal/20 focus-visible:ring-offset-2',
     {
       'bg-newtifi-teal text-white hover:bg-opacity-90 shadow hover:shadow-md': variant === 'primary',
       'bg-white text-newtifi-navy border border-newtifi-navy hover:bg-newtifi-navy hover:text-white': variant === 'secondary',

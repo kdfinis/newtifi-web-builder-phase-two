@@ -32,7 +32,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Navigation</h3>
+            <h3 className="text-xs font-light uppercase tracking-[0.35em] mb-4 uppercase tracking-[0.35em] text-white/80">Navigation</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
@@ -45,9 +45,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/connect" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
-                  Contact
-                </Link>
+<Link to="/contact" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
+                Contact
+              </Link>
               </li>
               <li>
                 <Link to="/membership" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">
@@ -59,7 +59,7 @@ const Footer = () => {
           
           {/* Legal */}
           <div className="md:col-span-1">
-            <h3 className="text-xs font-medium mb-4 uppercase tracking-wider">Legal</h3>
+            <h3 className="text-xs font-light uppercase tracking-[0.35em] mb-4 uppercase tracking-[0.35em] text-white/80">Legal</h3>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy" className="text-xs text-gray-300 hover:text-newtifi-teal transition-colors font-light">

@@ -69,8 +69,14 @@
   }
 
   body {
-    @apply bg-white text-gray-900 font-sans scroll-smooth;
+    @apply bg-white text-gray-900 font-sans scroll-smooth antialiased;
     font-weight: 300;
+  }
+
+  /* Membership2: headings default to light weight + caps where used */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 200;
+    letter-spacing: 0.05em;
   }
 
   /* Set base font size to 93.75% (15px) for less zoomed-in look */
@@ -104,9 +110,26 @@
     @apply bg-newtifi-teal text-white px-5 py-2 rounded-md font-light transition-all duration-300 hover:bg-opacity-80 hover:shadow-md;
   }
   
-  /* Section Titles */
+  /* Section Titles - Membership2: light weight, caps, wide tracking */
   .section-title {
-    @apply text-2xl md:text-4xl font-bold mb-6 text-newtifi-navy;
+    @apply text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase mb-6 text-newtifi-navy;
+  }
+
+  /* Membership2 typography system */
+  .overline {
+    @apply text-xs uppercase tracking-[0.35em] text-gray-500;
+  }
+  .heading-hero {
+    @apply text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase;
+  }
+  .heading-section {
+    @apply text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy;
+  }
+  .heading-card {
+    @apply text-sm uppercase tracking-[0.2em] text-newtifi-navy font-light;
+  }
+  .label-caps {
+    @apply text-xs uppercase tracking-[0.2em] font-light;
   }
   
   /* Card Hover Effects */
@@ -142,14 +165,6 @@
 
   .uppercase-text {
     @apply uppercase tracking-wider;
-  }
-
-  .nav-link {
-    @apply text-gray-600 hover:text-newtifi-navy transition-colors duration-200;
-  }
-  
-  .nav-link.active {
-    @apply text-newtifi-navy font-medium;
   }
 }
 

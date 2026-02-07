@@ -3,7 +3,7 @@ import { Check, ChevronDown, Mail, Lock, ArrowRight, ArrowUpRight, Users, Globe,
 import ScrollReveal from '@/components/ScrollReveal';
 import Button from '@/components/Button';
 
-const Membership = () => {
+const Membership2 = () => {
   const [activeForm, setActiveForm] = useState<'institutional' | 'individual' | 'open' | null>(null);
   const [selectedTier, setSelectedTier] = useState<'institutional' | 'individual' | 'open' | null>(null);
   const [activeContent, setActiveContent] = useState<'overview' | 'individual' | 'institutional'>('overview');
@@ -48,7 +48,7 @@ const Membership = () => {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <main className="min-h-screen bg-white text-[#1A1C2A]">
       {/* Hero Section with Value Proposition */}
       <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
         {/* Background Graphics */}
@@ -56,7 +56,7 @@ const Membership = () => {
         
         {/* Floating Geometric Shapes */}
         <div className="absolute top-20 right-20 w-32 h-32 border border-white/10 rounded-full"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 bg-newtifi-teal/10 rounded-full"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-white/10 rounded-full"></div>
         <div className="absolute top-1/2 left-10 w-16 h-16 border border-white/10 transform rotate-45"></div>
         
         {/* Stencil-style decorative elements */}
@@ -69,7 +69,7 @@ const Membership = () => {
         </div>
 
         <div className="container mx-auto relative">
-          <div className="w-full">
+          <div className="w-full max-w-4xl">
             <ScrollReveal>
               <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Membership</p>
               <div className="mb-8">
@@ -78,8 +78,21 @@ const Membership = () => {
                 </h1>
               </div>
               <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
-                Connect with world-class researchers, policymakers, and industry leaders. Access cutting-edge insights and drive innovation across HealthTech, FoodTech, EnergyTech, and FinTech.
+                Connect with world-class researchers, policymakers, and industry leaders. Access verified insights and drive innovation across HealthTech, FoodTech, EnergyTech, and FinTech.
               </p>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <Button
+                  className="bg-newtifi-teal text-newtifi-navy hover:bg-white rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em]"
+                >
+                  Apply for Membership
+                </Button>
+                <Button
+                  variant="outline"
+                  className="border-white/40 text-white hover:border-white rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em]"
+                >
+                  Explore Benefits
+                </Button>
+              </div>
             </ScrollReveal>
           </div>
         </div>
@@ -88,16 +101,36 @@ const Membership = () => {
 
 
       {/* Membership Tiers Section */}
-      <section className="px-6 py-20 bg-gradient-to-br from-gray-50 to-white">
+      <section className="px-6 py-20 bg-gray-50">
         <div className="container mx-auto">
-          <ScrollReveal className="text-center mb-16">
-            <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Membership Tiers</p>
+          <ScrollReveal className="text-center mb-14">
+            <p className="text-xs uppercase tracking-[0.35em] text-[#5F5F5F] mb-4">
+              Membership Tiers
+            </p>
             <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">
               Choose Your Path to Innovation
             </h2>
             <p className="text-base text-gray-600 max-w-3xl mx-auto">
-              Three distinct membership tiers designed to meet your organization's needs and goals.
+              Three distinct membership tiers designed to meet your organization’s goals, from open access to enterprise collaboration.
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Positioning</p>
+              <p className="mt-4 text-xl font-light text-newtifi-navy">Executive-led research</p>
+              <p className="mt-2 text-sm text-gray-600">Evidence-backed intelligence for strategic decisions.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Network</p>
+              <p className="mt-4 text-xl font-light text-newtifi-navy">Global peer exchange</p>
+              <p className="mt-2 text-sm text-gray-600">Curated access to policy, finance, and innovation leaders.</p>
+            </div>
+            <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+              <p className="text-xs uppercase tracking-[0.3em] text-gray-500">Impact</p>
+              <p className="mt-4 text-xl font-light text-newtifi-navy">Policy and market influence</p>
+              <p className="mt-2 text-sm text-gray-600">Structured programs to shape the future of tech and finance.</p>
+            </div>
           </ScrollReveal>
           
           <div className="grid lg:grid-cols-3 gap-8 w-full mx-auto">
@@ -106,6 +139,8 @@ const Membership = () => {
               <div className={`relative bg-white rounded-2xl p-8 shadow-sm border transition-all duration-300 hover:shadow-md ${
                 selectedTier === 'open' ? 'border-newtifi-teal shadow-newtifi-teal/20' : 'border-gray-200'
               }`}>
+                <div className="absolute -top-4 -left-4 w-16 h-16 border border-gray-200 rounded-2xl rotate-6"></div>
+                <div className="absolute -bottom-4 -right-4 w-12 h-12 border border-gray-200 rounded-xl -rotate-6"></div>
                 {/* Background pattern */}
                 <div className="absolute top-4 right-4 w-16 h-16 opacity-5">
                   <svg viewBox="0 0 50 50" className="w-full h-full">
@@ -115,29 +150,29 @@ const Membership = () => {
                 </div>
                 
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Users className="w-8 h-8 text-gray-600" />
                   </div>
-                  <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Open Member</h3>
-                  <p className="text-gray-600">Perfect for getting started</p>
+                  <h3 className="text-xl font-semibold text-newtifi-navy mb-2">Open Member</h3>
+                  <p className="text-sm text-gray-600">Perfect for getting started</p>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Limited research access</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Limited research access</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Public events & webinars</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Public events & webinars</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Newsletter updates</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Newsletter updates</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Community access</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Community access</span>
                   </div>
                 </div>
 
@@ -146,7 +181,7 @@ const Membership = () => {
                     setActiveContent('overview');
                     setActiveForm(activeForm === 'open' ? null : 'open');
                   }}
-                  className="w-full bg-gray-100 text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-gray-200 transition-all duration-300"
+                  className="w-full bg-gray-100 text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-gray-200 transition-all duration-300"
                 >
                   Get Started Free
                 </button>
@@ -155,12 +190,14 @@ const Membership = () => {
 
             {/* Individual Member - Featured */}
             <ScrollReveal delay={200}>
-              <div className={`relative bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90 text-white rounded-2xl p-8 shadow-sm border border-newtifi-teal transition-all duration-300 hover:shadow-md ${
+              <div className={`relative bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90 text-white rounded-2xl p-8 shadow-2xl border border-newtifi-teal transition-all duration-300 hover:-translate-y-1 ${
                 selectedTier === 'individual' ? 'shadow-newtifi-teal/30' : ''
               }`}>
+                <div className="absolute -top-6 -right-6 w-20 h-20 border border-white/20 rounded-2xl rotate-12"></div>
+                <div className="absolute -bottom-6 left-4 w-14 h-14 border border-white/15 rounded-xl -rotate-6"></div>
                 {/* Featured badge */}
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <div className="bg-newtifi-teal text-newtifi-navy px-4 py-1 rounded-full text-base font-bold">
+                  <div className="bg-[#57F0B0] text-[#1A1C2A] px-4 py-1 rounded-full text-xs font-semibold tracking-[0.2em] uppercase">
                     MOST POPULAR
                   </div>
               </div>
@@ -174,11 +211,11 @@ const Membership = () => {
               </div>
 
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-newtifi-teal/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Award className="w-8 h-8 text-newtifi-teal" />
                   </div>
-                  <h3 className="text-2xl font-bold mb-2">Individual Member</h3>
-                  <p className="text-white/80">Premium access</p>
+                  <h3 className="text-xl font-semibold mb-2">Individual Member</h3>
+                  <p className="text-sm text-white/80">Premium access</p>
               </div>
 
                 <div className="space-y-4 mb-8">
@@ -209,7 +246,7 @@ const Membership = () => {
                     setActiveContent('individual');
                     setActiveForm(activeForm === 'individual' ? null : 'individual');
                   }}
-                  className="w-full bg-newtifi-teal text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-white transition-all duration-300"
+                  className="w-full bg-newtifi-teal text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-white transition-all duration-300"
                 >
                   Join Now
                     </button>
@@ -221,6 +258,8 @@ const Membership = () => {
               <div className={`relative bg-white rounded-2xl p-8 shadow-sm border transition-all duration-300 hover:shadow-md ${
                 selectedTier === 'institutional' ? 'border-newtifi-teal shadow-newtifi-teal/20' : 'border-gray-200'
               }`}>
+                <div className="absolute -top-4 -right-4 w-16 h-16 border border-gray-200 rounded-2xl -rotate-6"></div>
+                <div className="absolute -bottom-4 -left-4 w-12 h-12 border border-gray-200 rounded-xl rotate-6"></div>
                 {/* Background geometric pattern */}
                 <div className="absolute top-4 right-4 w-16 h-16 opacity-5">
                   <svg viewBox="0 0 50 50" className="w-full h-full">
@@ -230,33 +269,33 @@ const Membership = () => {
                 </div>
                 
                 <div className="text-center mb-8">
-                  <div className="w-16 h-16 bg-gradient-to-br from-newtifi-teal/20 to-newtifi-navy/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
                     <Shield className="w-8 h-8 text-newtifi-navy" />
                   </div>
-                  <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Institutional</h3>
-                  <p className="text-gray-600">Enterprise solutions</p>
+                  <h3 className="text-xl font-semibold text-newtifi-navy mb-2">Institutional</h3>
+                  <p className="text-sm text-gray-600">Enterprise solutions</p>
                 </div>
                 
                 <div className="space-y-4 mb-8">
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Everything in Individual</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Everything in Individual</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Internal content distribution</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Internal content distribution</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Custom training programs</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Custom training programs</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Dedicated account manager</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Dedicated account manager</span>
                   </div>
                   <div className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3" />
-                    <span className="text-gray-700">Custom research projects</span>
+                    <Check className="w-5 h-5 text-newtifi-teal mr-3" />
+                    <span className="text-sm text-gray-700">Custom research projects</span>
                   </div>
                 </div>
 
@@ -265,7 +304,7 @@ const Membership = () => {
                     setActiveContent('institutional');
                     setActiveForm(activeForm === 'institutional' ? null : 'institutional');
                   }}
-                  className="w-full bg-newtifi-navy text-white py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-newtifi-navy/90 transition-all duration-300"
+                  className="w-full bg-newtifi-navy text-white py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-newtifi-navy/90 transition-all duration-300"
                 >
                   Contact Sales
                 </button>
@@ -275,21 +314,65 @@ const Membership = () => {
         </div>
       </section>
 
+      {/* Membership Journey Section */}
+      <section className="px-6 py-20 bg-white">
+        <div className="container mx-auto">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 items-start">
+            <ScrollReveal>
+              <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">
+                Membership Journey
+              </p>
+              <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-6">
+                A structured, transparent process
+              </h2>
+              <p className="text-base text-gray-600 mb-8">
+                Every membership tier is aligned with governance, research access, and collaborative impact. The process is simple, verified, and tailored to your goals.
+              </p>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <h3 className="text-sm uppercase tracking-[0.2em] text-newtifi-navy mb-4">Eligibility</h3>
+                <div className="space-y-3 text-sm text-gray-600">
+                  <p>• Demonstrated interest in technology and finance.</p>
+                  <p>• Commitment to ethical research and policy standards.</p>
+                  <p>• Alignment with NewTIFI’s research priorities.</p>
+                </div>
+              </div>
+            </ScrollReveal>
+            <ScrollReveal delay={150}>
+              <div className="grid md:grid-cols-2 gap-6">
+                {[
+                  { title: 'Apply', desc: 'Select a tier and submit your profile.' },
+                  { title: 'Review', desc: 'We verify eligibility and alignment.' },
+                  { title: 'Activate', desc: 'Unlock research, events, and tools.' },
+                  { title: 'Collaborate', desc: 'Join programs and member initiatives.' }
+                ].map((step, index) => (
+                  <div key={step.title} className="relative bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                    <div className="absolute -top-3 -right-3 w-10 h-10 border border-gray-200 rounded-xl rotate-6"></div>
+                    <p className="text-xs uppercase tracking-[0.25em] text-gray-500">Step {index + 1}</p>
+                    <h4 className="mt-3 text-lg font-semibold text-newtifi-navy">{step.title}</h4>
+                    <p className="mt-2 text-sm text-gray-600">{step.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
+      </section>
+
       {/* Dynamic Content Section */}
-      <section className="px-6 py-20 bg-gradient-to-r from-newtifi-navy to-newtifi-teal relative overflow-hidden">
+      <section className="px-6 py-20 bg-white relative overflow-hidden">
         {/* Background stencil pattern */}
-        <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 opacity-[0.06]">
           <div className="absolute top-10 left-10 w-32 h-32">
             <svg viewBox="0 0 100 100" className="w-full h-full">
-              <rect x="10" y="10" width="80" height="80" stroke="white" strokeWidth="2" fill="none"/>
-              <circle cx="50" cy="50" r="30" stroke="white" strokeWidth="2" fill="none"/>
-              <path d="M20,50 L80,50 M50,20 L50,80" stroke="white" strokeWidth="2"/>
+              <rect x="10" y="10" width="80" height="80" stroke="#2d2a5f" strokeWidth="2" fill="none"/>
+              <circle cx="50" cy="50" r="30" stroke="#2d2a5f" strokeWidth="2" fill="none"/>
+              <path d="M20,50 L80,50 M50,20 L50,80" stroke="#2d2a5f" strokeWidth="2"/>
             </svg>
           </div>
           <div className="absolute bottom-10 right-10 w-24 h-24">
             <svg viewBox="0 0 100 100" className="w-full h-full">
-              <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" stroke="white" strokeWidth="2" fill="none"/>
-              <circle cx="50" cy="50" r="20" stroke="white" strokeWidth="2" fill="none"/>
+              <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" stroke="#2d2a5f" strokeWidth="2" fill="none"/>
+              <circle cx="50" cy="50" r="20" stroke="#2d2a5f" strokeWidth="2" fill="none"/>
             </svg>
           </div>
         </div>
@@ -298,28 +381,31 @@ const Membership = () => {
           <div className="w-full mx-auto">
             {activeContent === 'overview' && (
               <ScrollReveal>
-                <div className="text-center mb-16">
-                  <h2 className="text-2xl md:text-4xl font-bold text-white mb-4">
+                <div className="text-center mb-12">
+                  <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">
+                    Compare Benefits
+                  </p>
+                  <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">
                     Compare Membership Benefits
                   </h2>
-                  <p className="text-base text-white/90">
-                    See exactly what each membership tier includes
+                  <p className="text-base text-gray-600">
+                    See exactly what each membership tier includes.
                   </p>
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
                   <div className="grid grid-cols-4 bg-gray-50">
-                    <div className="p-6 font-light uppercase tracking-[0.2em] text-newtifi-navy">Feature</div>
-                    <div className="p-6 text-center font-light uppercase tracking-[0.2em] text-gray-600">Open</div>
-                    <div className="p-6 text-center font-light uppercase tracking-[0.2em] text-newtifi-navy">Individual</div>
-                    <div className="p-6 text-center font-light uppercase tracking-[0.2em] text-gray-600">Institutional</div>
+                    <div className="p-6 font-semibold text-newtifi-navy">Feature</div>
+                    <div className="p-6 text-center font-semibold text-gray-600">Open</div>
+                    <div className="p-6 text-center font-semibold text-newtifi-navy">Individual</div>
+                    <div className="p-6 text-center font-semibold text-gray-600">Institutional</div>
                   </div>
                   
                   {benefits.map((benefit, index) => (
-                    <div key={index} className={`grid grid-cols-4 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
+                    <div key={index} className={`grid grid-cols-4 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50'}`}>
                       <div className="p-6 text-gray-700">{benefit.feature}</div>
                       <div className="p-6 text-center">
-                        {benefit.open ? <Check className="w-5 h-5 text-green-500 mx-auto" /> : <span className="text-gray-400">—</span>}
+                        {benefit.open ? <Check className="w-5 h-5 text-newtifi-teal mx-auto" /> : <span className="text-gray-400">—</span>}
                       </div>
                       <div className="p-6 text-center">
                         {benefit.individual ? <Check className="w-5 h-5 text-newtifi-teal mx-auto" /> : <span className="text-gray-400">—</span>}
@@ -337,7 +423,10 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <h2 className="text-2xl md:text-4xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-6">
+                    <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">
+                      Individual
+                    </p>
+                    <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-6">
                       Individual Membership
                     </h2>
                     <p className="text-base text-gray-600 mb-8">
@@ -347,34 +436,34 @@ const Membership = () => {
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-teal mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Full Research Access</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Full Research Access</h3>
                           <p className="text-gray-600">Access our complete library of peer-reviewed articles, policy papers, and industry reports.</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-teal mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Exclusive Events</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Exclusive Events</h3>
                           <p className="text-gray-600">Attend member-only webinars, workshops, and networking events with industry leaders.</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-teal mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Policy Participation</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Policy Participation</h3>
                           <p className="text-gray-600">Contribute to policy discussions and advocacy efforts in technology and finance.</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-newtifi-teal/10 to-newtifi-navy/10 rounded-2xl p-8 border border-gray-200">
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                     <img 
                       src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=500&h=400&fit=crop&crop=center" 
                       alt="Individual Membership"
                       className="w-full h-80 object-cover rounded-2xl mb-6"
                     />
-                    <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">Perfect For:</h3>
-                    <ul className="space-y-2 text-gray-700">
+                    <h3 className="text-lg font-semibold text-newtifi-navy mb-4">Perfect For:</h3>
+                    <ul className="space-y-2 text-gray-600">
                       <li>• Technology professionals and researchers</li>
                       <li>• Financial industry experts</li>
                       <li>• Policy analysts and consultants</li>
@@ -390,7 +479,10 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                   <div>
-                    <h2 className="text-2xl md:text-4xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-6">
+                    <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">
+                      Institutional
+                    </p>
+                    <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-6">
                       Institutional Membership
                     </h2>
                     <p className="text-base text-gray-600 mb-8">
@@ -400,34 +492,34 @@ const Membership = () => {
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-navy mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Enterprise Access</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Enterprise Access</h3>
                           <p className="text-gray-600">Provide unlimited access to all NewTIFI resources for your entire team.</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-navy mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Custom Training</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Custom Training</h3>
                           <p className="text-gray-600">Tailored training programs and workshops designed for your organization's specific needs.</p>
                         </div>
                       </div>
                       <div className="flex items-start">
                         <Check className="w-6 h-6 text-newtifi-navy mr-4 mt-1 flex-shrink-0" />
                         <div>
-                          <h3 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">Dedicated Support</h3>
+                          <h3 className="font-semibold text-newtifi-navy mb-1">Dedicated Support</h3>
                           <p className="text-gray-600">Direct access to our team of experts and dedicated account management.</p>
                         </div>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-gradient-to-br from-newtifi-navy/10 to-newtifi-teal/10 rounded-2xl p-8 border border-gray-200">
+                  <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
                     <img 
                       src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=500&h=400&fit=crop&crop=center" 
                       alt="Institutional Membership"
                       className="w-full h-80 object-cover rounded-2xl mb-6"
                     />
-                    <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">Perfect For:</h3>
-                    <ul className="space-y-2 text-gray-700">
+                    <h3 className="text-lg font-semibold text-newtifi-navy mb-4">Perfect For:</h3>
+                    <ul className="space-y-2 text-gray-600">
                       <li>• Financial institutions and banks</li>
                       <li>• Technology companies and startups</li>
                       <li>• Consulting firms and advisory services</li>
@@ -444,11 +536,11 @@ const Membership = () => {
 
       {/* Application Forms */}
       {activeForm && (
-        <section className="fixed inset-0 bg-black/50 flex items-center justify-center p-6 z-50 bg-white">
-          <div className="bg-white rounded-2xl w-full max-h-[90vh] overflow-y-auto shadow-sm border border-gray-200">
+        <section className="fixed inset-0 bg-black/60 flex items-center justify-center p-6 z-50">
+          <div className="bg-white rounded-2xl w-full max-w-3xl max-h-[90vh] overflow-y-auto border border-gray-200 shadow-2xl">
             <div className="p-8">
               <div className="flex justify-between items-center mb-6">
-                <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy">
+                <h3 className="text-xl font-semibold text-newtifi-navy">
                   {activeForm === 'institutional' ? 'Institutional Membership Request' :
                    activeForm === 'individual' ? 'Individual Membership Application' :
                    'Open Membership Registration'}
@@ -466,37 +558,37 @@ const Membership = () => {
                     <input
                       type="text"
                     placeholder="First Name"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                     />
                   <input
                     type="text"
                     placeholder="Last Name"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                   />
                 </div>
 
                     <input
                       type="email"
                       placeholder="Email Address"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                     />
 
                     <input
                       type="tel"
                       placeholder="Phone Number"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                     />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <input
                       type="text"
                       placeholder="Country"
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                     />
                     <input
                       type="text"
                     placeholder="Role/Position"
-                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                   />
                 </div>
 
@@ -504,7 +596,7 @@ const Membership = () => {
                   <input
                     type="text"
                     placeholder={activeForm === 'institutional' ? 'Company Name' : 'Organization'}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                     />
                 )}
 
@@ -512,7 +604,7 @@ const Membership = () => {
                   placeholder={activeForm === 'institutional' ? 'Tell us about your institution and goals' :
                              activeForm === 'individual' ? 'Tell us about your interests and goals' :
                              'Tell us about your interests'}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal outline-none"
                       rows={4}
                     />
 
@@ -522,14 +614,14 @@ const Membership = () => {
                     id="terms"
                         className="mt-1 h-4 w-4 text-newtifi-teal focus:ring-newtifi-teal border-gray-300 rounded"
                       />
-                  <label htmlFor="terms" className="ml-2 block text-base text-gray-600">
+                  <label htmlFor="terms" className="ml-2 block text-sm text-gray-600">
                     I agree to receive communications and accept the terms of membership
                       </label>
                     </div>
 
                     <button
                       type="submit"
-                  className="w-full bg-newtifi-teal text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-newtifi-teal/90 transition-all duration-300"
+                  className="w-full bg-newtifi-teal text-newtifi-navy py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal/90 transition-all duration-300"
                     >
                   {activeForm === 'institutional' ? 'Submit Request' :
                    activeForm === 'individual' ? 'Submit Application' :
@@ -542,15 +634,18 @@ const Membership = () => {
       )}
 
       {/* Luxembourg Innovation Statistics Section */}
-      <section className="px-6 py-16 bg-gradient-to-br from-gray-50 to-white">
+      <section className="px-6 py-16 bg-gray-50">
         <div className="container mx-auto">
           <div className="w-full mx-auto">
             <ScrollReveal className="text-center mb-12">
-              <h2 className="text-2xl md:text-4xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">
+              <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">
+                Luxembourg Advantage
+              </p>
+              <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">
                 Luxembourg: Innovation Powerhouse
               </h2>
-              <p className="text-base text-gray-600 w-full">
-                NewTIFI leverages Luxembourg's strategic advantages and research capabilities in Europe's most dynamic innovation ecosystem.
+              <p className="text-base text-gray-600 max-w-3xl mx-auto">
+                NewTIFI leverages Luxembourg's strategic advantages and research capabilities in Europe’s most dynamic innovation ecosystem.
               </p>
             </ScrollReveal>
 
@@ -558,7 +653,7 @@ const Membership = () => {
               <ScrollReveal>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-2xl font-bold text-newtifi-teal">3.2%</span>
+                    <span className="text-2xl font-semibold text-newtifi-teal">3.2%</span>
                     <button 
                       onClick={() => setExpandedStats(expandedStats === 'rd' ? null : 'rd')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"
@@ -567,9 +662,9 @@ const Membership = () => {
                     </button>
                   </div>
                   <p className="text-newtifi-navy font-medium mb-2">R&D Investment Rate</p>
-                  <p className="text-base text-gray-600 mb-3">Highest in the EU, exceeding 3% target</p>
+                  <p className="text-sm text-gray-600 mb-3">Highest in the EU, exceeding 3% target</p>
                   {expandedStats === 'rd' && (
-                    <div className="text-xs text-gray-500 border-t pt-3">
+                    <div className="text-xs text-gray-600 border-t border-gray-200 pt-3">
                       <p><strong>Source:</strong> Eurostat, 2023</p>
                       <p><strong>Methodology:</strong> Gross domestic expenditure on R&D as % of GDP</p>
                     </div>
@@ -580,7 +675,7 @@ const Membership = () => {
               <ScrollReveal delay={100}>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-2xl font-bold text-newtifi-teal">€6.2T</span>
+                    <span className="text-2xl font-semibold text-newtifi-teal">€6.2T</span>
                 <button
                       onClick={() => setExpandedStats(expandedStats === 'assets' ? null : 'assets')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"
@@ -589,9 +684,9 @@ const Membership = () => {
                 </button>
               </div>
                   <p className="text-newtifi-navy font-medium mb-2">Financial Assets</p>
-                  <p className="text-base text-gray-600 mb-3">Under management in Luxembourg</p>
+                  <p className="text-sm text-gray-600 mb-3">Under management in Luxembourg</p>
                   {expandedStats === 'assets' && (
-                    <div className="text-xs text-gray-500 border-t pt-3">
+                    <div className="text-xs text-gray-600 border-t border-gray-200 pt-3">
                       <p><strong>Source:</strong> CSSF Annual Report, 2023</p>
                       <p><strong>Scope:</strong> UCITS, AIFs, and other investment vehicles</p>
                     </div>
@@ -602,7 +697,7 @@ const Membership = () => {
               <ScrollReveal delay={200}>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-2xl font-bold text-newtifi-teal">500+</span>
+                    <span className="text-2xl font-semibold text-newtifi-teal">500+</span>
                     <button
                       onClick={() => setExpandedStats(expandedStats === 'fintech' ? null : 'fintech')}
                       className="text-gray-400 hover:text-newtifi-teal transition-colors"
@@ -611,9 +706,9 @@ const Membership = () => {
                     </button>
                   </div>
                   <p className="text-newtifi-navy font-medium mb-2">FinTech Companies</p>
-                  <p className="text-base text-gray-600 mb-3">Leading European ecosystem</p>
+                  <p className="text-sm text-gray-600 mb-3">Leading European ecosystem</p>
                   {expandedStats === 'fintech' && (
-                    <div className="text-xs text-gray-500 border-t pt-3">
+                    <div className="text-xs text-gray-600 border-t border-gray-200 pt-3">
                       <p><strong>Source:</strong> Luxembourg House of Financial Technology, 2023</p>
                       <p><strong>Includes:</strong> Startups, scale-ups, and established companies</p>
                     </div>
@@ -622,27 +717,42 @@ const Membership = () => {
               </ScrollReveal>
             </div>
 
+            <ScrollReveal className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+              {[
+                { title: 'FinTech', desc: 'Payments, digital assets, and RegTech programs.' },
+                { title: 'HealthTech', desc: 'Clinical innovation and compliant data research.' },
+                { title: 'EnergyTech', desc: 'Sustainable finance and grid transformation.' },
+                { title: 'FoodTech', desc: 'Supply chain intelligence and resilience.' }
+              ].map((pillar) => (
+                <div key={pillar.title} className="relative bg-white rounded-2xl border border-gray-200 p-5 shadow-sm">
+                  <div className="absolute -top-3 -left-3 w-10 h-10 border border-gray-200 rounded-xl -rotate-6"></div>
+                  <p className="text-xs uppercase tracking-[0.2em] text-newtifi-navy">{pillar.title}</p>
+                  <p className="mt-3 text-sm text-gray-600">{pillar.desc}</p>
+                </div>
+              ))}
+            </ScrollReveal>
+
             <div className="grid lg:grid-cols-2 gap-8">
               <ScrollReveal>
-                <div className="bg-gradient-to-br from-newtifi-navy to-newtifi-teal text-white rounded-2xl p-6 shadow-xl">
-                  <h4 className="text-base font-bold mb-4">Key Advantages</h4>
-                  <div className="space-y-3 text-base">
+                <div className="bg-gradient-to-br from-newtifi-navy to-newtifi-navy/90 text-white rounded-2xl p-6 shadow-xl">
+                  <h4 className="text-sm uppercase tracking-[0.2em] mb-4">Key Advantages</h4>
+                  <div className="space-y-3 text-sm">
                     <div className="flex items-start">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <div>
                         <span className="font-medium">Strategic EU Location</span>
                         <p className="text-white/80 text-xs">Direct access to EU policymakers</p>
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <div>
                         <span className="font-medium">Multilingual Expertise</span>
                         <p className="text-white/80 text-xs">70% speak 3+ languages</p>
                       </div>
                     </div>
                     <div className="flex items-start">
-                      <div className="w-2 h-2 bg-white rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-2 mr-3 flex-shrink-0"></div>
                       <div>
                         <span className="font-medium">Innovation-Friendly Regulations</span>
                         <p className="text-white/80 text-xs">Progressive technology policies</p>
@@ -654,7 +764,7 @@ const Membership = () => {
               
               <ScrollReveal delay={100}>
                 <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
-                  <h4 className="text-base font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">Research Institutions</h4>
+                  <h4 className="text-sm uppercase tracking-[0.2em] text-newtifi-navy mb-4">Research Institutions</h4>
                   <div className="space-y-3">
                     <a 
                       href="https://wwwen.uni.lu" 
@@ -664,7 +774,7 @@ const Membership = () => {
                     >
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-3"></div>
                       <div className="flex-1">
-                        <h5 className="font-light uppercase tracking-[0.2em] text-newtifi-navy group-hover:text-newtifi-teal transition-colors">University of Luxembourg</h5>
+                        <h5 className="font-semibold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">University of Luxembourg</h5>
                         <p className="text-xs text-gray-600">6,700+ students, leading research university</p>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-newtifi-teal transition-colors" />
@@ -677,7 +787,7 @@ const Membership = () => {
                     >
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-3"></div>
                       <div className="flex-1">
-                        <h5 className="font-light uppercase tracking-[0.2em] text-newtifi-navy group-hover:text-newtifi-teal transition-colors">Luxembourg Institute of Science and Technology (LIST)</h5>
+                        <h5 className="font-semibold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">Luxembourg Institute of Science and Technology (LIST)</h5>
                         <p className="text-xs text-gray-600">Applied research and innovation center</p>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-newtifi-teal transition-colors" />
@@ -690,7 +800,7 @@ const Membership = () => {
                     >
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full mr-3"></div>
                       <div className="flex-1">
-                        <h5 className="font-light uppercase tracking-[0.2em] text-newtifi-navy group-hover:text-newtifi-teal transition-colors">Luxembourg National Research Fund (FNR)</h5>
+                        <h5 className="font-semibold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">Luxembourg National Research Fund (FNR)</h5>
                         <p className="text-xs text-gray-600">€100M+ annual research funding</p>
                       </div>
                       <ArrowUpRight className="w-4 h-4 text-gray-400 group-hover:text-newtifi-teal transition-colors" />
@@ -708,4 +818,4 @@ const Membership = () => {
   );
 };
 
-export default Membership; 
+export default Membership2;

@@ -361,7 +361,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Title</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Title</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.title}
@@ -369,7 +369,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Author</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Author</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.author}
@@ -377,7 +377,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Date</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Date</label>
               <input
                 type="date"
                 className="w-full border rounded-md px-3 py-2 text-sm"
@@ -386,7 +386,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">DOI</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">DOI</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.doi}
@@ -394,7 +394,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Keywords (comma separated)</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Keywords (comma separated)</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.keywords}
@@ -402,7 +402,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Filename</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Filename</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.filename}
@@ -410,7 +410,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-xs font-semibold text-gray-600 mb-1">PDF URL</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">PDF URL</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.pdfUrl}
@@ -418,7 +418,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div className="md:col-span-2">
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Abstract</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Abstract</label>
               <textarea
                 className="w-full border rounded-md px-3 py-2 text-sm h-24"
                 value={formData.abstract}
@@ -426,7 +426,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Status</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Status</label>
               <select
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.status}
@@ -438,7 +438,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Category</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Category</label>
               <select
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.category}
@@ -449,7 +449,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-gray-600 mb-1">Volume</label>
+              <label className="block text-xs font-light uppercase tracking-[0.2em] text-gray-600 mb-1">Volume</label>
               <input
                 className="w-full border rounded-md px-3 py-2 text-sm"
                 value={formData.volume}
@@ -489,7 +489,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
         {(['articles', 'upload', 'scan'] as const).map((t) => (
           <button
             key={t}
-            className={`px-4 py-2 font-semibold border-b-2 ${tab === t ? 'border-[#0A0A23] text-[#0A0A23]' : 'border-transparent text-gray-500'}`}
+            className={`px-4 py-2 font-light uppercase tracking-[0.2em] border-b-2 ${tab === t ? 'border-[#0A0A23] text-[#0A0A23]' : 'border-transparent text-gray-500'}`}
             onClick={() => setTab(t)}
           >
             {t === 'articles' ? '📄 Articles' : t === 'upload' ? '📤 Upload' : '🔍 Scan'}
@@ -567,7 +567,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
                         {article.fileSize || 'N/A'}
                       </td>
                       <td className="p-2">
-                        <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">
+                        <span className="inline-flex px-2 py-1 text-xs font-light uppercase tracking-[0.2em] rounded-full bg-green-100 text-green-700">
                           {article.status || 'published'}
                         </span>
                       </td>
@@ -632,7 +632,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
       {tab === 'upload' && (
         <div className="bg-white rounded-lg shadow p-6">
           <h3 className="text-base font-bold mb-4">Upload Articles</h3>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
+          <div className="border border-dashed border-gray-300 rounded-2xl p-8 text-center">
             <div className="text-gray-400 mb-4">
               <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
@@ -664,7 +664,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
           <h3 className="text-base font-bold mb-4">Scan for Articles</h3>
           <div className="space-y-4">
             <div className="p-4 bg-blue-50 rounded-lg">
-              <h4 className="font-semibold text-blue-800 mb-2">Scan Results</h4>
+              <h4 className="font-light uppercase tracking-[0.2em] text-blue-800 mb-2">Scan Results</h4>
               <p className="text-base text-blue-700">
                 This will scan the website directories for PDF articles and automatically add them to the system.
               </p>
@@ -680,7 +680,7 @@ const ArticleCollatingTool: React.FC<ArticleCollatingToolProps> = ({ articles, o
 
             {realArticles.length > 0 && (
               <div className="mt-4">
-                <h4 className="font-semibold mb-2">Found Articles:</h4>
+                <h4 className="font-light uppercase tracking-[0.2em] mb-2">Found Articles:</h4>
                 <div className="space-y-2">
                   {realArticles.map((article, index) => (
                     <div key={index} className="p-3 bg-gray-50 rounded border">

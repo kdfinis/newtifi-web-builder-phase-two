@@ -58,21 +58,21 @@ const Breadcrumb: React.FC = () => {
   if (location.pathname === '/') return null;
 
   return (
-    <nav className="flex items-center space-x-1 text-sm text-gray-500 mb-4" aria-label="Breadcrumb">
+    <nav className="flex items-center space-x-1 text-sm text-gray-600 mb-4 font-light" aria-label="Breadcrumb">
       <ol className="flex items-center space-x-1">
         {breadcrumbs.map((item, index) => (
           <li key={item.href} className="flex items-center">
             {index > 0 && (
-              <ChevronRight className="h-4 w-4 text-gray-400 mx-1" />
+              <ChevronRight className="h-4 w-4 text-newtifi-grey mx-1" />
             )}
             {item.current ? (
-              <span className="text-gray-900 font-medium" aria-current="page">
+              <span className="text-newtifi-navy font-medium" aria-current="page">
                 {item.name}
               </span>
             ) : (
               <Link
                 to={item.href}
-                className="text-gray-500 hover:text-gray-700 transition-colors"
+                className="text-gray-600 hover:text-newtifi-teal transition-colors"
               >
                 {item.name}
               </Link>

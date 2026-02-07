@@ -26,10 +26,10 @@ const TeamMember: React.FC<TeamMemberProps> = ({
     <div className={cn("flex flex-col items-center", className)}>
       <Link 
         to={`/person/${urlName}`}
-        className="relative w-full max-w-[280px] bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+        className="relative w-full max-w-[280px] bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-md hover:border-newtifi-teal/30"
       >
-        <div className="relative h-[240px] w-full overflow-hidden rounded-xl">
-          <div className="absolute inset-0 bg-[#0F2D5F] opacity-0 group-hover:opacity-30 transition-opacity duration-500 ease-in-out rounded-xl"></div>
+        <div className="relative h-[240px] w-full overflow-hidden rounded-t-2xl">
+          <div className="absolute inset-0 bg-newtifi-navy/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500 ease-in-out rounded-t-2xl"></div>
           <img 
             src={imageSrc} 
             alt={name}
@@ -41,25 +41,25 @@ const TeamMember: React.FC<TeamMemberProps> = ({
           />
         </div>
          
-        <div className="p-6 transition-all duration-300 bg-white group-hover:bg-white h-[180px] flex flex-col justify-between shadow-sm group-hover:shadow-xl">
+        <div className="p-6 transition-all duration-300 bg-white group-hover:bg-white h-[180px] flex flex-col justify-between shadow-sm group-hover:shadow-md">
           <div>
-            <h3 className="text-base font-bold text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
-            <p className="text-newtifi-navy font-medium text-base line-clamp-2">{title}</p>
+            <h3 className="text-base font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
+            <p className="text-newtifi-navy font-light uppercase tracking-[0.2em] text-base line-clamp-2">{title}</p>
             {subtitle && (
-              <p className="text-newtifi-navy/70 font-medium text-sm line-clamp-1">{subtitle}</p>
+              <p className="text-newtifi-navy/70 font-light uppercase tracking-wide text-sm line-clamp-1">{subtitle}</p>
             )}
           </div>
           
           <div className="flex justify-start">
-            <button 
+            <span 
               className={cn(
                 "flex items-center justify-center text-newtifi-navy transition-all duration-300",
-                "bg-newtifi-teal/10 rounded-full p-2",
-                "group-hover:translate-x-2 group-hover:bg-newtifi-teal/20"
+                "bg-newtifi-teal/10 rounded-lg p-2",
+                "group-hover:translate-x-1 group-hover:bg-newtifi-teal/20"
               )}
             >
               <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
-            </button>
+            </span>
           </div>
         </div>
       </Link>

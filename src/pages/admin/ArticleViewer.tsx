@@ -232,7 +232,7 @@ export default function ArticleViewer() {
       <div className="container mx-auto px-6 py-8">
         {/* Stats Overview */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Articles</p>
@@ -241,7 +241,7 @@ export default function ArticleViewer() {
               <FileText className="h-8 w-8 text-newtifi-navy opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Published</p>
@@ -250,7 +250,7 @@ export default function ArticleViewer() {
               <CheckCircle className="h-8 w-8 text-green-600 opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Drafts</p>
@@ -259,7 +259,7 @@ export default function ArticleViewer() {
               <Clock className="h-8 w-8 text-gray-600 opacity-50" />
             </div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100">
+          <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Pending</p>
@@ -271,7 +271,7 @@ export default function ArticleViewer() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-100 mb-6">
+        <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
@@ -320,7 +320,7 @@ export default function ArticleViewer() {
 
         {/* Articles Browser - Scrollable Grid/List View */}
         {!loading && (
-          <div className="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
             {/* Scrollable Container */}
             <div className="overflow-y-auto max-h-[calc(100vh-400px)]">
               {filteredArticles.length === 0 ? (
@@ -354,7 +354,7 @@ export default function ArticleViewer() {
                             )}
                           </div>
                           
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2 hover:text-newtifi-teal transition-colors">
+                          <h3 className="text-lg font-light uppercase tracking-wide text-gray-900 mb-2 hover:text-newtifi-teal transition-colors">
                             {article.title || 'Untitled'}
                           </h3>
                           
@@ -567,7 +567,7 @@ function ArticleDetailsView({ article }: { article: Article }) {
         <div key={idx} className="border border-gray-200 rounded-lg p-5 bg-gray-50">
           <div className="flex items-center gap-2 mb-4">
             <section.icon className="h-5 w-5 text-newtifi-teal" />
-            <h3 className="text-lg font-semibold text-newtifi-navy">{section.title}</h3>
+            <h3 className="text-lg font-light uppercase tracking-wide text-newtifi-navy">{section.title}</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {section.fields.map((field, fieldIdx) => (

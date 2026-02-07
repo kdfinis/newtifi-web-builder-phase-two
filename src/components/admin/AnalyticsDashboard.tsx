@@ -66,7 +66,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
     <div className="flex space-x-6">
       {/* Left Navigation/Filter Pane */}
       <div className="w-64 bg-white border rounded-lg p-4 h-fit">
-        <h3 className="font-semibold mb-4">Filters</h3>
+        <h3 className="font-light uppercase tracking-[0.2em] mb-4">Filters</h3>
         
         {/* Timeframe Filter */}
         <div className="mb-6">
@@ -120,7 +120,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
       {/* Right Charts Section */}
       <div className="flex-1 space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-base font-bold">Analytics Dashboard</h2>
+          <h2 className="text-base font-extralight uppercase tracking-[0.12em]">Analytics Dashboard</h2>
           <div className="text-base text-gray-500">
             Last updated: {new Date().toLocaleDateString()}
           </div>
@@ -129,25 +129,25 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
         {/* Summary Metrics */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="bg-white border rounded-lg p-4">
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-blue-600">
               {data?.totalDownloads || 0}
             </div>
             <div className="text-base text-gray-600">Journal Downloads</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-green-600">
               {data?.totalViews || 0}
             </div>
             <div className="text-base text-gray-600">Page Views</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-purple-600">
               {data?.totalArticles || 0}
             </div>
             <div className="text-base text-gray-600">Applications</div>
           </div>
           <div className="bg-white border rounded-lg p-4">
-            <div className="text-2xl font-bold text-orange-600">
+            <div className="text-2xl font-extralight uppercase tracking-[0.12em] text-orange-600">
               {data?.totalViews || 0}
             </div>
             <div className="text-base text-gray-600">Commentary Views</div>
@@ -158,7 +158,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Journal Downloads Chart */}
           <div className="bg-white border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Journal PDF Downloads</h3>
+            <h3 className="font-light uppercase tracking-[0.2em] mb-4">Journal PDF Downloads</h3>
             {data?.monthlyStats && data.monthlyStats.length > 0 ? (
               <div className="space-y-2">
                 {data.monthlyStats.map((item, index) => (
@@ -181,7 +181,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
 
           {/* Most Viewed Pages */}
           <div className="bg-white border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Most Viewed Pages</h3>
+            <h3 className="font-light uppercase tracking-[0.2em] mb-4">Most Viewed Pages</h3>
             {data?.categoryStats && data.categoryStats.length > 0 ? (
               <div className="space-y-3">
                 {data.categoryStats.slice(0, 5).map((item, index) => (
@@ -198,7 +198,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
 
           {/* Scholarship Applications by Source */}
           <div className="bg-white border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Scholarship Applications by Source</h3>
+            <h3 className="font-light uppercase tracking-[0.2em] mb-4">Scholarship Applications by Source</h3>
             {data?.categoryStats && data.categoryStats.length > 0 ? (
               <div className="space-y-3">
                 {data.categoryStats.map((item, index) => (
@@ -215,7 +215,7 @@ const AnalyticsDashboard: React.FC<AnalyticsDashboardProps> = ({ data }) => {
 
           {/* Legal Commentary Views */}
           <div className="bg-white border rounded-lg p-4">
-            <h3 className="font-semibold mb-4">Legal Commentary View Count</h3>
+            <h3 className="font-light uppercase tracking-[0.2em] mb-4">Legal Commentary View Count</h3>
             {data?.categoryStats && data.categoryStats.length > 0 ? (
               <div className="space-y-3">
                 {data.categoryStats.slice(0, 5).map((item, index) => (

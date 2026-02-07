@@ -29,14 +29,14 @@ const JournalCard: React.FC<JournalCardProps> = ({
   const uiConfig = configManager.getComponentConfig('JournalCard');
   
   const getVariantClasses = () => {
-    const baseClasses = uiConfig.baseClasses || 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200';
-    const titleClasses = uiConfig.titleClasses || 'text-xl font-semibold text-gray-900 mb-2';
+    const baseClasses = uiConfig.baseClasses || 'bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200';
+    const titleClasses = uiConfig.titleClasses || 'text-xl font-light uppercase tracking-wide text-gray-900 mb-2';
     const descriptionClasses = uiConfig.descriptionClasses || 'text-gray-600 text-sm leading-relaxed';
     
     switch (variant) {
       case 'featured':
         return {
-          container: `${baseClasses} border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white`,
+          container: `${baseClasses} border border-gray-200 bg-gradient-to-br from-blue-50 to-white`,
           title: `${titleClasses} text-2xl`,
           description: `${descriptionClasses} text-base`
         };
@@ -168,11 +168,11 @@ const JournalCard: React.FC<JournalCardProps> = ({
       {stats && (
         <div className="grid grid-cols-2 gap-4 mb-4 p-3 bg-gray-50 rounded-lg">
           <div className="text-center">
-            <div className="text-lg font-semibold text-gray-900">{stats.totalArticles}</div>
+            <div className="text-lg font-light uppercase tracking-wide text-gray-900">{stats.totalArticles}</div>
             <div className="text-xs text-gray-600">Articles</div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-semibold text-gray-900">{stats.featuredArticles}</div>
+            <div className="text-lg font-light uppercase tracking-wide text-gray-900">{stats.featuredArticles}</div>
             <div className="text-xs text-gray-600">Featured</div>
           </div>
         </div>

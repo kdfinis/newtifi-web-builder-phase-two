@@ -239,17 +239,17 @@ const Publishing: React.FC = () => {
       {/* NewTIFI Publishing Overview */}
       <section className="w-full px-4 pt-6 pb-6 border-b border-gray-200">
         <div className="w-full mx-auto">
-          <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+          <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-sm p-8 border border-gray-200 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
             <div className="hidden md:block flex-shrink-0">
               <img
                 src="/assets/images/Lux-Philharmonie.jpeg"
                 alt="Luxembourg Philharmonie"
-                className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200"
+                className="w-48 h-96 object-cover rounded-2xl shadow-sm border border-gray-200"
               />
             </div>
             <div className="flex-1">
               <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Publishing</h1>
-              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Empowering knowledge & education for a sustainable future</h2>
+              <h2 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-4">Empowering knowledge & education for a sustainable future</h2>
               <p className="text-base text-gray-700 mb-3">
                 NewTIFI Publishing is the scientific and editorial arm of the New Technologies & Investment Funds Institute, dedicated to advancing accessible, high-quality research and thought leadership across the fields of new technologies and finance.
               </p>
@@ -270,10 +270,10 @@ const Publishing: React.FC = () => {
       {/* Modern Tab Navigation */}
       <nav className="w-full max-w-6xl mx-auto flex flex-wrap gap-2 md:gap-4 px-4 pt-2 pb-2 mb-4" aria-label="Publishing Navigation">
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'journals' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('journals'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'journals' ? 'page' : undefined}
@@ -281,10 +281,10 @@ const Publishing: React.FC = () => {
           Journals
         </button>
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'reviews' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('reviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'reviews' ? 'page' : undefined}
@@ -292,10 +292,10 @@ const Publishing: React.FC = () => {
           Reviews
         </button>
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'articles' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('articles'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'articles' ? 'page' : undefined}
@@ -303,10 +303,10 @@ const Publishing: React.FC = () => {
           Articles
         </button>
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'books' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('books'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'books' ? 'page' : undefined}
@@ -314,10 +314,10 @@ const Publishing: React.FC = () => {
           Books
         </button>
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'interviews' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('interviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'interviews' ? 'page' : undefined}
@@ -325,10 +325,10 @@ const Publishing: React.FC = () => {
           Interviews
         </button>
         <button
-          className={`px-6 py-3 rounded-xl font-semibold transition-all text-sm md:text-base whitespace-nowrap shadow-lg border ${
+          className={`px-6 py-3 rounded-full font-light uppercase tracking-[0.2em] transition-all text-xs uppercase tracking-[0.2em] whitespace-nowrap shadow-sm border ${
             selectedTab === 'podcasts' 
-              ? 'bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white border-newtifi-navy shadow-xl' 
-              : 'bg-white text-newtifi-navy border-gray-200 hover:border-newtifi-teal hover:shadow-xl hover:bg-gradient-to-r hover:from-newtifi-teal/5 hover:to-newtifi-navy/5'
+              ? 'bg-newtifi-teal text-white border-newtifi-teal shadow-sm' 
+              : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal hover:bg-newtifi-teal/5'
           }`}
           onClick={() => { setSelectedTab('podcasts'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'podcasts' ? 'page' : undefined}
@@ -344,7 +344,7 @@ const Publishing: React.FC = () => {
             <ScrollReveal>
               <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Journals Directory</h2>
               <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Publishing programs and documentation roadmaps</h3>
+              <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Publishing programs and documentation roadmaps</h3>
               <p className="text-lg text-gray-800 mb-10 max-w-4xl">
                 Explore each journal’s focus area and the planned documentation packages. Each journal
                 will ship with complete submission rules, editorial policies, review workflow, and visual
@@ -359,10 +359,10 @@ const Publishing: React.FC = () => {
                     <BookOpen className="h-6 w-6 text-newtifi-teal" />
                     <h4 className="text-xl font-bold text-newtifi-navy">{journal.title}</h4>
                   </div>
-                  <p className="text-sm text-newtifi-teal font-semibold mb-2">{journal.subtitle}</p>
+                  <p className="text-sm text-newtifi-teal font-light uppercase tracking-[0.2em] mb-2">{journal.subtitle}</p>
                   <p className="text-sm text-gray-700 mb-4">{journal.description}</p>
                   <div className="mt-auto">
-                    <h5 className="text-sm font-semibold text-newtifi-navy mb-3">Documentation Plan</h5>
+                    <h5 className="text-sm font-light uppercase tracking-[0.2em] text-newtifi-navy mb-3">Documentation Plan</h5>
                     <ul className="space-y-2 mb-6">
                       {journal.plan.map((item) => (
                         <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
@@ -390,7 +390,7 @@ const Publishing: React.FC = () => {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Reviews by NewTIFI Publishing</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Reviews by NewTIFI Publishing</h3>
             <p className="text-lg text-gray-600">Reviews content coming soon.</p>
           </div>
         </section>
@@ -401,7 +401,7 @@ const Publishing: React.FC = () => {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Featured Articles from NewTIFI Publishing</h3>
             
             {/* Combine static and database articles */}
             {loadingDbArticles ? (
@@ -421,7 +421,7 @@ const Publishing: React.FC = () => {
                   onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(getArticleUrl(article)); }}
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-xl font-semibold text-newtifi-navy mb-2 hover:underline cursor-pointer">{article.title}</h2>
+                    <h2 className="text-xl font-light uppercase tracking-[0.2em] text-newtifi-navy mb-2 hover:underline cursor-pointer">{article.title}</h2>
                     <button
                       className="ml-4 p-2 rounded-xl hover:bg-newtifi-teal/10 transition-colors"
                       onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === idx ? null : idx); }}
@@ -484,7 +484,7 @@ const Publishing: React.FC = () => {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Books by NewTIFI Publishing</h3>
             <p className="text-lg text-gray-600">Books content coming soon.</p>
           </div>
         </section>
@@ -495,7 +495,7 @@ const Publishing: React.FC = () => {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Interviews by NewTIFI Publishing</h3>
             <p className="text-lg text-gray-600">Interviews content coming soon.</p>
           </div>
         </section>
@@ -506,7 +506,7 @@ const Publishing: React.FC = () => {
           <div className="container mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Podcasts by NewTIFI Publishing</h3>
             <p className="text-lg text-gray-600">Podcasts content coming soon.</p>
           </div>
         </section>

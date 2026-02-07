@@ -99,7 +99,7 @@ export default function MemberDashboard() {
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Your Account</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Manage your NewTIFI experience</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Manage your NewTIFI experience</h3>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
               {/* Profile Card */}
@@ -108,12 +108,12 @@ export default function MemberDashboard() {
                   <div className="p-3 bg-newtifi-teal/10 rounded-2xl">
                     <User className="h-8 w-8 text-newtifi-teal" />
                   </div>
-                  <h3 className="text-xl font-semibold text-newtifi-navy">Profile</h3>
+                  <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy">Profile</h3>
                 </div>
                 <p className="text-gray-600 mb-6">Update your personal information and preferences</p>
                 <Link 
                   to="/profile"
-                  className="px-6 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium"
+                  className="px-6 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all font-medium"
                 >
                   Edit Profile
                 </Link>
@@ -125,12 +125,12 @@ export default function MemberDashboard() {
                   <div className="p-3 bg-newtifi-navy/10 rounded-2xl">
                     <FileText className="h-8 w-8 text-newtifi-navy" />
                   </div>
-                  <h3 className="text-xl font-semibold text-newtifi-navy">Become a Contributor</h3>
+                  <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy">Become a Contributor</h3>
                 </div>
                 <p className="text-gray-600 mb-6">Apply to write articles for NewTIFI journals</p>
                 <Link 
                   to="/apply-contributor"
-                  className="px-6 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium"
+                  className="px-6 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all font-medium"
                 >
                   Apply Now
                 </Link>
@@ -142,7 +142,7 @@ export default function MemberDashboard() {
                   <div className="p-3 bg-yellow-100 rounded-2xl">
                     <Bookmark className="h-8 w-8 text-yellow-600" />
                   </div>
-                  <h3 className="text-xl font-semibold text-newtifi-navy">Bookmarks</h3>
+                  <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy">Bookmarks</h3>
                 </div>
                 <p className="text-gray-600 mb-6">Your saved articles and resources</p>
                 <div className="text-center py-4">
@@ -156,11 +156,11 @@ export default function MemberDashboard() {
             <div className="mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Latest Articles</h2>
               <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Discover and read the latest research</h3>
+              <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Discover and read the latest research</h3>
               
               <div className="bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 lg:p-8 border border-gray-100">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                  <h3 className="text-xl font-semibold text-newtifi-navy">Featured Articles</h3>
+                  <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy">Featured Articles</h3>
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <input
                       type="text"
@@ -178,12 +178,12 @@ export default function MemberDashboard() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {/* Sample Article Cards */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -201,12 +201,12 @@ export default function MemberDashboard() {
                     </Link>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -225,12 +225,12 @@ export default function MemberDashboard() {
                   </div>
 
                   {/* Article 3: Sustainable Finance */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -248,12 +248,12 @@ export default function MemberDashboard() {
                     </Link>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                       <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Compartment Insolvency in Luxembourg Investment Funds - Ruling 18625 and the Boundary Between Bankruptcy and Judicial Liquidation After the 2023 Reform
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -271,12 +271,12 @@ export default function MemberDashboard() {
                     </Link>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                       <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Ipso Jure Dissolution and Liquidation in Luxembourg Investment Funds - A Doctrinal Analysis of Civil Code and Product Fund Law Triggers
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -294,12 +294,12 @@ export default function MemberDashboard() {
                     </Link>
                   </div>
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
                       <span className="text-xs font-medium text-blue-600 uppercase tracking-wide">View Only</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Ruling 1019 and the Architecture of Liquidation in Luxembourg Investment Funds - CSSF Gatekeeping, General Company Law, and the RAIF Counter-Model
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -323,14 +323,14 @@ export default function MemberDashboard() {
             <div className="mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Your Journals</h2>
               <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Quick links to journal hubs</h3>
+              <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Quick links to journal hubs</h3>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <Link
                   to="/publishing/investment-management"
                   className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
                 >
-                  <h4 className="text-xl font-semibold text-newtifi-navy mb-2">NewTIFI Investment Management Journal</h4>
+                  <h4 className="text-xl font-light uppercase tracking-wide text-newtifi-navy mb-2">NewTIFI Investment Management Journal</h4>
                   <p className="text-sm text-gray-600">
                     Fund structuring, fiduciary governance, regulatory change, and investment policy research.
                   </p>
@@ -339,7 +339,7 @@ export default function MemberDashboard() {
                   to="/publishing/restructuring-insolvency-journal"
                   className="bg-white rounded-2xl shadow-2xl p-6 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300"
                 >
-                  <h4 className="text-xl font-semibold text-newtifi-navy mb-2">NewTIFI Restructuring & Insolvency Journal</h4>
+                  <h4 className="text-xl font-light uppercase tracking-wide text-newtifi-navy mb-2">NewTIFI Restructuring & Insolvency Journal</h4>
                   <p className="text-sm text-gray-600">
                     Insolvency, restructuring, liquidation architecture, and recovery frameworks in capital markets.
                   </p>
@@ -349,7 +349,7 @@ export default function MemberDashboard() {
 
             {/* User Info */}
             <div className="bg-gray-50 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8">
-              <h3 className="text-xl font-semibold text-newtifi-navy mb-4">Account Information</h3>
+              <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy mb-4">Account Information</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="text-sm text-gray-600">Name</label>

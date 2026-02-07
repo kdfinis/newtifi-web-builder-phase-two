@@ -125,7 +125,7 @@ const Person = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-800 mb-4">Person not found</h1>
+          <h1 className="text-2xl font-extralight uppercase tracking-[0.12em] text-gray-800 mb-4">Person not found</h1>
           <Link to="/" className="text-newtifi-teal hover:underline">
             Return to Team
           </Link>
@@ -146,7 +146,7 @@ const Person = () => {
           {/* Header with color and social */}
           <div className="bg-[#00C2CB] px-12 py-8 flex flex-col md:flex-row items-center md:items-end gap-4">
             <div className="flex-1">
-              <h1 className="text-4xl md:text-4xl font-bold text-white mb-1">{member.name}</h1>
+              <h1 className="text-4xl md:text-4xl font-extralight uppercase tracking-[0.12em] text-white mb-1">{member.name}</h1>
               <h2 className="text-2xl text-white font-medium">{member.title}</h2>
             </div>
             <div className="flex gap-4 mt-2 md:mt-0">
@@ -180,7 +180,7 @@ const Person = () => {
               <img
                 src={member.imageSrc}
                 alt={member.name}
-                className="w-52 h-64 object-cover rounded-lg shadow-lg border-4 border-[#00C2CB] float-left mr-12 mb-6"
+                className="w-52 h-64 object-cover rounded-2xl shadow-sm border-2 border-newtifi-teal float-left mr-12 mb-6"
                 style={{ maxWidth: 220 }}
               />
               <div className="overflow-hidden">
@@ -194,8 +194,8 @@ const Person = () => {
             {/* Expertise & Achievements */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
               {member.expertise && member.expertise.length > 0 && (
-                <div className="bg-[#00C2CB] rounded-xl p-8 shadow-lg">
-                  <h3 className="text-base font-bold mb-4 text-white">Areas of Expertise</h3>
+                <div className="bg-newtifi-teal rounded-2xl p-8 shadow-sm border border-newtifi-teal/20">
+                  <h3 className="text-base font-extralight uppercase tracking-[0.12em] mb-4 text-white">Areas of Expertise</h3>
                   <ul className="list-disc list-inside space-y-2 text-white">
                     {member.expertise.map((item, index) => (
                       <li key={index}>{item}</li>
@@ -205,7 +205,7 @@ const Person = () => {
               )}
               {member.achievements && member.achievements.length > 0 && (
                 <div className="bg-[#0A0A23] rounded-xl p-8 shadow-lg">
-                  <h3 className="text-base font-bold mb-4 text-[#00C2CB]">Key Achievements</h3>
+                  <h3 className="text-base font-extralight uppercase tracking-[0.12em] mb-4 text-[#00C2CB]">Key Achievements</h3>
                   <ul className="list-disc list-inside space-y-2 text-white">
                     {member.achievements.map((item, index) => (
                       <li key={index}>{item}</li>
@@ -273,7 +273,7 @@ const Person = () => {
 
       {/* Main content */}
       <div className="container mx-auto px-6 py-12">
-    <div className="w-full mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12 flex flex-col md:flex-row gap-12">
+    <div className="w-full mx-auto bg-white rounded-2xl shadow-sm border border-gray-200 p-8 md:p-12 flex flex-col md:flex-row gap-12">
           {/* Left: Profile Photo */}
           <div className="flex-shrink-0 flex flex-col items-center w-full md:w-1/3">
             <img
@@ -308,7 +308,7 @@ const Person = () => {
           {/* Right: Content */}
           <div className="flex-1 flex flex-col gap-8">
             <div>
-              <h1 className="text-4xl font-bold text-newtifi-navy mb-1">{member.name}</h1>
+              <h1 className="text-4xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-1">{member.name}</h1>
               <p className="text-base text-gray-600 mb-4">{member.title}</p>
               <div className="prose prose max-w-none">
                 {member.fullBio.split('\n\n').map((paragraph, index) => (

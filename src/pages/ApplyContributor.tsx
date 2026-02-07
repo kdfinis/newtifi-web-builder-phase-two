@@ -130,7 +130,7 @@ export default function ApplyContributor() {
           <div className="container mx-auto px-6">
             <ScrollReveal>
               <div className="max-w-2xl mx-auto">
-                <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
+                <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-200">
                   <div className="text-center mb-6">
                     <div className="w-16 h-16 bg-newtifi-teal/10 rounded-full flex items-center justify-center mx-auto mb-4">
                       <FileText className="h-8 w-8 text-newtifi-teal" />
@@ -170,7 +170,7 @@ export default function ApplyContributor() {
                     <div className="mt-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                       <div className="flex items-center gap-2 mb-2">
                         <CheckCircle className="h-5 w-5 text-green-600" />
-                        <p className="text-green-800 font-semibold">Congratulations!</p>
+                        <p className="text-green-800 font-light uppercase tracking-wide">Congratulations!</p>
                       </div>
                       <p className="text-green-700 text-sm">
                         Your application has been approved. You can now create and manage articles in your dashboard.
@@ -290,7 +290,7 @@ export default function ApplyContributor() {
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Contributor Application</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Tell us about yourself and your expertise</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Tell us about yourself and your expertise</h3>
             
             <div className="max-w-2xl mx-auto">
               {/* Error Message */}
@@ -310,7 +310,7 @@ export default function ApplyContributor() {
                   </p>
                   <Link 
                     to="/dashboard"
-                    className="px-6 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium"
+                    className="px-6 py-3 bg-newtifi-teal text-white rounded-lg font-light uppercase tracking-wide hover:bg-newtifi-teal/90 transition-all"
                   >
                     Back to Dashboard
                   </Link>
@@ -362,7 +362,7 @@ export default function ApplyContributor() {
                     <button
                       type="submit"
                       disabled={submitting || !formData.bio.trim() || !formData.motivation.trim()}
-                      className="px-8 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="px-8 py-3 bg-newtifi-teal text-white rounded-lg font-light uppercase tracking-wide hover:bg-newtifi-teal/90 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {submitting ? (
                         <>
@@ -382,7 +382,7 @@ export default function ApplyContributor() {
 
               {/* Information Section */}
               <div className="mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">What happens next?</h3>
+                <h3 className="text-lg font-light uppercase tracking-wide text-gray-900 mb-3">What happens next?</h3>
                 <div className="space-y-3 text-sm text-gray-600">
                   <div className="flex items-start gap-3">
                     <div className="w-6 h-6 bg-newtifi-teal/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">

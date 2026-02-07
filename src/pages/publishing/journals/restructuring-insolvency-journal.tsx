@@ -318,13 +318,13 @@ export default function RestructuringInsolvencyJournal() {
       {/* Header & Publishing Info */}
       <header className="w-full px-4 pt-6 pb-6 border-b border-gray-200">
         <div className="w-full mx-auto">
-          <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-lg p-8 border border-gray-100 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
+          <div className="bg-gradient-to-br from-newtifi-teal/10 to-white rounded-2xl shadow-sm p-8 border border-gray-200 mb-4 flex flex-col md:flex-row items-center gap-8 text-center md:text-left">
             <div className="hidden md:block flex-shrink-0">
-              <img src="/images/Securitisation-vehicles.jpeg" alt="Restructuring and insolvency journal" className="w-48 h-96 object-cover rounded-2xl shadow-lg border border-gray-200" />
+              <img src="/images/Securitisation-vehicles.jpeg" alt="Restructuring and insolvency journal" className="w-48 h-96 object-cover rounded-2xl shadow-sm border border-gray-200" />
             </div>
             <div className="flex-1">
               <h1 className="text-2xl md:text-4xl font-extrabold text-newtifi-navy mb-2 leading-tight">NewTIFI Restructuring & Insolvency Journal</h1>
-              <h2 className="text-base text-newtifi-teal font-semibold mb-4">Insolvency, restructuring, and recovery architecture</h2>
+              <h2 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-4">Insolvency, restructuring, and recovery architecture</h2>
               <p className="text-base text-gray-700 mb-3">
                 The NewTIFI Restructuring & Insolvency Journal publishes peer-reviewed research on insolvency law, liquidation structures, and restructuring frameworks within investment funds and broader capital markets.
               </p>
@@ -344,42 +344,42 @@ export default function RestructuringInsolvencyJournal() {
       {/* Modern Tab Navigation */}
       <nav className="w-full mx-auto flex flex-wrap gap-2 md:gap-4 px-4 pt-2 pb-2 border-b border-gray-200 mb-4" aria-label="Publishing Navigation">
         <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'journals' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'journals' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('journals'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'journals' ? 'page' : undefined}
         >
           Journals
         </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'reviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'reviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('reviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'reviews' ? 'page' : undefined}
         >
           Reviews
             </button>
             <button
-              className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+              className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'articles' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
               onClick={() => { setSelectedTab('articles'); setSelectedArticle(null); }}
               aria-current={selectedTab === 'articles' ? 'page' : undefined}
             >
               Articles
             </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'books' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'books' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('books'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'books' ? 'page' : undefined}
         >
           Books
         </button>
         <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'interviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'interviews' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('interviews'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'interviews' ? 'page' : undefined}
         >
           Interviews
             </button>
             <button
-          className={`px-4 py-2 rounded-full font-semibold transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'podcasts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
+          className={`px-4 py-2 rounded-full font-light uppercase tracking-[0.2em] transition-all text-base md:text-base whitespace-nowrap ${selectedTab === 'podcasts' ? 'bg-newtifi-navy text-white shadow-md' : 'bg-transparent text-newtifi-navy hover:bg-newtifi-teal/10'}`}
           onClick={() => { setSelectedTab('podcasts'); setSelectedArticle(null); }}
           aria-current={selectedTab === 'podcasts' ? 'page' : undefined}
         >
@@ -393,7 +393,7 @@ export default function RestructuringInsolvencyJournal() {
         <div className="w-full mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">NewTIFI Restructuring & Insolvency Journal</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Journal by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">A Journal by NewTIFI Publishing</h3>
             <p className="text-base text-gray-800 mb-4">
               The NewTIFI Publishing – Restructuring & Insolvency Journal is a peer-reviewed academic publication, dedicated to advancing rigorous scholarship and high-impact analysis in insolvency, restructuring, and financial recovery.
             </p>
@@ -421,7 +421,7 @@ export default function RestructuringInsolvencyJournal() {
                 </div>
                 <a
                   href={`${urlFactory.getPublishingPath()}#submission-guidelines`}
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-newtifi-navy transition font-semibold shadow"
+                  className="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-newtifi-navy hover:bg-newtifi-teal hover:text-newtifi-navy transition font-light uppercase tracking-[0.2em] shadow"
                   aria-label="View Submission Guidelines"
                 >
                   View Guidelines
@@ -438,7 +438,7 @@ export default function RestructuringInsolvencyJournal() {
                     {/* Registration Modal */}
                     {showRegisterModal && (
                       <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
-                        <div className="bg-white rounded-xl shadow-lg p-8 max-w-md w-full">
+                        <div className="bg-white rounded-2xl shadow-sm p-8 border border-gray-200 max-w-md w-full">
                           {!showLogin ? (
                             <>
                               <h3 className="text-base font-bold text-newtifi-navy mb-4">Create Account</h3>
@@ -521,7 +521,7 @@ export default function RestructuringInsolvencyJournal() {
                                 {registerError && <div className="text-red-600 text-base">{registerError}</div>}
                                 <button
                                   type="submit"
-                                  className="w-full bg-newtifi-navy text-white py-2 rounded font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition"
+                                  className="w-full bg-newtifi-navy text-white py-2 rounded font-light uppercase tracking-[0.2em] hover:bg-newtifi-teal hover:text-newtifi-navy transition"
                                   disabled={registerLoading}
                                 >
                                   {registerLoading ? 'Creating account...' : 'Create Account'}
@@ -579,7 +579,7 @@ export default function RestructuringInsolvencyJournal() {
                                 {loginError && <div className="text-red-600 text-base">{loginError}</div>}
                                 <button
                                   type="submit"
-                                  className="w-full bg-newtifi-navy text-white py-2 rounded font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition"
+                                  className="w-full bg-newtifi-navy text-white py-2 rounded font-light uppercase tracking-[0.2em] hover:bg-newtifi-teal hover:text-newtifi-navy transition"
                                   disabled={loginLoading}
                                 >
                                   {loginLoading ? 'Signing in...' : 'Sign In'}
@@ -610,27 +610,27 @@ export default function RestructuringInsolvencyJournal() {
                     <table className="w-full border border-blue-200 text-left text-base">
                       <tbody>
                         <tr className="bg-blue-100">
-                          <td className="border border-blue-200 px-3 py-2 font-semibold">Publication Title</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em]">Publication Title</td>
                           <td className="border border-blue-200 px-3 py-2">NewTIFI Publishing – Restructuring & Insolvency Journal</td>
                         </tr>
                         <tr>
-                          <td className="border border-blue-200 px-3 py-2 font-semibold bg-blue-100">e-ISSN</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em] bg-blue-100">e-ISSN</td>
                           <td className="border border-blue-200 px-3 py-2">TBD</td>
                         </tr>
                         <tr className="bg-blue-100">
-                          <td className="border border-blue-200 px-3 py-2 font-semibold">Issues per Year</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em]">Issues per Year</td>
                           <td className="border border-blue-200 px-3 py-2">4</td>
                         </tr>
                         <tr>
-                          <td className="border border-blue-200 px-3 py-2 font-semibold bg-blue-100">Frequency</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em] bg-blue-100">Frequency</td>
                           <td className="border border-blue-200 px-3 py-2">Quarterly</td>
                         </tr>
                         <tr className="bg-blue-100">
-                          <td className="border border-blue-200 px-3 py-2 font-semibold">Pages per Issue</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em]">Pages per Issue</td>
                           <td className="border border-blue-200 px-3 py-2">10-15</td>
                         </tr>
                         <tr>
-                          <td className="border border-blue-200 px-3 py-2 font-semibold bg-blue-100">Format</td>
+                          <td className="border border-blue-200 px-3 py-2 font-light uppercase tracking-[0.2em] bg-blue-100">Format</td>
                           <td className="border border-blue-200 px-3 py-2">A4</td>
                         </tr>
                       </tbody>
@@ -646,7 +646,7 @@ export default function RestructuringInsolvencyJournal() {
                       <span className="text-xs text-gray-500">(PDF)</span>
                     </div>
                     <div className="mt-8 bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                      <h4 className="text-base font-semibold text-newtifi-navy mb-4">Documentation Roadmap</h4>
+                      <h4 className="text-base font-light uppercase tracking-[0.2em] text-newtifi-navy mb-4">Documentation Roadmap</h4>
                       <ul className="space-y-2 text-sm text-gray-700">
                         {documentationPlan.map((item) => (
                           <li key={item} className="flex items-start gap-2">
@@ -669,7 +669,7 @@ export default function RestructuringInsolvencyJournal() {
         <div className="w-full mx-auto px-4">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Reviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-base text-newtifi-teal font-semibold mb-6">A Review Series by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">A Review Series by NewTIFI Publishing</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
               {journalMetadata.editorialBoard.map((member, idx) => (
@@ -678,7 +678,7 @@ export default function RestructuringInsolvencyJournal() {
                     <div className="w-16 h-16 bg-newtifi-navy rounded-full flex items-center justify-center mx-auto mb-3">
                       <Users className="h-8 w-8 text-white" />
                     </div>
-                    <h3 className="text-base font-semibold text-newtifi-navy mb-1">{member.name}</h3>
+                    <h3 className="text-base font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1">{member.name}</h3>
                     <p className="text-newtifi-teal font-medium text-base mb-2">{member.role}</p>
                     <p className="text-gray-600 text-base">{member.affiliation}</p>
                   </div>
@@ -687,10 +687,10 @@ export default function RestructuringInsolvencyJournal() {
             </div>
 
             <div className="bg-gradient-to-r from-newtifi-teal/5 to-white rounded-xl p-6 border border-newtifi-teal/20">
-              <h3 className="text-base font-semibold text-newtifi-navy mb-4">Peer Review Process</h3>
+              <h3 className="text-base font-light uppercase tracking-[0.2em] text-newtifi-navy mb-4">Peer Review Process</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <h4 className="font-semibold text-newtifi-navy mb-2">Review Criteria</h4>
+                  <h4 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-2">Review Criteria</h4>
                   <ul className="text-base text-gray-700 space-y-1">
                     {journalMetadata.reviewProcess.reviewCriteria.map((criterion, idx) => (
                       <li key={idx} className="flex flex-col gap-1">
@@ -715,7 +715,7 @@ export default function RestructuringInsolvencyJournal() {
                   </ul>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-newtifi-navy mb-2">Review Timeline</h4>
+                  <h4 className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-2">Review Timeline</h4>
                   <div className="text-base text-gray-700 space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="w-3 h-3 bg-newtifi-teal rounded-full"></div>
@@ -742,7 +742,7 @@ export default function RestructuringInsolvencyJournal() {
         <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Books</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Books by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Books by NewTIFI Publishing</h3>
             <p>Books content coming soon.</p>
             </div>
         </section>
@@ -752,7 +752,7 @@ export default function RestructuringInsolvencyJournal() {
         <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Interviews</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Interviews by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Interviews by NewTIFI Publishing</h3>
             <p>Interviews content coming soon.</p>
                   </div>
         </section>
@@ -762,7 +762,7 @@ export default function RestructuringInsolvencyJournal() {
         <div className="w-full mx-auto px-4 text-gray-500 text-base">
             <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Podcasts</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-base text-newtifi-teal font-semibold mb-6">Podcasts by NewTIFI Publishing</h3>
+            <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Podcasts by NewTIFI Publishing</h3>
             <p>Podcasts content coming soon.</p>
           </div>
         </section>
@@ -772,11 +772,11 @@ export default function RestructuringInsolvencyJournal() {
       <section ref={articlesRef} id="articles" className="w-full mx-auto px-4 pt-8">
           <h2 className="text-2xl md:text-4xl font-bold text-newtifi-navy mb-2">Articles</h2>
           <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-          <h3 className="text-base text-newtifi-teal font-semibold mb-6">Featured Articles from NewTIFI Publishing</h3>
+          <h3 className="text-base text-newtifi-teal font-light uppercase tracking-[0.2em] mb-6">Featured Articles from NewTIFI Publishing</h3>
           {articles.map((article, idx) => (
             <div key={idx} className="mb-6">
               <div
-                className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 cursor-pointer hover:border-newtifi-teal transition"
+                className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200 cursor-pointer hover:border-newtifi-teal transition"
                 tabIndex={0}
                 role="button"
                 aria-label={`Read article: ${article.title}`}
@@ -784,7 +784,7 @@ export default function RestructuringInsolvencyJournal() {
                 onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(getArticleUrl(article)); }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-base font-semibold text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
+                  <h2 className="text-base font-light uppercase tracking-[0.2em] text-newtifi-navy mb-1 hover:underline cursor-pointer">{article.title}</h2>
                   <button
                     className="ml-2 p-1 rounded hover:bg-newtifi-teal/10"
                     onClick={e => { e.stopPropagation(); setExpandedOverview(expandedOverview === idx ? null : idx); }}
@@ -838,7 +838,7 @@ export default function RestructuringInsolvencyJournal() {
           {/* Sidebar/Dropdown for navigation */}
           <aside className="md:w-64 w-full mb-4 md:mb-0">
             <div className="bg-white rounded-xl shadow p-4 border border-gray-100 mb-4">
-              <div className="font-semibold text-newtifi-navy mb-2">Other Articles</div>
+              <div className="font-light uppercase tracking-[0.2em] text-newtifi-navy mb-2">Other Articles</div>
               <ul className="space-y-2">
                 {articles.map((article, idx) => (
                   <li key={idx}>
@@ -863,7 +863,7 @@ export default function RestructuringInsolvencyJournal() {
             </button>
           </aside>
           {/* PDF Viewer */}
-          <div className="flex-1 bg-white rounded-2xl shadow-lg p-4 border border-gray-100 overflow-auto">
+          <div className="flex-1 bg-white rounded-2xl shadow-sm p-4 border border-gray-200 overflow-auto">
             <div className="mb-4">
               <h2 className="text-base font-bold text-newtifi-navy mb-1">{selectedArticle.title}</h2>
               <div className="text-gray-500 text-xs mb-2">{selectedArticle.date}</div>

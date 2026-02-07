@@ -133,7 +133,7 @@ const Navbar = () => {
           ref={menuRef}
           id="main-navigation"
           className={cn(
-            "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-medium tracking-wide",
+            "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-light uppercase tracking-[0.15em]",
             "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy/95 md:bg-transparent backdrop-blur md:backdrop-blur-0",
             "px-6 md:px-0 pb-6 md:pb-0 border-b border-white/10 md:border-0",
             "transition-all duration-300 ease-in-out",
@@ -177,7 +177,7 @@ const Navbar = () => {
             >
               Publishing
             </Link>
-            <div className="hidden md:flex absolute top-full mt-2 w-72 flex-col rounded-2xl border border-gray-200 bg-white shadow-xl py-2 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition">
+            <div className="hidden md:flex absolute top-full mt-2 w-72 flex-col rounded-2xl border border-gray-200 bg-white shadow-sm py-2 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition">
               {publishingLinks.map((item) => (
                 <Link
                   key={item.to}
@@ -240,14 +240,14 @@ const Navbar = () => {
                 </div>
                 <Link 
                   to="/dashboard" 
-                  className="block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase"
+                  className="block w-full text-center px-4 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <button 
                   onClick={() => { logout(); setIsMenuOpen(false); }}
-                  className="block w-full text-center px-4 py-2 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase"
+                  className="block w-full text-center px-4 py-2.5 rounded-full bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
                 >
                   Logout
                 </button>
@@ -255,7 +255,7 @@ const Navbar = () => {
             ) : (
               <Link 
                 to="/login" 
-                className="md:hidden block w-full text-center px-4 py-2 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 uppercase"
+                className="md:hidden block w-full text-center px-4 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 text-xs uppercase tracking-[0.2em]"
                 onClick={() => setIsMenuOpen(false)}
               >
                 Sign In
@@ -274,7 +274,7 @@ const Navbar = () => {
               <Link 
                 to="/dashboard" 
                 className={cn(
-                  "px-4 py-1.5 rounded-lg text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase text-base font-medium tracking-wide",
+                  "px-5 py-2.5 rounded-full text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]",
                   location.pathname.startsWith('/dashboard') 
                     ? "bg-newtifi-teal ring-2 ring-newtifi-teal/50" 
                     : "bg-newtifi-teal"
@@ -285,7 +285,7 @@ const Navbar = () => {
               </Link>
               <button 
                 onClick={logout}
-                className="px-4 py-1.5 rounded-lg bg-gray-500 text-white hover:bg-gray-600 transition-all duration-300 uppercase text-base font-medium tracking-wide"
+                className="px-5 py-2.5 rounded-full bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
               >
                 Logout
               </button>
@@ -294,8 +294,7 @@ const Navbar = () => {
             <Link 
               to="/login" 
               className={cn(
-                "hidden md:block px-4 py-1.5 rounded-lg bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 uppercase",
-                "text-base font-medium tracking-wide"
+                "hidden md:block px-5 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
               )}
               onClick={() => setIsMenuOpen(false)}
             >

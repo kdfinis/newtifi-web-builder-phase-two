@@ -78,12 +78,12 @@ export default function ResetPassword() {
 
   if (isSuccess) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-newtifi-teal/10 via-white to-newtifi-navy/5 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h2 className="text-2xl font-bold text-newtifi-navy mb-2">Password Reset Successfully</h2>
+          <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Password Reset Successfully</h2>
           <p className="text-gray-600 mb-6">
             Your password has been updated. You can now sign in with your new password.
           </p>
@@ -111,13 +111,13 @@ export default function ResetPassword() {
         <div className="container mx-auto relative">
           <div className="w-full">
             <ScrollReveal>
-              <h1 className="text-2xl md:text-2xl font-light mb-10">Reset Password</h1>
-              <div className="mb-10">
-                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
-                  Set New <span className="text-newtifi-teal">Password</span>
-                </h2>
+              <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Reset Password</p>
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase">
+                  Set New <span className="text-newtifi-teal font-light">Password</span>
+                </h1>
               </div>
-              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
                 Enter your new password below.
               </p>
             </ScrollReveal>
@@ -125,8 +125,8 @@ export default function ResetPassword() {
         </div>
       </section>
 
-      <section className="min-h-[calc(100vh-90px)] w-full flex items-center justify-center bg-gradient-to-br from-newtifi-navy to-newtifi-teal p-6">
-        <div className="w-full max-w-md bg-white/95 rounded-3xl shadow-2xl p-8">
+      <section className="min-h-[calc(100vh-90px)] w-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-white p-6">
+        <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <button
@@ -138,7 +138,7 @@ export default function ResetPassword() {
             <div className="w-20 h-20 bg-newtifi-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
               <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-12 h-12 object-contain" />
             </div>
-            <h1 className="text-2xl font-bold text-newtifi-navy mb-2">Reset Password</h1>
+            <h1 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Reset Password</h1>
             <p className="text-gray-600">Enter your new password below.</p>
           </div>
 
@@ -156,7 +156,7 @@ export default function ResetPassword() {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                   placeholder="Enter new password"
                   required
                 />
@@ -182,7 +182,7 @@ export default function ResetPassword() {
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                   placeholder="Confirm new password"
                   required
                 />
@@ -205,7 +205,7 @@ export default function ResetPassword() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-newtifi-navy text-white py-3 rounded-lg font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full bg-newtifi-teal text-white py-3 rounded-full font-light text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
               {isLoading ? (
                 <>

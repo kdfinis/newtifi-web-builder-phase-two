@@ -95,7 +95,7 @@ export default function ContributorDashboard() {
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Article Management</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Create and manage your contributions</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Create and manage your contributions</h3>
             
             {/* Error Message */}
             {error && (
@@ -108,14 +108,14 @@ export default function ContributorDashboard() {
             <div className="flex flex-col md:flex-row gap-4 mb-8">
               <Link 
                 to="/articles"
-                className="px-8 py-3 bg-gradient-to-r from-newtifi-teal to-newtifi-navy text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2"
+                className="px-8 py-3 bg-gradient-to-r from-newtifi-teal to-newtifi-navy text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all duration-300 font-medium flex items-center gap-2"
               >
                 <FileText className="h-5 w-5" />
                 Browse Articles
               </Link>
               <Link 
                 to="/articles/new"
-                className="px-8 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2"
+                className="px-8 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all duration-300 font-medium flex items-center gap-2"
               >
                 <Plus className="h-5 w-5" />
                 New Article
@@ -127,9 +127,9 @@ export default function ContributorDashboard() {
                   <button
                     key={status}
                     onClick={() => setFilter(status)}
-                    className={`px-4 py-2 rounded-xl font-semibold transition-all text-sm ${
+                    className={`px-4 py-2 rounded-xl font-light uppercase tracking-wide transition-all text-sm ${
                       filter === status
-                        ? 'bg-newtifi-navy text-white shadow-lg'
+                        ? 'bg-newtifi-navy text-white shadow-sm'
                         : 'bg-white text-newtifi-navy border border-gray-200 hover:border-newtifi-teal'
                     }`}
                   >
@@ -162,7 +162,7 @@ export default function ContributorDashboard() {
                 {filter === 'all' && (
                   <Link 
                     to="/articles/new"
-                    className="px-6 py-3 bg-newtifi-navy text-white rounded-xl shadow-lg hover:shadow-xl transition-all"
+                    className="px-6 py-3 bg-newtifi-navy text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all"
                   >
                     Create Article
                   </Link>
@@ -173,7 +173,7 @@ export default function ContributorDashboard() {
                 {filteredArticles.map(article => (
                   <div key={article.id} className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100 hover:border-newtifi-teal hover:shadow-3xl transition-all duration-300">
                     {/* Title */}
-                    <h3 className="text-xl font-semibold text-newtifi-navy mb-2 hover:underline line-clamp-2">
+                    <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy mb-2 hover:underline line-clamp-2">
                       {article.title}
                     </h3>
                     
@@ -205,7 +205,7 @@ export default function ContributorDashboard() {
                     <div className="flex gap-2">
                       <Link 
                         to={`/articles/edit/${article.id}`}
-                        className="px-4 py-2 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all font-medium text-sm"
+                        className="px-4 py-2 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-full text-xs uppercase tracking-[0.2em] shadow-sm hover:shadow-md transition-all font-medium text-sm"
                       >
                         Edit
                       </Link>
@@ -224,11 +224,11 @@ export default function ContributorDashboard() {
             <div className="mb-8">
               <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Latest Articles</h2>
               <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-              <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Discover and read the latest research</h3>
+              <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Discover and read the latest research</h3>
               
               <div className="bg-white rounded-3xl shadow-2xl p-8 border border-gray-100">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 gap-4">
-                  <h3 className="text-xl font-semibold text-newtifi-navy">Featured Articles</h3>
+                  <h3 className="text-xl font-light uppercase tracking-wide text-newtifi-navy">Featured Articles</h3>
                   <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
                     <input
                       type="text"
@@ -246,12 +246,12 @@ export default function ContributorDashboard() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {/* Sample Article Cards */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Closed-Ended Luxembourg ELTIFs: Compulsory Redemptions and Compartment Termination & Amalgamation Provisions
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -270,12 +270,12 @@ export default function ContributorDashboard() {
                   </div>
 
 
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Investor Oversight or Undue Influence? Reassessing BaFin's Stance on AIFM Portfolio Control
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">
@@ -294,12 +294,12 @@ export default function ContributorDashboard() {
                   </div>
 
                   {/* Article 3: Sustainable Finance */}
-                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-lg transition-all duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-6 border border-gray-200 hover:border-newtifi-teal hover:shadow-md transition-all duration-300">
                     <div className="flex items-center gap-2 mb-3">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-xs font-medium text-green-600 uppercase tracking-wide">Published</span>
                     </div>
-                    <h4 className="text-lg font-semibold text-newtifi-navy mb-2 line-clamp-2">
+                    <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2">
                       Luxembourg SICARs, SIFs, and RAIFs: A 20-year Perspective on the Well-Informed Investor Notion
                     </h4>
                     <p className="text-sm text-gray-600 mb-4 line-clamp-3">

@@ -188,38 +188,26 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
       <div className="flex min-h-screen">
-        {/* Left side - Brand section */}
-        <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-newtifi-teal via-newtifi-navy to-indigo-900 relative overflow-hidden">
-          {/* Subtle pattern overlay instead of dark overlay */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.03%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-          
-          <div className="relative z-10 flex flex-col justify-center items-center text-white p-12">
+        {/* Left side - Brand section (Membership-era hero style) */}
+        <div className="hidden lg:flex lg:w-2/5 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white relative overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+          <div className="relative z-10 flex flex-col justify-center items-center p-12">
             <div className="text-center max-w-sm">
-              <h1 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+              <h1 className="text-2xl md:text-3xl font-light mb-4 tracking-wider uppercase">
                 Welcome to NewTIFI
               </h1>
-              <p className="text-lg mb-6 text-blue-100 leading-relaxed">
+              <p className="text-base mb-6 text-white/90 leading-relaxed font-light">
                 Shaping the Future of Technology through Innovation and Regulation
               </p>
-              <div className="bg-white/15 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                <p className="text-xs text-blue-50 leading-relaxed">
+              <div className="bg-white/10 rounded-2xl p-4 border border-white/20">
+                <p className="text-sm text-white/90 leading-relaxed font-light">
                   Join our community of technology leaders, investors, and innovators working together to build a better future.
                 </p>
               </div>
             </div>
             <div className="mt-6 max-w-sm">
-              <img 
-                src="/images/uploads/luxembourg-skyline-golden-hour.jpg" 
-                alt="Luxembourg Skyline"
-                className="w-full h-32 object-cover rounded-lg shadow-xl border border-white/20"
-              />
-            </div>
-            
-            {/* NewTIFI Logo */}
-            <div className="mt-4 max-w-xs">
               <img 
                 src="/assets/images/logo.png" 
                 alt="NewTIFI Logo"
@@ -230,13 +218,13 @@ export default function Login() {
         </div>
 
         {/* Right side - Login form */}
-        <div className="w-full lg:w-3/5 flex items-center justify-center p-6 lg:p-12">
+        <div className="w-full lg:w-3/5 flex items-center justify-center p-6 lg:p-12 bg-gradient-to-br from-gray-50 to-white">
           <div className="w-full max-w-md">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-gray-900 mb-3">
+              <h2 className="text-2xl md:text-3xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-3 tracking-wide">
                 {mode === 'login' ? 'Welcome Back' : 'Create Account'}
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-base font-light">
                 {mode === 'login' 
                   ? 'Sign in to your NewTIFI account' 
                   : 'Join the NewTIFI community'
@@ -244,7 +232,7 @@ export default function Login() {
               </p>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl border border-white/50 p-8">
+            <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
               <div className="space-y-6">
                 <p className="text-gray-600 text-center leading-relaxed">
                   Choose a sign-in option. You can use LinkedIn for a quick, secure login, or sign in with your email and password below.
@@ -255,7 +243,7 @@ export default function Login() {
                   <button 
                     onClick={handleGoogleSignIn}
                     disabled={isLoading}
-                    className="w-full px-6 py-4 border-2 border-gray-200 rounded-2xl hover:border-gray-300 hover:bg-gray-50 text-gray-700 text-left text-base flex items-center gap-3 disabled:opacity-50 transition-all duration-200 shadow-sm hover:shadow-md"
+                    className="w-full px-6 py-3 border border-gray-200 rounded-full hover:border-gray-300 hover:bg-gray-50 text-newtifi-navy text-left text-xs uppercase tracking-[0.2em] font-light flex items-center gap-3 disabled:opacity-50 transition-all duration-200"
                   >
                     <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                       <path fill="#EA4335" d="M12 10.2v3.6h5.1c-.2 1.2-1.5 3.6-5.1 3.6-3.1 0-5.7-2.6-5.7-5.7S8.9 6 12 6c1.8 0 3 .8 3.7 1.5l2.5-2.5C16.8 3.8 14.7 3 12 3 6.9 3 2.7 7.2 2.7 12.3S6.9 21.6 12 21.6c6.9 0 9.3-4.8 9.3-7.2 0-.5 0-1-.1-1.2H12z"/>
@@ -268,7 +256,7 @@ export default function Login() {
                   <button 
                     onClick={handleLinkedInSignIn}
                     disabled={isLoading}
-                    className="w-full px-6 py-4 rounded-2xl bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800 text-left text-base flex items-center gap-3 disabled:opacity-50 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="w-full px-6 py-3 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 text-left text-xs uppercase tracking-[0.2em] font-light flex items-center gap-3 disabled:opacity-50 transition-all duration-200"
                   >
                     <svg className="w-5 h-5 flex-shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                       <path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.853 0-2.136 1.446-2.136 2.941v5.664H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.602 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM7.114 20.452H3.56V9h3.554v11.452z"/>
@@ -298,7 +286,7 @@ export default function Login() {
                           value={firstName}
                           onChange={(e) => setFirstName(e.target.value)}
                           required={mode === 'signup'}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                           placeholder="John"
                         />
                       </div>
@@ -310,7 +298,7 @@ export default function Login() {
                           value={lastName}
                           onChange={(e) => setLastName(e.target.value)}
                           required={mode === 'signup'}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
+                          className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                           placeholder="Doe"
                         />
                       </div>
@@ -325,7 +313,7 @@ export default function Login() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                       placeholder=""
                     />
                   </div>
@@ -338,7 +326,7 @@ export default function Login() {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-newtifi-teal transition-colors bg-white/70"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                       placeholder=""
                     />
                   </div>
@@ -361,7 +349,7 @@ export default function Login() {
                   )}
 
                   {error && (
-                    <div className="text-red-600 text-sm text-center bg-red-50 p-4 rounded-xl border border-red-200">
+                    <div className="text-red-600 text-sm text-center bg-red-50 p-4 rounded-lg border border-red-200">
                       {error}
                     </div>
                   )}
@@ -369,7 +357,7 @@ export default function Login() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-newtifi-teal to-newtifi-navy text-white py-4 px-6 rounded-xl hover:from-newtifi-navy hover:to-newtifi-teal focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="w-full bg-newtifi-teal text-white py-3 px-6 rounded-full hover:bg-newtifi-teal/90 focus:ring-2 focus:ring-newtifi-teal/20 focus:ring-offset-2 font-light text-xs uppercase tracking-[0.2em] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
                   >
                     {isLoading ? 'Please wait...' : (mode === 'login' ? 'Sign In' : 'Create Account')}
                   </button>

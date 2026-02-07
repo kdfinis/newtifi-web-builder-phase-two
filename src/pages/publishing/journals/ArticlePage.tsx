@@ -549,13 +549,13 @@ export default function ArticlePage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => navigate(urlFactory.getPublishingPath())}
-              className="bg-newtifi-navy text-white px-6 py-3 rounded-lg hover:bg-newtifi-teal transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="bg-newtifi-navy text-white px-6 py-3 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal transition-all duration-200 font-light uppercase tracking-wide shadow-sm hover:shadow-md"
             >
               Browse All Articles
             </button>
             <button
               onClick={() => navigate('/')}
-              className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-all duration-200 font-semibold"
+              className="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-all duration-200 font-light uppercase tracking-wide"
             >
               Go Home
             </button>
@@ -638,7 +638,7 @@ export default function ArticlePage() {
         <span className="mx-1">&gt;</span>
               <a href={urlFactory.getPublishingPath()} className="hover:text-white transition-colors">Articles</a>
         <span className="mx-1">&gt;</span>
-              <span className="text-white font-semibold truncate" title={meta.title}>{meta.title}</span>
+              <span className="text-white font-light uppercase tracking-wide truncate" title={meta.title}>{meta.title}</span>
       </nav>
 
             <ScrollReveal>
@@ -688,7 +688,7 @@ export default function ArticlePage() {
                     <h2 className="text-2xl font-bold text-newtifi-navy mb-4">{article.title}</h2>
                     <div className="space-y-2">
                       <div className="flex items-center gap-3">
-                        <span className="text-newtifi-teal font-semibold text-base">By {article.author}</span>
+                        <span className="text-newtifi-teal font-light uppercase tracking-wide text-base">By {article.author}</span>
                         <span className="text-gray-500">•</span>
                         <span className="text-gray-600 text-base">{article.date}</span>
                       </div>
@@ -709,7 +709,7 @@ export default function ArticlePage() {
 
                 {/* Keywords Section */}
                 <ScrollReveal delay={200}>
-                  <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
+                  <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                     <h3 className="text-base font-bold text-newtifi-navy mb-6">Keywords</h3>
                     <div className="flex flex-wrap gap-2">
                 {article.keywords?.map((keyword, kIdx) => (
@@ -757,7 +757,7 @@ export default function ArticlePage() {
                       <div className="flex flex-col sm:flex-row gap-3">
                         <button
                           onClick={handlePdfPreview}
-                          className={`bg-white/10 text-white px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-2 border border-white/20 ${isPdfAsset ? 'hover:bg-white/20' : 'opacity-50 cursor-not-allowed'}`}
+                          className={`bg-white/10 text-white px-6 py-3 rounded-2xl font-light uppercase tracking-wide transition-all duration-300 flex items-center gap-2 border border-white/20 ${isPdfAsset ? 'hover:bg-white/20' : 'opacity-50 cursor-not-allowed'}`}
                           disabled={!isPdfAsset}
                         >
                           <Eye className="w-4 h-4" />
@@ -766,7 +766,7 @@ export default function ArticlePage() {
                         <button
                           onClick={handleDownload}
                           disabled={!hasDownloadAsset}
-                          className={`bg-white text-newtifi-navy px-6 py-3 rounded-2xl font-semibold transition-all duration-300 transform flex items-center gap-2 ${hasDownloadAsset ? 'hover:bg-gray-100 hover:scale-105' : 'opacity-60 cursor-not-allowed'}`}
+                          className={`bg-white text-newtifi-navy px-6 py-3 rounded-2xl font-light uppercase tracking-wide transition-all duration-300 transform flex items-center gap-2 ${hasDownloadAsset ? 'hover:bg-gray-100 hover:scale-105' : 'opacity-60 cursor-not-allowed'}`}
                         >
                           <Download className="w-4 h-4" />
                           {isAuthenticated ? (isPdfAsset ? 'Download PDF' : 'Download Document') : 'Sign In to Download'}
@@ -781,23 +781,23 @@ export default function ArticlePage() {
               <div className="space-y-8">
                 {/* Journal Info */}
                 <ScrollReveal delay={200}>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                     <h3 className="text-base font-bold text-newtifi-navy mb-4">Journal Information</h3>
                     <div className="space-y-3 text-base">
                       <div>
-                        <span className="font-semibold text-gray-700">Title:</span>
+                        <span className="font-light uppercase tracking-wide text-gray-700">Title:</span>
                         <p className="text-gray-600">{journalMetadata.title}</p>
                       </div>
                       <div>
-                        <span className="font-semibold text-gray-700">ISSN:</span>
+                        <span className="font-light uppercase tracking-wide text-gray-700">ISSN:</span>
                         <p className="font-mono text-newtifi-teal">{journalMetadata.issn}</p>
                       </div>
                       <div>
-                        <span className="font-semibold text-gray-700">Publisher:</span>
+                        <span className="font-light uppercase tracking-wide text-gray-700">Publisher:</span>
                         <p className="text-gray-600">{journalMetadata.publisher}</p>
                       </div>
                       <div>
-                        <span className="font-semibold text-gray-700">Frequency:</span>
+                        <span className="font-light uppercase tracking-wide text-gray-700">Frequency:</span>
                         <p className="text-gray-600">{journalMetadata.frequency}</p>
             </div>
           </div>
@@ -806,7 +806,7 @@ export default function ArticlePage() {
 
                 {/* Peer Review Info */}
                 <ScrollReveal delay={400}>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                     <h3 className="text-base font-bold text-newtifi-navy mb-4">Peer Review Status</h3>
                     <div className="space-y-3 text-base">
                       <div className="flex items-center gap-2">
@@ -827,7 +827,7 @@ export default function ArticlePage() {
 
                 {/* Archiving Info */}
                 <ScrollReveal delay={600}>
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200">
                     <h3 className="text-base font-bold text-newtifi-navy mb-4">
                       <Archive className="w-5 h-5 text-newtifi-teal inline mr-2" />
               Archiving & Preservation

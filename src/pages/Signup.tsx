@@ -107,12 +107,12 @@ export default function Signup() {
 
   if (isSignedUp) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-newtifi-teal/10 via-white to-newtifi-navy/5 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full text-center">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h2 className="text-2xl font-bold text-newtifi-navy mb-2">Account Created!</h2>
+          <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Account Created!</h2>
           <p className="text-gray-600 mb-4">Welcome to NewTiFi, {formData.name}!</p>
           <div className="animate-pulse">
             <div className="h-2 bg-newtifi-teal/20 rounded-full mb-2"></div>
@@ -124,7 +124,7 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-newtifi-teal/10 via-white to-newtifi-navy/5 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
       {/* Hero Section */}
       <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
         {/* Background Graphics */}
@@ -147,20 +147,20 @@ export default function Signup() {
         <div className="container mx-auto relative">
           <div className="w-full">
             <ScrollReveal>
-              <h1 className="text-2xl md:text-2xl font-light mb-10">Sign Up</h1>
-              <div className="mb-10">
-                <h2 className="text-2xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight uppercase">
-                  Join Our <span className="text-newtifi-teal">Community</span>
-                </h2>
+              <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Sign Up</p>
+              <div className="mb-8">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase">
+                  Join Our <span className="text-newtifi-teal font-light">Community</span>
+                </h1>
               </div>
-              <p className="text-base md:text-base leading-relaxed text-white/90 font-light">
+              <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
                 Create your NewTIFI account to access research, submit publications, and connect with our global network of innovators.
               </p>
             </ScrollReveal>
           </div>
         </div>
       </section>
-      <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-md w-full">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full">
         {/* Header */}
         <div className="text-center mb-8">
           <button
@@ -172,7 +172,7 @@ export default function Signup() {
           <div className="w-20 h-20 bg-newtifi-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
             <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-12 h-12 object-contain" />
           </div>
-          <h1 className="text-2xl font-bold text-newtifi-navy mb-2">Create Account</h1>
+          <h1 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Create Account</h1>
           <p className="text-gray-600">Join NewTiFi to access research and connect with professionals</p>
         </div>
 
@@ -180,7 +180,7 @@ export default function Signup() {
         <div className="flex flex-col gap-4 mb-6">
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-newtifi-teal rounded-lg py-3 px-4 text-newtifi-navy hover:bg-newtifi-teal hover:text-white transition-colors font-medium shadow-sm focus:ring-2 focus:ring-newtifi-navy"
+            className="w-full flex items-center justify-center gap-2 border border-newtifi-teal rounded-full py-3 px-4 text-newtifi-navy hover:bg-newtifi-teal hover:text-white transition-colors text-xs uppercase tracking-[0.2em] font-medium shadow-sm focus:ring-2 focus:ring-newtifi-teal/20"
             style={{ background: '#fff' }}
             onClick={() => handleSocialSignup('google')}
           >
@@ -189,7 +189,7 @@ export default function Signup() {
           </button>
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-newtifi-navy rounded-lg py-3 px-4 text-newtifi-navy hover:bg-newtifi-navy hover:text-white transition-colors font-medium shadow-sm focus:ring-2 focus:ring-newtifi-navy"
+            className="w-full flex items-center justify-center gap-2 border border-newtifi-navy rounded-full py-3 px-4 text-newtifi-navy hover:bg-newtifi-navy hover:text-white transition-colors text-xs uppercase tracking-[0.2em] font-medium shadow-sm focus:ring-2 focus:ring-newtifi-teal/20"
             style={{ background: '#fff' }}
             onClick={() => handleSocialSignup('linkedin')}
           >
@@ -213,7 +213,7 @@ export default function Signup() {
                 name="name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                 placeholder="Enter your full name"
                 required
               />
@@ -232,7 +232,7 @@ export default function Signup() {
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                 placeholder="Enter your email"
                 required
               />
@@ -251,7 +251,7 @@ export default function Signup() {
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                 placeholder="Create a password"
                 required
               />
@@ -277,7 +277,7 @@ export default function Signup() {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-newtifi-teal focus:border-transparent transition-colors"
+                className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors"
                 placeholder="Confirm your password"
                 required
               />
@@ -300,7 +300,7 @@ export default function Signup() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-newtifi-navy text-white py-3 rounded-lg font-semibold hover:bg-newtifi-teal hover:text-newtifi-navy transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            className="w-full bg-newtifi-teal text-white py-3 rounded-full font-light text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isLoading ? (
               <>

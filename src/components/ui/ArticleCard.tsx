@@ -32,14 +32,14 @@ const ArticleCard: React.FC<ArticleCardProps> = ({
   const uiConfig = configManager.getComponentConfig('ArticleCard');
   
   const getVariantClasses = () => {
-    const baseClasses = uiConfig.baseClasses || 'bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200';
-    const titleClasses = uiConfig.titleClasses || 'text-xl font-semibold text-gray-900 mb-2';
+    const baseClasses = uiConfig.baseClasses || 'bg-white rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200';
+    const titleClasses = uiConfig.titleClasses || 'text-xl font-light uppercase tracking-wide text-gray-900 mb-2';
     const abstractClasses = uiConfig.abstractClasses || 'text-gray-600 text-sm leading-relaxed';
     
     switch (variant) {
       case 'featured':
         return {
-          container: `${baseClasses} border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-white`,
+          container: `${baseClasses} border border-gray-200 bg-gradient-to-br from-blue-50 to-white`,
           title: `${titleClasses} text-2xl`,
           abstract: `${abstractClasses} text-base`
         };

@@ -140,8 +140,8 @@ const NewsManager: React.FC = () => {
 
       {/* Add/Edit Form */}
       {showAddForm && (
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h3 className="text-base font-semibold text-[#0A0A23] mb-4">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+          <h3 className="text-base font-light uppercase tracking-wide text-[#0A0A23] mb-4">
             {editingItem ? 'Edit News Item' : 'Add News Item'}
           </h3>
           <NewsForm
@@ -192,7 +192,7 @@ const NewsManager: React.FC = () => {
                     <div className="text-base text-gray-500">{item.author}</div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(item.status)}`}>
+                    <span className={`inline-flex px-2 py-1 text-xs font-light uppercase tracking-wide rounded-full ${getStatusColor(item.status)}`}>
                       {item.status}
                     </span>
                   </td>
@@ -242,7 +242,7 @@ const NewsCard: React.FC<{
   getStatusColor: (status: string) => string;
   getTypeIcon: (type: string) => string;
 }> = ({ item, onEdit, getStatusColor, getTypeIcon }) => (
-  <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+  <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
     {item.imageUrl && (
       <div className="h-48 bg-gray-200">
         <img src={item.imageUrl} alt={item.title} className="w-full h-full object-cover" />
@@ -251,11 +251,11 @@ const NewsCard: React.FC<{
     <div className="p-4">
       <div className="flex items-center justify-between mb-2">
         <span className="text-base">{getTypeIcon(item.type)}</span>
-        <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(item.status)}`}>
+        <span className={`inline-flex px-2 py-1 text-xs font-light uppercase tracking-wide rounded-full ${getStatusColor(item.status)}`}>
           {item.status}
         </span>
       </div>
-      <h3 className="font-semibold text-[#0A0A23] mb-2 line-clamp-2">{item.title}</h3>
+      <h3 className="font-light uppercase tracking-wide text-[#0A0A23] mb-2 line-clamp-2">{item.title}</h3>
       <p className="text-base text-gray-600 mb-3 line-clamp-3">{item.content}</p>
       <div className="flex items-center justify-between text-xs text-gray-500 mb-3">
         <span>{item.author}</span>

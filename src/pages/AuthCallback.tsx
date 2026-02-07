@@ -54,13 +54,13 @@ export default function AuthCallback() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
-      <div className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full mx-4 text-center">
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full mx-4 text-center">
         {status === 'loading' && (
           <>
             <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
             </div>
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Processing Authentication</h2>
+            <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-gray-800 mb-2">Processing Authentication</h2>
             <p className="text-gray-600">Please wait while we complete your login...</p>
           </>
         )}
@@ -72,7 +72,7 @@ export default function AuthCallback() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-green-800 mb-2">Login Successful!</h2>
+            <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-green-800 mb-2">Login Successful!</h2>
             <p className="text-gray-600 mb-4">{message}</p>
             <p className="text-sm text-gray-500">Redirecting to dashboard...</p>
           </>
@@ -85,7 +85,7 @@ export default function AuthCallback() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
               </svg>
             </div>
-            <h2 className="text-2xl font-bold text-red-800 mb-2">Login Failed</h2>
+            <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-red-800 mb-2">Login Failed</h2>
             <p className="text-gray-600 mb-4">{message}</p>
             <p className="text-sm text-gray-500">Redirecting to login page...</p>
           </>

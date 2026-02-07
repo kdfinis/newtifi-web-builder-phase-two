@@ -311,17 +311,18 @@ const Home = () => {
 
   return (
     <main className="min-h-screen pb-20">
-      {/* Our Journey Section */}
-      <section className="px-6 py-16 sm:py-24 md:py-32 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
+      {/* Our Journey Section - Membership2 hero pattern */}
+      <section className="relative px-6 py-16 sm:py-24 md:py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+        <div className="container mx-auto relative">
           <ScrollReveal direction="right" delay={100}>
-            <h1 className="text-xl sm:text-2xl md:text-2xl font-light mb-6 sm:mb-10">For a Journey to a Better Tomorrow</h1>
-            <div className="mb-10">
-              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-4xl font-extralight tracking-wider leading-tight">
-                FOCUS RESEARCH<br />INNOVATE IMPLEMENT
-              </h2>
+            <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Home</p>
+            <div className="mb-8">
+              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase">
+                Focus Research<br />Innovate Implement
+              </h1>
             </div>
-            <p className="text-sm sm:text-base md:text-base leading-relaxed text-white/90 font-light">
+            <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
               Welcome to the hub where Scientific, Tech and Finance Professionals meet
             </p>
           </ScrollReveal>
@@ -335,9 +336,10 @@ const Home = () => {
             {/* Left side - New Technologies & Investment Funds Institute Overview */}
             <ScrollReveal direction="right" delay={100}>
               <div className="space-y-6 sm:space-y-8">
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-light text-newtifi-navy">
+                <p className="text-xs uppercase tracking-[0.35em] text-gray-500">Overview</p>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy">
                   New Technologies & Investment Funds Institute
-                </h1>
+                </h2>
                 <p className="text-base sm:text-lg md:text-2xl text-gray-700">
                   An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
                 </p>
@@ -351,17 +353,17 @@ const Home = () => {
                 {/* Luxembourg photo boxes to balance right column height */}
                 <div className="mt-4 grid grid-rows-3 gap-4">
                   <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-top bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-top bg-cover shadow-sm border border-gray-200"
                     style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }}
                     aria-label="Adolphe Bridge, Luxembourg"
                   />
                   <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
                     style={{ backgroundImage: "url('/images/uploads/kirchberg-fort-thungen.jpg')" }}
                     aria-label="Fort Thüngen, Kirchberg, Luxembourg"
                   />
                   <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-xl border border-gray-100"
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
                     style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
                     aria-label="Luxembourg skyline"
                   />
@@ -373,15 +375,15 @@ const Home = () => {
             <div className="flex flex-col gap-4 sm:gap-6 mb-0 pb-0">
               {/* Investment Management Journal - Separate Box */}
               <ScrollReveal direction="left" delay={180}>
-                <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 border border-newtifi-teal/20 rounded-2xl p-5 sm:p-6 shadow-2xl hover:shadow-2xl transition-all duration-300 cursor-pointer group">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-newtifi-teal/30 transition-all duration-300 cursor-pointer group">
                   <div onClick={() => navigate(urlFactory.getPublishingPath())} className="cursor-pointer">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-newtifi-teal/20 rounded-lg">
+                      <div className="p-2 bg-newtifi-teal/20 rounded-xl">
                         <svg className="w-5 h-5 text-newtifi-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                         </svg>
                       </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
                         NewTIFI Investment Management Journal
                       </h3>
                     </div>
@@ -399,9 +401,9 @@ const Home = () => {
 
               {/* Featured Articles - Hero Section */}
             <ScrollReveal direction="left" delay={200}>
-                <div className="bg-gradient-to-br from-newtifi-navy/5 to-newtifi-teal/5 rounded-2xl p-5 sm:p-6 md:p-8 shadow-2xl border border-newtifi-navy/10">
+                <div className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-200">
                 <div className="flex justify-between items-center mb-5 sm:mb-8">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-newtifi-navy">Featured Articles</h2>
+                    <h2 className="text-lg sm:text-xl md:text-2xl font-light uppercase tracking-[0.15em] text-newtifi-navy">Featured Articles</h2>
                   <Button 
                       to={urlFactory.getPublishingPath()} 
                     className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2 text-sm sm:text-base"
@@ -417,10 +419,10 @@ const Home = () => {
                       featuredArticles.map((article, index) => (
                         <div 
                           key={article.id}
-                          className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-newtifi-teal/30 group"
+                          className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-gray-200 hover:border-newtifi-teal/30 group"
                           onClick={() => navigate(getArticleUrl(article))}
                         >
-                          <div className="mb-5 overflow-hidden rounded-2xl border border-gray-100 shadow-sm">
+                          <div className="mb-5 overflow-hidden rounded-2xl border border-gray-200 shadow-sm">
                             <div
                               className="h-40 sm:h-48 md:h-56 w-full bg-center bg-cover transition-transform duration-300 group-hover:scale-[1.02]"
                               style={{ backgroundImage: `url('${articlePreviewImages[index % articlePreviewImages.length]}')` }}
@@ -431,16 +433,16 @@ const Home = () => {
                           <div className="flex items-start mb-4 sm:mb-6">
                             <div className="flex-1 min-w-0">
                               <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                                <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-medium">
+                                <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-light uppercase tracking-[0.2em]">
                                   Latest Publication
                                 </span>
                                 <span className="text-xs sm:text-base text-gray-500">{article.date}</span>
                               </div>
-                              <h3 className="text-base font-bold text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
+                              <h3 className="text-base font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
                                 {article.title}
                               </h3>
                               <div className="flex items-center gap-2 mb-3">
-                                <span className="text-xs sm:text-base text-newtifi-teal font-medium">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
+                                <span className="text-xs sm:text-base text-newtifi-teal font-light uppercase tracking-wide">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
                                 {article.author && (
                                   <>
                                     <span className="text-gray-400">•</span>
@@ -455,12 +457,12 @@ const Home = () => {
                           <div className="mb-4">
                             <div className="flex flex-wrap gap-2">
                               {article.keywords?.slice(0, 3).map((keyword, kIdx) => (
-                                <span key={kIdx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-lg text-xs font-medium">
+                                <span key={kIdx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide">
                                   {keyword}
                                 </span>
                               ))}
                               {article.keywords?.length > 3 && (
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-lg text-xs font-medium">
+                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide">
                                   +{article.keywords.length - 3} more
                                 </span>
                               )}
@@ -471,7 +473,7 @@ const Home = () => {
                           <p className="text-sm sm:text-base text-gray-600 line-clamp-3 mb-6 leading-relaxed">{article.abstract}</p>
 
                           {/* Footer */}
-                          <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
                             <div className="text-xs sm:text-base text-gray-500">
                               DOI: {article.doi}
                             </div>
@@ -640,9 +642,10 @@ const Home = () => {
       <section className="py-12 bg-white">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100">
+            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Scholarship & Education</h2>
+                <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Scholarship & Education</p>
+                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Supporting the next generation</h2>
                 <p className="text-base text-gray-700 font-light">
                   Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
                 </p>
@@ -656,13 +659,13 @@ const Home = () => {
                       key={item.title}
                       onClick={() => setActiveScholarship(item.title)}
                       className={cn(
-                        "p-4 rounded-lg text-left transition-all duration-300",
+                        "p-4 rounded-2xl border text-left transition-all duration-300 shadow-sm",
                         activeScholarship === item.title
-                          ? "bg-newtifi-navy text-white shadow-lg"
-                          : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                          ? "bg-newtifi-navy text-white border-newtifi-navy"
+                          : "bg-white border-gray-200 text-gray-700 hover:border-newtifi-teal/30"
                       )}
                     >
-                      <h3 className="font-semibold mb-2">{item.title}</h3>
+                      <h3 className="font-light uppercase tracking-[0.2em] mb-2">{item.title}</h3>
                       <p className="text-base opacity-80">{item.description}</p>
                     </button>
                   ))}
@@ -680,7 +683,7 @@ const Home = () => {
                     )}
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
-                      <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
+                      <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-base text-gray-700 mb-6">{item.description}</p>
                       {/* Insert extra paragraph for Doctoral Scholarships only */}
                       {item.title === 'Doctoral Scholarships' && (
@@ -709,9 +712,10 @@ const Home = () => {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-6">
           <ScrollReveal direction="right" delay={100}>
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
               <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <h2 className="text-2xl md:text-4xl uppercase mb-4 text-newtifi-navy">Insights</h2>
+                <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Insights</p>
+                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Informed dialogue</h2>
                 <p className="text-base text-gray-700 font-light">
                   At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
                 </p>
@@ -724,13 +728,13 @@ const Home = () => {
                       key={item.title}
                       onClick={() => setActiveInsight(item.title)}
                       className={cn(
-                        "p-4 rounded-lg text-left transition-all duration-300",
+                        "p-4 rounded-2xl border text-left transition-all duration-300 shadow-sm",
                         activeInsight === item.title
-                          ? "bg-newtifi-navy text-white shadow-lg"
-                          : "bg-gray-50 text-gray-700 hover:bg-gray-100"
+                          ? "bg-newtifi-navy text-white border-newtifi-navy"
+                          : "bg-white border-gray-200 text-gray-700 hover:border-newtifi-teal/30"
                       )}
                     >
-                      <h3 className="font-semibold mb-2 text-center uppercase w-full">{item.title}</h3>
+                      <h3 className="font-light tracking-[0.2em] text-center uppercase w-full">{item.title}</h3>
                       <p className="text-base opacity-80">{item.subtext}</p>
                     </button>
                   ))}
@@ -747,7 +751,7 @@ const Home = () => {
                     )}
                   >
                     <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
-                      <h3 className="text-2xl font-semibold text-newtifi-navy mb-4">{item.title}</h3>
+                      <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">{item.title}</h3>
                       <p className="text-base text-gray-700 mb-6">{item.description}</p>
                       {item.details && (
                         <ul className="space-y-3">
@@ -774,7 +778,8 @@ const Home = () => {
           <ScrollReveal direction="right" delay={100}>
             <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
               <ScrollReveal direction="right" delay={200} className="mb-8">
-                <h2 className="text-2xl md:text-4xl font-bold mb-4">Ready to Connect?</h2>
+                <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-2">Connect</p>
+                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase mb-4">Ready to Connect?</h2>
                 <p className="text-base opacity-90 mb-8">
                   Join our community of innovators, researchers, and industry leaders.
                     </p>
@@ -784,13 +789,13 @@ const Home = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Button 
                     to="/contact" 
-                    className="bg-white text-newtifi-navy hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                    className="rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] bg-white text-newtifi-navy hover:bg-gray-100 transition-all duration-300"
                   >
                     Get in Touch
                   </Button>
                     <Button 
                       to="/membership" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-newtifi-navy transition-all duration-300 transform hover:scale-105"
+                    className="rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] border border-white/40 text-white hover:bg-white hover:text-newtifi-navy transition-all duration-300"
                     >
                     Join Our Network
                     </Button>

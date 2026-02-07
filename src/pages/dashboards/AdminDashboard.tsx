@@ -141,11 +141,11 @@ export default function AdminDashboard() {
               <div>
                 <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Admin Console</h2>
                 <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-                <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Review and approve content</h3>
+                <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Review and approve content</h3>
               </div>
               <button
                 onClick={() => navigate('/admin/articles')}
-                className="px-6 py-3 bg-newtifi-navy text-white rounded-lg hover:bg-newtifi-teal transition-all flex items-center gap-2 shadow-lg hover:shadow-xl"
+                className="px-6 py-3 bg-newtifi-navy text-white rounded-full text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal transition-all flex items-center gap-2 shadow-sm hover:shadow-md"
               >
                 <Database className="h-5 w-5" />
                 <span>View All Articles</span>
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
             
             {/* Stats Cards */}
             <div className="grid md:grid-cols-3 gap-6 mb-8">
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-600">Pending Applications</span>
                   <div className="p-2 bg-yellow-100 rounded-lg">
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
                 <p className="text-xs text-gray-500 mt-1">Awaiting review</p>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-600">Pending Articles</span>
                   <div className="p-2 bg-blue-100 rounded-lg">
@@ -184,7 +184,7 @@ export default function AdminDashboard() {
                 <p className="text-xs text-gray-500 mt-1">Awaiting review</p>
               </div>
 
-              <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+              <div className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm text-gray-600">Total Articles</span>
                   <div className="p-2 bg-green-100 rounded-lg">
@@ -211,10 +211,10 @@ export default function AdminDashboard() {
               ) : (
                 <div className="space-y-4">
                   {pendingApplications.map(app => (
-                    <div key={app.id} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div key={app.id} className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-newtifi-navy mb-2">
+                          <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2">
                             {app.user.name || app.user.email}
                           </h4>
                           <p className="text-gray-600 mb-2">{app.user.email}</p>
@@ -259,10 +259,10 @@ export default function AdminDashboard() {
               ) : (
                 <div className="space-y-4">
                   {pendingArticles.map(article => (
-                    <div key={article.id} className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                    <div key={article.id} className="bg-white rounded-2xl shadow-sm p-6 border border-gray-200">
                       <div className="flex justify-between items-start">
                         <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-newtifi-navy mb-2">
+                          <h4 className="text-lg font-light uppercase tracking-wide text-newtifi-navy mb-2">
                             {article.title || 'Untitled Article'}
                           </h4>
                           <p className="text-sm text-gray-600 mb-2">

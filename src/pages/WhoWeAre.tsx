@@ -67,11 +67,13 @@ const WhoWeAre: React.FC = () => {
 
   return (
     <main className="min-h-screen pb-20 bg-white">
-      <section className="px-6 py-32 bg-newtifi-navy text-white">
-        <div className="container mx-auto">
+      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
+        <div className="container mx-auto relative">
           <div className="max-w-2xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-8 mt-32">Who We Are</h1>
-            <p className="text-lg text-white/80 leading-relaxed">
+            <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Who We Are</p>
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase mb-8">Meet the team</h1>
+            <p className="text-base text-white/85 leading-relaxed font-light">
               Meet the team driving innovation at Newtifi. We're a diverse group of thinkers, builders, and innovators
               committed to shaping a better future through technology.
             </p>
@@ -82,7 +84,8 @@ const WhoWeAre: React.FC = () => {
       <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-16 pt-24">
-            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Senior Leadership</h2>
+            <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Team</p>
+            <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Senior Leadership</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -105,7 +108,7 @@ const WhoWeAre: React.FC = () => {
         <div className="container mx-auto relative">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl uppercase mb-8 font-light tracking-wider text-newtifi-teal/90">Our Mission</h2>
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-lg shadow-newtifi-teal/5">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-newtifi-teal/20 shadow-sm">
               <p className="text-xl text-white/90 leading-relaxed">
                 NewTIFI exists to empower scientific breakthroughs that create lasting impact for a sustainable and equitable
                 future. We champion researchers and visionaries, providing support to help translate transformative ideas into
@@ -120,21 +123,22 @@ const WhoWeAre: React.FC = () => {
       <section className="px-6 pb-20 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="mb-12 text-center pt-20">
-            <h2 className="text-3xl md:text-4xl uppercase mb-4 text-newtifi-navy">Our Values</h2>
+            <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Values</p>
+            <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Our Values</h2>
             <p className="text-xl text-gray-700 font-light">The principles that guide our work and shape our impact.</p>
           </div>
 
           <div className="max-w-5xl mx-auto">
-            <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
+            <div className="bg-newtifi-navy rounded-2xl shadow-sm border border-newtifi-navy/20 p-8 md:p-12">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
                 {values.map((value) => (
                   <button
                     key={value.title}
                     onClick={() => setActiveValue(value.title)}
                     className={cn(
-                      'px-8 py-4 rounded-lg text-lg font-light transition-all duration-300',
-                      'border border-white/20 backdrop-blur-sm',
-                      activeValue === value.title ? 'bg-[#6F8FBF] text-white' : 'bg-transparent hover:bg-white/10 text-white',
+                      'px-6 py-3 rounded-full text-xs font-light uppercase tracking-[0.2em] transition-all duration-300',
+                      'border',
+                      activeValue === value.title ? 'bg-newtifi-teal border-newtifi-teal text-white' : 'border-white/20 bg-transparent hover:bg-white/10 text-white',
                     )}
                   >
                     {value.title}

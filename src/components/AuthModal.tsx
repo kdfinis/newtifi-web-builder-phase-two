@@ -84,53 +84,50 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 bg-black/70">
-      {/* Fullscreen split layout, spacious and professional */}
       <div className="grid md:grid-cols-2 w-full h-screen overflow-hidden">
-        {/* Left visual panel with Luxembourg photography */}
-        <div className="hidden md:block relative h-full w-full">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/assets/images/Lux-Philharmonie.jpeg')" }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-tr from-black/55 to-black/10" />
+        {/* Left panel - Membership-era navy/teal gradient */}
+        <div className="hidden md:block relative h-full w-full bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
         </div>
 
-        {/* Right form panel - glass card */}
-        <div className="relative h-full w-full bg-white/70 backdrop-blur-sm">
+        {/* Right form panel */}
+        <div className="relative h-full w-full bg-gradient-to-br from-gray-50 to-white">
           <div className="absolute top-6 right-6">
             <button
               onClick={onClose}
-              className="px-3 py-1.5 text-base text-gray-700 hover:text-newtifi-navy rounded-full bg-white/70 border border-gray-200 hover:bg-white transition"
+              className="px-4 py-2 text-xs uppercase tracking-[0.2em] text-newtifi-navy hover:text-newtifi-teal rounded-full border border-gray-200 hover:border-gray-300 bg-white transition font-light"
             >
               Close
             </button>
           </div>
 
           <div className="h-full w-full flex items-center justify-center p-6">
-            <div className="w-full max-w-lg bg-white/90 border border-gray-200 rounded-2xl p-8 shadow-xl">
+            <div className="w-full max-w-lg bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
               <div className="text-center mb-8">
                 <img src="/assets/images/logo.png" alt="NewTIFI" className="mx-auto h-12 mb-4" />
-                <h2 className="text-3xl font-bold text-newtifi-navy tracking-tight">
+                <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-2">
+                  {authMode === 'login' ? 'Sign in' : 'Create account'}
+                </p>
+                <h2 className="text-2xl md:text-3xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy">
                   {authMode === 'login' ? 'Sign in to NewTIFI' : 'Create your NewTIFI account'}
                 </h2>
-                <p className="text-base text-gray-600 mt-2">
+                <p className="text-base text-gray-600 mt-2 font-light">
                   Secure access to Luxembourg-focused research and insights
                 </p>
               </div>
 
-              {/* Option cards */}
               <div className="grid grid-cols-1 gap-3 mb-6">
                 <button
                   onClick={handleGoogleSignIn}
                   disabled={isLoading}
-                  className="w-full px-5 py-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition disabled:opacity-50"
+                  className="w-full px-5 py-3 border border-gray-200 rounded-full hover:bg-gray-50 text-newtifi-navy transition disabled:opacity-50 text-xs uppercase tracking-[0.2em] font-light"
                 >
                   {isLoading ? 'Connecting to Google…' : 'Continue with Google'}
                 </button>
                 <button
                   onClick={handleLinkedInSignIn}
                   disabled={isLoading}
-                  className="w-full px-5 py-4 rounded-xl bg-newtifi-navy text-white hover:bg-newtifi-navy/90 transition disabled:opacity-50"
+                  className="w-full px-5 py-3 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition disabled:opacity-50 text-xs uppercase tracking-[0.2em] font-light"
                 >
                   {isLoading ? 'Connecting to LinkedIn…' : 'Continue with LinkedIn'}
                 </button>
@@ -146,25 +143,25 @@ const AuthModal: React.FC<AuthModalProps> = ({
           {authMode === 'signup' && (
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-base font-medium text-gray-700 mb-1">First Name</label>
+                <label className="block text-base font-light text-gray-700 mb-1">First Name</label>
                 <input
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                   placeholder="John"
                   required
                 />
               </div>
               <div>
-                <label className="block text-base font-medium text-gray-700 mb-1">Last Name</label>
+                <label className="block text-base font-light text-gray-700 mb-1">Last Name</label>
                 <input
                   type="text"
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                   placeholder="Doe"
                   required
                 />
@@ -173,7 +170,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           )}
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-base font-light text-gray-700 mb-1">Email</label>
             <div className="relative">
               {/* Removed icon */}
               <input
@@ -181,7 +178,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 name="email"
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                 placeholder="your@email.com"
                 required
               />
@@ -189,7 +186,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-base font-medium text-gray-700 mb-1">Password</label>
+            <label className="block text-base font-light text-gray-700 mb-1">Password</label>
             <div className="relative">
               {/* Removed icon */}
               <input
@@ -197,7 +194,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                 name="password"
                 value={formData.password}
                 onChange={handleInputChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                 placeholder="••••••••"
                 required
               />
@@ -213,7 +210,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
 
           {authMode === 'signup' && (
             <div>
-              <label className="block text-base font-medium text-gray-700 mb-1">Confirm Password</label>
+              <label className="block text-base font-light text-gray-700 mb-1">Confirm Password</label>
               <div className="relative">
                 {/* Removed icon */}
                 <input
@@ -221,7 +218,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                   name="confirmPassword"
                   value={formData.confirmPassword}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-newtifi-teal focus:border-transparent"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-newtifi-teal/20 focus:border-newtifi-teal transition-colors bg-white"
                   placeholder="••••••••"
                   required
                 />
@@ -245,7 +242,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-newtifi-navy text-white py-3 rounded-xl font-medium hover:bg-newtifi-navy/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            className="w-full bg-newtifi-teal text-white py-3 rounded-full font-light text-xs uppercase tracking-[0.2em] hover:bg-newtifi-teal/90 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
           >
                 {isLoading ? 'Please wait…' : (authMode === 'login' ? 'Sign In' : 'Create Account')}
           </button>
@@ -257,7 +254,7 @@ const AuthModal: React.FC<AuthModalProps> = ({
                     {authMode === 'login' ? "Do not have an account? " : "Already have an account? "}
                     <button
                       onClick={() => setAuthMode(authMode === 'login' ? 'signup' : 'login')}
-                      className="text-newtifi-teal hover:text-newtifi-navy font-medium transition-colors"
+                      className="text-newtifi-teal hover:text-newtifi-navy font-light transition-colors"
                     >
                       {authMode === 'login' ? 'Sign up' : 'Sign in'}
                     </button>

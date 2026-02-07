@@ -190,7 +190,7 @@ export default function Profile() {
           <ScrollReveal>
             <h2 className="text-3xl md:text-4xl font-bold text-newtifi-navy mb-2">Profile Information</h2>
             <div className="w-full h-1 bg-newtifi-navy rounded mb-4" />
-            <h3 className="text-lg text-newtifi-teal font-semibold mb-6">Update your account details</h3>
+            <h3 className="text-lg text-newtifi-teal font-light uppercase tracking-wide mb-6">Update your account details</h3>
             
             <div className="max-w-2xl">
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -200,7 +200,7 @@ export default function Profile() {
                     <User className="h-10 w-10 text-newtifi-teal" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-gray-900">Profile Picture</h3>
+                    <h3 className="text-lg font-light uppercase tracking-wide text-gray-900">Profile Picture</h3>
                     <p className="text-sm text-gray-500">Avatar upload coming soon</p>
                   </div>
                 </div>
@@ -240,7 +240,7 @@ export default function Profile() {
                 {/* LinkedIn Profile Information */}
                 {user?.hasLinkedInAuth && (
                   <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6">
-                    <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center">
+                    <h3 className="text-lg font-light uppercase tracking-wide text-blue-900 mb-4 flex items-center">
                       <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="#0077B5">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.036-1.85-3.036-1.853 0-2.136 1.446-2.136 2.941v5.664H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.602 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 01-.001 4.124zM7.114 20.452H3.56V9h3.554v11.452z"/>
                       </svg>
@@ -562,7 +562,7 @@ export default function Profile() {
                   <button
                     type="submit"
                     disabled={saving}
-                    className="px-8 py-3 bg-gradient-to-r from-newtifi-navy to-newtifi-teal text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 font-medium flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-8 py-3 bg-newtifi-teal text-white rounded-lg font-light uppercase tracking-wide hover:bg-newtifi-teal/90 transition-all duration-300 flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {saving ? (
                       <>
@@ -589,7 +589,7 @@ export default function Profile() {
 
               {/* Coming Soon Section */}
               <div className="mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">More Features Coming Soon</h3>
+                <h3 className="text-lg font-light uppercase tracking-wide text-gray-900 mb-3">More Features Coming Soon</h3>
                 <div className="space-y-2 text-sm text-gray-600">
                   <p>• Profile picture upload</p>
                   <p>• Social media links</p>
