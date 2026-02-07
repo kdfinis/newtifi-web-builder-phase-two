@@ -26,3 +26,13 @@ dist-ssr
 
 /generated/prisma
 .loop-breaker-state.json
+
+# Build / cache / backups (do not track)
+.firebase
+.snapshots
+.vite
+/assets
+/assets-backup-*
+/NewTIFI
+/NewTIFI Before Adaptation
+/~
