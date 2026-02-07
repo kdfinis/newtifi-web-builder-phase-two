@@ -1,15 +1,11 @@
 name: Deploy to Firebase Hosting
 
 # Deploy latest code to Firebase Hosting (newtifi.com)
+# Triggers on push to main or new-visual-identity (no path filter so every push deploys)
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
-    paths:
-      - '.github/workflows/firebase-deploy.yml'
-      - 'src/**'
-      - 'package.json'
-      - 'vite.config.ts'
+    branches: [ main, new-visual-identity ]
 
 jobs:
   deploy:
