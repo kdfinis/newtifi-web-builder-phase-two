@@ -1,6 +1,26 @@
 # Firebase Token Setup for GitHub Actions
 
-## Quick Setup
+## Refresh token (when deploy fails with "credentials are no longer valid")
+
+1. **Generate a new CI token** (run in your project directory or anywhere with Firebase CLI):
+   ```bash
+   firebase login:ci
+   ```
+   - Browser opens → sign in with the Google account that has access to the **newtifi-web** Firebase project.
+   - Copy the **entire** token from the terminal (starts with `1//`).
+
+2. **Update the GitHub secret**:
+   - Open: https://github.com/kdfinis/newtifi-web-builder-phase-two/settings/secrets/actions
+   - Click **FIREBASE_TOKEN** → **Update** (or delete and create new with the same name).
+   - Paste the new token as the value → save.
+
+3. **Re-run the workflow**:
+   - Go to: https://github.com/kdfinis/newtifi-web-builder-phase-two/actions
+   - Open the failed "Deploy to Firebase Hosting" run → **Re-run all jobs**.
+
+---
+
+## Quick Setup (first time)
 
 1. **Generate CI Token** (run in your terminal):
    ```bash
@@ -38,4 +58,4 @@ If deployment fails:
 
 ## Current Status
 
-✅ **Deployment is working** - The workflow successfully deploys to Firebase Hosting using the CI token method.
+⚠️ **If Actions fail with "Your credentials are no longer valid"** — refresh the token using the steps in **Refresh token** above, then re-run the workflow.
