@@ -341,8 +341,8 @@ const Home = () => {
                   <li>Delivering accessible education and insights to professionals and communities</li>
                   <li>Shaping policy through thought leadership and a shared vision of inclusion, well-being, and sustainability</li>
                 </ul>
-                {/* Luxembourg photo boxes to balance right column height */}
-                <div className="mt-4 grid grid-rows-3 gap-4">
+                {/* Old 3 Luxembourg + 4 new panoramics (7 total). New: scripts/download-panoramic-images.sh */}
+                <div className="mt-4 grid grid-rows-7 gap-4">
                   <div
                     className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-top bg-cover shadow-sm border border-gray-200"
                     style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }}
@@ -357,6 +357,26 @@ const Home = () => {
                     className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
                     style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
                     aria-label="Luxembourg skyline"
+                  />
+                  <div
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
+                    style={{ backgroundImage: "url('/images/uploads/panorama-1.jpg')" }}
+                    aria-label="Luxembourg city panorama"
+                  />
+                  <div
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
+                    style={{ backgroundImage: "url('/images/uploads/panorama-2.jpg')" }}
+                    aria-label="Luxembourg cityscape"
+                  />
+                  <div
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
+                    style={{ backgroundImage: "url('/images/uploads/panorama-3.jpg')" }}
+                    aria-label="City skyline with green park"
+                  />
+                  <div
+                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
+                    style={{ backgroundImage: "url('/images/uploads/panorama-4.jpg')" }}
+                    aria-label="Frankfurt skyline"
                   />
                 </div>
               </div>

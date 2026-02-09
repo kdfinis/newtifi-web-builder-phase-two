@@ -15,6 +15,7 @@
     "validate-mime": "node scripts/validate-mime-types.mjs",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "test": "echo \"No tests yet\"",
     "predeploy": "npm run build && node scripts/fix-github-pages-spa.mjs && cp .htaccess dist/ && cp _headers dist/ && npm run validate-mime",
     "deploy": "gh-pages -d dist",
     "deploy:firebase": "./scripts/auto-deploy.sh",

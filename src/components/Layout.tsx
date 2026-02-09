@@ -51,13 +51,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   
   return (
     <div className="flex flex-col min-h-screen bg-white text-newtifi-navy">
+      <a href="#main-content" className="sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-newtifi-teal focus:text-white focus:rounded-lg focus:outline-none focus:w-auto focus:h-auto focus:m-0 focus:overflow-visible focus:[clip:auto]">
+        Skip to main content
+      </a>
       <Navbar />
-      <div className="flex-1 bg-gradient-to-br from-gray-50 to-white">
+      <main id="main-content" className="flex-1 bg-gradient-to-br from-gray-50 to-white">
         <div className="container mx-auto px-4 pt-4">
           <Breadcrumb />
         </div>
         {children}
-      </div>
+      </main>
       <Footer />
       <FloatingDashboardButton />
       <CookieConsent />
