@@ -30,7 +30,7 @@ const staticArticles = [
     abstract: "This article examines the legal and regulatory framework governing compulsory redemptions and compartment terminations in Luxembourg closed-ended ELTIFs. Focusing on the interplay between EU law, Luxembourg product regimes, and CSSF practice, it analyses how these mechanisms enhance capital efficiency, support fund liquidity management, and ensure investor protection. The study clarifies the compatibility of redemption provisions with the closed-ended ELTIF model and outlines best practices for implementing termination and amalgamation clauses within fund documentation. It concludes that Luxembourg offers a coherent and operationally flexible platform for ELTIF structuring aligned with the evolving European regulatory landscape.",
     filename: "eltifs-compulsory-redemptions.pdf",
     url: "/articles/investment-management-journal/eltifs-compulsory-redemptions",
-    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf",
+    pdfUrl: "/articles/eltifs-compulsory-redemptions.pdf",
     journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
@@ -63,7 +63,7 @@ const staticArticles = [
     abstract: "This article critically examines the March 2025 Draft Position Letter issued by BaFin on investor involvement in AIF portfolio decisions. While reaffirming the AIFM's exclusive mandate under the AIFMD, BaFin's strict stance on veto rights, LPAC involvement, and investor oversight diverges from more pragmatic regulatory approaches in other EU jurisdictions. Drawing on legal obligations under Articles 12 and 57 of the AIFMD and AIFMR, and contrasting interpretations by regulators such as the CSSF, this paper argues for a proportionate balance between investor protection and fund manager autonomy. The analysis underscores the need for regulatory alignment that recognises legitimate governance rights without undermining the structural integrity of the AIFM model.",
     filename: "bafin-aifm-portfolio-control.pdf",
     url: "/articles/investment-management-journal/bafin-portfolio-control",
-    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf",
+    pdfUrl: "/articles/bafin-aifm-portfolio-control.pdf",
     journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
@@ -102,7 +102,7 @@ const staticArticles = [
     abstract: "This article provides a comprehensive analysis of Luxembourg's \"Well-Informed Investor\" regime as applied to SICARs, SIFs, and RAIFs, tracing its legislative and regulatory evolution over the past two decades. It examines the classification criteria for eligible investors, including institutional, professional, and opt-in categories, and assesses the legal and operational implications of miscategorisation. Particular focus is given to the 2023 legislative reforms aligning Luxembourg with EU thresholds and verification standards. The article also explores the compliance duties of AIFMs, nominee structures, and the consequences of non-compliance under civil, regulatory, and criminal law, offering practitioners and academics a detailed guide to navigating investor eligibility in Luxembourg's private fund landscape.",
     filename: "luxembourg-well-informed-investor.pdf",
     url: "/articles/investment-management-journal/luxembourg-well-informed-investor",
-    pdfUrl: "/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf",
+    pdfUrl: "/articles/luxembourg-well-informed-investor.pdf",
     journalSlug: "investment-management",
     status: "published" as const,
     views: 0,
@@ -334,31 +334,15 @@ export default function ArticlePage() {
     return idMap[slug] || slug;
   };
 
-  // Helper to get correct PDF URL from article ID
+  // Helper to get correct PDF URL from article ID (paths must exist under public/articles/)
   const getPdfUrl = (articleId: string, apiPdfUrl?: string): string => {
-    // Map article IDs to new storage structure paths
     const pdfMap: Record<string, string> = {
-      'IMJ-2025-001': '/storage/journals/investment-management/articles/IMJ-2025-001/current/article.pdf',
-      'IMJ-2025-002': '/storage/journals/investment-management/articles/IMJ-2025-002/current/article.pdf',
-      'IMJ-2025-003': '/storage/journals/investment-management/articles/IMJ-2025-003/current/article.pdf'
+      'IMJ-2025-001': '/articles/eltifs-compulsory-redemptions.pdf',
+      'IMJ-2025-002': '/articles/bafin-aifm-portfolio-control.pdf',
+      'IMJ-2025-003': '/articles/luxembourg-well-informed-investor.pdf'
     };
-    
-    // First try the new storage structure mapping
-    if (pdfMap[articleId]) {
-      return pdfMap[articleId];
-    }
-    
-    // Then try the API URL if it exists and is valid (supports both old and new paths)
-    if (apiPdfUrl && (apiPdfUrl.startsWith('/articles/') || apiPdfUrl.startsWith('/storage/'))) {
-      return apiPdfUrl;
-    }
-    
-    // Fallback: try to construct new storage path
-    if (articleId.startsWith('IMJ-')) {
-      return `/storage/journals/investment-management/articles/${articleId}/current/article.pdf`;
-    }
-    
-    // Final fallback to legacy path
+    if (pdfMap[articleId]) return pdfMap[articleId];
+    if (apiPdfUrl && (apiPdfUrl.startsWith('/articles/') || apiPdfUrl.startsWith('/storage/'))) return apiPdfUrl;
     return `/articles/${idToSlug(articleId)}.pdf`;
   };
 
@@ -399,7 +383,7 @@ export default function ArticlePage() {
               views: a.views || 0,
               downloads: a.downloads || 0,
               featured: a.featured || false,
-              category: (a.category || 'journal') as const
+              category: (a.category || 'journal') as 'journal' | 'news'
             }));
             
             // Merge with static articles (avoid duplicates by ID)
