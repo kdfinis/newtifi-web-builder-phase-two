@@ -42,30 +42,23 @@ Ezechiel holds an LL.M. from the University of Pennsylvania Carey Law School, an
   {
     name: 'Karlo Definis, FICP',
     urlName: 'karlo-definis-ficp',
-    title: 'COO & General Secretary',
-    shortBio: 'Overseeing operational excellence and strategic initiatives across NewTIFI\'s programs and partnerships.',
-    fullBio: `Karlo Definis is a senior executive with a strong record of operational leadership, strategic execution, and client-focused program delivery. As Chief Operating Officer and General Secretary of NewTIFI, he is responsible for managing internal operations, coordinating institutional initiatives, and ensuring effective execution across research, policy, and education programs. His approach is defined by accountability, clear systems thinking, and an ability to implement institutional priorities with discipline and integrity.
+    title: 'Head of Operations & Digital Transformation',
+    shortBio: 'Karlo Definis has led operations and digital transformation at NewTIFI since April 2024.',
+    fullBio: `He runs day-to-day operations across research, policy, and education at a Luxembourg institute working on technology and investment funds. He coordinates a global expert network and cross-border financial-services policy work. He designs internal workflows and automation, including AI-supported reporting that always goes through human review.
 
-Prior to this role, Karlo served as Director of the Executive Master in Financial Services Innovation at Luxembourg School of Business, where he led one of the institution’s flagship programs for industry professionals. His work spanned program design, marketing strategy, and corporate outreach, with direct responsibility for relationship management and business development across key institutional clients. He has successfully translated academic objectives into commercially viable solutions and built long-term partnerships based on trust and value delivery.
-
-Karlo also led the full digital transformation of the business school, overseeing the design and implementation of enterprise-level cloud systems, online learning environments, and digital infrastructure for both faculty and administrative teams. As a certified IT professional, he continues to advise on technology integration and automation, with a particular focus on operational efficiency, compliance workflows, and contributed to the development of AI tools and solutions.
-
-Throughout his career, he has taken on key roles in accreditation and audit readiness, managing complex documentation processes aligned with European quality standards and national frameworks. He is known for his attention to detail, clarity in communication, and ability to align strategic goals with measurable execution.`,
+From April 2026 he is also CFO and Commercial Director at TENET Arhitektura. Architecture there sits with the Director of Architecture.`,
     expertise: [
-      'Executive operations and institutional management',
-      'Client relationship development and stakeholder engagement',
-      'Sales strategy, B2B marketing, and corporate outreach',
-      'Digital transformation, cloud systems, and IT integration',
-      'AI tools and applied innovation in organizational settings',
-      'Program design and professional learning delivery',
-      'Accreditation management and audit preparation under European standards'
+      'Day-to-day operations across research, policy, and education',
+      'Expert network coordination',
+      'Cross-border financial-services policy work',
+      'Internal workflow design and automation',
+      'AI-supported reporting with human review'
     ],
     achievements: [
-      'Directed the Executive Master in Financial Services Innovation, aligning business education with the needs of the financial industry',
-      'Led full-scale digital transformation of academic operations at LSB, including cloud infrastructure and virtual delivery models',
-      'Contributed to the development of AI tools and solutions for internal and external institutional use',
-      'Designed and delivered client-facing education programs with lasting institutional partnerships',
-      'Managed accreditation documentation and audits across multiple quality frameworks, ensuring full compliance and institutional readiness'
+      'Head of Operations & Digital Transformation at NewTIFI since April 2024',
+      'Coordinates institute operations from Luxembourg',
+      'Designs internal workflows and automation for research and policy delivery',
+      'Builds AI-supported reporting with mandatory human review'
     ],
     imageSrc: '/assets/images/team/karlo-definis.jpg',
     linkedin: 'https://linkedin.com/in/karlo-definis'
