@@ -43,22 +43,24 @@ Ezechiel holds an LL.M. from the University of Pennsylvania Carey Law School, an
     name: 'Karlo Definis, FICP',
     urlName: 'karlo-definis-ficp',
     title: 'Head of Operations & Digital Transformation',
-    shortBio: 'Karlo Definis has led operations and digital transformation at NewTIFI since April 2024.',
-    fullBio: `He runs day-to-day operations across research, policy, and education at a Luxembourg institute working on technology and investment funds. He coordinates a global expert network and cross-border financial-services policy work. He designs internal workflows and automation, including AI-supported reporting that always goes through human review.
+    shortBio: 'Karlo leads operations and digital business transformation at NewTIFI from April 2024: process redesign, digital adaptation, and practical AI in workflows with human review.',
+    fullBio: `Karlo Definis has led operations and digital transformation at NewTIFI since April 2024. He runs day-to-day delivery across research, policy, and education at a Luxembourg institute working at the intersection of technology and investment funds.
+
+His focus is digitalisation of the institute's operating model: process design and workflow remapping, evaluating tools and providers, comparing alternatives, and adapting how teams work so research and policy delivery stay coherent. He trains colleagues onto the new processes and designs internal automation and AI-supported reporting, always with human review before anything external. He also coordinates a global expert network and cross-border financial-services policy work.
 
 From April 2026 he is also CFO and Commercial Director at TENET Arhitektura. Architecture there sits with the Director of Architecture.`,
     expertise: [
-      'Day-to-day operations across research, policy, and education',
-      'Expert network coordination',
-      'Cross-border financial-services policy work',
-      'Internal workflow design and automation',
-      'AI-supported reporting with human review'
+      'Operations and digital business transformation across research, policy, and education',
+      'Process design, workflow remapping, and operating-model adaptation',
+      'Technology evaluation and provider selection for institute workflows',
+      'AI-supported reporting and automation with human review',
+      'Expert network coordination and cross-border financial-services policy work'
     ],
     achievements: [
       'Head of Operations & Digital Transformation at NewTIFI since April 2024',
-      'Coordinates institute operations from Luxembourg',
-      'Designs internal workflows and automation for research and policy delivery',
-      'Builds AI-supported reporting with mandatory human review'
+      'Leads digitalisation and operating-model adaptation across institute delivery',
+      'Evaluates tools and providers, then remaps workflows for research and policy work',
+      'Builds AI-supported reporting and internal automation with mandatory human review'
     ],
     imageSrc: '/assets/images/team/karlo-definis.jpg',
     linkedin: 'https://linkedin.com/in/karlo-definis'

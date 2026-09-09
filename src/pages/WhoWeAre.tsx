@@ -12,7 +12,7 @@ const teamMembers = [
   {
     name: 'Karlo Definis, FICP',
     title: 'Head of Operations & Digital Transformation',
-    bio: 'Karlo Definis has led operations and digital transformation at NewTIFI since April 2024.',
+    bio: 'Karlo leads operations and digital business transformation at NewTIFI from April 2024: remapping how research, policy, and education run day to day, and putting practical AI into internal workflows with human review.',
     imageSrc: '/assets/images/team/karlo-definis.jpg',
   },
   {
