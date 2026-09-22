@@ -60,7 +60,7 @@ const MediaLibrary: React.FC = () => {
         size: '140KB',
         uploadedAt: '2025-01-27',
         category: 'team',
-        alt: 'Karlo Definis - Managing Partner'
+        alt: 'Karlo Definis - Head of Operations & Digital Transformation'
       },
       {
         id: 'team-2',
