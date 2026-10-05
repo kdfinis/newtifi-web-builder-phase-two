@@ -51,21 +51,18 @@ npm run dev
 - **Styling**: Tailwind CSS
 - **UI Components**: Radix UI + custom components
 - **Routing**: React Router
-- **Build Output**: `dist/` directory (Firebase & GitHub Pages compatible)
-- **Hosting**: Supports both GitHub Pages and Firebase Hosting
+- **Build Output**: `dist/` directory
+- **Hosting**: GitHub Pages
 
 ### Backend (Node.js + Express)
 - **Port**: 3001
 - **Framework**: Express.js
 - **Database**: In-memory (JSON files)
 - **Features**: Article management, admin authentication, analytics
-- **Future**: Can migrate to Firebase Functions for scalability
-
 ### Hosting Configuration
-- **GitHub Pages**: Primary deployment method (serves from `main` branch)
-- **Firebase Hosting**: Available as alternative (serves from `dist/` directory)
-- **SPA Routing**: Configured for both platforms (`firebase.json` + `404.html`)
-- **Asset Serving**: Compatible with both hosting methods
+- **GitHub Pages**: Publishes `dist/` from the `gh-pages` branch
+- **SPA Routing**: `404.html` sends unknown paths back to the app
+- **Custom domain**: newtifi.com
 
 ## 📚 Features
 
@@ -205,53 +202,26 @@ newtifi-web-builder/
 
 ## 🚀 Deployment
 
-### Hosting Platforms
-This codebase supports **both GitHub Pages and Firebase Hosting**. All development must maintain compatibility with both platforms.
-
-**⚠️ FIREBASE PROTOCOL AWARENESS REQUIRED:**
-- See `docs/FIREBASE_PROTOCOL_GUIDE.md` for complete Firebase requirements
-- See `docs/DEVELOPMENT_PROTOCOL.md` for development guidelines
-- **All agents/developers must be aware of Firebase hosting requirements**
+### Hosting
+GitHub Pages publishes the `dist/` build. The custom domain is newtifi.com.
 
 ### Production Build
 ```bash
-# Build frontend (compatible with both GitHub Pages and Firebase)
 npm run build
-
-# Test locally (GitHub Pages)
 npm run preview
-
-# Test locally (Firebase)
-firebase serve
 ```
 
-### Deployment Methods
-
-#### GitHub Pages (Primary)
+### Deploy
 ```bash
 npm run predeploy  # Build + fix SPA routing + validate
-npm run deploy     # Deploy to gh-pages branch
-# OR manually: cp -r dist/* . && git commit && git push
+npm run deploy     # Publish dist to the gh-pages branch
 ```
 
-#### Firebase Hosting (Available)
-```bash
-npm run build
-firebase deploy --only hosting
-# OR use: npm run deploy:auto
-```
-
-### Firebase Requirements
-- ✅ Build output in `dist/` directory
-- ✅ SPA routing configured in `firebase.json`
-- ✅ Asset paths are absolute/root-relative (`/assets/...`)
-- ✅ MIME types configured for both platforms
-- ✅ Environment variables use `import.meta.env` (Vite)
+Pushes to `main` also publish through `.github/workflows/pages.yml`.
 
 ### Environment Variables
 - No environment variables required for development
 - Use `import.meta.env` for client-side variables (Vite)
-- Firebase Functions can be used for server-side env vars
 - Configure production settings as needed
 
 ## 🔧 Troubleshooting
