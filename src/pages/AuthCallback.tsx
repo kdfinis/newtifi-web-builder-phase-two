@@ -53,7 +53,7 @@ export default function AuthCallback() {
   }, [searchParams]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+    <div className="min-h-screen bg-white flex items-center justify-center">
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full mx-4 text-center">
         {status === 'loading' && (
           <>

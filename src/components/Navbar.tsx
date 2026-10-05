@@ -1,310 +1,241 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { ChevronDown, ChevronUp } from 'lucide-react';
 import { urlFactory } from '@/lib/urls/UrlFactory';
 import { useSimpleAuth } from '@/hooks/useSimpleAuth';
+import Button from './Button';
+
+const navLinkClasses = (active: boolean) =>
+  cn(
+    'relative py-2 text-sm transition-colors duration-150 ease-out-strong',
+    'after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:bg-newtifi-teal',
+    'after:transition-transform after:duration-200 after:ease-out-strong motion-reduce:after:transition-none',
+    active
+      ? 'text-white after:scale-x-100'
+      : 'text-white/80 after:scale-x-0 fine:hover:text-white fine:hover:after:scale-x-100'
+  );
+
+const mobileLinkClasses = (active: boolean) =>
+  cn(
+    'flex min-h-[44px] items-center rounded-lg px-3 text-base transition-colors duration-150 ease-out-strong',
+    active ? 'bg-white/10 text-white font-bold' : 'text-white/80 fine:hover:bg-white/5 fine:hover:text-white'
+  );
 
 const Navbar = () => {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isAtTop, setIsAtTop] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, loading, logout, isAuthenticated } = useSimpleAuth();
   const menuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+
   const publishingLinks = [
     { label: 'NewTIFI Publishing', to: urlFactory.getPublishingPath() },
     { label: 'NewTIFI Investment Management Journal', to: urlFactory.getJournalPath('investment-management') },
-    { label: 'NewTIFI Restructuring & Insolvency Journal', to: urlFactory.getJournalPath('restructuring-insolvency-journal') }
+    { label: 'NewTIFI Restructuring & Insolvency Journal', to: urlFactory.getJournalPath('restructuring-insolvency-journal') },
   ];
-  const isPublishingActive = location.pathname.startsWith("/publishing");
+  const isPublishingActive = location.pathname.startsWith('/publishing');
+  const isActive = (path: string) => location.pathname === path;
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
-      
-      if (scrollPosition === 0) {
-        setIsAtTop(true);
-        setTimeout(() => setIsAtTop(false), 600);
-      }
-    };
-
+    const handleScroll = () => setIsScrolled(window.scrollY > 8);
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
-  // Handle keyboard navigation
   useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isMenuOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && isMenuOpen) {
+      if (e.key === 'Escape') {
         setIsMenuOpen(false);
         menuButtonRef.current?.focus();
       }
     };
-
-    if (isMenuOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-      // Focus first menu item when menu opens
-      const firstMenuItem = menuRef.current?.querySelector('a');
-      if (firstMenuItem) {
-        (firstMenuItem as HTMLElement).focus();
-      }
-    }
-
+    document.addEventListener('keydown', handleKeyDown);
+    menuRef.current?.querySelector<HTMLElement>('a, button')?.focus();
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [isMenuOpen]);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-    menuButtonRef.current?.focus();
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header 
+    <header
       className={cn(
-        "fixed top-0 left-0 w-full z-50 bg-newtifi-navy transition-all duration-500 ease-out",
-        isScrolled ? "h-[78px] shadow-md" : "h-[90px]",
-        isAtTop && "animate-[bump_0.6s_ease-in-out]"
+        'fixed top-0 left-0 z-50 h-[var(--nav-h)] w-full bg-newtifi-navy transition-shadow duration-200 ease-out-strong',
+        (isScrolled || isMenuOpen) && 'shadow-nav'
       )}
       role="banner"
-      aria-label="Main navigation"
     >
-      <div className="container mx-auto h-full flex items-center justify-between relative px-4 md:px-6">
-        {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 min-w-0" aria-label="NewTIFI Home">
-          <img 
-            src="/assets/images/logo.png" 
-            alt="NewTIFI Logo" 
-            className="h-8 sm:h-9 md:h-[44px] w-auto max-w-[150px] md:max-w-none object-contain"
+      <div className="container mx-auto flex h-full items-center justify-between gap-6 px-4 md:px-6">
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label="NewTIFI home">
+          <img
+            src="/assets/images/logo.png"
+            alt="NewTIFI Logo"
+            className="h-8 w-auto max-w-[150px] object-contain sm:h-9 md:h-[44px] md:max-w-none"
           />
-                            <span
-                    className="text-white text-xs md:text-base font-light hidden md:block whitespace-nowrap"
-                  >
-                    New Technologies & Investment Funds Institute
-                  </span>
+          <span className="hidden whitespace-nowrap text-sm text-white/90 xl:block">
+            New Technologies & Investment Funds Institute
+          </span>
         </Link>
 
-        {/* Mobile Menu Button */}
-        <div className="md:hidden flex items-center gap-3">
-          <Link
-            to="/"
-            className={cn(
-              "text-xs uppercase tracking-wide text-white/90 hover:text-newtifi-teal transition-colors",
-              location.pathname === "/" && "text-newtifi-teal"
-            )}
-            onClick={closeMenu}
-          >
+        <nav aria-label="Main navigation" className="hidden items-center gap-7 md:flex">
+          <Link to="/" className={navLinkClasses(isActive('/'))} aria-current={isActive('/') ? 'page' : undefined}>
             Home
           </Link>
           <Link
-            to={urlFactory.getPublishingPath()}
-            className={cn(
-              "text-xs uppercase tracking-wide text-white/90 hover:text-newtifi-teal transition-colors",
-              isPublishingActive && "text-newtifi-teal"
-            )}
-            onClick={closeMenu}
+            to="/who-we-are"
+            className={navLinkClasses(isActive('/who-we-are'))}
+            aria-current={isActive('/who-we-are') ? 'page' : undefined}
           >
-            Publishing
+            Who we are
           </Link>
-          <button
-            ref={menuButtonRef}
-            className="relative flex items-center gap-1 rounded-full border border-white/20 px-3 py-1 text-xs uppercase tracking-wide text-white/90 hover:text-white hover:border-white/40 transition-colors"
-            onClick={toggleMenu}
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-            aria-controls="main-navigation"
-            aria-haspopup="true"
-          >
-            More
-            {isMenuOpen ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            <span className="absolute -bottom-2 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-gradient-to-r from-newtifi-teal/0 via-newtifi-teal/80 to-newtifi-teal/0 animate-[pulse_3s_ease-in-out_infinite]" />
-          </button>
-        </div>
-
-        {/* Navigation Links - Desktop */}
-        <nav 
-          ref={menuRef}
-          id="main-navigation"
-          className={cn(
-            "absolute left-1/2 transform -translate-x-1/2 translate-x-8 md:flex md:items-center md:space-x-6 text-base md:text-4xl font-light uppercase tracking-[0.15em]",
-            "fixed md:static top-[90px] left-0 w-full md:w-auto bg-newtifi-navy/95 md:bg-transparent backdrop-blur md:backdrop-blur-0",
-            "px-6 md:px-0 pb-6 md:pb-0 border-b border-white/10 md:border-0",
-            "transition-all duration-300 ease-in-out",
-            isMenuOpen ? "flex flex-col items-start py-4 space-y-4" : "hidden md:flex"
-          )}
-          role="navigation"
-          aria-label="Main navigation"
-        >
-          <Link 
-            to="/" 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase focus:outline-none focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 focus:ring-offset-newtifi-navy rounded",
-              location.pathname === "/" && "text-newtifi-teal"
-            )}
-            onClick={closeMenu}
-            aria-current={location.pathname === "/" ? "page" : undefined}
-          >
-            Home
-          </Link>
-          <Link 
-            to="/who-we-are" 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase focus:outline-none focus:ring-2 focus:ring-newtifi-teal focus:ring-offset-2 focus:ring-offset-newtifi-navy rounded",
-              location.pathname === "/who-we-are" && "text-newtifi-teal"
-            )}
-            onClick={closeMenu}
-            aria-current={location.pathname === "/who-we-are" ? "page" : undefined}
-          >
-            Who We Are
-          </Link>
-          <div className="relative group w-full md:w-auto flex flex-col items-start md:items-center">
+          <div className="group relative">
             <Link
               to={urlFactory.getPublishingPath()}
-              className={cn(
-                "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
-                isPublishingActive && "text-newtifi-teal"
-              )}
-              onClick={closeMenu}
-              aria-current={isPublishingActive ? "page" : undefined}
+              className={navLinkClasses(isPublishingActive)}
+              aria-current={isPublishingActive ? 'page' : undefined}
               aria-haspopup="true"
             >
               Publishing
             </Link>
-            <div className="hidden md:flex absolute top-full mt-2 w-72 flex-col rounded-2xl border border-gray-200 bg-white shadow-sm py-2 z-50 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition">
+            <div
+              className={cn(
+                'surface-card absolute left-1/2 top-full z-50 mt-3 w-80 -translate-x-1/2 origin-top py-2',
+                'pointer-events-none scale-[0.97] opacity-0',
+                'transition-[opacity,transform] duration-150 ease-out-strong motion-reduce:transition-none',
+                'group-hover:pointer-events-auto group-hover:scale-100 group-hover:opacity-100',
+                'group-focus-within:pointer-events-auto group-focus-within:scale-100 group-focus-within:opacity-100'
+              )}
+            >
               {publishingLinks.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
                   className={cn(
-                    "px-4 py-2 text-sm text-newtifi-navy hover:bg-newtifi-teal/10 hover:text-newtifi-teal transition-colors",
-                    location.pathname === item.to && "text-newtifi-teal"
+                    'block px-4 py-2.5 text-sm text-newtifi-navy transition-colors duration-150 ease-out-strong fine:hover:bg-gray-50',
+                    isActive(item.to) && 'font-bold'
                   )}
-                  onClick={closeMenu}
                 >
                   {item.label}
                 </Link>
               ))}
             </div>
-            {isMenuOpen && (
-              <div className="md:hidden mt-2 w-full flex flex-col items-start gap-1 pl-2">
-                {publishingLinks.map((item) => (
-                  <Link
-                    key={item.to}
-                    to={item.to}
-                    className={cn(
-                      "text-white/90 hover:text-newtifi-teal transition-colors text-sm uppercase",
-                      location.pathname === item.to && "text-newtifi-teal"
-                    )}
-                    onClick={closeMenu}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            )}
           </div>
-          <Link 
-            to="/membership" 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
-              location.pathname === "/membership" && "text-newtifi-teal"
-            )}
-            onClick={() => setIsMenuOpen(false)}
+          <Link
+            to="/membership"
+            className={navLinkClasses(isActive('/membership'))}
+            aria-current={isActive('/membership') ? 'page' : undefined}
           >
             Membership
           </Link>
-          <Link 
-            to="/contact" 
-            className={cn(
-              "nav-link text-white hover:text-newtifi-teal transition-colors text-center uppercase",
-              location.pathname === "/contact" && "text-newtifi-teal"
-            )}
-            onClick={() => setIsMenuOpen(false)}
+          <Link
+            to="/contact"
+            className={navLinkClasses(isActive('/contact'))}
+            aria-current={isActive('/contact') ? 'page' : undefined}
           >
             Contact
           </Link>
-
-          {/* Mobile Auth Section */}
-          {isMenuOpen && (
-            isAuthenticated ? (
-              <div className="md:hidden w-full border-t border-white/10 pt-4 mt-2 space-y-2">
-                <div className="text-left text-sm text-white/80">
-                  Hello, {user?.name || user?.email}
-                </div>
-                <Link 
-                  to="/dashboard" 
-                  className="block w-full text-center px-4 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Dashboard
-                </Link>
-                <button 
-                  onClick={() => { logout(); setIsMenuOpen(false); }}
-                  className="block w-full text-center px-4 py-2.5 rounded-full bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <Link 
-                to="/login" 
-                className="md:hidden block w-full text-center px-4 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 mt-2 text-xs uppercase tracking-[0.2em]"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Sign In
-              </Link>
-            )
-          )}
         </nav>
 
-        {/* Auth Section */}
-        <div className="flex items-center gap-3">
+        <div className="hidden items-center gap-3 md:flex">
           {loading ? (
-            <div className="hidden md:block px-4 py-1.5 text-sm text-gray-500">Loading...</div>
+            <span className="text-sm text-white/60">Loading</span>
           ) : isAuthenticated ? (
-            <div className="hidden md:flex items-center gap-4">
-              <span className="text-sm text-white">Hello, {user?.name || user?.email}</span>
-              <Link 
-                to="/dashboard" 
-                className={cn(
-                  "px-5 py-2.5 rounded-full text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]",
-                  location.pathname.startsWith('/dashboard') 
-                    ? "bg-newtifi-teal ring-2 ring-newtifi-teal/50" 
-                    : "bg-newtifi-teal"
-                )}
-                onClick={() => setIsMenuOpen(false)}
-              >
+            <>
+              <span className="hidden text-sm text-white/80 lg:inline">Hello, {user?.name || user?.email}</span>
+              <Button to="/dashboard" size="sm">
                 Dashboard
-              </Link>
-              <button 
+              </Button>
+              <button
+                type="button"
                 onClick={logout}
-                className="px-5 py-2.5 rounded-full bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
+                className="h-9 rounded-lg px-3.5 text-sm text-white/80 ring-1 ring-inset ring-white/25 transition-[color,box-shadow,transform] duration-150 ease-out-strong active:scale-[0.97] motion-reduce:transition-none fine:hover:text-white fine:hover:ring-white/50"
               >
-                Logout
+                Log out
               </button>
-            </div>
+            </>
           ) : (
-            <Link 
-              to="/login" 
-              className={cn(
-                "hidden md:block px-5 py-2.5 rounded-full bg-newtifi-teal text-white hover:bg-newtifi-teal/90 transition-all duration-300 text-xs uppercase tracking-[0.2em]"
-              )}
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Sign In
-            </Link>
+            <Button to="/login" size="sm">
+              Sign in
+            </Button>
           )}
         </div>
 
-        
+        <button
+          ref={menuButtonRef}
+          type="button"
+          className="flex h-11 w-11 items-center justify-center rounded-lg text-white transition-[background-color,transform] duration-150 ease-out-strong active:scale-[0.97] motion-reduce:transition-none fine:hover:bg-white/10 md:hidden"
+          onClick={() => setIsMenuOpen((open) => !open)}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
       </div>
+
+      {isMenuOpen && (
+        <div
+          ref={menuRef}
+          id="mobile-navigation"
+          className="fixed inset-x-0 bottom-0 top-[var(--nav-h)] overflow-y-auto border-t border-white/10 bg-newtifi-navy px-4 pb-8 pt-4 md:hidden"
+        >
+          <nav aria-label="Mobile navigation" className="flex flex-col gap-1">
+            <Link to="/" className={mobileLinkClasses(isActive('/'))} onClick={closeMenu}>
+              Home
+            </Link>
+            <Link to="/who-we-are" className={mobileLinkClasses(isActive('/who-we-are'))} onClick={closeMenu}>
+              Who we are
+            </Link>
+            {publishingLinks.map((item, index) => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={cn(mobileLinkClasses(isActive(item.to)), index > 0 && 'pl-6 text-sm')}
+                onClick={closeMenu}
+              >
+                {index === 0 ? 'Publishing' : item.label}
+              </Link>
+            ))}
+            <Link to="/membership" className={mobileLinkClasses(isActive('/membership'))} onClick={closeMenu}>
+              Membership
+            </Link>
+            <Link to="/contact" className={mobileLinkClasses(isActive('/contact'))} onClick={closeMenu}>
+              Contact
+            </Link>
+          </nav>
+          <div className="mt-6 border-t border-white/10 pt-6">
+            {isAuthenticated ? (
+              <div className="flex flex-col gap-3">
+                <p className="text-sm text-white/70">Hello, {user?.name || user?.email}</p>
+                <Button to="/dashboard" fullWidth>
+                  Dashboard
+                </Button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    logout();
+                    closeMenu();
+                  }}
+                  className="h-11 w-full rounded-lg text-sm text-white ring-1 ring-inset ring-white/25 transition-transform duration-150 ease-out-strong active:scale-[0.97] motion-reduce:transition-none"
+                >
+                  Log out
+                </button>
+              </div>
+            ) : (
+              <Button to="/login" fullWidth>
+                Sign in
+              </Button>
+            )}
+          </div>
+        </div>
+      )}
     </header>
   );
 };

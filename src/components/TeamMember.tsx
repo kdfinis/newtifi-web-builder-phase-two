@@ -23,42 +23,41 @@ const TeamMember: React.FC<TeamMemberProps> = ({
   const urlName = name.toLowerCase().replace(/,/g, '').replace(/\s+/g, '-');
 
   return (
-    <div className={cn("flex flex-col items-center", className)}>
-      <Link 
+    <div className={cn("flex h-full flex-col items-center", className)}>
+      <Link
         to={`/person/${urlName}`}
-        className="relative w-full max-w-[280px] bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-md hover:border-newtifi-teal/30"
+        className="relative flex h-full w-full max-w-[280px] flex-col bg-white rounded-2xl overflow-hidden group cursor-pointer shadow-card transition-[transform,box-shadow] duration-200 ease-out-strong active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-newtifi-navy focus-visible:ring-offset-2 fine:hover:-translate-y-1 fine:hover:shadow-card-hover"
       >
-        <div className="relative h-[240px] w-full overflow-hidden rounded-t-2xl">
-          <div className="absolute inset-0 bg-newtifi-navy/20 opacity-0 group-hover:opacity-30 transition-opacity duration-500 ease-in-out rounded-t-2xl"></div>
-          <img 
-            src={imageSrc} 
+        <div className="relative h-[240px] w-full shrink-0 overflow-hidden">
+          <img
+            src={imageSrc}
             alt={name}
-            className="h-[360px] w-full object-cover transition-all duration-700 group-hover:scale-102 grayscale hover:grayscale-[50%]" 
-            style={{ 
+            className="photo h-[360px] w-full object-cover"
+            style={{
               objectPosition: name === 'Delphine Filsack' ? 'center 30%' : 'center 40%',
-              transform: 'scale(1)'
             }}
           />
         </div>
-         
-        <div className="p-6 transition-all duration-300 bg-white group-hover:bg-white h-[180px] flex flex-col justify-between shadow-sm group-hover:shadow-md">
+
+        <div className="p-6 bg-white flex flex-1 flex-col justify-between gap-6">
           <div>
-            <h3 className="text-base font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-1 transition-all duration-300 group-hover:text-newtifi-teal line-clamp-2">{name}</h3>
-            <p className="text-newtifi-navy font-light uppercase tracking-[0.2em] text-base line-clamp-2">{title}</p>
+            <h3 className="mb-2 text-base font-bold text-balance text-newtifi-navy transition-colors duration-200 ease-out-strong fine:group-hover:text-[#008f96]">{name}</h3>
+            <p className="text-sm leading-relaxed text-gray-600 text-balance">{title}</p>
             {subtitle && (
-              <p className="text-newtifi-navy/70 font-light uppercase tracking-wide text-sm line-clamp-1">{subtitle}</p>
+              <p className="text-sm text-gray-500 line-clamp-1">{subtitle}</p>
             )}
           </div>
           
           <div className="flex justify-start">
             <span 
               className={cn(
-                "flex items-center justify-center text-newtifi-navy transition-all duration-300",
+                "flex items-center justify-center text-newtifi-navy",
                 "bg-newtifi-teal/10 rounded-lg p-2",
-                "group-hover:translate-x-1 group-hover:bg-newtifi-teal/20"
+                "transition-[background-color,transform] duration-200 ease-out-strong motion-reduce:transition-none",
+                "fine:group-hover:translate-x-1 fine:group-hover:bg-newtifi-teal/20"
               )}
             >
-              <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5" aria-hidden="true" />
             </span>
           </div>
         </div>

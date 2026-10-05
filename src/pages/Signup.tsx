@@ -107,13 +107,13 @@ export default function Signup() {
 
   if (isSignedUp) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
+      <div className="min-h-screen bg-white flex items-center justify-center p-4">
         <div className="bg-white rounded-2xl shadow-sm border border-gray-200 p-8 max-w-md w-full text-center">
           <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h2 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Account Created!</h2>
-          <p className="text-gray-600 mb-4">Welcome to NewTiFi, {formData.name}!</p>
+          <p className="text-gray-600 mb-4">Welcome to NewTIFI, {formData.name}!</p>
           <div className="animate-pulse">
             <div className="h-2 bg-newtifi-teal/20 rounded-full mb-2"></div>
             <div className="h-2 bg-newtifi-teal/20 rounded-full w-3/4 mx-auto"></div>
@@ -124,9 +124,9 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center p-4">
+    <div className="min-h-screen bg-white flex items-center justify-center p-4">
       {/* Hero Section */}
-      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+      <section className="relative px-6 py-32 institute-hero text-white overflow-hidden">
         {/* Background Graphics */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         
@@ -170,10 +170,10 @@ export default function Signup() {
             <ArrowLeft className="h-6 w-6" />
           </button>
           <div className="w-20 h-20 bg-newtifi-navy rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <img src="/assets/images/logo.png" alt="NewTiFi Logo" className="w-12 h-12 object-contain" />
+            <img src="/assets/images/logo.png" alt="NewTIFI Logo" className="w-12 h-12 object-contain" />
           </div>
           <h1 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-2">Create Account</h1>
-          <p className="text-gray-600">Join NewTiFi to access research and connect with professionals</p>
+          <p className="text-gray-600">Join NewTIFI to access research and connect with professionals</p>
         </div>
 
         {/* Social Signup Buttons */}

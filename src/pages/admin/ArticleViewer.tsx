@@ -195,7 +195,7 @@ export default function ArticleViewer() {
 
   if (!user || (user.email !== 'karlodefinis@gmail.com' && user.role !== 'ADMIN' && user.role !== 'admin')) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <XCircle className="h-16 w-16 text-red-500 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Access Denied</h1>
@@ -206,7 +206,7 @@ export default function ArticleViewer() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <div className="bg-white border-b border-gray-200 shadow-sm">
         <div className="container mx-auto px-6 py-4">

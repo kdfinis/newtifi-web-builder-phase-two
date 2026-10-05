@@ -92,16 +92,6 @@ const MediaLibrary: React.FC = () => {
         category: 'team',
         alt: 'Ezechiel Havrenne - Lecturer'
       },
-      {
-        id: 'team-5',
-        name: 'Vlado Sutlovic',
-        type: 'image',
-        url: '/assets/images/team/vlado-sutlovic.jpeg',
-        size: '209KB',
-        uploadedAt: '2025-01-27',
-        category: 'team',
-        alt: 'Vlado Sutlovic'
-      },
       // Location Photos
       {
         id: 'location-1',

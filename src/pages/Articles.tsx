@@ -115,7 +115,7 @@ export default function Articles() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white flex items-center justify-center">
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-newtifi-teal mx-auto mb-4"></div>
           <p className="text-gray-600">Loading articles...</p>
@@ -125,7 +125,7 @@ export default function Articles() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-8">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12">

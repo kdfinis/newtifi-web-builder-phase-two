@@ -16,7 +16,7 @@ const FloatingDashboardButton: React.FC = () => {
   return (
     <Link
       to="/dashboard"
-      className="fixed bottom-6 right-6 z-50 bg-newtifi-teal hover:bg-newtifi-teal/90 text-white p-4 rounded-full shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105"
+      className="fixed bottom-6 right-6 z-50 bg-newtifi-teal text-white p-4 rounded-full shadow-card transition-[background-color,box-shadow,transform] duration-150 ease-out-strong active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 fine:hover:bg-[#00aeb6] fine:hover:shadow-card-hover"
       aria-label="Go to Dashboard"
     >
       <Home className="h-6 w-6" />

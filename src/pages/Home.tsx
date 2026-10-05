@@ -1,30 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Heart, Zap, Leaf, DollarSign } from 'lucide-react';
-import ScrollReveal from '@/components/ScrollReveal';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import Button from '@/components/Button';
-import TechCard from '@/components/TechCard';
-import { cn } from '@/lib/utils';
-import { useNavigate } from 'react-router-dom';
-import { getArticleById } from '@/lib/urlMapping';
+import PageHero from '@/components/PageHero';
+import SegmentedPanels from '@/components/SegmentedPanels';
 import { urlFactory } from '@/lib/urls/UrlFactory';
-
-interface Article {
-  id: string;
-  title: string;
-  author: string;
-  date: string;
-  doi: string;
-  keywords: string[];
-  abstract: string;
-  filename: string;
-  url: string;
-  journalSlug?: string;
-  status: 'draft' | 'published';
-  views: number;
-  downloads: number;
-  featured: boolean;
-  category: 'journal' | 'news';
-}
 
 const scholarshipContent = [
   {
@@ -60,45 +40,6 @@ const scholarshipContent = [
       'Build lasting connections and explore career paths within innovation, regulation, and impact-driven technology'
     ]
   },
-];
-
-const legalInsightContent = [
-  {
-    title: 'Expert Analysis',
-    description: 'Comprehensive legal insights for technology and innovation.',
-    details: [
-      'In-depth analysis of emerging technology regulations',
-      'Regular updates on legal frameworks affecting innovation',
-      'Expert commentary on regulatory developments',
-      'Case studies of successful regulatory navigation',
-      'Practical guidance for compliance and risk management',
-      'Strategic insights for technology implementation'
-    ]
-  },
-  {
-    title: 'Regulatory Support',
-    description: 'Navigate complex regulatory landscapes with confidence.',
-    details: [
-      'Guidance on regulatory compliance in multiple jurisdictions',
-      'Support for regulatory filings and applications',
-      'Risk assessment and mitigation strategies',
-      'Updates on changing regulatory requirements',
-      'Access to regulatory expertise and resources',
-      'Assistance with regulatory documentation'
-    ]
-  },
-  {
-    title: 'Policy Advocacy',
-    description: 'Shaping the future of technology regulation.',
-    details: [
-      'Engagement with policymakers and regulators',
-      'Participation in public consultations',
-      'Development of position papers and recommendations',
-      'Collaboration with industry stakeholders',
-      'Advocacy for innovation-friendly policies',
-      'Research on regulatory best practices'
-    ]
-  }
 ];
 
 const insightsContent = [
@@ -252,564 +193,250 @@ const staticArticles = [
   }
 ];
 
-// Helper function to get the correct URL for an article (permanent)
-function getArticleUrl(article) {
+const journalNames: Record<string, string> = {
+  'investment-management': 'Investment Management Journal',
+  'restructuring-insolvency-journal': 'Restructuring & Insolvency Journal',
+};
+
+const technologyPillars = [
+  {
+    title: "HealthTech",
+    description: "Enhancing personal care, diagnostics, and healthcare delivery through innovative technological solutions.",
+    image: "/images/health-tech.jpg"
+  },
+  {
+    title: "FoodTech",
+    description: "Transforming food systems to increase efficiency, sustainability, and nutritional outcomes.",
+    image: "/images/food-tech.jpg"
+  },
+  {
+    title: "EnergyTech",
+    description: "Advancing technologies for smarter resource management, energy efficiency, and environmental conservation.",
+    image: "/images/energy-tech.jpg"
+  },
+  {
+    title: "FinTech",
+    description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
+    image: "/images/fin-tech.jpg"
+  }
+];
+
+const financialPillars = [
+  {
+    title: "Investment Funds",
+    description: "Strategic vehicles aimed at investing to optimise returns while managing risk including through diversification.",
+    image: "/images/Investment-funds.jpg"
+  },
+  {
+    title: "Securitisation Vehicles",
+    description: "Special-purpose entities that assume risks linked to assets or third-party obligations and finance them through instruments or loans with returns tied to those.",
+    image: "/images/Securitisation-vehicles.jpeg"
+  },
+  {
+    title: "Pension Funds",
+    description: "Long-term investment solutions focused on financial security and sustainable retirement planning.",
+    image: "/images/Pension-funds.jpg"
+  },
+  {
+    title: "Life Insurance Products",
+    description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
+    image: "/images/life-insurance.jpg"
+  }
+];
+
+const doctoralExtra =
+  'NewTIFI believes the future of investment innovation depends on courageous minds unafraid to ask the big questions – so we fund doctoral scholars in promising technological fields who dare to challenge convention and push their field forward';
+
+function getArticleUrl(article: (typeof staticArticles)[number]) {
   if (article.journalSlug) {
     return urlFactory.getJournalArticlePath(article.journalSlug, article.id);
   }
   return urlFactory.getArticlePermanentPath(article.id);
 }
 
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+type Pillar = { title: string; description: string; image: string };
+
+const PillarGrid: React.FC<{ title: string; pillars: Pillar[] }> = ({ title, pillars }) => (
+  <div>
+    <h2 className="mb-8 text-2xl md:text-3xl text-white">{title}</h2>
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      {pillars.map((pillar) => (
+        <article key={pillar.title} className="surface-card flex h-full flex-col overflow-hidden">
+          <div className="aspect-[4/3] w-full bg-gray-100">
+            <img src={pillar.image} alt="" loading="lazy" className="photo h-full w-full object-cover" />
+          </div>
+          <div className="flex flex-1 flex-col p-6">
+            <h3 className="mb-2 text-base font-bold text-newtifi-navy">{pillar.title}</h3>
+            <p className="text-sm leading-relaxed text-gray-700 text-pretty">{pillar.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+);
+
 const Home = () => {
-  const [articles] = useState(staticArticles);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
-
-  // Get featured articles
-  const featuredArticles = articles.filter(article => article.featured);
-
-  // Get latest published articles
-  const latestArticles = articles
-    .filter(article => article.status === 'published')
+  const latestArticles = staticArticles
+    .filter((article) => article.status === 'published')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 2);
+    .slice(0, 3);
 
-  // Intersection Observer setup for animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
+  const scholarshipItems = scholarshipContent.map((item) => ({
+    title: item.title,
+    summary: item.description,
+    intro: item.title === 'Doctoral Scholarships' ? doctoralExtra : undefined,
+    bullets: item.details,
+  }));
 
-    const elements = document.querySelectorAll('.appear-on-scroll');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => {
-      elements.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
-
-  const [activeScholarship, setActiveScholarship] = useState(scholarshipContent[0].title);
-  const [activeLegalInsight, setActiveLegalInsight] = useState(legalInsightContent[0].title);
-  const [activeInsight, setActiveInsight] = useState('Journals');
+  const insightItems = insightsContent.map((item) => ({
+    title: item.title,
+    summary: item.subtext,
+    intro: item.description,
+    bullets: item.details,
+  }));
 
   return (
-    <main className="min-h-screen pb-20">
-      {/* Our Journey Section - Membership2 hero pattern */}
-      <section className="relative px-6 py-16 sm:py-24 md:py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30" />
-        <div className="container mx-auto relative">
-          <ScrollReveal direction="right" delay={100}>
-            <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-6">Home</p>
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extralight tracking-[0.12em] leading-tight uppercase">
-                Focus Research<br />Innovate Implement
-              </h1>
+    <div className="pb-20">
+      <PageHero
+        title="Focus. Research. Innovate. Implement."
+        lede="Welcome to the hub where scientific, tech and finance professionals meet"
+      />
+
+      <section className="bg-white">
+        <div className="container mx-auto px-6 py-16 md:py-20">
+          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+            <div className="space-y-6">
+              <h2 className="text-2xl md:text-3xl text-newtifi-navy">New Technologies & Investment Funds Institute</h2>
+              <p className="text-lg leading-relaxed text-gray-700 text-pretty">
+                An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
+              </p>
+              <ul className="list-disc space-y-3 pl-5 text-base text-gray-700 marker:text-newtifi-teal">
+                <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
+                <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
+                <li>Supporting future talent through scholarships, internships, and mentorships</li>
+                <li>Delivering accessible education and insights to professionals and communities</li>
+                <li>Shaping policy through thought leadership and a shared vision of inclusion, well-being, and sustainability</li>
+              </ul>
+              <img
+                src="/images/uploads/adolphe-bridge-luxembourg.jpg"
+                alt="Adolphe Bridge, Luxembourg"
+                className="photo aspect-video w-full rounded-2xl object-cover shadow-card"
+              />
             </div>
-            <p className="text-base md:text-lg leading-relaxed text-white/85 font-light max-w-2xl">
-              Welcome to the hub where Scientific, Tech and Finance Professionals meet
-            </p>
-          </ScrollReveal>
-        </div>
-      </section>
 
-      {/* Hero Section with Overview and Featured Articles */}
-      <section className="relative min-h-[60vh] sm:min-h-[75vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-white pb-0 mb-0">
-        <div className="container mx-auto px-6 py-12 sm:py-16 md:py-20 pb-4 mb-0">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-            {/* Left side - New Technologies & Investment Funds Institute Overview */}
-            <ScrollReveal direction="right" delay={100}>
-              <div className="space-y-6 sm:space-y-8">
-                <p className="text-xs uppercase tracking-[0.35em] text-gray-500">Overview</p>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy">
-                  New Technologies & Investment Funds Institute
-                </h2>
-                <p className="text-base sm:text-lg md:text-2xl text-gray-700">
-                  An institute dedicated to advancing technology innovation and fostering sustainable development through interdisciplinary collaboration.
+            <div className="flex flex-col gap-8">
+              <Link
+                to={urlFactory.getJournalPath('investment-management')}
+                className="surface-card-interactive group block p-6 md:p-8"
+              >
+                <h3 className="text-xl md:text-2xl text-newtifi-navy">NewTIFI Investment Management Journal</h3>
+                <p className="mt-3 text-base text-gray-600 text-pretty">
+                  Peer-reviewed research and insights in investment management and financial technology
                 </p>
-                <ul className="list-disc pl-5 sm:pl-6 space-y-3 text-gray-700 text-sm sm:text-base">
-                  <li>Bridging technology and finance to drive sustainable, meaningful impact</li>
-                  <li>Connecting researchers, innovators, policymakers, academics, and industry leaders</li>
-                  <li>Supporting future talent through scholarships, internships, and mentorships</li>
-                  <li>Delivering accessible education and insights to professionals and communities</li>
-                  <li>Shaping policy through thought leadership and a shared vision of inclusion, well-being, and sustainability</li>
-                </ul>
-                {/* Old 3 Luxembourg + 4 new panoramics (7 total). New: scripts/download-panoramic-images.sh */}
-                <div className="mt-4 grid grid-rows-7 gap-4">
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-top bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/adolphe-bridge-luxembourg.jpg')" }}
-                    aria-label="Adolphe Bridge, Luxembourg"
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-newtifi-navy">
+                  Visit the journal
+                  <ArrowRight
+                    className="h-4 w-4 text-newtifi-teal transition-transform duration-200 ease-out-strong motion-reduce:transition-none fine:group-hover:translate-x-1"
+                    aria-hidden="true"
                   />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/kirchberg-fort-thungen.jpg')" }}
-                    aria-label="Fort Thüngen, Kirchberg, Luxembourg"
-                  />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/luxembourg-skyline-golden-hour.jpg')" }}
-                    aria-label="Luxembourg skyline"
-                  />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/panorama-1.jpg')" }}
-                    aria-label="Luxembourg city panorama"
-                  />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/panorama-2.jpg')" }}
-                    aria-label="Luxembourg cityscape"
-                  />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/panorama-3.jpg')" }}
-                    aria-label="City skyline with green park"
-                  />
-                  <div
-                    className="rounded-2xl w-full h-40 sm:h-48 md:h-64 bg-center bg-cover shadow-sm border border-gray-200"
-                    style={{ backgroundImage: "url('/images/uploads/panorama-4.jpg')" }}
-                    aria-label="Frankfurt skyline"
-                  />
-                </div>
-              </div>
-            </ScrollReveal>
+                </span>
+              </Link>
 
-            {/* Right side - Featured Articles Hero */}
-            <div className="flex flex-col gap-4 sm:gap-6 mb-0 pb-0">
-              {/* Investment Management Journal - Separate Box */}
-              <ScrollReveal direction="left" delay={180}>
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm hover:shadow-md hover:border-newtifi-teal/30 transition-all duration-300 cursor-pointer group">
-                  <div onClick={() => navigate(urlFactory.getPublishingPath())} className="cursor-pointer">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="p-2 bg-newtifi-teal/20 rounded-xl">
-                        <svg className="w-5 h-5 text-newtifi-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                        </svg>
-                      </div>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy group-hover:text-newtifi-teal transition-colors">
-                        NewTIFI Investment Management Journal
-                      </h3>
-                    </div>
-                    <p className="text-sm sm:text-base md:text-base text-gray-600 font-light mb-3">
-                      Peer-reviewed research and insights in investment management and financial technology
-                    </p>
-                    <div className="flex items-center justify-end">
-                      <svg className="w-4 h-4 text-newtifi-teal group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </ScrollReveal>
-
-              {/* Featured Articles - Hero Section */}
-            <ScrollReveal direction="left" delay={200}>
-                <div className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm border border-gray-200">
-                <div className="flex justify-between items-center mb-5 sm:mb-8">
-                    <h2 className="text-lg sm:text-xl md:text-2xl font-light uppercase tracking-[0.15em] text-newtifi-navy">Featured Articles</h2>
-                  <Button 
-                      to={urlFactory.getPublishingPath()} 
-                    className="text-newtifi-navy hover:text-newtifi-teal transition-colors duration-300 flex items-center gap-2 text-sm sm:text-base"
+              <div>
+                <div className="mb-4 flex items-center justify-between gap-4">
+                  <h2 className="text-xl md:text-2xl text-newtifi-navy">Featured articles</h2>
+                  <Link
+                    to={urlFactory.getPublishingPath()}
+                    className="text-sm text-newtifi-navy underline decoration-newtifi-teal underline-offset-4 transition-colors duration-150 ease-out-strong fine:hover:decoration-newtifi-navy"
                   >
-                    View All
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </Button>
+                    View all
+                  </Link>
                 </div>
-                <div className="space-y-5 sm:space-y-8">
-                    {featuredArticles.length > 0 ? (
-                      featuredArticles.map((article) => (
-                        <div 
-                          key={article.id}
-                          className="bg-white rounded-2xl p-5 sm:p-6 md:p-8 shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer border border-gray-200 hover:border-newtifi-teal/30 group"
-                          onClick={() => navigate(getArticleUrl(article))}
-                        >
-                          {/* Article Header (text only) */}
-                          <div className="flex items-start mb-4 sm:mb-6">
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2 sm:gap-3 mb-2">
-                                <span className="inline-block bg-newtifi-teal/10 text-newtifi-teal text-xs px-3 py-1 rounded-full font-light uppercase tracking-[0.2em]">
-                                  Latest Publication
-                                </span>
-                                <span className="text-xs sm:text-base text-gray-500">{article.date}</span>
-                              </div>
-                              <h3 className="text-base font-light uppercase tracking-wide text-newtifi-navy mb-2 line-clamp-2 group-hover:text-newtifi-teal transition-colors">
-                                {article.title}
-                              </h3>
-                              <div className="flex items-center gap-2 mb-3">
-                                <span className="text-xs sm:text-base text-newtifi-teal font-light uppercase tracking-wide">{article.category === 'journal' ? 'Journal Article' : 'News'}</span>
-                                {article.author && (
-                                  <>
-                                    <span className="text-gray-400">•</span>
-                                    <span className="text-xs sm:text-base text-gray-600">By {article.author}</span>
-                                  </>
-                                )}
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Keywords */}
-                          <div className="mb-4">
-                            <div className="flex flex-wrap gap-2">
-                              {article.keywords?.slice(0, 3).map((keyword, kIdx) => (
-                                <span key={kIdx} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide">
-                                  {keyword}
-                                </span>
-                              ))}
-                              {article.keywords?.length > 3 && (
-                                <span className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide">
-                                  +{article.keywords.length - 3} more
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          {/* Abstract */}
-                          <p className="text-sm sm:text-base text-gray-600 line-clamp-3 mb-6 leading-relaxed">{article.abstract}</p>
-
-                          {/* Footer */}
-                          <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                            <div className="text-xs sm:text-base text-gray-500">
-                              DOI: {article.doi}
-                            </div>
-                            <div className="flex items-center gap-2 text-newtifi-teal group-hover:text-newtifi-navy transition-colors text-xs sm:text-base">
-                              <span className="font-medium">Read Article</span>
-                              <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                      ))
-                    ) : (
-                      <div className="text-center py-12">
-                        <div className="text-newtifi-teal mb-4">
-                          <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                          </svg>
-                        </div>
-                        <p className="text-gray-600 font-medium text-base">No featured articles available</p>
-                        <p className="text-base text-gray-500 mt-2">Check back soon for new publications</p>
-                      </div>
-                    )}
-                    </div>
-                </div>
-              </ScrollReveal>
+                <ul className="surface-card divide-y divide-gray-100 overflow-hidden">
+                  {latestArticles.map((article) => (
+                    <li key={article.id}>
+                      <Link
+                        to={getArticleUrl(article)}
+                        className="group block px-6 py-5 transition-colors duration-150 ease-out-strong fine:hover:bg-gray-50"
+                      >
+                        <p className="text-base leading-snug text-newtifi-navy text-pretty line-clamp-2 fine:group-hover:underline fine:group-hover:decoration-newtifi-teal fine:group-hover:underline-offset-4">
+                          {article.title}
+                        </p>
+                        <p className="mt-2 text-sm text-gray-500">
+                          {article.author} · {formatDate(article.date)}
+                          {article.journalSlug && journalNames[article.journalSlug] && (
+                            <> · {journalNames[article.journalSlug]}</>
+                          )}
+                        </p>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
+            </div>
           </div>
         </div>
       </section>
-      
-              {/* New Technologies & Investment Funds Institute Pillars & What We Do */}
-      <section className="py-12 bg-white">
+
+      <section className="bg-white py-4">
         <div className="container mx-auto px-6">
-          <ScrollReveal direction="right" delay={100}>
-            <div className="bg-newtifi-navy rounded-2xl p-8 md:p-12">
-              {/* New Technologies & Investment Funds Institute Pillars Section */}
-              <ScrollReveal direction="right" delay={200}>
-                <h2 className="text-2xl md:text-4xl text-center mb-12 text-white">
-                  New Technologies & Investment Funds Institute Pillars
-                </h2>
-                <h3 className="text-2xl md:text-4xl text-center mb-12 text-white font-light uppercase">
-                  Technology Pillars
-                </h3>
-              </ScrollReveal>
-
-              {/* Wrap the grid in a flex container to center it horizontally: */}
-              <div className="flex justify-center">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-                  {[
-                    {
-                      title: "HealthTech",
-                      description: "Enhancing personal care, diagnostics, and healthcare delivery through innovative technological solutions.",
-                      icon: "🏥",
-                      image: "/images/health-tech.jpg"
-                    },
-                    {
-                      title: "FoodTech",
-                      description: "Transforming food systems to increase efficiency, sustainability, and nutritional outcomes.",
-                      icon: "🌱",
-                      image: "/images/food-tech.jpg"
-                    },
-                    {
-                      title: "EnergyTech",
-                      description: "Advancing technologies for smarter resource management, energy efficiency, and environmental conservation.",
-                      icon: "⚡",
-                      image: "/images/energy-tech.jpg"
-                    },
-                    {
-                      title: "FinTech",
-                      description: "Revolutionising financial services with cutting-edge technologies that improve access, transparency, and efficiency.",
-                      icon: "💸",
-                      image: "/images/fin-tech.jpg"
-                    }
-                  ].map((pillar, index: number) => (
-                    <ScrollReveal 
-                      key={pillar.title} 
-                      direction="right" 
-                      delay={200 + (index * 100)}
-                      className="transform transition-all duration-300 hover:scale-105"
-                    >
-                      <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
-                        <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
-                          {/* Space for photo */}
-                          {pillar.image && (
-                            <img
-                              src={pillar.image}
-                              alt={pillar.title + " photo"}
-                              className="w-full h-full object-cover"
-                            />
-                          )}
-                        </div>
-                        <div className="text-4xl mb-4">{pillar.icon}</div>
-                        <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{pillar.title}</h3>
-                        <p className="text-gray-700 flex-grow">{pillar.description}</p>
-                      </div>
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </div>
-
-              {/* Financial Services Section */}
-              <ScrollReveal direction="right" delay={200}>
-                <h3 className="text-2xl md:text-4xl text-center mb-20 text-white font-light uppercase">
-                  Financial Pillars
-                </h3>
-              </ScrollReveal>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {[
-                  {
-                    title: "Investment Funds",
-                    description: "Strategic vehicles aimed at investing to optimise returns while managing risk including through diversification.",
-                    icon: "📈",
-                    image: "/images/Investment-funds.jpg"
-                  },
-                  {
-                    title: "Securitisation Vehicles",
-                    description: "Special-purpose entities that assume risks linked to assets or third-party obligations and finance them through instruments or loans with returns tied to those.",
-                    icon: "📊",
-                    image: "/images/Securitisation-vehicles.jpeg"
-                  },
-                  {
-                    title: "Pension Funds",
-                    description: "Long-term investment solutions focused on financial security and sustainable retirement planning.",
-                    icon: "🏦",
-                    image: "/images/Pension-funds.jpg"
-                  },
-                  {
-                    title: "Life Insurance Products",
-                    description: "Comprehensive risk management and wealth protection solutions tailored to life events and financial contingencies.",
-                    icon: "🛡️",
-                    image: "/images/life-insurance.jpg"
-                  }
-                ].map((item, index: number) => (
-                  <ScrollReveal 
-                    key={item.title} 
-                    direction="right" 
-                    delay={200 + (index * 100)}
-                    className="transform transition-all duration-300 hover:scale-105"
-                  >
-                    <div className="bg-white rounded-2xl p-8 shadow-lg h-full flex flex-col">
-                      <div className="aspect-square w-full mb-6 bg-gray-100 rounded-xl overflow-hidden">
-                        {/* Space for photo */}
-                        {item.image && (
-                          <img
-                            src={item.image}
-                            alt={item.title + " photo"}
-                            className="w-full h-full object-cover"
-                          />
-                        )}
-                      </div>
-                      <div className="text-4xl mb-4">{item.icon}</div>
-                      <h3 className="text-base font-semibold mb-3 text-newtifi-navy">{item.title}</h3>
-                      <p className="text-gray-700 flex-grow">{item.description}</p>
-                    </div>
-                  </ScrollReveal>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
+          <div className="space-y-16 rounded-2xl bg-newtifi-navy p-8 md:p-12">
+            <PillarGrid title="Technology pillars" pillars={technologyPillars} />
+            <PillarGrid title="Financial pillars" pillars={financialPillars} />
+          </div>
         </div>
       </section>
-      
-      {/* Scholarship & Education */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-6">
-          <ScrollReveal direction="right" delay={100}>
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
-              <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Scholarship & Education</p>
-                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Supporting the next generation</h2>
-                <p className="text-base text-gray-700 font-light">
-                  Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
-                </p>
-              </ScrollReveal>
-              
-              {/* Menu Buttons */}
-              <ScrollReveal direction="right" delay={300}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                  {scholarshipContent.map((item, index) => (
-                    <button
-                      key={item.title}
-                      onClick={() => setActiveScholarship(item.title)}
-                      className={cn(
-                        "p-4 rounded-2xl border text-left transition-all duration-300 shadow-sm",
-                        activeScholarship === item.title
-                          ? "bg-newtifi-navy text-white border-newtifi-navy"
-                          : "bg-white border-gray-200 text-gray-700 hover:border-newtifi-teal/30"
-                      )}
-                    >
-                      <h3 className="font-light uppercase tracking-[0.2em] mb-2">{item.title}</h3>
-                      <p className="text-base opacity-80">{item.description}</p>
-                    </button>
-                  ))}
-                </div>
-              </ScrollReveal>
 
-              {/* Content Display */}
-              <ScrollReveal direction="right" delay={400}>
-                {scholarshipContent.map((item) => (
-                  <div
-                    key={item.title}
-                    className={cn(
-                      "transition-all duration-500",
-                      activeScholarship === item.title ? "block" : "hidden"
-                    )}
-                  >
-                    <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
-                      <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
-                      {/* Insert extra paragraph for Doctoral Scholarships only */}
-                      {item.title === 'Doctoral Scholarships' && (
-                        <p className="text-base text-gray-700 mb-6">
-                          NewTIFI believes the future of investment innovation depends on courageous minds unafraid to ask the big questions – so we fund doctoral scholars in promising technological fields who dare to challenge convention and push their field forward
-                        </p>
-                      )}
-                      <ul className="space-y-3">
-                        {item.details.map((detail, index) => (
-                          <li key={index} className="flex items-start gap-3">
-                            <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-3 flex-shrink-0" />
-                            <span className="text-gray-700">{detail}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                ))}
-              </ScrollReveal>
-            </div>
-          </ScrollReveal>
+      <section className="bg-white py-16 md:py-20">
+        <div className="container mx-auto px-6">
+          <div className="mb-10 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl text-newtifi-navy">Supporting the next generation</h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-700 text-pretty">
+              Our scholarship and education initiatives foster academic excellence and empower the next generation of leaders in technology innovation and finance
+            </p>
+          </div>
+          <SegmentedPanels label="Scholarship and education" items={scholarshipItems} />
         </div>
       </section>
-      
-      {/* Legal Insights */}
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-6">
-          <ScrollReveal direction="right" delay={100}>
-            <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-gray-200">
-              <ScrollReveal direction="right" delay={200} className="mb-12 text-center">
-                <p className="text-xs uppercase tracking-[0.35em] text-gray-500 mb-4">Insights</p>
-                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase text-newtifi-navy mb-4">Informed dialogue</h2>
-                <p className="text-base text-gray-700 font-light">
-                  At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
-                </p>
-              </ScrollReveal>
-              {/* Insights Menu Buttons */}
-              <ScrollReveal direction="right" delay={300}>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
-                  {insightsContent.map((item, index) => (
-                    <button
-                      key={item.title}
-                      onClick={() => setActiveInsight(item.title)}
-                      className={cn(
-                        "p-4 rounded-2xl border text-left transition-all duration-300 shadow-sm",
-                        activeInsight === item.title
-                          ? "bg-newtifi-navy text-white border-newtifi-navy"
-                          : "bg-white border-gray-200 text-gray-700 hover:border-newtifi-teal/30"
-                      )}
-                    >
-                      <h3 className="font-light tracking-[0.2em] text-center uppercase w-full">{item.title}</h3>
-                      <p className="text-base opacity-80">{item.subtext}</p>
-                    </button>
-                  ))}
-                </div>
-              </ScrollReveal>
-              {/* Insights Content Display */}
-              <ScrollReveal direction="right" delay={400}>
-                {insightsContent.map((item) => (
-                  <div
-                    key={item.title}
-                    className={cn(
-                      "transition-all duration-500",
-                      activeInsight === item.title ? "block" : "hidden"
-                    )}
-                  >
-                    <div className="bg-gradient-to-r from-newtifi-teal/10 to-newtifi-navy/5 rounded-xl p-8">
-                      <h3 className="text-2xl font-extralight uppercase tracking-[0.12em] text-newtifi-navy mb-4">{item.title}</h3>
-                      <p className="text-base text-gray-700 mb-6">{item.description}</p>
-                      {item.details && (
-                        <ul className="space-y-3">
-                          {item.details.map((detail, idx) => (
-                            <li key={idx} className="flex items-center gap-3 text-base">
-                              <div className="w-2 h-2 bg-newtifi-teal rounded-full mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-700 align-middle">{detail}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </ScrollReveal>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-      
-      {/* Connect Section */}
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-6">
-          <ScrollReveal direction="right" delay={100}>
-            <div className="bg-gradient-to-r from-newtifi-navy to-newtifi-teal rounded-2xl p-8 md:p-12 text-white text-center">
-              <ScrollReveal direction="right" delay={200} className="mb-8">
-                <p className="text-xs uppercase tracking-[0.35em] text-white/70 mb-2">Connect</p>
-                <h2 className="text-2xl md:text-4xl font-extralight tracking-[0.12em] uppercase mb-4">Ready to Connect?</h2>
-                <p className="text-base opacity-90 mb-8">
-                  Join our community of innovators, researchers, and industry leaders.
-                    </p>
-                  </ScrollReveal>
 
-                  <ScrollReveal direction="right" delay={300}>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button 
-                    to="/contact" 
-                    className="rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] bg-white text-newtifi-navy hover:bg-gray-100 transition-all duration-300"
-                  >
-                    Get in Touch
-                  </Button>
-                    <Button 
-                      to="/membership" 
-                    className="rounded-full px-6 py-3 text-xs uppercase tracking-[0.2em] border border-white/40 text-white hover:bg-white hover:text-newtifi-navy transition-all duration-300"
-                    >
-                    Join Our Network
-                    </Button>
-                  </div>
-                </ScrollReveal>
-            </div>
-          </ScrollReveal>
+      <section className="bg-gray-50 py-16 md:py-20">
+        <div className="container mx-auto px-6">
+          <div className="mb-10 max-w-3xl">
+            <h2 className="text-2xl md:text-3xl text-newtifi-navy">Informed dialogue</h2>
+            <p className="mt-4 text-base leading-relaxed text-gray-700 text-pretty">
+              At NewTIFI, we are committed to shaping informed dialogue at the intersection of innovation and finance. While we do not offer legal or tax advice, our publications and advocacy initiatives aim to highlight key issues, emerging trends, and expert perspectives across our core focus areas
+            </p>
+          </div>
+          <SegmentedPanels label="Insights" items={insightItems} />
         </div>
       </section>
-    </main>
+
+      <section className="bg-white pt-16">
+        <div className="container mx-auto px-6">
+          <div className="institute-hero rounded-2xl px-8 py-12 text-white md:px-12 md:py-16">
+            <h2 className="text-2xl md:text-3xl">Ready to connect?</h2>
+            <p className="mt-4 max-w-2xl text-base text-white/80 text-pretty">
+              Join our community of innovators, researchers, and industry leaders.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-6">
+              <Button to="/contact" variant="inverse">
+                Get in touch
+              </Button>
+              <Link
+                to="/membership"
+                className="text-sm text-white underline decoration-newtifi-teal underline-offset-4 transition-colors duration-150 ease-out-strong fine:hover:decoration-white"
+              >
+                Join our network
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

@@ -107,9 +107,9 @@ export default function AdminDashboard() {
   const pendingArticles = articles.filter(art => art.status === 'draft' || art.status === 'pending');
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+    <main className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative px-6 py-32 bg-gradient-to-br from-newtifi-navy via-newtifi-navy/95 to-newtifi-teal/20 text-white overflow-hidden">
+      <section className="relative px-6 py-32 institute-hero text-white overflow-hidden">
         {/* Background pattern */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
         

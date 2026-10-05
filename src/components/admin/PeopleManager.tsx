@@ -23,7 +23,6 @@ const PeopleManager: React.FC<PeopleManagerProps> = ({ people = [] }) => {
     { id: '1', name: 'Karlo Definis', role: 'Head of Operations & Digital Transformation', bio: '', imageUrl: '', isPublic: true, type: 'executive' as const },
     { id: '2', name: 'Ezechiel Havrenne', role: 'Chair', bio: '', imageUrl: '', isPublic: true, type: 'executive' as const },
     { id: '3', name: 'Stéphane Lellis', role: 'Vice-Chair', bio: '', imageUrl: '', isPublic: true, type: 'executive' as const },
-    { id: '4', name: 'Vlado Sutlovic', role: 'Treasurer', bio: '', imageUrl: '', isPublic: true, type: 'executive' as const },
   ];
 
   const executives = people.filter(p => p.type === 'executive').length > 0 

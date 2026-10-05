@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
 	darkMode: ["class"],
@@ -24,8 +26,8 @@ export default {
 		},
 			// Fully override font families to use Verdana exclusively
 			fontFamily: {
-				sans: ['Verdana'],
-				serif: ['Verdana'],
+				sans: ['Verdana', 'Geneva', 'DejaVu Sans', 'sans-serif'],
+				serif: ['Verdana', 'Geneva', 'DejaVu Sans', 'sans-serif'],
 				mono: ['Verdana']
 			},
 			extend: {
@@ -150,7 +152,20 @@ export default {
 				'2000': '2000ms',
 				'3000': '3000ms',
 			},
+			transitionTimingFunction: {
+				'out-strong': 'cubic-bezier(0.23, 1, 0.32, 1)',
+			},
+			boxShadow: {
+				card: '0 1px 2px rgba(10,10,35,0.06), 0 12px 32px -20px rgba(10,10,35,0.35)',
+				'card-hover': '0 2px 4px rgba(10,10,35,0.06), 0 20px 40px -24px rgba(10,10,35,0.45)',
+				nav: '0 10px 28px -18px rgba(0,0,0,0.65)',
+			},
 		}
 	},
-	plugins: [import("tailwindcss-animate")],
+	plugins: [
+		tailwindcssAnimate,
+		plugin(({ addVariant }) => {
+			addVariant('fine', '@media (hover: hover) and (pointer: fine)');
+		}),
+	],
 } satisfies Config;
