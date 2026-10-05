@@ -20,7 +20,9 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+        run: |
+          npm ci --legacy-peer-deps || npm install --legacy-peer-deps
+          npm install @rollup/rollup-linux-x64-gnu --no-save
 
       - name: Build
         run: npm run build
