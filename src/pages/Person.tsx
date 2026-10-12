@@ -151,7 +151,14 @@ const Person = () => {
             src={member.imageSrc}
             alt={member.name}
             className="photo aspect-[4/5] w-full max-w-[16rem] rounded-2xl object-cover shadow-card"
-            style={{ objectPosition: member.name === 'Delphine Filsack' ? 'center 30%' : 'center 40%' }}
+            style={{
+              objectPosition:
+                member.name === 'Delphine Filsack'
+                  ? 'center 30%'
+                  : member.name.startsWith('Karlo Definis')
+                    ? 'center 22%'
+                    : 'center 40%',
+            }}
           />
           <div className="max-w-3xl space-y-4">
             {member.fullBio.split('\n\n').map((paragraph, index) => (

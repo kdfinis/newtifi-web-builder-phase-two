@@ -21,6 +21,9 @@ const TeamMember: React.FC<TeamMemberProps> = ({
   className,
 }) => {
   const urlName = name.toLowerCase().replace(/,/g, '').replace(/\s+/g, '-');
+  const isKarlo = name.startsWith('Karlo Definis');
+  const objectPosition =
+    name === 'Delphine Filsack' ? 'center 30%' : isKarlo ? 'center 22%' : 'center 40%';
 
   return (
     <div className={cn("flex h-full flex-col items-center", className)}>
@@ -32,10 +35,8 @@ const TeamMember: React.FC<TeamMemberProps> = ({
           <img
             src={imageSrc}
             alt={name}
-            className="photo h-[360px] w-full object-cover"
-            style={{
-              objectPosition: name === 'Delphine Filsack' ? 'center 30%' : 'center 40%',
-            }}
+            className={cn('photo w-full object-cover', isKarlo ? 'h-full' : 'h-[360px]')}
+            style={{ objectPosition }}
           />
         </div>
 
