@@ -23,7 +23,11 @@ const TeamMember: React.FC<TeamMemberProps> = ({
   const urlName = name.toLowerCase().replace(/,/g, '').replace(/\s+/g, '-');
   const isKarlo = name.startsWith('Karlo Definis');
   const objectPosition =
-    name === 'Delphine Filsack' ? 'center 30%' : isKarlo ? 'center 22%' : 'center 40%';
+    name === 'Delphine Filsack'
+      ? 'center 30%'
+      : isKarlo
+        ? 'center 30%'
+        : 'center 40%';
 
   return (
     <div className={cn("flex h-full flex-col items-center", className)}>
@@ -31,11 +35,15 @@ const TeamMember: React.FC<TeamMemberProps> = ({
         to={`/person/${urlName}`}
         className="relative flex h-full w-full max-w-[280px] flex-col bg-white rounded-2xl overflow-hidden group cursor-pointer shadow-card transition-[transform,box-shadow] duration-200 ease-out-strong active:scale-[0.97] motion-reduce:transition-none motion-reduce:active:scale-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-newtifi-navy focus-visible:ring-offset-2 fine:hover:-translate-y-1 fine:hover:shadow-card-hover"
       >
-        <div className="relative h-[240px] w-full shrink-0 overflow-hidden">
+        <div className="relative h-[240px] w-full shrink-0 overflow-hidden bg-white">
           <img
             src={imageSrc}
             alt={name}
-            className={cn('photo w-full object-cover', isKarlo ? 'h-full' : 'h-[360px]')}
+            className={cn(
+              'photo w-full object-cover',
+              // Slightly less aggressive crop so padded studio headshot shows more face
+              isKarlo ? 'h-[300px]' : 'h-[360px]',
+            )}
             style={{ objectPosition }}
           />
         </div>

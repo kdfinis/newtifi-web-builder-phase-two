@@ -153,11 +153,10 @@ const Person = () => {
             className="photo aspect-[4/5] w-full max-w-[16rem] rounded-2xl object-cover shadow-card"
             style={{
               objectPosition:
-                member.name === 'Delphine Filsack'
+                member.name === 'Delphine Filsack' ||
+                member.name.startsWith('Karlo Definis')
                   ? 'center 30%'
-                  : member.name.startsWith('Karlo Definis')
-                    ? 'center 22%'
-                    : 'center 40%',
+                  : 'center 40%',
             }}
           />
           <div className="max-w-3xl space-y-4">
